@@ -1,0 +1,13 @@
+.quarto-content {
+  // prevent figures from distorting if height set
+  img {
+    display: block;
+    height: auto !important;
+    margin: 0 auto;
+  }
+
+  // but make svgs full width
+  img[src$=".svg"] {
+    width: 100%;
+  }
+}

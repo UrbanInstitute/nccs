@@ -1,0 +1,100 @@
+// Flexible Grid
+// There are 4 sizes defined, starting from inward to outward:
+// content, popout, feature, full
+
+.grid-content {
+  display: grid;
+  grid-template-columns: [full-start] #{$grid-full} [feature-start] #{$grid-feature} [popout-start] #{$grid-popout} [content-start] #{$grid-content} [content-end] #{$grid-popout} [popout-end] #{$grid-feature} [feature-end] #{$grid-full} [full-end];
+}
+
+.grid-sidebar {
+  display: grid;
+  grid-template-columns: [full-start] #{$grid-full} [content-start] #{$grid-content} [content-end] #{$grid-full} [full-end];
+
+  @include breakpoint(md) {
+    grid-template-columns: [sidebar-start] #{$grid-sidebar} [sidebar-end full-start] #{$grid-full} [content-start] #{$grid-sidebar-content} [content-end] #{$grid-full} [full-end];
+  }
+}
+
+.grid-cols-4 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @include breakpoint(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include breakpoint(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  @include breakpoint(sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.col-span-3 {
+  grid-column: span 3 / span 3;
+}
+
+.grid-feature {
+  display: grid;
+}
+
+// Set default grid assignment
+.grid-content > * {
+  grid-column: content;
+}
+
+.full {
+  grid-column: full;
+}
+
+.feature {
+  grid-column: feature;
+}
+
+.popout {
+  grid-column: popout;
+}
+
+.content {
+  grid-column: content;
+}
+
+.sidebar {
+  grid-column: full;
+
+  @include breakpoint(md) {
+    grid-column: sidebar;
+  }
+}
+
+// Inset content, for setting flush with content inside a full or feature element
+.grid-inner-content {
+  width: $grid-content;
+  margin: 0 auto;
+}
+
+.grid-inner-feature {
+  max-width: $grid-container;
+  margin: 0 auto;
+}

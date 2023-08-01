@@ -1,0 +1,37 @@
+.bg-blue-700 {
+  background-color: $color-blue-700;
+}
+
+.bg-blue-800 {
+  background-color: $color-blue-800;
+}
+
+.bg-pattern-dot {
+  background-image: url('../img/pattern-square-dot.png');
+  background-repeat: repeat;
+  background-size: 12px;
+}
+
+.bg-white-gradient-center:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 48%, rgba(255,255,255,0) 100%);
+}
+
+.bg-white-gradient-bottom-right:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 50%;
+  aspect-ratio: 1/1;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+
+}

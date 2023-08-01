@@ -1,0 +1,23 @@
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: $color-divider;
+  position: relative;
+
+  &.-secondary {
+    color: $color-blue-700;
+  }
+}
+
+.divider__title {
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(-50%);
+  background: $color-white;
+  padding-inline-end: 1em;
+}

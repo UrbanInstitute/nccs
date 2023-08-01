@@ -1,0 +1,19 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vw, 2.5rem);
+
+  @include breakpoint(md) {
+    flex-direction: row;
+  }
+}
+
+.hero__column {
+  flex-basis: 100%;
+  width: 100%;
+
+  @include breakpoint(md) {
+    flex-basis: 50%;
+    width: 50%;
+  }
+}

@@ -1,0 +1,56 @@
+{% comment %}
+Filter Controls
+- header {String}
+- categoryTitle {String}
+- categories {Array}
+- typeTitle {String}
+- types {Array}
+- style {String (light|dark)}
+{% endcomment %}
+
+{% if include.style %}
+  {% assign variant = include.style %}
+{% else %}
+  {% assign variant = "light" %}
+{% endif %}
+
+{% if variant == "light" %}
+  {% assign btnClass = "btn -secondary" %}
+{% else %}
+  {% assign btnClass = "btn -light" %}
+{% endif %}
+
+<div class="filter__control full -{{variant}}" >
+  <div class="text-center flex flex-col items-center">
+    {% if include.header %}
+      <h2 class="filter__control__header text-4xl">{{ include.header }}</h2>
+    {% endif %}
+    <div class="filter__control__group">
+      {% if include.categories %}
+      <div class="select-overlay">
+        <select id="filter-select" name="filter-select" class="select-overlay__input filter__select__input" data-filter-sort-category>
+            <option value="">Filter by {{ include.categoryTitle }}</option>
+            {% for term in include.categories %}
+              <option value="{{ term | strip }}">{{ term | strip | capitalize }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+      {% if include.types %}
+      <div class="select-overlay">
+        <select id="filter-select" name="filter-select" class="select-overlay__input filter__select__input" data-filter-sort-type>
+            <option value="">Filter by {{ include.typeTitle }}</option>
+            {% for term in include.types %}
+              <option value="{{ term | strip }}">{{ term | strip | capitalize }}</option>
+            {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+      <div class="search-input-overlay">
+        <label for="filter-search" class="sr-only">Filter content by text</label>
+        <input name="filter-search" type="text" placeholder="Filter by text" data-filter-search>
+      </div>
+      <button data-filter-clear class="filter__control__clear {{ btnClass }}">Clear</button>
+    </div>
+  </div>
+</div>

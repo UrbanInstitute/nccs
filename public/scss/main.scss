@@ -1,0 +1,47 @@
+---
+---
+
+// NOTES:
+// This site utilizes a modified BEM approach to class naming:
+// Block = standalone entity that has meaning on it's own
+// Element = no standalone meaning, typically part of a block
+// (Sassy/Simplified) Modifier = a flag on a Block or Element, written as `-mod`
+// 
+// In addition several composable utility classes are used where a full block
+// definition is uncessary or to increase re-usability of classes
+
+// Base
+@import "base/normalize";
+@import "base/fonts";
+@import "base/variables";
+@import "base/functions";
+@import "base/globals";
+@import "base/grid";
+@import "base/type";
+@import "base/forms";
+@import "base/flow";
+
+// Components
+@import "components/svg";
+@import "components/button";
+@import "components/divider";
+@import "components/nav";
+@import "components/sidebar";
+@import "components/hero";
+@import "components/content-cta";
+@import "components/content-feature";
+@import "components/filter";
+@import "components/card-horizontal";
+@import "components/card-vertical";
+@import "components/person";
+@import "components/footer";
+@import "components/code";
+@import "components/quarto-content";
+
+// Utility-classes
+@import "utilities/screen-reader";
+@import "utilities/layout";
+@import "utilities/color";
+@import "utilities/background";
+@import "utilities/align";
+@import "utilities/border";

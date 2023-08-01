@@ -1,0 +1,60 @@
+{% comment %}
+Card Vertical
+- eyebrow {String}
+- header {String}
+- description {String}
+- href {String (url)}
+- icon {String}
+- image {String}
+- date {Date}
+- categories {Array}
+- type {Array}
+{% endcomment %}
+
+{% if include.iconIndex == 0 %}
+  {% assign iconName = "project-bar" %}
+{% elsif include.iconIndex == 1 %}
+  {% assign iconName = "project-line" %}
+{% elsif include.iconIndex == 2 %}
+  {% assign iconName = "project-database" %}
+{% else %}
+  {% assign iconName = "project-bar" %}
+{% endif %}
+
+<div class="card-vertical" data-filter-entry data-filter-categories="{{ include.categories | join: " " | downcase }}" data-filter-type="{{ include.type | join: " " | downcase }}" data-active="true">
+  {% if include.image %}
+    <div class="card-vertical__image">
+      <a href="{{ include.href }}">
+        <img src="{{ include.image }}" alt="">
+      </a>
+    </div>
+  {% endif %}
+  {% if include.eyebrow %}
+    <div class="text-xs uppercase color-neutral-800 mb-1/2 font-normal flex gap-sm">
+      {{ include.eyebrow | join: " "}}
+    </div>
+  {% endif %}
+  {% if include.icon %}
+  <div class="card-vertical__icon" seed="{{ include.date | date_to_string }}">
+    <a class="link-inset block" href="{{ include.href }}">
+      {% include components/svg.html
+        filename = iconName
+        width = "2em"
+      %}
+    </a>
+  </div>
+  {% endif %}
+  <div class="card-vertical__text flow flow-1/2" data-filter-entry-text>
+    <h3 class="text-2xl"><a href="{{ include.href }}">{{ include.header }}</a></h3>
+    {% if include.description %}
+      <p class="text-sm">{{ include.description }}</p>
+    {% endif %}
+  </div>
+  {% if include.categories %}
+    <div class="">
+      {% for category in include.categories %}
+        <span class="border-pill uppercase text-xs mt-1/2 inline-block">{{ category }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

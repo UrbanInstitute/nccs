@@ -1,0 +1,118 @@
+h1, h2, h3, h4, h5 {
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.text-7xl {
+  @include fluid-font(120, 200);
+  line-height: 1.25;
+}
+
+.text-6xl {
+  @include fluid-font(36, 64);
+  line-height: 1.25;
+}
+
+h1, .text-5xl {
+  @include fluid-font(36, 48);
+  line-height: 1.25;
+}
+
+h2, .text-4xl {
+  @include fluid-font(30, 36);
+  line-height: 1.25;
+}
+
+h3, .text-3xl {
+  @include fluid-font(24, 30);
+  line-height: 1.375;
+}
+
+h4, .text-2xl {
+  @include fluid-font(20, 24);
+}
+
+h5, .text-xl {
+  @include fluid-font(18, 20);
+}
+
+.text-reg {
+  @include fluid-font(16, 20);
+}
+
+.text-sm {
+  @include fluid-font(14, 18);
+}
+
+.text-xs {
+  // font-size: 0.625em;
+  @include fluid-font(14, 16);
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+.font-monospace {
+  font-family: $font-code;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.leading-normal {
+  line-height: 1.5;
+}
+
+.leading-snug {
+  line-height: 1.375;
+}
+
+.leading-tight {
+  line-height: 1.25;
+}
+
+.leading-flush {
+  line-height: 1;
+}
+
+.leading-none {
+  line-height: auto;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.transform-none {
+  text-transform: none !important;
+}
+
+.normal-case {
+  text-transform: none;
+}
+
+.break-word {
+  word-break: break-word;
+}

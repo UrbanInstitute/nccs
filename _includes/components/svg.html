@@ -1,0 +1,14 @@
+{% comment %}
+INLINE SVGs
+- filename {String}
+- class {String}
+- width {Number} requires css units
+{% endcomment %}
+
+{% if include.filename and include.filename != "" %}
+  {% assign iconPath = "svg/" | append: include.filename | append: ".svg" %}
+
+  <div class="{{ "svg " | append: include.class }}" {% if include.width %}style="{{ "width: " | append: include.width | append: ";"}}"{% endif %} >
+    {% include {{ iconPath }} %}
+  </div>
+{% endif %}

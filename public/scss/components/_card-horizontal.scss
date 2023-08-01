@@ -1,0 +1,19 @@
+.card-horizontal {
+  display: flex;
+  gap: 1.25em;
+  margin-block-end: 2em;
+
+  &:not([data-active=false]) + & {
+    padding-block-start: 2em;
+    border-top: 1px solid $color-neutral-500;
+  }
+}
+
+.card-horizontal__image {
+  width: 6em;
+  flex-shrink: 0;
+
+  @include breakpoint(md) {
+    width: 10em;
+  }
+}

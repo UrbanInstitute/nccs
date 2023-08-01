@@ -1,0 +1,39 @@
+// BREAKPOINT - builds a media query
+// Accepts a variable from the breakpoint map (sm, md, lg, etc)
+// Used inside of a class definition
+// Usage: 
+// @include breakpoint(sm) { styles } 
+
+@mixin breakpoint($sizes...) {
+	$query: '';
+
+	@each $size in $sizes {
+		@if ($query != '') {
+			$query: $query + ' and ';
+		}
+
+		$query: $query + '(' + bp($size) + ')';
+	}
+
+	@media #{$query} {
+		@content;
+	}
+}
+
+// helper function to return a breakpoint
+@function bp($bp) {
+	@return map-get($breakpoints, $bp);
+}
+
+// FLUID FONTS - creates fluid font definitions
+// Accepts number as pixel units, handles rem conversion
+// Usage:
+// @include fluid-font(16, 20)
+
+@mixin fluid-font($valueMin, $valueMax) {
+  $fontMin: $valueMin / $remBase;
+  $fontMax: $valueMax / $remBase;
+  $clampLow: ((100 * ($valueMax - $valueMin)) / ($fluidWidthMax - $fluidWidthMin));
+  $clampHigh:(($fluidWidthMin * $valueMax - $fluidWidthMax * $valueMin) / ($fluidWidthMin - $fluidWidthMax)) / $remBase;
+  font-size: clamp( #{$fontMin}rem, unquote("#{$clampLow}vw + #{$clampHigh}rem"), #{$fontMax}rem);
+}

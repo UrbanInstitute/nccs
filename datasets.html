@@ -1,0 +1,75 @@
+---
+title: Datasets
+description: Cras mattis consectetur purus sit amet fermentum
+layout: default
+permalink: /datasets/
+activeLink: /datasets/
+---
+
+{% include components/page-header.html
+  header = page.title
+  description = page.description
+%}
+
+<div class="feature flow flow-4">
+  {% include components/divider.html
+    header = "Recommended"
+  %}
+
+  {% assign featured_posts = site.datasets | where: "featured", "true" | sort: "featuredOrder" %}
+  {% include components/content-feature.html
+    entries = featured_posts
+    eyebrow = "dataset"
+    style = "light"
+  %}
+</div>
+
+{% comment %} 
+  FILTERS
+  Because of the work needed to set up, the filters cannot be fully componentized
+{% endcomment %}
+
+<div class="filter full flow-4" data-module="filter">
+
+  {% comment %}
+    Build array of categories and types, whitespace matters in captures!
+  {% endcomment %}
+  {% for post in site.datasets %}
+    {% for category in post.categories %}
+      {% capture all_categories %}{% if all_categories %}{{ all_categories | join: "," }},{{ category }}{% else %}{{ category }}{% endif %}{% endcapture %}
+    {% endfor %}
+  {% endfor %}
+
+  {% assign all_categories = all_categories | split: "," | uniq %}
+
+  {% comment %}
+    Omitting type since all are assumed to be 'dataset'
+  {% endcomment %}
+  <div class="grid-content flow flow-2">
+    {% include components/filter-controls.html
+      categoryTitle = "category"
+      categories = all_categories
+    %}
+
+    <div class="posts mt-4" data-filter-entry-section>
+      {% for post in site.datasets %}
+        {% assign postUrl = post.url | relative_url %}
+        {% assign imageIndex = forloop.index | modulo: 17 %}
+        {% assign image = "/public/img/datasets/dataset-placeholder-" | append: imageIndex | append: ".png" | relative_url %}
+        {% include components/card-horizontal.html
+          header = post.title
+          description = post.description
+          image = image
+          date = post.date
+          href = postUrl
+          categories = post.categories
+        %}
+      {% endfor %}
+
+      {% comment %} No result message {% endcomment %}
+      <div data-filter-null data-active="false" class="col-span-3 text-center color-neutral-800">
+        Sorry, no results in Datasets. Please try widening your filter criteria.
+      </div>
+    </div>
+  </div>
+</div>

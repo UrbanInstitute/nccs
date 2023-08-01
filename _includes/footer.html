@@ -1,0 +1,47 @@
+<footer class="full footer grid-content">
+  <div class="feature flex footer__inset">
+    <div class="footer__logo">
+      <a href="{{ '/' | relative_url }}" aria-label="Urban Institute">
+        {% include components/svg.html
+          filename = "logo-full"
+          width = "10em"
+        %}
+      </a>
+    </div>
+    <div class="footer__nav flow">
+      {% comment %}
+      FOOTER NAV
+      These pull from the footer_nav list in _config.yml
+      {% endcomment %}
+      <nav class="footer__navbar">
+        <ul class="footer__nav__list">
+          {% for link in site.footer_nav %}
+            <li class="footer__nav__item">
+              <a class="footer__nav__link" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %} 
+          <li class="footer__nav__item">Copyright &copy; Urban Institute</li>
+        </ul>
+      </nav>
+      {% comment %}
+      SOCIAL LINKS
+      These pull from the social_links list in _config.yml
+      {% endcomment %}
+      <div class="footer__social">
+        <ul class="footer__social__list">
+          {% for link in site.social_links %}
+          <li class="footer__social__item">
+            <a class="footer__social__link" href="{{ link.url }}">
+              <span class="sr-only">{{ link.service }}</span>
+              {% include components/svg.html
+                filename = link.service
+                width = "1.5em"
+              %}
+            </a>
+          </li>
+          {% endfor %} 
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

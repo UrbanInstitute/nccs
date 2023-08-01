@@ -1,0 +1,91 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  @include fluid-font(16, 20);
+  font-family: "Lato", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  color: $color-text;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: $color-link;
+  transition: color $transition-speed-default $ease-out-quad;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    color: $color-link-hover;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 2px;
+  }
+}
+
+ul,
+ol {
+  padding-inline-start: 1em;
+}
+
+pre {
+  padding: 1em;
+  overflow-x: auto;
+}
+
+code {
+  font-family: $font-code;
+}
+
+hr {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-top: 1px solid $color-neutral-500;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  vertical-align: top;
+  border-color: $color-divider;
+  border-collapse: collapse;
+  margin-block-end: 1em;
+}
+
+thead {
+  vertical-align: bottom;
+}
+
+th, td {
+  padding: 0.5rem 0.5rem;
+  color: $color-text;
+  border-bottom-width: 1px;
+  border-color: inherit;
+}
+
+table>:not(:first-child) {
+  border-top: 2px solid currentColor;
+}
+
+tr {
+  border-bottom: 1px solid $color-divider;
+}
+
+tr:nth-child(even) {
+  background-color: $color-neutral-100;
+}
+

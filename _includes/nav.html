@@ -1,0 +1,41 @@
+{% comment %}
+NAVIGATION 
+- items are pulled from _config.yml
+{% endcomment %}
+
+<header class="nav" data-module="nav" data-mobile="false">
+  <a class="nav__logo" href="{{ '/' | relative_url }}">
+    {% include components/svg.html
+      filename = "logo"
+      class = "nav__svg"
+    %}
+    <span class="nav__title -short">{{ site.short_title }}</span>
+    <span class="nav__title -long">{{ site.title }}</span>
+  </a>
+  <button class="nav__toggle" aria-label="Toggle Navigation" data-nav-toggle>
+    <div class="nav__toggle__line -top"></div>
+    <div class="nav__toggle__line -middle"></div>
+    <div class="nav__toggle__line -middle -reversed"></div>
+    <div class="nav__toggle__line -bottom"></div>
+  </button>
+  <nav class="nav__navbar" data-nav-target>
+    <ul class="nav__list">
+      {% for link in site.nav %}
+      <li class="nav__item">
+        <a class="nav__link {% if page.activeLink == link.url %}-active{% endif %}" href="{{ link.url | relative_url }}">{{ link.title }}</a>
+      </li>
+      {% endfor %} 
+      {% if site.repository %}
+      <li class="nav__item">
+        <a class="nav__link" href="{{ site.repository }}">
+          <span class="sr-only">Github Repo</span>
+          {% include components/svg.html
+            filename = "github"
+            width = "1.5em"
+          %}
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</header>

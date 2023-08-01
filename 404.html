@@ -1,0 +1,81 @@
+---
+title: "404 Error"
+permalink: /404.html
+layout: default
+noContentMargin: true
+---
+
+<style>
+.glitch {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2%,64%{
+    transform: translate(2px,0) skew(0deg);
+  }
+  4%,60%{
+    transform: translate(-2px,0) skew(0deg);
+  }
+  62%{
+    transform: translate(0,0) skew(5deg); 
+  }
+}
+
+.glitch:before,
+.glitch:after {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+}
+
+.glitch:before{
+  animation: glitchTop 1s linear infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+@keyframes glitchTop{
+  2%,64%{
+    transform: translate(2px,-2px);
+  }
+  4%,60%{
+    transform: translate(-2px,2px);
+  }
+  62%{
+    transform: translate(13px,-1px) skew(-13deg); 
+  }
+}
+
+.glitch:after {
+  animation: glitchBotom 1.5s linear infinite;
+  clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom{
+  2%,64%{
+    transform: translate(-2px,0);
+  }
+  4%,60%{
+    transform: translate(-2px,0);
+  }
+  62%{
+    transform: translate(-22px,5px) skew(21deg); 
+  }
+}
+</style>
+
+<div class="full grid-content bg-pattern-dot py-8 relative overflow-hidden bg-white-gradient-center flow mt-0">
+  <div class="content relative z-1 flex flex-col items-center flow">
+    <h1 class="text-7xl font-bold glitch color-blue-700 m-0 font-monospace" title="404">404</h1>
+    <p><strong>Page not found :(</strong></p>
+    <p>The requested page could not be found.</p>
+    {% assign url = "/" | relative_url %}
+    {% include components/button.html
+      text = "Return Home"
+      href = url
+      class = "flow-2"
+    %}
+  </div>
+</div>

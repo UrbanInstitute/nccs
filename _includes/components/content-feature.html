@@ -1,0 +1,85 @@
+{% comment %}
+Content Feature
+- entries {Array}
+- style {String} (light|dark|image)
+{% endcomment %}
+
+{% assign featured = include.entries | first %}
+
+{% if include.style %}
+  {% assign style = include.style | prepend: "-" %}
+{% else %}
+  {% assign style = "-dark" %}
+{% endif %}
+
+{% if include.style == "image" and featured.image %}
+  {% assign featuredImage = "/public/img/" | append: featured.image | relative_url %}
+{% elsif include.style == "image" and featured.image == nil %}
+  {% assign style = "-dark" %}
+{% endif %}
+
+{% if include.eyebrow %}
+  {% assign featuredEyebrow = include.eyebrow %}
+{% else %}
+  {% assign featuredEyebrow = featured.type | join: " " %}
+{% endif %}
+
+{% if include.entries and include.entries.size != 0 %}
+  <div class="content-feature mt-2 {{ style }}">
+    <div class="content-feature__main">
+      <div class="content-feature__main__text flow flow-1">
+        <div class="text-sm uppercase">{{ featuredEyebrow }}</div>
+        <h2 class="text-5xl mt-0">
+          <a href="{{ featured.url | relative_url }}" class="content-feature__main__link">{{ featured.title }}</a>
+        </h2>
+        <p>{{ featured.description }}</p>
+      </div>
+
+      {% if featuredImage %}
+        <div class="content-feature__main__inset">
+          <img class="content-feature__main__inset__image" style="filter: url('#blue-gradient-map')" src="{{ featuredImage }}" alt="">
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="content-feature__main__filter">
+          <filter id="blue-gradient-map" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0" in="SourceGraphic" result="colormatrix"/>
+            <feComponentTransfer in="colormatrix" result="componentTransfer">
+              <feFuncR type="table" tableValues="0.04 0.09"/>
+              <feFuncG type="table" tableValues="0.3 0.59"/>
+              <feFuncB type="table" tableValues="0.42 0.82"/>
+              <feFuncA type="table" tableValues="0 1"/>
+            </feComponentTransfer>
+            <feBlend mode="normal" in="componentTransfer" in2="SourceGraphic" result="blend"/>
+          </filter>
+        </svg>
+      {% endif %}
+    </div>
+
+    <div class="content-feature__aside">
+      {% for post in featured_posts offset:1 limit:4 %}
+        {% assign url = post.url | relative_url %}
+        {% if include.eyebrow %}
+          {% assign eyebrow = include.eyebrow %}
+        {% else %}
+          {% assign eyebrow = post.type %}
+        {% endif %}
+        {% if forloop.index == 1 and include.style == "image" %}
+          {% if post.image %}
+            {% assign imageUrl = "/public/img/" | append: post.image | relative_url %}
+          {% endif %}
+          {% include components/card-vertical.html
+            eyebrow = eyebrow
+            header = post.title
+            href = url
+            image = imageUrl
+          %}
+        {% else %}
+          {% include components/card-vertical.html
+            eyebrow = eyebrow
+            header = post.title
+            href = url
+          %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

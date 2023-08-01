@@ -1,0 +1,9 @@
+.svg {
+  width: 1em;
+  vertical-align: middle;
+  line-height: 0;
+
+  & svg {
+    width: 100%;
+  }
+}

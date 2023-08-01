@@ -1,0 +1,24 @@
+{% comment %}
+Page Header
+- eyebrow {String}
+- header {String}
+- subheader {String}
+- description {String}
+- class {String}
+{% endcomment %}
+
+<div class="content text-center flow {{ include.class }}">
+  {% if include.eyebrow %}
+    <span class="text-sm uppercase color-neutral-800">{{ include.eyebrow }}</span>
+  {% endif %}
+  <h1 class="text-5xl mt-0">{{ include.header }}</h1>
+  {% if include.subheader %}
+    <p class="color-blue-700 font-bold">{{ include.subheader }}</p>
+  {% endif %}
+  {% if include.description %}
+    <p class="text-2xl font-light flow-3/4">{{ include.description }}</p>
+  {% endif %}
+  {% if include.date %}
+    <time class="block text-sm uppercase color-neutral-800">{{ include.date }}</time>
+  {% endif %}
+</div>

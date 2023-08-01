@@ -1,0 +1,39 @@
+.flow > * + * {
+  margin-block-start: var(--flow-space, 1em);
+}
+
+.flow-0 {
+  --flow-space: 0em;
+}
+
+.flow-1\/2 {
+  --flow-space: 0.5em;
+}
+
+.flow-3\/4 {
+  --flow-space: 0.75em;
+}
+
+.flow-1 {
+  --flow-space: 1em;
+}
+
+.flow-3\/2 {
+  --flow-space: 1.5em;
+}
+
+.flow-2 {
+  --flow-space: 2em;
+}
+
+.flow-3 {
+  --flow-space: 3em;
+}
+
+.flow-4 {
+  --flow-space: 4em;
+}
+
+.flow-5 {
+  --flow-space: 5em;
+}

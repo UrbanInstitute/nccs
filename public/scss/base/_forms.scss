@@ -1,0 +1,66 @@
+.select-overlay {
+  position: relative;
+  color: $color-blue-700;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0.625em;
+    top: 50%;
+    width: 0.75em;
+    height: 0.75em;
+    transform: translateY(-50%);
+    color: $color-blue-500;
+    background-image: url('../icon/dropdown-blue.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  select {
+    appearance: none;
+    background-color: $color-white;
+    padding: 0.5em 1.75em 0.5em 0.5em;
+    border: 1px solid $color-divider;
+    color: $color-neutral-800;
+    width: 100%;
+    border-radius: 0;
+
+    @include breakpoint(md) {
+      min-width: 14em;
+    }
+  }
+}
+
+input {
+  border: 1px solid $color-divider;
+  padding: 0.5em;
+}
+
+.search-input-overlay {
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0.625em;
+    top: 50%;
+    width: 1em;
+    height: 1em;
+    transform: translateY(-50%);
+    color: $color-blue-500;
+    background-image: url('../icon/search-blue.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  input {
+    padding: 0.5em 1.5em 0.5em 0.5em;
+    width: 100%;
+
+    @include breakpoint(md) {
+      min-width: 14em;
+    }
+  }
+}

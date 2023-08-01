@@ -1,0 +1,111 @@
+---
+title: Resources
+description: Cras mattis consectetur purus sit amet fermentum
+layout: default
+permalink: /resources/
+activeLink: /resources/
+---
+
+{% include components/page-header.html
+  header = page.title
+  description = page.description
+%}
+
+<div class="feature flow flow-4">
+  {% include components/divider.html
+    header = "Featured"
+  %}
+
+  {% assign featured_posts = site.resources | where: "featured", "true" | sort: "featuredOrder" | limit: "5" %}
+  {% include components/content-feature.html
+    entries = featured_posts
+  %}
+</div>
+
+{% comment %} 
+  FILTERS
+  Because of the work needed to set up, the filters cannot be fully componentized
+{% endcomment %}
+
+<div data-module="filter" class="flow flow-4 full grid-content">
+
+  {% comment %}
+    Build array of categories and types, whitespace matters in captures!
+  {% endcomment %}
+
+  {% for post in site.resources %}
+    {% for category in post.categories %}
+      {% capture all_categories %}{% if all_categories %}{{ all_categories }},{{ category }}{% else %}{{ category }}{% endif %}{% endcapture %}
+    {% endfor %}
+    {% for type in post.type %}
+      {% capture all_types %}{% if all_types %}{{ all_types }},{{ type }}{% else %}{{ type }}{% endif %}{% endcapture %}
+    {% endfor %}
+  {% endfor %}
+
+  {% assign all_categories = all_categories | split: "," | uniq %}
+  {% assign all_types = all_types | split: "," | uniq %}
+
+  {% include components/filter-controls.html
+    header = "Search All Resources"
+    categoryTitle = "Category"
+    categories = all_categories
+    typeTitle = "Type"
+    types = all_types
+    style = "light"
+  %}
+
+  <div class="feature flow flow-4">
+    {% include components/divider.html
+      header = "Projects"
+    %}
+
+    {% assign projects = site.resources | where: "type", "project" | reverse %}
+
+    <div class="grid-cols-3 gap-lg mt-2" data-filter-entry-section>
+      {% for post in projects %}
+        {% assign url = post.url | relative_url %}
+        {% assign iconIndex = forloop.index | modulo: 3 %}
+        {% include components/card-vertical.html
+          header = post.title
+          description = post.description
+          href = url
+          icon = "project"
+          iconIndex = iconIndex
+          categories = post.categories
+          type = post.type
+        %}
+      {% endfor %}
+
+      {% comment %} No result message {% endcomment %}
+      <div data-filter-null data-active="false" class="col-span-3 text-center color-neutral-800">
+        Sorry, no results in Projects.
+      </div>
+    </div>
+
+    {% include components/divider.html
+      header = "Publications and Tools"
+    %}
+    
+    {% assign resources = site.resources | where_exp: "post", "post.type != 'project'" | reverse %}
+
+    <div class="grid-cols-3 gap-lg mt-2" data-filter-entry-section>
+      {% for post in resources %}
+        {% assign url = post.url | relative_url %}
+        {% assign eyebrow = post.type | join: " " %}
+        {% include components/card-vertical.html
+          eyebrow = eyebrow
+          header = post.title
+          description = post.description
+          href = url
+          categories = post.categories
+          type = post.type
+        %}
+      {% endfor %}
+
+      {% comment %} No result message {% endcomment %}
+      <div data-filter-null data-active="false" class="col-span-3 text-center color-neutral-800">
+        Sorry, no results in Publications and Tools.
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,602 @@
+---
+title: Parts Kit
+layout: default
+permalink: /parts-kit/
+activeLink: /parts-kit/
+author:
+- id: jn
+primaryLinks:
+- text: "Primary Link 1"
+  url: "#"
+- text: "Primary Link 2"
+  url: "#"
+links: 
+  - header: "Sample Link Header"
+    links:
+    - text: "Sample Link 1"
+      url: "#"
+    - text: "Sample Link 2"
+      url: "#"
+---
+
+<div class="content text-center">
+  <h1>NCCS Parts Kit</h1>
+  <p>This page contains demo site components. To see how to include on a page, <a href="{{ site.repository | append: "/blob/main/parts-kit.html"}}">view the template in the repo</a>.</p>
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Layout</h2>
+    <p>On a normal page (like this one), there are 4 container classes that control container width via CSS grid column definitions.</p>
+    <p>There are two Grid layouts: <code>.grid-content</code> and <code>.grid-sidebar</code>. These container classes only apply to <code>.grid-content</code></p>
+  </div>
+</div>
+
+<div class="full bg-blue-800 color-white flex items-center justify-center" style="height: 5em;">
+  <code>.full</code>
+</div>
+
+<div class="feature bg-blue-800 color-white flex items-center justify-center" style="height: 5em;">
+  <code>.feature</code>
+</div>
+
+<div class="popout bg-blue-800 color-white flex items-center justify-center" style="height: 5em;">
+  <code>.popout</code>
+</div>
+
+<div class="content bg-blue-800 color-white flex items-center justify-center" style="height: 5em;">
+  <code>.content</code>
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Flow</h2>
+    <p>Space inbetween elements is created by the <code>.flow</code> utility. This spacing only applies to the top-level elements in a <code>.flow</code> container</p>
+    <p>The default flow spacing is <code>1em</code>, but can be increased with <code>.flow-X</code>, where <code>X</code> is a number between 1 and 4.</p>
+    <p>Alternatively, the spacing can be varied on the elements themselves to acheive variable spacing.</p>
+  </div>
+</div>
+
+<div class="feature flex gap">
+  <div class="flow gap">
+    <code class="border-pill text-sm">.flow</code>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+  </div>
+  <div class="flow flow-2">
+    <code class="border-pill text-sm">.flow-2</code>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+  </div>
+  <div class="flow flow-3">
+    <code class="border-pill text-sm">.flow-3</code>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+  </div>
+  <div class="flow flow-4">
+    <code class="border-pill text-sm">.flow-4</code>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+    <div class="bg-blue-800" style="width: 2em; height: 2em;"></div>
+  </div>
+  <div class="flow">
+    <code class="border-pill text-sm">Variable</code>
+    <div class="bg-blue-800 flow-1 color-white flex justify-center items-center" style="width: 2em; height: 2em;">1</div>
+    <div class="bg-blue-800 flow-4 color-white flex justify-center items-center" style="width: 2em; height: 2em;">4</div>
+    <div class="bg-blue-800 flow-3 color-white flex justify-center items-center" style="width: 2em; height: 2em;">3</div>
+    <div class="bg-blue-800 flow-2 color-white flex justify-center items-center" style="width: 2em; height: 2em;">2</div>
+    <div class="bg-blue-800 color-white flex justify-center items-center" style="width: 2em; height: 2em;">1</div>
+  </div>
+</div>
+
+<div class="feature pb-1 border-b-blue">
+  <h2 class="m-0 p-0">Buttons</h2>
+</div>
+
+<div class="feature flow">
+  <h3 class="mb-0">Primary</h3>
+
+  <div class="flex flex-wrap gap">
+    {% include components/button.html
+      text = "Primary"
+      href = "#"
+      style = "primary"
+    %}
+
+    {% include components/button.html
+      text = "Primary with Icon"
+      href = "#"
+      style = "primary"
+      icon = "download"
+    %}
+
+    {% include components/button.html
+      text = "Primary as Button"
+      tag = "button"
+      style = "primary"
+    %}
+
+    {% include components/button.html
+      text = "Primary Disabled"
+      href = "#"
+      style = "primary"
+      disabled = true
+    %}
+  </div>
+
+  <h3 class="mb-0">Secondary</h3>
+
+  <div class="flex flex-wrap gap">
+    {% include components/button.html
+      text = "secondary"
+      href = "#"
+      style = "secondary"
+    %}
+
+    {% include components/button.html
+      text = "secondary with Icon"
+      href = "#"
+      style = "secondary"
+      icon = "plus"
+    %}
+
+    {% include components/button.html
+      text = "secondary as Button"
+      tag = "button"
+      style = "secondary"
+    %}
+
+    {% include components/button.html
+      text = "secondary Disabled"
+      href = "#"
+      style = "secondary"
+      disabled = true
+    %}
+  </div>
+
+  <h3 class="mb-0">Tertiary</h3>
+
+  <div class="flex flex-wrap gap">
+    {% include components/button.html
+      text = "Tertiary"
+      href = "#"
+      style = "tertiary"
+    %}
+
+    {% include components/button.html
+      text = "Tertiary with Icon"
+      href = "#"
+      style = "tertiary"
+      icon = "files"
+    %}
+
+    {% include components/button.html
+      text = "Tertiary as Button"
+      tag = "button"
+      style = "tertiary"
+    %}
+
+    {% include components/button.html
+      text = "Tertiary Disabled"
+      href = "#"
+      style = "tertiary"
+      disabled = true
+    %}
+  </div>
+
+  <h3 class="mb-0">Text</h3>
+
+  <div class="flex flex-wrap gap">
+    {% include components/button.html
+      text = "Text"
+      href = "#"
+      style = "text"
+    %}
+
+    {% include components/button.html
+      text = "Text with Icon"
+      href = "#"
+      style = "text"
+      icon = "external"
+    %}
+
+    {% include components/button.html
+      text = "Text as Button"
+      tag = "button"
+      style = "text"
+    %}
+
+    {% include components/button.html
+      text = "Text Disabled"
+      href = "#"
+      style = "text"
+      disabled = true
+    %}
+  </div>
+
+  <h3 class="mb-0">Light</h3>
+
+  <div class="flex flex-wrap gap bg-blue-800 p-1">
+    {% include components/button.html
+      text = "Text"
+      href = "#"
+      style = "light"
+    %}
+
+    {% include components/button.html
+      text = "Text with Icon"
+      href = "#"
+      style = "light"
+      icon = "external"
+    %}
+
+    {% include components/button.html
+      text = "Text as Button"
+      tag = "button"
+      style = "light"
+    %}
+
+    {% include components/button.html
+      text = "Text Disabled"
+      href = "#"
+      style = "light"
+      disabled = true
+    %}
+  </div>
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <h2 class="m-0 p-0">Icons</h2>
+  <p>Found in <code>_includes/svg</code>. Each svg must be a single path with a fill of <code>currentColor</code> to allow coloring the icons with text color definitions.</p>
+</div>
+
+<div class="feature flex flex-wrap gap">
+
+
+  {% assign icons = "arrow-right article chapter chart-bar-alt chart-bar chart-stacked check chevron-down chevron-left chevron-right close copy database document download dropdown email external facebook files full github instagram link linkedin logo mastodon minus open pdf play plus preview project project-bar project-database project-line reddit rss search twitter video visibility youtube" | split: " " %}
+
+  {% for icon in icons %}
+    <div class="flex flex-col items-center">
+      {% include components/svg.html
+        filename = icon
+        width = "2em"
+      %}
+      <code class="border-pill text-sm mt-1/2">{{ icon }}</code>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Dividers</h2>
+  </div>
+</div>
+
+<div class="flow">
+  {% include components/divider.html
+    header = "Primary"
+  %}
+
+  {% include components/divider.html
+    header = "Secondary"
+    style = "secondary"
+  %}
+</div>
+
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Typography and Rich Text</h2>
+    <p>Type is set with fluid definitions which scale linearly between 640px (min) and 1440px viewports (max).</p>
+  </div>
+</div>
+
+<div class="content flow">
+  <div>
+    <h3 class="text-6xl">Nullam id dolor id nibh ultricies vehicula ut id elit.</h3>
+    <code class="border-pill text-sm">.text-6xl</code>
+  </div>
+
+  <div>
+    <h3 class="text-5xl">Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</h3>
+    <code class="border-pill text-sm">.text-5xl</code>
+  </div>
+
+  <div>
+    <h3 class="text-4xl">Sit dicta ipsa vero saepe temporibus? Doloremque provident nihil.</h3>
+    <code class="border-pill text-sm">.text-4xl</code>
+  </div>
+
+  <div>
+    <h3 class="text-3xl">Nullam quis risus eget urna mollis ornare vel eu leo.</h3>
+    <code class="border-pill text-sm">.text-3xl</code>
+  </div>
+
+  <div>
+    <h3 class="text-2xl">Pellentesque ornare sem lacinia quam venenatis vestibulum.</h3>
+    <code class="border-pill text-sm">.text-2xl</code>
+  </div>
+
+  <div>
+    <h3 class="text-xl">Nulla vitae elit libero, a pharetra augue.</h3>
+    <code class="border-pill text-sm">.text-xl</code>
+  </div>
+
+  <div>
+    <p class="text-reg">Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+    <code class="border-pill text-sm">.text-reg</code>
+  </div>
+
+  <div>
+    <p class="text-sm">Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+    <code class="border-pill text-sm">.text-sm</code>
+  </div>
+
+  <div>
+    <p class="text-xs">Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+    <code class="border-pill text-sm">.text-xs</code>
+  </div>
+
+  <hr>
+
+  <div class="flow">
+    <h3>Defaults</h3>
+
+    <p>Integer posuere erat a ante <strong>venenatis dapibus posuere</strong> velit aliquet. Aenean lacinia <em>bibendum nulla sed</em> consectetur. Vestibulum id ligula porta <a href="#">felis euismod semper</a>. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+
+    <ul>
+      <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
+      <li>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+        <ul>
+          <li>Donec id elit non mi porta gravida at eget metus.</li>
+          <li>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+            <ul>
+              <li>Nulla vitae elit libero, a pharetra augue.</li>
+              <li>Maecenas faucibus mollis interdum.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
+      <li>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+    </ul>
+
+
+    <ol>
+      <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridicolus mus.</li>
+      <li>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibolum.
+        <ol>
+          <li>Donec id elit non mi porta gravida at eget metus.</li>
+          <li>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibolum.
+            <ol>
+              <li>Nolla vitae elit libero, a pharetra augue.</li>
+              <li>Maecenas faucibus mollis interdum.</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridicolus mus.</li>
+      <li>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibolum.
+    </ol>
+
+    <p>Sit alias aperiam non minus alias! <a href="#">Porro eum ipsum vel optio</a> in asperiores Error iusto quod impedit nobis rerum aspernatur! <strong>Quas sit modi blanditiis <em>unde illo</em>?</strong> Blanditiis ipsam ullam inventore.</p>
+  </div>
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <h2 class="m-0 p-0">Hero</h2>
+  <p>Requires a <code>.feature</code> sizing wrapper.</p>
+</div>
+
+<div class="feature">
+  {% include components/hero.html
+    header = "Welcome to the National Center for Charitable Statistics (NCCS) open data platform"
+    description = "Consectetur atque culpa ad quidem ex? Deleniti atque error necessitatibus cumque quisquam. Fugit necessitatibus commodi eveniet."
+    ctaUrl = "#"
+    ctaText = "Sample CTA"
+    ctaIcon = "external"
+    imageUrl = "https://placehold.co/855x555"
+    imageAlt = "A11y description"
+  %}
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <h2 class="m-0 p-0">Content CTA</h2>
+  <p>Used to highlight a particular link or piece of content, with both a light and a dark variant.</p>
+</div>
+
+
+<div class="content">
+  {% include components/content-cta.html
+    header = "Nullam quis risus eget urna mollis"
+    description = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+    ctaUrl = "#"
+    ctaText = "Learn how to use NCCS data"
+    imageUrl = "https://placehold.co/855x555"
+    imageAlt = "A11y description"
+    style = "light"
+  %}
+</div>
+
+<div class="full">
+  {% include components/content-cta.html
+    header = "Nullam quis risus eget urna mollis"
+    description = "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum."
+    ctaUrl = "#"
+    ctaText = "Learn how to use NCCS data"
+    imageUrl = "https://placehold.co/855x555"
+    imageAlt = "A11y description"
+    style = "dark"
+  %}
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <h2 class="m-0 p-0">Filter Controls</h2>
+  <p>This only represents the control elements but does not add JavaScript functionality, see <code>index.html</code> for an example of a full implementation.</p>
+</div>
+
+{% assign sampleTerms = "one two three four" | split: " " %}
+
+
+{% include components/filter-controls.html
+  header = "Light Filter Control"
+  categoryTitle = "term title"
+  categories = sampleTerms
+  typeTitle = "type title"
+  types = sampleTerms
+  style = "light"
+%}
+
+{% include components/filter-controls.html
+  header = "Dark Filter Control"
+  categoryTitle = "term title"
+  categories = sampleTerms
+  typeTitle = "type title"
+  types = sampleTerms
+  style = "dark"
+%}
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <h2 class="m-0 p-0">Card - Horizontal</h2>
+</div>
+
+{% assign sampleTypes = "type1 type2" | split: " " %}
+{% assign sampleDate = site.time %}
+
+<div class="content">
+
+  {% assign horizontalThumbnail = '/public/img/datasets/dataset-placeholder-1.png' | relative_url %}
+  {% include components/card-horizontal.html
+    header = "Card Sample"
+    description = "Donec ullamcorper nulla non metus auctor fringilla."
+    image = horizontalThumbnail
+    href = "#"
+    date = sampleDate
+    categories = sampleTerms
+    type = sampleTypes
+  %}
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <h2 class="m-0 p-0">Card - Vertical</h2>
+</div>
+
+<div class="content">
+  {% assign sampleDate = site.time %}
+
+  <div class="flex flex-col gap" style="max-width: 20em; margin: 0 auto;">
+  {% include components/card-vertical.html
+    eyebrow = sampleTypes
+    header = "Vertical Card Text Only"
+    description = "Donec ullamcorper nulla non metus auctor fringilla."
+    href = "#"
+    date = sampleDate
+    categories = sampleTerms
+    type = sampleTypes
+  %}
+
+  {% include components/card-vertical.html
+    header = "Vertical Card Icon, No Eyebrow"
+    description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam."
+    icon = "project"
+    href = "#"
+    date = sampleDate
+    categories = sampleTerms
+    type = sampleTypes
+  %}
+
+  {% assign cardImage = '/public/img/stories/story-placeholder.webp' | relative_url %}
+
+  {% include components/card-vertical.html
+    eyebrow = sampleTypes
+    header = "Vertical Card with Image"
+    description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam."
+    image = cardImage
+    href = "#"
+    date = sampleDate
+    categories = sampleTerms
+    type = sampleTypes
+  %}
+  </div>
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Content Feature</h2>
+    <p class="mt-0">Pulls featured content to the top. 3 styles: light, dark, and image (Stories only).</p>
+  </div>
+</div>
+
+<div class="feature flow">
+  {% assign featured_posts = site.stories | where: "featured", "true" | sort: "featuredOrder" | limit: "5" %}
+
+  <h3>Light Variant</h3>
+
+  {% include components/content-feature.html
+    entries = featured_posts
+    style = "light"
+  %}
+
+  <h3>Dark Variant</h3>
+
+  {% include components/content-feature.html
+    entries = featured_posts
+    style = "dark"
+  %}
+
+  <h3>Image Variant</h3>
+  <p class="mt-0">Requires <code>image</code> to be set. Only for <code>_stories</code>. Reverts to dark variant if the first two images do not have <code>image</code> set. (This demo may not work if the first two featured stories do not have images.)</p>
+
+  {% include components/content-feature.html
+    entries = featured_posts
+    style = "image"
+  %}
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Sidebar</h2>
+    <p>Requires the sidebar grid, intended to only be used at a layout level.</p>
+    <p>Because the links require an object, this demo is stubbed out with dummy data</p>
+  </div>
+</div>
+
+
+<div class="content">
+  {% include sidebar.html
+    header = "Sample Sidebar"
+    primaryCtaUrl = "#"
+    primaryCtaCaption = "Filesize: 245kb"
+    primaryLinks = page.primaryLinks
+    globalLinks = site.globalDatasetLinks
+    author = page.author
+    citation = true
+    citationDate = sampleDate
+    links = page.links
+  %}
+</div>
+
+<div class="feature pb-1 border-b-blue flow-3">
+  <div class="flow flow-1">
+    <h2 class="m-0 p-0">Person</h2>
+    <p>Displays information intended to be pulled from <code>_data/people.yml</code></p>
+  </div>
+</div>
+
+
+<div class="content">
+  {% assign firstPerson = site.data.people | first %}
+  {% assign personImage = "/public/img/" | append: firstPerson.image | relative_url %}
+  {% assign firstAffiliation = firstPerson.affiliation | first %}
+  {% include components/person.html
+    first = firstPerson.first
+    last = firstPerson.last
+    image = personImage
+    title = firstPerson.title
+    affiliation = firstAffiliation.name
+    social = firstPerson.social
+  %}
+</div>

@@ -1,0 +1,39 @@
+{% comment %}
+Person
+- first {String}
+- last {String}
+- image {String (url)}
+- title {String}
+- affiliation {String}
+- social {Array}
+{% endcomment %}
+
+<div class="person flow flow-1/2">
+  {% if include.image %}
+    {% assign personImage = include.image %}
+  {% else %}
+    {% assign personImage = '/public/img/people/person-placeholder.webp' | relative_url %}
+  {% endif %}
+  <div class="person__image">
+    <img class="person__image__el" src="{{ personImage }}" alt="Portrait of {{ include.first }}">
+  </div>
+  <p class="font-bold flow-1">{{ include.first }} {{ include.last }}</p>
+  {% if include.title %}
+    <p class="text-xs color-neutral-800">{{ include.title }}</p>
+  {% endif %}
+  {% if include.affiliation %}
+    <p class="text-xs color-neutral-800">{{ include.affiliation }}</p>
+  {% endif %}
+  {% if include.social %}
+    <div class="flex justify-center gap-xs flow-1">
+      {% for link in include.social %}
+        <a class="rounded-full color-text" href="{{ link.url }}">
+          {% include components/svg.html
+            filename = link.name
+            width = "1em"
+          %}
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

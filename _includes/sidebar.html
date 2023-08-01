@@ -1,0 +1,172 @@
+{% comment %}
+SIDEBAR
+- header {String}
+- date {Date}
+- primaryCtaUrl {String (url)}
+- primaryCtaCaption {String}
+- links {Object}
+  - header {String}
+  - links {Array}
+    - text {String}
+    - url {String (url)}
+- globalLinks {Object}
+  - header {String}
+  - links {Array}
+    - text {String}
+    - url {String (url)}
+- citation {Array}
+- citationDate {Date}
+- style {String} (neutral|blue)
+{% endcomment %}
+
+{% if include.style %}
+  {% assign style = include.style | prepend: "-" %}
+{% else %}
+  {% assign style = "-blue" %}
+{% endif %}
+
+<aside class="sidebar flow {{ style }}">
+  <h1 class="mt-0">{{ include.header }}</h1>
+
+  {% if include.date %}
+    {% assign date = include.date | date: "%B %d, %Y" %}
+    <p class="text-sm">{{ date }}</p>
+  {% endif %}
+
+  {% if include.primaryCtaUrl %}
+    {% include components/button.html
+      text = "Download Data"
+      href = include.primaryCtaUrl
+      style = "primary"
+      icon = "download"
+    %}
+  {% endif %}
+
+  {% if include.primaryCtaUrl %}
+    <p class="text-sm">{{ include.primaryCtaCaption }}</p>
+  {% endif %}
+
+  {% comment %}
+  Primary Links
+  Display as buttons above the citation
+  {% endcomment %}
+
+  {% if include.primaryLinks %}
+    <div class="flex flex-col flow mt-1 flow-1/2">
+      {% for link in include.primaryLinks %}
+        <div>
+          {% include components/button.html
+            text = link.text
+            href = link.href
+            icon = link.icon
+            style = "secondary"
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% comment %}
+  Global Links
+  This allows a repeating set of links for an entire content type
+  (Ex. 'Getting Started' links for datasets)
+  {% endcomment %}
+
+  {% if include.globalLinks %}
+    <hr>
+    {% for section in include.globalLinks %}
+      {% if section.header %}
+        <p class="text-xl font-bold">{{ section.header }}</p>
+      {% endif %}
+
+      <div class="flex flex-col flow mt-1 flow-1/2">
+        {% for link in section.links %}
+          <div>
+            {% include components/button.html
+              text = link.text
+              href = link.href
+              icon = link.icon
+              style = "secondary"
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% comment %}
+  Citation
+  {% endcomment %}
+
+  {% if include.citation %}
+    <hr>
+  
+    {% include components/citation.html
+      citation = include.citation
+      citationDate = include.citationDate
+      author = include.author
+    %}
+  {% endif %}
+
+  {% comment %}
+  Authors
+  Will match id's against data in _date/people.yml and attempt to display info
+  {% endcomment %}
+
+  {% if include.author %}
+    <hr>
+
+    {% for author in page.author %}
+      {% assign authorName = author.name %}
+      {% assign authorBio = author.bio %}
+      {% assign authorImage = nil %}
+      {% for person in site.data.people %}
+        {% if person.id == author.id %}
+          {% assign authorName = person.first | append: " " | append: person.last %}
+          {% assign authorImage = "/public/img/" | append: person.image | relative_url %}
+          {% if authorBio == nil %}
+            {% assign authorBio = person.bio %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      <div class="flex gap-xs items-center">
+        {% if authorImage %}
+        <div class="sidebar__author__image">
+          <img src="{{ authorImage }}" alt="Portrait of {{ authorName }}">
+        </div>
+        {% endif %}
+        <span class="font-bold">{{ authorName }}</span>
+      </div>
+      <div class="text-xs mt-1/2">
+        {{ authorBio }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% comment %}
+  Links
+  Diplay as text links with customizeable headers
+  {% endcomment %}
+
+  {% if include.links %}
+  <hr>
+  <div class="flex flex-col flow mt-1 flow-1">
+    {% for section in include.links %}
+      {% if section.header %}
+        <p class="font-bold text-xl">{{ section.header }}</p>
+      {% endif %}
+      {% for link in section.links %}
+      {% include components/button.html
+        text = link.text
+        href = link.href
+        icon = link.icon
+        style = "text"
+        class = "transform-none"
+      %}
+      
+      {% endfor %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</aside>

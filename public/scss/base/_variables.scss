@@ -1,0 +1,82 @@
+// Colors
+// hsla used for better gradient control
+
+// Neutrals
+$color-white: #{"hsla(0, 0%, 100%, 1)"};
+$color-neutral-100: #{"hsla(0, 0%, 96%, 1)"};
+$color-neutral-200: #{"hsla(0, 0%, 93%, 1)"};
+$color-neutral-300: #{"hsla(0, 0%, 89%, 1)"};
+$color-neutral-500: #{"hsla(0, 0%, 82%, 1)"};
+$color-neutral-700: #{"hsla(0, 0%, 62%, 1)"};
+$color-neutral-800: #{"hsla(0, 0%, 41%, 1)"};
+$color-neutral-900: #{"hsla(0, 0%, 21%, 1)"};
+
+// Blues
+$color-blue-100: #{"hsla(198, 60%, 88%, 1)"};
+$color-blue-200: #{"hsla(199, 66%, 78%, 1)"};
+$color-blue-300: #{"hsla(199, 66%, 67%, 1)"};
+$color-blue-500: #{"hsla(199, 81%, 45%, 1)"};
+$color-blue-700: #{"hsla(199, 80%, 35%, 1)"};
+$color-blue-800: #{"hsla(199, 83%, 23%, 1)"};
+$color-blue-900: #{"hsla(199, 80%, 12%, 1)"};
+
+// Secondary
+$color-yellow: #{"hsla(44, 98%, 53%, 1)"};
+$color-magenta: #{"hsla(325, 100%, 46%, 1)"};
+
+// Tertiary
+$color-green: #{"hsla(113, 44%, 50%, 1)"};
+
+// Status Colors
+$color-valid: #{"hsla(150, 48%, 35%, 1)"};
+$color-error: #{"hsla(0, 61%, 48%, 1)"};
+$color-warning: #{"hsla(51, 89%, 67%, 1)"};
+
+// Semantic Colors
+$color-blue-primary: $color-blue-500;
+$color-neutral-primary: $color-neutral-500;
+$color-text: $color-neutral-900;
+$color-link: $color-blue-700;
+$color-link-hover: $color-blue-800;
+$color-divider: $color-neutral-500;
+
+// Gradients
+$gradient-blue-horizontal: linear-gradient(
+  to right,
+  #{$color-blue-700} 0%,
+  #{$color-blue-500} 50%,
+  #{$color-blue-700} 100%
+);
+
+// Layout, see Globals
+$grid-container: 74rem;
+$grid-gap: clamp(1rem, 5vw, 3rem);
+$grid-full: minmax(#{$grid-gap}, 1fr);
+$grid-content: min(48rem, 100% - #{$grid-gap} * 2);
+$grid-popout: minmax(0, 2rem);
+$grid-feature: minmax(0, 11.375rem);
+$grid-sidebar: clamp(5rem, 33vw, 25rem);
+$grid-sidebar-gap: clamp(2rem, 5vw, 5.3125rem);
+$grid-sidebar-content: min( 48rem, 100% - #{$grid-sidebar} - #{$grid-sidebar-gap} * 2);
+
+// Fluid Font Definitions, see Functions
+$remBase: 16;
+$fluidWidthMin: 640;
+$fluidWidthMax: 1440;
+$font-code: "Fira Code", "JetBrains Mono", "Source Code Pro", Inconsolata,
+  Consolas, MonoLisa, Monoid, Menlo, Monaco, Andale Mono WT, Andale Mono,
+  DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L,
+  monospace;
+
+// Breakpoints for media queries, see Functions
+$breakpoints: (
+  sm: "min-width: 640px",
+  md: "min-width: 768px",
+  lg: "min-width: 1024px",
+  xl: "min-width: 1280px",
+  2xl: "min-width: 1536px",
+);
+
+// Animation and Easing
+$transition-speed-default: 250ms;
+$ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);

@@ -1,0 +1,46 @@
+---
+layout: default
+grid: sidebar
+noContentMargin: true
+---
+
+{% include sidebar.html
+  header = page.title
+  date = page.date
+  author = page.author
+  links = page.links
+  citation = page.citation
+  citationDate = page.date
+%}
+
+<div class="content mt-3 mb-content">
+  <div class="flow quarto-content" data-module="content">
+    {% if page.image %}
+      {% assign imageUrl = "/public/img/" | append: page.image | relative_url %}
+      <img src="{{imageUrl}}" alt="">
+    {% endif %}
+    {{ content }}
+  </div>
+
+  <div class="mt-3">
+    {% include components/divider.html
+      header = "More Stories"
+    %}
+
+    <div class="grid-cols-2 gap mt-2">
+      {% assign stories = site.stories | where_exp: "item", "item.url != page.url" | sort: "date" | reverse %}
+      {% for post in stories limit: "2" %}
+        {% assign url = post.url | relative_url %}
+        {% include components/card-vertical.html
+          eyebrow = post.type
+          header = post.title
+          description = post.description
+          href = url
+          categories = post.categories
+        %}
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+

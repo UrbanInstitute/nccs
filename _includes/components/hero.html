@@ -1,0 +1,41 @@
+{% comment %}
+Hero
+- header {String}
+- description {String}
+- ctaUrl {String (url)}
+- ctaText {String}
+- ctaIcon {String}
+- imageUrl {String (url)}
+- imageAlt {String}
+{% endcomment %}
+
+{% if include.ctaText %}
+  {% assign ctaText = include.ctaText %}
+{% else %}
+  {% assign ctaText = "Learn More" %}
+{% endif %}
+
+{% if include.ctaText %}
+  {% assign ctaIcon = include.ctaIcon %}
+{% else %}
+  {% assign ctaIcon = "" %}
+{% endif %}
+
+<div class="hero">
+  <div class="hero__column -copy flow">
+    <h1 class="text-5xl">{{ include.header }}</h1>
+    <p class="leading-relaxed">{{ include.description }}</p>
+    {% if include.ctaUrl %}
+      {% include components/button.html
+        href = include.ctaUrl
+        text = ctaText
+        icon = ctaIcon
+        style = "text"
+      %}
+    {% endif %}
+  </div>
+
+  <div class="hero__column -image">
+    <img src="{{ include.imageUrl }}" alt="{{ include.imageAlt }}" loading="lazy">
+  </div>
+</div>

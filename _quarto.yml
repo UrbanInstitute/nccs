@@ -1,0 +1,13 @@
+project:
+  type: default
+  render:
+    - "_stories/"
+  lib-dir: "public/vendor"
+format:
+  gfm:
+    variant: gfm+yaml_metadata_block+definition_lists
+    html-math-method: webtex
+    preview-mode: raw
+    fig-format: svg
+    # mermaid-format: svg
+    extract-media: '../../_stories'

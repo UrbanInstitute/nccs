@@ -1,0 +1,36 @@
+{% comment %}
+Button
+- text {String}
+- tag {String (html tag)}
+- href {String (url)}
+- style {String (primary, secondary, text)}
+- icon {String}
+- dataKey {String}
+- dataValue {String}
+- class {String}
+- disabled {Boolean}
+{% endcomment %}
+
+{% if include.style %}
+  {% assign style = include.style | prepend: "-" %}
+{% else %}
+  {% assign style = "-primary" %}
+{% endif %}
+
+{% if include.href %}
+  {% assign tag = "a" %}
+{% elsif include.tag %}
+  {% assign tag = include.tag %}
+{% else %}
+  {% assign tag = "div" %}
+{% endif %}
+
+<{{tag}} class="btn {{style}} {{include.class}}" {% if include.href %}href="{{ include.href }}"{% endif %} {% if include.dataKey and include.dataValue %}data-{{ include.dataKey }}="{{ include.dataValue }}"{% endif %} {% if include.disabled == true %}disabled{% endif %}>
+  <span>{{ include.text }}</span>
+  {% if include.icon %}
+     {% include components/svg.html
+       filename = include.icon
+     %}
+  {% endif %}
+</{{tag}}>
+

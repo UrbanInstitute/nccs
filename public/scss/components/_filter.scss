@@ -1,0 +1,61 @@
+.filter__control {
+  &.-dark {
+    padding-block: 2em;
+    background: $gradient-blue-horizontal;
+    color: $color-white;
+  }
+}
+
+.filter__control__header + .filter__control__group {
+  margin-block-start: 2em;
+}
+
+.filter__control__group {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+  padding-inline-start: $grid-gap;
+  padding-inline-end: $grid-gap;
+
+  @include breakpoint(md) {
+    flex-direction: row;
+  }
+}
+
+.filter__control__clear {
+  margin: 0 auto;
+
+  @include breakpoint(md) {
+    margin: 0;
+  }
+}
+
+.filter__select {
+  min-width: 15em;
+  padding: 0.5em 0.75em;
+  color: $color-neutral-800;
+
+  .-dark & {
+    background: $color-white;
+    border: 0;
+  }
+}
+
+[data-filter-entry][data-active="false"] {
+  display: none;
+}
+
+// NULL RESULT
+// A custom null result can be included for each data-filter-entry-section
+// it hides itself if there are any active results in the section 
+
+[data-filter-null] {
+  display: block;
+}
+
+[data-filter-entry-section] [data-active="true"] ~ [data-filter-null] {
+  display: none;
+}

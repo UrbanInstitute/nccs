@@ -1,0 +1,117 @@
+.content-feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+
+  @include breakpoint(md) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.content-feature__main {
+  aspect-ratio: 16/9;
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: $color-white;
+
+  .content-feature.-light & {
+    color: $color-text;
+    background: linear-gradient(
+      75deg,
+      #{"hsla(198, 60%, 88%, 1)"} 0%,
+      #{"hsla(198, 60%, 88%, 1)"} 40%,
+      #{"hsla(198, 73%, 80%, 1)"} 100%
+    );
+  }
+
+  .content-feature.-dark & {
+    background: linear-gradient(
+      53deg,
+      $color-yellow 5.89%,
+      #{"hsla(199, 73%, 40%, 1)"} 25.52%,
+      #{"hsla(199, 82%, 39%, 1)"} 67.19%,
+      #{"hsla(199, 86%, 39%, 1)"} 97.75%
+    );
+  }
+
+  .content-feature.-image & {
+    background: $color-blue-900;
+  }
+}
+
+.content-feature__main__text {
+  z-index: 1;
+}
+
+.content-feature__main__link {
+  text-decoration: none;
+  color: $color-white;
+
+  .content-feature.-light & {
+    color: $color-text;
+  }
+}
+
+.content-feature__main__link:hover {
+  text-decoration: none;
+  color: $color-white;
+
+  .content-feature.-light & {
+    color: $color-text;
+  }
+}
+
+.content-feature__main__link::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.content-feature__aside > * + * {
+  padding-block-start: 2rem;
+  margin-block-start: 2rem;
+  border-top: 1px solid $color-divider;
+}
+
+.content-feature__main__inset {
+  position: absolute;
+  inset: 0;
+}
+
+.content-feature__main__inset__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: url("#blue-gradient-map");
+  transition: opacity $transition-speed-default $ease-out-quad;
+
+  .content-feature__main:hover & {
+    opacity: 0.8;
+  }
+}
+
+.content-feature__main__filter {
+  display: none;
+}
+
+// Firefox-specific overlay to mimic svg duotone filter
+@-moz-document url-prefix() {
+  .content-feature.-image .content-feature__main {
+    background: $color-blue-500;
+  }
+
+  .content-feature__main__inset__image {
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+  }
+
+  .content-feature__main:hover .content-feature__main__inset__image {
+    opacity: 0.3;
+  }
+}

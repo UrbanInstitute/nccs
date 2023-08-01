@@ -1,0 +1,106 @@
+---
+layout: default
+---
+
+{% if page.type %}
+  {% assign type = page.type %}
+{% else %}
+  {% assign type = "resource" %}
+{% endif %}
+
+{% if page.author %}
+  {% assign resourceAuthors = nil %}
+  {% for author in page.author %}
+    {% assign name = nil %}
+    {% if author.name %}
+      {% assign name = author.name %}
+    {% elsif author.id %}
+      {% for person in site.data.people %}
+        {% if author.id == person.id %}
+          {% capture name %}{{ person.first}} {{person.last}}{% endcapture %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if resourceAuthors != nil %}
+      {% assign addPerson =  name | prepend: ", " %}
+      {% assign resourceAuthors = resourceAuthors | append: addPerson %}
+    {% else %}
+      {% assign resourceAuthors = name %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign date = page.date | date: "%B %d, %Y" %}
+
+{% include components/page-header.html
+  eyebrow = type
+  header = page.title
+  subheader = resourceAuthors
+  date = date
+  class = "mb-3"
+%}
+
+{% if page.abstract %}
+<div class="content flow">
+{% include components/divider.html
+  header = "Abstract"
+  style = "secondary"
+%}
+{% for paragraph in page.abstract %}
+ {{ paragraph | markdownify }}
+{% endfor %}
+</div>
+{% endif %}
+
+{% if page.primaryLinks %}
+<div class="content flow flex flex-col">
+{% for link in page.primaryLinks %}
+  <div class="flow-1/2">
+  {% include components/button.html
+    text = link.text
+    href = link.href
+    icon = link.icon
+    style = "tertiary"
+  %}
+  </div>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if page.citation %}
+  {% include components/citation.html
+    citation = page.citation
+    citationDate = page.date
+    author = page.author
+  %}
+{% endif %}
+
+{% if page.abstract or page.links or page.citation %}
+<hr>
+{% endif %}
+
+<div class="content flow">
+  {{ content }}
+</div>
+
+<div class="feature flow-3">
+  {% include components/divider.html
+    header = "More Resources"
+  %}
+
+  <div class="grid-cols-3 gap mt-2">
+    {% assign resources = site.resources | where_exp: "item", "item.url != page.url" | sort: "date" | reverse %}
+    {% for post in resources limit: "3" %}
+      {% assign url = post.url | relative_url %}
+      {% include components/card-vertical.html
+        eyebrow = post.type
+        header = post.title
+        description = post.description
+        href = url
+        categories = post.categories
+      %}
+    {% endfor %}
+
+  </div>
+</div>

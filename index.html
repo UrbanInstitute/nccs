@@ -1,0 +1,124 @@
+---
+layout: default
+noContentMargin: true
+isFrontPage: true
+---
+
+<div class="full grid-content bg-pattern-dot pt-content relative overflow-hidden bg-white-gradient-center flow">
+  <div class="feature bg-white-gradient-center bg-white-gradient-bottom-right relative">
+    <div class="relative z-1">
+      {% assign image = "public/img/collage.webp" | relative_url %}
+      {% include components/hero.html
+        header = "Welcome to the National Center for Charitable Statistics (NCCS) open data platform"
+        description = "Consectetur atque culpa ad quidem ex? Deleniti atque error necessitatibus cumque quisquam. Fugit necessitatibus commodi eveniet."
+        ctaUrl = "#"
+        ctaText = "Hero CTA Link"
+        ctaIcon = "external"
+        imageUrl = image
+        imageAlt = "A11y description"
+      %}
+    </div>
+  </div>
+
+
+  {% comment %}
+  Content CTA
+  To use a content url, use the variable with the relative_url filter
+  Otherwise change the ctaUrl to a full url
+  {% endcomment %}
+
+  <div class="full text-center flow-4">
+    <div class="relative z-1">
+      {% assign contentUrl = "/resources/sample-project/" | relative_url %}
+      {% include components/content-cta.html
+        header = "Getting Started with NCCS Data"
+        description = "This project contains guides, walkthroughs, and code for users to get started using NCCS Data."
+        ctaUrl = contentUrl
+        ctaText = "Learn how to use NCCS data"
+        style = "dark"
+      %}
+    </div>
+  </div>
+</div>
+
+
+
+<div class="content text-center flow-4">
+  <h2 class="text-4xl">Datasets</h2>
+  <p class="mt-1">Lorem est dicta atque eaque adipisicing? Ullam doloribus laborum maiores harum cum deserunt Quo numquam rem est quia beatae Esse nemo ad laudantium repudiandae ipsum! Voluptas rem non amet exercitationem.</p>
+</div>
+
+<div class="content flow-4">
+  {% for post in site.datasets limit:8 %}
+    {% assign postUrl = post.url | relative_url %}
+    {% assign imageIndex = forloop.index | modulo: 17 %}
+    {% assign image = "/public/img/datasets/dataset-placeholder-" | append: imageIndex | append: ".png" | relative_url %}
+    {% include components/card-horizontal.html
+      header = post.title
+      description = post.description
+      image = image
+      date = post.date
+      href = postUrl
+      categories = post.categories
+    %}
+  {% endfor %}
+
+  {% assign datasetCta = "/datasets/" | relative_url %}
+  <div class="text-center">
+    {% include components/button.html
+      text = "View All Datasets"
+      href = datasetCta
+    %}
+  </div>
+</div>
+
+<div class="feature flow flow-4">
+  {% include components/divider.html
+    header = "Featured Stories"
+  %}
+
+  {% assign featured_posts = site.stories | where: "featured", "true" | sort: "featuredOrder" | limit: "5" %}
+  {% include components/content-feature.html
+    entries = featured_posts
+    style = "image"
+  %}
+
+  {% assign storiesCta = "/stories/" | relative_url %}
+  <div class="text-center">
+    {% include components/button.html
+      text = "View All Stories"
+      href = storiesCta
+    %}
+  </div>
+</div>
+
+<div class="feature flow flow-4 mb-4">
+  {% include components/divider.html
+    header = "Resources"
+  %}
+
+  {% assign resources = site.resources | sort: "date" | reverse %}
+
+  <div class="grid-cols-3 gap-lg mt-2" data-filter-entry-section>
+    {% for post in resources limit:6 %}
+      {% assign url = post.url | relative_url %}
+      {% assign eyebrow = post.type | join: " " %}
+      {% include components/card-vertical.html
+        eyebrow = eyebrow
+        header = post.title
+        description = post.description
+        href = url
+        categories = post.categories
+        type = post.type
+      %}
+    {% endfor %}
+  </div>
+
+  {% assign resourcesCta = "/resources/" | relative_url %}
+  <div class="text-center">
+    {% include components/button.html
+      text = "View All Resources"
+      href = resourcesCta
+    %}
+  </div>
+</div>

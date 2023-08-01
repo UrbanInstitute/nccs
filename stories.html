@@ -1,0 +1,87 @@
+---
+title: Stories
+description: Consectetur tempora nisi architecto sint adipisicing corporis Asperiores eum nemo corporis recusandae id in Totam illo.
+layout: default
+permalink: /stories/
+activeLink: /stories/
+---
+
+{% include components/page-header.html
+  header = page.title
+  description = page.description
+%}
+
+<div class="feature flow flow-4">
+  {% include components/divider.html
+    header = "Featured"
+  %}
+
+  {% assign featured_posts = site.stories | where: "featured", "true" | sort: "featuredOrder" | limit: "5" %}
+  {% include components/content-feature.html
+    entries = featured_posts
+    style = "image"
+  %}
+</div>
+
+{% comment %} 
+  FILTERS
+  Because of the work needed to set up, the filters cannot be fully componentized
+{% endcomment %}
+
+<div data-module="filter" class="flow flow-4 full grid-content">
+
+  {% for post in site.stories %}
+    {% for category in post.categories %}
+      {% capture all_categories %}{% if all_categories %}{{ all_categories }},{{ category }}{% else %}{{ category }}{% endif %}{% endcapture %}
+    {% endfor %}
+    {% for type in post.type %}
+      {% capture all_types %}{% if all_types %}{{ all_types }},{{ type }}{% else %}{{ type }}{% endif %}{% endcapture %}
+    {% endfor %}
+  {% endfor %}
+
+  {% assign all_categories = all_categories | split: "," | uniq %}
+  {% assign all_types = all_types | split: "," | uniq %}
+
+  {% include components/filter-controls.html
+    header = "All Stories"
+    categoryTitle = "Topics"
+    categories = all_categories
+    style = "dark"
+  %}
+
+  <div class="feature flow flow-4">
+    {% include components/divider.html
+      header = "Stories"
+    %}
+
+    {% assign posts = site.stories | reverse %}
+
+    <div class="grid-cols-3 gap-lg mt-2" data-filter-entry-section>
+      {% for post in posts %}
+
+        {% comment %}
+        Images
+        To activate images in this loop, remove the `and activateImages` from the condition
+        {% endcomment %}
+
+        {% assign imageUrl = nil %}
+        {% if post.image and activateImages %}
+          {% assign imageUrl = "/public/img/" | append: post.image | relative_url %}
+        {% endif %}
+
+        {% assign url = post.url | relative_url %}
+        {% include components/card-vertical.html
+          header = post.title
+          description = post.description
+          href = url
+          categories = post.categories
+          type = post.type
+          image = imageUrl
+        %}
+      {% endfor %}
+      {% comment %} No result message {% endcomment %}
+      <div data-filter-null data-active="false" class="col-span-3 text-center color-neutral-800">
+        Sorry, no results in Stories.
+      </div>
+    </div>
+</div>

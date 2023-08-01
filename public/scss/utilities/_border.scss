@@ -1,0 +1,9 @@
+.border-b-blue {
+  border-bottom: 1px solid $color-blue-500;
+}
+
+.border-pill {
+  border: 1px solid $color-neutral-500;
+  padding: 0.25em 0.5em;
+  border-radius: 0.5rem;
+}
