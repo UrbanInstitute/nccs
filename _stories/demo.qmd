@@ -3,9 +3,7 @@ title: nccsdata Package Demo
 date: 2023-08-28
 description: This story demos three functions from the nccsdata package.
 featured: true
-format:
-  html: 
-    prefer-html: true
+format: markdown
 featuredOrder: 1
 type: methods
 categories:
