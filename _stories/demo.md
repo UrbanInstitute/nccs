@@ -38,7 +38,7 @@ links:
     text: Script
 - header: Publications
   links:
-  - icon: download'
+  - icon: download
     text: Report
 title: nccsdata Package Demo
 toc-title: Table of contents

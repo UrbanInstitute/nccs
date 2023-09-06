@@ -29,7 +29,7 @@ links:
     links:
     - text: Report
       href: #
-      icon: download'
+      icon: download
 ---
 
 ```{r setup, include=FALSE}
