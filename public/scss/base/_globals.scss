@@ -44,8 +44,15 @@ pre {
 
 code {
   font-family: $font-code;
-  line-height: 1;
   font-size: 0.7em;
+}
+
+body code {
+  line-height: 1;
+}
+
+body.code {
+  line-height: 1;
 }
 
 hr {
