@@ -45,10 +45,7 @@ pre {
 code {
   font-family: $font-code;
   font-size: 0.7em;
-}
-
-body > code {
-  line-height: 1;
+  line-height: 1 !important;
 }
 
 hr {
