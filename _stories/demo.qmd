@@ -7,7 +7,6 @@ featuredOrder: 1
 type: methods
 categories:
   - package demo
-  - payroll tax
 author:
   - id: hm
   - id: jdl
