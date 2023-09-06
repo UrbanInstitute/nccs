@@ -10,4 +10,4 @@ format:
     preview-mode: raw
     fig-format: svg
     # mermaid-format: svg
-    extract-media: '../../_stories'
+    extract-media: 'img'
