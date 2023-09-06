@@ -1,5 +1,47 @@
 # Teams templated: executive, leadership, member
 # To exclude a person from the about page, do not set a team field
+- id: jdl
+  first: Jesse
+  last: Lecy
+  title: Sample Title
+  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
+  orcid: 0000-0002-1825-0097
+  email: josiah@psychoceramics.org
+  team: leadership
+  image: people/person-placeholder.png
+  affiliation: 
+    - name: Burgundy University
+      city: Providence
+      state: RI
+      url: www.burgundy.edu
+  social:
+    - name: linkedin
+      url: #
+    - name: twitter
+      url: #
+    - name: mastodon
+      url: #
+- id: hm
+  first: Hannah
+  last: Martin
+  title: Sample Title
+  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
+  orcid: 0000-0002-1825-0097
+  email: josiah@psychoceramics.org
+  team: leadership
+  image: people/hannah-martin.jpg
+  affiliation: 
+    - name: Burgundy University
+      city: Providence
+      state: RI
+      url: www.burgundy.edu
+  social:
+    - name: linkedin
+      url: #
+    - name: twitter
+      url: #
+    - name: mastodon
+      url: #
 - id: jc
   first: Juri
   last: Cranberry
