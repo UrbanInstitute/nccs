@@ -27,7 +27,7 @@ citation:
   volume: 1
 date: 2023-08-28
 description: This story demos three functions from the nccsdata package.
-featured: true
+featured: false
 featuredOrder: 1
 links:
 - header: Replication Files
