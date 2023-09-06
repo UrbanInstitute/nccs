@@ -56,7 +56,7 @@ dt <- nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
                              ntee.code = c("Axx", "B"),
                              ntee.orgtype = "all")
 head(dt) %>%
-  knitr::kable()
+  knitr::kable(format = "simple")
 ```
 
 The analyst can then save the outputs to a .csv file or use them in downstream analysis.
