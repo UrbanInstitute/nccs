@@ -3,6 +3,9 @@ title: nccsdata Package Demo
 date: 2023-08-28
 description: This story demos three functions from the nccsdata package.
 featured: true
+format:
+  html: 
+    prefer-html: true
 featuredOrder: 1
 type: methods
 categories:
@@ -34,7 +37,8 @@ links:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("nccsdata")
-library("kableExtra")
+library("knitr")
+library("dplyr")
 
 tinybmf <- tinybmf
 tract_dat <- tract_dat
@@ -54,8 +58,7 @@ dt <- nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
                              ntee.code = c("Axx", "B"),
                              ntee.orgtype = "all")
 head(dt) %>%
-  kbl() %>%
-  kable_styling()
+  knitr::kable()
 ```
 
 The analyst can then save the outputs to a .csv file or use them in downstream analysis.
@@ -63,10 +66,12 @@ The analyst can then save the outputs to a .csv file or use them in downstream a
 In this second example, the analyst repeats the above function but instead chooses to visualize the dataset in an interactive widget. The visualize argument provides this functionality.
 
 ```{r}
-nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
+output <- nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
                        ntee.code = c("Axx", "B"),
                        ntee.orgtype = "all",
-                       visualize = TRUE)
+                       visualize = FALSE)
+head(output) %>%
+  knitr::kable()
 ```
 
 The analyst does not need to save the file to browse it and can instead get the information they need from the widget.
@@ -75,9 +80,10 @@ The second function included in the package is preview_meta(). This function vis
 
 ```{r}
 output <- nccsdata::preview_meta("cbsa",
-                                 visual = TRUE,
+                                 visual = FALSE,
                                  within = c("NY", "MD"))
-output[[1]]
+head(output) %>%
+  knitr::kable()
 ```
 
 The output allows the analyst to understand which cbsa codes and metropolitan area names are present within
@@ -87,9 +93,10 @@ In the second example, the analyst previews geographic metadata from the census 
 
 ```{r}
 output <- nccsdata::preview_meta("tract",
-                                 visual = TRUE,
+                                 visual = FALSE,
                                  within = c("Chico, CA"))
-output[[1]]
+head(output) %>%
+  knitr::kable()
 ```
 
 The analyst can now view which county names are associated with Chico and can use the information for downstream analysis.
@@ -98,9 +105,10 @@ In this example, the analyst previews data from the census block dataset for Aca
 
 ```{r}
 output <- nccsdata::preview_meta("block",
-                                 visual = TRUE,
+                                 visual = FALSE,
                                  within = c("Acadia Parish", "Cook County"))
-output[[1]]
+head(output) %>%
+  knitr::kable()
 ```
 
 The third function is get_data(). With this function the analyst can combine ntee data, census data and data from the business master files to create custom datasets. In this example the analyst retrieves information from all art and education nonprofits in New York, and links it with census tract information.
@@ -111,8 +119,7 @@ dt <- nccsdata::get_data(ntee.level1 = c("ART", "EDU"),
                    geo.state = "NY",
                    geo.level = "tract")
 head(dt) %>%
-  kbl() %>%
-  kable_styling()
+  knitr::kable()
 ```
 
 The resultant dataset filters and combines information on non-profits, their respective organization types, industry groups and divisions, and census data including the names of the counties they operate in and the relevant cbsa codes. The analyst can save this dataset for further analysis.
@@ -127,8 +134,7 @@ dt <- nccsdata::get_data(ntee.level1 = c("ART", "EDU"),
                    geo.level = "block")
 
 head(dt) %>%
-  kbl() %>%
-  kable_styling()
+  knitr::kable()
 ```
 
 In addition to the 3 main functions covered there are 2 additional helper functions that an analyst may find useful. The first is parse_ntee() which returns the ntee codes for nonprofits that fall under analyst specifications. In this example, the analyst retrieves the ntee codes for non profits belonging to the Public Benefit and Relgious Industry Groups.
