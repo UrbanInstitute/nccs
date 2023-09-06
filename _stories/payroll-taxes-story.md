@@ -2,30 +2,32 @@
 title: Payroll Taxes
 date: 2023-08-28
 description: This data story outlines the process for estimating the amount of payroll taxes nonprofits pay annually.
-image: stories/story-placeholder.webp
 featured: true
 featuredOrder: 1
-type: test
+type: methods
 categories:
   - SOI extracts
   - payroll tax
 author:
-  - id: Hannah Martin
-  - id: Jesse Lecy
+  - id: hm
+  - id: jdl
 citation: 
   container-title: National Center for Charitable Statistics
   volume: 1
   issue: 1
   doi: 10.5555/12345678
 links:
-  - header: Data
+  - header: Replication Files
     links:
-    - text: Test
+    - text: Data
       href: #
       icon: download
-  - header: Customs
+    - text: Script
+      href: #
+      icon: download
+  - header: Publications
     links:
-    - text: View Data
+    - text: Report
       href: #
       icon: download
 ---
