@@ -252,7 +252,7 @@ Our team aims to democratize the process of executive compensation appraisals to
 
 For example, if an art museum in New York City is hiring a new CEO, we want to compare their proposed compensation to compensations from art museums in other large cities like San Francisco, Chicago, or Boston. But if a small animal shelter in Jackson, Wyoming is hiring a new CEO, we want to compare their proposed compensation to other small animal-related nonprofits located in the Rocky Mountains. Before we can appraise new nonprofits CEO compensations, we need to build an accurate data base of current CEO compensations. This requires knowing for essential factors for every nonprofit in the U.S. (1) who the CEO is, and (2) how much they are being paid. 
 
-![](appraisal-set.png)
+![](https://raw.githubusercontent.com/lecy/nccs/main/public/img/stories/appraisal-set.png)
 
 While these seem like straightforward questions, finding the answers is by no means a simple task. Every nonprofit is annually required to file form 990 with the IRS, and the IRS makes these fillings publicly available. But just because the data is available, does not mean is it easy to use. 
 
@@ -273,7 +273,7 @@ For geographical characteristics we consider what state/territory and the type o
 Quantifying the similarity of nonprofit missions is the most challenings part of this project. The IRS uses the National Taxonomy of Exempt Entities (NTEE) Codes to categorize a nonprofit’s scope of mission. The NTEE system contains a hierarchical classification system that has over 650 basic codes and thousands of more specialized codes. In the plot below we have included the basic codes and their hierarchical structure. You can click on the nodes to explore how the codes are nested in this structure. To learn more about NTEE codes, see [LINK TO NTEE CODES STORY].
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval=F}
 htmltools::includeHTML("https://raw.githubusercontent.com/Nonprofit-Open-Data-Collective/compensator/main/vignettes/images/ntee-dendrogram.html")
 ```
 
