@@ -1295,7 +1295,7 @@ social services to parents and families, and they annually spend about
 X as all other nonprofits located in Flordia. Below we have a map of all
 of these organizations:
 
-![](img/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-3-1.svg)
+![](../../_stories/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-3-1.svg)
 
 While it is nice to have all the nonprofts used in the apprasial process
 to be only from Florida, there is a wide variety of industry types
@@ -1308,14 +1308,14 @@ in the graph below that most organizations selected under this
 definition of “similar” have a very small geographic distance from
 Nonprofit X, but also have a very large mission distance.
 
-![](img/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-4-1.svg)
+![](../../_stories/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-4-1.svg)
 
 Since it is important to only include nonprofits that do similar work to
 Nonprofit X, let’s instead define “other similar organizations” as
 nonprofits that do general human services work located anywhere in the
 continental U.S.
 
-![](img/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-5-1.svg)
+![](../../_stories/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-5-1.svg)
 
 This definition alleviates our earlier problem. We can see in the graph
 above most of these nonprofits have a small mission distance from
@@ -1325,7 +1325,7 @@ X. A nonprofit that does crime prevention work in rural Montana probably
 isn’t relevant for appraising Nonprofit X even though they both do
 genral human services work.
 
-![](img/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-6-1.svg)
+![](../../_stories/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-6-1.svg)
 
 We need to find a compromise between two defintions. We only want our
 appraisal to include organizations whose geographic *and* mission values
@@ -1335,9 +1335,9 @@ metropolitan areas of states in the southeast U.S. We can see from the
 plots below that the nonprofits in this set are much closer to Nonprofit
 X both in terms of their geography and their respective missions!
 
-![](img/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-7-1.svg)
+![](../../_stories/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-7-1.svg)
 
-![](img/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-7-2.svg)
+![](../../_stories/ceo-compensation-methodology_files/figure-commonmark/unnamed-chunk-7-2.svg)
 
 Once we have a set of nonprofits with our desired characteristics we can
 use them to generate a CEO comepensation appraisal for Nonprofit X of

@@ -50,6 +50,8 @@ bmf <- read_csv("https://nccsdata.s3.amazonaws.com/raw/bmf/2023-08-BMF.csv")
 data("nonprofits")
 ```
 
+
+
 ```{r, message=FALSE, echo = FALSE, warning=FALSE, cache=T}
 ### Chunk to run all analysis 
 org <- get_org_values(
