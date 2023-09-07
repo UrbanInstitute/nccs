@@ -87,7 +87,7 @@ globalDatasetLinks:
     - text: "User Guide"
       href:  "https://nccs-data.urban.org/NCCS-data-guide.pdf"
     - text: "Get Help"
-      href: "#"
+      href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990-efiler-database/issues/5"
 
       
 # Build settings
