@@ -81,7 +81,6 @@ social_links:
 # Shows at the bottom of dataset sidebars
 
 globalDatasetLinks:
-  -
     header: "How to Use this Data"
     links: 
     - text: "User Guide"
