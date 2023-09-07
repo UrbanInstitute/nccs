@@ -7,7 +7,7 @@ format: gfm
 featuredOrder: 1
 type: methods
 categories:
-  - package demo
+  - R packages
 author:
   - id: hm
   - id: jdl
@@ -46,6 +46,18 @@ returns a dataset containing the ntee codes associated with these
 nonprofits and their associated descriptions.
 
 ``` r
+dt <- nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
+                             ntee.code = c("Axx", "B"),
+                             ntee.orgtype = "all")
+```
+
+    Collecting Matching Industry Groups
+
+    Collecting Matching Industry Division and Subdivisions
+
+    Collecting Matching Organization Types
+
+``` r
 head(dt) %>%
   knitr::kable()
 ```
@@ -62,13 +74,13 @@ head(dt) %>%
 The analyst can then save the outputs to a .csv file or use them in
 downstream analysis.
 
-In this second example, the analyst repeats the above function but
-instead chooses to visualize the dataset in an interactive widget. The
-visualize argument provides this functionality.
+In this second example, the analyst wants to view ntee information for
+healthcare nonprofits, specifically those involved in general health
+care, and mental health and crisis intervention.
 
 ``` r
-output <- nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
-                       ntee.code = c("Axx", "B"),
+output <- nccsdata::ntee_preview(ntee.group = c("HEL"),
+                       ntee.code = c("E", "F"),
                        ntee.orgtype = "all",
                        visualize = FALSE)
 ```
@@ -84,17 +96,17 @@ head(output) %>%
   knitr::kable()
 ```
 
-| old.code | new.code   | type.org | broad.category | major.group | univ  | hosp  | two.digit | further.category | division.subdivision | broad.category.description | major.group.description    | code.name                         | division.subdivision.description    | keywords                                                    | further.category.desciption                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | ntee2.code |
-|:---------|:-----------|:---------|:---------------|:------------|:------|:------|:----------|-----------------:|:---------------------|:---------------------------|:---------------------------|:----------------------------------|:------------------------------------|:------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------|
-| A01      | AA-ART-A00 | AA       | ART            | A           | FALSE | FALSE | 1         |               NA | 0                    | Arts, Culture & Humanities | Arts, Culture & Humanities | Alliances & Advocacy              | Alliance/Advocacy Organizations     | Arts Alliances, Arts Coalitions, Lobbying, Public Awareness |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | ART-A00-AA |
-| A0161    | AA-ART-A61 | AA       | ART            | A           | FALSE | FALSE | 1         |               61 | 61                   | Arts, Culture & Humanities | Arts, Culture & Humanities | NA                                | Alliance/Advocacy Organizations     | NA                                                          | Providing support to organizations that operate facilities including theaters for the performing arts.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | ART-A61-AA |
-| A02      | MT-ART-A00 | MT       | ART            | A           | FALSE | FALSE | 2         |               NA | 0                    | Arts, Culture & Humanities | Arts, Culture & Humanities | Management & Technical Assistance | Management and Technical Assistance | Professional Continuing Education                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | ART-A00-MT |
-| A0226    | MT-ART-A26 | MT       | ART            | A           | FALSE | FALSE | 2         |               26 | 26                   | Arts, Culture & Humanities | Arts, Culture & Humanities | NA                                | Management and Technical Assistance | NA                                                          | Providing support to organizations that foster, nurture and sustain artistic excellence and create a climate in which the arts and humanities may flourish in a community.                                                                                                                                                                                                                                                                                                                                                                                                      | ART-A26-MT |
-| A0254    | MT-ART-A54 | MT       | ART            | A           | FALSE | FALSE | 2         |               54 | 54                   | Arts, Culture & Humanities | Arts, Culture & Humanities | NA                                | Management and Technical Assistance | NA                                                          | Providing support to organizations that acquire, preserve, research and exhibit collections of objects including documents, tools, implements and furnishings that have significance in helping to interpret or understand the past. History museums may specialize in a specific era such as early Greece or Rome, a particular geographical region such as California or Appalachia, a particular ethnic or cultural group such as Native Americans or a specific subject area such as costumes; and may contain items created or used by contemporary or historical figures. | ART-A54-MT |
-| A0261    | MT-ART-A61 | MT       | ART            | A           | FALSE | FALSE | 2         |               61 | 61                   | Arts, Culture & Humanities | Arts, Culture & Humanities | NA                                | Management and Technical Assistance | NA                                                          | Providing support to organizations that operate facilities including theaters for the performing arts.                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | ART-A61-MT |
+| old.code | new.code   | type.org | broad.category | major.group | univ  | hosp  | two.digit | further.category | division.subdivision | broad.category.description | major.group.description   | code.name            | division.subdivision.description | keywords                                                                                      | further.category.desciption                                                                                                                                                                                                                                                                                                                                                                                             | ntee2.code |
+|:---------|:-----------|:---------|:---------------|:------------|:------|:------|:----------|-----------------:|:---------------------|:---------------------------|:--------------------------|:---------------------|:---------------------------------|:----------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------|
+| E01      | AA-HEL-E00 | AA       | HEL            | E           | FALSE | FALSE | 1         |               NA | 0                    | Health, Non-Hospital       | Health Care, Non-Hospital | Alliances & Advocacy | Alliance/Advocacy Organizations  | Health Care Alliances, Health Care Reform, Health Care Coalitions, Lobbying, Public Awareness |                                                                                                                                                                                                                                                                                                                                                                                                                         | HEL-E00-AA |
+| E0121    | AA-HEL-E21 | AA       | HEL            | E           | FALSE | FALSE | 1         |               21 | 21                   | Health, Non-Hospital       | Health Care, Non-Hospital | NA                   | Alliance/Advocacy Organizations  | NA                                                                                            | Providing support to multihospital health care systems that have two or more hospitals owned, leased, sponsored, or managed by a central organization. Also includes parent companies of diversified single hospital systems that provide comprehensive management and support services for the hospital. (rev. 9/2005)                                                                                                 | HEL-E21-AA |
+| E0122    | AA-HEL-E22 | AA       | HEL            | E           | FALSE | FALSE | 1         |               22 | 22                   | Health, Non-Hospital       | Health Care, Non-Hospital | NA                   | Alliance/Advocacy Organizations  | NA                                                                                            | Providing support to health care facilities that are licensed to operate twenty-four hours per day and offer diagnostic and treatment services as well as emergency and critical care services for people who have illnesses or injuries which require immediate, short-term intervention.                                                                                                                              | HEL-E22-AA |
+| E0131    | AA-HEL-E31 | AA       | HEL            | E           | FALSE | FALSE | 1         |               31 | 31                   | Health, Non-Hospital       | Health Care, Non-Hospital | NA                   | Alliance/Advocacy Organizations  | NA                                                                                            | Providing support to organizations that provide both health care services and underwrite health and medical insurance. Also included are medical groups which provide health care for HMO members on a contract with the HMO and physician practice groups generally associated with teaching, research, and public hospitals.                                                                                          | HEL-E31-AA |
+| E0132    | AA-HEL-E32 | AA       | HEL            | E           | FALSE | FALSE | 1         |               32 | 32                   | Health, Non-Hospital       | Health Care, Non-Hospital | NA                   | Alliance/Advocacy Organizations  | NA                                                                                            | Providing support to outpatient facilities, many previously known as free clinics, established by the community rather than a hospital which provide basic medical care including physical examinations, immunizations, family planning, nutrition assistance and diagnosis and treatment of common ailments. Services are available on an ability-to-pay basis and target low-income and indigent community residents. | HEL-E32-AA |
+| E0170    | AA-HEL-E70 | AA       | HEL            | E           | FALSE | FALSE | 1         |               70 | 70                   | Health, Non-Hospital       | Health Care, Non-Hospital | NA                   | Alliance/Advocacy Organizations  | NA                                                                                            | Providing support to organizations that inform the public of health and safety hazards and measures for furthering the early detection, treatment or rehabilitation of people who have an illness, injury or disability.                                                                                                                                                                                                | HEL-E70-AA |
 
-The analyst does not need to save the file to browse it and can instead
-get the information they need from the widget.
+If the analyst wants an interactive widget to use for browsing the
+dataset, they can set the argument visualize = TRUE.
 
 The second function included in the package is preview_meta(). This
 function visualizes geographic metadata retrieved from US census
@@ -198,16 +210,19 @@ census data including the names of the counties they operate in and the
 relevant cbsa codes. The analyst can save this dataset for further
 analysis.
 
-In this example, the analyst retrieves information on all Art and
-Education nonprofits with a “B” Industry label from California and
-Maryland, and links them together with census block data.
+In this example, the analyst retrieves information on all Healthcare and
+Education nonprofits with a “B”, “E” and “F” Industry label from
+California and Maryland, and links them together with census block data.
 
 ``` r
-dt <- nccsdata::get_data(ntee.level1 = c("ART", "EDU"),
-                   ntee.level2 = "B",
+dt <- nccsdata::get_data(ntee.level1 = c("HEL", "EDU"),
+                   ntee.level2 = c("B", "E", "F"),
                    geo.state = c("CA", "MD"),
                    geo.level = "block")
 ```
+
+    Warning in !ntee.level1 == "all" | !ntee.level2 == "all": longer object length
+    is not a multiple of shorter object length
 
     Collecting Matching Industry Groups
 
