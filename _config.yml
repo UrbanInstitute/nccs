@@ -81,12 +81,13 @@ social_links:
 # Shows at the bottom of dataset sidebars
 
 globalDatasetLinks:
+  -
     header: "How to Use this Data"
     links: 
     - text: "User Guide"
-      url: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
+      href: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
     - text: "Get Help"
-      url: "https://github.com/Nonprofit-Open-Data-Collective/irs-990-efiler-database/issues/5"
+      href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990-efiler-database/issues/5"
 
 # Build settings
 sass:
