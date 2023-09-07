@@ -1,5 +1,5 @@
 ---
-title: Dataset Sample Full Fields
+title: Core Series
 date: 2023-05-27
 description: Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit
 categories:
