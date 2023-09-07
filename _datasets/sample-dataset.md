@@ -14,7 +14,7 @@ primaryLinks:
   - text: "R Package"
     href: "https://github.com/Nonprofit-Open-Data-Collective/peopleparser/blob/master/README.md"
   - text: "Data History"
-    href: "https://pkgdown.r-lib.org/news/index.html" https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html
+    href: "https://pkgdown.r-lib.org/news/index.html" 
   - text: "Research Guide"
     href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
   - text: "Validation Report"
