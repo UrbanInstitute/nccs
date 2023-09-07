@@ -11,6 +11,8 @@ featuredOrder: 1
 primaryCtaUrl: "https://lecy.github.io/nonprofitdataproject/download"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
+  - text: "Data Dictionary"
+    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/data-dictionary-layout-v7.html"
   - text: "R Package"
     href: "https://github.com/Nonprofit-Open-Data-Collective/peopleparser/blob/master/README.md"
   - text: "Data History"
@@ -19,8 +21,6 @@ primaryLinks:
     href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
   - text: "Validation Report"
     href: "https://nonprofit-open-data-collective.github.io/data-report-templates/test-layout.html"
-  - text: "Data Profile Template"
-    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/data-dictionary-layout-v7.html"
 author:
 - id: jdl
 - id: tp
