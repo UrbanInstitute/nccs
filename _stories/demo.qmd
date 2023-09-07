@@ -4,6 +4,7 @@ date: 2023-08-28
 description: This story demos three functions from the nccsdata package.
 featured: false
 format: gfm
+page-layout: full
 featuredOrder: 1
 type: methods
 categories:
