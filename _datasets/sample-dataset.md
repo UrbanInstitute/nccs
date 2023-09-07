@@ -14,7 +14,13 @@ primaryLinks:
   - text: "R Package"
     href: "https://github.com/Nonprofit-Open-Data-Collective/peopleparser/blob/master/README.md"
   - text: "Data History"
-    href: "https://pkgdown.r-lib.org/news/index.html"
+    href: "https://pkgdown.r-lib.org/news/index.html" https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html
+  - text: "Research Guide"
+    href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
+  - text: "Validation Report"
+    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/test-layout.html"
+  - text: "Data Profile Template"
+    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/data-dictionary-layout-v7.html"
 author:
 - id: jdl
 - id: tp
