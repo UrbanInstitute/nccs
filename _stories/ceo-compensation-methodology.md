@@ -73,11 +73,15 @@ and (2) how much they are being paid.
 
 ![](../../_stories/49d8d4b1ce0dc51d144382a9f46ad68246d511fb.png)
 
+<img src="img/appraisal-set.png" alt="appraisal set" width="500" height="600">
+
 While these seem like straightforward questions, finding the answers is
 by no means a simple task. Every nonprofit is annually required to file
 form 990 with the IRS, and the IRS makes these fillings publicly
 available. But just because the data is available, does not mean is it
 easy to use.
+
+<img src="https://raw.githubusercontent.com/lecy/nccs/main/public/img/stories/appraisal-set.png" alt="appraisal set" width="500" height="600">
 
 These data are not standardized and require extensive cleaning and
 classification. More problematic, some small nonprofits file Form

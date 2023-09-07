@@ -254,7 +254,11 @@ For example, if an art museum in New York City is hiring a new CEO, we want to c
 
 ![](https://raw.githubusercontent.com/lecy/nccs/main/public/img/stories/appraisal-set.png)
 
+<img src="img/appraisal-set.png" alt="appraisal set" width="500" height="600">
+
 While these seem like straightforward questions, finding the answers is by no means a simple task. Every nonprofit is annually required to file form 990 with the IRS, and the IRS makes these fillings publicly available. But just because the data is available, does not mean is it easy to use. 
+
+<img src="https://raw.githubusercontent.com/lecy/nccs/main/public/img/stories/appraisal-set.png" alt="appraisal set" width="500" height="600">
 
 These data are not standardized and require extensive cleaning and classification. More problematic, some small nonprofits file Form 990-EZ, a simplified version of Form 990, which does not contain nearly as much detailed information. This leaves us with an incomplete picture for many organizational attributes.
 
