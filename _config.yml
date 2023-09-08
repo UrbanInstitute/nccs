@@ -85,10 +85,11 @@ globalDatasetLinks:
     header: "How to Use this Data"
     links: 
     - text: "User Guide"
-      url: "#"
+      href:  "https://nccs-data.urban.org/NCCS-data-guide.pdf"
     - text: "Get Help"
-      url: "#"
+      href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990-efiler-database/issues/5"
 
+      
 # Build settings
 sass:
   sass_dir: public/scss

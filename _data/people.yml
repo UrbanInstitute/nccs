@@ -3,8 +3,8 @@
 - id: jdl
   first: Jesse
   last: Lecy
-  title: Sample Title
-  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
+  title: Senior Research Associate
+  bio: Scholar and data scientist; advocate for open data and digital literacy in the nonprofit and public sectors. 
   orcid: 0000-0002-1825-0097
   email: josiah@psychoceramics.org
   team: leadership
@@ -24,12 +24,33 @@
 - id: hm
   first: Hannah
   last: Martin
-  title: Sample Title
-  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
+  title: Policy Analyst
+  bio: Policy Analyst with the Center for Nonprofits and Philanthropy; expertise in sector infrastructure, regulation, program related investments, and performance systems. 
   orcid: 0000-0002-1825-0097
   email: josiah@psychoceramics.org
   team: leadership
   image: people/hannah-martin.jpg
+  affiliation: 
+    - name: Burgundy University
+      city: Providence
+      state: RI
+      url: www.burgundy.edu
+  social:
+    - name: linkedin
+      url: #
+    - name: twitter
+      url: #
+    - name: mastodon
+      url: #
+- id: tp
+  first: Thiya
+  last: Poongundranar
+  title: Data Scientist
+  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
+  orcid: 0000-0002-1825-0097
+  email: josiah@psychoceramics.org
+  team: leadership
+  image: people/thiya.jpg
   affiliation: 
     - name: Burgundy University
       city: Providence

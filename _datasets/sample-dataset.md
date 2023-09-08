@@ -1,5 +1,5 @@
 ---
-title: Dataset Sample Full Fields
+title: Core Series
 date: 2023-05-27
 description: Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit
 categories:
@@ -8,16 +8,22 @@ categories:
   - testing
 featured: true
 featuredOrder: 1
-primaryCtaUrl: "#"
+primaryCtaUrl: "https://lecy.github.io/nonprofitdataproject/download"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
+  - text: "Data Dictionary"
+    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/data-dictionary-layout-v7.html"
   - text: "R Package"
-    href: "#"
+    href: "https://github.com/Nonprofit-Open-Data-Collective/peopleparser/blob/master/README.md"
   - text: "Data History"
-    href: "#"
+    href: "https://pkgdown.r-lib.org/news/index.html" 
+  - text: "Research Guide"
+    href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
+  - text: "Validation Report"
+    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/test-layout.html"
 author:
-- id: jc
-- id: jd
+- id: jdl
+- id: tp
 - name: "Edmund Choi"
   bio: "Testing bio and author overrides"
 citation: 
@@ -31,6 +37,20 @@ citation:
 Sit delectus inventore architecto optio tempora Labore error cumque officiis culpa nesciunt Necessitatibus facilis excepturi eaque eveniet consectetur? Maiores numquam a natus aliquid nulla, voluptatum Error officiis amet eos porro
 
 ---
+
+## Use
+
+```r
+library( remotes )
+install_github( "UrbanInstitute/nccs-data-package/nccsdata" )
+
+dt <-
+  nccsdata::ntee_preview(
+    ntee.group = c( "ART", "EDU" ),
+    ntee.code = c( "Axx", "B" ),
+    ntee.orgtype = "all" )
+```
+
 
 Sit harum necessitatibus excepturi suscipit tenetur? Animi iusto magnam illo porro aspernatur. Perspiciatis reprehenderit impedit quisquam aliquam ex, dicta. Perferendis similique perferendis fuga ipsum optio? Aspernatur rem distinctio odit explicabo
 

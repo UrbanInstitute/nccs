@@ -10,7 +10,7 @@ type: methods
 categories:
   - R packages
 author:
-  - id: hm
+  - id: tp
   - id: jdl
 citation: 
   container-title: National Center for Charitable Statistics
