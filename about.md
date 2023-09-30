@@ -2,6 +2,8 @@
 layout: about
 title: About NCCS
 description: Elit velit veniam ducimus adipisicing odit. Voluptate facere sed iste accusamus quae consequatur, excepturi Harum.
+permalink: /about/
+activeLink: /about/
 ---
 
 
