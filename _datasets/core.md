@@ -1,5 +1,5 @@
 ---
-title: Core Series
+title: NCCS Core Series
 date: 2023-05-27
 description: A comprehensive panel of nonprofit organizations that file IRS form 990. 
 categories:
