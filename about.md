@@ -1,19 +1,10 @@
 ---
+layout: about
 title: About NCCS
 description: Elit velit veniam ducimus adipisicing odit. Voluptate facere sed iste accusamus quae consequatur, excepturi Harum.
-layout: page
-permalink: /about/
-activeLink: /about/
 ---
 
-<div class="content flow mt-3">
 
-  <div class="mi-3">
-    {% assign image = "public/img/collage.webp" | relative_url %}
-    <img src="{{ image }}" alt="" />
-  </div>
-
-</div>
 
 The National Center for Charitable Statistics (NCCS) is a distinguished research and data resource institution dedicated to advancing the knowledge and understanding of the nonprofit and charitable sector in the United States. It stands as a preeminent institution at the intersection of data, research, and philanthropy. Its dedication to providing accurate, comprehensive, and accessible information empowers stakeholders to make informed decisions and advances the collective understanding of the nonprofit sector's vital contributions to society.
 
@@ -33,77 +24,4 @@ Established as part of the Center for Nonprofits and Philanthropy at the Urban I
 
 
 
-<div class="feature flow flow-2">
-  {% include components/divider.html
-    header = "Executive Board"
-  %}
 
-  <div class="grid-cols-4 gap">
-    {% assign executives = site.data.people | where: "team", "executive" %}
-    {% for person in executives %}
-      {% if person.image %}
-        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
-      {% endif %}
-      {% assign firstAffiliation = person.affiliation | first %}
-
-      {% include components/person.html
-        first = person.first
-        last = person.last
-        image = personImage
-        title = person.title
-        affiliation = firstAffiliation.name
-        social = person.social
-      %}
-    {% endfor %}
-  </div>
-</div>
-
-<div class="feature flow flow-2">
-  {% include components/divider.html
-    header = "Leadership Team"
-  %}
-
-  <div class="grid-cols-4 gap">
-    {% assign executives = site.data.people | where: "team", "leadership" %}
-    {% for person in executives %}
-      {% if person.image %}
-        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
-      {% endif %}
-      {% assign firstAffiliation = person.affiliation | first %}
-
-      {% include components/person.html
-        first = person.first
-        last = person.last
-        image = personImage
-        title = person.title
-        affiliation = firstAffiliation.name
-        social = person.social
-      %}
-    {% endfor %}
-  </div>
-</div>
-
-<div class="feature flow flow-2">
-  {% include components/divider.html
-    header = "Members"
-  %}
-
-  <div class="grid-cols-4 gap">
-    {% assign executives = site.data.people | where: "team", "member" %}
-    {% for person in executives %}
-      {% if person.image %}
-        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
-      {% endif %}
-      {% assign firstAffiliation = person.affiliation | first %}
-
-      {% include components/person.html
-        first = person.first
-        last = person.last
-        image = personImage
-        title = person.title
-        affiliation = firstAffiliation.name
-        social = person.social
-      %}
-    {% endfor %}
-  </div>
-</div>
