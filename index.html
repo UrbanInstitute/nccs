@@ -10,7 +10,7 @@ isFrontPage: true
       {% assign image = "public/img/collage.webp" | relative_url %}
       {% include components/hero.html
         header = "Welcome to the National Center for Charitable Statistics"
-        description = "NCCS is a distinguished research center and open data platform dedicated to advancing the knowledge and understanding of the nonprofit and charitable sector."
+        description = "NCCS is a research center and open data platform dedicated to advancing the knowledge and understanding of the nonprofit and charitable sector."
         ctaUrl = "#"
         ctaText = "Hero CTA Link"
         ctaIcon = "external"
@@ -21,25 +21,7 @@ isFrontPage: true
   </div>
 
 
-  {% comment %}
-  Content CTA
-  To use a content url, use the variable with the relative_url filter
-  Otherwise change the ctaUrl to a full url
-  {% endcomment %}
 
-  <div class="full text-center flow-4">
-    <div class="relative z-1">
-      {% assign contentUrl = "/resources/sample-project/" | relative_url %}
-      {% include components/content-cta.html
-        header = "Getting Started with NCCS Data"
-        description = "To learn about the process of generating NCCS datasets and useful background information check out the research guide."
-        ctaUrl = 'https://urbaninstitute.github.io/nccs-handbook/intro.html'
-        ctaText = "NCCS Research Guide"
-        style = "dark"
-      %}
-    </div>
-  </div>
-</div>
 
 
 
@@ -71,6 +53,28 @@ isFrontPage: true
     %}
   </div>
 </div>
+
+
+  {% comment %}
+  Content CTA
+  To use a content url, use the variable with the relative_url filter
+  Otherwise change the ctaUrl to a full url
+  {% endcomment %}
+
+  <div class="full text-center flow-4">
+    <div class="relative z-1">
+      {% assign contentUrl = "/resources/sample-project/" | relative_url %}
+      {% include components/content-cta.html
+        header = "Getting Started with NCCS Data"
+        description = "To learn about the process of generating NCCS datasets and useful background information check out the research guide."
+        ctaUrl = 'https://urbaninstitute.github.io/nccs-handbook/intro.html'
+        ctaText = "NCCS Research Guide"
+        style = "dark"
+      %}
+    </div>
+  </div>
+</div>
+
 
 <div class="feature flow flow-4">
   {% include components/divider.html
