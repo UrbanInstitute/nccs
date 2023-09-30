@@ -10,7 +10,7 @@ isFrontPage: true
       {% assign image = "public/img/collage.webp" | relative_url %}
       {% include components/hero.html
         header = "Welcome to the National Center for Charitable Statistics"
-        description = "NCCS is a distinguished research center and open data platform dedicated to advancing the knowledge and understanding of the nonprofit and charitable sector."
+        description = "NCCS is a research center and open data platform dedicated to advancing the knowledge and understanding of the nonprofit and charitable sector."
         ctaUrl = "#"
         ctaText = "Hero CTA Link"
         ctaIcon = "external"
@@ -19,33 +19,15 @@ isFrontPage: true
       %}
     </div>
   </div>
-
-
-  {% comment %}
-  Content CTA
-  To use a content url, use the variable with the relative_url filter
-  Otherwise change the ctaUrl to a full url
-  {% endcomment %}
-
-  <div class="full text-center flow-4">
-    <div class="relative z-1">
-      {% assign contentUrl = "/resources/sample-project/" | relative_url %}
-      {% include components/content-cta.html
-        header = "Getting Started with NCCS Data"
-        description = "To learn about the process of generating NCCS datasets and useful background information check out the research guide."
-        ctaUrl = 'https://urbaninstitute.github.io/nccs-handbook/intro.html'
-        ctaText = "NCCS Research Guide"
-        style = "dark"
-      %}
-    </div>
-  </div>
 </div>
+
+
 
 
 
 <div class="content text-center flow-4">
   <h2 class="text-4xl">Datasets</h2>
-  <p class="mt-1">Lorem est dicta atque eaque adipisicing? Ullam doloribus laborum maiores harum cum deserunt Quo numquam rem est quia beatae Esse nemo ad laudantium repudiandae ipsum! Voluptas rem non amet exercitationem.</p>
+  <p class="mt-1">The data catalog contains a broad array of data on the nonprofit sector including IRS 990 tax data, survey panels, and political action committees.</p>
 </div>
 
 <div class="content flow-4">
@@ -71,6 +53,32 @@ isFrontPage: true
     %}
   </div>
 </div>
+
+
+
+
+
+<div class="full grid-content bg-pattern-dot pt-content relative overflow-hidden bg-white-gradient-center flow">
+  {% comment %}
+  Content CTA
+  To use a content url, use the variable with the relative_url filter
+  Otherwise change the ctaUrl to a full url
+  {% endcomment %}
+
+  <div class="full text-center flow-4">
+    <div class="relative z-1">
+      {% assign contentUrl = "/resources/sample-project/" | relative_url %}
+      {% include components/content-cta.html
+        header = "Getting Started with NCCS Data"
+        description = "Learn more about the NCCS data series through the research handbook."
+        ctaUrl = 'https://urbaninstitute.github.io/nccs-handbook/intro.html'
+        ctaText = "NCCS Research Guide"
+        style = "dark"
+      %}
+    </div>
+  </div>
+</div>
+
 
 <div class="feature flow flow-4">
   {% include components/divider.html
