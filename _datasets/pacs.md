@@ -118,10 +118,13 @@ k <-
 For more information on 527 political organizations and other types of political activity in the nonprofit sector check out the following resources: 
 
 <a class="btn -tertiary " href="https://bolderadvocacy.org/resource/comparison-of-501c3s-501c4s-and-political-527-organizations/">
-  <span> LINK </span> </a>  Bolder Advocacy's useful taxonomy: **Comparison of 501(c)(3)s, 501(c)(4)s, and Political 527 Organizations**
+  LINK </a>  
+Bolder Advocacy's useful taxonomy: **Comparison of 501(c)(3)s, 501(c)(4)s, and Political 527 Organizations** 
   
 <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495">
-  <span> LINK </span> </a>  Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274.
+  <span> LINK </span> </a>  
+Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274. 
+  
 
 |         |                                                                                          |
 |:--------|:-----------------------------------------------------------------------------------------|
