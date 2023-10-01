@@ -1,4 +1,4 @@
-# Teams templated: executive, leadership, member
+# Teams templated: executive (board), leadership (nccs team), collaborator
 # To exclude a person from the about page, do not set a team field
 - id: jlecy
   first: Jesse
@@ -33,6 +33,47 @@
   email: nccs@urban.org
   team: leadership
   image: people/thiya.jpg
+- id: eboris
+  first: Elizabeth
+  last: Boris
+  title: Institute Fellow
+  bio: Elizabeth is the founding director of the Center on Nonprofits and Philanthropy at the Aspen Institute’s Nonprofit Sector Research Fund.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/eboris.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/elizabeth-t-boris
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
+    - name: twitter
+      url: https://twitter.com/eborisurban
+- id: ttraylor
+  first: Tené
+  last: Traylor
+  title: CNP Director
+  bio: Tené Traylor is vice president for nonprofits and philanthropy at the Urban Institute.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/ttraylor.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/tene-traylor
+- id: astern
+  first: Alena
+  last: Stern
+  title: Associate Director of Data Science
+  bio: Alena is an associate director of data science at the Urban Institute studying policy solutions to advance equity and inclusion in cities. 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/astern.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/alena-stern  
 - id: cdavis
   first: Chris
   last: Davis
@@ -54,23 +95,6 @@
       url: #
     - name: mastodon
       url: #
-- id: eboris
-  first: Elizabeth
-  last: Boris
-  title: Institute Fellow
-  bio: Elizabeth is the founding director of the Center on Nonprofits and Philanthropy at the Aspen Institute’s Nonprofit Sector Research Fund.
-  orcid: 
-  email: placeholder@email.com
-  team: executive
-  image: people/eboris.jpg
-  affiliation: 
-    - name: Urban Institute
-      url: https://www.urban.org/author/elizabeth-t-boris
-  social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
-    - name: twitter
-      url: https://twitter.com/eborisurban
 - id: mpost
   first: Margaret
   last: Post
@@ -81,35 +105,6 @@
     - name: Clark University
       url: https://www.clarku.edu/faculty/profiles/margaret-post/
   image: people/mpost.jpg   
-- id: mr
-  first: Mihaja
-  last: Randriamahazomana
-  title: Wizard of Light Bulb Moments
-  bio: Ipsum vitae voluptas aliquam molestiae autem libero nemo aut distinctio.
-  team: executive
-  affiliation: 
-    - name: Harris, Quigley and Feeney
-      city: Providence
-      state: RI
-      url: www.brown.edu
-  image: people/person-placeholder.png
-- id: ar
-  first: Amalie
-  last: Rösler
-  title: Rainmaker
-  bio: Elit officiis temporibus aperiam animi illum Libero perferendis minima reiciendis fugit recusandae. Sunt ipsum at porro dolores reprehenderit.
-  team: leadership
-  affiliation: 
-    - name: Hook Acoustics
-      city: Providence
-      state: RI
-      url: www.brown.edu
-  image: people/person-placeholder.png
-  social:
-    - name: linkedin
-      url: #
-    - name: twitter
-      url: #
 - id: jd
   first: John
   last: Doe
