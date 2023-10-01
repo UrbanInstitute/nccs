@@ -6,8 +6,7 @@ categories:
   - 990
   - financial-trends
   - nonprofits
-featured: true
-featuredOrder: 1
+featured: false
 primaryCtaUrl: "../../catalogs/catalog-core.html"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
