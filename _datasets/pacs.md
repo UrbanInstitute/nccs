@@ -125,10 +125,8 @@ For more information on 527 political organizations and other types of political
 
 |         |                                                                                          |
 |:--------|:-----------------------------------------------------------------------------------------|
-| <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495">
-  <span> LINK </span> </a> | Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274. |
-| <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495">
-  <span> LINK </span> </a> | Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: **A methodology** to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274. |
+| <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495">LINK</a>  | Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274.  |
+| <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495">LINK</a>  | Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: **A methodology** to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274.  |
 
 <a class="btn -tertiary " href="https://www.degruyter.com/document/doi/10.1515/npf-2021-0061/html">
   <span> LINK </span> </a>  Post, M. A., & Boris, E. T. (2022, December). Nonprofit Political Engagement: The Roles of 501 (c)(4) Social Welfare Organizations in Elections and Policymaking. In Nonprofit Policy Forum (Vol. 14, No. 2, pp. 131-155). De Gruyter.
