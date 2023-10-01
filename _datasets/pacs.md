@@ -66,7 +66,7 @@ k <-
 ```
 
 
-<table class=" lightable-material-dark" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-material-dark" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 12px'>
  <thead>
   <tr>
    <th style="text-align:left;"> ORGANIZATION_NAME </th>
