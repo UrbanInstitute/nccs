@@ -1,7 +1,7 @@
 ---
-title: Efiler Metadata
+title: 990 Metadata
 date: 2023-05-27
-description: A comprehensive panel of nonprofit organizations that file IRS form 990. 
+description: Discrete metadata files that describe other IRS 990 datasets and can be linked to enhance them or used in sampling frameworks. 
 categories:
   - 990
   - financial-trends
