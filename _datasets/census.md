@@ -9,7 +9,7 @@ categories:
 featured: false
 featuredOrder: 5
 primaryCtaUrl: ""
-primaryCtaCaption: "File size: 246kb"
+primaryCtaCaption: "Census data period: 1990-2020"
 primaryLinks:
   - text: "Data Dictionary"
     href: "https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/census_codebook.xlsx"
@@ -21,14 +21,14 @@ primaryLinks:
     href: "https://github.com/UrbanInstitute/geocrosswalk"
   - text: "Crosswalk Code"
     href: "https://github.com/UI-Research/nccs-geo"
+  - text: "Get Help"
+    href: "https://github.com/UrbanInstitute/geocrosswalk/issues"
 author:
-- id: jlecy
 - id: cdavis
-- name: "Edmund Choi"
-  bio: "Testing bio and author overrides"
+- id: jlecy
 citation: 
-  author: "Choi. Y & Lee, Y."
-  container-title: "Ednel: A large – scale hierarchical dataset in education"
+  author: "Davis, C. & Lecy, J."
+  container-title: "Introducing the geocrosswalk Framework for Seamless Integration of Census Panels into Studies."
   doi: 10.5555/12345678
 ---
 
@@ -97,9 +97,17 @@ The other challenge to creating a panel of census variables is that a single var
 
 To address all of these issues we have selected a set of the most commonly-used census variables and created data files that are harmonized to the 2010 census geography (the most common reference group across most data sources). They are available at the block and tract levels. Most measures can be "aggregated up" into your desired geography using the geocrosswalk files. 
 
+## Nonprofit Data Files
+
+All nonprofit data within the NCCS ecosystem that has address information describing locations of nonprofits or services are geocoded in order to generate latitude and longitude coordinates of the organizations or activities. The geographic coordinate is matched to census blocks using a [spatial join](https://github.com/UI-Research/nccs-geo/blob/main/join_nccs_block.R). 
+
+Some of the NCCS files will contain a block GEOID and a tract GEOID that contain census block FIPS and tract FIPS. These fields can be used to append whichever geographic level is desired through the BLOCKX.csv and TRACTX.csv files.
+
+The harmonized census panels can be found in the data catalog above (the "Download" link). 
+
 ## Feedback
 
-This project is actively being developed, and a  
+This project is actively being developed. If you have questions or feedback please reach out to the creators Chris Davis and Jesse Lecy through the "Get Help" link above.  
 
 
 
