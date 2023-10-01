@@ -1,43 +1,216 @@
 ---
-title: Form 990N 'Postcard' Filers
+title: Form 990-N ePostcard Filers
 date: 2023-05-27
 description: A comprehensive panel of nonprofit organizations that file IRS form 990. 
 categories:
-  - 990
-  - financial-trends
-  - nonprofits
+  - 990N
+  - grassroots
+  - orgs
 featured: false
-primaryCtaUrl: "../../catalogs/catalog-core.html"
-primaryCtaCaption: "File size: 246kb"
+primaryCtaUrl: "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/2023-09-E-POSTCARD.csv"
+primaryCtaCaption: "File size: 330MB"
 primaryLinks:
-  - text: "Data Dictionary"
-    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/data-dictionary-layout-v7.html"
-  - text: "R Package"
-    href: "https://urbaninstitute.github.io/nccsdata/"
-  - text: "Data History"
-    href: "https://urbaninstitute.github.io/nccsdata/news/index.html"  
-  - text: "Research Guide"
-    href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
+  - text: "GitHub Repo"
+    href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990n-postcard-filers"
+  - text: "Getting Help"
+    href: "https://nonprofit-open-data-collective.github.io/irs-990-data-issue-tracker/"
 author:
-- id: jdl
-- id: tp
-- name: "Edmund Choi"
-  bio: "Testing bio and author overrides"
+- id: jlecy
+- id: esearing
 citation: 
-  author: "Choi. Y & Lee, Y."
-  container-title: "Ednel: A large – scale hierarchical dataset in education"
-  doi: 10.5555/12345678
+  author: "Searing, EA & Lecy, JD (2022)."
+  container-title: "Growing up nonprofit: Predictors of early-stage nonprofit formalization. Nonprofit and Voluntary Sector Quarterly, 51(3), 680-698."
+  doi: 10.1177/08997640211014280
 ---
+
+
+## About 
+
+Nonprofits that file IRS Form 990-N, also known as the "e-Postcard," are typically small tax-exempt organizations. Form 990-N is the simplest and least detailed of the annual information returns required by the IRS, and it's intended for organizations with relatively low gross receipts. The characteristics of nonprofits that typically file Form 990-N include:
+
+* **Small Revenue:** Nonprofits eligible for Form 990-N usually have annual gross receipts of $50,000 or less. Gross receipts include all income, donations, grants, and other funds the organization receives during the fiscal year.
+* **Exempt from Filing Form 990, 990EZ, not 990PF:** These organizations are generally exempt from filing the more detailed Forms 990 or 990-EZ, which are required for larger nonprofits. Form 990-N serves as a simplified alternative for reporting basic financial and operational information. Private foundations, no matter their size, are required to file Form 990PF and thus cannot utilize the convenient e-postcard version. A small group of specialized nonprofits such as hospitals, regardless of size, are also required to file the full 990.
+* **Typical Types of 990-N Filers:** The types of nonprofits that often use Form 990-N can include community-based organizations, small local charities, volunteer groups, clubs, and other similar entities. Examples might include small youth sports teams, local animal shelters, or neighborhood associations.
+* **Limited Reporting:** Form 990-N is very basic and requires minimal reporting. Organizations typically need to provide their contact information, confirmation of their tax-exempt status, and a statement indicating whether they've had any gross receipts during the reporting year.
+* **It Meets the Annual Filing Requirement:** Even though it's a simplified form, eligible organizations must still file Form 990-N annually to maintain their tax-exempt status. Failure to file for three consecutive years can lead to automatic revocation of tax-exempt status.
+
+Larger nonprofits with gross receipts above $50,000 but below $200,000 (or with total assets below $500,000) may file Form 990-EZ, which provides more detailed financial information than Form 990-N but is still less comprehensive than the full Form 990.
+
+The ePostcard 990-N database is an instantaneous database, meaning it only has data from the most recent 990-N an organization has filed, not a historic record of every year filed. Note that an organization may appear in the dataset with the most recent filing dated several years ago, but they are likely still in compliance with annual filing requirements if they have since graduated to filing form 990EZ or the full 990. 
 
 ## Use
 
 ```r
-library( remotes )
-install_github( "UrbanInstitute/nccs-data-package/nccsdata" )
+library( dplyr )
+library( kableExtra )
 
-dt <-
-  nccsdata::ntee_preview(
-    ntee.group = c( "ART", "EDU" ),
-    ntee.code = c( "Axx", "B" ),
-    ntee.orgtype = "all" )
+BASE.URL <- "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/"
+FILE     <- "2023-09-E-POSTCARD.csv" 
+d <- read.csv( paste0( BASE.URL, FILE ) )
+
+preview1 <- 
+  c("ein", "legal_name", "tax_year",  "gross_receipts_under_25000", 
+    "terminated", "tax_period_begin_date", "tax_period_end_date" )
+
+d %>%
+  select( preview1 ) %>%
+  head() %>%  
+  kbl() %>%
+  kable_minimal()
 ```
+
+<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> ein </th>
+   <th style="text-align:left;"> legal_name </th>
+   <th style="text-align:right;"> tax_year </th>
+   <th style="text-align:left;"> gross_receipts_under_25000 </th>
+   <th style="text-align:left;"> terminated </th>
+   <th style="text-align:left;"> tax_period_begin_date </th>
+   <th style="text-align:left;"> tax_period_end_date </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 10002847 </td>
+   <td style="text-align:left;"> HULLS COVE NEIGHBORHOOD ASSOCIATION </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 01-01-2022 </td>
+   <td style="text-align:left;"> 12-31-2022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10019709 </td>
+   <td style="text-align:left;"> ANCIENT FREE &amp; ACCEPTED MASONS OF MAINE </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 01-01-2022 </td>
+   <td style="text-align:left;"> 12-31-2022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10027415 </td>
+   <td style="text-align:left;"> ANCIENT FREE &amp; ACCEPTED MASONS OF MAINE </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 04-01-2022 </td>
+   <td style="text-align:left;"> 03-31-2023 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10052240 </td>
+   <td style="text-align:left;"> CUMBERLAND BAR ASSOCIATION </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 01-01-2022 </td>
+   <td style="text-align:left;"> 12-31-2022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10056995 </td>
+   <td style="text-align:left;"> NATIONAL KITCHEN &amp; BATH ASSO </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 01-01-2022 </td>
+   <td style="text-align:left;"> 12-31-2022 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10067817 </td>
+   <td style="text-align:left;"> INDEPENDENT ORDER OF ODD FELLOWS </td>
+   <td style="text-align:right;"> 2022 </td>
+   <td style="text-align:left;"> TRUE </td>
+   <td style="text-align:left;"> FALSE </td>
+   <td style="text-align:left;"> 01-01-2022 </td>
+   <td style="text-align:left;"> 12-31-2022 </td>
+  </tr>
+</tbody>
+</table>
+
+```r
+preview2 <- 
+  c("officer_name", "officer_zip", 
+    "organization_address_line_1", 
+    "organization_city", "organization_state", 
+    "organization_zip" )
+
+d %>%
+  select( preview2 ) %>%
+  head() %>%  
+  kbl() %>%
+  kable_minimal()
+```
+
+
+
+<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> officer_name </th>
+   <th style="text-align:left;"> officer_zip </th>
+   <th style="text-align:left;"> organization_address_line_1 </th>
+   <th style="text-align:left;"> organization_city </th>
+   <th style="text-align:left;"> organization_state </th>
+   <th style="text-align:left;"> organization_zip </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Joanne Sousa </td>
+   <td style="text-align:left;"> 04644 </td>
+   <td style="text-align:left;"> 6 Neighborhood Way </td>
+   <td style="text-align:left;"> Hulls Cove </td>
+   <td style="text-align:left;"> ME </td>
+   <td style="text-align:left;"> 04644 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Lee Oliver </td>
+   <td style="text-align:left;"> 04730 </td>
+   <td style="text-align:left;"> PO Box 1348 </td>
+   <td style="text-align:left;"> Houlton </td>
+   <td style="text-align:left;"> ME </td>
+   <td style="text-align:left;"> 04730 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> William Bruns </td>
+   <td style="text-align:left;"> 04915 </td>
+   <td style="text-align:left;"> 17 Wight St </td>
+   <td style="text-align:left;"> Belfast </td>
+   <td style="text-align:left;"> ME </td>
+   <td style="text-align:left;"> 04915 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jennifer Lechner </td>
+   <td style="text-align:left;"> 04032 </td>
+   <td style="text-align:left;"> PO Box 434 </td>
+   <td style="text-align:left;"> Freeport </td>
+   <td style="text-align:left;"> ME </td>
+   <td style="text-align:left;"> 04032 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Bonnie L Ferreira </td>
+   <td style="text-align:left;"> 04064 </td>
+   <td style="text-align:left;"> 161 Saco Ave </td>
+   <td style="text-align:left;"> Old Orchard Beach </td>
+   <td style="text-align:left;"> ME </td>
+   <td style="text-align:left;"> 04064 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Michael Anderson </td>
+   <td style="text-align:left;"> 04210 </td>
+   <td style="text-align:left;"> 80 Caron Lane </td>
+   <td style="text-align:left;"> Auburn </td>
+   <td style="text-align:left;"> ME </td>
+   <td style="text-align:left;"> 04210 </td>
+  </tr>
+</tbody>
+</table>
+
+
+<br>
+<br>
+<hr>
+<br>
+<br>
