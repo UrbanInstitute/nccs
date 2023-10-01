@@ -217,10 +217,15 @@ The dataset contains the LAST ePostcard files by each organization in the datase
 The last observations for organizations occur in the following periods: 
 
 ```r
-table( d$tax_year ) %>% kable()
+table( d$tax_year ) %>% 
+  kbl() %>%
+  kable_styling( 
+    bootstrap_options = "striped", 
+    full_width = F, 
+    position = "left" )
 ```
 
-<table>
+<table class="table table-striped" style="width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> Var1 </th>
