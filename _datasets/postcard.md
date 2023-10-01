@@ -1,7 +1,7 @@
 ---
 title: Form 990-N ePostcard Filers
 date: 2023-05-27
-description: A comprehensive panel of nonprofit organizations that file IRS form 990. 
+description: A database of small nonprofits that do not file full 990 forms. 
 categories:
   - 990N
   - grassroots
@@ -204,6 +204,93 @@ d %>%
    <td style="text-align:left;"> Auburn </td>
    <td style="text-align:left;"> ME </td>
    <td style="text-align:left;"> 04210 </td>
+  </tr>
+</tbody>
+</table>
+
+## Coverage 
+
+As of fall 2023 the database includes one filing from more than 1.3 million organizations. 
+
+The dataset contains the LAST ePostcard files by each organization in the dataset. If they no longer appear in the dataset it either means (1) their status has been revoked - you can check the revocations database, (2) they are not in compliance with filing requirements and their status will be evoked shortly, or (3) they graduated up to the 990EZ or full 990 forms (check the Core data series). 
+
+The last observations for organizations occur in the following periods: 
+
+```r
+table( d$tax_year ) %>% kable()
+```
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Var1 </th>
+   <th style="text-align:right;"> Freq </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 2007 </td>
+   <td style="text-align:right;"> 25087 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2008 </td>
+   <td style="text-align:right;"> 26965 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2009 </td>
+   <td style="text-align:right;"> 42551 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2010 </td>
+   <td style="text-align:right;"> 28993 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2011 </td>
+   <td style="text-align:right;"> 32475 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2012 </td>
+   <td style="text-align:right;"> 31902 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2013 </td>
+   <td style="text-align:right;"> 37477 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2014 </td>
+   <td style="text-align:right;"> 41687 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2015 </td>
+   <td style="text-align:right;"> 36650 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2016 </td>
+   <td style="text-align:right;"> 42544 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2017 </td>
+   <td style="text-align:right;"> 44675 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2018 </td>
+   <td style="text-align:right;"> 49168 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2019 </td>
+   <td style="text-align:right;"> 55926 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2020 </td>
+   <td style="text-align:right;"> 97757 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2021 </td>
+   <td style="text-align:right;"> 270745 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2022 </td>
+   <td style="text-align:right;"> 459302 </td>
   </tr>
 </tbody>
 </table>
