@@ -8,7 +8,7 @@ categories:
   - nonprofits
 featured: true
 featuredOrder: 1
-primaryCtaUrl: "https://lecy.github.io/nonprofitdataproject/download"
+primaryCtaUrl: "../catalogs/catalog-core.html"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
   - text: "Data Dictionary"
