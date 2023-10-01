@@ -21,6 +21,11 @@ categories:
   - 501c4
 featured: true
 featuredOrder: 4
+author:
+- id: jlecy 
+- id: eboris 
+- id: mpost 
+- id: sashley 
 ---
 
 ## Political Nonprofits
