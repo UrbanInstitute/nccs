@@ -91,11 +91,16 @@ buildit <- function(
   par( mar=c(0.1,0.1,0.1,0.1) )
   plot.new()
   plot.window( xlim=c( 0, numx ), ylim=c( 0, numy ) )
-  # box( col="#fdbf11" )
-  
+  # box( col="#fdbf11" )  
   # rect( xleft=0, ybottom=0, 
   #       xright=numx, ytop=numy, 
   #       border=yellow, lwd=0 )
+
+  # xx <- seq( -1, 15, by=0.25 )
+  # yy <- seq( -1, 15, by=0.25 )
+  # pp <- expand.grid( xx, yy )
+  # points( pp, pch=19, col="white", cex=0.5 )
+
   
   for( i in 0:(numx-1) )
   {
@@ -132,15 +137,15 @@ for( i in 1:20 )
 {
   
   fn <- paste0( "dataset-placeholder-", i, ".png" )
-  x <- sample( 4:12, 1 )
-  y <- sample( 3:8, 1 )
-  scale.p <- 20/(x*y) + rnorm( 1, 0, 2.5/(x*y) )
-  scale.lw <- 1 + 15/(x*y) - 18^2/(x*y)^2
+  x <- sample( 4:6, 1 )
+  y <- sample( 3:4, 1 )
+  scale.p <- 12/(x*y) + rnorm( 1, 0, 1.5/(x*y) )
+  scale.lw <- 1 + 10/(x*y) - 10^2/(x*y)^2
   
   buildit( 
     x=x, y=y, 
-    p=0.1*scale.p, 
-    lw=0.3*scale.lw, 
+    p=0.2*scale.p, 
+    lw=0.15*scale.lw, 
     fn=fn, 
     savepng=T,
     blue=blue,
