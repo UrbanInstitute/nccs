@@ -74,6 +74,34 @@ layout: page
 <br>
 
 
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Collaborators"
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign collaborators = site.data.people | where: "team", "collaborator" %}
+    {% for person in collaborators %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+
+
 <div class="feature flow flow-2">
   {% include components/divider.html
     header = "Advisory Board"
