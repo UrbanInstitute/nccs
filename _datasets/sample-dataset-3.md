@@ -33,3 +33,9 @@ The IRS began releasing Efile data through its website and other third-party pla
 While most parts of Form 990 and Schedules are made available to the public, some sensitive information, such as donor names and addresses, is redacted to protect privacy.
 
 The availability and accessibility of the IRS 990 e-File Database contribute to transparency, accountability, and the overall understanding of the nonprofit sector in the United States.
+
+<br>
+<br>
+<hr>
+<br>
+<br>
