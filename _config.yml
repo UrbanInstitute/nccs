@@ -82,12 +82,12 @@ social_links:
 
 globalDatasetLinks:
   -
-    header: "How to Use this Data"
+    header: "Resources"
     links: 
-    - text: "User Guide"
-      href:  "https://nccs-data.urban.org/NCCS-data-guide.pdf"
-    - text: "Get Help"
-      href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990-efiler-database/issues/5"
+    - text: "NCCS Research Handbook"
+      href: "https://urbaninstitute.github.io/nccs-handbook/intro.html"
+    - text: "Data Guide"
+      href: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
 
       
 # Build settings
