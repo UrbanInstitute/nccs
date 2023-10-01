@@ -1,7 +1,11 @@
 ---
-title: "Core Catalog"
+title: "Core Data Catalog"
 format: html
 editor: visual
+execute: 
+  echo: false
+  warning: false
+  
 ---
 
 ```{r}
@@ -9,28 +13,80 @@ editor: visual
 
 library( dplyr )
 library( knitr )
+library( kableExtra )
 library( stringr )
+library( flextable )
+library( pander )
 
-GH.RAW <- "https://github.com/lecy/nccs/blob/main/catalogs/"
+GH.RAW <- "https://raw.githubusercontent.com/lecy/nccs/main/catalogs/"
 d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
 source( paste0( GH.RAW, "build-catalog-functions.R" ) )
+
+make_buttons <- function( urls ) {
+  buttons <- 
+    paste0( 
+      "<a href=",
+      urls,
+      " class='button'> DOWNLOAD </a>" )
+  return( buttons ) 
+}
 ```
 
 
 
 
 
-## CORE DATA CATALOG
+#### 501c3 CHARITIES SCOPE PZ
 
 
-#### CHARITIES SCOPE PZ
+```{r}
+#| echo: false
+#| output: asis
+ 
+paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
+urls  <- make_urls( paths )
+
+BUTTONS <- make_buttons( urls )
+TSCOPE  <- get_core_tscope( paths )
+FSCOPE  <- get_core_fscope( paths )
+YEAR    <- get_core_year( paths )
+
+catalog <- 
+  data.frame( 
+    BUTTONS, 
+    NP_TYPE=TSCOPE, 
+    FORM_SCOPE=FSCOPE, 
+    YEAR=YEAR )
+```
+
+
+```{r}
+#| echo: false
+
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("",
+                           "Nonprofit Type",
+                           "Form Scope",
+                           "Year") ) %>%
+  kableExtra::kable_styling()
+```
+
+<br>
+<hr>
+<br>
+
+
+
+
+#### 501c3 CHARITIES SCOPE PC
 
 ```{r}
 #| echo: false
 
 paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
 urls  <- make_urls( paths )
-make_buttons( urls )
+
 
 
 BUTTONS <- make_buttons( urls )
@@ -44,46 +100,37 @@ catalog <-
     NP_TYPE=TSCOPE, 
     FORM_SCOPE=FSCOPE, 
     YEAR=YEAR )
-
-knitr::kable( catalog )
 ```
 
 
 
-#### CHARITIES SCOPE PC
 
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
-urls  <- make_urls( paths )
-make_buttons( urls )
-
-
-BUTTONS <- make_buttons( urls )
-TSCOPE  <- get_core_tscope( paths )
-FSCOPE  <- get_core_fscope( paths )
-YEAR    <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
-    YEAR=YEAR )
-
-knitr::kable( catalog )
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("",
+                           "Nonprofit Type",
+                           "Form Scope",
+                           "Year") ) %>%
+  kableExtra::kable_styling()
 ```
 
+<br>
+<hr>
+<br>
 
-#### NONPROFIT SCOPE PZ
+
+
+
+#### NONPROFITS SCOPE PZ
 
 ```{r}
 #| echo: false
 
 paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PZ" )
 urls  <- make_urls( paths )
-make_buttons( urls )
 
 
 BUTTONS <- make_buttons( urls )
@@ -97,19 +144,36 @@ catalog <-
     NP_TYPE=TSCOPE, 
     FORM_SCOPE=FSCOPE, 
     YEAR=YEAR )
-
-knitr::kable( catalog )
 ```
 
 
-#### NONPROFIT SCOPE PC
+
+```{r}
+#| echo: false
+
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("",
+                           "Nonprofit Type",
+                           "Form Scope",
+                           "Year") ) %>%
+  kableExtra::kable_styling()
+```
+
+<br>
+<hr>
+<br>
+
+
+
+
+#### NONPROFITS SCOPE PC
 
 ```{r}
 #| echo: false
 
 paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
 urls  <- make_urls( paths )
-make_buttons( urls )
 
 
 BUTTONS <- make_buttons( urls )
@@ -124,18 +188,36 @@ catalog <-
     FORM_SCOPE=FSCOPE, 
     YEAR=YEAR )
 
-knitr::kable( catalog )
 ```
 
 
-#### FOUNDATIONS SCOPE PF
+```{r}
+#| echo: false
+
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("",
+                           "Nonprofit Type",
+                           "Form Scope",
+                           "Year") ) %>%
+  kableExtra::kable_styling()
+```
+
+<br>
+<hr>
+<br>
+
+
+
+
+
+#### PRIVATE FOUNDATIONS SCOPE PF
 
 ```{r}
 #| echo: false
 
 paths <- get_core_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
 urls  <- make_urls( paths )
-make_buttons( urls )
 
 
 BUTTONS <- make_buttons( urls )
@@ -150,12 +232,84 @@ catalog <-
     FORM_SCOPE=FSCOPE, 
     YEAR=YEAR )
 
-knitr::kable( catalog )
-
 ```
 
 
-```{style}
+
+```{r}
+#| echo: false
+
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("",
+                           "Nonprofit Type",
+                           "Form Scope",
+                           "Year") ) %>%
+  kableExtra::kable_styling()
+```
+
+<br>
+<hr>
+<br>
+
+
+
+
+
+
+
+<style>
+
+
+h1.title {
+ font-size: 60px;
+ color: #0a4c6a;
+}
+
+
+h4, .h4 {
+    font-size: 40px;
+    color: #1696d2;
+}
+
+
+
+.button {
+  background-color: white;
+  color: black;
+  border: 2px solid #0a4c6a;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+ 
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #1696d2; 
+  color: white;
+  border: 2px solid #12719e;
+}
+
+.center {text-align: center;}
+
+table td {
+  vertical-align: middle;
+}
+
+blockquote {
+    border-left: 4px solid #1696d2;
+    margin-left: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 15px;
+}
 
 .button3 {
   background-color: #0a4c6a;
@@ -164,9 +318,8 @@ knitr::kable( catalog )
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 4px;
-  width: 60px;
+  width: 100px;
 }
-
-```
+</style>

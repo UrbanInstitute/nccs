@@ -69,7 +69,7 @@ make_buttons <- function( urls ) {
     paste0( 
       "<a href=",
       urls,
-      " class='button3'> DOWNLOAD </a>" )
+      " class='button'> DOWNLOAD </a>" )
   return( buttons ) 
 }
 
