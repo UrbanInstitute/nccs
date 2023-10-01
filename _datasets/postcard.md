@@ -56,10 +56,14 @@ d %>%
   select( preview1 ) %>%
   head() %>%  
   kbl() %>%
-  kable_minimal()
+  kable_styling( 
+    bootstrap_options = "striped", 
+    full_width = F,
+    font_size = 10, 
+    position = "left" )
 ```
 
-<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<table class="table table-striped" style="font-size: 10px; width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:right;"> ein </th>
@@ -140,12 +144,16 @@ d %>%
   select( preview2 ) %>%
   head() %>%  
   kbl() %>%
-  kable_minimal()
+  kable_styling( 
+    bootstrap_options = "striped", 
+    full_width = F,
+    font_size = 10, 
+    position = "left" )
 ```
 
 
 
-<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<table class="table table-striped" style="font-size: 10px; width: auto !important; ">
  <thead>
   <tr>
    <th style="text-align:left;"> officer_name </th>
