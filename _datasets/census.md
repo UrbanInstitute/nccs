@@ -109,6 +109,10 @@ The harmonized census panels can be found in the data catalog above (the "Downlo
 
 This project is actively being developed. If you have questions or feedback please reach out to the creators Chris Davis and Jesse Lecy through the "Get Help" link above.  
 
-
+<br>
+<br>
+<hr>
+<br>
+<br>
 
 
