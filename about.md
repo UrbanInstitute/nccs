@@ -25,7 +25,7 @@ We strive for advances in the following areas:
 * **Building a Collaborative Network:** We actively engages with a diverse network of partners that includes academics, government agencies, foundations, and nonprofit organizations. Collaboration is fundamental to our mission to ensure that we remain responsive to the evolving needs of the sector.
 
 <br>
-<hr>
+<br>
 <br>
 
 
