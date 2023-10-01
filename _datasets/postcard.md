@@ -218,7 +218,7 @@ The last observations for organizations occur in the following periods:
 
 ```r
 table( d$tax_year ) %>% 
-  kbl() %>%
+  kbl( col.names=c("YEAR","N") ) %>%
   kable_styling( 
     bootstrap_options = "striped", 
     full_width = F, 
@@ -228,8 +228,8 @@ table( d$tax_year ) %>%
 <table class="table table-striped" style="width: auto !important; ">
  <thead>
   <tr>
-   <th style="text-align:left;"> Var1 </th>
-   <th style="text-align:right;"> Freq </th>
+   <th style="text-align:left;"> YEAR </th>
+   <th style="text-align:right;"> N </th>
   </tr>
  </thead>
 <tbody>
