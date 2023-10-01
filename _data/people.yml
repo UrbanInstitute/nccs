@@ -43,7 +43,7 @@
   team: collaborator
   image: people/cdavis.jpg
   affiliation: 
-    - name: Burgundy University
+    - name: Urban Institute
       city: Providence
       state: RI
       url: www.burgundy.edu
@@ -54,6 +54,33 @@
       url: #
     - name: mastodon
       url: #
+- id: eboris
+  first: Elizabeth
+  last: Boris
+  title: Institute Fellow
+  bio: Elizabeth is the founding director of the Center on Nonprofits and Philanthropy at the Aspen Institute’s Nonprofit Sector Research Fund.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/eboris.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/elizabeth-t-boris
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
+    - name: twitter
+      url: https://twitter.com/eborisurban
+- id: mpost
+  first: Margaret
+  last: Post
+  title: Research Associate Professor
+  bio: Assistant Research Professor in International Development, Community and Environment at Clark University
+  team: collaborator
+  affiliation: 
+    - name: Clark University
+      url: https://www.clarku.edu/faculty/profiles/margaret-post/
+  image: people/mpost.jpg   
 - id: mr
   first: Mihaja
   last: Randriamahazomana
@@ -66,11 +93,6 @@
       state: RI
       url: www.brown.edu
   image: people/person-placeholder.png
-  social:
-    - name: linkedin
-      url: #
-    - name: twitter
-      url: #
 - id: ar
   first: Amalie
   last: Rösler
