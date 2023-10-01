@@ -1,7 +1,12 @@
+---
+title: "Core Catalog"
+format: html
+editor: visual
+---
 
+```{r}
+#| echo: false
 
-
-```r
 library( dplyr )
 library( knitr )
 library( stringr )
@@ -13,12 +18,16 @@ source( paste0( GH.RAW, "build-catalog-functions.R" ) )
 
 
 
-## CORE CATALOG
+
+
+## CORE DATA CATALOG
 
 
 #### CHARITIES SCOPE PZ
 
-```r
+```{r}
+#| echo: false
+
 paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
 urls  <- make_urls( paths )
 make_buttons( urls )
@@ -39,9 +48,13 @@ catalog <-
 knitr::kable( catalog )
 ```
 
+
+
 #### CHARITIES SCOPE PC
 
-```r
+```{r}
+#| echo: false
+
 paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
 urls  <- make_urls( paths )
 make_buttons( urls )
@@ -65,7 +78,9 @@ knitr::kable( catalog )
 
 #### NONPROFIT SCOPE PZ
 
-```r
+```{r}
+#| echo: false
+
 paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PZ" )
 urls  <- make_urls( paths )
 make_buttons( urls )
@@ -89,7 +104,9 @@ knitr::kable( catalog )
 
 #### NONPROFIT SCOPE PC
 
-```r
+```{r}
+#| echo: false
+
 paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
 urls  <- make_urls( paths )
 make_buttons( urls )
@@ -113,7 +130,9 @@ knitr::kable( catalog )
 
 #### FOUNDATIONS SCOPE PF
 
-```r
+```{r}
+#| echo: false
+
 paths <- get_core_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
 urls  <- make_urls( paths )
 make_buttons( urls )
@@ -136,7 +155,8 @@ knitr::kable( catalog )
 ```
 
 
-```
+```{style}
+
 .button3 {
   background-color: #0a4c6a;
   color: white;
@@ -148,4 +168,5 @@ knitr::kable( catalog )
   border-radius: 4px;
   width: 60px;
 }
+
 ```
