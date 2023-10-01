@@ -13,6 +13,8 @@ primaryLinks:
     href: "https://nccsdata.s3.us-east-1.amazonaws.com/public/pac/tidy-data-dictionary.csv"
   - text: "R Program"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/parse-pol-org-disclosures.R"
+  - text: "Get Help"
+    href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/issues"
 categories:
   - elections
   - campaign finance
