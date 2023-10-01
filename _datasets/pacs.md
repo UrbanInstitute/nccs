@@ -39,230 +39,67 @@ Nonprofits with 527 status are organized primarily to "influence the selection, 
 # DATA PREVIEW
 
 library( dplyr )
-library( pander )
+library( kableExtra )
 
 URL <- "https://nccsdata.s3.us-east-1.amazonaws.com/public/pac/"
 FILENAME <- "2023-05-POL-ORGS-FM-8871.csv"
 d <- read.csv( paste0( URL, FILENAME ) )
-head(d) %>% pander()
+
+keep <- c("ORGANIZATION_NAME", "EIN", "PURPOSE" )
+
+k <- 
+  d[keep] %>% 
+  head() %>%  
+  kable( format="html" ) %>%
+  kable_material_dark()
 ```
 
 
-
---------------------------------------------------------------------------
-      ORGANIZATION_NAME           EIN                 PURPOSE             
------------------------------ ----------- --------------------------------
-   Dan Swecker for Senate      912121950        Tax exempt political      
-          Campaign                            organization - Political    
-                                                      campaign            
-
-   FRIENDS OF TOM CALDERON     954857244   RAISE FUNDS TO ELECT CANDIDATE 
-
-          ASGM PAC             61596525    POLITICAL ACTION COMMITTEE TO  
-                                           PROMOTE LEGISLATION FAVORABLE  
-                                           TO WORKERS COMPENSATION SAFETY 
-                                             GROUPS IN NEW YORK STATE.    
-
- Comm to Elect Judge Robert    113601603   Committe to Elect Judge Robert 
-    Ross to Supreme Court                   Ross to the Supreme Court of  
-                                               the State of New York      
-
- CAMPAIGN TO RE ELECT BOB MC   912082049       SENATORIAL RE ELECTION     
-           CASLIN                                     CAMPAIGN            
-
-  Rosanne Bader for Mt. SAC    3.31e+08    Promoting and fundraising for  
-        School Board                         candidate for election to    
-                                                       office             
---------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
----------------------------------------------------------------------
- RECORD_TYPE   FORM_TYPE   FORM_ID_NUMBER   INITIAL_REPORT_INDICATOR 
-------------- ----------- ---------------- --------------------------
-      1          8871            8                     0             
-
-      1          8871            9                     0             
-
-      1          8871            10                    0             
-
-      1          8871            11                    0             
-
-      1          8871            12                    0             
-
-      1          8871            13                    0             
----------------------------------------------------------------------
-
-Table: Table continues below
-
- 
-------------------------------------------------------------------------------
- AMENDED_REPORT_INDICATOR   FINAL_REPORT_INDICATOR      MAILING_ADDRESS_1     
--------------------------- ------------------------ --------------------------
-            0                         0                10420 - 173rd Ave SW   
-
-            0                         0                 728 W. EDNA PLACE     
-
-            0                         0               WILLIAM S WEBB CO INC   
-
-            0                         0              105-15 Metropolitan Ave. 
-
-            0                         0                  10424 E. CENTRAL     
-
-            0                         0                 5041 La Mart Drive    
-------------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
--------------------------------------------------------------------
- MAILING_ADDRESS_2    MAILING_ADDRESS_CITY   MAILING_ADDRESS_STATE 
--------------------- ---------------------- -----------------------
-                           Rochester                  WA           
-
-                             COVINA                   CA           
-
- 377 OAK ST - CS601       GARDEN CITY                 NY           
-
-                          Forest Hills                NY           
-
-                            SPOKANE                   WA           
-
-     Suite 110             Riverside                  CA           
--------------------------------------------------------------------
-
-Table: Table continues below
-
- 
------------------------------------------------------------------------
- MAILING_ADDRESS_ZIP_CODE   MAILING_ADDRESS_ZIP_EXT   ESTABLISHED_DATE 
--------------------------- ------------------------- ------------------
-          98579                       NA                     NA        
-
-          91722                       NA                     NA        
-
-          11530                       601                    NA        
-
-          11375                       NA                     NA        
-
-          99217                       NA                     NA        
-
-          92507                       NA                     NA        
------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
---------------------------------------------------------------------------
-    CUSTODIAN_NAME       CUSTODIAN_ADDRESS_CITY   CUSTODIAN_ADDRESS_STATE 
------------------------ ------------------------ -------------------------
-      Dan Swecker              Rochester                    WA            
-
-    YOLANDA MIRANDA              COVINA                     CA            
-
-   RICHARD C BLIVEN           GARDEN CITY                   NY            
-
-    John A. Gemelli           Forest Hills                  NY            
-
-     HERB MCINTOSH              SPOKANE                     WA            
-
- Trimble Morin and Co.         Riverside                    CA            
---------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
-------------------------------------------------------------------------------
- CUSTODIAN_ADDRESS_ZIP_CODE   CUSTODIAN_ADDRESS_ZIP_EXT   CONTACT_PERSON_NAME 
----------------------------- --------------------------- ---------------------
-           98579                         NA                   Dan Swecker     
-
-           91722                         NA                 YOLANDA MIRANDA   
-
-           11530                         601               RICHARD C BLIVEN   
-
-           11375                         NA                 John A. Gemelli   
-
-           99217                         NA                      SAME         
-
-           92507                         NA               Dana Oldenburg, CPA 
-------------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
--------------------------------------------------------------------------
- CONTACT_ADDRESS_CITY   CONTACT_ADDRESS_STATE   CONTACT_ADDRESS_ZIP_CODE 
----------------------- ----------------------- --------------------------
-      Rochester                  WA                      98579           
-
-        COVINA                   CA                      91722           
-
-     GARDEN CITY                 NY                      11530           
-
-     Forest Hills                NY                      11375           
-
-       SPOKANE                   WA                      99217           
-
-      Riverside                  CA                      92507           
--------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
--------------------------------------------------------------------------
- CONTACT_ADDRESS_ZIP_EXT      BUSINESS_ADDRESS_1      BUSINESS_ADDRESS_2 
-------------------------- -------------------------- --------------------
-           NA                        same                                
-
-           NA                 728 W. EDNA PLACE                          
-
-           601              WILLIAM S WEBB CO INC     377 OAK ST - CS601 
-
-           NA              105-15 Metropolitan Ave.                      
-
-           NA                  10424 E. CENTRAL                          
-
-           NA                 5041 La Mart Drive          Suite 110      
--------------------------------------------------------------------------
-
-Table: Table continues below
-
- 
--------------------------------------------------------------
- EXEMPT_8872_INDICATOR   EXEMPT_STATE   EXEMPT_990_INDICATOR 
------------------------ -------------- ----------------------
-          NA                                     NA          
-
-          NA                                     NA          
-
-          NA                                     NA          
-
-          NA                                     NA          
-
-          NA                                     NA          
-
-          NA                                     NA          
--------------------------------------------------------------
-
-Table: Table continues below
-
- 
-----------------------------------------------------------------------------------
- MATERIAL_CHANGE_DATE     INSERT_DATETIME     RELATED_ENTITY_BYPASS   EAIN_BYPASS 
----------------------- --------------------- ----------------------- -------------
-          NA            2001-05-13 21:20:54             0                  1      
-
-          NA            2001-05-14 15:05:31             1                  1      
-
-          NA            2001-05-14 17:24:52             1                  1      
-
-          NA            2001-05-15 10:12:56             1                  1      
-
-          NA            2001-05-15 15:25:27             1                  1      
-
-          NA            2001-05-15 16:20:48             1                  1      
-----------------------------------------------------------------------------------
+<table class=" lightable-material-dark" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> ORGANIZATION_NAME </th>
+   <th style="text-align:right;"> EIN </th>
+   <th style="text-align:left;"> PURPOSE </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Dan Swecker for Senate Campaign </td>
+   <td style="text-align:right;"> 912121950 </td>
+   <td style="text-align:left;"> Tax exempt political organization - Political campaign </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FRIENDS OF TOM CALDERON </td>
+   <td style="text-align:right;"> 954857244 </td>
+   <td style="text-align:left;"> RAISE FUNDS TO ELECT CANDIDATE </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> ASGM PAC </td>
+   <td style="text-align:right;"> 61596525 </td>
+   <td style="text-align:left;"> POLITICAL ACTION COMMITTEE TO PROMOTE LEGISLATION FAVORABLE TO WORKERS COMPENSATION SAFETY GROUPS IN NEW YORK STATE. </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Comm to Elect Judge Robert Ross to Supreme Court </td>
+   <td style="text-align:right;"> 113601603 </td>
+   <td style="text-align:left;"> Committe to Elect Judge Robert Ross to the Supreme Court of the State of New York </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> CAMPAIGN TO RE ELECT BOB  MC CASLIN </td>
+   <td style="text-align:right;"> 912082049 </td>
+   <td style="text-align:left;"> SENATORIAL RE ELECTION CAMPAIGN </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Rosanne Bader for Mt. SAC School Board </td>
+   <td style="text-align:right;"> 330963550 </td>
+   <td style="text-align:left;"> Promoting and fundraising for candidate for election to office </td>
+  </tr>
+</tbody>
+</table>
+
+<br>
+<br>
+<hr>
+<br>
 
 
