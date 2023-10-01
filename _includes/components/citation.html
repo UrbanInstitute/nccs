@@ -72,12 +72,10 @@ Citation
       {{ include.citation.volume }}, no. {{include.citation.issue}}. 
     {% endif %}
     {% if include.citation.doi %}
-      https://doi.org/{{ include.citation.doi }}. 
+      <a href="https://doi.org/{{ include.citation.doi }}" target="_blank">https://doi.org/{{ include.citation.doi }}</a> 
     {% endif %}
     {% if include.citation.url %}
       {{ include.citation.url }} 
-    {% else %}
-      {{ site.url }}{{site.baseurl}}{{ page.url }}
     {% endif %}
   </div>
 </div>
