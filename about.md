@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About NCCS
-description: Better data means better knowledge on sector health and more opportunities to advance evidence-based philanthopy.
+description: Better data means deeper insight on the health of the sector and more opportunities to advance evidence-based philanthopy.
 permalink: /about/
 activeLink: /about/
 ---
