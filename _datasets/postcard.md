@@ -18,8 +18,9 @@ author:
 - id: jlecy
 - id: esearing
 citation: 
-  author: "Searing, EA & Lecy, JD (2022)."
-  container-title: "Growing up nonprofit: Predictors of early-stage nonprofit formalization. Nonprofit and Voluntary Sector Quarterly, 51(3), 680-698."
+  author: "Searing, EA & Lecy, JD"
+  citationDate: 2022
+  container-title: "Growing up nonprofit: Predictors of early-stage nonprofit formalization. Nonprofit and Voluntary Sector Quarterly, 51(3), 680-698"
   doi: 10.1177/08997640211014280
 ---
 
