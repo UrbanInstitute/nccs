@@ -45,16 +45,7 @@ We remain dedication to providing accurate, comprehensive, and accessible inform
 <br>
 <br>
 
-
-<style> 
-  
-h3 {
-    color: #12719e;
-    font-size: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-  
-</style>  
+ 
 
 
 
