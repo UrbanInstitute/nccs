@@ -15,7 +15,7 @@ NCCS is dedication to providing accurate, comprehensive, and accessible informat
 
 Established as part of the Center for Nonprofits and Philanthropy at the Urban Institute, NCCS plays a pivotal role in providing comprehensive and meticulously curated data, research, and analysis pertaining to charitable and nonprofit organizations operating across diverse fields and missions. 
 
-We strive for advances in the following areas: 
+We strive for excellence in the following areas: 
 
 * **Data Accessibility:**  NCCS exemplifies a commitment to transparency and public access by making all data and research findings free to scholars, policymakers, philanthropists, nonprofit practitioners, and the broader public. This commitment fosters informed decision-making, fosters accountability, and facilitates a better understanding of nonprofit activities.
 * **Impactful Insights:**  By providing a rich tapestry of historical and contemporary data, the NCCS empowers stakeholders to gain valuable insights into nonprofit financial health, governance structures, programmatic endeavors, and overall sector trends. These insights play a vital role in shaping public policy, philanthropic strategies, and the practices of nonprofit organizations.
