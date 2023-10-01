@@ -55,9 +55,9 @@ Very small nonprofits (revenues less than $50k annually) can file Form 990N (the
 
 Form scope describes which types of filers are included in each data set: 
 
-* PZ: 990 + 990EZ filers
-* PC: 990 filers only 
-* PF: 990PF private foundations 
+* **PZ**: 990 + 990EZ filers
+* **PC**: 990 filers only 
+* **PF**: 990PF private foundations 
 
 Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures. 
 
@@ -313,8 +313,8 @@ h4, .h4 {
 
 .button {
   background-color: white;
-  color: black;
-  border: 2px solid #0a4c6a;   /* #008CBA; */
+  color:  #12719e;
+  border: 2px solid  #12719e;   /* #008CBA; */
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
@@ -337,8 +337,8 @@ h4, .h4 {
 
 .button2 {
   background-color: white;
-  color: black;
-  border: 2px solid #fdbf11;   /* #008CBA; */
+  color: #12719e;
+  border: 2px solid #9d9d9d;   /* #008CBA; */
   padding: 5px 10px;
   text-align: center;
   text-decoration: none;
@@ -353,9 +353,10 @@ h4, .h4 {
 }
 
 .button2:hover {
-  background-color: #e88e2d; 
-  color: white;
-  border: 2px solid  #ca5800;
+  background-color: #fff2cf; 
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
 }
 
 
