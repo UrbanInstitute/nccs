@@ -74,6 +74,18 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/alena-stern  
+- id: jkelly
+  first: Jessica
+  last: Kelly
+  title: Senior Director, Research and Web Technology
+  bio: Jessica is senior director of research and web technology in the information technology department at the Urban Institute 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/jkelly.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/jessica-kelly 
 - id: cdavis
   first: Chris
   last: Davis
