@@ -38,8 +38,8 @@ markdown: GFM
 nav:
   - title: Data
     url: /datasets/
-  - title: Resources
-    url: /resources/
+  # - title: Resources
+  #   url: /resources/
   - title: Stories
     url: /stories/
   - title: About
