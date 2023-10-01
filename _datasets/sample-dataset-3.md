@@ -25,7 +25,7 @@ Research and Analysis: Researchers and analysts often use the IRS 990 e-File Dat
 
 The IRS began releasing Efile data through its website and other third-party platforms starting in 2015. The data is released in XML formats that can be challenging to use. NCCS provides a version that has been converted into a relational database with 126 distinct tables that reflect the discrte Parts represented on Form 990 and Schedules.  
 
-<a class="btn -tertiary " href="[https://duckduckgo.com/](https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html)">
+<a class="btn -tertiary " href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html">
   <span>DATA DICTIONARY</span>
 </a>
 
