@@ -14,7 +14,34 @@ layout: page
   {{ content }}     
 
 
-  <div class="feature flow flow-2">
+
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Team"
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign executives = site.data.people | where: "team", "leadership" %}
+    {% for person in executives %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="feature flow flow-2">
   {% include components/divider.html
     header = "Executive Board"
   %}
@@ -41,32 +68,7 @@ layout: page
 
 <div class="feature flow flow-2">
   {% include components/divider.html
-    header = "Leadership Team"
-  %}
-
-  <div class="grid-cols-4 gap">
-    {% assign executives = site.data.people | where: "team", "leadership" %}
-    {% for person in executives %}
-      {% if person.image %}
-        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
-      {% endif %}
-      {% assign firstAffiliation = person.affiliation | first %}
-
-      {% include components/person.html
-        first = person.first
-        last = person.last
-        image = personImage
-        title = person.title
-        affiliation = firstAffiliation.name
-        social = person.social
-      %}
-    {% endfor %}
-  </div>
-</div>
-
-<div class="feature flow flow-2">
-  {% include components/divider.html
-    header = "Members"
+    header = "Advisory Board"
   %}
 
   <div class="grid-cols-4 gap">
