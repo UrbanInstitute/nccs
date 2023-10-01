@@ -1,12 +1,13 @@
 ---
 layout: about
 title: About NCCS
-description: Better sector data means better knowledge on sector health and more opportunities to advance evidence-based philanthopy.
+description: Better data means better knowledge on sector health and more opportunities to advance evidence-based philanthopy.
 permalink: /about/
 activeLink: /about/
 ---
 
 
+## Our Mission 
 
 The National Center for Charitable Statistics (NCCS) is a distinguished research and data resource institution dedicated to advancing the knowledge and understanding of the nonprofit and charitable sector that operates at the intersection of data, research, and philanthropy. 
 
