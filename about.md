@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About NCCS
-description: Elit velit veniam ducimus adipisicing odit. Voluptate facere sed iste accusamus quae consequatur, excepturi Harum.
+description: Better sector data means better knowledge on sector health and more opportunities to advance evidence-based philanthopy.
 permalink: /about/
 activeLink: /about/
 ---
