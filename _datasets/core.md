@@ -8,7 +8,7 @@ categories:
   - nonprofits
 featured: true
 featuredOrder: 1
-primaryCtaUrl: "../catalogs/catalog-core.html"
+primaryCtaUrl: "../../catalogs/catalog-core.html"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
   - text: "Data Dictionary"
