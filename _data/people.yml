@@ -1,77 +1,47 @@
 # Teams templated: executive, leadership, member
 # To exclude a person from the about page, do not set a team field
-- id: jdl
+- id: jlecy
   first: Jesse
   last: Lecy
   title: Senior Research Associate
   bio: Scholar and data scientist; advocate for open data and digital literacy in the nonprofit and public sectors. 
-  orcid: 0000-0002-1825-0097
-  email: josiah@psychoceramics.org
+  email: nccs@urban.org 
+  orcid: 0000-0003-4974-0782
   team: leadership
   image: people/lecy.jpg
   affiliation: 
-    - name: Burgundy University
-      city: Providence
-      state: RI
-      url: www.burgundy.edu
+    - name: Arizona State University
+      city: Phoenix
+      state: AZ
+      url: https://search.asu.edu/profile/3190859
   social:
     - name: linkedin
-      url: #
-    - name: twitter
-      url: #
-    - name: mastodon
-      url: #
-- id: hm
+      url: https://www.linkedin.com/in/jesse-lecy-bab1013?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BGmGcRnF4QFG49WNYVun86w%3D%3D
+- id: hmartin
   first: Hannah
   last: Martin
   title: Policy Analyst
   bio: Policy Analyst with the Center for Nonprofits and Philanthropy; expertise in sector infrastructure, regulation, program related investments, and performance systems. 
-  orcid: 0000-0002-1825-0097
-  email: josiah@psychoceramics.org
+  email: nccs@urban.org
   team: leadership
   image: people/hannah-martin.jpg
-  affiliation: 
-    - name: Burgundy University
-      city: Providence
-      state: RI
-      url: www.burgundy.edu
-  social:
-    - name: linkedin
-      url: #
-    - name: twitter
-      url: #
-    - name: mastodon
-      url: #
-- id: tp
+- id: thiya
   first: Thiya
   last: Poongundranar
   title: Data Scientist
   bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
-  orcid: 0000-0002-1825-0097
-  email: josiah@psychoceramics.org
+  email: nccs@urban.org
   team: leadership
   image: people/thiya.jpg
-  affiliation: 
-    - name: Burgundy University
-      city: Providence
-      state: RI
-      url: www.burgundy.edu
-  social:
-    - name: linkedin
-      url: #
-    - name: twitter
-      url: #
-    - name: mastodon
-      url: #
-- id: jc
-  first: Juri
-  last: Cranberry
-  title: Sample Title
-  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
+- id: cdavis
+  first: Chris
+  last: Davis
+  title: Data Scientist
+  bio: Chris works in the Metropolitan Housing and Communities Policy Center at the Urban Institute and is interested in the impact housing inequities have on health, poverty, and career opportunity in disadvantaged communities.
   orcid: 0000-0002-1825-0097
-  email: josiah@psychoceramics.org
+  email: placeholder@email.com
   team: leadership
-  image: people/person-placeholder.png
+  image: people/cdavis.png
   affiliation: 
     - name: Burgundy University
       city: Providence
