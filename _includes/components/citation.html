@@ -59,14 +59,13 @@ Citation
 
   <div class="font-italic text-xs break-word" data-clipboard-text>
     {% if citationAuthors %}
-      {{ citationAuthors}}. 
+      {{ citationAuthors}}, 
     {% endif %}
-      {{ citationDate }}. 
-      "{{ page.title }}." 
+      ({{ citationDate }}). 
     {% if include.citation.container-title %}
       {{ include.citation.container-title }}. 
     {% else %}
-      {{ site.title }}.
+      {{ page.title }}.
     {% endif %}
     {% if include.citation.volume or include.citation.issue %}
       {{ include.citation.volume }}, no. {{include.citation.issue}}. 
