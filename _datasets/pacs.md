@@ -142,7 +142,7 @@ For more information on 527 political organizations and other types of political
 | <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495"> LINK </a>  |   *Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274.*  |    
 | <a class="btn -tertiary " href="https://www.degruyter.com/document/doi/10.1515/npf-2021-0061/html"> LINK </a>   | *Post, M. A., & Boris, E. T. (2022, December). Nonprofit Political Engagement: The Roles of 501 (c)(4) Social Welfare Organizations in Elections and Policymaking. In Nonprofit Policy Forum (Vol. 14, No. 2, pp. 131-155). De Gruyter.* |
 | <a class="btn -tertiary " href="https://bolderadvocacy.org/resource/the-connection-strategies-for-creating-and-operating-501c3s-501c4s-and-political-organizations/"> LINK </a>  |  _Bolder Advocacy's excellent guide for nonprofits: **The Connection: Strategies for Creating and Operating 501(c)(3)s, 501(c)(4)s, and Political Organizations**_ | 
-| <a class="btn -tertiary " href="https://lecy.github.io/political-ideology-of-nonprofits/"> REPLICATION FILES </a>  | *Lecy, J. D., Ashley, S. R., & Santamarina, F. J. (2019). Do nonprofit missions vary by the political ideology of supporting communities? Some preliminary results. Public Performance & Management Review, 42(1), 115-141.* | 
+
 
 ### Related Topics 
 
