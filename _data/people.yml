@@ -1,16 +1,106 @@
-# Teams templated: executive, leadership, member
+# Teams templated: executive (board), leadership (nccs team), collaborator
 # To exclude a person from the about page, do not set a team field
-- id: jc
-  first: Juri
-  last: Cranberry
-  title: Sample Title
-  bio: Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.
-  orcid: 0000-0002-1825-0097
-  email: josiah@psychoceramics.org
+- id: jlecy
+  first: Jesse
+  last: Lecy
+  title: Associate Professor, Data Scientist
+  bio: Scholar and data scientist; advocate for open data and digital literacy in the nonprofit and public sectors. 
+  email: nccs@urban.org 
+  orcid: 0000-0003-4974-0782
   team: leadership
-  image: people/person-placeholder.png
+  image: people/lecy.jpg
   affiliation: 
-    - name: Burgundy University
+    - name: ASU / Urban Institute
+      city: Phoenix
+      state: AZ
+      url: https://search.asu.edu/profile/3190859
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/jesse-lecy-bab1013?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BGmGcRnF4QFG49WNYVun86w%3D%3D
+- id: hmartin
+  first: Hannah
+  last: Martin
+  title: Policy Analyst
+  bio: Policy Analyst with the Center for Nonprofits and Philanthropy; expertise in sector infrastructure, regulation, program related investments, and performance systems. 
+  email: nccs@urban.org
+  team: leadership
+  image: people/hannah-martin.jpg
+  affiliation: 
+    - name: Urban Institute / CNP
+- id: thiya
+  first: Thiya
+  last: Poongundranar
+  title: Data Scientist
+  bio: Thiya has a background in political science, data journalism, and high performance computing. 
+  email: nccs@urban.org
+  team: leadership
+  image: people/thiya.jpg
+  affiliation: 
+    - name: Urban Institute / CNP
+- id: eboris
+  first: Elizabeth
+  last: Boris
+  title: Institute Fellow
+  bio: Elizabeth is the founding director of the Center on Nonprofits and Philanthropy at the Aspen Institute’s Nonprofit Sector Research Fund.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/eboris.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/elizabeth-t-boris
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
+    - name: twitter
+      url: https://twitter.com/eborisurban
+- id: ttraylor
+  first: Tené
+  last: Traylor
+  title: CNP Director
+  bio: Tené Traylor is vice president for nonprofits and philanthropy at the Urban Institute.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/ttraylor.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/tene-traylor
+- id: astern
+  first: Alena
+  last: Stern
+  title: Associate Director of Data Science
+  bio: Alena is an associate director of data science at the Urban Institute studying policy solutions to advance equity and inclusion in cities. 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/astern.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/alena-stern  
+- id: jkelly
+  first: Jessica
+  last: Kelly
+  title: Senior Director, Research and Web Technology
+  bio: Jessica is senior director of research and web technology in the information technology department at the Urban Institute 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/jkelly.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/jessica-kelly 
+- id: cdavis
+  first: Chris
+  last: Davis
+  title: Data Scientist
+  bio: Chris works in the Metropolitan Housing and Communities Policy Center at the Urban Institute and is interested in the impact housing inequities have on health, poverty, and career opportunity in disadvantaged communities.
+  orcid: 0000-0002-1825-0097
+  email: placeholder@email.com
+  team: collaborator
+  image: people/cdavis.jpg
+  affiliation: 
+    - name: Urban Institute
       city: Providence
       state: RI
       url: www.burgundy.edu
@@ -21,46 +111,35 @@
       url: #
     - name: mastodon
       url: #
-- id: mr
-  first: Mihaja
-  last: Randriamahazomana
-  title: Wizard of Light Bulb Moments
-  bio: Ipsum vitae voluptas aliquam molestiae autem libero nemo aut distinctio.
-  team: executive
+- id: mpost
+  first: Margaret
+  last: Post
+  title: Research Associate Professor
+  bio: Assistant Research Professor in International Development, Community and Environment at Clark University
+  team: collaborator
   affiliation: 
-    - name: Harris, Quigley and Feeney
-      city: Providence
-      state: RI
-      url: www.brown.edu
-  image: people/person-placeholder.png
+    - name: Clark University
+      url: https://www.clarku.edu/faculty/profiles/margaret-post/
+  image: people/mpost.jpg  
+- id: obeck
+  first: Olivia
+  last: Beck
+  title: Data Science Intern / PhD Candidate
+  bio: PhD student studying statistics and social data analytics at Penn State University
+  team: collaborator
+  affiliation: 
+    - name: Penn State
+      url: https://science.psu.edu/stat/people/olb5053
+  image: people/obeck.jpg
   social:
     - name: linkedin
-      url: #
-    - name: twitter
-      url: #
-- id: ar
-  first: Amalie
-  last: Rösler
-  title: Rainmaker
-  bio: Elit officiis temporibus aperiam animi illum Libero perferendis minima reiciendis fugit recusandae. Sunt ipsum at porro dolores reprehenderit.
-  team: leadership
-  affiliation: 
-    - name: Hook Acoustics
-      city: Providence
-      state: RI
-      url: www.brown.edu
-  image: people/person-placeholder.png
-  social:
-    - name: linkedin
-      url: #
-    - name: twitter
-      url: #
+      url: https://www.linkedin.com/in/olivia-beck-87105a178/
 - id: jd
   first: John
   last: Doe
   title: International Man of Mystery
   bio: Consectetur sint nemo nihil reprehenderit eius sed eligendi sint alias quod.
-  team: member
+  team: 
   affiliation: 
     - name: Classified
       city: Classified

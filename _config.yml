@@ -38,8 +38,8 @@ markdown: GFM
 nav:
   - title: Data
     url: /datasets/
-  - title: Resources
-    url: /resources/
+  # - title: Resources
+  #   url: /resources/
   - title: Stories
     url: /stories/
   - title: About
@@ -82,13 +82,14 @@ social_links:
 
 globalDatasetLinks:
   -
-    header: "How to Use this Data"
+    header: "Resources"
     links: 
-    - text: "User Guide"
-      url: "#"
-    - text: "Get Help"
-      url: "#"
+    - text: "Research Handbook"
+      href: "https://urbaninstitute.github.io/nccs-handbook/intro.html"
+    - text: "Data Guide"
+      href: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
 
+      
 # Build settings
 sass:
   sass_dir: public/scss

@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>NCCS CORE Data Catalog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="catalog-core_files/libs/clipboard/clipboard.min.js"></script>
+<script src="catalog-core_files/libs/quarto-html/quarto.js"></script>
+<script src="catalog-core_files/libs/quarto-html/popper.min.js"></script>
+<script src="catalog-core_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="catalog-core_files/libs/quarto-html/anchor.min.js"></script>
+<link href="catalog-core_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="catalog-core_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="catalog-core_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="catalog-core_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="catalog-core_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+<script src="catalog-core_files/libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="catalog-core_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">NCCS CORE Data Catalog</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><br></p>
+<hr>
+<p><br></p>
+<p>Files are organized as follows:</p>
+<p><strong>TAX EXEMPT TYPE (tscope)</strong></p>
+<ul>
+<li>CHARITIES - 501c3 nonprofit organizations</li>
+<li>NONPROFITS - All other 501c type organizations besides 501c3</li>
+<li>PRIVATE FOUNDATIONS - 501c3 private foundations</li>
+</ul>
+<p><strong>IRS 990 FORM SCOPE (fscope)</strong></p>
+<p>Nonprofits can file Form 990, 990EZ, 990PF, or 990N.</p>
+<p>Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than $250k in revenues must file full Form 990.</p>
+<p>Very small nonprofits (revenues less than $50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series.</p>
+<p>Form scope describes which types of filers are included in each data set:</p>
+<ul>
+<li><strong>PZ</strong>: 990 + 990EZ filers</li>
+<li><strong>PC</strong>: 990 filers only</li>
+<li><strong>PF</strong>: 990PF private foundations</li>
+</ul>
+<p>Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures.</p>
+<p><strong>YEAR</strong></p>
+<p>Files are organized by <strong>tax year</strong>, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.</p>
+<p><br></p>
+<hr>
+<p><br></p>
+<section id="c3-charities-scope-pz" class="level4">
+<h4 class="anchored" data-anchor-id="c3-charities-scope-pz">501c3 CHARITIES SCOPE PZ</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1989</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1991</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1992</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1993-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1993-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1994</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1995</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1996</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1997</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1998</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">1999</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2001</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2002</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2003</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2004</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2005</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2007</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-CHARITIES-SCOPE-501C3-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-CHARITIES-SCOPE-501C3-PZ.csv" class="button2">PROFILE</a></td>
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+</section>
+<section id="c3-charities-scope-pc" class="level4">
+<h4 class="anchored" data-anchor-id="c3-charities-scope-pc">501c3 CHARITIES SCOPE PC</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2015</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2016</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2017</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-CHARITIES-SCOPE-501C3-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">CHARITIES-SCOPE-501C3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2019</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+</section>
+<section id="nonprofits-scope-pz" class="level4">
+<h4 class="anchored" data-anchor-id="nonprofits-scope-pz">NONPROFITS SCOPE PZ</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1989</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1990</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1992</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1993-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1993</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1994</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1995</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1996</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1997</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1998</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">1999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2002</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2003</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2004</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2005</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2006</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2007</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2008</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2009</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2011</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2012</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2013</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2014</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2015</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2016</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2017</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2018</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-NONPROFIT-SCOPE-501CE-PZ.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">2019</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+</section>
+<section id="nonprofits-scope-pc" class="level4">
+<h4 class="anchored" data-anchor-id="nonprofits-scope-pc">NONPROFITS SCOPE PC</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2015</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2016</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2017</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2018</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-NONPROFIT-SCOPE-501CE-PC.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">NONPROFIT-SCOPE-501CE</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">2019</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+</section>
+<section id="private-foundations-scope-pf" class="level4">
+<h4 class="anchored" data-anchor-id="private-foundations-scope-pf">PRIVATE FOUNDATIONS SCOPE PF</h4>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1989</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1990</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1992</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1994</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1995</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1996</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1997</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1998</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2001</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2004</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2005</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2006</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2007</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2008</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2009</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2011</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2012</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2014</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2015</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-PRIVFOUND-SCOPE-501C3-PF.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;">PRIVFOUND-SCOPE-501C3</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2019</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+
+<style>
+
+
+h1.title {
+ font-size: 60px;
+ color: #0a4c6a;
+}
+
+
+h4, .h4 {
+    font-size: 40px;
+    color: #1696d2;
+    margin-bottom: 50px;
+}
+
+
+
+.button {
+  background-color: white;
+  color:  #12719e;
+  border: 2px solid  #12719e;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+ 
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #1696d2; 
+  color: white;
+  border: 2px solid #12719e;
+}
+
+
+.button2 {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+
+.button2 {
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  background-color: #fff2cf; 
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+
+.center {text-align: center;}
+
+table td {
+  vertical-align: middle;
+}
+
+blockquote {
+    border-left: 4px solid #1696d2;
+    margin-left: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 15px;
+}
+
+.button3 {
+  background-color: #0a4c6a;
+  color: white;
+  border: 2px solid #0a4c6a;   
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100px;
+}
+</style>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

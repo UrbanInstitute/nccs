@@ -1,0 +1,143 @@
+---
+layout: page
+---
+
+<div class="content flow mt-3">
+
+  <div class="mi-3">
+    {% assign image = "public/img/collage.webp" | relative_url %}
+    <img src="{{ image }}" alt="" />
+  </div>
+
+</div>
+
+  {{ content }}     
+
+
+
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Team"
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign executives = site.data.people | where: "team", "leadership" %}
+    {% for person in executives %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+
+<br>
+<br>
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Board"
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign executives = site.data.people | where: "team", "executive" %}
+    {% for person in executives %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+<br>
+<br>
+
+
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Collaborators"
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign collaborators = site.data.people | where: "team", "collaborator" %}
+    {% for person in collaborators %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = ""
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign executives = site.data.people | where: "team", "member" %}
+    {% for person in executives %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+
+<style> 
+  h3 {
+    color: #12719e;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style> 
+
+

@@ -27,7 +27,7 @@ NAVIGATION
       {% endfor %} 
       {% if site.repository %}
       <li class="nav__item">
-        <a class="nav__link" href="{{ site.repository }}">
+        <a class="nav__link" href="{{ site.github.repository_url }}/edit/main/{{page.path}}" target = "_blank">
           <span class="sr-only">Github Repo</span>
           {% include components/svg.html
             filename = "github"

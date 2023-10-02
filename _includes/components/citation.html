@@ -59,25 +59,22 @@ Citation
 
   <div class="font-italic text-xs break-word" data-clipboard-text>
     {% if citationAuthors %}
-      {{ citationAuthors}}. 
+      {{ citationAuthors}}, 
     {% endif %}
-      {{ citationDate }}. 
-      "{{ page.title }}." 
+      ({{ citationDate }}). 
     {% if include.citation.container-title %}
       {{ include.citation.container-title }}. 
     {% else %}
-      {{ site.title }}.
+      {{ page.title }}.
     {% endif %}
     {% if include.citation.volume or include.citation.issue %}
       {{ include.citation.volume }}, no. {{include.citation.issue}}. 
     {% endif %}
     {% if include.citation.doi %}
-      https://doi.org/{{ include.citation.doi }}. 
+      <a href="https://doi.org/{{ include.citation.doi }}" target="_blank">https://doi.org/{{ include.citation.doi }}</a> 
     {% endif %}
     {% if include.citation.url %}
       {{ include.citation.url }} 
-    {% else %}
-      {{ site.url }}{{site.baseurl}}{{ page.url }}
     {% endif %}
   </div>
 </div>
