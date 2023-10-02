@@ -13,10 +13,6 @@ primaryCtaCaption: "File size: 246kb"
 primaryLinks:
   - text: "R Package"
     href: "https://urbaninstitute.github.io/nccsdata/reference/index.html"
-  - text: "Data History"
-    href: "https://urbaninstitute.github.io/nccsdata/news/index.html"  
-  - text: "Research Guide"
-    href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
 author:
 - id: jlecy
 citation: 
