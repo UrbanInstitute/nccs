@@ -11,10 +11,8 @@ featuredOrder: 1
 primaryCtaUrl: "../../catalogs/catalog-core.html"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
-  - text: "Data Dictionary"
-    href: "https://nonprofit-open-data-collective.github.io/data-report-templates/data-dictionary-layout-v7.html"
   - text: "R Package"
-    href: "https://urbaninstitute.github.io/nccsdata/"
+    href: "https://urbaninstitute.github.io/nccsdata/reference/index.html"
   - text: "Data History"
     href: "https://urbaninstitute.github.io/nccsdata/news/index.html"  
   - text: "Research Guide"
