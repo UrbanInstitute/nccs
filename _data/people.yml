@@ -21,12 +21,15 @@
   first: Hannah
   last: Martin
   title: Policy Analyst
-  bio: Policy Analyst with the Center for Nonprofits and Philanthropy; expertise in sector infrastructure, regulation, program related investments, and performance systems. 
+  bio: Policy Analyst with the Center on Nonprofits and Philanthropy; expertise in social sector infrastructure, charitable giving, and mission-related investing. 
   email: nccs@urban.org
   team: leadership
   image: people/hannah-martin.jpg
   affiliation: 
     - name: Urban Institute / CNP
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/hqmartin/
 - id: thiya
   first: Thiya
   last: Poongundranar
