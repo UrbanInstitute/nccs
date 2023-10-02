@@ -1,10 +1,11 @@
 ---
-title: "NCCS CORE Data Catalog"
+title: "NCCS 'Core' Data Catalog"
 format: html
 editor: visual
 execute: 
   echo: false
   warning: false
+  
 ---
 
 ```{r}
@@ -14,6 +15,7 @@ library( dplyr )
 library( knitr )
 library( kableExtra )
 library( stringr )
+library( flextable )
 library( pander )
 
 GH.RAW <- "https://raw.githubusercontent.com/lecy/nccs/main/catalogs/"
@@ -30,45 +32,44 @@ make_buttons_2 <- function( urls ) {
 }
 ```
 
-<br>
 
+<br>
 <hr>
-
 <br>
 
-Files are organized as follows:
+Files are organized as follows: 
 
 **TAX EXEMPT TYPE (tscope)**
 
--   CHARITIES - 501c3 nonprofit organizations
--   NONPROFITS - All other 501c type organizations besides 501c3
--   PRIVATE FOUNDATIONS - 501c3 private foundations
+* CHARITIES - 501c3 nonprofit organizations 
+* NONPROFITS - All other 501c type organizations besides 501c3
+* PRIVATE FOUNDATIONS - 501c3 private foundations
 
 **IRS 990 FORM SCOPE (fscope)**
 
-Nonprofits can file Form 990, 990EZ, 990PF, or 990N.
+Nonprofits can file Form 990, 990EZ, 990PF, or 990N. 
 
-Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than \$250k in revenues must file full Form 990.
+Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than $250k in revenues must file full Form 990. 
 
-Very small nonprofits (revenues less than \$50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series.
+Very small nonprofits (revenues less than $50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series. 
 
-Form scope describes which types of filers are included in each data set:
+Form scope describes which types of filers are included in each data set: 
 
--   **PZ**: 990 + 990EZ filers
--   **PC**: 990 filers only
--   **PF**: 990PF private foundations
+* **PZ**: 990 + 990EZ filers
+* **PC**: 990 filers only 
+* **PF**: 990PF private foundations 
 
-Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures.
+Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures. 
 
 **YEAR**
 
-Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.
+Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.  
+
 
 <br>
-
 <hr>
-
 <br>
+
 
 #### 501c3 CHARITIES SCOPE PZ
 
@@ -94,6 +95,7 @@ catalog <-
     FORM_SCOPE=FSCOPE )
 ```
 
+
 ```{r}
 #| echo: false
 
@@ -107,17 +109,18 @@ catalog %>%
 ```
 
 <br>
-
 <hr>
-
 <br>
+
+
+
 
 #### 501c3 CHARITIES SCOPE PC
 
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PC" )
+paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
 urls  <- make_urls( paths )
 
 
@@ -135,6 +138,9 @@ catalog <-
     YEAR=YEAR )
 ```
 
+
+
+
 ```{r}
 #| echo: false
 
@@ -148,10 +154,11 @@ catalog %>%
 ```
 
 <br>
-
 <hr>
-
 <br>
+
+
+
 
 #### NONPROFITS SCOPE PZ
 
@@ -175,6 +182,8 @@ catalog <-
     YEAR=YEAR )
 ```
 
+
+
 ```{r}
 #| echo: false
 
@@ -188,10 +197,11 @@ catalog %>%
 ```
 
 <br>
-
 <hr>
-
 <br>
+
+
+
 
 #### NONPROFITS SCOPE PC
 
@@ -216,6 +226,7 @@ catalog <-
 
 ```
 
+
 ```{r}
 #| echo: false
 
@@ -229,10 +240,12 @@ catalog %>%
 ```
 
 <br>
-
 <hr>
-
 <br>
+
+
+
+
 
 #### PRIVATE FOUNDATIONS SCOPE PF
 
@@ -257,6 +270,8 @@ catalog <-
 
 ```
 
+
+
 ```{r}
 #| echo: false
 
@@ -270,12 +285,15 @@ catalog %>%
 ```
 
 <br>
-
 <hr>
-
 <br>
 
-```{=html}
+
+
+
+
+
+
 <style>
 
 
@@ -368,4 +386,3 @@ blockquote {
   width: 100px;
 }
 </style>
-```
