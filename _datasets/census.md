@@ -42,9 +42,9 @@ To address this problem we are developing tools to make adding census data to yo
 get_data( 
    core,
    years=2010:2020,
-   geo.region=“southeast”,
-   ntee=“human services” ) %>%
-append_census( level=“tract” )
+   geo.region="southeast",
+   ntee="human services" ) %>%
+append_census( level="tract" )
 ```
 
 In order to make this possible we have created new data infrastructure including: 
