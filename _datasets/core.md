@@ -30,7 +30,7 @@ citation:
 
 ## Use
 
-Data can be downloaded via the data catalog or the **nccsdata** R package. Statistical packages have the advantage of documentation and reproducibility. 
+Data can be downloaded via the [**data catalog**](https://lecy.github.io/nccs/catalogs/catalog-core.html) page or the [**nccsdata R package**](https://urbaninstitute.github.io/nccsdata/). Statistical packages have the advantage of process documentation and reproducibility. Data acquisition steps with the package might look like one of the following queries: 
 
 ```r
 ###  SELECT DATA BY: 
