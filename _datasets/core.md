@@ -99,7 +99,42 @@ Accessibility: The data is made available to the public through the NCCS website
 
 Data Quality: The NCCS takes measures to ensure data quality and accuracy, making it a reliable resource for research and analysis.
 
-## Organization 
+## Organization of the Data
+
+All 990 filers are split into five groups using combinations of two variables: organizational type scope or **tscope** (501c3 public charities vs 501c3 private foundations vs all other 501c type nonprofit organizations), and form filing scope or **fscope** that describes which types of filers are included in the dataset. 
+
+![image](https://github.com/lecy/nccs/assets/1209099/8a2d94ca-346a-4679-b30e-f3328a7d0df9)
+
+Private foundations are the simple case. They are always 501c3 charities and they can only ever file Form 990-PF. Unlike other nonprofits, small private foundations do not have the option of filing the 990-N ePostcard. They are required to file a full 990-PF to stay in compliance and not risk losing their tax exempt status. 
+
+The rest of the nonprofits are a little trickier. The world gets divided into 501c3 public charities, which are distinct in that all donations made to charities are tax deductible. Datasets that contain 501c3 organizations are labeled 501C3-SCOPE-CHARITIES. The rest of the organizations - those with tax exept types 501c1 to 501c92 excluding the 501c3 charities category - are labeled 501CE-SCOPE-NONPROFIT (501cE stands for "everything other than 501c3"). 
+
+The Core Data Series contains two types of form scope: all full 990 filers (fscope=**PC**), and the more inclusive 990 + 990EZ filers (fscope=**PZ**). 
+
+![image](https://github.com/lecy/nccs/assets/1209099/cf809446-da58-4867-9870-b0035a942847)
+ 
+The data is thus divided between five files that have the following naming conventions: 
+
+![image](https://github.com/lecy/nccs/assets/1209099/f25e1bc8-ff5e-4188-8125-956fd8f26ac9)
+
+The datasets with form scope of PZ will contain the full set of 990 and 990-EZ tax filers for a given year, but the trade-off is that 990-EZ filers have a much smaller form and thus fewer variables. Datasets with PZ scope represent a more extensive population and a more limited selection of fields. Datasets with form scope of PC will contain the smaller subset of full 990 form filers but contain a larger numer of variables. The PZ and PF versions of the data series are available from 1989-2022. The PC version is a more recent edition that is only available from 2012-2022. 
+
+See the [Data Guide](https://nccs-data.urban.org/NCCS-data-guide.pdf) for more details. 
+
+## Definition of "Year" in File Names
+
+One other detail to note is that legacy NCCS Core data files were organized by **filing dates**. For example, the 2015 dataset contained all of the 990 tax returns that were received by the IRS in the 2015 calendar year. 
+
+The new NCCS Core has be reorganized instead by **tax year**, or the closest approximation we can get to period described by the data in the form. It gets complicated because nonprofits can select their own accounting periods with fiscal years that can end in any month, so the tax year does not entirely correspond to the calendar year. But it is a much closer approximation than organizing panels by filing dates. 
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
 
 
 
