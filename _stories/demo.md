@@ -1,5 +1,5 @@
 ---
-title: nccsdata Package Demo
+title: Introducing the <b>nccsdata</b> Package
 date: 2023-08-28
 description: This story demos three functions from the nccsdata package.
 featured: false
