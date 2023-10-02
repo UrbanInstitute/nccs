@@ -32,15 +32,47 @@ citation:
 
 ## Use
 
-```r
-library( remotes )
-install_github( "UrbanInstitute/nccs-data-package/nccsdata" )
+Data can be downloaded via the data catalog or the **nccsdata** R package. Statistical packages have the advantage of documentation and reproducibility. 
 
-dt <-
-  nccsdata::ntee_preview(
-    ntee.group = c( "ART", "EDU" ),
-    ntee.code = c( "Axx", "B" ),
-    ntee.orgtype = "all" )
+```r
+###  SELECT DATA BY: 
+###    dsname = nccs data series
+###    time = years of data desired
+###    ntee = subsectors to include
+###    desired geography: 
+###    geo.state, geo.city, geo.county
+
+devtools::install_github("UrbanInstitute/nccsdata")
+library(nccsdata)
+
+dat <-
+  get_data(  dsname = "core",
+             time   = 2005     )
+
+dat <-
+  get_data(  dsname = "core",
+             time   = 2005,
+             ntee   = "ART"   )
+
+###
+###  MULTIPLE GEOGRAPHIES ARE SUPPORTED 
+###
+
+dat <-
+  get_data(  dsname = "core",
+             time   = 2005,
+             ntee   = "ART",   
+             geo.state = "CA"   )
+
+dat <-
+  get_data(  dsname = "core",
+             time   = 2005,
+             geo.city = "san francisco" )
+
+dat <-
+  get_data(  dsname = "core",
+             time   = 2005,
+             geo.county = "autauga"  )
 ```
 
 
