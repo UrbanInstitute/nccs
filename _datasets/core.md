@@ -73,6 +73,7 @@ dat <-
              geo.county = "autauga"  )
 ```
 
+Learn more from the data story titled "Introducing the nccsdata Package" or the [package documentation](https://urbaninstitute.github.io/nccsdata/reference/index.html). 
 
 ## Overview
 
