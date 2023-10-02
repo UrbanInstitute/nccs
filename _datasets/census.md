@@ -9,7 +9,7 @@ categories:
 featured: false
 featuredOrder: 5
 primaryCtaUrl: ""
-primaryCtaCaption: "Census data period: 1990-2020"
+primaryCtaCaption: "Years Available: 1990-2020"
 primaryLinks:
   - text: "Data Dictionary"
     href: "https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/census_codebook.xlsx"
@@ -49,7 +49,7 @@ append_census( level="tract" )
 
 In order to make this possible we have created new data infrastructure including: 
 
-**CROSSWALK FILES**
+**GEOGRAPHIC CROSSWALK FILES**
 
 Any census-designated geography is fundamentally comprised of a collection of either tracts or blocks. The crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation in order for a study to select the most meaningful level of aggregation. Crosswalk tables organized into geographies **comprised of blocks** and **geographies comprised of tract** as the basic building blocks. 
 
@@ -59,27 +59,27 @@ Any census-designated geography is fundamentally comprised of a collection of ei
 <hr>
 <br>
 
-**[from block](https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv)** (11,078,297 blocks/rows, 748MB)
-- Census Place
-- Urban Areas
-- Voting Districts
-- ZCTAs
-- NCES Locales
+**[Geographies Derived from Blocks](https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv)** (11,078,297 blocks/rows, 748MB)
+- [Census Designated Places](https://www.census.gov/programs-surveys/bas/information/cdp.html)
+- [Urban/Rural Areas (Census Defined)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/urban-rural.html)
+- [Urban/Rural Areas (NCES Defined)](https://nces.ed.gov/surveys/annualreports/topical-studies/locale/definitions)
+- [Voting Districts](https://www2.census.gov/geo/pdfs/reference/GARM/Ch14GARM.pdf)
+- [ZIP Code equivalents (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
+
 
 <br>
 <hr>
 <br>
 
-**[from tract](https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv)** (74,091 tracts/rows, 15MB) 
+**[Geographies Derived from Tracts](https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv)** (74,091 tracts/rows, 15MB) 
+- States (State FIPS)
+- Counties (County FIPS)
+- [Woodard's Cutural Regions](https://www.independent.co.uk/news/world/americas/us-map-11-separate-nations-colin-woodward-yankeedom-new-netherland-the-midlands-tidewater-greater-appalachia-a8078261.html)
+- [American Cultural Regions (Louf et al. 2023)](https://www.nature.com/articles/s41599-023-01611-3)
+- [Census Regions](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf)
 - Public Use Microdata Areas (PUMAs)
 - Core Based Statistical Areas (CBSAs)
 - Combined Statistical Areas (CSAs)
-- County
-- State
-- Woodard's Cutural Regions
-- American Communities Cultural Regions
-- Census Regions
-- Census Divisions
 
 <br>
 <hr>
@@ -111,7 +111,6 @@ This project is actively being developed. If you have questions or feedback plea
 
 <br>
 <br>
-<hr>
 <br>
 <br>
 
