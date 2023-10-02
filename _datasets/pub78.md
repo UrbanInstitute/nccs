@@ -85,7 +85,7 @@ cat(k)
 
 -->
 
-<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; margin-left: auto; margin-right: auto;'>
+<table class=" lightable-minimal" style='font-family: "Trebuchet MS", verdana, sans-serif; font-size: 12; margin-left: auto; margin-right: auto;'>
  <thead>
   <tr>
    <th style="text-align:right;"> ein </th>
