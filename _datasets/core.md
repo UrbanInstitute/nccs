@@ -20,14 +20,12 @@ primaryLinks:
   - text: "Research Guide"
     href: "https://nonprofit-open-data-collective.github.io/titleclassifier/data-raw/DATA-PREP.html"
 author:
-- id: jdl
-- id: tp
-- name: "Edmund Choi"
-  bio: "Testing bio and author overrides"
+- id: jlecy
 citation: 
-  author: "Choi. Y & Lee, Y."
-  container-title: "Ednel: A large – scale hierarchical dataset in education"
-  doi: 10.5555/12345678
+  author: "Jesse Lecy"
+  citationDate: "2023"
+  container-title: "What's New with NCCS Data?"
+  doi: 10.5555/xxxxxxxxxxx
 ---
 
 ## Use
