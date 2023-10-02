@@ -20,11 +20,7 @@ primaryLinks:
   - text: "Tax Exempt Organization Search"
     href: "https://apps.irs.gov/app/eos/"
 author:
-- id: jdl
-citation: 
-  author: "Choi. Y & Lee, Y."
-  container-title: "Ednel: A large – scale hierarchical dataset in education"
-  doi: 10.5555/12345678
+- id: jlecy
 ---
 
 ## Overview
