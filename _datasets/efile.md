@@ -1,14 +1,25 @@
 ---
 title: IRS 990 Efilers
-date: 2023-05-29 12:00:00
-description: The most comprehensive data source for 990 filers from 2012-2022.
+date: 2023-05-27
+description: A comprehensive panel of nonprofit organizations that file IRS form 990. 
 categories:
   - 990
-  - efile
-  - governance
-  - schedules
+  - financial-trends
+  - nonprofits
 featured: true
-featuredOrder: 3
+featuredOrder: 1
+primaryCtaUrl: "../../catalogs/catalog-efile.html"
+primaryCtaCaption: "File size: 246kb"
+primaryLinks:
+  - text: "R Package"
+    href: "https://urbaninstitute.github.io/nccsdata/reference/index.html"
+author:
+- id: jlecy
+citation: 
+  author: "Jesse Lecy"
+  citationDate: "2023"
+  container-title: "What's New with NCCS Data?"
+  doi: 10.5555/xxxxxxxxxxx
 ---
 
 The IRS 990 e-File Database refers to a collection of electronically filed Form 990 documents submitted by tax-exempt organizations starting in 2012. Wgereas the NCCS Core data series is more comprehensive in terms of organizations in the dataset, the Efile database provides the most comprehensive financial and operational information about the organization's activities, governance, and finances.
