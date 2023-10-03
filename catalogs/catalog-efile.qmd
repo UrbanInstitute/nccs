@@ -1,11 +1,10 @@
 ---
-title: "NCCS 'Core' Data Catalog"
+title: "990 EFILER Data Catalog"
 format: html
 editor: visual
 execute: 
   echo: false
   warning: false
-  
 ---
 
 ```{r}
@@ -15,12 +14,63 @@ library( dplyr )
 library( knitr )
 library( kableExtra )
 library( stringr )
-library( flextable )
-library( pander )
 
-GH.RAW <- "https://raw.githubusercontent.com/lecy/nccs/main/catalogs/"
-d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
-source( paste0( GH.RAW, "build-catalog-functions.R" ) )
+# GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
+# d <- read.csv( paste0( GH.RAW, "AWS-NCCS-EFILE.csv" ) )
+
+d <- read.csv( "AWS-NCCS-EFILE.csv" )
+```
+
+```{r}
+#| echo: false
+############
+############   EFILE
+############
+
+
+get_efile_paths <- function( paths ) {
+  expr <- "csv$"
+  matches <- grep( expr, paths, value=T )
+  return( matches )
+}
+
+
+get_efile_year <- function( paths ) {
+  yyyy <- stringr::str_extract( paths, "-[0-9]{4}\\.csv" )
+  yyyy <- gsub( "-", "", yyyy )
+  yyyy <- gsub( "\\.csv", "", yyyy )
+  return( yyyy )
+}
+
+
+# x <- "parsed/F9-P00-T00-HEADER-2009.csv"
+
+get_efile_names <- function( x ) {
+  x <- gsub( "parsed/", "", x )
+  x <- gsub( "-[0-9]{4}.csv", "", x )
+  return(x)
+}
+
+get_rdb_cardinality <- function( paths ) {
+  ttt  <- stringr::str_extract( paths, "-T[0-9]{2}-" )
+  ttt <- gsub(  "-", "", ttt )
+  ttt <- gsub( "^T", "", ttt )
+  card <- ifelse( ttt == "00", "1:1", "1:M" )
+}
+
+
+make_urls <- function( paths ) {
+  base <- "https://nccs-efile.s3.us-east-1.amazonaws.com/"
+  urls <- paste0( base, paths )
+  return( urls )
+}
+
+
+make_buttons <- function( urls ) {
+  buttons <- 
+    paste0( "<a href=", urls, " class='button'> DOWNLOAD </a>" )
+  return( buttons ) 
+}
 
 make_buttons_2 <- function( urls ) {
   buttons <- 
@@ -34,266 +84,89 @@ make_buttons_2 <- function( urls ) {
 
 
 <br>
+
 <hr>
+
 <br>
 
-Files are organized as follows: 
+Files are organized as follows:
 
-**TAX EXEMPT TYPE (tscope)**
+**FF-PPP-TTT-NAME**
 
-* CHARITIES - 501c3 nonprofit organizations 
-* NONPROFITS - All other 501c type organizations besides 501c3
-* PRIVATE FOUNDATIONS - 501c3 private foundations
+- FF
+  - F9 = Form 990
+  - SA = Schedule A
+  - SB = Schedule B, etc
+- PPP
+  - P01 = Part I
+  - P02 = Part II
+  - P03 = Part III, etc
+  - P99 = field outside of a part on the form
+- TTT
+  - T00 = all one-to-one tables in current section 
+  - T01, T02, etc = all one-to-many tables in a section 
 
-**IRS 990 FORM SCOPE (fscope)**
+Files that end in EZ represent tables that only appear on Form 990EZ. 
 
-Nonprofits can file Form 990, 990EZ, 990PF, or 990N. 
-
-Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than $250k in revenues must file full Form 990. 
-
-Very small nonprofits (revenues less than $50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series. 
-
-Form scope describes which types of filers are included in each data set: 
-
-* **PZ**: 990 + 990EZ filers
-* **PC**: 990 filers only 
-* **PF**: 990PF private foundations 
-
-Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures. 
-
-**YEAR**
-
-Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.  
+All other EFILE tables have PZ form scope, meaning they include data from both full 990 and 990EZ filers.
 
 
 <br>
+
 <hr>
+
 <br>
 
-
-#### 501c3 CHARITIES SCOPE PZ
 
 ```{r}
 #| echo: false
 #| output: asis
  
-paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
+paths <- get_efile_paths( paths=d$Key )
 urls  <- make_urls( paths )
 
 BUTTONS  <- make_buttons( urls )
 BUTTONS2 <- make_buttons_2( urls )
-TSCOPE   <- get_core_tscope( paths )
-FSCOPE   <- get_core_fscope( paths )
-YEAR     <- get_core_year( paths )
+FNAME    <- get_efile_names( paths )
+CARD     <- get_rdb_cardinality( paths )
+YEAR     <- get_efile_year( paths )
 
 catalog <- 
-  data.frame( 
-    BUTTONS,
-    BUTTONS2,
-    YEAR=YEAR,
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE )
+  data.frame( BUTTONS, BUTTONS2,
+              YEAR=YEAR, NAME=FNAME, 
+              RDB=CARD )
 ```
-
 
 ```{r}
 #| echo: false
+#| output: asis
+#| 
+fnames <- unique( FNAME )
 
-catalog %>%
+for( i in fnames )
+{
+  cat( paste0( "#### ", i, " \n\n" ) )
+  
+  k <- 
+  dplyr::filter( catalog, FNAME == i ) %>%
   knitr::kable( escape=FALSE,
-                col.names = c( "", "",
-                           "Year",
-                           "Nonprofit Type",
-                           "Form Scope" ) ) %>%
+                col.names =  
+                  
+                  c(  "",  "",  "Year",
+                      "Table Name", 
+                      "Cardinality"    ) ) %>%
+    
   kableExtra::kable_styling()
-```
+  
+  cat( k )
+  cat( "\n\n"  )
+}
 
-<br>
-<hr>
-<br>
-
-
-
-
-#### 501c3 CHARITIES SCOPE PC
-
-```{r}
-#| echo: false
-
-paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
-urls  <- make_urls( paths )
-
-
-
-BUTTONS <- make_buttons( urls )
-TSCOPE  <- get_core_tscope( paths )
-FSCOPE  <- get_core_fscope( paths )
-YEAR    <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
-    YEAR=YEAR )
-```
-
-
-
-
-```{r}
-#| echo: false
-
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("",
-                           "Nonprofit Type",
-                           "Form Scope",
-                           "Year") ) %>%
-  kableExtra::kable_styling()
-```
-
-<br>
-<hr>
-<br>
-
-
-
-
-#### NONPROFITS SCOPE PZ
-
-```{r}
-#| echo: false
-
-paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PZ" )
-urls  <- make_urls( paths )
-
-
-BUTTONS <- make_buttons( urls )
-TSCOPE  <- get_core_tscope( paths )
-FSCOPE  <- get_core_fscope( paths )
-YEAR    <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
-    YEAR=YEAR )
-```
-
-
-
-```{r}
-#| echo: false
-
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("",
-                           "Nonprofit Type",
-                           "Form Scope",
-                           "Year") ) %>%
-  kableExtra::kable_styling()
-```
-
-<br>
-<hr>
-<br>
-
-
-
-
-#### NONPROFITS SCOPE PC
-
-```{r}
-#| echo: false
-
-paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
-urls  <- make_urls( paths )
-
-
-BUTTONS <- make_buttons( urls )
-TSCOPE  <- get_core_tscope( paths )
-FSCOPE  <- get_core_fscope( paths )
-YEAR    <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
-    YEAR=YEAR )
 
 ```
 
 
-```{r}
-#| echo: false
-
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("",
-                           "Nonprofit Type",
-                           "Form Scope",
-                           "Year") ) %>%
-  kableExtra::kable_styling()
-```
-
-<br>
-<hr>
-<br>
-
-
-
-
-
-#### PRIVATE FOUNDATIONS SCOPE PF
-
-```{r}
-#| echo: false
-
-paths <- get_core_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
-urls  <- make_urls( paths )
-
-
-BUTTONS <- make_buttons( urls )
-TSCOPE  <- get_core_tscope( paths )
-FSCOPE  <- get_core_fscope( paths )
-YEAR    <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
-    YEAR=YEAR )
-
-```
-
-
-
-```{r}
-#| echo: false
-
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("",
-                           "Nonprofit Type",
-                           "Form Scope",
-                           "Year") ) %>%
-  kableExtra::kable_styling()
-```
-
-<br>
-<hr>
-<br>
-
-
-
-
-
-
-
+```{=html}
 <style>
 
 
@@ -306,7 +179,8 @@ h1.title {
 h4, .h4 {
     font-size: 40px;
     color: #1696d2;
-    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 
@@ -386,3 +260,4 @@ blockquote {
   width: 100px;
 }
 </style>
+```

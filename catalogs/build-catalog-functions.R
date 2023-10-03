@@ -17,6 +17,7 @@ get_bmf_paths <- function( paths ) {
 
 
 
+
 make_urls <- function( paths ) {
   base <- "https://nccsdata.s3.us-east-1.amazonaws.com/"
   urls <- paste0( base, paths )
@@ -70,6 +71,50 @@ make_buttons <- function( urls ) {
       "<a href=",
       urls,
       " class='button'> DOWNLOAD </a>" )
+  return( buttons ) 
+}
+
+
+
+
+############
+############   EFILE
+############
+
+
+get_efile_paths <- function( paths ) {
+  expr <- "csv$"
+  matches <- grep( expr, paths, value=T )
+  return( matches )
+}
+
+
+get_efile_year <- function( paths ) {
+  yyyy <- stringr::str_extract( paths, "-[0-9]{4}-" )
+  yyyy <- gsub( "-", "", yyyy )
+  return( yyyy )
+}
+
+
+# x <- "parsed/F9-P00-T00-HEADER-2009.csv"
+
+get_efile_names <- function( x ) {
+  x <- gsub( "parsed/", "", x )
+  x <- gsub( "-[0-9]{4}.csv", "", x )
+  return(x)
+}
+
+get_rdb_cardinality <- function( paths ) {
+  ttt  <- stringr::str_extract( paths, "-T[0-9]{2}-" )
+  ttt <- gsub(  "-", "", ttt )
+  ttt <- gsub( "^T", "", ttt )
+  card <- ifelse( ttt == "00", "1:1", "1:M" )
+}
+
+
+make_buttons <- function( urls ) {
+  buttons <- 
+    paste0( "<a href=", urls, " class='button'> DOWNLOAD </a>" )
   return( buttons ) 
 }
 
