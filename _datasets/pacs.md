@@ -148,6 +148,7 @@ For more information on 527 political organizations and other types of political
 
 |         |                                                                                          |
 |:--------|:-----------------------------------------------------------------------------------------|
+| <a class="btn -tertiary " href="https://osf.io/huz3c/"> REPLICATION FILES </a>  |  *Han, B., Ho, B., & Xia, Z. (2023). Political ideology of nonprofit organizations. Social Science Quarterly.*  |
 | <a class="btn -tertiary " href="https://lecy.github.io/political-ideology-of-nonprofits/"> REPLICATION FILES </a>  | *Lecy, J. D., Ashley, S. R., & Santamarina, F. J. (2019). Do nonprofit missions vary by the political ideology of supporting communities? Some preliminary results. Public Performance & Management Review, 42(1), 115-141.* |
 
 
