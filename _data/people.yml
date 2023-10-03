@@ -18,9 +18,9 @@
     - name: scholar
       url: https://scholar.google.com/citations?user=Ir8H4wMAAAAJ&hl=en
     - name: website
-      url: www.lecy.info
+      url: https://www.lecy.info/
     - name: linkedin
-      url: https://www.linkedin.com/in/jesse-lecy-bab1013?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BGmGcRnF4QFG49WNYVun86w%3D%3D
+      url: https://www.linkedin.com/in/jesse-lecy-bab1013/
 - id: hmartin
   first: Hannah
   last: Martin
