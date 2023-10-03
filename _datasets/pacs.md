@@ -10,7 +10,7 @@ primaryLinks:
   - text: "Data Dictionary"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/data-dictionary.md"
   - text: "Data Dictionary CSV"
-    href: "https://nccsdata.s3.us-east-1.amazonaws.com/public/pac/tidy-data-dictionary.csv"
+    href: "https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/tidy-data-dictionary.csv"
   - text: "R Program"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/parse-pol-org-disclosures.R"
   - text: "Get Help"
