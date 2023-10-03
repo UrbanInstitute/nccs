@@ -61,6 +61,8 @@ keep <-
 dt <- dt[ keep ]
 dt <- unique( dt )
 
+dt$URL <- paste0( "https://nccsdata.s3.us-east-1.amazonaws.com/", dt$Key )
+
 write.csv( dt, "AWS-NCCSDATA.csv", row.names=F )
 
 
@@ -89,6 +91,8 @@ keep <-
 
 dt <- dt[ keep ]
 dt <- unique( dt ) 
+
+dt$URL <- paste0( "https://nccs-efile.s3.us-east-1.amazonaws.com/", dt$Key )
 
 write.csv( dt, "AWS-NCCS-EFILE.csv", row.names=F )
 
