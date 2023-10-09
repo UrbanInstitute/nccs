@@ -15,6 +15,7 @@ links:
 - text: "Link 2"
   href: "#"
   icon: "reddit"
+layout: resource
 ---
 
 Testing out the project collection.
