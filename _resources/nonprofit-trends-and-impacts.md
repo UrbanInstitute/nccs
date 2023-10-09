@@ -36,6 +36,15 @@ primaryLinks:
 <br>
 <br>
 
+<div class="content flow mt-3">
+
+  <div class="mi-3">
+    {% assign image = "public/img/collage.webp" | relative_url %}
+    <img src="{{ image }}" alt="" />
+  </div>
+
+</div>
+
 <div class="feature flow flow-2">
   {% include components/divider.html
     header = "Project Contributors"
