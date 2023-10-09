@@ -33,9 +33,41 @@ primaryLinks:
 ---
 
 
+<br>
+<br>
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Project Contributors"
+  %}
+
+  <div class="grid-cols-4 gap">
+    {% assign executives = site.data.people | where: "projects.name", "nptrends" %}
+    {% for person in executives %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+<br>
+<br>
 
 
-<div class="flex flex-wrap gap bg-blue-800 p-1">
+
+
+<div class="full bg-blue-800 color-white flex items-center justify-center" style="height: 5em;">
 
 <h2 style='color: white'>Related Publications</h2>
 
@@ -67,3 +99,15 @@ primaryLinks:
 </table>
 
 </div>
+
+
+### More content
+
+Testing additional content here. 
+
+Nonprofit organizations in the United States play a vital role delivering services, strengthening communities, and facilitating civic engagement. In our nationally representative surveys of nonprofit organizations, we focus on operating 501(c)(3) public charities whose activities range from direct service provision to community building and advocacy. We provide public use datasets of most of the survey data we collect so that others across the country can investigate questions of their own.
+
+Nonprofit organizations in the United States play a vital role delivering services, strengthening communities, and facilitating civic engagement. In our nationally representative surveys of nonprofit organizations, we focus on operating 501(c)(3) public charities whose activities range from direct service provision to community building and advocacy. We provide public use datasets of most of the survey data we collect so that others across the country can investigate questions of their own.
+
+
+
