@@ -93,8 +93,8 @@ layout: default
   %}
 
   <div class="grid-cols-3 gap">
-    {% assign executives = site.data.people | where: "project", "nptrends" %}
-    {% for person in executives %}
+    {% assign members = site.data.people | where: "projects.name", "nptrends" %}
+    {% for person in members %}
       {% if person.image %}
         {% assign personImage = "/public/img/" | append: person.image | relative_url %}
       {% endif %}
