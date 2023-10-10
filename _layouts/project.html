@@ -1,0 +1,200 @@
+---
+layout: default
+---
+
+
+{% if page.type %}
+  {% assign type = page.type %}
+{% else %}
+  {% assign type = "resource" %}
+{% endif %}
+
+{% if page.author %}
+  {% assign resourceAuthors = nil %}
+  {% for author in page.author %}
+    {% assign name = nil %}
+    {% if author.name %}
+      {% assign name = author.name %}
+    {% elsif author.id %}
+      {% for person in site.data.people %}
+        {% if author.id == person.id %}
+          {% capture name %}{{ person.first}} {{person.last}}{% endcapture %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if resourceAuthors != nil %}
+      {% assign addPerson =  name | prepend: ", " %}
+      {% assign resourceAuthors = resourceAuthors | append: addPerson %}
+    {% else %}
+      {% assign resourceAuthors = name %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% assign date = page.date | date: "%B %d, %Y" %}
+
+{% include components/page-header.html
+  eyebrow = type
+  header = page.title
+  subheader = resourceAuthors
+  date = date
+  class = "mb-3"
+%}
+
+{% if page.abstract %}
+<div class="content flow">
+{% include components/divider.html
+  header = "Abstract"
+  style = "secondary"
+%}
+{% for paragraph in page.abstract %}
+ {{ paragraph | markdownify }}
+{% endfor %}
+</div>
+{% endif %}
+
+
+
+{% if page.primaryLinks %}
+
+<hr>
+
+<div class="content flow flex flex-col">
+{% for link in page.primaryLinks %}
+  <div class="flow-1/2">
+  {% include components/button.html
+    text = link.text
+    href = link.href
+    icon = link.icon
+    style = "tertiary"
+  %}
+  </div>
+{% endfor %}
+</div>
+{% endif %}
+
+{% if page.citation %}
+  {% include components/citation.html
+    citation = page.citation
+    citationDate = page.date
+    author = page.author
+  %}
+{% endif %}
+
+{% if page.abstract or page.links or page.citation %}
+{% endif %}
+
+<br>
+
+<div class="feature flow flow-2">
+  {% include components/divider.html
+    header = "Project Contributors"
+  %}
+
+  <div class="grid-cols-3 gap">
+    {% assign executives = site.data.people | where: "project", "nptrends" %}
+    {% for person in executives %}
+      {% if person.image %}
+        {% assign personImage = "/public/img/" | append: person.image | relative_url %}
+      {% endif %}
+      {% assign firstAffiliation = person.affiliation | first %}
+
+      {% include components/person.html
+        first = person.first
+        last = person.last
+        image = personImage
+        title = person.title
+        affiliation = firstAffiliation.name
+        social = person.social
+      %}
+    {% endfor %}
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+
+{% if page.pubs %}
+<div class="full">
+<div class="content-cta -dark">
+<div class="content-cta__text flow flow-1">
+
+<h2 style='color: white'>Related Publications</h2>
+
+<br>
+  
+<span class="pubs-table">
+<table style='font-family: "Source Sans Pro", helvetica, sans-serif; color: white; margin-left: auto; margin-right: auto; font-size: 15px'>
+<tbody>
+{% for pub in page.pubs %}
+  <tr>
+   <td style="text-align:left;"> <a class="btn -light " href="{{ pub.href }}"> {{ pub.link-text }} </a> </td>
+   <td style="text-align:left;"> {{ pub.title }} </td>
+  </tr>
+{% endfor %}
+</tbody>
+</table>
+</span>
+  
+</div>
+</div>
+</div>
+{% endif %}
+
+
+
+<div class="content flow">
+<br>
+<br>
+<br>
+  {{ content }}
+</div>
+
+<div class="feature flow-3">
+  {% include components/divider.html
+    header = "More Resources"
+  %}
+
+  <div class="grid-cols-3 gap mt-2">
+    {% assign resources = site.resources | where_exp: "item", "item.url != page.url" | sort: "date" | reverse %}
+    {% for post in resources limit: "3" %}
+      {% assign url = post.url | relative_url %}
+      {% include components/card-vertical.html
+        eyebrow = post.type
+        header = post.title
+        description = post.description
+        href = url
+        categories = post.categories
+      %}
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+
+<style>
+  
+.pubs-table th, td {
+  color: white;
+  background-color: inherit;
+}
+
+.pubs-table tr:nth-child(even) {
+    background-color: inherit;
+}
+
+.content-cta.-dark {
+    padding-block: 2em;
+}
+.flow-2 {
+  margin-bottom: 3em;
+}
+.content.flow {
+  margin-top: 2em;
+  margin-bottom: 4em;
+}
+</style>
