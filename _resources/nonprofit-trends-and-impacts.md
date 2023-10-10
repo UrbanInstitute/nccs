@@ -5,6 +5,7 @@ date: 2023-10-03
 featured: true
 featuredOrder: 1
 layout: project
+project-name: nptrends
 categories:
   - survey
 author:
