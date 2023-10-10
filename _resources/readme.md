@@ -40,6 +40,48 @@ citation:
 
 ```
 
+## Alternative Project Layout with Member Gallery
+
+In the data.yml file in the /data folder, match **site.data.projects** to **page.project-name** (project-name field in the page header): 
+
+```
+---
+title: Nonprofit Trends and Impacts
+layout: project
+project-name: nptrends
+...
+---
+```
+
+```
+- id: hmartin
+  first: Hannah
+  last: Martin
+  projects: [nptrends, otherproject]
+```
+
+All people that match are added to the team gallery on the project page as contributors. 
+
+
+### Publications Section
+
+Project publications can be added to a white pubs table against a dark blue background: 
+
+```
+pubs:
+  - title: Nonprofit Trends and Impacts 2021
+    href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021
+    link-text: link
+  - title: "Findings on US Donation Trends, 2015–2020: Nonprofit Trends and Impacts 2021"
+    href: https://www.urban.org/sites/default/files/2021/10/07/nonprofit_trends_and_impacts_2021_donation_fact_sheet.pdf
+    link-text: pdf
+```
+
+- `title` - {String} Title of the publication to display.
+- `href` - {String} hyperlink location to pub
+- `link-text` - {String} label to place on the button 
+- 
+
 ## Required fields:
 
 - `description` - {String} Used in card previews and metadata
