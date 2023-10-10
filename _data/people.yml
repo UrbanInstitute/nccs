@@ -150,7 +150,62 @@
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/cindy-m-lott-aa385b42/
-
+- id: tderrick-mills
+  first: Teresa
+  last: Derrick-Mills
+  title: Principal Research Associate
+  bio: Principal research associate in the Center on Labor, Human Services, and Population; expertise in performance measurement, policy, and practice—particularly in early care and education and workforce development. 
+  email: nccs@urban.org
+  team: collaborator
+  image: people/tderrick-mills.jpg
+  affiliation: 
+    - name: Urban Institute / LHP
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/teresa-derrick-mills-mpa-phd-b738b720/
+  projects: [nptrends]
+- id: lfaulk
+  first: Lewis
+  last: Faulk
+  title: Associate Professor
+  bio: Associate Professor in the Department of Public Administration and Policy at American University.
+  email: nccs@urban.org
+  team: collaborator
+  image: people/lfaulk.jpg
+  affiliation: 
+    - name: American University
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/lewis-faulk-222a3652/
+  projects: [nptrends]
+- id: mkim
+  first: Mirae
+  last: Kim
+  title: Associate Professor; Director, Master of Public Administration Program
+  bio: Associate Professor of Nonprofit Studies and Master of Public Administration Program Director at the Schar School of Policy and Government at George Mason University.
+  email: nccs@urban.org
+  team: collaborator
+  image: people/mkim.jpg
+  affiliation: 
+    - name: George Mason University
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/miraekim/
+  projects: [nptrends]
+- id: aabramson
+  first: Alan
+  last: Abramson
+  title: Professor; Director, Center on Nonprofits, Philanthropy, and Social Enterprise
+  bio: Professor and Director of the Center on Nonprofits, Philanthropy, and Social Enterprise at the Schar School of Policy and Government at George Mason University.
+  email: nccs@urban.org
+  team: collaborator
+  image: people/aabramson.jpg
+  affiliation: 
+    - name: George Mason University
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/alan-abramson-88734410
+  projects: [nptrends]
 
 - id: jd
   first: John
