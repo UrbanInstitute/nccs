@@ -21,8 +21,7 @@
       url: https://www.lecy.info/
     - name: linkedin
       url: https://www.linkedin.com/in/jesse-lecy-bab1013/
-  project: 
-    - name: nptrends
+  projects: [nptrends, project2]
 - id: hmartin
   first: Hannah
   last: Martin
@@ -36,8 +35,7 @@
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/hqmartin/
-  project: 
-    - name: nptrends
+  projects: [nptrends, project2]
 - id: thiya
   first: Thiya
   last: Poongundranar
@@ -67,8 +65,7 @@
       url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
     - name: twitter
       url: https://twitter.com/eborisurban
-  project: 
-    - name: nptrends
+  projects: [nptrends, project2]
 - id: ttraylor
   first: Tené
   last: Traylor
