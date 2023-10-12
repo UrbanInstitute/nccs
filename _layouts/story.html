@@ -5,7 +5,6 @@ noContentMargin: true
 ---
 
 {% include sidebar.html
-  header = page.title
   date = page.date
   author = page.author
   links = page.links
@@ -19,6 +18,8 @@ noContentMargin: true
       {% assign imageUrl = "/public/img/" | append: page.image | relative_url %}
       <img src="{{imageUrl}}" alt="">
     {% endif %}
+    <h1>{{ page.title }}</h1>
+    <br><hr><br>
     {{ content }}
   </div>
 
