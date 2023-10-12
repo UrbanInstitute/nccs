@@ -47,9 +47,9 @@ get_data(
 append_census( level="tract" )
 ```
 
-In order to make this possible we have created new data infrastructure including: 
+## GEOGRAPHIC CROSSWALK FILES
 
-**GEOGRAPHIC CROSSWALK FILES**
+In order to make this possible we have created new data infrastructure including: 
 
 Any census-designated geography is fundamentally comprised of a collection of either tracts or blocks. The crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation in order for a study to select the most meaningful level of aggregation. Crosswalk tables organized into geographies **comprised of blocks** and **geographies comprised of tract** as the basic building blocks. 
 
@@ -77,15 +77,39 @@ Any census-designated geography is fundamentally comprised of a collection of ei
 - [Woodard's Cutural Regions](https://www.independent.co.uk/news/world/americas/us-map-11-separate-nations-colin-woodward-yankeedom-new-netherland-the-midlands-tidewater-greater-appalachia-a8078261.html)
 - [American Cultural Regions (Louf et al. 2023)](https://www.nature.com/articles/s41599-023-01611-3)
 - [Census Regions](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf)
-- Public Use Microdata Areas (PUMAs)
-- Core Based Statistical Areas (CBSAs)
-- Combined Statistical Areas (CSAs)
+- [Public Use Microdata Areas (PUMAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html)
+- [Core Based Statistical Areas (CBSAs)](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/)
+- [Combined Statistical Areas (CSAs)](https://www.census.gov/geographies/reference-maps/2020/geo/csa.html)
 
 <br>
 <hr>
 <br>
 
-**HARMONIZED CENSUS FILES**
+### Selecting Geographies
+
+Why are there so many defined geographies and how do we know which one to use? 
+
+The answer will depend greatly upon your intended use case of the data. The short answer is geographies are hard - humas use many ambiguous geographic constructs like neighborhoods and cities that work fine for everyday life but are challenging to operationalize when they require precise boundaries. Should a city include all of the suburbs, for example, since they are autonomous municipalities? Are Minneapolis and St. Paul one city or two? As a result, the Census provides a variety of geographic aggregations that correspond to different definitions of place. We can select the geography that best corresponds to the notion of "place" in the analysis we would like to do with the data.  
+
+As an example, InContext Indiana provides a [nice illustration](https://www.incontext.indiana.edu/2021/mar-apr/article1.asp) of the differences between Metropolitan Statistical Areas, Micropolitan Statistical Areas, and Combined Statistical Areas. These are different ways of thinking about towns, cities, and metropolitan regions. 
+
+![](img/csa-vs-cbsa.png)
+
+Metropolitan Statistical Areas (metros with populations above 50,000) and Micropolitan Statistical Areas (populations above 10,000 and below 50,000) are mutually exclusive and are combined to form the database of Core Based Statistical Areas (CBSAs). Combined Statistical Areas (populations that form a coherent commercial and commuting zone) are created by identifying adjacent Micro and Metro areas that constitute a coherent economic region. 
+
+```
+939 Core-Based Statistical Areas:
+    384 Metropolitan statistical areas +
+    547 micropolitan statistical areas
+
+175 Total Combined Statistical Areas
+    808 Metro + Micro Areas joined together to form CSAs
+    123 Metro + Micro Areas are not part of any CSA
+```
+
+Explore the definitions a bit before selecting a default geographic unit of analysis for your study because the geographies ultimately determine how data is aggregated, and thus what sorts of insights are uncovered or lost because of geographic scale. 
+
+## HARMONIZED CENSUS FILES
 
 Census geographies change frequently to reflect changes to the underlying administrative units like zip codes and voting districts. Formal census boundaries - blocks and tracts - change every ten years when the geographies are redrawn to ensure that each block contains between 600 and 3,000 individuals (optimally 1,800) and tracts contain between 1,200 and 8,000 people (optimally 4,000). Blocks and tracts either have boundaries redrawn to maintain balance, they can be split into multiple units if population density is increasing, or multiple units can be combined if population is in decline. As a result, geo-IDs are not measuring consistent populations over time unless the data is standardized to a specific time period using an apportionment process. The process uses changes in geographic units over time to adjust previous census estimates so that they are comportable with current geographies. 
 
