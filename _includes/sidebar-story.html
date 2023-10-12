@@ -27,6 +27,7 @@ SIDEBAR
 
 <aside class="sidebar flow {{ style }}">
   <h1 class="mt-0">{{ include.header }}</h1>
+  <br><br><br>
 
 
 
@@ -61,6 +62,22 @@ SIDEBAR
   {% endif %}
 
 
+
+
+
+
+
+  {% comment %}   <<=====>>   CITATION   <<=======>>  {% endcomment %}
+
+  {% if include.citation %}
+    <hr>
+  
+    {% include components/citation.html
+      citation = include.citation
+      citationDate = include.citationDate
+      author = include.author
+    %}
+  {% endif %}
   
   {% comment %}
   Authors
@@ -106,19 +123,7 @@ SIDEBAR
 
 
 
-  {% comment %}
-  Citation
-  {% endcomment %}
 
-  {% if include.citation %}
-    <hr>
-  
-    {% include components/citation.html
-      citation = include.citation
-      citationDate = include.citationDate
-      author = include.author
-    %}
-  {% endif %}
 
 
 
