@@ -34,13 +34,6 @@ SIDEBAR
 
 
 
-  {% if include.date %}
-    {% assign date = include.date | date: "%B %d, %Y" %}
-    <p class="text-sm">{{ date }}</p>
-  {% endif %}
-
-
-  
 
   
   {% comment %}
@@ -133,6 +126,11 @@ SIDEBAR
 
 
 
+  {% if include.date %}
+    <hr>
+    {% assign date = include.date | date: "%B %d, %Y" %}
+    <p class="text-sm">{{ date }}</p>
+  {% endif %}
 
 
 
