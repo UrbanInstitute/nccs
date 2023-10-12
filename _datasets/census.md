@@ -93,16 +93,20 @@ The answer will depend greatly upon your intended use case of the data. The shor
 
 As an example, InContext Indiana provides a [nice illustration](https://www.incontext.indiana.edu/2021/mar-apr/article1.asp) of the differences between Metropolitan Statistical Areas, Micropolitan Statistical Areas, and Combined Statistical Areas. These are different ways of thinking about towns, cities, and metropolitan regions. 
 
+**Metropolitan** Statistical Areas (metros with populations above 50,000) and **Micropolitan** Statistical Areas (populations above 10,000 and below 50,000) are mutually exclusive lists of cities and towns that are combined to form **Core Based** Statistical Areas (CBSAs). **Combined** Statistical Areas (populations that form a coherent commercial and commuting zone) are created by identifying adjacent Micro and Metro areas that constitute a coherent economic region. 
+
 ![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png)
 
-Metropolitan Statistical Areas (metros with populations above 50,000) and Micropolitan Statistical Areas (populations above 10,000 and below 50,000) are mutually exclusive and are combined to form the database of Core Based Statistical Areas (CBSAs). Combined Statistical Areas (populations that form a coherent commercial and commuting zone) are created by identifying adjacent Micro and Metro areas that constitute a coherent economic region. 
+In this example there are <span style="color:blue; font-weight:bold;">12 Metro Areas</span> in Indiana and 24 Micropolitan Areas. They belong to 10 metropolitan regions (Combined Statistical Areas), 7 of which are located inside the state and 3 of which are CSAs in neighboring states that contain Indian towns and cities. 
+
+The CBSA geographies are formed by combining all of the Metro and Micro areas into a single catalog, but they are all still distinct and mutually exclusive. The CSA geographies are formed by combining multiple Metro and Micro units into aggregated regional units. 
 
 ```
-939 Core-Based Statistical Areas:
+939 Core-Based Statistical Areas =
     384 Metropolitan statistical areas +
     547 micropolitan statistical areas
 
-175 Total Combined Statistical Areas
+175 Total Combined Statistical Areas:
     808 Metro + Micro Areas joined together to form CSAs
     123 Metro + Micro Areas are not part of any CSA
 ```
