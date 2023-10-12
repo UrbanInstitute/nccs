@@ -27,12 +27,20 @@ SIDEBAR
 
 <aside class="sidebar flow {{ style }}">
   <h1 class="mt-0">{{ include.header }}</h1>
-  <br><br><br>
+  <br><br>
 
 
 
 
 
+
+  {% if include.date %}
+    {% assign date = include.date | date: "%B %d, %Y" %}
+    <p class="text-sm">{{ date }}</p>
+  {% endif %}
+
+
+  
 
   
   {% comment %}
@@ -78,7 +86,16 @@ SIDEBAR
       author = include.author
     %}
   {% endif %}
-  
+
+
+
+
+
+
+
+
+
+    
   {% comment %}
   Authors
   Will match id's against data in _date/people.yml and attempt to display info
@@ -115,10 +132,7 @@ SIDEBAR
   {% endif %}
 
 
-  {% if include.date %}
-    {% assign date = include.date | date: "%B %d, %Y" %}
-    <p class="text-sm">{{ date }}</p>
-  {% endif %}
+
 
 
 
