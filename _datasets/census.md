@@ -93,7 +93,7 @@ The answer will depend greatly upon your intended use case of the data. The shor
 
 As an example, InContext Indiana provides a [nice illustration](https://www.incontext.indiana.edu/2021/mar-apr/article1.asp) of the differences between Metropolitan Statistical Areas, Micropolitan Statistical Areas, and Combined Statistical Areas. These are different ways of thinking about towns, cities, and metropolitan regions. 
 
-![](img/csa-vs-cbsa.png)
+![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png)
 
 Metropolitan Statistical Areas (metros with populations above 50,000) and Micropolitan Statistical Areas (populations above 10,000 and below 50,000) are mutually exclusive and are combined to form the database of Core Based Statistical Areas (CBSAs). Combined Statistical Areas (populations that form a coherent commercial and commuting zone) are created by identifying adjacent Micro and Metro areas that constitute a coherent economic region. 
 
