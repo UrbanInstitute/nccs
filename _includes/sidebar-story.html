@@ -121,14 +121,13 @@ SIDEBAR
       <div class="text-xs mt-1/2">
         {{ authorBio }}
       </div>
+      <hr>
     {% endfor %}
   {% endif %}
 
 
 
   {% if include.date %}
-    <hr>
-    
     {% assign date = include.date | date: "%B %d, %Y" %}
     <p class="text-sm">{{ date }}</p>
   {% endif %}
