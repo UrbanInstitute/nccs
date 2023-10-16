@@ -67,6 +67,8 @@ we arrive at this estimate.
 DATA VIGNETTE </a>
 
 <br>
+<hr>
+<br>
 
 ### Form 990 Data
 
