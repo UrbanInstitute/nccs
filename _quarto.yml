@@ -6,6 +6,7 @@ project:
 format:
   gfm:
     variant: gfm+yaml_metadata_block+definition_lists
+    highlight-style: tango
     html-math-method: webtex
     preview-mode: raw
     fig-format: svg
