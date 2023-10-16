@@ -97,7 +97,7 @@ As an example, InContext Indiana provides a [nice illustration](https://www.inco
 
 ![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png)
 
-In this example there are <span style="color:#29ABE2; font-weight:bold;">12 Metro Areas</span> in Indiana and <span style="color:#7AC943; font-weight:bold;">24 Micropolitan Areas</span>. They belong to <span style="color:#F7931E; font-weight:bold;">10 metropolitan regions</span> (Combined Statistical Areas), 7 of which are located inside the state and 3 of which are CSAs in neighboring states that contain Indian towns and cities. 
+In this example there are <span style="color:#29ABE2; font-weight:bold;">12 Metro Areas</span> in Indiana and <span style="color:#7AC943; font-weight:bold;">24 Micropolitan Areas</span>. They belong to <span style="color:#F7931E; font-weight:bold;">10 metropolitan regions</span> (Combined Statistical Areas), 7 of which are located inside the state and 3 of which are CSAs in neighboring states that contain Indiana towns and cities. 
 
 The CBSA geographies are formed by combining all of the Metro and Micro areas into a single catalog, but they are all still distinct and mutually exclusive. The CSA geographies are formed by combining multiple Metro and Micro units into aggregated regional units. 
 
