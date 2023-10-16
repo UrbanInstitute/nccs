@@ -32,68 +32,57 @@ links:
       icon: download
 ---
 
-The nonprofit sector is persistently striving to measure its scale of
-activities to better understand its impact as well as convey the scale
-of the work to key stakeholders to highlight societal benefits. Clear
-ways of measuring activities can help engage policymakers and donors to
-ensure support for the work is sustained.
+The nonprofit sector must persistently track programs and activities in
+order to measure societal benefits and convey impact to key
+stakeholders. This research note introduces an uncommon but useful
+approach to measuring sector size though payroll tax information
+disclosed on IRS form 990s.
 
-How does one measure the size of the nonprofit sector? Researchers and
-advocates commonly use counts of nonprofits, revenues, assets, and
-program expenses. The mobilization of human resources, both paid and
-volunteer, is perhaps a more salient measure of the depth of engagement
-within communities but is has historically been a harder statistic to
-generate due to limited reporting requirements (nonprofits report
-estimates of employees on the 990 forms but they are not required to
-differentiate part-time and full-time employees and the information has
-not been systematically digitized until recently). Partnerships with the
-Quarterly Census of Employment and Wages have helped more precisely
-measure the size of the nonprofit workforce but estimates are currently
-only updated every five years.
+Researchers commonly use counts of nonprofits or total program expenses
+to measure sector size. Alternatively payroll captures the mobilization
+of human resources, a complementary way to convey the depth of
+engagement within communities.
 
-A less common but perhaps more accurate approach to measuring employment
-levels is through payroll tax disclosures. Although most nonprofits are
-exempt from federal income taxes they are still required to pay federal
-payroll taxes. Taxes are levied for both part and full-time employees,
-meaning the aggregate level of payroll taxes can be used to estimate the
-number of full-time equivalent workers employed by the sector.
+Historically, payroll data has been a difficult to acquire. Partnerships
+between nonprofit scholars and the Bureau of Labor Statistics have
+resulted in new methodologies for using the Quarterly Census of
+Employment and Wages to measure the size of the nonprofit workforce, but
+QCEW data on nonprofits is currently only updated once every five years.
+Payroll tax information on 990 forms is more accessible and timely.
 
-This data story estimates the amount of payroll taxes the nonprofit
-sector contributes annually, in 2023 dollars.
+Although nonprofits are exempt from many types of taxes they are still
+required to pay federal payroll taxes. These include a 6.2% Social
+Security tax and 1.45% for Medicare. Taxes are levied for both part and
+full-time employees. The aggregate level of payroll taxes paid by the
+sector can be used as a proxy for the number of full-time equivalent
+workers employed by the sector.
 
-To replicate our methodology, please see the tutorial at the end.
-
-## Estimating Payroll Tax Contributions
-
-To estimate the payroll taxes that the nonprofit sector contributes
-annually, we use 2019 IRS 990 data, since it is the most recent full
-year of available data. IRS Form 990 data extracts, available at
-<https://www.irs.gov/statistics/soi-tax-stats-annual-extract-of-tax-exempt-organization-financial-data>.
-
-We use 3 years of data extracts since there can be a 2-year lag in
-returns being filed, so we first compile all of the 2019 990 returns
-from across the 2019, 2020, and 2021 SOI extracts.
+We estimate that nonprofits currently pay approximately \$66 billion per
+year in payroll taxes. See below for details about how we arrive at this
+estimate.
 
 ### Form 990 Data
 
-The Internal Revenue Service (IRS) requires tax-exempt nonprofits to
-file annual returns.
+We estimate the payroll taxes that the nonprofit sector contributes
+annually using 2019 IRS 990 data, the most recent full year of available
+data at the time the analysis was conducted.
 
-- Private foundations must file Form 990-PF.
-- Most nonprofits must file Form 990, 990-EZ, or 990-N.
-  - Those with gross receipts \>= \$200K or total assets \>= \$500K must
-    file Form 990.
-  - Those with gross receipts \<\$200K and total assets \<\$500K can
-    file Form 990-EZ.
-  - Those with gross receipts \<=\$50K can file Form 990-N.
-- Some nonprofits, such as churches, do not have to file annual returns.
-  See
-  <https://www.irs.gov/charities-non-profits/annual-exempt-organization-return-who-must-file>.
+Three years of IRS 990 data extracts must be utilized to capture a
+single full year of data since there can be a 2-year lag in returns,
+resulting in an idiosyncratic data aggregation challenge. Form 990 data
+is compiled from the 2019, 2020, and 2021 Statistics of Income Extract
+files available through the IRS:
+<https://www.irs.gov/statistics/soi-tax-stats-annual-extract-of-tax-exempt-organization-financial-data>.
 
-### Data Limitations
+### Sampling Considerations
 
-What does Form 990 series tell us about the amount of payroll taxes that
-nonprofits pay?
+Data availability varies greatly by the size of the nonprofit. Larger
+nonprofits are required to file the full Form 990, which requires
+significant disclosures on programs and finances. Medium-sized
+nonprofits file a more compact version of the form called the 990EZ, and
+small nonprofits are only required to report that they remain active by
+filing Form 990N. Private foundations utilize the 990-PF. Payroll
+information disclosures vary by the type of form.
 
 ***Larger Nonprofits:*** The Form 990 collects data on the amount of
 payroll taxes that larger nonprofits (i.e., those with gross receipts
@@ -128,27 +117,17 @@ benefits, but the IRS’s Form 990-EZ data extracts exclude these data.
 Therefore, we are unable to estimate the amount of payroll taxes that
 smaller nonprofits contribute.
 
-***Invisible Nonprofits:*** The Form 990-N does not collect data on the
-amount of payroll taxes that the smallest nonprofits (i.e., those with
-gross receipts \<=\$50K) contribute, nor does it collect data on the
-amount that these nonprofits spend on salaries and benefits. Therefore,
-we are unable to estimate the amount of payroll taxes that the smallest
-nonprofits contribute.
+***Invisible Nonprofits:*** Some nonprofits, such as churches, do not
+have to file annual returns. See
+<https://www.irs.gov/charities-non-profits/annual-exempt-organization-return-who-must-file>.
 
-We are also unable to estimate the amount of payroll taxes that
-nonprofits that are not required to file annual returns contribute.
-
-***Total:*** Adding the amount of payroll taxes that larger nonprofits
-contributed in 2019 to the estimated amount of payroll taxes that
-private foundations contributed in 2019 and adjusting 18.85% for
-inflation (per <https://salaryinflation.com/>), **we estimate that the
-nonprofit sector contributes \$66B annually in payroll taxes.** Although
-this is a conservative estimate of payroll taxes, it demonstrates the
-huge size and economic contributions of the nonprofit sector.
+The Form 990-N also does not collect any financial data from the
+smallest nonprofits (i.e., those with gross receipts \<=\$50K), nor does
+it collect data on the amount that these nonprofits spend on salaries
+and benefits. Therefore, we are unable to estimate the amount of payroll
+taxes that the smallest nonprofits contribute.
 
 ## Data Vignette
-
-## Setup
 
 ### Packages
 
@@ -158,14 +137,16 @@ You can install R packages as follows:
 install.packages( "knitr" )
 install.packages( "tidyverse" )
 install.packages( "pander" )
+install.packages( "kableExtra" )
 ```
 
 If you already have these packages, you only need to load the libraries.
 
 ``` r
 library( tidyverse )  # data wrangling
-library( knitr )      # pretty formats
 library( pander )     # pretty formats
+library( knitr )      # pretty formats
+library( kableExtra ) # html formats for tables 
 ```
 
 ### Data
@@ -260,58 +241,68 @@ pc.2021 %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ),
-         caption = "Tax Periods in the 2021 Form 990 Dataset" )
+         caption = "Tax Periods in the 2021 Form 990 Dataset", 
+         align="c" ) # %>% 
 ```
 
 | Tax Period | Frequency |
-|:-----------|----------:|
-| 1980       |         1 |
-| 2006       |         1 |
-| 2007       |         2 |
-| 2008       |         3 |
-| 2009       |        11 |
-| 2010       |        13 |
-| 2011       |        17 |
-| 2012       |        26 |
-| 2013       |        47 |
-| 2014       |        83 |
-| 2015       |       144 |
-| 2016       |       320 |
-| 2017       |       757 |
-| 2018       |      2516 |
-| 2019       |     41258 |
-| 2020       |    258312 |
-| 2021       |     39409 |
+|:----------:|:---------:|
+|    1980    |     1     |
+|    2006    |     1     |
+|    2007    |     2     |
+|    2008    |     3     |
+|    2009    |    11     |
+|    2010    |    13     |
+|    2011    |    17     |
+|    2012    |    26     |
+|    2013    |    47     |
+|    2014    |    83     |
+|    2015    |    144    |
+|    2016    |    320    |
+|    2017    |    757    |
+|    2018    |   2516    |
+|    2019    |   41258   |
+|    2020    |  258312   |
+|    2021    |   39409   |
 
 Tax Periods in the 2021 Form 990 Dataset
+
+``` r
+  # kable_minimal()
+```
 
 ``` r
 pf.2021 %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ),
-         caption = "Tax Periods in the 2021 Form 990-PF Dataset" )
+         caption = "Tax Periods in the 2021 Form 990-PF Dataset",
+         align="c" ) # %>% 
 ```
 
 | Tax Period | Frequency |
-|:-----------|----------:|
-| 2007       |         1 |
-| 2008       |         1 |
-| 2009       |         3 |
-| 2010       |         2 |
-| 2011       |         6 |
-| 2012       |        10 |
-| 2013       |        14 |
-| 2014       |        18 |
-| 2015       |        21 |
-| 2016       |        67 |
-| 2017       |       170 |
-| 2018       |       796 |
-| 2019       |     17867 |
-| 2020       |     95996 |
-| 2021       |     10340 |
+|:----------:|:---------:|
+|    2007    |     1     |
+|    2008    |     1     |
+|    2009    |     3     |
+|    2010    |     2     |
+|    2011    |     6     |
+|    2012    |    10     |
+|    2013    |    14     |
+|    2014    |    18     |
+|    2015    |    21     |
+|    2016    |    67     |
+|    2017    |    170    |
+|    2018    |    796    |
+|    2019    |   17867   |
+|    2020    |   95996   |
+|    2021    |   10340   |
 
 Tax Periods in the 2021 Form 990-PF Dataset
+
+``` r
+  # kable_minimal()
+```
 
 We need data that corresponds to the 2019 calendar year, the most recent
 full year available at the time of writing.
@@ -330,29 +321,35 @@ Inspect to ensure we have the correct data now:
 pc.2021.subset %>%
   group_by( year ) %>%
   summarise( n() ) %>%
-  kable( col.names = c( "Tax Period", "Frequency" ),
-         caption = "Tax Periods in the Subsetted 2021 Form 990 Dataset" )
+  kable( col.names = c( "Tax Period", "Frequency" ), align="c",
+         caption = "Tax Periods in the Subsetted 2021 Form 990 Dataset" ) # %>% 
 ```
 
 | Tax Period | Frequency |
-|:-----------|----------:|
-| 2019       |     41258 |
+|:----------:|:---------:|
+|    2019    |   41258   |
 
 Tax Periods in the Subsetted 2021 Form 990 Dataset
 
 ``` r
+  # kable_minimal()
+
 pf.2021.subset %>%
   group_by( year ) %>%
   summarise( n() ) %>%
-  kable( col.names = c( "Tax Period", "Frequency" ),
-         caption = "Tax Periods in the Subsetted 2021 Form 990-PF Dataset" )
+  kable( col.names = c( "Tax Period", "Frequency" ), align="c",
+         caption = "Tax Periods in the Subsetted 2021 Form 990-PF Dataset" ) # %>% 
 ```
 
 | Tax Period | Frequency |
-|:-----------|----------:|
-| 2019       |     17867 |
+|:----------:|:---------:|
+|    2019    |   17867   |
 
 Tax Periods in the Subsetted 2021 Form 990-PF Dataset
+
+``` r
+  # kable_minimal()
+```
 
 ### Harmonizing the Data
 
@@ -445,26 +442,15 @@ organizations may have submitted amended returns.
 ``` r
 # roughly 1,200 duplicates
 n_distinct( pc$ein )
-```
-
-    [1] 310349
-
-``` r
 nrow( pc )
-```
 
-    [1] 311145
-
-``` r
 n_distinct( pf$ein )
-```
-
-    [1] 98253
-
-``` r
 nrow( pf )
 ```
 
+    [1] 310349
+    [1] 311145
+    [1] 98253
     [1] 98337
 
 Remove duplicate EINs from the combined datasets
@@ -615,11 +601,6 @@ conservative estimate.
 This approach is a useful way to demonstrate the size and economic
 contributions of the nonprofit sector using freely available IRS
 administrative tax data.
-
-<br> <br>
-<hr>
-
-<br> <br>
 
 <br> <br>
 <hr>
