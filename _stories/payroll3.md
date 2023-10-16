@@ -242,7 +242,7 @@ pc.2021 %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ),
          caption = "Tax Periods in the 2021 Form 990 Dataset", 
-         align="c" ) # %>% 
+         align="c" ) 
 ```
 
 | Tax Period | Frequency |
@@ -268,16 +268,12 @@ pc.2021 %>%
 Tax Periods in the 2021 Form 990 Dataset
 
 ``` r
-  # kable_minimal()
-```
-
-``` r
 pf.2021 %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ),
          caption = "Tax Periods in the 2021 Form 990-PF Dataset",
-         align="c" ) # %>% 
+         align="c" ) 
 ```
 
 | Tax Period | Frequency |
@@ -300,10 +296,6 @@ pf.2021 %>%
 
 Tax Periods in the 2021 Form 990-PF Dataset
 
-``` r
-  # kable_minimal()
-```
-
 We need data that corresponds to the 2019 calendar year, the most recent
 full year available at the time of writing.
 
@@ -322,7 +314,7 @@ pc.2021.subset %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ), align="c",
-         caption = "Tax Periods in the Subsetted 2021 Form 990 Dataset" ) # %>% 
+         caption = "Tax Periods in the Subsetted 2021 Form 990 Dataset" )
 ```
 
 | Tax Period | Frequency |
@@ -332,13 +324,11 @@ pc.2021.subset %>%
 Tax Periods in the Subsetted 2021 Form 990 Dataset
 
 ``` r
-  # kable_minimal()
-
 pf.2021.subset %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ), align="c",
-         caption = "Tax Periods in the Subsetted 2021 Form 990-PF Dataset" ) # %>% 
+         caption = "Tax Periods in the Subsetted 2021 Form 990-PF Dataset" ) 
 ```
 
 | Tax Period | Frequency |
@@ -346,10 +336,6 @@ pf.2021.subset %>%
 |    2019    |   17867   |
 
 Tax Periods in the Subsetted 2021 Form 990-PF Dataset
-
-``` r
-  # kable_minimal()
-```
 
 ### Harmonizing the Data
 

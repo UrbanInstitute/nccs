@@ -191,8 +191,7 @@ pc.2021 %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ),
          caption = "Tax Periods in the 2021 Form 990 Dataset", 
-         align="c" ) # %>% 
-  # kable_minimal()
+         align="c" ) 
 ```
 
 
@@ -202,8 +201,7 @@ pf.2021 %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ),
          caption = "Tax Periods in the 2021 Form 990-PF Dataset",
-         align="c" ) # %>% 
-  # kable_minimal()
+         align="c" ) 
 ```
 
 
@@ -224,15 +222,13 @@ pc.2021.subset %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ), align="c",
-         caption = "Tax Periods in the Subsetted 2021 Form 990 Dataset" ) # %>% 
-  # kable_minimal()
+         caption = "Tax Periods in the Subsetted 2021 Form 990 Dataset" )
 
 pf.2021.subset %>%
   group_by( year ) %>%
   summarise( n() ) %>%
   kable( col.names = c( "Tax Period", "Frequency" ), align="c",
-         caption = "Tax Periods in the Subsetted 2021 Form 990-PF Dataset" ) # %>% 
-  # kable_minimal()
+         caption = "Tax Periods in the Subsetted 2021 Form 990-PF Dataset" ) 
 ```
 
 
