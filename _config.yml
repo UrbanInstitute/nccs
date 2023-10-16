@@ -59,23 +59,23 @@ footer_nav:
 # Entries here will show up in the _includes/footer.html partial in the social section
 # Current options: email, github, instagram, linkedin, reddit, twitter, youtube
 # 'service' key also doubles as the icon indicator
-social_links:
-  - service: twitter
-    url: '#'
-  - service: facebook
-    url: '#'
-  - service: github
-    url: '#'
-  - service: instagram
-    url: '#'
-  - service: linkedin
-    url: '#'
-  - service: reddit
-    url: '#'
-  - service: twitter
-    url: '#'
-  - service: youtube
-    url: '#'
+# social_links:
+#   - service: twitter
+#     url: '#'
+#   - service: facebook
+#     url: '#'
+#   - service: github
+#     url: '#'
+#   - service: instagram
+#     url: '#'
+#   - service: linkedin
+#     url: '#'
+#   - service: reddit
+#     url: '#'
+#   - service: twitter
+#     url: '#'
+#   - service: youtube
+#     url: '#'
 
 # Sidebar Dataset Links
 # Shows at the bottom of dataset sidebars
@@ -84,8 +84,8 @@ globalDatasetLinks:
   -
     header: "Resources"
     links: 
-    - text: "Research Handbook"
-      href: "https://urbaninstitute.github.io/nccs-handbook/intro.html"
+    # - text: "Research Handbook"
+    #   href: "https://urbaninstitute.github.io/nccs-handbook/intro.html"
     - text: "Data Guide"
       href: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
 
