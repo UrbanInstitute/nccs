@@ -34,9 +34,11 @@ citation:
 
 ## Overview
 
-Census data is invaluable to social science research and freely available through the Census API. Unfortunately, adding census data to a study is complex and time-consuming because census tables are complex, geographic units are confusing, the ACS vs dicennial sampling framework is nuanced, and harmonization of data over time requires significant expertise. 
+Census data is invaluable to social science research and freely available through the Census API. Unfortunately, adding census data to a study is time-consuming because census tables are complex, geographic units are confusing, the American Community Survey sampling framework is nuanced, and harmonization of data over time requires significant expertise. 
 
-To address this problem we are developing tools to make adding census data to your research database as easy as: 
+To address this problem we are developing tools to make it easier to append Census data to NCCS data series. The goal is a highly-integrated and intuitive process that requires minimal effor from users. 
+
+Augmenting a file with Census data should be as straight-forward as: 
 
 ```r
 get_data( 
@@ -49,9 +51,9 @@ append_census( level="tract" )
 
 ## GEOGRAPHIC CROSSWALK FILES
 
-In order to make this possible we have created new data infrastructure including: 
+Any census-designated geography is fundamentally comprised of a collection of either tracts or blocks. We have created a series of crosswalk files that enable interoperability of Census data at a variety of geographic scales.  
 
-Any census-designated geography is fundamentally comprised of a collection of either tracts or blocks. The crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation in order for a study to select the most meaningful level of aggregation. Crosswalk tables organized into geographies **comprised of blocks** and **geographies comprised of tract** as the basic building blocks. 
+Two crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation in order for a study to select the most meaningful level of aggregation. Crosswalk tables organized into geographies **comprised of blocks** and **geographies comprised of tract** as the basic building blocks. 
 
 <img src="https://raw.githubusercontent.com/UrbanInstitute/geocrosswalk/main/img/geo-unit-conversion.png" alt="Nested Geographic Units" width="500">
 
