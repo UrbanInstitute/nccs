@@ -1,5 +1,5 @@
 ---
-title: Payroll Taxes
+title: Payroll Taxes V2
 date: 2023-08-28
 description: This data story outlines the process for estimating the amount of payroll taxes nonprofits pay annually.
 featured: true
@@ -61,8 +61,12 @@ We estimate that nonprofits currently pay approximately \$66 billion per
 year in payroll taxes. See the full data vignette for details about how
 we arrive at this estimate.
 
+<br> 
+
 <a class="btn -tertiary " href="https://urbaninstitute.github.io/nccs-recipes/vignettes/payroll.html" target="_blank">
 DATA VIGNETTE </a>
+
+<br>
 
 ### Form 990 Data
 
