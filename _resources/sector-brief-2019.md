@@ -17,7 +17,10 @@ primaryLinks:
     icon: pdf
 ---
 
-## Highlights
+The sector brief discusses trends in the number and finances of 501(c)(3) public charities and key data insights on important resources for the nonprofit sector, such as: private charitable contributions and grantmaking by foundations.
+
+**Highlights**
+
 
 > Approximately 1.54 million nonprofits were registered with the Internal Revenue Service (IRS) in 2016, an increase of 4.5 percent from 2006.
 
