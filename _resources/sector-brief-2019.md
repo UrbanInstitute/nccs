@@ -1,6 +1,6 @@
 ---
 title: 2019 Nonprofit Sector in Brief
-description: The Sector Brief discusses trends in the number and finances of 501(c)(3) public charities and key findings on two important resources for the nonprofit sector: private charitable contributions and volunteering.
+description: 'The Sector Brief discusses trends in the number and finances of 501(c)(3) public charities and key findings on two important resources for the nonprofit sector: private charitable contributions and volunteering.'
 date: 2020-06-18
 featured: true
 featuredOrder: 10
