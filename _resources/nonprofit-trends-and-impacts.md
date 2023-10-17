@@ -4,6 +4,7 @@ description: A nationally representative survey of nonprofits
 date: 2023-10-03
 featured: true
 featuredOrder: 1
+type: project
 layout: project
 project-name: nptrends
 categories:
