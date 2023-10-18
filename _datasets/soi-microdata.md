@@ -8,7 +8,6 @@ categories:
   - SOI
   - sampling
 featured: false
-# featuredOrder: 1
 primaryCtaUrl: "../../catalogs/catalog-soi-microdata.html"
 primaryCtaCaption: "Available 1990-2019"
 primaryLinks:
