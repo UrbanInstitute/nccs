@@ -208,13 +208,13 @@
   projects: [nptrends]
 - id: smendonca
   first: Sybil
-  last: Mendoca
+  last: Mendonca
   title: 'Director, Data and Analysis'
   bio: 'Sybil Mendonca is director of data and analysis in the information technology department at the Urban Institute, where she uses sophisticated modeling techniques and statistical testing to support various policy centers on econometric research.'  
   orcid: 
   email: placeholder@email.com
   team: executive
-  image: people/smendoca.jpg
+  image: people/smendonca.jpg
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/sybil-mendonca 
