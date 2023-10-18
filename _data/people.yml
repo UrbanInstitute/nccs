@@ -219,6 +219,32 @@
     - name: Urban Institute
       url: https://www.urban.org/author/sybil-mendonca 
 
+
+##########
+##########  CALTON PU
+##########
+
+
+- id: cpu
+  first: Calton
+  last: Pu
+  title: John P. Imlay, Jr. Chair in Software
+  bio: Calton's research interests are in the areas of service computing, distributed and cloud computing, dynamic analytics on changing big data. 
+  orcid: 
+  email: placeholder@email.com
+  team: collaborator
+  image: people/cpu.jpg
+  affiliation: 
+    - name: Georgia Tech
+      url: https://faculty.cc.gatech.edu/~calton/
+  social:
+    - name: scholar
+      url: https://scholar.google.com/citations?user=Vbv-JEwAAAAJ&hl=en
+    - name: website
+      url: https://faculty.cc.gatech.edu/~calton/
+  projects: [nptrends]
+
+
       
 - id: jd
   first: John
