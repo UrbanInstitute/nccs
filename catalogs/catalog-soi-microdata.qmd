@@ -1,5 +1,5 @@
 ---
-title: "NCCS 'Core' Data Catalog"
+title: "Statistics of Income (SOI) Microdata Samples"
 format: html
 editor: visual
 execute: 
