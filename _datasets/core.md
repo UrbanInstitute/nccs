@@ -22,6 +22,17 @@ citation:
   doi: 10.5555/xxxxxxxxxxx
 ---
 
+## Overview
+
+The Core Data Series is a vital resource for researchers, policymakers, and anyone interested in understanding the nonprofit sector in the United States. The NCCS, a project of the Urban Institute, collects, compiles, and disseminates data on nonprofits and charitable organizations. The Core Data Series, in particular, is a comprehensive dataset that provides essential information about these organizations. 
+
+Data Collection and Sources: The NCCS Core Data Series collects data from various sources, including the Internal Revenue Service (IRS) Form 990 filings, which nonprofits are required to submit. This data includes financial information, governance details, and other organizational characteristics.
+
+* Financial Data: Revenue, expenses, assets, and liabilities, allowing for financial analysis and benchmarking.
+* Programs and Activities: Descriptions of the organization's activities, programs, and mission statements.
+* Geographic Information: Location and service areas of nonprofits.
+* Time Series Data: Researchers can access historical data, which is crucial for tracking trends and changes in the nonprofit sector over time.
+
 ## Use
 
 Data can be downloaded via the [**data catalog**](https://lecy.github.io/nccs/catalogs/catalog-core.html) page or the [**nccsdata R package**](https://urbaninstitute.github.io/nccsdata/). Statistical packages have the advantage of process documentation and reproducibility. Data acquisition steps with the package might look like one of the following queries: 
@@ -69,20 +80,9 @@ dat <-
 
 Learn more from the data story titled "Introducing the nccsdata Package" or the [package documentation](https://urbaninstitute.github.io/nccsdata/reference/index.html). 
 
-## Overview
-
-The Core Data Series is a vital resource for researchers, policymakers, and anyone interested in understanding the nonprofit sector in the United States. The NCCS, a project of the Urban Institute, collects, compiles, and disseminates data on nonprofits and charitable organizations. The Core Data Series, in particular, is a comprehensive dataset that provides essential information about these organizations. 
-
-Data Collection and Sources: The NCCS Core Data Series collects data from various sources, including the Internal Revenue Service (IRS) Form 990 filings, which nonprofits are required to submit. This data includes financial information, governance details, and other organizational characteristics.
+## Data Series Attributes 
 
 Scope: The dataset covers a wide range of nonprofit organizations, including charities, foundations, religious organizations, educational institutions, and more. It encompasses organizations of various sizes, missions, and geographic locations across the United States.
-
-Key Information: The Core Data Series provides detailed information on nonprofit organizations, including:
-
-* Financial Data: Revenue, expenses, assets, and liabilities, allowing for financial analysis and benchmarking.
-* Programs and Activities: Descriptions of the organization's activities, programs, and mission statements.
-* Geographic Information: Location and service areas of nonprofits.
-* Time Series Data: Researchers can access historical data, which is crucial for tracking trends and changes in the nonprofit sector over time.
 
 Customized Reports: Users can generate custom reports and analyses based on their research interests and needs, allowing for in-depth exploration of nonprofit data.
 
@@ -119,6 +119,8 @@ See the [Data Guide](https://nccs-data.urban.org/NCCS-data-guide.pdf) for more d
 One other detail to note is that legacy NCCS Core data files were organized by **filing dates**. For example, the 2015 dataset contained all of the 990 tax returns that were received by the IRS in the 2015 calendar year. 
 
 The new NCCS Core has be reorganized instead by **tax year**, or the closest approximation we can get to period described by the data in the form. It gets complicated because nonprofits can select their own accounting periods with fiscal years that can end in any month, so the tax year does not entirely correspond to the calendar year. But it is a much closer approximation than organizing panels by filing dates. 
+
+
 
 <br>
 <br>
