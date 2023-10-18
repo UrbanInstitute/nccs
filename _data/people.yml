@@ -1,4 +1,4 @@
-# Teams templated: executive (board), leadership (nccs team), collaborator
+# Teams templated: executive (advisory board), leadership (nccs team), collaborator
 # To exclude a person from the about page, do not set a team field
 - id: jlecy
   first: Jesse
@@ -206,7 +206,20 @@
     - name: linkedin
       url: https://www.linkedin.com/in/alan-abramson-88734410
   projects: [nptrends]
+- id: smendonca
+  first: Sybil
+  last: Mendoca
+  title: Director, Data and Analysis
+  bio: Sybil Mendonca is director of data and analysis in the information technology department at the Urban Institute, where she uses sophisticated modeling techniques and statistical testing to support various policy centers on econometric research.  
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/smendoca.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/sybil-mendonca 
 
+      
 - id: jd
   first: John
   last: Doe
@@ -224,6 +237,10 @@
       url: #
     - name: twitter
       url: #
+
+
+Director, Data and Analysis
+
 
 - id: jn
   first: John
