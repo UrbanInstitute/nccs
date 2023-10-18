@@ -6,8 +6,8 @@ categories:
   - census
   - spatial
   - crosswalks
-featured: false
-featuredOrder: 5
+featured: true
+featuredOrder: 3
 primaryCtaUrl: ""
 primaryCtaCaption: "Years Available: 1990-2020"
 primaryLinks:
