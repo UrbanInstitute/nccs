@@ -10,8 +10,18 @@ featured: false
 primaryCtaUrl: "../../catalogs/catalog-soi-microdata.html"
 primaryCtaCaption: "Available 1990-2019"
 primaryLinks:
-  - text: "GitHub Page"
-    href: "[https://urbaninstitute.github.io/nccsdata/reference/index.html](https://github.com/Nonprofit-Open-Data-Collective/irs-990-soi-study-microdata-sample)"
+  - text: "DD 501c3 Charities PC"
+    href: "https://urbaninstitute.github.io/nccs-legacy/soi/SOI-MICRODATA-2012-CHARITIES-SCOPE-501C3-PC"
+  - text: "DD 501c3 Charities EZ"
+    href: "https://urbaninstitute.github.io/nccs-legacy/soi/SOI-MICRODATA-2012-CHARITIES-SCOPE-501C3-EZ"
+  - text: "DD 501cE Nonprofits PC"
+    href: "https://urbaninstitute.github.io/nccs-legacy/soi/SOI-MICRODATA-2012-NONPROFIT-SCOPE-501CE-PC"
+  - text: "DD 501cE Nonprofits EZ"
+    href: "https://urbaninstitute.github.io/nccs-legacy/soi/SOI-MICRODATA-2012-NONPROFIT-SCOPE-501CE-EZ"
+  - text: "DD 501c3 PrivFounds PF"
+    href: "https://urbaninstitute.github.io/nccs-legacy/soi/SOI-MICRODATA-2010-PRIVFOUND-SCOPE-501C3-PF"
+  - text: "Get Help"
+    href: "https://github.com/UrbanInstitute/nccs/issues"
 author:
 - id: jlecy
 citation: 
