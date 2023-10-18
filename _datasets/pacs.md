@@ -20,7 +20,7 @@ categories:
   - campaign finance
   - 501c4
 featured: true
-featuredOrder: 4
+featuredOrder: 2
 author:
 - id: jlecy 
 - id: eboris 
