@@ -1,4 +1,3 @@
-
 ---
 title: SOI Exempt Organizations Microdata
 date: 2023-05-27
