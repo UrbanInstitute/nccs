@@ -7,7 +7,7 @@ categories:
   - spatial
   - crosswalks
 featured: true
-featuredOrder: 3
+featuredOrder: 4
 primaryCtaUrl: ""
 primaryCtaCaption: "Years Available: 1990-2020"
 primaryLinks:
