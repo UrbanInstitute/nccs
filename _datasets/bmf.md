@@ -6,8 +6,8 @@ categories:
   - BMF
   - sample-framework
   - metadata
-featured: false
-featuredOrder: 1
+featured: true
+featuredOrder: 2
 citation: true
 ---
 
