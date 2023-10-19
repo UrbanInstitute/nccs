@@ -116,7 +116,9 @@ catalog %>%
 ```{r}
 #| echo: false
 
-paths <- get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="EZ" )
+paths <- get_soi_paths( paths=d$Key, 
+                        tscope="CHARITIES", 
+                        fscope="EZ" )
 urls  <- make_urls( paths )
 
 
@@ -129,8 +131,8 @@ YEAR    <- get_core_year( paths )
 catalog <- 
   data.frame( 
     BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
+    NP_TYPE = TSCOPE, 
+    FORM_SCOPE = "EZ", 
     YEAR=YEAR )
 ```
 
@@ -210,7 +212,7 @@ catalog <-
   data.frame( 
     BUTTONS, 
     NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
+    FORM_SCOPE="EZ", 
     YEAR=YEAR )
 
 ```
@@ -251,7 +253,7 @@ catalog <-
   data.frame( 
     BUTTONS, 
     NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
+    FORM_SCOPE="PF", 
     YEAR=YEAR )
 
 ```
