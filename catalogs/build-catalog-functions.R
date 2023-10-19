@@ -118,4 +118,14 @@ make_buttons <- function( urls ) {
   return( buttons ) 
 }
 
+############
+############   SOI-MICRO
+############
 
+
+get_soi_paths <- function( paths, tscope="NONPROFIT", fscope="PZ" ) {
+  expr <- paste0( "SOI-MICRODATA-[0-9]{4}-", tscope )
+  matches <- grep( expr, paths, value=T )
+  matches <- grep( paste0( "-", fscope, "\\b"), matches, value=T )
+  return( matches )
+} 
