@@ -5,7 +5,6 @@ editor: visual
 execute: 
   echo: false
   warning: false
-  
 ---
 
 ```{r}
@@ -18,7 +17,7 @@ library( stringr )
 library( flextable )
 library( pander )
 
-GH.RAW <- "https://raw.githubusercontent.com/lecy/nccs/main/catalogs/"
+GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
 d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
 source( paste0( GH.RAW, "build-catalog-functions.R" ) )
 
@@ -32,52 +31,51 @@ make_buttons_2 <- function( urls ) {
 }
 ```
 
-
 <br>
+
 <hr>
+
 <br>
 
-Files are organized as follows: 
+Files are organized as follows:
 
 **TAX EXEMPT TYPE (tscope)**
 
-* CHARITIES - 501c3 nonprofit organizations 
-* NONPROFITS - All other 501c type organizations besides 501c3
-* PRIVATE FOUNDATIONS - 501c3 private foundations
+-   CHARITIES - 501c3 nonprofit organizations
+-   NONPROFITS - All other 501c type organizations besides 501c3
+-   PRIVATE FOUNDATIONS - 501c3 private foundations
 
 **IRS 990 FORM SCOPE (fscope)**
 
-Nonprofits can file Form 990, 990EZ, 990PF, or 990N. 
+Nonprofits can file Form 990, 990EZ, 990PF, or 990N.
 
-Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than $250k in revenues must file full Form 990. 
+Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than \$250k in revenues must file full Form 990.
 
-Very small nonprofits (revenues less than $50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series. 
+Very small nonprofits (revenues less than \$50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series.
 
-Form scope describes which types of filers are included in each data set: 
+Form scope describes which types of filers are included in each data set:
 
-* **PZ**: 990 + 990EZ filers
-* **PC**: 990 filers only 
-* **PF**: 990PF private foundations 
-
-Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures. 
+-   **EZ**: 990EZ filers
+-   **PC**: 990 filers only
+-   **PF**: 990PF private foundations
 
 **YEAR**
 
-Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.  
-
+Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.
 
 <br>
+
 <hr>
+
 <br>
 
-
-#### 501c3 CHARITIES SCOPE PZ
+#### 501c3 CHARITIES SCOPE PC
 
 ```{r}
 #| echo: false
 #| output: asis
  
-paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
+paths <- get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="PC" )
 urls  <- make_urls( paths )
 
 BUTTONS  <- make_buttons( urls )
@@ -95,7 +93,6 @@ catalog <-
     FORM_SCOPE=FSCOPE )
 ```
 
-
 ```{r}
 #| echo: false
 
@@ -109,18 +106,17 @@ catalog %>%
 ```
 
 <br>
+
 <hr>
+
 <br>
 
-
-
-
-#### 501c3 CHARITIES SCOPE PC
+#### 501c3 CHARITIES SCOPE EZ
 
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, tscope="CHARITIES", fscope="PZ" )
+paths <- get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="EZ" )
 urls  <- make_urls( paths )
 
 
@@ -138,9 +134,6 @@ catalog <-
     YEAR=YEAR )
 ```
 
-
-
-
 ```{r}
 #| echo: false
 
@@ -154,61 +147,57 @@ catalog %>%
 ```
 
 <br>
+
 <hr>
-<br>
-
-
-
-
-#### NONPROFITS SCOPE PZ
-
-```{r}
-#| echo: false
-
-paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PZ" )
-urls  <- make_urls( paths )
-
-
-BUTTONS <- make_buttons( urls )
-TSCOPE  <- get_core_tscope( paths )
-FSCOPE  <- get_core_fscope( paths )
-YEAR    <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS, 
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE, 
-    YEAR=YEAR )
-```
-
-
-
-```{r}
-#| echo: false
-
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("",
-                           "Nonprofit Type",
-                           "Form Scope",
-                           "Year") ) %>%
-  kableExtra::kable_styling()
-```
 
 <br>
-<hr>
-<br>
-
-
-
 
 #### NONPROFITS SCOPE PC
 
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
+paths <- get_soi_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
+urls  <- make_urls( paths )
+
+
+BUTTONS <- make_buttons( urls )
+TSCOPE  <- get_core_tscope( paths )
+FSCOPE  <- get_core_fscope( paths )
+YEAR    <- get_core_year( paths )
+
+catalog <- 
+  data.frame( 
+    BUTTONS, 
+    NP_TYPE=TSCOPE, 
+    FORM_SCOPE=FSCOPE, 
+    YEAR=YEAR )
+```
+
+```{r}
+#| echo: false
+
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("",
+                           "Nonprofit Type",
+                           "Form Scope",
+                           "Year") ) %>%
+  kableExtra::kable_styling()
+```
+
+<br>
+
+<hr>
+
+<br>
+
+#### NONPROFITS SCOPE EZ
+
+```{r}
+#| echo: false
+
+paths <- get_soi_paths( paths=d$Key, tscope="NONPROFIT", fscope="EZ" )
 urls  <- make_urls( paths )
 
 
@@ -226,7 +215,6 @@ catalog <-
 
 ```
 
-
 ```{r}
 #| echo: false
 
@@ -240,19 +228,17 @@ catalog %>%
 ```
 
 <br>
+
 <hr>
+
 <br>
-
-
-
-
 
 #### PRIVATE FOUNDATIONS SCOPE PF
 
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
+paths <- get_soi_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
 urls  <- make_urls( paths )
 
 
@@ -270,8 +256,6 @@ catalog <-
 
 ```
 
-
-
 ```{r}
 #| echo: false
 
@@ -285,15 +269,12 @@ catalog %>%
 ```
 
 <br>
+
 <hr>
+
 <br>
 
-
-
-
-
-
-
+```{=html}
 <style>
 
 
@@ -386,3 +367,4 @@ blockquote {
   width: 100px;
 }
 </style>
+```
