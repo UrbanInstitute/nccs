@@ -24,14 +24,31 @@ citation:
 
 ## Overview
 
-The Core Data Series is a vital resource for researchers, policymakers, and anyone interested in understanding the nonprofit sector in the United States. The NCCS, a project of the Urban Institute, collects, compiles, and disseminates data on nonprofits and charitable organizations. The Core Data Series, in particular, is a comprehensive dataset that provides essential information about these organizations. 
+The Core Data Series is a comprehensive dataset that provides essential information on nonprofit operations over the last 30 years. It serves as a key resource for researchers, policymakers, funders, and anyone interested in understanding nonprofit sector dynamics in the United States. 
 
-Data Collection and Sources: The NCCS Core Data Series collects data from various sources, including the Internal Revenue Service (IRS) Form 990 filings, which nonprofits are required to submit. This data includes financial information, governance details, and other organizational characteristics.
+The NCCS Core Data Series is derived from the Internal Revenue Service (IRS) Form 990 filings, which nonprofits are required to submit on an annual basis. This data includes financial information, governance details, and other organizational characteristics.
 
 * Financial Data: Revenue, expenses, assets, and liabilities, allowing for financial analysis and benchmarking.
 * Programs and Activities: Descriptions of the organization's activities, programs, and mission statements.
 * Geographic Information: Location and service areas of nonprofits.
-* Time Series Data: Researchers can access historical data, which is crucial for tracking trends and changes in the nonprofit sector over time.
+* Time Series Data: Data is available starting from 1989, which makes it possible to track trends in the nonprofit sector over time.
+
+## Versions
+
+The data is separated into three populations: 
+
+* 501c3 Charities (990 + 990EZ filers)
+* 501c3 Private Foundations (990PF filers)
+* All other 501c Nonprofits (990 + 990EZ filers) 
+
+There are also two versions that differ by organizational size (smaller nonprofits file Form 990EZ):  
+
+* PZ version: all 990 + 990EZ filers - a larger number of organizations but smaller number of variables 
+* PC version: only full Form 990 filers - a smaller number of organizations but larger number of variables
+
+The PZ version includes approximately 150 variables from 400,000 nonprofits. The PC version includes approximately 300 variables from 200,000 nonprofits. These numbers vary over time. 
+
+Private foundations all file Form 990PF, regardless of size. 
 
 ## Use
 
@@ -48,12 +65,12 @@ Data can be downloaded via the [**data catalog**](https://lecy.github.io/nccs/ca
 devtools::install_github("UrbanInstitute/nccsdata")
 library(nccsdata)
 
-dat <-
-  get_data(  dsname = "core",
+dat <- get_data(
+             dsname = "core",
              time   = 2005     )
 
-dat <-
-  get_data(  dsname = "core",
+dat <- get_data(
+             dsname = "core",
              time   = 2005,
              ntee   = "ART"   )
 
@@ -61,19 +78,19 @@ dat <-
 ###  MULTIPLE GEOGRAPHIES ARE SUPPORTED 
 ###
 
-dat <-
-  get_data(  dsname = "core",
+dat <- get_data(
+             dsname = "core",
              time   = 2005,
              ntee   = "ART",   
              geo.state = "CA"   )
 
-dat <-
-  get_data(  dsname = "core",
+dat <- get_data(
+             dsname = "core",
              time   = 2005,
              geo.city = "san francisco" )
 
-dat <-
-  get_data(  dsname = "core",
+dat <- get_data(
+             dsname = "core",
              time   = 2005,
              geo.county = "autauga"  )
 ```
@@ -82,17 +99,13 @@ Learn more from the data story titled "Introducing the nccsdata Package" or the 
 
 ## Data Series Attributes 
 
-Scope: The dataset covers a wide range of nonprofit organizations, including charities, foundations, religious organizations, educational institutions, and more. It encompasses organizations of various sizes, missions, and geographic locations across the United States.
+The dataset covers a wide range of nonprofit organizations, including charities, foundations, religious organizations, educational institutions, and more. It encompasses organizations of various sizes, missions, and geographic locations across the United States. 
 
-Customized Reports: Users can generate custom reports and analyses based on their research interests and needs, allowing for in-depth exploration of nonprofit data.
+The NCCS Core Data Series is widely used by researchers, policymakers, and nonprofits themselves to gain insights into the sector. It can inform studies on topics such as nonprofit financial health, sector trends, and the impact of policy changes on charitable organizations.
 
-Research and Policy Insights: The NCCS Core Data Series is widely used by researchers, policymakers, and nonprofits themselves to gain insights into the sector. It can inform studies on topics such as nonprofit financial health, sector trends, and the impact of policy changes on charitable organizations.
+The data is made available to the public through the NCCS website and can be accessed by researchers, analysts, and organizations interested in nonprofit-related research. NCCS takes measures to ensure data quality and accuracy, making it a reliable resource for research and analysis.
 
-Accessibility: The data is made available to the public through the NCCS website and can be accessed by researchers, analysts, and organizations interested in nonprofit-related research.
-
-Data Quality: The NCCS takes measures to ensure data quality and accuracy, making it a reliable resource for research and analysis.
-
-## Organization of the Data
+## Sample Scope Definitions
 
 All 990 filers are split into five groups using combinations of two variables: organizational type scope or **tscope** (501c3 public charities vs 501c3 private foundations vs all other 501c type nonprofit organizations), and form filing scope or **fscope** that describes which types of filers are included in the dataset. 
 
@@ -114,11 +127,13 @@ The datasets with form scope of PZ will contain the full set of 990 and 990-EZ t
 
 See the [Data Guide](https://nccs-data.urban.org/NCCS-data-guide.pdf) for more details. 
 
+Note that 990N ePostcard filers are the most common type of nonprofit but are not included in the Core Series. The ePostcard filers all have annual revenues below $50,000 per years, and the 990N form includes very little information (updates to the organization address and key contact). Although these organizations mobilize a modest amount of financial resources they also represent a substantive portion of the voluntary sector and civil society. For example, many volunteer-run nonprofits like Parent Teacher Associations, block associations, and little league clubs would fall in this group. They actively build social capital in communities and provide important collective action functions that can be accomplished with very modest financial support. This is an important consideration when designing a sampling framework for a study since the Core Series will not capture these activities. If small organizations matter in your study consider incorporating information from the [990N ePostcard Dataset](https://urbaninstitute.github.io/nccs/datasets/postcard/) or 1023-EZ data on nonprofit startups.  
+
 ## Definition of "Year" in File Names
 
 One other detail to note is that legacy NCCS Core data files were organized by **filing dates**. For example, the 2015 dataset contained all of the 990 tax returns that were received by the IRS in the 2015 calendar year. 
 
-The new NCCS Core has be reorganized instead by **tax year**, or the closest approximation we can get to period described by the data in the form. It gets complicated because nonprofits can select their own accounting periods with fiscal years that can end in any month, so the tax year does not entirely correspond to the calendar year. But it is a much closer approximation than organizing panels by filing dates. 
+The new NCCS Core has be reorganized instead by **tax year**, or the closest approximation we can get to period of performance described by the 990 data. Time gets complicated because nonprofits can select their own accounting periods with fiscal years that can end in any month, so the tax year does not correspond perfectly to a calendar year (tax year 2018 can include activities from some months im 2018 and some months in 2019, for example). But it is a much closer approximation than organizing panels by filing dates. 
 
 
 
