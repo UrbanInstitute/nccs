@@ -131,7 +131,7 @@ get_soi_paths <- function( paths, tscope="NONPROFIT", fscope="PZ" ) {
 } 
 
 
-get_legacy_urls <- function(soi_paths){
+get_legacy_soi_urls <- function(soi_paths){
 
   legacy_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/"
     
