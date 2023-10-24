@@ -124,8 +124,11 @@ make_buttons <- function( urls ) {
 
 
 get_soi_paths <- function( paths, tscope="NONPROFIT", fscope="PZ" ) {
-  expr <- paste0( "SOI-MICRODATA-[0-9]{4}-", tscope )
+  expr <- paste0( "SOI-MICRODATA-[0-9]{4}-501C[0-9A-Z]-", tscope )
   matches <- grep( expr, paths, value=T )
   matches <- grep( paste0( "-", fscope, "\\b"), matches, value=T )
   return( matches )
 } 
+
+get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="PC" )
+d$Key
