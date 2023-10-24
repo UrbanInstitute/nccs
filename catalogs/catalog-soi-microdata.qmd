@@ -77,9 +77,10 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
  
 paths <- get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="PC" )
 urls  <- make_urls( paths )
+legacy_urls <- get_legacy_urls(paths)
 
 BUTTONS  <- make_buttons( urls )
-BUTTONS2 <- make_buttons_2( urls )
+BUTTONS2 <- make_buttons_2( legacy_urls )
 TSCOPE   <- get_core_tscope( paths )
 FSCOPE   <- get_core_fscope( paths )
 YEAR     <- get_core_year( paths )
@@ -120,17 +121,20 @@ paths <- get_soi_paths( paths=d$Key,
                         tscope="CHARITIES", 
                         fscope="EZ" )
 urls  <- make_urls( paths )
+legacy_urls <- get_legacy_urls(paths)
 
 
 
 BUTTONS <- make_buttons( urls )
+BUTTONS2 <- make_buttons_2( legacy_urls )
 TSCOPE  <- get_core_tscope( paths )
 FSCOPE  <- get_core_fscope( paths )
 YEAR    <- get_core_year( paths )
 
 catalog <- 
   data.frame( 
-    BUTTONS, 
+    BUTTONS,
+    BUTTONS2,
     NP_TYPE = TSCOPE, 
     FORM_SCOPE = "EZ", 
     YEAR=YEAR )
@@ -141,7 +145,7 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c("",
+                col.names = c("", "",
                            "Nonprofit Type",
                            "Form Scope",
                            "Year") ) %>%
@@ -161,16 +165,20 @@ catalog %>%
 
 paths <- get_soi_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
 urls  <- make_urls( paths )
+legacy_urls <- get_legacy_urls(paths)
+
 
 
 BUTTONS <- make_buttons( urls )
+BUTTONS2 <- make_buttons_2( legacy_urls )
 TSCOPE  <- get_core_tscope( paths )
 FSCOPE  <- get_core_fscope( paths )
 YEAR    <- get_core_year( paths )
 
 catalog <- 
   data.frame( 
-    BUTTONS, 
+    BUTTONS,
+    BUTTONS2,
     NP_TYPE=TSCOPE, 
     FORM_SCOPE=FSCOPE, 
     YEAR=YEAR )
@@ -181,7 +189,7 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c("",
+                col.names = c("", "",
                            "Nonprofit Type",
                            "Form Scope",
                            "Year") ) %>%
@@ -201,16 +209,20 @@ catalog %>%
 
 paths <- get_soi_paths( paths=d$Key, tscope="NONPROFIT", fscope="EZ" )
 urls  <- make_urls( paths )
+legacy_urls <- get_legacy_urls(paths)
+
 
 
 BUTTONS <- make_buttons( urls )
+BUTTONS2 <- make_buttons_2( legacy_urls )
 TSCOPE  <- get_core_tscope( paths )
 FSCOPE  <- get_core_fscope( paths )
 YEAR    <- get_core_year( paths )
 
 catalog <- 
   data.frame( 
-    BUTTONS, 
+    BUTTONS,
+    BUTTONS2,
     NP_TYPE=TSCOPE, 
     FORM_SCOPE="EZ", 
     YEAR=YEAR )
@@ -222,7 +234,7 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c("",
+                col.names = c("", "",
                            "Nonprofit Type",
                            "Form Scope",
                            "Year") ) %>%
@@ -242,16 +254,20 @@ catalog %>%
 
 paths <- get_soi_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
 urls  <- make_urls( paths )
+legacy_urls <- get_legacy_urls(paths)
+
 
 
 BUTTONS <- make_buttons( urls )
+BUTTONS2 <- make_buttons_2( legacy_urls )
 TSCOPE  <- get_core_tscope( paths )
 FSCOPE  <- get_core_fscope( paths )
 YEAR    <- get_core_year( paths )
 
 catalog <- 
   data.frame( 
-    BUTTONS, 
+    BUTTONS,
+    BUTTONS2,
     NP_TYPE=TSCOPE, 
     FORM_SCOPE="PF", 
     YEAR=YEAR )
@@ -263,7 +279,7 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c("",
+                col.names = c("", "",
                            "Nonprofit Type",
                            "Form Scope",
                            "Year") ) %>%
