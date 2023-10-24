@@ -77,8 +77,7 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
  
 paths <- get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="PC" )
 urls  <- make_urls( paths )
-legacy_urls <- get_legacy_urls(paths)
-
+legacy_urls <- get_legacy_soi_urls(paths)
 BUTTONS  <- make_buttons( urls )
 BUTTONS2 <- make_buttons_2( legacy_urls )
 TSCOPE   <- get_core_tscope( paths )
@@ -121,7 +120,7 @@ paths <- get_soi_paths( paths=d$Key,
                         tscope="CHARITIES", 
                         fscope="EZ" )
 urls  <- make_urls( paths )
-legacy_urls <- get_legacy_urls(paths)
+legacy_urls <- get_legacy_soi_urls(paths)
 
 
 
@@ -165,7 +164,7 @@ catalog %>%
 
 paths <- get_soi_paths( paths=d$Key, tscope="NONPROFIT", fscope="PC" )
 urls  <- make_urls( paths )
-legacy_urls <- get_legacy_urls(paths)
+legacy_urls <- get_legacy_soi_urls(paths)
 
 
 
@@ -209,7 +208,7 @@ catalog %>%
 
 paths <- get_soi_paths( paths=d$Key, tscope="NONPROFIT", fscope="EZ" )
 urls  <- make_urls( paths )
-legacy_urls <- get_legacy_urls(paths)
+legacy_urls <- get_legacy_soi_urls(paths)
 
 
 
@@ -253,8 +252,7 @@ catalog %>%
 #| echo: false
 
 paths <- get_soi_paths( paths=d$Key, tscope="PRIVFOUND", fscope="PF" )
-urls  <- make_urls( paths )
-legacy_urls <- get_legacy_urls(paths)
+urls  <- make_urls( paths )legacy_urls <- get_legacy_soi_urls(paths)
 
 
 
