@@ -130,5 +130,15 @@ get_soi_paths <- function( paths, tscope="NONPROFIT", fscope="PZ" ) {
   return( matches )
 } 
 
-get_soi_paths( paths=d$Key, tscope="CHARITIES", fscope="PC" )
-d$Key
+
+get_legacy_urls <- function(soi_paths){
+
+  legacy_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/"
+    
+  matches <- gsub("legacy/soi-micro/[0-9]{4}/", "", soi_paths)
+  matches <- gsub("\\.csv", "", matches)
+  
+  legacy_urls <- paste0(legacy_url, matches)
+  
+  return(legacy_urls)
+}
