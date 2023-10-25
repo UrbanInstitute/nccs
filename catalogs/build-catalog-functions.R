@@ -1,13 +1,11 @@
-
+# Script with helper functions to construct catalog pages
 
 get_core_paths <- function( paths, tscope="NONPROFIT", fscope="PZ" ) {
-  expr <- paste0( "CORE-[0-9]{4}-", tscope )
+  expr <- paste0( "CORE-[0-9]{4}-501C[0-9A-Z]-", tscope )
   matches <- grep( expr, paths, value=T )
   matches <- grep( paste0( "-", fscope, "\\b"), matches, value=T )
   return( matches )
 }
-
-
 
 get_bmf_paths <- function( paths ) {
   expr <- "BMF-.*-PX"
@@ -15,16 +13,21 @@ get_bmf_paths <- function( paths ) {
   return( matches )
 }
 
-
-
-
-make_urls <- function( paths ) {
+make_s3_urls <- function( paths ) {
   base <- "https://nccsdata.s3.us-east-1.amazonaws.com/"
   urls <- paste0( base, paths )
   return( urls )
 }
 
-
+make_archive_urls <- function(paths, base_url){
+  
+  matches <- gsub("legacy/core/", "", paths)
+  matches <- gsub("\\.csv", "", matches)
+  
+  archive_urls <- paste0(base_url, matches)
+  
+  return(archive_urls)  
+}
 
 
 get_core_year <- function( paths ) {
@@ -59,13 +62,7 @@ get_core_fscope <- function( paths ) {
   return( as.character(fscope) )
 }
 
-
-
-
-
-
-
-make_buttons <- function( urls ) {
+make_download_buttons <- function( urls ) {
   buttons <- 
     paste0( 
       "<a href=",
@@ -74,6 +71,14 @@ make_buttons <- function( urls ) {
   return( buttons ) 
 }
 
+make_profile_buttons <- function( urls ) {
+  buttons <- 
+    paste0( 
+      "<a href=",
+      urls,
+      " class='button2'> PROFILE </a>" )
+  return( buttons ) 
+}
 
 
 
