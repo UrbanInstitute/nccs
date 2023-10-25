@@ -1,15 +1,26 @@
 # Script with helper functions to construct catalog pages
 
+get_file_paths <- function(series,
+                           paths,
+                           tscope = NULL,
+                           fscope = NULL){
+  if (series == "bmf"){
+    expr <- "BMF-.*-PX" 
+    paths <- grep(expr, paths, value = TRUE)
+  } else if (series == "core"){
+    expr <- paste0( "CORE-[0-9]{4}-501C[0-9A-Z]-", tscope )
+    paths <- grep( expr, paths, value=T )
+    paths <- grep( paste0( "-", fscope, "\\b"), matches, value=T )
+  }
+  
+ return(paths)
+  
+}
+
 get_core_paths <- function( paths, tscope="NONPROFIT", fscope="PZ" ) {
   expr <- paste0( "CORE-[0-9]{4}-501C[0-9A-Z]-", tscope )
   matches <- grep( expr, paths, value=T )
   matches <- grep( paste0( "-", fscope, "\\b"), matches, value=T )
-  return( matches )
-}
-
-get_bmf_paths <- function( paths ) {
-  expr <- "BMF-.*-PX"
-  matches <- grep( expr, paths, value=T )
   return( matches )
 }
 
@@ -19,9 +30,16 @@ make_s3_urls <- function( paths ) {
   return( urls )
 }
 
-make_archive_urls <- function(paths, base_url){
+make_archive_urls <- function(series,
+                              paths){
   
-  matches <- gsub("legacy/core/", "", paths)
+  base_url = sprintf("https://urbaninstitute.github.io/nccs-legacy/dictionary/%s/%s_archive_html/",
+                     series,
+                     series)
+  
+  expr_dic = list("core" = "legacy/core/",
+                  "bmf" = "legacy/bmf/")
+  matches <- gsub(expr_dic[[series]], "", paths)
   matches <- gsub("\\.csv", "", matches)
   
   archive_urls <- paste0(base_url, matches)
@@ -30,12 +48,19 @@ make_archive_urls <- function(paths, base_url){
 }
 
 
-get_core_year <- function( paths ) {
+
+get_year <- function( paths ) {
   yyyy <- stringr::str_extract( paths, "-[0-9]{4}-" )
   yyyy <- gsub( "-", "", yyyy )
   return( yyyy )
 }
 
+
+get_month <- function( paths ) {
+  mm <- stringr::str_extract( paths, "-[0-9]{2}-" )
+  mm <- gsub( "-", "", mm )
+  return( mm )
+}
 
 
 
