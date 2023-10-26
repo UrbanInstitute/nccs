@@ -1,5 +1,5 @@
 ---
-title: "NCCS CORE Data Catalog"
+title: "NCCS 'Core' Data Catalog"
 format: html
 editor: visual
 execute: 
@@ -67,30 +67,12 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
 ```{r}
 #| echo: false
 #| output: asis
-
  
-paths <- get_core_paths( paths=d$Key, 
-                         tscope="CHARITIES", 
-                         fscope="PZ" )
-download_urls  <- make_s3_urls( paths )
-archive_urls <- make_archive_urls(
-  paths, 
-  base_url = nccs_legacy_base_url
-)
-
-BUTTONS  <- make_download_buttons( download_urls )
-BUTTONS2 <- make_profile_buttons( archive_urls )
-TSCOPE   <- get_core_tscope( paths )
-FSCOPE   <- get_core_fscope( paths )
-YEAR     <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS,
-    BUTTONS2,
-    YEAR=YEAR,
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE )
+catalog <- construct_catalog(series = "core",
+                              paths = d$Key,
+                              tscope = "CHARITIES",
+                              fscope = "PZ",
+                              np_type = "501C3-CHARITIES")
 ```
 
 ```{r}
@@ -98,10 +80,11 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c( "", "",
-                           "Year",
-                           "Nonprofit Type",
-                           "Form Scope" ) ) %>%
+                col.names = c("", 
+                              "",
+                              "Year",
+                              "Nonprofit Type",
+                              "Form Scope" ) ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -116,28 +99,11 @@ catalog %>%
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, 
-                         tscope="CHARITIES", 
-                         fscope="PC" )
-download_urls  <- make_s3_urls( paths )
-archive_urls <- make_archive_urls(
-  paths, 
-  base_url = nccs_legacy_base_url
-)
-
-BUTTONS  <- make_download_buttons( download_urls )
-BUTTONS2 <- make_profile_buttons( archive_urls )
-TSCOPE   <- get_core_tscope( paths )
-FSCOPE   <- get_core_fscope( paths )
-YEAR     <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS,
-    BUTTONS2,
-    YEAR=YEAR,
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE )
+catalog <- construct_catalog(series = "core",
+                              paths = d$Key,
+                              tscope = "CHARITIES",
+                              fscope = "PC",
+                              np_type = "501C3-CHARITIES")
 ```
 
 ```{r}
@@ -145,10 +111,11 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c( "", "",
-                           "Year",
-                           "Nonprofit Type",
-                           "Form Scope" ) ) %>%
+                col.names = c("",
+                              "",
+                              "Nonprofit Type",
+                              "Form Scope",
+                              "Year") ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -163,28 +130,11 @@ catalog %>%
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, 
-                         tscope="NONPROFIT", 
-                         fscope="PZ" )
-download_urls  <- make_s3_urls( paths )
-archive_urls <- make_archive_urls(
-  paths, 
-  base_url = nccs_legacy_base_url
-)
-
-BUTTONS  <- make_download_buttons( download_urls )
-BUTTONS2 <- make_profile_buttons( archive_urls )
-TSCOPE   <- get_core_tscope( paths )
-FSCOPE   <- get_core_fscope( paths )
-YEAR     <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS,
-    BUTTONS2,
-    YEAR=YEAR,
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE )
+catalog <- construct_catalog(series = "core",
+                              paths = d$Key,
+                              tscope = "NONPROFIT",
+                              fscope = "PZ",
+                              np_type = "501CE-NONPROFIT")
 ```
 
 ```{r}
@@ -192,10 +142,11 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c( "", "",
-                           "Year",
-                           "Nonprofit Type",
-                           "Form Scope" ) ) %>%
+                col.names = c("",
+                              "",
+                              "Nonprofit Type",
+                              "Form Scope",
+                              "Year") ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -210,28 +161,11 @@ catalog %>%
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, 
-                         tscope="NONPROFIT", 
-                         fscope="PC" )
-download_urls  <- make_s3_urls( paths )
-archive_urls <- make_archive_urls(
-  paths, 
-  base_url = nccs_legacy_base_url
-)
-
-BUTTONS  <- make_download_buttons( download_urls )
-BUTTONS2 <- make_profile_buttons( archive_urls )
-TSCOPE   <- get_core_tscope( paths )
-FSCOPE   <- get_core_fscope( paths )
-YEAR     <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS,
-    BUTTONS2,
-    YEAR=YEAR,
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE=FSCOPE )
+catalog <- construct_catalog(series = "core",
+                              paths = d$Key,
+                              tscope = "NONPROFIT",
+                              fscope = "PC",
+                              np_type = "501CE-NONPROFIT")
 
 ```
 
@@ -240,10 +174,11 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c( "", "",
-                           "Year",
-                           "Nonprofit Type",
-                           "Form Scope" ) ) %>%
+                col.names = c("",
+                              "",
+                              "Nonprofit Type",
+                              "Form Scope",
+                              "Year") ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -258,28 +193,11 @@ catalog %>%
 ```{r}
 #| echo: false
 
-paths <- get_core_paths( paths=d$Key, 
-                         tscope="PRIVFOUND", 
-                         fscope="PF" )
-download_urls  <- make_s3_urls( paths )
-archive_urls <- make_archive_urls(
-  paths, 
-  base_url = nccs_legacy_base_url
-)
-
-BUTTONS  <- make_download_buttons( download_urls )
-BUTTONS2 <- make_profile_buttons( archive_urls )
-TSCOPE   <- get_core_tscope( paths )
-FSCOPE   <- get_core_fscope( paths )
-YEAR     <- get_core_year( paths )
-
-catalog <- 
-  data.frame( 
-    BUTTONS,
-    BUTTONS2,
-    YEAR=YEAR,
-    NP_TYPE=TSCOPE, 
-    FORM_SCOPE="PF" )
+catalog <- construct_catalog(series = "core",
+                              paths = d$Key,
+                              tscope = "PRIVFOUND",
+                              fscope = "PF",
+                              np_type = "501C3-PRIVFOUND")
 
 ```
 
@@ -288,10 +206,11 @@ catalog <-
 
 catalog %>%
   knitr::kable( escape=FALSE,
-                col.names = c( "", "",
-                           "Year",
-                           "Nonprofit Type",
-                           "Form Scope" ) ) %>%
+                col.names = c("",
+                              "",
+                              "Nonprofit Type",
+                              "Form Scope",
+                              "Year") ) %>%
   kableExtra::kable_styling()
 ```
 
