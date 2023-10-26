@@ -7,7 +7,7 @@ categories:
   - financial-trends
   - nonprofits
 featured: false
-primaryCtaUrl: "../../catalogs/catalog-core.html"
+primaryCtaUrl: "../../catalogs/catalog-990_metadata.html"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
   - text: "Data Dictionary"
