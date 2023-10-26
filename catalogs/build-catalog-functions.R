@@ -1,5 +1,56 @@
 # Script with helper functions to construct catalog pages
 
+#' @title Construct catalog data frame for rendering in catalog page
+#' 
+#' @description construct_catalog automates the workflow for creating the data.frame
+#' object used to build catalog tables.
+#' 
+#' @param series character scalar. Name of NCCS data series. Accepted values
+#' are "core", "bmf".
+#' @param paths character vector. Vector of object keys from S3 bucket.
+#' @param tscope character scalar. Type of tax exemption. Accepted values are
+#'               "NONPROFIT" ( All other 501c type organizations besides 501c3), 
+#'               "CHARITIES" (501c3 nonprofit organizations), 
+#'               "PRIVFOUND" (501c3 private foundations). 
+#' @param fscope character scalar. Form type. Accepted values are:
+#'               "PZ": 990 + 990EZ filers
+#'               "PC": 990 filers only
+#'               "PF": 990PF private foundations
+#' @param np_type character scalar. Name of nonprofit type in table column for
+#' Nonprofit Type. Format: "501C{3/E}-{CHARITIES/NONPROFIT/PRIVFOUND}
+#' 
+#' @return data.frame. Catalog table
+construct_catalog <- function(series,
+                              paths,
+                              tscope,
+                              fscope,
+                              np_type){
+  
+  paths <- get_file_paths(series = series,
+                          paths = paths,
+                          tscope = tscope,
+                          fscope = fscope)
+  
+  download_urls <- make_s3_urls(paths = paths)
+  profile_urls <- make_archive_urls(series = series, paths = paths)
+  
+  download_buttons <- make_buttons(urls = download_urls, button_name = "download")
+  profile_buttons <- make_buttons(urls = profile_urls, button_name = "profile")
+
+  year <- get_year(paths)
+  
+  catalog <- 
+    data.frame( 
+      download_buttons,
+      profile_buttons,
+      YEAR=year,
+      NP_TYPE = np_type, 
+      FORM_SCOPE = fscope )
+  
+  return(catalog)
+  
+}
+
 
 #' @title Retrieve paths to files in S3 objects
 #' 
