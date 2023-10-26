@@ -200,13 +200,6 @@ get_rdb_cardinality <- function( paths ) {
   card <- ifelse( ttt == "00", "1:1", "1:M" )
 }
 
-
-make_buttons <- function( urls ) {
-  buttons <- 
-    paste0( "<a href=", urls, " class='button'> DOWNLOAD </a>" )
-  return( buttons ) 
-}
-
 ############
 ############   SOI-MICRO
 ############
