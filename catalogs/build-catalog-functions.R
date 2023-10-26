@@ -33,7 +33,7 @@ get_file_paths <- function(series,
   } else if (series == "core"){
     expr <- paste0( "CORE-[0-9]{4}-501C[0-9A-Z]-", tscope )
     paths <- grep( expr, paths, value=T )
-    paths <- grep( paste0( "-", fscope, "\\b"), matches, value=T )
+    paths <- grep( paste0( "-", fscope, "\\b"), paths, value=T )
   }
   
  return(paths)
