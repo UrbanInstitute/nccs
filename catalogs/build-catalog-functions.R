@@ -82,7 +82,7 @@ get_file_paths <- function(series,
                            paths,
                            tscope = NULL,
                            fscope = NULL){
-  if (series == "bmf"){
+  if (series == "bmf") {
     expr <- "BMF-.*-PX" 
     paths <- grep(expr, paths, value = TRUE)
   } else if (series == "core"){
@@ -92,6 +92,10 @@ get_file_paths <- function(series,
   } else if (series == "misc"){
     expr <- "SUPPLEMENTAL-CORE.*"
     paths <- grep(expr, paths, value = TRUE)
+  } else if (series == "soi"){
+    expr <- paste0( "SOI-MICRODATA-[0-9]{4}-501C[0-9A-Z]-", tscope )
+    paths <- grep( expr, paths, value=T )
+    paths <- grep( paste0( "-", fscope, "\\b"), paths, value=T )
   }
   
  return(paths)
@@ -133,7 +137,9 @@ make_archive_urls <- function(series,
   
   expr_dic = list("core" = "legacy/core/",
                   "bmf" = "legacy/bmf/",
-                  "misc" = "legacy/misc/")
+                  "misc" = "legacy/misc/",
+                  "soi" = "legacy/soi-micro/[0-9]{4}/")
+  
   matches <- gsub(expr_dic[[series]], "", paths)
   matches <- gsub("\\.csv", "", matches)
   
