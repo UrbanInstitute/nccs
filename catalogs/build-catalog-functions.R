@@ -11,20 +11,23 @@
 #' @param tscope character scalar. Type of tax exemption. Accepted values are
 #'               "NONPROFIT" ( All other 501c type organizations besides 501c3), 
 #'               "CHARITIES" (501c3 nonprofit organizations), 
-#'               "PRIVFOUND" (501c3 private foundations). 
+#'               "PRIVFOUND" (501c3 private foundations).
+#'               Default == NULL 
 #' @param fscope character scalar. Form type. Accepted values are:
 #'               "PZ": 990 + 990EZ filers
 #'               "PC": 990 filers only
 #'               "PF": 990PF private foundations
+#'               Default == NULL
 #' @param np_type character scalar. Name of nonprofit type in table column for
-#' Nonprofit Type. Format: "501C{3/E}-{CHARITIES/NONPROFIT/PRIVFOUND}
+#'                Nonprofit Type. Format: "501C{3/E}-{CHARITIES/NONPROFIT/PRIVFOUND}. 
+#'                Default == NULL
 #' 
 #' @return data.frame. Catalog table
 construct_catalog <- function(series,
                               paths,
-                              tscope,
-                              fscope,
-                              np_type){
+                              tscope = NULL,
+                              fscope = NULL,
+                              np_type = NULL){
   
   paths <- get_file_paths(series = series,
                           paths = paths,
@@ -36,16 +39,17 @@ construct_catalog <- function(series,
   
   download_buttons <- make_buttons(urls = download_urls, button_name = "download")
   profile_buttons <- make_buttons(urls = profile_urls, button_name = "profile")
-
-  year <- get_year(paths)
   
-  catalog <- 
-    data.frame( 
-      download_buttons,
-      profile_buttons,
-      YEAR=year,
-      NP_TYPE = np_type, 
-      FORM_SCOPE = fscope )
+  catalog <- data.frame(download_buttons,
+                        profile_buttons)
+  
+  
+  if (series != "misc"){
+    year <- get_year(paths)
+    catalog$YEAR <- year
+    catalog$NP_TYPE <- np_type
+    catalog$FORM_SCOPE <- fscope
+  }
   
   return(catalog)
   
@@ -59,7 +63,7 @@ construct_catalog <- function(series,
 #' first be constructed
 #' 
 #' @param series character scalar. Name of NCCS data series. Accepted values
-#' are "core", "bmf".
+#' are "core", "bmf", "misc".
 #' @param paths character vector. Vector of object keys from S3 bucket.
 #' @param tscope character scalar. Type of tax exemption. Accepted values are
 #'               "NONPROFIT" ( All other 501c type organizations besides 501c3), 
@@ -83,8 +87,11 @@ get_file_paths <- function(series,
     paths <- grep(expr, paths, value = TRUE)
   } else if (series == "core"){
     expr <- paste0( "CORE-[0-9]{4}-501C[0-9A-Z]-", tscope )
-    paths <- grep( expr, paths, value=T )
+    paths <- grep( expr, paths, value = TRUE )
     paths <- grep( paste0( "-", fscope, "\\b"), paths, value=T )
+  } else if (series == "misc"){
+    expr <- "SUPPLEMENTAL-CORE.*"
+    paths <- grep(expr, paths, value = TRUE)
   }
   
  return(paths)
@@ -113,7 +120,7 @@ make_s3_urls <- function( paths ) {
 #' the datasets belonging to an S3 object with a key specified in paths.
 #' 
 #' @param series character scalar. Name of NCCS data series. Accepted values
-#' are "core", "bmf".
+#' are "core", "bmf", "misc".
 #' @param paths character vector. Vector of object keys from S3 bucket.
 #' 
 #' @return character vector. Links to archived web pages for object keys in paths
@@ -125,7 +132,8 @@ make_archive_urls <- function(series,
                      series)
   
   expr_dic = list("core" = "legacy/core/",
-                  "bmf" = "legacy/bmf/")
+                  "bmf" = "legacy/bmf/",
+                  "misc" = "legacy/misc/")
   matches <- gsub(expr_dic[[series]], "", paths)
   matches <- gsub("\\.csv", "", matches)
   
