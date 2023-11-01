@@ -24,8 +24,9 @@ links:
       icon: github
     - text: Package Reference
       href: https://urbaninstitute.github.io/nccsdata/reference/index.html
-sidebar:
-  title: "nccsdata R package"
+website:
+  sidebar:
+    title: "nccsdata R package"
 ---
 
 ### nccsdata R Package
