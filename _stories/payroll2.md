@@ -63,7 +63,7 @@ we arrive at this estimate.
 
 <br> 
 
-<a class="btn -tertiary " href="https://urbaninstitute.github.io/nccs-recipes/vignettes/payroll.html" target="_blank">
+<a class="btn -tertiary " href="https://urbaninstitute.github.io/nccs-recipes/vignettes/payroll/payroll.html" target="_blank">
 DATA VIGNETTE </a>
 
 <br>
