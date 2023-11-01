@@ -1,183 +1,34 @@
 ---
-title: nccsdata Package Demo
+title: nccsdata R Package
 date: 2023-08-28
-description: This story demos three functions from the nccsdata package.
-featured: false
+description: nccsdata provides tools to read, filter and append metadata to publicly available NCCS Core and BMF data sets.
 format: gfm
+featured: false
 page-layout: full
 featuredOrder: 1
 type: methods
 categories:
   - R packages
 author:
-  - id: hm
-  - id: jdl
+  - id: thiya
 citation: 
   container-title: National Center for Charitable Statistics
   volume: 1
   issue: 1
   doi: 10.5555/12345678
+primaryLinks:
+  - text: "Package Website"
+    href: "https://urbaninstitute.github.io/nccsdata/index.html"
 links:
-  - header: Replication Files
+  - header: Package Files
     links:
-    - text: Data
-      href: #
-      icon: download
-    - text: Script
-      href: #
-      icon: download
-  - header: Publications
-    links:
-    - text: Report
-      href: #
-      icon: download
+    - text: Github Repository
+      href: https://github.com/UrbanInstitute/nccsdata
+      icon: github
+    - text: Package Reference
+      href: https://urbaninstitute.github.io/nccsdata/reference/index.html
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library("nccsdata")
-library("knitr")
-library("dplyr")
+### nccsdata R Package
 
-tinybmf <- tinybmf
-tract_dat <- tract_dat
-block_dat <- block_dat
-cbsa_df <- cbsa_df
-ntee_df <- ntee_df
-```
-
-## Package Demo: nccsdata
-
-This demo covers three functions the analyst can use from the nccsdata package; ntee_preview(), preview_meta(), and get_data().
-
-The first function is ntee_preview(). The analyst can use this function to retrieve the exact codes and descriptions associated with various Industry Groups, Industry, Division, Subdivision and Organization type. In this first sample, the analyst looks for information on all art and education nonprofits with a "A" and "B" industry label. The function returns a dataset containing the ntee codes associated with these nonprofits and their associated descriptions.
-
-```{r}
-#| column: page
-
-dt <- nccsdata::ntee_preview(ntee.group = c("ART", "EDU"),
-                             ntee.code = c("Axx", "B"),
-                             ntee.orgtype = "all")
-
-head(dt) %>%
-  knitr::kable()
-```
-
-
-The analyst can then save the outputs to a .csv file or use them in downstream analysis.
-
-In this second example, the analyst wants to view ntee information for healthcare nonprofits, specifically those involved in general health care, and mental health and crisis intervention.
-
-```{r}
-#| column: page
-
-output <- nccsdata::ntee_preview(ntee.group = c("HEL"),
-                       ntee.code = c("E", "F"),
-                       ntee.orgtype = "all",
-                       visualize = FALSE)
-head(output) %>%
-  knitr::kable()
-```
-
-If the analyst wants an interactive widget to use for browsing the dataset, they can set the argument visualize = TRUE.
-
-The second function included in the package is preview_meta(). This function visualizes geographic metadata retrieved from US census datasets that the analyst can use to filter nonprofits by geography. In this first example, the analyst wants to preview information associated with cbsa codes from New York and Maryland.
-
-```{r}
-#| column: page
-
-output <- nccsdata::preview_meta("cbsa",
-                                 visual = FALSE,
-                                 within = c("NY", "MD"))
-head(output) %>%
-  knitr::kable()
-```
-
-The output allows the analyst to understand which cbsa codes and metropolitan area names are present within
-these states.
-
-In the second example, the analyst previews geographic metadata from the census tract dataset from Chico, California.
-
-```{r}
-#| column: page
-
-output <- nccsdata::preview_meta("tract",
-                                 visual = FALSE,
-                                 within = c("Chico, CA"))
-head(output) %>%
-  knitr::kable()
-```
-
-The analyst can now view which county names are associated with Chico and can use the information for downstream analysis.
-
-In this example, the analyst previews data from the census block dataset for Acadia Parish and Cook County. Note that the analyst does not provide the state associated with these territories. Rather, the function returns all rows from the block dataset where either Acadia Parish or Cook County is mentioned.
-
-```{r}
-#| column: page
-
-output <- nccsdata::preview_meta("block",
-                                 visual = FALSE,
-                                 within = c("Acadia Parish", "Cook County"))
-head(output) %>%
-  knitr::kable()
-```
-
-The third function is get_data(). With this function the analyst can combine ntee data, census data and data from the business master files to create custom datasets. In this example the analyst retrieves information from all art and education nonprofits in New York, and links it with census tract information.
-
-```{r}
-#| column: page
-
-dt <- nccsdata::get_data(ntee.level1 = c("ART", "EDU"),
-                   ntee.level2 = "all",
-                   geo.state = "NY",
-                   geo.level = "tract")
-head(dt) %>%
-  knitr::kable()
-```
-
-The resultant dataset filters and combines information on non-profits, their respective organization types, industry groups and divisions, and census data including the names of the counties they operate in and the relevant cbsa codes. The analyst can save this dataset for further analysis.
-
-In this example, the analyst retrieves information on all Healthcare and Education nonprofits with a "B", "E" and "F" Industry label from California and Maryland, and links them together with census block data.
-
-```{r}
-#| column: page
-
-dt <- nccsdata::get_data(ntee.level1 = c("HEL", "EDU"),
-                   ntee.level2 = c("B", "E", "F"),
-                   geo.state = c("CA", "MD"),
-                   geo.level = "block")
-
-head(dt) %>%
-  knitr::kable()
-```
-
-In addition to the 3 main functions covered there are 2 additional helper functions that an analyst may find useful. The first is parse_ntee() which returns the ntee codes for nonprofits that fall under analyst specifications. In this example, the analyst retrieves the ntee codes for non profits belonging to the Public Benefit and Relgious Industry Groups.
-
-```{r}
-#| column: page
-
-nccsdata::parse_ntee(ntee.group = c("PSB", "REL"),
-                     ntee.code = "all",
-                     ntee.orgtype = "all")
-```
-
-The analyst can decide to narrow it down to only nonprofits that belong to the Civil Rights, Social Action & Advocacy label ("R").
-
-```{r}
-#| column: page
-
-nccsdata::parse_ntee(ntee.group = c("PSB", "REL"),
-                     ntee.code = "R",
-                     ntee.orgtype = "all")
-```
-
-In this output there were no ntee codes returned beginning with "REL" because no religious nonprofits belong to the Civil Rights, Social Action & Advocacy industry label.
-
-The final helper function is parse_geo() that returns FIPS codes from the census block or tract datasets that meet the analyst's specifications. In this example the analyst gets all FIPS codes from the tract dataset from the state of Wyoming.
-
-```{r}
-#| column: page
-
-nccsdata::parse_geo(census.level = "TRACT",
-                    state.census.name = "Wyoming")
-```
+Test
