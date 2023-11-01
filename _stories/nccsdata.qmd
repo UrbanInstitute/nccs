@@ -16,11 +16,6 @@ citation:
   volume: 1
   issue: 1
   doi: 10.5555/12345678
-primaryCtaUrl: "../../catalogs/catalog-core.html"
-primaryCtaCaption: "File size: 246kb"
-primaryLinks:
-  - text: "Package Website"
-    href: "https://urbaninstitute.github.io/nccsdata/index.html"
 links:
   - header: Package Files
     links:
@@ -29,6 +24,8 @@ links:
       icon: github
     - text: Package Reference
       href: https://urbaninstitute.github.io/nccsdata/reference/index.html
+sidebar:
+  header: page.title
 ---
 
 ### nccsdata R Package
