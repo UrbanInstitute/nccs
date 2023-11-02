@@ -27,37 +27,141 @@ links:
       icon: link
 ---
 
-## Overview
+## Introduction
 
-The`get_data()` function from
-[`nccsdata`](https://urbaninstitute.github.io/nccsdata/) downloads NCCS
-legacy data sets hosted on publicly accessible S3 buckets and processes
-them for the user.
+[`nccsdata`](https://urbaninstitute.github.io/nccsdata/) provides tools
+to read, filter and append metadata to publicly available NCCS Core and
+BMF data sets. It’s features include:
 
-In this story, we provide several examples of how this function can be
-used to retrieve this legacy data.
+1.  Downloading Legacy Core and BMF Datasets from the NCCS Archive
+    across multiple years to construct panel datasets for research
+2.  Providing information on the [National Taxonomy of Exempt Entities
+    (NTEE)](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md)
+    used by the IRS and NCCS to classify nonprofits
+3.  Providing information on U.S. Census units that can be used to
+    filter downloaded data by geography
+4.  Constructing summary tables for downloaded data
+
+In this series of data stories we’ll go through each of these features,
+starting with the first. Parts 2 to 4 cover NTEE codes, census data and
+summary tables respectively.
+
+## Installation
+
+You can install the development version of `nccsdata` directly from its
+[GitHub repository](https://github.com/UrbanInstitute/nccsdata) with:
+
+``` r
+install.packages("devtools")
+devtools::install_github("UrbanInstitute/nccsdata")
+```
+
+Next, load in the package with:
 
 ``` r
 library(nccsdata)
 ```
 
-## Downloading Core Data
+## Downloading Data
 
-We can define the type of data, range of data (in years), organization
-type, and form type using the arguments `dsname`, `time`,
-`scope.orgtype`, and `scope.formtype` respectively.
+[`nccsdata`](https://urbaninstitute.github.io/nccsdata/) can be used to
+download legacy core data from 1989 to 2019 for charities, nonprofits,
+or private foundations that file their respective required IRS forms
+such as Form 990, 990EZs, or both.
+
+This data can be filtered based on the type of organization, the type of
+IRS forms files,
+[NTEE](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md)
+codes and geographic units from the US census.
 
 ``` r
-core <- get_data(dsname = "core",
-                 time = "2015",
-                 scope.orgtype = "NONPROFIT",
-                 scope.formtype = "PZ")
+core_2005_nonprofit_pz <- get_data(dsname = "core",
+                                   time = "2005",
+                                   scope.orgtype = "NONPROFIT",
+                                   scope.formtype = "PZ")
+#> Requested files have a total size of 82.6 MB. Proceed
+#>                       with download? Enter Y/N (Yes/no/cancel)
+
+
+tibble::as_tibble(core_2005_nonprofit_pz)
+#> # A tibble: 157,211 × 150
+#>    NTEECC new.code   type.org broad.category major.group univ  hosp  two.digit
+#>    <chr>  <chr>      <chr>    <chr>          <chr>       <lgl> <lgl> <chr>    
+#>  1 J40    RG-HMS-J40 RG       HMS            J           FALSE FALSE 40       
+#>  2 W30    RG-PSB-W30 RG       PSB            W           FALSE FALSE 30       
+#>  3 W30    RG-PSB-W30 RG       PSB            W           FALSE FALSE 30       
+#>  4 W30    RG-PSB-W30 RG       PSB            W           FALSE FALSE 30       
+#>  5 W30    RG-PSB-W30 RG       PSB            W           FALSE FALSE 30       
+#>  6 Y42    RG-MMB-Y42 RG       MMB            Y           FALSE FALSE 42       
+#>  7 S41    RG-PSB-S41 RG       PSB            S           FALSE FALSE 41       
+#>  8 N60    RG-HMS-N60 RG       HMS            N           FALSE FALSE 60       
+#>  9 S41    RG-PSB-S41 RG       PSB            S           FALSE FALSE 41       
+#> 10 S41    RG-PSB-S41 RG       PSB            S           FALSE FALSE 41       
+#> # ℹ 157,201 more rows
+#> # ℹ 142 more variables: further.category <int>, division.subdivision <chr>,
+#> #   broad.category.description <chr>, major.group.description <chr>,
+#> #   code.name <chr>, division.subdivision.description <chr>, keywords <chr>,
+#> #   further.category.desciption <chr>, ntee2.code <chr>, EIN <chr>,
+#> #   TAXPER <int>, STYEAR <int>, CONT <int>, DUES <int>, SECUR <int64>,
+#> #   SALESEXP <int64>, INVINC <int>, SOLICIT <int>, GOODS <int>, GRPROF <int>, …
 ```
 
-The function downloads NCCS core data from the year 2015 for all
-non-profits that file both full 990s and 990EZs. Other possible argument
-values are:
+``` r
+core_2005_artnonprofits_newyork <- get_data(dsname = "core",
+                                            time = "2016",
+                                            scope.orgtype = "NONPROFIT",
+                                            scope.formtype = "PZ",
+                                            ntee = "ART",
+                                            geo.state = "NY")
+#> Requested files have a total size of 113.6 MB. Proceed
+#>                       with download? Enter Y/N (Yes/no/cancel)
+tibble::as_tibble(core_2005_artnonprofits_newyork)
+#> # A tibble: 346 × 168
+#>    NTEECC new.code   type.org broad.category major.group univ  hosp  two.digit
+#>    <chr>  <chr>      <chr>    <chr>          <chr>       <lgl> <lgl> <chr>    
+#>  1 A01    AA-ART-A00 AA       ART            A           FALSE FALSE 1        
+#>  2 A01    AA-ART-A00 AA       ART            A           FALSE FALSE 1        
+#>  3 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#>  4 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#>  5 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#>  6 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#>  7 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#>  8 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#>  9 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#> 10 A03    PA-ART-A00 PA       ART            A           FALSE FALSE 3        
+#> # ℹ 336 more rows
+#> # ℹ 160 more variables: further.category <int>, division.subdivision <chr>,
+#> #   broad.category.description <chr>, major.group.description <chr>,
+#> #   code.name <chr>, division.subdivision.description <chr>, keywords <chr>,
+#> #   further.category.desciption <chr>, ntee2.code <chr>, EIN <int>,
+#> #   ACCPER <int>, ACTIV1 <dbl>, ACTIV2 <dbl>, ACTIV3 <dbl>, ADDRESS <chr>,
+#> #   AFCD <dbl>, ASS_BOY <dbl>, ASS_EOY <dbl>, BOND_BOY <dbl>, BOND_EOY <dbl>, …
+```
 
+Data is downloaded with the `get_data()` function. In this story, we
+provide several examples of how this function can be used to retrieve
+this legacy data.
+
+## Downloading Core Data
+
+With `get_data()` we can define the type of data, range of data (in
+years), organization type, and form type for the data we wish to
+download using the arguments `dsname`, `time`, `scope.orgtype`, and
+`scope.formtype` respectively.
+
+The acceptable values for these arguments are:
+
+- `dsname`: The type of data to download
+  - `core`: NCCS Legacy Core
+    [data](https://urbaninstitute.github.io/nccs/datasets/core/)
+  - `bmf`: NCCS Business Master File (BMF)
+    [data](https://urbaninstitute.github.io/nccs/datasets/bmf/)
+- `time`: Any year from 1989-2019 where data is available. Full catalog
+  can be found
+  - [here](https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html)
+    for core data
+  - [here](https://urbaninstitute.github.io/nccs/catalogs/catalog-bmf.html)
+    for bmf data
 - `scope.orgtype`
   - `CHARITIES`: All charities
   - `NONPROFIT`: All nonprofits
@@ -68,13 +172,27 @@ values are:
   - `PZ`: Nonprofits that file both full Form 990s and 990EZs
   - `PF`: Private foundation filings
 
-The data is available from the years 1989 to 2019. `get_data()` also
-provides prompts with the size of the requested data downloads.
+For example, the below code snippet downloads NCCS core data from the
+year 2015 for all non-profits that file both full 990s and 990EZs.
 
-## Filtering data using NTEE codes
+``` r
+core <- get_data(dsname = "core",
+                 time = "2015",
+                 scope.orgtype = "NONPROFIT",
+                 scope.formtype = "PZ")
+```
 
-We can also pull only a subset of the data based on NTEE classifications
-using the various `ntee` associated arguments in `get_data()`.
+Whenever `get_data()` is used, users will receive a prompt that provides
+the download size of the requested data, and requests permission to
+perform the download. This allows the user to preemptively cancel
+downloads that are too large for their computers or internet connections
+to handle.
+
+## Filtering data downloads using NTEE codes
+
+`get_data()` can also pull only a subset of the data based on NTEE
+classifications using its various `ntee` associated arguments as shown
+in the example below.
 
 ``` r
 core_art <- get_data(dsname = "core",
@@ -88,12 +206,23 @@ In the above code snippet, we pull the same dataset but only select rows
 belonging to nonprofits involved in the Arts, Culture and Humanities. A
 full description of NTEE codes is available
 [here](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md).
-These descriptions can also be accessed using `ntee_preview()`.
+
+The available `ntee` arguments are:
+
+- `ntee`: Any valid full or partial NTEE code
+- `ntee.group`: Level 1 of a full NTEE code
+- `ntee.code`: Levels 2-4 of a full NTEE code
+- `ntee.orgtype`: Level 5 of a full NTEE code
+
+Part 2 of this series of data stories covers NTEE codes, their structure
+and additional NTEE associated functions in greater detail.
 
 ## Filtering Data By Geography
 
-We can subset the data by geographic units with the `geo` arguments from
-`get_data()`.
+We can filter the data by US census units through `get_data()`s `geo`
+arguments. The code snippet below returns rows belonging to Nonprofits
+from New York City, NY using `geo.state` and `geo.city` for state and
+city level filtering respectively.
 
 ``` r
 core_NYC <- get_data(dsname = "core",
@@ -104,9 +233,8 @@ core_NYC <- get_data(dsname = "core",
                      geo.city = "New York City")
 ```
 
-The code above returns rows belonging to Nonprofits from New York City,
-NY. Additional arguments `geo` arguments can be used to subset the data
-by county (`geo.county`) and region (`geo.region`).
+Additional `geo` arguments can be used to subset the data by county
+(`geo.county`) and region (`geo.region`).
 
 `geo` arguments must be used in conjunction with one another:
 
@@ -115,16 +243,22 @@ by county (`geo.county`) and region (`geo.region`).
   CA”
 
 `get_data()` layers these filters to subset the data by the desired
-geographic unit. Using only 1 argument will return all geographic units
-that fall within it (e.g. `geo.region` = “south” returns all rows from
-the southern states or `geo.city` = “Lebanon” returns all rows belonging
-to cities with the name ‘Lebanon’).
+geographic unit. Using only 1 argument will return all rows that fall
+within the requested geographic region (e.g. `geo.region` = “south”
+returns all rows from the southern states or `geo.city` = “Lebanon”
+returns all rows belonging to cities with the name ‘Lebanon’).
+
+Further information on these geographic filters and additonal
+geography-related functions is provided in Part 3 of this data story.
 
 ## Appending BMF Data to Core Data
 
 `get_data()` automatically appends NTEE metadata to the requested data
-set. Appending metadata from the IRS Business Master File (BMF) requires
-the downloading of an additional download of 185 MB and can be toggled
+set and can also be configured to append BMF data to any downloaded core
+data set.
+
+Appending metadata from the IRS Business Master File (BMF) requires the
+downloading of an additional download of 185 MB and can be toggled
 on/off with `append_bmf`.
 
 ``` r
@@ -135,15 +269,22 @@ corebmf <- get_data(dsname = "core",
                     append.bmf = TRUE)
 ```
 
-BMF metadata is now appended to the downloaded Core data set.
-
 ## Downloading BMF Data
 
 The `geo` and `ntee` arguments mentioned above can also be used to
-download and filter BMF data.
+download and filter BMF data. The below code snippet returns the subset
+of BMF for California-based nonprofits from the Arts, Culture, and
+Humanities group.
 
 ``` r
 bmf <- get_data(dsname = "bmf",
                 ntee = c("ART"),
                 geo.state = c("CA"))
 ```
+
+## Conclusion
+
+With the `get_data()` function, researchers familiar with R can easily
+access NCCS data for use in their work. Further details about the
+package are available on the official `nccsdata` package
+[website](https://urbaninstitute.github.io/nccsdata/)
