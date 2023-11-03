@@ -1,0 +1,148 @@
+---
+title: "nccsdata Part 3: Geographic Filters"
+date: '`r format(Sys.Date(), "%B %d %Y")`'
+description: "Part 3 of 4 data stories covering the nccsdata R package. This story focuses on working with Census FIPS codes."
+featured: false
+format: gfm
+type: methods
+categories:
+  - R packages
+author:
+  - id: thiya
+citation: 
+  container-title: National Center for Charitable Statistics
+  volume: 1
+  issue: 1
+  doi: 10.5555/12345678
+links:
+  - header: Data Stories in this series
+    links:
+    - text: "Part 1: Downloading NCCS Legacy Data"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
+    - icon: article
+    - text: "Part 2: NTEE Codes"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+    - icon: article
+    - text: "Part 3: Geographic Filters"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
+    - icon: article
+    - text: "Part 4: Summarising Data"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
+    - icon: article
+  - header: "Related Datasets"
+    links:
+    - text: "Census Crosswalks"  
+    - href: https://urbaninstitute.github.io/nccs/datasets/census/
+    - icon: article
+  - header: Package Links
+    links:
+    - text: Github Repository
+      href: https://github.com/UrbanInstitute/nccsdata
+      icon: github
+    - text: Package Reference
+      href: https://urbaninstitute.github.io/nccsdata/reference/index.html
+      icon: link
+    - text: Relevant Vignette
+      href: https://urbaninstitute.github.io/nccsdata/articles/geo.html
+      icon: article
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.align = "center"
+)
+library(nccsdata)
+library(dplyr)
+```
+
+## Introduction
+
+In part 3 of this 4-part series on the [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we cover how to filter downloaded NCCS data based on geography.
+
+Legacy NCCS data consists of several geographic variables such as:
+
+ * `STATE`: 2 letter state abbreviation (all caps)
+ * `CITY`: Name of the city associated with the address provided in `ADDRESS` (all caps)
+ * `FIPS`: [State + County FIPS codes](https://transition.fcc.gov/oet/info/maps/census/fips/fips.txt) (CBSA) as used by the US Census (5 digit integer)
+ 
+The last variable `FIPS` can be used to match observations based on Census units. This preserves the external validity of geographic units by operationalizing them according to U.S. Census delineations.
+
+In US Census data,`FIPS` are also tied to Core Based Statistical Areas (CBSAs) that consist mutually exclusive Metropolitan, (metros with populations above 50,000) and Micropolitan Statistical Areas (populations above 10,000 and below 50,000). Further details and examples are provided on the Census Crosswalks [page](https://urbaninstitute.github.io/nccs/datasets/census/) of the Urban NCCS Site. Thus, geographic filtering with US Census units requires crosswalking units across multiple levels, such as county and CBSA.
+
+In this story, we will first explore these CBSA FIPS codes with the `geo_preview()` function before demonstrating how these CBSA FIPS can be linked to county FIPS codes via `map_countyfips()`.
+
+## Exploring CBSA FIPS Codes
+
+The `geo_preview()` function allows users to preview and retrieve CBSA FIPS codes and/or their associated metadata from a specific state. In the following code snippet, `geo_preview()` returns the names of all CBSAs and their associated FIPS codes. The `within` argument takes the desired state, in abbreviated form, as input while the `geo` argument returns the specified columns.
+
+```{r}
+geo_preview( geo=c("cbsa","cbsafips"), within="FL", type="metro" )
+```
+
+The `geo` argument can also be used to return county metadata, as demonstrated below.
+
+```{r}
+geo_preview(geo = c("cbsa", "county", "cbsafips"), within = "FL", type = "metro")
+```
+
+## Metropolitan and Micropolitan Data
+
+Since CBSAs include a combination of [metropolitan or micropolitan statistical areas](https://www.census.gov/programs-surveys/metro-micro/about.html), `geo_preview()` allows the user to select either unit using the `type` argument.
+
+The below code snippet returns the CBSA names and FIPS codes for all metropolitan statistical areas in Wyoming.
+
+```{r}
+geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "micro")
+```
+
+Setting `type` to `micro` returns data for micropolitan statistical areas.
+
+```{r}
+geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "metro")
+```
+
+## Exploring CSA FIPS
+
+In addition to CBSAs, `geo_preview()` can also retrieve metadata for [Combined Statistical Areas](https://en.wikipedia.org/wiki/Combined_statistical_area) (CSAs).
+
+CSAs (populations that form a coherent commercial and commuting zone) are created by identifying adjacent micropolitant and metropolitan statistical areas that constitute a coherent economic region.
+
+The code snippet below returns all CSA names and FIPS codes for metropolitan statistical areas in Virginia.
+
+```{r}
+geo_preview(geo = c("csa","csafips"), 
+            within = "VA", 
+            type = "metro")
+```
+
+## Filtering Legacy Data with County FIPS codes
+
+After retrieving the desired CBSA/CSA FIPS codes, `map_countyfips()` can be used to match these with county FIPS codes present in the legacy data, retrieved with `get_data()`. Downloaded data can then be filtered using these county FIPS codes as shown below.
+
+```{r}
+# Retrive CBSA FIPS from NY
+cbsa_ny <- geo_preview(geo = c("cbsa", "cbsafips"), 
+                       within = "NY")
+
+# Map these to county FIPS codes
+ny_countyfips <- map_countyfips(geo.cbsafips = cbsa_ny$cbsafips)
+
+# Pull core data for the year 2015
+core_2015 <- get_data(dsname = "core",
+                      time = "2015",
+                      scope.orgtype = "NONPROFIT",
+                      scope.formtype = "PZ")
+
+# Filter with NY county FIPS
+core_2015_nyfips <- core_2015 %>% 
+  dplyr::filter(FIPS %in% ny_countyfips)
+
+print(as_tibble(core_2015_nyfips))
+```
+
+## Conclusion
+
+By using FIPS codes, researchers working with NCCS data can ensure their operationalized geographic variables are standardized, resulting in greater external validity and reproducibility. 
+

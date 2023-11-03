@@ -1,7 +1,7 @@
 ---
-title: nccsdata R Package
-date: 2023-08-28
-description: nccsdata provides tools to read, filter and append metadata to publicly available NCCS Core and BMF data sets.
+title: "nccsdata Part 1: Downloading NCCS Legacy Data"
+date: '`r format(Sys.Date(), "%B %d %Y")`'
+description: "Part 1 of 4 data stories on the nccsdata R Package. nccsdata provides tools to read, filter and append metadata to publicly available NCCS Core and BMF data sets."
 format: gfm
 featured: false
 page-layout: full
@@ -17,7 +17,21 @@ citation:
   issue: 1
   doi: 10.5555/12345678
 links:
-  - header: Package Files
+  - header: Data Stories in this series
+    links:
+    - text: "Part 1: Downloading NCCS Legacy Data"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
+    - icon: article
+    - text: "Part 2: NTEE Codes"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+    - icon: article
+    - text: "Part 3: Geographic Filters"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
+    - icon: article
+    - text: "Part 4: Summarising Data"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
+    - icon: article
+  - header: Package Links
     links:
     - text: Github Repository
       href: https://github.com/UrbanInstitute/nccsdata
@@ -25,6 +39,9 @@ links:
     - text: Package Reference
       href: https://urbaninstitute.github.io/nccsdata/reference/index.html
       icon: link
+    - text: Relevant Vignette
+      href: https://urbaninstitute.github.io/nccsdata/articles/data_pull.html
+      icon: article
 ---
 
 ## Introduction
@@ -42,9 +59,11 @@ BMF data sets. It’s features include:
     filter downloaded data by geography
 4.  Constructing summary tables for downloaded data
 
-In this series of data stories we’ll go through each of these features,
-starting with the first. Parts 2 to 4 cover NTEE codes, census data and
-summary tables respectively.
+In part 1 of this 4-part series on the
+[`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we
+introduce the package and describe the process of downloading NCCS
+legacy data with the help of `get_data()`. Parts 2 to 4 cover NTEE
+codes, census data and summary tables respectively.
 
 ## Installation
 

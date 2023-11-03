@@ -1,6 +1,6 @@
 ---
-title: nccsdata R Package Part 2 - NTEE Codes
-date: 2023-11-02
+title: "nccsdata Part 2: NTEE Codes"
+date: '`r format(Sys.Date(), "%B %d %Y")`'
 description: Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes.
 featured: false
 format: gfm
@@ -17,9 +17,18 @@ citation:
 links:
   - header: Data Stories in this series
     links:
-    - text: Part 1 - Introducing nccsdata
+    - text: "Part 1: Downloading NCCS Legacy Data"
     - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
-    - link: article
+    - icon: article
+    - text: "Part 2: NTEE Codes"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+    - icon: article
+    - text: "Part 3: Geographic Filters"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
+    - icon: article
+    - text: "Part 4: Summarising Data"
+    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
+    - icon: article
   - header: Package Files
     links:
     - text: Github Repository
