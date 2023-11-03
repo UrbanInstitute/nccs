@@ -6,6 +6,8 @@ format: gfm
 featured: false
 page-layout: full
 featuredOrder: 1
+primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
+primaryCtaText: Package Website
 type: methods
 categories:
   - R packages
@@ -16,21 +18,19 @@ citation:
   volume: 1
   issue: 1
   doi: 10.5555/12345678
-primaryCtaUrl: "https://urbaninstitute.github.io/nccsdata"
-primaryCtaText: Package Website
 links:
   - header: Data Stories in this series
     links:
-    - text: "Part 1: Downloading Data"
+    - text: Part 1 - Downloading Data
     - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
     - icon: article
-    - text: "Part 2: NTEE Codes"
+    - text: Part 2 - NTEE Codes
     - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
     - icon: article
-    - text: "Part 3: Geographic Filters"
+    - text: Part 3 - Geographic Filters
     - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
     - icon: article
-    - text: "Part 4: Summarising Data"
+    - text: Part 4 - Summarising Data
     - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
     - icon: article
   - header: Package Links
