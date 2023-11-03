@@ -21,18 +21,18 @@ citation:
 links:
   - header: Data Stories in this series
     links:
-    - text: Part 1 - Downloading Data
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
-    - icon: article
-    - text: Part 2 - NTEE Codes
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
-    - icon: article
-    - text: Part 3 - Geographic Filters
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
-    - icon: article
-    - text: Part 4 - Summarising Data
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
-    - icon: article
+    - text: "Part 1: Downloading Data"
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
+      icon: article
+    - text: "Part 2: NTEE Codes"
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+      icon: article
+    - text: "Part 3: Geographic Filters"
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
+      icon: article
+    - text: "Part 4: Summarising Data"
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
+      icon: article
   - header: Package Links
     links:
     - text: Github Repository
@@ -172,8 +172,7 @@ With
 [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)
 we can define the type of data, range of data (in years), organization
 type, and form type for the data we wish to download using the arguments
-**`dsname`**, **`time`**, **`scope.orgtype`**, and **`scope.formtype`**
-respectively.
+*dsname*, *time*, *scope.orgtype*, and *scope.formtype* respectively.
 
 The acceptable values for these arguments are:
 
@@ -219,8 +218,8 @@ for their computers or internet connections to handle.
 
 [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)
 can also pull only a subset of the data based on NTEE classifications
-using its various **`ntee`** associated arguments as shown in the
-example below.
+using its various *ntee* associated arguments as shown in the example
+below.
 
 ``` r
 core_art <- get_data(dsname = "core",
@@ -235,7 +234,7 @@ belonging to nonprofits involved in the Arts, Culture and Humanities. A
 full description of NTEE codes is available
 [here](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md).
 
-The available **`ntee`** arguments are:
+The available *ntee* arguments are:
 
 - `ntee`: Any valid full or partial NTEE code
 - `ntee.group`: Level 1 of a full NTEE code
@@ -249,9 +248,9 @@ and additional NTEE associated functions in greater detail.
 
 We can filter the data by US census units through
 [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)’s
-**`geo`** arguments. The code snippet below returns rows belonging to
-Nonprofits from New York City, NY using **`geo.state`** and
-**`geo.city`** for state and city level filtering respectively.
+*geo* arguments. The code snippet below returns rows belonging to
+Nonprofits from New York City, NY using *geo.state* and *geo.city* for
+state and city level filtering respectively.
 
 ``` r
 core_NYC <- get_data(dsname = "core",
@@ -262,10 +261,10 @@ core_NYC <- get_data(dsname = "core",
                      geo.city = "New York City")
 ```
 
-Additional **`geo`** arguments can be used to subset the data by county
-(**`geo.county`**) and region (**`geo.region`**).
+Additional *geo* arguments can be used to subset the data by county
+(*geo.county*) and region (*geo.region*).
 
-**`geo`** arguments must be used in conjunction with one another:
+*geo* arguments must be used in conjunction with one another:
 
 - `geo.state` = “IN”, `geo.county` = “Allen” for “Allen, IN”
 - `geo.state` = “CA”, `geo.city` = “San Francisco” for “San Francisco,
@@ -274,9 +273,9 @@ Additional **`geo`** arguments can be used to subset the data by county
 [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)
 layers these filters to subset the data by the desired geographic unit.
 Using only 1 argument will return all rows that fall within the
-requested geographic region (e.g. **`geo.region`** = “south” returns all
-rows from the southern states or **`geo.city`** = “Lebanon” returns all
-rows belonging to cities with the name ‘Lebanon’).
+requested geographic region (e.g. *geo.region* = “south” returns all
+rows from the southern states or *geo.city* = “Lebanon” returns all rows
+belonging to cities with the name ‘Lebanon’).
 
 Further information on these geographic filters and additonal
 geography-related functions is provided in Part 3 of this data story.
@@ -289,7 +288,7 @@ also be configured to append BMF data to any downloaded core data set.
 
 Appending metadata from the IRS Business Master File (BMF) requires the
 downloading of an additional download of 185 MB and can be toggled
-on/off with **`append_bmf`**.
+on/off with *append_bmf*.
 
 ``` r
 corebmf <- get_data(dsname = "core",
@@ -301,10 +300,10 @@ corebmf <- get_data(dsname = "core",
 
 ## Downloading BMF Data
 
-The **`geo`** and **`ntee`** arguments mentioned above can also be used
-to download and filter BMF data. The below code snippet returns the
-subset of BMF for California-based nonprofits from the Arts, Culture,
-and Humanities group.
+The *geo* and *ntee* arguments mentioned above can also be used to
+download and filter BMF data. The below code snippet returns the subset
+of BMF for California-based nonprofits from the Arts, Culture, and
+Humanities group.
 
 ``` r
 bmf <- get_data(dsname = "bmf",
@@ -318,5 +317,5 @@ With the
 [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)
 function, researchers familiar with R can easily access NCCS data for
 use in their work. Further details about the package are available on
-the official **`nccsdata`** package
+the official *nccsdata* package
 [website](https://urbaninstitute.github.io/nccsdata/)
