@@ -35,7 +35,7 @@ SIDEBAR
 
 
 
-  
+
   {% comment %}
   Links
   Diplay as text links with customizeable headers
@@ -56,7 +56,7 @@ SIDEBAR
         style = "text"
         class = "transform-none"
       %}
-      
+
       {% endfor %}
     {% endfor %}
   </div>
@@ -72,7 +72,7 @@ SIDEBAR
 
   {% if include.citation %}
     <hr>
-  
+
     {% include components/citation.html
       citation = include.citation
       citationDate = include.citationDate
@@ -88,7 +88,7 @@ SIDEBAR
 
 
 
-    
+
   {% comment %}
   Authors
   Will match id's against data in _date/people.yml and attempt to display info
@@ -141,12 +141,12 @@ SIDEBAR
 
 
 
-  
+
 
 
   {% if include.primaryCtaUrl %}
     {% include components/button.html
-      text = "Download Data"
+      text = include.primaryCtaText
       href = include.primaryCtaUrl
       style = "primary"
       icon = "download"
@@ -205,7 +205,7 @@ SIDEBAR
     {% endfor %}
   {% endif %}
 
-  
+
 
 
 </aside>
