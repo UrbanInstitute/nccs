@@ -1,7 +1,7 @@
 ---
-title: "nccsdata Part 1: Downloading NCCS Legacy Data"
+title: "nccsdata Part 1: Downloading Data"
 date: 2023-11-03
-description: "Part 1 of 4 data stories on the nccsdata R Package. nccsdata provides tools to read, filter and append metadata to publicly available NCCS Core and BMF data sets."
+description: "First of four data stories on the nccsdata R Package. This story covers data downloads."
 format: gfm
 featured: false
 page-layout: full
@@ -16,10 +16,12 @@ citation:
   volume: 1
   issue: 1
   doi: 10.5555/12345678
+primaryCtaUrl: "https://urbaninstitute.github.io/nccsdata"
+primaryCtaText: Package Website
 links:
   - header: Data Stories in this series
     links:
-    - text: "Part 1: Downloading NCCS Legacy Data"
+    - text: "Part 1: Downloading Data"
     - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
     - icon: article
     - text: "Part 2: NTEE Codes"
@@ -36,7 +38,7 @@ links:
     - text: Github Repository
       href: https://github.com/UrbanInstitute/nccsdata
       icon: github
-    - text: Package Reference
+    - text: Function Reference
       href: https://urbaninstitute.github.io/nccsdata/reference/index.html
       icon: link
     - text: Relevant Vignette
@@ -61,7 +63,7 @@ knitr::opts_chunk$set(
  3. Providing information on U.S. Census units that can be used to filter downloaded data by geography
  4. Constructing summary tables for downloaded data
  
-In part 1 of this 4-part series on the [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we introduce the package and describe the process of downloading NCCS legacy data with the help of `get_data()`. Parts 2 to 4 cover NTEE codes, census data and summary tables respectively. 
+In part 1 of this 4-part series on the [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we introduce the package and describe the process of downloading NCCS legacy data with the help of [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html). Parts 2 to 4 cover NTEE codes, census data and summary tables respectively. 
  
 ## Installation
  
@@ -105,12 +107,12 @@ core_2005_artnonprofits_newyork <- get_data(dsname = "core",
 tibble::as_tibble(core_2005_artnonprofits_newyork)
 ```
 
-Data is downloaded with the `get_data()` function. In this story, we provide several examples of how this function can be used
+Data is downloaded with the [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) function. In this story, we provide several examples of how this function can be used
 to retrieve this legacy data.
 
 ## Downloading Core Data
 
-With `get_data()` we can define the type of data, range of data (in years), organization type, and form type for the data we wish to download using the arguments `dsname`, `time`, `scope.orgtype`, and `scope.formtype` respectively.
+With [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) we can define the type of data, range of data (in years), organization type, and form type for the data we wish to download using the arguments **`dsname`**, **`time`**, **`scope.orgtype`**, and **`scope.formtype`** respectively.
 
 The acceptable values for these arguments are:
 
@@ -139,11 +141,11 @@ core <- get_data(dsname = "core",
                  scope.formtype = "PZ")
 ```
 
-Whenever `get_data()` is used, users will receive a prompt that provides the download size of the requested data, and requests permission to perform the download. This allows the user to preemptively cancel downloads that are too large for their computers or internet connections to handle.
+Whenever [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) is used, users will receive a prompt that provides the download size of the requested data, and requests permission to perform the download. This allows the user to preemptively cancel downloads that are too large for their computers or internet connections to handle.
 
 ## Filtering data downloads using NTEE codes
 
-`get_data()` can also pull only a subset of the data based on NTEE classifications using its various `ntee` associated arguments as shown in the example below.
+[`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) can also pull only a subset of the data based on NTEE classifications using its various **`ntee`** associated arguments as shown in the example below.
 
 ```{r message = TRUE, warning = FALSE, eval = FALSE}
 core_art <- get_data(dsname = "core",
@@ -156,7 +158,7 @@ core_art <- get_data(dsname = "core",
 In the above code snippet, we pull the same dataset but only select rows 
 belonging to nonprofits involved in the Arts, Culture and Humanities. A full description of NTEE codes is available [here](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md).
 
-The available `ntee` arguments are:
+The available **`ntee`** arguments are:
 
  * `ntee`: Any valid full or partial NTEE code 
  * `ntee.group`: Level 1 of a full NTEE code
@@ -168,7 +170,7 @@ Part 2 of this series of data stories covers NTEE codes, their structure and add
 
 ## Filtering Data By Geography
 
-We can filter the data by US census units through `get_data()`s `geo` arguments. The code snippet below returns rows belonging to Nonprofits from New York City, NY using `geo.state` and `geo.city` for state and city level filtering respectively.
+We can filter the data by US census units through [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)'s **`geo`** arguments. The code snippet below returns rows belonging to Nonprofits from New York City, NY using **`geo.state`** and **`geo.city`** for state and city level filtering respectively.
 
 ```{r message = TRUE, warning = FALSE, eval = FALSE}
 core_NYC <- get_data(dsname = "core",
@@ -180,25 +182,25 @@ core_NYC <- get_data(dsname = "core",
 ```
 
 
-Additional `geo` arguments can be used to subset the data by
-county (`geo.county`) and region (`geo.region`). 
+Additional **`geo`** arguments can be used to subset the data by
+county (**`geo.county`**) and region (**`geo.region`**). 
 
-`geo` arguments must be used in conjunction with one another: 
+**`geo`** arguments must be used in conjunction with one another: 
 
  * `geo.state` = "IN", `geo.county` = "Allen" for "Allen, IN"
  * `geo.state` = "CA", `geo.city` = "San Francisco" for "San Francisco, CA"
  
-`get_data()` layers these filters to subset the data by the desired geographic unit. Using only 1 argument will return all rows that fall within the requested geographic region (e.g. `geo.region` = "south" returns all rows from the southern states or `geo.city` = "Lebanon" returns all rows belonging to cities with the name 'Lebanon').
+[`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) layers these filters to subset the data by the desired geographic unit. Using only 1 argument will return all rows that fall within the requested geographic region (e.g. **`geo.region`** = "south" returns all rows from the southern states or **`geo.city`** = "Lebanon" returns all rows belonging to cities with the name 'Lebanon').
 
 Further information on these geographic filters and additonal geography-related functions is provided in Part 3 of this data story.
 
 ## Appending BMF Data to Core Data
 
-`get_data()` automatically appends NTEE metadata to the requested data set and can also be configured to append BMF data to any downloaded core data set.
+[`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) automatically appends NTEE metadata to the requested data set and can also be configured to append BMF data to any downloaded core data set.
 
 Appending metadata from the IRS Business Master File (BMF) requires the 
 downloading of an additional download of 185 MB and can be toggled on/off
-with `append_bmf`.
+with **`append_bmf`**.
 
 ```{r message = TRUE, warning = FALSE, eval = FALSE}
 corebmf <- get_data(dsname = "core",
@@ -210,7 +212,7 @@ corebmf <- get_data(dsname = "core",
 
 ## Downloading BMF Data
 
-The `geo` and `ntee` arguments mentioned above can also be used to download
+The **`geo`** and **`ntee`** arguments mentioned above can also be used to download
 and filter BMF data. The below code snippet returns the subset of BMF for California-based nonprofits from the Arts, Culture, and Humanities group.  
 
 ```{r message = TRUE, warning = FALSE, eval = FALSE}
@@ -222,4 +224,4 @@ bmf <- get_data(dsname = "bmf",
 
 ## Conclusion
 
-With the `get_data()` function, researchers familiar with R can easily access NCCS data for use in their work. Further details about the package are available on the official `nccsdata` package [website](https://urbaninstitute.github.io/nccsdata/)
+With the [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html) function, researchers familiar with R can easily access NCCS data for use in their work. Further details about the package are available on the official **`nccsdata`** package [website](https://urbaninstitute.github.io/nccsdata/)
