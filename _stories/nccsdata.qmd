@@ -1,6 +1,6 @@
 ---
 title: "nccsdata Part 1: Downloading NCCS Legacy Data"
-date: '`r format(Sys.Date(), "%B %d %Y")`'
+date: 2023-11-03
 description: "Part 1 of 4 data stories on the nccsdata R Package. nccsdata provides tools to read, filter and append metadata to publicly available NCCS Core and BMF data sets."
 format: gfm
 featured: false

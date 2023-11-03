@@ -1,6 +1,6 @@
 ---
 title: "nccsdata Part 3: Geographic Filters"
-date: '`r format(Sys.Date(), "%B %d %Y")`'
+date: 2023-11-03
 description: "Part 3 of 4 data stories covering the nccsdata R package. This story focuses on working with Census FIPS codes."
 featured: false
 format: gfm

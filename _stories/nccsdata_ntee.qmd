@@ -1,7 +1,7 @@
 ---
 title: "nccsdata Part 2: NTEE Codes"
-date: '`r format(Sys.Date(), "%B %d %Y")`'
-description: Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes.
+date: 2023-11-03
+description: "Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes."
 featured: false
 format: gfm
 type: methods

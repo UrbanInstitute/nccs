@@ -1,6 +1,6 @@
 ---
 title: "nccsdata Part 4: Summary Tables"
-date: '`r format(Sys.Date(), "%B %d %Y")`'
+date: 2023-11-03
 description: Part 4 of 4 data stories covering the nccsdata R package. This story focuses on summarising NCCS legacy data.
 featured: false
 format: gfm
