@@ -3,6 +3,8 @@ title: "nccsdata Part 4: Summary Tables"
 date: 2023-11-03
 description: Part 4 of 4 data stories covering the nccsdata R package. This story focuses on summarising NCCS legacy data.
 featured: false
+primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
+primaryCtaText: Package Website
 format: gfm
 type: methods
 categories:
@@ -18,17 +20,17 @@ links:
   - header: Data Stories in this series
     links:
     - text: "Part 1: Downloading NCCS Legacy Data"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
+      icon: article
     - text: "Part 2: NTEE Codes"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+      icon: article
     - text: "Part 3: Geographic Filters"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
+      icon: article
     - text: "Part 4: Summarising Data"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
+      icon: article
   - header: Package Links
     links:
     - text: Github Repository
@@ -50,9 +52,11 @@ cover how to construct tables summarizing NCCS Legacy Data.
 
 ## Create Summary Tables
 
-After preparing data with `get_data()` and processing it via additional
-filtering/wrangling, `preview_sample()` can be used to compute summary
-statistics for legacy datasets.
+After preparing data with
+[`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html)
+and processing it via additional filtering/wrangling,
+[`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
+can be used to compute summary statistics for legacy datasets.
 
 An example is shown below.
 
@@ -89,9 +93,10 @@ preview_sample(data = core,
 #> # ℹ 13,081 more rows
 ```
 
-`preview_sample()` groups the data set by the columns provided in
-`group_by`, and computes summary statistics for the user-defined `var`
-column. The available summary statistics are:
+[`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
+groups the data set by the columns provided in `group_by`, and computes
+summary statistics for the user-defined *var* column. The available
+summary statistics are:
 
 - `min`: minimum value
 - `median`: median value
@@ -99,12 +104,15 @@ column. The available summary statistics are:
 - `mean`: mean value
 - `count`: count of rows belonging to group
 
-As long as the columns in `group_by` are present in the data set,
-`preview_sample()` will be able to create a summary table for the user.
+As long as the columns in *group_by* are present in the data set,
+[`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
+will be able to create a summary table for the user.
 
 ## Conclusion
 
 We hope you have found this series of data stories useful for working
-with the `nccsdata` package! Contact the package maintainers with any
-comments/suggestions and let us know if there are any additional
-features you would find useful.
+with the
+[`nccsdata`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/index.html)
+package! Contact the package maintainers with any comments/suggestions
+and let us know if there are any additional features you would find
+useful.

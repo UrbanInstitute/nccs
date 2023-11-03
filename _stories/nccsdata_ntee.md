@@ -3,6 +3,8 @@ title: "nccsdata Part 2: NTEE Codes"
 date: 2023-11-03
 description: "Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes."
 featured: false
+primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
+primaryCtaText: Package Website
 format: gfm
 type: methods
 categories:
@@ -18,17 +20,17 @@ links:
   - header: Data Stories in this series
     links:
     - text: "Part 1: Downloading NCCS Legacy Data"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
+      icon: article
     - text: "Part 2: NTEE Codes"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+      icon: article
     - text: "Part 3: Geographic Filters"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-geo/
+      icon: article
     - text: "Part 4: Summarising Data"
-    - href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
-    - icon: article
+      href: https://urbaninstitute.github.io/nccs/stories/nccsdata-summary/
+      icon: article
   - header: Package Files
     links:
     - text: Github Repository
@@ -47,7 +49,9 @@ links:
 In part 2 of this 4-part series on the
 [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we
 cover how to explore and query NTEE codes with the help of
-`ntee_preview()` and `parse_ntee()`.
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+and
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html).
 
 ## NTEE Code Structure
 
@@ -74,18 +78,20 @@ Each part is separated by a hyphen and all NTEE2 codes must contain all
 
 The Industry Group is represented by three letters. The 10 options are:
 
-- ART - Arts, Culture, and Humanities
-- EDU - Education
-- ENV - Environment and Animals
-- HEL - Health
-- HMS - Human Services
-- IFA - International, Foreign Affairs
-- PSB - Public, Societal Benefit
-- REL - Religion Related
-- MMB - Mutual/Membership Benefit
-- UNU - Unknown, Unclassified
-- UNI - University
-- HOS - Hospital
+| Industry Group | Description                    |
+|----------------|--------------------------------|
+| ART            | Arts, Culture & Humanities     |
+| EDU            | Education                      |
+| ENV            | Environment and Animals        |
+| HEL            | Health                         |
+| HMS            | Human Services                 |
+| IFA            | International, Foreign Affairs |
+| PSB            | Public, Societal Benefit       |
+| REL            | Religion Related               |
+| MMB            | Mutual/Membership Benefit      |
+| UNU            | Unknown, Unclassified          |
+| UNI            | University                     |
+| HOS            | Hospital                       |
 
 Each group represents a broad category that the universe of non-profits
 can be comprehensively sorted into.
@@ -124,36 +130,15 @@ The industry is represented as one letter. The 26 options are:
 | Z              | Unknown                                             |
 
 These offer a finer sub classification that builds on the Industry Group
-classification framework. However not all Industry Groups have all these
-industries. The full list of current Industry Group - Industry
-combinations is provided below.
-
-1.  Arts, Culture, and Humanities (ART) - A
-
-2.  Education (EDU) - B, excluding NTEE codes B40, B41, B42, and B43
-
-3.  Environment and Animals (ENV) - C, D
-
-4.  Health (HEL) - E, F,G, H
-
-5.  Human Services(HMS)- I, J, K, L, M, N, O, P
-
-6.  International, Foreign Affairs (IFA) - Q
-
-7.  Public, Societal Benefit (PSB) - R, S, T, U, V, W
-
-8.  Religion Related (REL) - X
-
-9.  Mutual/Membership Benefit (MMB) - Y
-
-10. Unknown, Unclassified (UNU)- Z
+classification framework.
 
 ### Level 3 and 4: Division and Subdivision
 
 Levels 3 and 4 are alphanumeric values that reference additional
 subclassifications for the Industry Group - Industry Combinations above.
 There are too many for a simple table and hence will be explored with
-`ntee_preview()` in the below sections.
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+in the below sections.
 
 ### Level 5: Organization Type
 
@@ -169,10 +154,10 @@ The options are:
 - MM - Monetary Support - Multiple Organizations
 - NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.)
 
-## Retrieving NTEE Code Descriptions with `ntee_preview()`
+## Retrieving NTEE Code Descriptions with [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
 
-[`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
-provides descriptions for full codes when the `ntee` argument is
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+provides descriptions for full codes when the *ntee* argument is
 provided any of the 5 levels above. A sample output is provided below:
 
 ``` r
@@ -228,15 +213,17 @@ ntee_preview(ntee = "UNI")
 #>  End of Preview
 ```
 
-In the above code snippet, `ntee_preview()` prints out the descriptions
-of all NTEE codes belonging to the “UNI” (University) Industry Group.
-The function outputs are nested in the following order:
+In the above code snippet,
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+prints out the descriptions of all NTEE codes belonging to the “UNI”
+(University) Industry Group. The function outputs are nested in the
+following order:
 
 - Industry Group (Level 1)
   - Organization Type (Level 5)
     - Industry, Division and Subdivision (Levels 2-4)
 
-`ntee` takes arguments belonging to **any** of the 3 parts or 5 levels
+*ntee* takes arguments belonging to **any** of the 3 parts or 5 levels
 above and returns **all** matching NTEE codes. For example, the below
 code snippet returns all NTEE codes belonging to either the University
 Industry Group (UNI) or A25 Level 2-4 classification.
@@ -318,7 +305,7 @@ ntee_preview(ntee = c("UNI", "A25"))
 #>  End of Preview
 ```
 
-You can also preview specific NTEE codes with the `ntee` argument as
+You can also preview specific NTEE codes with the *ntee* argument as
 shown here:
 
 ``` r
@@ -354,13 +341,15 @@ ntee_preview(ntee = c("ART-A61-AA",
 #>  End of Preview
 ```
 
-`ntee_preview()` automatically structures the output to avoid repeating
-Industry Groups or Organization Types.
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+automatically structures the output to avoid repeating Industry Groups
+or Organization Types.
 
-For Industry, Division and Subdivision (Level 2-4), `ntee_preview()`
-accepts placeholder arguments denoted by the letter `x` (case
-insensitive). For example, `ntee = B2x` will provide a preview for all
-NTEE codes with a `B` at Level 2 and `2` at Level 3. This allows the
+For Industry, Division and Subdivision (Level 2-4),
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+accepts placeholder arguments denoted by the letter *x* (case
+insensitive). For example, *ntee = B2x* will provide a preview for all
+NTEE codes with a *B* at Level 2 and *2* at Level 3. This allows the
 user to narrow their search to specific levels. Examples are provided
 below:
 
@@ -752,13 +741,14 @@ ntee_preview(ntee = "B2x")
 ```
 
 Once you are familiar with each level, you can leverage the following
-additional arguments from `ntee_preview()`:
+additional arguments from
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html):
 
-- `ntee.group`: Industry Group (Level 1)
+- `ntee.group` : Industry Group (Level 1)
 - `ntee.code` : Industry, Division and Subdivision (Level 2 - 4)
-- `ntee.orgtype`: Organization Type (Level 5)
+- `ntee.orgtype` : Organization Type (Level 5)
 
-For `ntee.code`, placeholder arguments are supported as well.
+For *ntee.code*, placeholder arguments are supported as well.
 
 ``` r
 ntee_preview(ntee.group = "UNI",
@@ -1137,16 +1127,18 @@ ntee_preview(ntee.group = "UNI",
 #>  End of Preview
 ```
 
-For any combination of `ntee` arguments, `preview_ntee` returns **all**
+For any combination of *ntee* arguments, *preview_ntee* returns **all**
 codes that fit **any** of the arguments. Thus, in the above example NTEE
-codes for both `UNI` and `CXX` were printed out.
+codes for both \`UNI\* and *CXX* were printed out.
 
 ## Returning to get_data()
 
-The same set of `ntee` arguments used by `preview_ntee()` are also used
-by `get_data()`. The below code snippet downloads core data from the
-year 2015 for all non-profits that file both full 990s and 990EZs,
-filtering for nonprofits belonging to the Education Industry Group.
+The same set of *ntee* arguments used by *preview_ntee()* are also used
+by
+[`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html).
+The below code snippet downloads core data from the year 2015 for all
+non-profits that file both full 990s and 990EZs, filtering for
+nonprofits belonging to the Education Industry Group.
 
 ``` r
 core <- get_data(dsname = "core",
@@ -1158,9 +1150,12 @@ core <- get_data(dsname = "core",
 
 ## Retrieve Complete NTEE2 Codes
 
-`ntee_preview()` also offers an invisible return, allowing users to save
-the full NTEE2 codes that are being previewed in a character vector.
-Simply assign the output of `ntee_preview()` to a variable name.
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+also offers an invisible return, allowing users to save the full NTEE2
+codes that are being previewed in a character vector. Simply assign the
+output of
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+to a variable name.
 
 ``` r
 ntee2_codes <- ntee_preview(ntee.group = "UNI",
@@ -1553,16 +1548,18 @@ print(ntee2_codes)
 
 ## Alternative Methods to Retrieve Complete NTEE2 Codes
 
-A second function, `parse_ntee()`, can also be used to extract complete
-NTEE codes.
+A second function,
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html),
+can also be used to extract complete NTEE codes.
 
-`parse_ntee()` only accepts the following arguments:
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
+only accepts the following arguments:
 
 - `ntee.group`: Industry Group (Level 1)
-- `ntee.code` : Industry, Division and Subdivision (Level 2 - 4)
+- `ntee.code`: Industry, Division and Subdivision (Level 2 - 4)
 - `ntee.orgtype`: Organization Type (Level 5)
 
-Use `all` to include all Levels for that specific argument. For example,
+Use *all* to include all Levels for that specific argument. For example,
 to retrieve complete NTEE codes for Universities:
 
 ``` r
@@ -1575,8 +1572,10 @@ parse_ntee(ntee.group = c("UNI"),
 #> [1] "UNI-B40-RG" "UNI-B41-RG" "UNI-B42-RG" "UNI-B43-RG" "UNI-B50-RG"
 ```
 
-Similar to `ntee_preview()`, `parse_ntee()` accepts placeholder
-arguments.
+Similar to
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html),
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
+accepts placeholder arguments.
 
 ``` r
 parse_ntee(ntee.group = "all",
@@ -1590,8 +1589,11 @@ parse_ntee(ntee.group = "all",
 #> [11] "ART-A26-RG" "ART-A27-RG"
 ```
 
-However, `parse_ntee()` differs from `preview_ntee()`in that it only
-returns NTEE codes that meet all filters
+However,
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
+differs from
+[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+in that it only returns NTEE codes that meet all filters
 
 ``` r
 parse_ntee(ntee.group = "HEL",
@@ -1603,10 +1605,11 @@ parse_ntee(ntee.group = "HEL",
 #> character(0)
 ```
 
-Since there are no NTEE codes with structure `HEL-A2X-XXX`,
-`parse_ntee()` does not return any results. Including `"ART"` in
-`ntee.group`, as shown below, returns valid codes since there are NTEE
-codes with the `ART-A2X-XXX` structure.
+Since there are no NTEE codes with structure *HEL-A2X-XXX*,
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
+does not return any results. Including *“ART”* in *ntee.group*, as shown
+below, returns valid codes since there are NTEE codes with the
+*ART-A2X-XXX* structure.
 
 ``` r
 parse_ntee(ntee.group = c("HEL", "ART"),
@@ -1620,8 +1623,8 @@ parse_ntee(ntee.group = c("HEL", "ART"),
 #> [11] "ART-A26-RG" "ART-A27-RG"
 ```
 
-`parse_ntee` can thus be used to find specific codes which can then be
-fed into `get_data` to filter downloaded data by specific codes as shown
+*parse_ntee* can thus be used to find specific codes which can then be
+fed into *get_data* to filter downloaded data by specific codes as shown
 below:
 
 ``` r
