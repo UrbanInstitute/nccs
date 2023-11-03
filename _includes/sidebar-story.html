@@ -30,7 +30,23 @@ SIDEBAR
   <h1 class="mt-0">{{ include.header }}</h1>
   <br><br><br>
 
+  {% if include.date %}
+    {% assign date = include.date | date: "%B %d, %Y" %}
+    <p class="text-sm">{{ date }}</p>
+  {% endif %}
 
+  {% if include.primaryCtaUrl %}
+    {% include components/button.html
+      text = include.primaryCtaText
+      href = include.primaryCtaUrl
+      style = "primary"
+      icon = "download"
+    %}
+  {% endif %}
+
+  {% if include.primaryCtaUrl %}
+    <p class="text-sm">{{ include.primaryCtaCaption }}</p>
+  {% endif %}
 
 
 
@@ -126,37 +142,6 @@ SIDEBAR
     {% endfor %}
   {% endif %}
 
-
-
-  {% if include.date %}
-    {% assign date = include.date | date: "%B %d, %Y" %}
-    <p class="text-sm">{{ date }}</p>
-  {% endif %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-  {% if include.primaryCtaUrl %}
-    {% include components/button.html
-      text = include.primaryCtaText
-      href = include.primaryCtaUrl
-      style = "primary"
-      icon = "download"
-    %}
-  {% endif %}
-
-  {% if include.primaryCtaUrl %}
-    <p class="text-sm">{{ include.primaryCtaCaption }}</p>
-  {% endif %}
 
   {% comment %}
   Primary Links
