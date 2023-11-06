@@ -19,7 +19,7 @@ citation:
 links:
   - header: Data Stories in this series
     links:
-    - text: "Part 1: Downloading NCCS Legacy Data"
+    - text: "Part 1: Downloading Data"
       href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
       icon: article
     - text: "Part 2: NTEE Codes"
