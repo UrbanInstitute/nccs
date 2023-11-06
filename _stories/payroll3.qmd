@@ -23,7 +23,7 @@ links:
       href: https://tinyurl.com/ylydvtj9
       icon: download
     - text: Code
-      href: https://raw.githubusercontent.com/UrbanInstitute/nccs-recipes/main/vignettes/payroll.R
+      href: https://raw.githubusercontent.com/UrbanInstitute/nccs-recipes/main/vignettes/payroll/payroll.R
       icon: link
   - header: In Context 
     links:
