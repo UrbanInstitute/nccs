@@ -78,20 +78,20 @@ Each part is separated by a hyphen and all NTEE2 codes must contain all
 
 The Industry Group is represented by three letters. The 10 options are:
 
-| Industry Group | Description                    |
-|----------------|--------------------------------|
-| ART            | Arts, Culture & Humanities     |
-| EDU            | Education                      |
-| ENV            | Environment and Animals        |
-| HEL            | Health                         |
-| HMS            | Human Services                 |
-| IFA            | International, Foreign Affairs |
-| PSB            | Public, Societal Benefit       |
-| REL            | Religion Related               |
-| MMB            | Mutual/Membership Benefit      |
-| UNU            | Unknown, Unclassified          |
-| UNI            | University                     |
-| HOS            | Hospital                       |
+| Industry Group |          Description           |
+|:--------------:|:------------------------------:|
+|      ART       |   Arts, Culture & Humanities   |
+|      EDU       |           Education            |
+|      ENV       |    Environment and Animals     |
+|      HEL       |             Health             |
+|      HMS       |         Human Services         |
+|      IFA       | International, Foreign Affairs |
+|      PSB       |    Public, Societal Benefit    |
+|      REL       |        Religion Related        |
+|      MMB       |   Mutual/Membership Benefit    |
+|      UNU       |     Unknown, Unclassified      |
+|      UNI       |           University           |
+|      HOS       |            Hospital            |
 
 Each group represents a broad category that the universe of non-profits
 can be comprehensively sorted into.
@@ -100,34 +100,34 @@ can be comprehensively sorted into.
 
 The industry is represented as one letter. The 26 options are:
 
-| Industry Label | Description                                         |
-|----------------|-----------------------------------------------------|
-| A              | Arts, Culture & Humanities                          |
-| B              | Education                                           |
-| C              | Environment                                         |
-| D              | Animal-Related                                      |
-| E              | Health Care                                         |
-| F              | Mental Health & Crisis Intervention                 |
-| G              | Voluntary Health Associations & Medical Disciplines |
-| H              | Medical Research                                    |
-| I              | Crime & Legal-Related                               |
-| J              | Employment                                          |
-| K              | Food, Agriculture & Nutrition                       |
-| L              | Housing & Shelter                                   |
-| M              | Public Safety, Disaster Preparedness & Relief       |
-| N              | Recreation & Sports                                 |
-| O              | Youth Development                                   |
-| P              | Human Services                                      |
-| Q              | International, Foreign Affairs & National Security  |
-| R              | Civil Rights, Social Action & Advocacy              |
-| S              | Community Improvement & Capacity Building           |
-| T              | Philanthropy, Voluntarism & Grantmaking Foundations |
-| U              | Science & Technology                                |
-| V              | Social Science                                      |
-| W              | Public & Societal Benefit                           |
-| X              | Religion-Related                                    |
-| Y              | Mutual & Membership Benefit                         |
-| Z              | Unknown                                             |
+| Industry Label |                     Description                     |
+|:--------------:|:---------------------------------------------------:|
+|       A        |             Arts, Culture & Humanities              |
+|       B        |                      Education                      |
+|       C        |                     Environment                     |
+|       D        |                   Animal-Related                    |
+|       E        |                     Health Care                     |
+|       F        |         Mental Health & Crisis Intervention         |
+|       G        | Voluntary Health Associations & Medical Disciplines |
+|       H        |                  Medical Research                   |
+|       I        |                Crime & Legal-Related                |
+|       J        |                     Employment                      |
+|       K        |            Food, Agriculture & Nutrition            |
+|       L        |                  Housing & Shelter                  |
+|       M        |    Public Safety, Disaster Preparedness & Relief    |
+|       N        |                 Recreation & Sports                 |
+|       O        |                  Youth Development                  |
+|       P        |                   Human Services                    |
+|       Q        | International, Foreign Affairs & National Security  |
+|       R        |       Civil Rights, Social Action & Advocacy        |
+|       S        |      Community Improvement & Capacity Building      |
+|       T        | Philanthropy, Voluntarism & Grantmaking Foundations |
+|       U        |                Science & Technology                 |
+|       V        |                   Social Science                    |
+|       W        |              Public & Societal Benefit              |
+|       X        |                  Religion-Related                   |
+|       Y        |             Mutual & Membership Benefit             |
+|       Z        |                       Unknown                       |
 
 These offer a finer sub classification that builds on the Industry Group
 classification framework.
@@ -145,16 +145,16 @@ in the below sections.
 Level 5 references the type of organization represented by two letters.
 The options are:
 
-| Organization Type | Description                                           |
-|-------------------|-------------------------------------------------------|
-| RG                | Regular Nonprofit                                     |
-| AA                | Alliance/Advocacy Organizations                       |
-| MT                | Management and Technical Assistance                   |
-| PA                | Professional Societies/Associations                   |
-| RP                | Research Institutes and/or Public Policy Analysis     |
-| MS                | Monetary Support - Single Organization                |
-| MM                | Monetary Support - Multiple Organizations             |
-| NS                | Nonmonetary Support Not Elsewhere Classified (N.E.C.) |
+| Organization Type |                      Description                      |
+|:-----------------:|:-----------------------------------------------------:|
+|        RG         |                   Regular Nonprofit                   |
+|        AA         |            Alliance/Advocacy Organizations            |
+|        MT         |          Management and Technical Assistance          |
+|        PA         |          Professional Societies/Associations          |
+|        RP         |   Research Institutes and/or Public Policy Analysis   |
+|        MS         |        Monetary Support - Single Organization         |
+|        MM         |       Monetary Support - Multiple Organizations       |
+|        NS         | Nonmonetary Support Not Elsewhere Classified (N.E.C.) |
 
 ## Retrieving NTEE Code Descriptions with [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
 

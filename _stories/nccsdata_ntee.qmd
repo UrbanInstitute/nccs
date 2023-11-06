@@ -82,7 +82,7 @@ Each part is separated by a hyphen and all NTEE2 codes must contain all
 The Industry Group is represented by three letters. The 10 options are:
 
 | Industry Group |	Description |
-|------------------|-------------|
+|:------------------:|:-------------:|
 | ART	| Arts, Culture & Humanities |
 | EDU	| Education |
 | ENV | Environment and Animals |
@@ -103,7 +103,7 @@ Each group represents a broad category that the universe of non-profits can be c
 The industry is represented as one letter. The 26 options are: 
 
 | Industry Label |	Description|
-|------------------|-------------|
+|:------------------:|:-------------:|
 |A	| Arts, Culture & Humanities |
 |B	| Education |
 |C	| Environment |
@@ -142,7 +142,7 @@ Levels 3 and 4 are alphanumeric values that reference additional subclassificati
 Level 5 references the type of organization represented by two letters. The options are:
 
 | Organization Type |	Description |
-|------------------|-------------|
+|:------------------:|:-------------:|
 | RG	| Regular Nonprofit |
 | AA	| Alliance/Advocacy Organizations |
 | MT | Management and Technical Assistance |
