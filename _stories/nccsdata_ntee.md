@@ -19,7 +19,7 @@ citation:
 links:
   - header: Data Stories in this series
     links:
-    - text: "Part 1: Downloading NCCS Legacy Data"
+    - text: "Part 1: Downloading Data"
       href: https://urbaninstitute.github.io/nccs/stories/nccsdata/
       icon: article
     - text: "Part 2: NTEE Codes"
@@ -145,14 +145,16 @@ in the below sections.
 Level 5 references the type of organization represented by two letters.
 The options are:
 
-- RG - Regular Nonprofit
-- AA - Alliance/Advocacy Organizations
-- MT - Management and Technical Assistance
-- PA - Professional Societies/Associations
-- RP - Research Institutes and/or Public Policy Analysis
-- MS - Monetary Support - Single Organization
-- MM - Monetary Support - Multiple Organizations
-- NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.)
+| Organization Type | Description                                           |
+|-------------------|-------------------------------------------------------|
+| RG                | Regular Nonprofit                                     |
+| AA                | Alliance/Advocacy Organizations                       |
+| MT                | Management and Technical Assistance                   |
+| PA                | Professional Societies/Associations                   |
+| RP                | Research Institutes and/or Public Policy Analysis     |
+| MS                | Monetary Support - Single Organization                |
+| MM                | Monetary Support - Multiple Organizations             |
+| NS                | Nonmonetary Support Not Elsewhere Classified (N.E.C.) |
 
 ## Retrieving NTEE Code Descriptions with [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
 
