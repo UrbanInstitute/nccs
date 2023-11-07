@@ -2,8 +2,7 @@
 title: 2011 Nonprofit Sector in Brief
 description: Annual reports on the state of the nonprofit sector. 
 date: 2011-11-01
-featured: true
-featuredOrder: 3
+featured: false
 type: brief
 author:
   - id: nccs
