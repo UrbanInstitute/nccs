@@ -17,7 +17,7 @@ categories:
   - trends
 primaryLinks:
   - text: 2015 Sector Brief
-    href: https://www.urban.org/research/publication/nonprofit-sector-brief-2015-public-charities-giving-and-volunteering
+    href: https://www.urban.org/sites/default/files/publication/72536/2000497-The-Nonprofit-Sector-in-Brief-2015-Public-Charities-Giving-and-Volunteering.pdf
     icon: pdf
 layout: resource
 ---
