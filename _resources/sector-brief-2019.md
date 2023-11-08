@@ -3,7 +3,7 @@ title: 2019 Nonprofit Sector in Brief
 description: 'The Sector Brief discusses trends in the number and finances of 501(c)(3) public charities and key findings on two important resources for the nonprofit sector: private charitable contributions and volunteering.'
 date: 2020-06-18
 featured: true
-featuredOrder: 10
+featuredOrder: 2
 type: brief
 author:
   - id: nccs
@@ -13,7 +13,7 @@ categories:
   - trends
 primaryLinks:
   - text: 2019 Sector Brief
-    href: https://nccs.urban.org/publication/nonprofit-sector-brief-2019
+    href: https://urbaninstitute.github.io/nccs-legacy/briefs/sector-brief-2019
     icon: pdf
 ---
 

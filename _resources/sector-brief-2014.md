@@ -2,8 +2,8 @@
 title: 2014 Nonprofit Sector in Brief
 description: Annual reports on the state of the nonprofit sector. 
 date: 2014-10-27
-featured: false
-featuredOrder: 3
+featured: true
+featuredOrder: 5
 type: brief
 author:
   - id: nccs

@@ -3,7 +3,7 @@ title: 2015 Nonprofit Sector in Brief
 description: Annual reports on the state of the nonprofit sector. 
 date: 2015-10-29
 featured: true
-featuredOrder: 3
+featuredOrder: 4
 type: brief
 categories:
   - cat
