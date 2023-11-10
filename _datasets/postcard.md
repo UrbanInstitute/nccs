@@ -10,7 +10,7 @@ featured: false
 primaryCtaUrl: "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/2023-09-E-POSTCARD.csv"
 primaryCtaCaption: "File size: 330MB"
 primaryLinks:
-  - text: "GitHub Repo"
+  - text: "GitHub Repository"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990n-postcard-filers"
     icon: github
 author:
