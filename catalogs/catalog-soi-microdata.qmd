@@ -66,20 +66,18 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
 #| echo: false
 #| output: asis
  
-catalog <- construct_catalog(series = "soi",
-                              paths = d$Key,
-                              tscope = "CHARITIES",
-                              fscope = "PC",
-                              np_type = "501C3-CHARITIES")
-```
-
-```{r}
-#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "soi",
+                             paths = d$Key,
+                             tscope = "CHARITIES",
+                             fscope = "PC",
+                             np_type = "501C3-CHARITIES")
 
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
                               "Data Dictionary",
+                              "Size",
                               "Year",
                               "Nonprofit Type",
                               "Form Scope" ) ) %>%
@@ -96,21 +94,18 @@ catalog %>%
 
 ```{r}
 #| echo: false
-
-catalog <- construct_catalog(series = "soi",
-                              paths = d$Key,
-                              tscope = "CHARITIES",
-                              fscope = "EZ",
-                              np_type = "501C3-CHARITIES")
-```
-
-```{r}
-#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "soi",
+                             paths = d$Key,
+                             tscope = "CHARITIES",
+                             fscope = "EZ",
+                             np_type = "501C3-CHARITIES")
 
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
                               "Data Dictionary",
+                              "Size",
                               "Year",
                               "Nonprofit Type",
                               "Form Scope" ) ) %>%
@@ -127,21 +122,18 @@ catalog %>%
 
 ```{r}
 #| echo: false
-
-catalog <- construct_catalog(series = "soi",
-                              paths = d$Key,
-                              tscope = "NONPROFIT",
-                              fscope = "PC",
-                              np_type = "501CE-NONPROFIT")
-```
-
-```{r}
-#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "soi",
+                             paths = d$Key,
+                             tscope = "CHARITIES",
+                             fscope = "PC",
+                             np_type = "501CE-NONPROFIT")
 
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
                               "Data Dictionary",
+                              "Size",
                               "Year",
                               "Nonprofit Type",
                               "Form Scope" ) ) %>%
@@ -158,22 +150,18 @@ catalog %>%
 
 ```{r}
 #| echo: false
-
-catalog <- construct_catalog(series = "soi",
-                              paths = d$Key,
-                              tscope = "NONPROFIT",
-                              fscope = "EZ",
-                              np_type = "501CE-NONPROFIT")
-
-```
-
-```{r}
-#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "soi",
+                             paths = d$Key,
+                             tscope = "NONPROFIT",
+                             fscope = "EZ",
+                             np_type = "501CE-NONPROFIT")
 
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
                               "Data Dictionary",
+                              "Size",
                               "Year",
                               "Nonprofit Type",
                               "Form Scope" ) ) %>%
@@ -190,22 +178,18 @@ catalog %>%
 
 ```{r}
 #| echo: false
-
-catalog <- construct_catalog(series = "soi",
-                              paths = d$Key,
-                              tscope = "PRIVFOUND",
-                              fscope = "PF",
-                              np_type = "501C3-PRIVFOUND")
-
-```
-
-```{r}
-#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "soi",
+                             paths = d$Key,
+                             tscope = "PRIVFOUND",
+                             fscope = "PF",
+                             np_type = "501C3-PRIVFOUND")
 
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
                               "Data Dictionary",
+                              "Size",
                               "Year",
                               "Nonprofit Type",
                               "Form Scope" ) ) %>%
