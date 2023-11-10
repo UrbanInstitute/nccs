@@ -13,12 +13,16 @@ primaryCtaCaption: "File size: 120MB"
 primaryLinks:
   - text: "Data Dictionary"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-current-exempt-orgs-database#data-dictionary"
-  - text: "GitHub Code"
+    icon: github
+  - text: "GitHub Repository"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-current-exempt-orgs-database"
+    icon: github
   - text: "Raw IRS Data"
     href: "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search-bulk-data-downloads"
-  - text: "Tax Exempt Organization Search"
+    icon: link
+  - text: "IRS Tax Exempt Organization Search"
     href: "https://apps.irs.gov/app/eos/"
+    icon: link
 author:
 - id: jlecy
 ---
