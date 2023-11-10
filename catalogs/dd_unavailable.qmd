@@ -1,0 +1,10 @@
+---
+title: "Data Dictionary Unavailable"
+format: html
+editor: visual
+execute:
+  echo: false
+  warning: false
+---
+
+This data set does not have a data dictionary yet. The NCCS team is working on one. If you would like to work with us on this or request a status update, raise an issue [here](https://github.com/UrbanInstitute/nccs/issues).
