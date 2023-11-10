@@ -11,6 +11,9 @@ primaryLinks:
   - text: "R Scripts"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/parse-pol-org-disclosures.R"
     icon: r
+  - text: Data Dictionary
+    href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/data-dictionary.md"
+    icon: github
 categories:
   - elections
   - campaign finance
