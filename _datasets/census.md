@@ -14,8 +14,9 @@ primaryLinks:
   - text: "Replication Code"
     href: "https://github.com/UI-Research/nccs-geo"
     icon: github
-  - text: "R geocrosswalk"
+  - text: "R Package"
     href: "https://github.com/UrbanInstitute/geocrosswalk"
+    icon: r
 author:
 - id: cdavis
 - id: jlecy
