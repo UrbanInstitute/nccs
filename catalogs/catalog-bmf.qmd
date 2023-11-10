@@ -41,37 +41,17 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
 #### Business Master Files
 
 ```{r}
-#| echo: false
-#| output: asis
- 
-paths <- get_file_paths(series = "bmf",
-                        paths=d$Key)
-s3_urls  <- make_s3_urls( paths )
-archive_urls <- make_archive_urls(series = "bmf",
-                                  paths = paths)
-
-download_buttons  <- make_download_buttons(s3_urls)
-profile_buttons <- make_profile_buttons(archive_urls)
-YEAR <- get_year( paths )
-MONTH <- get_month(paths)
-
-catalog <- 
-  data.frame( 
-    download_buttons,
-    profile_buttons,
-    YEAR=YEAR,
-    MONTH = MONTH)
-```
-
-```{r}
-#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "bmf",
+                             paths = d$Key)
 
 catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c( "",
-                               "",
-                               "Year",
-                               "Month") ) %>%
+  knitr::kable(escape=FALSE,
+               col.names = c("Download Link", 
+                             "Data Dictionary",
+                             "Size",
+                             "Month",
+                             "Year")) %>%
   kableExtra::kable_styling()
 ```
 
