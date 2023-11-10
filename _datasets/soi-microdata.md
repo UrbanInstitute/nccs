@@ -8,27 +8,14 @@ categories:
   - sampling
 featured: false
 primaryCtaUrl: "../../catalogs/catalog-soi-microdata.html"
-primaryCtaCaption: "Available 1990-2019"
-primaryLinks:
-  - text: "DD 501c3 Charities PC"
-    href: "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/SOI-MICRODATA-2012-501C3-CHARITIES-PC"
-  - text: "DD 501c3 Charities EZ"
-    href: "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/SOI-MICRODATA-2012-501C3-CHARITIES-EZ"
-  - text: "DD 501cE Nonprofits PC"
-    href: "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/SOI-MICRODATA-2012-501CE-NONPROFIT-PC"
-  - text: "DD 501cE Nonprofits EZ"
-    href: "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/SOI-MICRODATA-2012-501CE-NONPROFIT-EZ"
-  - text: "DD 501c3 PrivFounds PF"
-    href: "https://urbaninstitute.github.io/nccs-legacy/dictionary/soi/html/SOI-MICRODATA-2010-501C3-PRIVFOUND-PF"
-  - text: "Get Help"
-    href: "https://github.com/UrbanInstitute/nccs/issues"
+primaryCtaCaption: "Years Available: 1990-2019"
 author:
 - id: jlecy
 citation: 
   author: "Jesse Lecy"
   citationDate: "2023"
   container-title: "Why Use SOI Microdata?"
-  doi: 10.5555/xxxxxxxxxxx
+  doi:
 ---
 
 ## SOI Microdata
