@@ -2,7 +2,7 @@
 title: 527 Political Action Committees
 date: 2023-05-30 12:00:00
 description: Electronic filings made by 527 organizations. 
-primaryCtaUrl: "../../catalogs/catalog-core.html"
+primaryCtaUrl: "../../catalogs/catalog-pacs.html"
 primaryCtaCaption: "File size: 246kb"
 primaryLinks:
   - text: "GitHub Repository"
@@ -13,8 +13,6 @@ primaryLinks:
     href: "https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/tidy-data-dictionary.csv"
   - text: "R Program"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/parse-pol-org-disclosures.R"
-  - text: "Get Help"
-    href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/issues"
 categories:
   - elections
   - campaign finance
@@ -22,17 +20,14 @@ categories:
 featured: true
 featuredOrder: 3
 author:
-- id: jlecy 
 - id: eboris 
-- id: mpost 
+- id: mpost
+- id: jlecy  
 citation: 
-  author: "Post, M. A., & Boris, E. T. (2022)."
-  container-title: "Nonprofit Political Engagement: The Roles of 501 (c)(4) Social Welfare Organizations in Elections and Policymaking. In Nonprofit Policy Forum (Vol. 14, No. 2, pp. 131-155). De Gruyter."
-  doi: 10.1515/npf-2021-0061
-citation: 
-  author: "Post, M. A., Boris, E. T., & Stimmel, C. L. (2023)."
-  container-title: "The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274."
-  doi: 10.1177/089976402110664
+  author: "Lecy, J.D. (2023)."
+  container-title: "Nonprofit Political Action Committee (PAC) Data: Parsing IRS 8871 and 8872 ASCII Files."
+  doi: 10.1515/xxx
+
   
 ---
 
@@ -48,7 +43,7 @@ Political Action Committees are formed when nonprofits, those typically incorpor
 
 Once recognized they are required to continue filing IRS 990 forms like typical nonprofits, but they are also required to complete [Form 8872 disclosures](https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure) described in tables **POL-ORGS-FM-8872**, **POL-ORGS-SCHED-A**, and **POL-ORGS-SCHED-B**. 
 
-The IRS regularly releases data on PAC activities described in Forms 8871 and 8872. Unfortunately, [data is released in complicated ASCII formats](https://forms.irs.gov/app/pod/dataDownload/dataDownload): data types are mixed by row and a small percentage of cases break the ASCII structure because of malformed data. To make this data available to the sector Jesse Lecy has written a parser to convert the raw files into well-structured tables. 
+The IRS regularly releases data on PAC activities described in Forms 8871 and 8872. Unfortunately, [data is released in complicated ASCII formats](https://forms.irs.gov/app/pod/dataDownload/dataDownload): data types are mixed by row and a small percentage of cases break the ASCII structure because of malformed data. To make this data available to the sector we have written a parser to convert the raw files into well-structured tables. 
 
 ## Usage
 
