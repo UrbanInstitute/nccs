@@ -5,6 +5,7 @@
 #' @description construct_catalog automates the workflow for creating the data.frame
 #' object used to build catalog tables.
 #' 
+#' @param s3_catalog. data.frame. Data frame containing metadata for objects in S3
 #' @param series character scalar. Name of NCCS data series. Accepted values
 #' are "core", "bmf".
 #' @param paths character vector. Vector of object keys from S3 bucket.
@@ -23,7 +24,10 @@
 #'                Default == NULL
 #' 
 #' @return data.frame. Catalog table
-construct_catalog <- function(series,
+#' 
+#' @import dplyr
+construct_catalog <- function(s3_catalog,
+                              series,
                               paths,
                               tscope = NULL,
                               fscope = NULL,
@@ -33,18 +37,33 @@ construct_catalog <- function(series,
                           paths = paths,
                           tscope = tscope,
                           fscope = fscope)
+  size <- s3_catalog %>% 
+    dplyr::filter(Key %in% paths) %>% 
+    dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)),
+                                   " mb")) %>% 
+    dplyr::pull("size_mb")
   
   download_urls <- make_s3_urls(paths = paths)
-  profile_urls <- make_archive_urls(series = series, paths = paths)
-  
   download_buttons <- make_buttons(urls = download_urls, button_name = "download")
-  profile_buttons <- make_buttons(urls = profile_urls, button_name = "profile")
   
-  catalog <- data.frame(download_buttons,
-                        profile_buttons)
+  if (series != "census-crosswalk"){
+    
+    profile_urls <- make_archive_urls(series = series, paths = paths)
+    profile_buttons <- make_buttons(urls = profile_urls, button_name = "profile")
+    catalog <- data.frame(download_buttons,
+                          profile_buttons,
+                          size)
+    
+  } else {
+    
+    catalog <- data.frame(download_buttons,
+                          size)
+  
+  }
+
   
   
-  if (series != "misc"){
+  if (series != "misc" & series != "census-crosswalk"){
     year <- get_year(paths)
     catalog$YEAR <- year
     catalog$NP_TYPE <- np_type
@@ -63,7 +82,7 @@ construct_catalog <- function(series,
 #' first be constructed
 #' 
 #' @param series character scalar. Name of NCCS data series. Accepted values
-#' are "core", "bmf", "misc".
+#' are "core", "bmf", "misc", "census-crosswalk".
 #' @param paths character vector. Vector of object keys from S3 bucket.
 #' @param tscope character scalar. Type of tax exemption. Accepted values are
 #'               "NONPROFIT" ( All other 501c type organizations besides 501c3), 
@@ -96,8 +115,9 @@ get_file_paths <- function(series,
     expr <- paste0( "SOI-MICRODATA-[0-9]{4}-501C[0-9A-Z]-", tscope )
     paths <- grep( expr, paths, value=T )
     paths <- grep( paste0( "-", fscope, "\\b"), paths, value=T )
+  } else if (series == "census-crosswalk"){
+    paths <- grep("BLOCKX.csv|TRACTX.csv", paths, value = TRUE)
   }
-  
  return(paths)
   
 }
