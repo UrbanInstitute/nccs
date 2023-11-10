@@ -9,7 +9,11 @@ categories:
 featured: true
 featuredOrder: 2
 primaryCtaUrl: "../../catalogs/catalog-bmf.html"
-citation: true
+citation: 
+  author: "Jesse Lecy"
+  citationDate: "2023"
+  container-title: "NCCS Legacy BMF Series"
+  doi:
 ---
 
 The IRS 990 Business Master File, often referred to as the "BMF," is a database maintained by the Internal Revenue Service (IRS) in the United States. It contains information about tax-exempt organizations and other entities that are required to file various forms of the IRS Form 990 series. These organizations include:
