@@ -9,17 +9,18 @@ categories:
 featured: false
 # featuredOrder: 1
 primaryCtaUrl: "../../catalogs/catalog-efile.html"
-primaryCtaCaption: "File size: 246kb"
+primaryCtaCaption:
 primaryLinks:
   - text: "R Package"
-    href: "https://urbaninstitute.github.io/nccsdata/reference/index.html"
+    href: "https://github.com/Nonprofit-Open-Data-Collective/irs990efile"
+    icon: r
 author:
 - id: jlecy
 citation: 
   author: "Jesse Lecy"
   citationDate: "2023"
-  container-title: "What's New with NCCS Data?"
-  doi: 10.5555/xxxxxxxxxxx
+  container-title: "NCCS IRS 990 Efile Data"
+  doi:
 ---
 
 The IRS 990 e-File Database refers to a collection of electronically filed Form 990 documents submitted by tax-exempt organizations starting in 2012. Wgereas the NCCS Core data series is more comprehensive in terms of organizations in the dataset, the Efile database provides the most comprehensive financial and operational information about the organization's activities, governance, and finances.
