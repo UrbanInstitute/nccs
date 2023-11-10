@@ -160,10 +160,14 @@ make_archive_urls <- function(series,
                   "misc" = "legacy/misc/",
                   "soi" = "legacy/soi-micro/[0-9]{4}/")
   
+  unavail_url <- "https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html"
+  
   matches <- gsub(expr_dic[[series]], "", paths)
   matches <- gsub("\\.csv", "", matches)
   
   archive_urls <- paste0(base_url, matches)
+  archive_urls <- lapply(archive_urls, 
+                         function(x) if (RCurl::url.exists(x)) x else unavail_url)
   
   return(archive_urls)  
 }
