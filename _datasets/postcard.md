@@ -12,8 +12,7 @@ primaryCtaCaption: "File size: 330MB"
 primaryLinks:
   - text: "GitHub Repo"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-990n-postcard-filers"
-  - text: "Getting Help"
-    href: "https://nonprofit-open-data-collective.github.io/irs-990-data-issue-tracker/"
+    icon: github
 author:
 - id: jlecy
 - id: esearing
