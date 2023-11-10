@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>NCCS PACs Data Catalog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="catalog-pacs_files/libs/clipboard/clipboard.min.js"></script>
+<script src="catalog-pacs_files/libs/quarto-html/quarto.js"></script>
+<script src="catalog-pacs_files/libs/quarto-html/popper.min.js"></script>
+<script src="catalog-pacs_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="catalog-pacs_files/libs/quarto-html/anchor.min.js"></script>
+<link href="catalog-pacs_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="catalog-pacs_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="catalog-pacs_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="catalog-pacs_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="catalog-pacs_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">NCCS PACs Data Catalog</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><br></p>
+<hr>
+<p><br></p>
+<p><em>Last updated May 2023</em></p>
+<section id="organizational-data" class="level2">
+<h2 class="anchored" data-anchor-id="organizational-data">Organizational Data</h2>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-FM-8871.csv" class="button"> FORM 8871 </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-D.csv" class="button"> SCHEDULE D </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-E.csv" class="button"> SCHEDULE E </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-R.csv" class="button"> SCHEDULE R </a></p>
+</section>
+<section id="activities-data" class="level2">
+<h2 class="anchored" data-anchor-id="activities-data">Activities Data</h2>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-FM-8872.csv" class="button"> FORM 8872 </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-A.csv" class="button"> SCHEDULE A </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-B.csv" class="button"> SCHEDULE B </a></p>
+</section>
+<section id="data-dictionaries" class="level1">
+<h1>Data Dictionaries</h1>
+<p>The <a href="tidy-data-dictionary.csv"><strong>data-dictionary.csv</strong></a> file is machine-readable version of <a href="https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/raw/main/PolOrgsFileLayout.doc"><strong>PolOrgsFileLayout.doc</strong></a>.</p>
+<section id="tables" class="level2">
+<h2 class="anchored" data-anchor-id="tables">TABLES</h2>
+<p>Form 8871 Tables</p>
+<ul>
+<li><strong>D</strong>: If Director and Officer records exist for an 8871 Form, each record will be printed out in a “D” record. The “D” records for a given 8871 Form will follow it’s related “1” Record. There may be several “D” records for any one “1” record.</li>
+<li><strong>E</strong>: If the PAC has provided an Election Authority Identification Number (EAIN) on the 8871 Form, each record will be printed out in an “E” record. The “E” records for a given 8871 Form will follow its related “1” Record. There may be several “E” records for any one “1” record.</li>
+<li><strong>R</strong>: If Related Entities records exist for an 8871 Form, each record will be printed out in a “R” record. The “R” records for a given 8871 Form will follow it’s related “1” Record. There may be several “R” records for any one “1” record.</li>
+</ul>
+<p>Form 8872 Tables</p>
+<ul>
+<li><strong>A</strong>: If a Schedule A exists for an 8872 Form, each Schedule A record will be printed out in an “A” record. The “A” records for a given 8872 Form will follow its related “2” Record. There may be several “A” records for any one “2” record.</li>
+<li><strong>B</strong>: If a Schedule B exists for an 8872 Form, each Schedule B record will be printed out in an “B” record. The “B” records for a given 8872 Form will follow its related “2” Record. There may be several “B” records for any one “2” record.</li>
+</ul>
+</section>
+<section id="fm-8871" class="level2">
+<h2 class="anchored" data-anchor-id="fm-8871">FM-8871</h2>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 16%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">Designates an 8871 Record</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FM-8871-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form Type</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">8871</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">FM-8871-03</td>
+<td style="text-align: left;">FORM_TYPE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">FM-8871-05</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Initial Report Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Initial Report</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">FM-8871-07</td>
+<td style="text-align: left;">INITIAL_REPORT_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Not Initial</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">FM-8871-08</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amended Report Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Amended</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">FM-8871-10</td>
+<td style="text-align: left;">AMENDED_REPORT_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Not Amended</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">FM-8871-11</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Final Report Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Final Report</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">FM-8871-13</td>
+<td style="text-align: left;">FINAL_REPORT_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Not Final</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">FM-8871-14</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EIN</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">FM-8871-16</td>
+<td style="text-align: left;">EIN</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ORGANIZATION NAME</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">FM-8871-18</td>
+<td style="text-align: left;">ORGANIZATION_NAME</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAILING ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">FM-8871-20</td>
+<td style="text-align: left;">MAILING_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAILING ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: left;">FM-8871-22</td>
+<td style="text-align: left;">MAILING_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAILING ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">FM-8871-24</td>
+<td style="text-align: left;">MAILING_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAILING ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: left;">FM-8871-26</td>
+<td style="text-align: left;">MAILING_ADDRESS_STATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAILING ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">FM-8871-28</td>
+<td style="text-align: left;">MAILING_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAILING ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">FM-8871-30</td>
+<td style="text-align: left;">MAILING_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E_MAIL ADDRESS</td>
+<td style="text-align: left;">150</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: left;">FM-8871-32</td>
+<td style="text-align: left;">E_MAIL_ADDRESS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ESTABLISHED DATE</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: left;">FM-8871-34</td>
+<td style="text-align: left;">ESTABLISHED_DATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: left;">FM-8871-36</td>
+<td style="text-align: left;">CUSTODIAN_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUSTODIAN ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: left;">FM-8871-38</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: left;">FM-8871-40</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUSTODIAN ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: left;">FM-8871-42</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_CITY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: left;">FM-8871-44</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_STATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUSTODIAN ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: left;">FM-8871-46</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: left;">FM-8871-48</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT PERSON NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: left;">FM-8871-50</td>
+<td style="text-align: left;">CONTACT_PERSON_NAME</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTACT ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">FM-8871-52</td>
+<td style="text-align: left;">CONTACT_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: left;">FM-8871-54</td>
+<td style="text-align: left;">CONTACT_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTACT ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: left;">FM-8871-56</td>
+<td style="text-align: left;">CONTACT_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: left;">FM-8871-58</td>
+<td style="text-align: left;">CONTACT_ADDRESS_STATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTACT ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">FM-8871-60</td>
+<td style="text-align: left;">CONTACT_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: left;">FM-8871-62</td>
+<td style="text-align: left;">CONTACT_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BUSINESS ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: left;">FM-8871-64</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BUSINESS ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: left;">FM-8871-66</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">FM-8871-68</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BUSINESS ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: left;">FM-8871-69</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_CITY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BUSINESS ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: left;">FM-8871-71</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_STATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BUSINESS ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: left;">FM-8871-73</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BUSINESS ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">FM-8871-75</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EXEMPT 8872 INDICATOR</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">FM-8871-77</td>
+<td style="text-align: left;">EXEMPT_8872_INDICATOR</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EXEMPT STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: left;">FM-8871-79</td>
+<td style="text-align: left;">EXEMPT_STATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EXEMPT 990 INDICATOR</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: left;">FM-8871-81</td>
+<td style="text-align: left;">EXEMPT_990_INDICATOR</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PURPOSE</td>
+<td style="text-align: left;">512</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: left;">FM-8871-83</td>
+<td style="text-align: left;">PURPOSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MATERIAL CHANGE DATE</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">FM-8871-85</td>
+<td style="text-align: left;">MATERIAL_CHANGE_DATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INSERT_DATETIME</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">YYYY-MM-DD HH24:MI:SS</td>
+<td style="text-align: left;">Datetime</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: left;">FM-8871-87</td>
+<td style="text-align: left;">INSERT_DATETIME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RELATED_ENTITY_BYPASS</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;">0 = Entities Exist</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">FM-8871-89</td>
+<td style="text-align: left;">RELATED_ENTITY_BYPASS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1 = No Entities</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">FM-8871-90</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EAIN_BYPASS</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;">0 = EAIN(s) Exist</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: left;">FM-8871-92</td>
+<td style="text-align: left;">EAIN_BYPASS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1 = No EAINS</td>
+<td style="text-align: left;">FM-8871</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: left;">FM-8871-93</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<section id="sched-d" class="level3">
+<h3 class="anchored" data-anchor-id="sched-d">SCHED-D</h3>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 32%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Designates a Director/Officer Record for an 8871 Form Record</td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">SCHED-D-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">SCHED-D-03</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DIRECTOR ID</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">SCHED-D-05</td>
+<td style="text-align: left;">DIRECTOR_ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORG NAME</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">SCHED-D-07</td>
+<td style="text-align: left;">ORG_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EIN</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">SCHED-D-09</td>
+<td style="text-align: left;">EIN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">SCHED-D-11</td>
+<td style="text-align: left;">ENTITY_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY TITLE</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">SCHED-D-13</td>
+<td style="text-align: left;">ENTITY_TITLE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">SCHED-D-15</td>
+<td style="text-align: left;">ENTITY_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">SCHED-D-17</td>
+<td style="text-align: left;">ENTITY_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">SCHED-D-19</td>
+<td style="text-align: left;">ENTITY_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ADDRESS ST</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">SCHED-D-21</td>
+<td style="text-align: left;">ENTITY_ADDRESS_ST</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">SCHED-D-23</td>
+<td style="text-align: left;">ENTITY_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ADDRESS ZIP CODE EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">SCHED-D-25</td>
+<td style="text-align: left;">ENTITY_ADDRESS_ZIP_CODE_EXT</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sched-e" class="level3">
+<h3 class="anchored" data-anchor-id="sched-e">SCHED-E</h3>
+<table class="table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 36%">
+<col style="width: 5%">
+<col style="width: 17%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 4%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Designates an EAIN Record for an 8871 form</td>
+<td style="text-align: left;">SCHED-E</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">SCHED-E-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-E</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">SCHED-E-03</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EAIN ID</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-E</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">SCHED-E-05</td>
+<td style="text-align: left;">EAIN_ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ELECTION AUTHORITY ID NUMBER</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-E</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">SCHED-E-07</td>
+<td style="text-align: left;">ELECTION_AUTHORITY_ID_NUMBER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">STATE_ISSUED</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2 letter abbreviations of all 50 states or FD for Federal or DC for District of Columbia</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-E</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">SCHED-E-09</td>
+<td style="text-align: left;">STATE_ISSUED</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sched-r" class="level3">
+<h3 class="anchored" data-anchor-id="sched-r">SCHED-R</h3>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 6%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Designates a Related Entity Record for an 8871 Form</td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">SCHED-R-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">SCHED-R-03</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ID</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">SCHED-R-05</td>
+<td style="text-align: left;">ENTITY_ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORG NAME</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">SCHED-R-07</td>
+<td style="text-align: left;">ORG_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EIN</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">SCHED-R-09</td>
+<td style="text-align: left;">EIN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">SCHED-R-11</td>
+<td style="text-align: left;">ENTITY_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY RELATIONSHIP</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">SCHED-R-13</td>
+<td style="text-align: left;">ENTITY_RELATIONSHIP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">SCHED-R-15</td>
+<td style="text-align: left;">ENTITY_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">SCHED-R-17</td>
+<td style="text-align: left;">ENTITY_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">SCHED-R-19</td>
+<td style="text-align: left;">ENTITY_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ADDRESS ST</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">SCHED-R-21</td>
+<td style="text-align: left;">ENTITY_ADDRESS_ST</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ENTITY ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">SCHED-R-23</td>
+<td style="text-align: left;">ENTITY_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ENTITY ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">SCHED-R-25</td>
+<td style="text-align: left;">ENTITY_ADDRESS_ZIP_EXT</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="fm-8872" class="level2">
+<h2 class="anchored" data-anchor-id="fm-8872">FM-8872</h2>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 15%">
+<col style="width: 7%">
+<col style="width: 24%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 6%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Designates an 8872 Form Record</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FM-8872-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form Type</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">8872</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">FM-8872-03</td>
+<td style="text-align: left;">FORM_TYPE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">FM-8872-05</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PERIOD Begin Date</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">FM-8872-07</td>
+<td style="text-align: left;">PERIOD_BEGIN_DATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PERIOD End Date</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">FM-8872-09</td>
+<td style="text-align: left;">PERIOD_END_DATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Initial Report Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Initial Report</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">FM-8872-11</td>
+<td style="text-align: left;">INITIAL_REPORT_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Not Initial</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">FM-8872-12</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Amended Report Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Amended</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">FM-8872-14</td>
+<td style="text-align: left;">AMENDED_REPORT_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Not Amended</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">FM-8872-15</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Final Report Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Final Report</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">FM-8872-17</td>
+<td style="text-align: left;">FINAL_REPORT_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Not Final</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: left;">FM-8872-18</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Change of Address Indicator</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;">1 = Address has changed</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">FM-8872-20</td>
+<td style="text-align: left;">CHANGE_OF_ADDRESS_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Address has not changed</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">FM-8872-21</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORGANIZATION NAME</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">FM-8872-23</td>
+<td style="text-align: left;">ORGANIZATION_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EIN</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">FM-8872-25</td>
+<td style="text-align: left;">EIN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAILING ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">FM-8872-27</td>
+<td style="text-align: left;">MAILING_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAILING ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: left;">FM-8872-29</td>
+<td style="text-align: left;">MAILING_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAILING ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">FM-8872-31</td>
+<td style="text-align: left;">MAILING_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAILING ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">FM-8872-33</td>
+<td style="text-align: left;">MAILING_ADDRESS_STATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAILING ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">FM-8872-35</td>
+<td style="text-align: left;">MAILING_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MAILING ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: left;">FM-8872-37</td>
+<td style="text-align: left;">MAILING_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E_MAIL ADDRESS</td>
+<td style="text-align: left;">150</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: left;">FM-8872-39</td>
+<td style="text-align: left;">E_MAIL_ADDRESS</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ORG FORMATION DATE</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: left;">FM-8872-41</td>
+<td style="text-align: left;">ORG_FORMATION_DATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: left;">FM-8872-43</td>
+<td style="text-align: left;">CUSTODIAN_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUSTODIAN ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">FM-8872-45</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">FM-8872-47</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUSTODIAN ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">FM-8872-49</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_CITY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: left;">FM-8872-51</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_STATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUSTODIAN ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">FM-8872-53</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUSTODIAN ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: left;">FM-8872-55</td>
+<td style="text-align: left;">CUSTODIAN_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT PERSON NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: left;">FM-8872-57</td>
+<td style="text-align: left;">CONTACT_PERSON_NAME</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTACT ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: left;">FM-8872-59</td>
+<td style="text-align: left;">CONTACT_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: left;">FM-8872-61</td>
+<td style="text-align: left;">CONTACT_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTACT ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: left;">FM-8872-63</td>
+<td style="text-align: left;">CONTACT_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">FM-8872-65</td>
+<td style="text-align: left;">CONTACT_ADDRESS_STATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTACT ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: left;">FM-8872-67</td>
+<td style="text-align: left;">CONTACT_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTACT ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: left;">FM-8872-69</td>
+<td style="text-align: left;">CONTACT_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BUSINESS ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">71</td>
+<td style="text-align: left;">FM-8872-71</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BUSINESS ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: left;">FM-8872-73</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BUSINESS ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: left;">FM-8872-75</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_CITY</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BUSINESS ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: left;">FM-8872-77</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_STATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BUSINESS ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: left;">FM-8872-79</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BUSINESS ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: left;">FM-8872-81</td>
+<td style="text-align: left;">BUSINESS_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">QTR INDICATOR</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 to 8</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">1 = First Quarterly</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: left;">FM-8872-83</td>
+<td style="text-align: left;">QTR_INDICATOR</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">2 = Second Quarterly</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: left;">FM-8872-84</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">3 = Third Quarterly 4 = Year-end</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">85</td>
+<td style="text-align: left;">FM-8872-85</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">5 = Mid-Year</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">86</td>
+<td style="text-align: left;">FM-8872-86</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">6 = Monthly</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: left;">FM-8872-87</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">7 = Pre-election</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">88</td>
+<td style="text-align: left;">FM-8872-88</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">8 = Post-election</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">FM-8872-89</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">FM-8872-90</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MONTHLY RPT MONTH</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">If Monthly; 1-12; else NULL</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;">If QTR Indicator - Monthly; Month is filled</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: left;">FM-8872-92</td>
+<td style="text-align: left;">MONTHLY_RPT_MONTH</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PRE ELECT TYPE</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">If PreElect; Else Null</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;">Null if this is a post election rpt</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: left;">FM-8872-94</td>
+<td style="text-align: left;">PRE_ELECT_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PRE or POST ELECT DATE</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: left;">FM-8872-96</td>
+<td style="text-align: left;">PRE_OR_POST_ELECT_DATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PRE or POST ELECT STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">98</td>
+<td style="text-align: left;">FM-8872-98</td>
+<td style="text-align: left;">PRE_OR_POST_ELECT_STATE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED_A_IND</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;">1 = No Sched A</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: left;">FM-8872-00</td>
+<td style="text-align: left;">SCHED_A_IND</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Sched A exists</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">101</td>
+<td style="text-align: left;">FM-8872-01</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TOTAL_SCHED_A</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: left;">FM-8872-03</td>
+<td style="text-align: left;">TOTAL_SCHED_A</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED_B_IND</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1 or 0</td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;">1 = No Sched B</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">105</td>
+<td style="text-align: left;">FM-8872-05</td>
+<td style="text-align: left;">SCHED_B_IND</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = Sched B exists</td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: left;">FM-8872-06</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TOTAL_SCHED_B</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">108</td>
+<td style="text-align: left;">FM-8872-08</td>
+<td style="text-align: left;">TOTAL_SCHED_B</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">INSERT_DATETIME</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">YYYY-MM-DD HH24:MI:SS</td>
+<td style="text-align: left;">Datetime</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FM-8872</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: left;">FM-8872-10</td>
+<td style="text-align: left;">INSERT_DATETIME</td>
+</tr>
+</tbody>
+</table>
+<section id="sched-a" class="level3">
+<h3 class="anchored" data-anchor-id="sched-a">SCHED-A</h3>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 32%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Designates Schedule A Record that relates to an 8872 Form ID</td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">SCHED-A-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">SCHED-A-03</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED A ID</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">SCHED-A-05</td>
+<td style="text-align: left;">SCHED_A_ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORG NAME</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">SCHED-A-07</td>
+<td style="text-align: left;">ORG_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EIN</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">SCHED-A-09</td>
+<td style="text-align: left;">EIN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTRIBUTOR NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">SCHED-A-11</td>
+<td style="text-align: left;">CONTRIBUTOR_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTRIBUTOR ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">SCHED-A-13</td>
+<td style="text-align: left;">CONTRIBUTOR_ADDRESS_1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTRIBUTOR ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">SCHED-A-15</td>
+<td style="text-align: left;">CONTRIBUTOR_ADDRESS_2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTRIBUTOR ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">SCHED-A-17</td>
+<td style="text-align: left;">CONTRIBUTOR_ADDRESS_CITY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTRIBUTOR ADDRESS STATE</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">SCHED-A-19</td>
+<td style="text-align: left;">CONTRIBUTOR_ADDRESS_STATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTRIBUTOR ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">SCHED-A-21</td>
+<td style="text-align: left;">CONTRIBUTOR_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTRIBUTOR ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">SCHED-A-23</td>
+<td style="text-align: left;">CONTRIBUTOR_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTRIBUTOR EMPLOYER</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">SCHED-A-25</td>
+<td style="text-align: left;">CONTRIBUTOR_EMPLOYER</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CONTRIBUTION AMOUNT</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">SCHED-A-27</td>
+<td style="text-align: left;">CONTRIBUTION_AMOUNT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTRIBUTOR OCCUPATION</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: left;">SCHED-A-29</td>
+<td style="text-align: left;">CONTRIBUTOR_OCCUPATION</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AGG CONTRIBUTION YTD</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">SCHED-A-31</td>
+<td style="text-align: left;">AGG_CONTRIBUTION_YTD</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CONTRIBUTION DATE</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">SCHED-A-33</td>
+<td style="text-align: left;">CONTRIBUTION_DATE</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sched-b" class="level3">
+<h3 class="anchored" data-anchor-id="sched-b">SCHED-B</h3>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 32%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 5%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Designates Schedule B Record that relates to an 8872 Form ID</td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">SCHED-B-01</td>
+<td style="text-align: left;">RECORD_TYPE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Form ID Number</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">SCHED-B-03</td>
+<td style="text-align: left;">FORM_ID_NUMBER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED B ID</td>
+<td style="text-align: left;">Up to 38 digits</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">SCHED-B-05</td>
+<td style="text-align: left;">SCHED_B_ID</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORG NAME</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">SCHED-B-07</td>
+<td style="text-align: left;">ORG_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EIN</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">SCHED-B-09</td>
+<td style="text-align: left;">EIN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RECIEPIENT NAME</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">SCHED-B-11</td>
+<td style="text-align: left;">RECIEPIENT_NAME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RECIEPIENT ADDRESS 1</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">SCHED-B-13</td>
+<td style="text-align: left;">RECIEPIENT_ADDRESS_1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RECIEPIENT ADDRESS 2</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">SCHED-B-15</td>
+<td style="text-align: left;">RECIEPIENT_ADDRESS_2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RECIEPIENT ADDRESS CITY</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: left;">SCHED-B-17</td>
+<td style="text-align: left;">RECIEPIENT_ADDRESS_CITY</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RECIEPIENT ADDRESS ST</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: left;">SCHED-B-19</td>
+<td style="text-align: left;">RECIEPIENT_ADDRESS_ST</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RECIEPIENT ADDRESS ZIP CODE</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: left;">SCHED-B-21</td>
+<td style="text-align: left;">RECIEPIENT_ADDRESS_ZIP_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RECIEPIENT ADDRESS ZIP EXT</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">SCHED-B-23</td>
+<td style="text-align: left;">RECIEPIENT_ADDRESS_ZIP_EXT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RECIEPIENT EMPLOYER</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">SCHED-B-25</td>
+<td style="text-align: left;">RECIEPIENT_EMPLOYER</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EXPENDITURE AMOUNT</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: left;">SCHED-B-27</td>
+<td style="text-align: left;">EXPENDITURE_AMOUNT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">RECIPIENT OCCUPATION</td>
+<td style="text-align: left;">70</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: left;">SCHED-B-29</td>
+<td style="text-align: left;">RECIPIENT_OCCUPATION</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EXPENDITURE DATE</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">SCHED-B-31</td>
+<td style="text-align: left;">EXPENDITURE_DATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EXPENDITURE PURPOSE</td>
+<td style="text-align: left;">512</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">AlphaNumeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: left;">SCHED-B-33</td>
+<td style="text-align: left;">EXPENDITURE_PURPOSE</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="metadata" class="level2">
+<h2 class="anchored" data-anchor-id="metadata">Metadata</h2>
+<section id="header" class="level3">
+<h3 class="anchored" data-anchor-id="header">HEADER</h3>
+<table class="table">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 14%">
+<col style="width: 4%">
+<col style="width: 56%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 3%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type Code</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">Character</td>
+<td style="text-align: left;">Designates a file header</td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">HEADER-01</td>
+<td style="text-align: left;">RECORD_TYPE_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transmission Date</td>
+<td style="text-align: left;">-8</td>
+<td style="text-align: left;">SYSDATE</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Date file is created</td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">HEADER-03</td>
+<td style="text-align: left;">TRANSMISSION_DATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">yyyymmdd</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">HEADER-04</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transmission Time</td>
+<td style="text-align: left;">-4</td>
+<td style="text-align: left;">SYSDATE</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Time file is created</td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">HEADER-06</td>
+<td style="text-align: left;">TRANSMISSION_TIME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">hhmm</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">HEADER-07</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">File ID Modifier</td>
+<td style="text-align: left;">-1</td>
+<td style="text-align: left;">A for first part of alphabet transmission</td>
+<td style="text-align: left;">Character</td>
+<td style="text-align: left;">This designates the file that the user downloaded. The user has the option to download a full data file; or separate smaller data files broken up by alphabet.</td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">HEADER-09</td>
+<td style="text-align: left;">FILE_ID_MODIFIER</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">B for second transmission</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">HEADER-10</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">C for third transmission</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">HEADER-11</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">D for fourth transmission</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">HEADER-12</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">F for full data transmission</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HEADER</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">HEADER-13</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="footer" class="level3">
+<h3 class="anchored" data-anchor-id="footer">FOOTER</h3>
+<table class="table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 26%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 7%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">IRS_FIELD_NAME</th>
+<th style="text-align: left;">SIZE</th>
+<th style="text-align: left;">VALID_VALUES</th>
+<th style="text-align: left;">FORMAT</th>
+<th style="text-align: left;">DESCRIPTION</th>
+<th style="text-align: left;">FORMTYPE</th>
+<th style="text-align: right;">ORDER</th>
+<th style="text-align: left;">F_ORDER</th>
+<th style="text-align: left;">VARNAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Record Type Code</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Character</td>
+<td style="text-align: left;">Designates a file header</td>
+<td style="text-align: left;">FOOTER</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FOOTER-01</td>
+<td style="text-align: left;">RECORD_TYPE_CODE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transmission Date</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">SYSDATE</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Date on which the file is created</td>
+<td style="text-align: left;">FOOTER</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">FOOTER-03</td>
+<td style="text-align: left;">TRANSMISSION_DATE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">yyyymmdd</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FOOTER</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">FOOTER-04</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transmission Time</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">SYSDATE</td>
+<td style="text-align: left;">Alphanumeric</td>
+<td style="text-align: left;">Time when file is created</td>
+<td style="text-align: left;">FOOTER</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">FOOTER-06</td>
+<td style="text-align: left;">TRANSMISSION_TIME</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Record Count</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Numeric</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">FOOTER</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">FOOTER-08</td>
+<td style="text-align: left;">RECORD_COUNT</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr>
+<p><br></p>
+
+<style>
+
+
+h1.title {
+ font-size: 60px;
+ color: #0a4c6a;
+}
+
+
+h4, .h4 {
+    font-size: 40px;
+    color: #1696d2;
+    margin-bottom: 50px;
+}
+
+
+
+.button {
+  background-color: white;
+  color:  #12719e;
+  border: 2px solid  #12719e;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+ 
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #1696d2; 
+  color: white;
+  border: 2px solid #12719e;
+}
+
+
+.button2 {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+
+.button2 {
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  background-color: #fff2cf; 
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+
+.center {text-align: center;}
+
+table td {
+  vertical-align: middle;
+}
+
+blockquote {
+    border-left: 4px solid #1696d2;
+    margin-left: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 15px;
+}
+
+.button3 {
+  background-color: #0a4c6a;
+  color: white;
+  border: 2px solid #0a4c6a;   
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100px;
+}
+</style>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
