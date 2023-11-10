@@ -8,28 +8,20 @@ categories:
   - crosswalks
 featured: true
 featuredOrder: 4
-primaryCtaUrl: ""
-primaryCtaCaption: "Years Available: 1990-2020"
+primaryCtaUrl: "https://urbaninstitute.github.io/nccs/catalogs/catalog-census_crosswalk.html"
+primaryCtaCaption:
 primaryLinks:
-  - text: "Data Dictionary"
-    href: "https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/census_codebook.xlsx"
-  - text: "BLOCKX.csv 784MB"
-    href: "https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv"
-  - text: "TRACTX.csv 15MB"
-    href: "https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv"
-  - text: "geocrosswalk R Package"
-    href: "https://github.com/UrbanInstitute/geocrosswalk"
-  - text: "Crosswalk Code"
+  - text: "Replication Code"
     href: "https://github.com/UI-Research/nccs-geo"
-  - text: "Get Help"
-    href: "https://github.com/UrbanInstitute/geocrosswalk/issues"
+    icon: github
+  - text: "R geocrosswalk"
+    href: "https://github.com/UrbanInstitute/geocrosswalk"
 author:
 - id: cdavis
 - id: jlecy
 citation: 
   author: "Davis, C. & Lecy, J."
   container-title: "Introducing the geocrosswalk Framework for Seamless Integration of Census Panels into Studies."
-  doi: 10.5555/12345678
 ---
 
 ## Overview
@@ -42,10 +34,10 @@ Augmenting a file with Census data should be as straight-forward as:
 
 ```r
 get_data( 
-   core,
-   years=2010:2020,
-   geo.region="southeast",
-   ntee="human services" ) %>%
+   dsname = "core",
+   time = as.character(2010:2020),
+   geo.region = "south",
+   ntee = "HEL" ) %>%
 append_census( level="tract" )
 ```
 
