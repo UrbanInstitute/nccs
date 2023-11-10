@@ -1,7 +1,7 @@
 ---
 title: NCCS Core Series
 date: 2023-05-27
-description: A comprehensive panel of nonprofit organizations that file IRS form 990. 
+description: A comprehensive panel of nonprofit organizations that file IRS form 990
 categories:
   - 990
   - financial-trends
@@ -9,17 +9,19 @@ categories:
 featured: true
 featuredOrder: 1
 primaryCtaUrl: "../../catalogs/catalog-core.html"
-primaryCtaCaption: "File size: 246kb"
+primaryCtaCaption:
 primaryLinks:
   - text: "R Package"
-    href: "https://urbaninstitute.github.io/nccsdata/reference/index.html"
+    href: "https://urbaninstitute.github.io/nccsdata/"
+    icon: r
 author:
 - id: jlecy
+- id: thiya
 citation: 
   author: "Jesse Lecy"
   citationDate: "2023"
-  container-title: "What's New with NCCS Data?"
-  doi: 10.5555/xxxxxxxxxxx
+  container-title: "NCCS Legacy Core Series"
+  doi:
 ---
 
 ## Overview
@@ -62,40 +64,36 @@ Data can be downloaded via the [**data catalog**](https://lecy.github.io/nccs/ca
 ###    desired geography: 
 ###    geo.state, geo.city, geo.county
 
+install.packages("devtools")
 devtools::install_github("UrbanInstitute/nccsdata")
 library(nccsdata)
 
-dat <- get_data(
-             dsname = "core",
-             time   = 2005     )
+dat <- get_data(dsname = "core",
+                time   = "2005")
 
-dat <- get_data(
-             dsname = "core",
-             time   = 2005,
-             ntee   = "ART"   )
+dat <- get_data(dsname = "core",
+                time   = "2005",
+                ntee   = "ART")
 
 ###
 ###  MULTIPLE GEOGRAPHIES ARE SUPPORTED 
 ###
 
-dat <- get_data(
-             dsname = "core",
-             time   = 2005,
-             ntee   = "ART",   
-             geo.state = "CA"   )
+dat <- get_data(dsname = "core",
+                time   = "2005",
+                ntee   = "ART",   
+                geo.state = "CA")
 
-dat <- get_data(
-             dsname = "core",
-             time   = 2005,
-             geo.city = "san francisco" )
+dat <- get_data(dsname = "core",
+                time   = "2005",
+                geo.city = "san francisco")
 
-dat <- get_data(
-             dsname = "core",
-             time   = 2005,
-             geo.county = "autauga"  )
+dat <- get_data(dsname = "core",
+                time   = "2005",
+                geo.county = "autauga")
 ```
 
-Learn more from the data story titled "Introducing the nccsdata Package" or the [package documentation](https://urbaninstitute.github.io/nccsdata/reference/index.html). 
+Learn more from the [data story](https://urbaninstitute.github.io/nccs/stories/nccsdata/) or the [package website](https://urbaninstitute.github.io/nccsdata/index.html). 
 
 ## Data Series Attributes 
 
