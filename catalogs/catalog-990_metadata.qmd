@@ -34,8 +34,9 @@ nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary
 #| echo: false
 #| output: asis
  
-catalog <- construct_catalog(series = "misc",
-                              paths = d$Key)
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "misc",
+                             paths = d$Key)
 catalog$Description <- c(
   'Supplemental fields including contribution, expense, and fund balance detail (rel May 14, 2009)',
   "Supplemental fields for the new revision of Form 990 (tax years 2008 and later)",
@@ -43,15 +44,17 @@ catalog$Description <- c(
   "Supplemental purpose and program service descriptions from Part III of Form 990 (rel Feb 10, 2009)",
   "Supplemental fields including contribution, expense, and fund balance detail (rel Feb 10, 2009)"
   )
-```
 
-```{r}
-#| echo: false
+dead_button <- "<a href=https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html class='button2'> PROFILE </a>"
+
+catalog[2, 2] <- dead_button
+catalog[5, 2] <- dead_button
 
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
                               "Data Dictionary",
+                              "Size",
                               "Description") ) %>%
   kableExtra::kable_styling()
 ```
