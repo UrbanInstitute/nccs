@@ -9,6 +9,10 @@ categories:
 featured: true
 featuredOrder: 2
 primaryCtaUrl: "../../catalogs/catalog-bmf.html"
+primaryLinks:
+  - text: "R Package"
+    href: "https://urbaninstitute.github.io/nccsdata/"
+    icon: r
 citation: 
   author: "Jesse Lecy"
   citationDate: "2023"
