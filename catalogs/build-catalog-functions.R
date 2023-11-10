@@ -61,7 +61,7 @@ construct_catalog <- function(s3_catalog,
   
   }
 
-  
+  if (series == "bmf"){catalog$MONTH <- get_month(paths)}
   
   if (series != "misc" & series != "census-crosswalk"){
     year <- get_year(paths)
