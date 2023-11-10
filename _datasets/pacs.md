@@ -3,16 +3,14 @@ title: 527 Political Action Committees
 date: 2023-05-30 12:00:00
 description: Electronic filings made by 527 organizations. 
 primaryCtaUrl: "../../catalogs/catalog-pacs.html"
-primaryCtaCaption: "File size: 246kb"
+primaryCtaCaption: "Includes data dictionaries"
 primaryLinks:
   - text: "GitHub Repository"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/README.md"
-  - text: "Data Dictionary"
-    href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/data-dictionary.md"
-  - text: "Data Dictionary CSV"
-    href: "https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/tidy-data-dictionary.csv"
-  - text: "R Program"
+    icon: github
+  - text: "R Scripts"
     href: "https://github.com/Nonprofit-Open-Data-Collective/irs-527-political-action-committee-disclosures/blob/main/parse-pol-org-disclosures.R"
+    icon: r
 categories:
   - elections
   - campaign finance
@@ -26,7 +24,7 @@ author:
 citation: 
   author: "Lecy, J.D. (2023)."
   container-title: "Nonprofit Political Action Committee (PAC) Data: Parsing IRS 8871 and 8872 ASCII Files."
-  doi: 10.1515/xxx
+  doi:
 
   
 ---
