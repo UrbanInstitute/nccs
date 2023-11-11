@@ -88,11 +88,11 @@ The answer will depend greatly upon your intended use case of the data. The shor
 
 As an example, InContext Indiana provides a [nice illustration](https://www.incontext.indiana.edu/2021/mar-apr/article1.asp) of the differences between Metropolitan Statistical Areas, Micropolitan Statistical Areas, and Combined Statistical Areas. These are different ways of thinking about towns, cities, and metropolitan regions. 
 
-**Metropolitan** Statistical Areas (metros with populations above 50,000) and **Micropolitan** Statistical Areas (populations above 10,000 and below 50,000) are mutually exclusive lists of cities and towns that are combined to form **Core Based** Statistical Areas (CBSAs). **Combined** Statistical Areas (populations that form a coherent commercial and commuting zone) are created by identifying adjacent Micro and Metro areas that constitute a coherent economic region. 
+**Metropolitan** Statistical Areas (metros with populations above 50,000) and **Micropolitan** Statistical Areas (populations above 10,000 and below 50,000) are mutually exclusive lists of cities and towns that are combined to form **Core Based Statistical Areas (CBSAs)**. Populations that form a coherent commercial and commuting zones called **Combined Statistical Areas (CSAs)** are created by identifying adjacent Micro and Metro areas that constitute a coherent economic region. 
 
 ![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png)
 
-In this example there are <span style="color:#29ABE2; font-weight:bold;">12 Metro Areas</span> in Indiana and <span style="color:#7AC943; font-weight:bold;">24 Micropolitan Areas</span>. They belong to <span style="color:#F7931E; font-weight:bold;">10 metropolitan regions</span> (Combined Statistical Areas), 7 of which are located inside the state and 3 of which are CSAs in neighboring states that contain Indiana towns and cities. 
+In this example there are <span style="color:#29ABE2; font-weight:bold;">12 Metro Areas</span> in Indiana and <span style="color:#7AC943; font-weight:bold;">24 Micropolitan Areas</span>. They belong to <span style="color:#F7931E; font-weight:bold;">10 Metropolitan Regions</span> (Combined Statistical Areas), 7 of which are located inside the state and 3 of which are CSAs in neighboring states that contain Indiana towns and cities. 
 
 The CBSA geographies are formed by combining all of the Metro and Micro areas into a single catalog, but they are all still distinct and mutually exclusive. The CSA geographies are formed by combining multiple Metro and Micro units into aggregated regional units. 
 
