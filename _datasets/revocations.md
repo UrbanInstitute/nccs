@@ -6,29 +6,21 @@ categories:
   - environment
   - lorem
   - testing
-primaryCtaUrl: "#"
-primaryCtaCaption: "File size: 246kb"
+primaryCtaUrl: "https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html"
 primaryLinks:
-  - text: "R Package"
-    href: "#"
-  - text: "Data History"
-    href: "#"
+  - text: "IRS Description"
+    href: "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search"
+    icon: report
 author:
-- id: jc
-- id: jd
-- name: "Edmund Choi"
-  bio: "Testing bio and author overrides"
+- id: jlecy
 citation: 
-  author: "Choi. Y & Lee, Y."
-  container-title: "Ednel: A large – scale hierarchical dataset in education"
-  doi: 10.5555/12345678
+  author: "Lecy, J."
+  container-title: "IRS Revocations Database"
 ---
 
 
-## Definitions 
+## Overview
 
-asdfad
+Most tax-exempt organizations other than churches and certain church-related organizations are required to file an annual information return or notice with the IRS.
 
-## Usage 
-
-SDFSDF
+Organizations that do not file for three consecutive years automatically lose their tax-exempt status. An automatic revocation is effective on the original filing due date of the third annual return or notice. (Section 6033(j) of the Internal Revenue Code).
