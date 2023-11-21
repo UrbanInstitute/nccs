@@ -7,7 +7,6 @@ execute:
   warning: false
 ---
 
-
 ```{r}
 #| echo: false
 
@@ -45,7 +44,6 @@ catalog %>%
                              "Month")) %>%
   kableExtra::kable_styling()
 ```
-
 
 <br>
 
