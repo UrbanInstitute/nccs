@@ -1,8 +1,12 @@
 ---
 title: Revocations Database
 date: 2023-05-27
-description: Database of all nonprofit entities that have had their tax exempt status revoked. 
+description: Database of all nonprofit entities that have had their tax exempt status revoked
+categories:
+  - revocations
+featured: false
 primaryCtaUrl: "https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html"
+primaryCtaCaption:
 primaryLinks:
   - text: "IRS Revocations Site"
     href: "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search"
