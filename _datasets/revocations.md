@@ -10,7 +10,7 @@ primaryCtaCaption:
 primaryLinks:
   - text: "IRS Revocations Site"
     href: "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search"
-    icon: report
+    icon: article
 author:
 - id: jlecy
 citation: 
