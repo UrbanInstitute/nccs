@@ -1,14 +1,10 @@
 ---
 title: Revocations Database
 date: 2023-05-27
-description: Database of all nonprofit entities that have had their tax exemmpt status revoked. 
-categories:
-  - environment
-  - lorem
-  - testing
+description: Database of all nonprofit entities that have had their tax exempt status revoked. 
 primaryCtaUrl: "https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html"
 primaryLinks:
-  - text: "IRS Description"
+  - text: "IRS Revocations Site"
     href: "https://www.irs.gov/charities-non-profits/tax-exempt-organization-search"
     icon: report
 author:
