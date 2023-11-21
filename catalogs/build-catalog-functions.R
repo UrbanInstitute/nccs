@@ -42,11 +42,38 @@ construct_catalog <- function(s3_catalog,
     dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)),
                                    " mb")) %>% 
     dplyr::pull("size_mb")
-  
+    
   download_urls <- make_s3_urls(paths = paths)
-  download_buttons <- make_buttons(urls = download_urls, button_name = "download")
   
-  if (series != "census-crosswalk"){
+  if (series == "revocations"){
+    
+    log_urls <- grep("LOG", download_urls, value = TRUE)
+    log_buttons <- make_buttons(urls = log_urls, button_name = "download")
+    
+    org_urls <- grep("ORG", download_urls, value = TRUE)
+    org_buttons <- make_buttons(urls = org_urls, button_name = "download")
+    
+    table_urls <- grep("TABLE", download_urls, value = TRUE)
+    table_buttons <- make_buttons(urls = table_urls, button_name = "download")
+    
+    catalog <- data.frame(log_buttons,
+                          org_buttons,
+                          table_buttons)
+    catalog$YEAR <- get_year(log_urls)
+    catalog$MONTH <- get_month(log_urls)
+    
+    return(catalog)
+    
+  }
+  
+  else {
+    
+    download_buttons <- make_buttons(urls = download_urls, 
+                                     button_name = "download")
+    
+  }
+    
+  if (! series %in% c("census-crosswalk")){
     
     profile_urls <- make_archive_urls(series = series, paths = paths)
     profile_buttons <- make_buttons(urls = profile_urls, button_name = "profile")
@@ -61,11 +88,15 @@ construct_catalog <- function(s3_catalog,
   
   }
 
-  if (series == "bmf"){catalog$MONTH <- get_month(paths)}
+  if (series %in% c("bmf")){
+    
+    catalog$MONTH <- get_month(paths)
+    
+    }
   
-  if (series != "misc" & series != "census-crosswalk"){
-    year <- get_year(paths)
-    catalog$YEAR <- year
+  if (! series %in% c("misc", "census-crosswalk")){
+
+    catalog$YEAR <- get_year(paths)
     catalog$NP_TYPE <- np_type
     catalog$FORM_SCOPE <- fscope
   }
@@ -117,7 +148,10 @@ get_file_paths <- function(series,
     paths <- grep( paste0( "-", fscope, "\\b"), paths, value=T )
   } else if (series == "census-crosswalk"){
     paths <- grep("BLOCKX.csv|TRACTX.csv", paths, value = TRUE)
+  } else if (series == "revocations"){
+    paths <- grep("REVOCATIONS", paths, value = TRUE)
   }
+  
  return(paths)
   
 }
@@ -184,7 +218,7 @@ make_archive_urls <- function(series,
 #' @return character vector. Tax years for datasets.
 
 get_year <- function( paths ) {
-  yyyy <- stringr::str_extract( paths, "-[0-9]{4}-" )
+  yyyy <- stringr::str_extract( paths, "\\b(19|20)\\d{2}\\b" )
   yyyy <- gsub( "-", "", yyyy )
   return( yyyy )
 }
@@ -200,7 +234,7 @@ get_year <- function( paths ) {
 #' @return character vector. Release months for datasets.
 
 get_month <- function( paths ) {
-  mm <- stringr::str_extract( paths, "-[0-9]{2}-" )
+  mm <- stringr::str_extract( paths, "\\b(0|1)\\d{1}\\b" )
   mm <- gsub( "-", "", mm )
   return( mm )
 }

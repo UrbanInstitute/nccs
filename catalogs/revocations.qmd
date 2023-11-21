@@ -1,0 +1,149 @@
+---
+title: "NCCS Revocations Data Catalog"
+format: html
+editor: visual
+execute: 
+  echo: false
+  warning: false
+---
+
+
+```{r}
+#| echo: false
+
+library( dplyr )
+library( knitr )
+library( kableExtra )
+library( stringr )
+library( flextable )
+library( pander )
+
+GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
+d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
+source("build-catalog-functions.R")
+```
+
+<br>
+
+<hr>
+
+<br>
+
+#### Revocations Database
+
+```{r}
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "revocations",
+                             paths = d$Key)
+
+catalog %>%
+  knitr::kable(escape=FALSE,
+               col.names = c("Log of Revocations", 
+                             "Revoked Organizations",
+                             "Number of Revocations",
+                             "Year",
+                             "Month")) %>%
+  kableExtra::kable_styling()
+```
+
+
+<br>
+
+<hr>
+
+<br>
+
+```{=html}
+<style>
+
+
+h1.title {
+ font-size: 60px;
+ color: #0a4c6a;
+}
+
+
+h4, .h4 {
+    font-size: 40px;
+    color: #1696d2;
+    margin-bottom: 50px;
+}
+
+
+
+.button {
+  background-color: white;
+  color:  #12719e;
+  border: 2px solid  #12719e;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+ 
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #1696d2; 
+  color: white;
+  border: 2px solid #12719e;
+}
+
+
+.button2 {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+
+.button2 {
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  background-color: #fff2cf; 
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+
+.center {text-align: center;}
+
+table td {
+  vertical-align: middle;
+}
+
+blockquote {
+    border-left: 4px solid #1696d2;
+    margin-left: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 15px;
+}
+
+.button3 {
+  background-color: #0a4c6a;
+  color: white;
+  border: 2px solid #0a4c6a;   
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100px;
+}
+</style>
+```
