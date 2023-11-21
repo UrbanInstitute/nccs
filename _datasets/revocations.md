@@ -5,7 +5,7 @@ description: Database of all nonprofit entities that have had their tax exempt s
 categories:
   - revocations
 featured: false
-primaryCtaUrl: "https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html"
+primaryCtaUrl: "https://urbaninstitute.github.io/nccs/catalogs/catalog-revocations.html"
 primaryCtaCaption:
 primaryLinks:
   - text: "IRS Revocations Site"
