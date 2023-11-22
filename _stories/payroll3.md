@@ -1,5 +1,5 @@
 ---
-title: Payroll Taxes V3
+title: Payroll Taxes
 date: 2023-08-28
 description: This data story outlines the process for estimating the amount of payroll taxes nonprofits pay annually.
 featured: true
