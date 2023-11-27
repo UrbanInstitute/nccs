@@ -38,8 +38,8 @@ markdown: GFM
 nav:
   - title: Data
     url: /datasets/
-  # - title: Resources
-  #   url: /resources/
+  - title: Resources
+    url: /resources/
   - title: Stories
     url: /stories/
   - title: About
@@ -52,8 +52,8 @@ footer_nav:
     url: /privacy/
   - title: Terms & Service
     url: /terms/
-  - title: Parts Kit
-    url: /parts-kit/
+#  - title: Parts Kit
+#    url: /parts-kit/
 
 # Social Links
 # Entries here will show up in the _includes/footer.html partial in the social section
