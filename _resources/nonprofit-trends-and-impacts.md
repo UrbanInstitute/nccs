@@ -26,8 +26,5 @@ pubs:
   - title: National Findings on Diversity and Representation in the Nonprofit Sector
     href: https://www.urban.org/sites/default/files/2021/11/05/national_findings_on_diversity_and_representation_in_the_nonprofit_sector.pdf
     link-text: pdf
-  - title: Nonprofit Trends and Impacts 2022
-    href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021
-    link-text: pdf
 ---
 
