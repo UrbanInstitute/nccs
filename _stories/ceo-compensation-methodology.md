@@ -9,13 +9,13 @@ categories:
   - SOI extracts
   - payroll tax
 author:
-  - id: hm
-  - id: jdl
+  - id: hmartin
+  - id: jlecy
 citation: 
   container-title: National Center for Charitable Statistics
   volume: 1
   issue: 1
-  doi: 10.5555/12345678
+  doi:
 links:
   - header: Replication Files
     links:
