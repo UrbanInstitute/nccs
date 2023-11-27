@@ -1,6 +1,8 @@
 ---
 title: 2014 Nonprofit Sector in Brief
-description: Annual reports on the state of the nonprofit sector. 
+description: The 2014 Sector Brief discusses trends in the number and finances of 
+501(c)(3) public charities and key findings on two important resources for the
+nonprofit sector: private charitable contributions and volunteering.
 date: 2014-10-27
 featured: true
 featuredOrder: 5
