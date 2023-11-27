@@ -1,8 +1,8 @@
 ---
 title: 2011 Nonprofit Sector in Brief
-description: The 2011 Sector Brief discusses trends in the number and finances of 
+description: 'The 2011 Sector Brief discusses trends in the number and finances of 
 501(c)(3) public charities and key findings on two important resources for the
-nonprofit sector: private charitable contributions and volunteering. 
+nonprofit sector: private charitable contributions and volunteering.' 
 date: 2011-11-01
 featured: false
 type: brief
