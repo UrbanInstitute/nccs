@@ -25,6 +25,10 @@ primaryLinks:
     icon: link
 author:
 - id: jlecy
+citation: 
+  author: "Lecy, JD"
+  citationDate: 2023
+  container-title: "NCCS Pub78 Database"
 ---
 
 ## Overview
