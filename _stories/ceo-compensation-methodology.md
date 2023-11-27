@@ -19,17 +19,12 @@ citation:
 links:
   - header: Replication Files
     links:
+    - text: R Package
+      href: https://github.com/Nonprofit-Open-Data-Collective/compensator
+      icon: r
     - text: Data
-      href: #
-      icon: download
-    - text: Script
-      href: #
-      icon: download
-  - header: Publications
-    links:
-    - text: Report
-      href: #
-      icon: download
+      href: https://github.com/Nonprofit-Open-Data-Collective/irs-990-compensation-data
+      icon: github
 ---
 
 Nonprofit boards commission compensation studies when hiring new
@@ -71,17 +66,13 @@ data base of current CEO compensations. This requires knowing for
 essential factors for every nonprofit in the U.S. (1) who the CEO is,
 and (2) how much they are being paid.
 
-![](../../_stories/49d8d4b1ce0dc51d144382a9f46ad68246d511fb.png)
-
-<img src="img/appraisal-set.png" alt="appraisal set" width="500" height="600">
+![](../../_stories/img/appraisal-set2.png)
 
 While these seem like straightforward questions, finding the answers is
 by no means a simple task. Every nonprofit is annually required to file
 form 990 with the IRS, and the IRS makes these fillings publicly
 available. But just because the data is available, does not mean is it
 easy to use.
-
-<img src="https://raw.githubusercontent.com/lecy/nccs/main/public/img/stories/appraisal-set.png" alt="appraisal set" width="500" height="600">
 
 These data are not standardized and require extensive cleaning and
 classification. More problematic, some small nonprofits file Form
@@ -94,8 +85,8 @@ from nonprofit to nonprofit is highly nonstandard. Some nonprofits
 directly list a Chief Executive Officer, while many list director,
 president, or other titles to describe their organization leader. Simply
 identifying which person serves performs the function the CEO is a task
-in-and-of itself. See our project on name classifications for more
-details. \[LINK HERE TO NAME CLEANING PROJECT\]
+in-and-of itself. See our [project](https://github.com/Nonprofit-Open-Data-Collective/titleclassifier) on name classifications for more
+details.
 
 <span class="image placeholder" original-image-src="appraisal-set2.png"
 original-image-title=""></span>
@@ -139,8 +130,7 @@ NTEE system contains a hierarchical classification system that has over
 650 basic codes and thousands of more specialized codes. In the plot
 below we have included the basic codes and their hierarchical structure.
 You can click on the nodes to explore how the codes are nested in this
-structure. To learn more about NTEE codes, see \[LINK TO NTEE CODES
-STORY\].
+structure. To learn more about NTEE codes, visit this [data story](https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/)
 
 We use this hierarchical structure to construct the distance between
 this missions of nonprofits. For example, a nonprofit involved in youth
