@@ -8,6 +8,7 @@ page-layout: full
 featuredOrder: 3
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
+primaryCtaIcon: external
 type: methods
 categories:
   - R packages

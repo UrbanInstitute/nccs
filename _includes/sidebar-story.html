@@ -5,6 +5,7 @@ SIDEBAR
 - primaryCtaUrl {String (url)}
 - primaryCtaText {String}
 - primaryCtaCaption {String}
+- primaryCtaIcon {String}
 - links {Object}
   - header {String}
   - links {Array}
@@ -39,7 +40,7 @@ SIDEBAR
       text = include.primaryCtaText
       href = include.primaryCtaUrl
       style = "primary"
-      icon = "download"
+      icon = include.primaryCtaIcon
     %}
   {% endif %}
 
