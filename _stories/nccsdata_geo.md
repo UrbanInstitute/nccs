@@ -3,7 +3,7 @@ title: "nccsdata Part 3: Geographic Filters"
 date: 2023-11-03
 description: "Part 3 of 4 data stories covering the nccsdata R package. This story focuses on working with Census FIPS codes."
 featured: true
-featuredOrder: 4
+featuredOrder: 5
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 format: gfm

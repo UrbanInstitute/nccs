@@ -2,8 +2,7 @@
 title: "nccsdata Part 4: Summary Tables"
 date: 2023-11-03
 description: Part 4 of 4 data stories covering the nccsdata R package. This story focuses on summarising NCCS legacy data.
-featured: true
-featuredOrder: 5
+featured: false
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 format: gfm
