@@ -1,6 +1,8 @@
 ---
 title: 2010 Nonprofit Sector in Brief
-description: Annual reports on the state of the nonprofit sector. 
+description: The 2010 Sector Brief discusses trends in the number and finances of 
+501(c)(3) public charities and key findings on two important resources for the
+nonprofit sector: private charitable contributions and volunteering.
 date: 2010-09-14
 featured: false
 featuredOrder: 3
