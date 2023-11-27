@@ -41,42 +41,42 @@ Researchers, government agencies, journalists, and the general public often use 
 
 |VARIABLE  | DEFINITION |
 |:---------|:---|
-|EIN       |def |
-|SEC_NAME  |def |
-|FRCD      |def |
-|SUBSECCD  |def |
-|TAXPER    |def |
-|ASSETS    |def |
-|INCOME    |def |
-|NAME      |def |
-|ADDRESS   |def |
-|CITY      |def |
-|STATE     |def |
-|NTEEFINAL |def |
-|NAICS     |def |
-|ZIP5      |def |
-|RULEDATE  |def |
-|FIPS      |def |
-|FNDNCD    |def |
-|PMSA      |def |
-|MSA_NECH  |def |
-|CASSETS   |def |
-|CFINSRC   |def |
-|CTAXPER   |def |
-|CTOTREV   |def |
-|ACCPER    |def |
-|RANDNUM   |def |
-|NTEECC    |def |
-|NTEE1     |def |
-|LEVEL4    |def |
-|LEVEL1    |def |
-|NTMAJ10   |def |
-|MAJGRPB   |def |
-|LEVEL3    |def |
-|LEVEL2    |def |
-|NTMAJ12   |def |
-|NTMAJ5    |def |
-|FILER     |def |
-|ZFILER    |def |
-|OUTREAS   |def |
-|OUTNCCS   |def |
+|EIN       |Employer identification number |
+|SEC_NAME  |Secondary organization name |
+|FRCD      |Filing requirements code. The 1st 2 characters indicate the requirements for 990/990-EZ forms. The 3rd character = 1 if a 990-PF is required or 0 if not. |
+|SUBSECCD  |IRS subsection code (03=501(c)(3), etc.) |
+|TAXPER    |Ending date for tax period of financial data. Core files for 1997 on are in "yyyymm" format (199412=Dec. 1994). Earlier years use 2-digit year ("9412"). |
+|ASSETS    |Total assets (end of year) from most recent Form 990 |
+|INCOME    |Gross receipts from most recently filed Form 990 |
+|NAME      |Organization name |
+|ADDRESS   |Address |
+|CITY      |City |
+|STATE     |State |
+|NTEEFINAL |NTEE Code |
+|NAICS     |NAICS Code |
+|ZIP5      |First 5 digits of zip code |
+|RULEDATE  |Ruling date: year and month of IRS ruling or determination letter recognizing orgs exempt status (YYYYMM) |
+|FIPS      |2-digit State + 3-digit County FIPS code (Federal Information Processing Standard). See also U.S. Census Bureau State & County QuickFacts. |
+|FNDNCD    |Reason for & type of 501(c)(3) exempt status including codes for operating and grantmaking foundations, and broad type of public charity |
+|PMSA      |Primary Metropolitan Statistical Area |
+|MSA_NECH  |Metropolitan Statistical Area (NCCS file) |
+|CASSETS   |Total Assets (Book Value at end of year) from most recent Form 990 (Part IV, line 59(B) on Form 990; Part II, line 25(B) on Form 990-EZ; or Part II, line 16(b) on Form 990-PF) |
+|CFINSRC   |Source of financial data added by NCCS (primarily the most recent Form 990 filing as of BMF date from NCCS Core files) |
+|CTAXPER   |Ending date for tax period of NCCS financial data in yyyymm format |
+|CTOTREV   |Total Revenue from most recent Form 990 (Part I, line 12 on Form 990; Part I, line 9 on Form 990-EZ; or Part I, line 12(a) on Form 990-PF) |
+|ACCPER    |Accounting period |
+|RANDNUM   |Random number between 0 and 1 used for creating samples |
+|NTEECC    |NTEECC classification |
+|NTEE1     |NTEE major group (A-Z) |
+|LEVEL4    |NTEE-CC Major Group |
+|LEVEL1    |Public charity or private foundation? |
+|NTMAJ10   |10 NTEE major groups |
+|MAJGRPB   |Major NTEE group plus hospitals and higher education |
+|LEVEL3    |Major NTEE category |
+|LEVEL2    |Reporting public charity groups |
+|NTMAJ12   |12 NTEE major groups: ntmaj10 plus higher education (BH) and hospitals (EH) |
+|NTMAJ5    |Major subsector (5) |
+|FILER     |Filed 990 return (Form 990, Form 990-EZ, Form 990-PF, or Form 990-N) within 24 months of BMF file? (Y/N) |
+|ZFILER    |Filed 990 return with zero income and assets within 24 months of BMF file? (Y/N) - Beginning 2008, over 95% of 'zero filers' (ZFiler=Y) filed Form 990-N (e-Postcard) for tax years ending on or after December 31, 2007. |
+|OUTREAS   |Reason why out of scope |
+|OUTNCCS   |Out-of-scope (IN/OUT) (see OUTREAS doc. for details) |
