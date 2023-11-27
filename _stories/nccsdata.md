@@ -3,9 +3,9 @@ title: "nccsdata Part 1: Downloading Data"
 date: 2023-11-03
 description: "First of four data stories on the nccsdata R Package. This story covers data downloads."
 format: gfm
-featured: false
+featured: true
 page-layout: full
-featuredOrder: 1
+featuredOrder: 3
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 type: methods

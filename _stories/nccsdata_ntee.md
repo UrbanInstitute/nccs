@@ -2,7 +2,8 @@
 title: "nccsdata Part 2: NTEE Codes"
 date: 2023-11-03
 description: "Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes."
-featured: false
+featured: true
+featuredOrder: 4
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 format: gfm
