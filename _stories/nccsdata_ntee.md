@@ -6,6 +6,7 @@ featured: true
 featuredOrder: 4
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
+primaryCtaIcon: external
 format: gfm
 type: methods
 categories:

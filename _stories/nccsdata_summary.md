@@ -5,6 +5,7 @@ description: Part 4 of 4 data stories covering the nccsdata R package. This stor
 featured: false
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
+primaryCtaIcon: external
 format: gfm
 type: methods
 categories:
