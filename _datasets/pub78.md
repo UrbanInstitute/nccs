@@ -33,27 +33,29 @@ citation:
 
 ## Overview
 
-IRS Publication 78 (Pub78) is a publicly available list maintained by the Internal Revenue Service (IRS) in the United States. This list identifies organizations that have been granted tax-exempt status under section 501(c)(3) of the Internal Revenue Code. It is a catalog of charities and nonprofit organizations that are eligible to receive tax-deductible donations.
+IRS Publication 78 (Pub78) is a publicly available list maintained by the United States Internal Revenue Service (IRS). This list identifies organizations granted tax-exempt status under section 501(c)(3) of the Internal Revenue Code. Pub78 is a catalog of charities and nonprofit organizations eligible for tax-deductible donations.
 
-Pub78 serves as a valuable resource for those involved in the world of philanthropy, tax planning, nonprofit management, or researchers. It helps ensure that donations are directed toward legitimate and tax-deductible causes while providing transparency in the nonprofit sector. It promotes trust in the sector by making it easy for sector stakeholders to verify deductability requirements: 
+Pub78 holds significant value for those involved in philanthropy, tax planning, nonprofit management, or research. It helps ensure that donations are directed toward legitimate and tax-deductible causes while providing transparency in the nonprofit sector. The publication fosters trust in the sector by simplifying the verification of deductibility requirements for stakeholders. The stakeholders include the following:
 
-**Citizen Donors:** Individuals and businesses who donate to organizations listed in Publication 78 may be eligible for tax deductions. These deductions can reduce the taxable income of the donor, potentially resulting in lower tax liability.
+ •	**Citizen donors**: Individuals and businesses that donate to organizations listed in Publication 78 may be eligible for tax deductions. These deductions can reduce the donor’s taxable income, potentially reducing tax liability.
 
-**Grantmakers:** Foundations and grant-making institutions often refer to Publication 78 to confirm the tax-exempt status of potential grantees. This ensures that their funds are used for charitable purposes.
+ •	**Grantmakers**: Foundations and grantmaking institutions often refer to Publication 78 to confirm the tax-exempt status of potential grantees. This ensures they are channeling funds toward charitable purposes.
 
-**Researchers:** Academics, policymakers, and philanthropic organizations may use this list to assess the legitimacy and transparency of nonprofit organizations. It helps in due diligence when evaluating the effectiveness and trustworthiness of charitable organizations.
+ •	**Researchers**: Academics, policymakers, and philanthropic organizations may use this list to assess nonprofit organizations' legitimacy and transparency. It aids in conducting due diligence when evaluating the effectiveness and trustworthiness of charitable organizations.
 
-**Regulators:** For IRS compliance purposes, organizations listed in Publication 78 must meet specific criteria and follow tax regulations. Research related to nonprofit compliance or tax law may involve consulting this list.
+ •	**Regulators**: For IRS compliance purposes, organizations listed in Publication 78 must meet specific criteria and adhere to tax regulations. Research related to nonprofit compliance or tax law may involve consulting this list.
 
 ## Limitations 
 
-Publication 78 is an example of "instantaneous" IRS dataset, which means it contains the list of nonprofits that are currently eligible to receive tax deductible donations. Organizations that lose status are removed from the list, but no history is provided of organizations that have been on the list in the past.
+Publication 78 is an example of an “instantaneous” IRS dataset, which contains the current list of nonprofits eligible to receive tax-deductible donations. Organizations that lose their tax-exempt status are removed from the list, but it doesn’t provide any historical data about organizations that were previously on the list. 
 
-It is also incomplete a few important ways: 
+Publication 78 has some notable limitations:
 
-* Nonprofits that are part of affiliate structures and file joint 990s will not appear in Pub78, even though they have a unique EIN and may operate independently (affiliation structures vary greatly from coalition to franchise to chapter models). Only the parent organization will appear in Pub78, even though all affiliates are also eligible to receive tax-deductible donations.
-* Many churches and religious groups are de facto eligible to receive tax deductible donations but have not formally registered with the IRS, and thus would not appear in Pub78.
-* Nonprofits often use an informal or updated name (often called their "doing business as" DBA or a "sort code"), which may differ from their official name in the IRS database. If you do not know their EIN it may be hard to locate the correct organization in the database.  
+ •	**Incomplete representation of affiliated nonprofits**: Nonprofits that are part of affiliate structures and file joint 990s will not appear in Pub78. Even though these affiliates have unique Employer Identification Numbers (EINs) and may operate independently, only the parent organizations will appear in Pub78. Affiliation structures vary greatly from coalition to franchise to chapter models, and all affiliates are also eligible to receive tax-deductible donations.
+ 
+ •	**Unregistered religious groups**: Many churches and religious groups are de facto eligible to receive tax-deductible donations but may not have formally registered with the IRS. Consequently, they would not appear in Pub78.
+ 
+•	**Challenges in identifying nonprofits**: Nonprofits often use informal or updated names, commonly referred to as their “doing business as” (DBA) or a “sort code.” These names may differ from their official names in the IRS database. If you do not know its EIN, locating the correct organization in the database can be challenging.
 
 ## Usage 
 
