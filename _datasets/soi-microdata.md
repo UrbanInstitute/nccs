@@ -21,26 +21,40 @@ citation:
 
 ## SOI Microdata
 
-The Statistics of Income (SOI) Division of the IRS is responsible for "making statistics collected from income tax returns and information returns available to other government agencies and the general public."
+The IRS’s Statistics of Income (SOI) Division provides statistics collected from income tax and information returns to government agencies and the general public.
 
-Each year they build a representative sample of the nonprofit sector (the microdata files here), and use it to produce a variety of reports and statistics: 
+To accomplish this, it creates a yearly representative sample of data from the nonprofit sector (found in microdata files here) and uses it to produce reports and statistics:
 
-https://www.irs.gov/statistics/soi-tax-stats-charities-and-other-tax-exempt-organizations-statistics
+<https://www.irs.gov/statistics/soi-tax-stats-charities-and-other-tax-exempt-organizations-statistics>
 
 *"The samples include Internal Revenue Code section 501(c)(3) organizations and section 501(c)(4)–(9) organizations. Sampling rates ranged from 1 percent for small-asset classes to 100 percent for large-asset classes. Microdata records contain information on balance sheets and income statements, as well as weights (to estimate the population), for each organization."*
 
 ## Sampling framework: 
 
-https://www.irs.gov/statistics/soi-tax-stats-exempt-organizations-study-data-sources-and-limitations
+<https://www.irs.gov/statistics/soi-tax-stats-exempt-organizations-study-data-sources-and-limitations>
 
-The statistics of nonprofit charitable and other tax-exempt organizations produced by the Statistics of Income (SOI) Division are based on a sample of Forms 990, Return of Organization Exempt From Income Tax, and Forms 990-EZ, Short Form Return of Organization Exempt From Income Tax filed with the Internal Revenue Service for a given tax year. The sample does not include private foundations, which are required to file Form 990-PF. Most churches and certain other types of religious organizations are also excluded from the samples because they were not required to file Form 990 or Form 990-EZ. Recent samples include only those returns with average receipts of more than $25,000, the filing current threshold.
+The SOI Division’s statistics about nonprofit charitable and other tax-exempt organizations are based on a sample of Forms 990 (Return of Organization Exempt From Income Tax) and Forms 990-EZ (Short Form Return of Organization Exempt From Income Tax), which are tax documents the organizations submit to the IRS for a specific tax year. The sample does not include private foundations (Form 990-PF filers) and most churches and certain other types of religious organizations that don’t file Form 990 or Form 990-EZ. 
 
-Beginning with Tax Year 1988, the sample design has been split into two parts: the first sampling frame contains all returns filed by organizations exempt under Internal Revenue Code (IRC) section 501(c)(3); the second sampling frame comprises a pool of all returns filed by organizations exempt under IRC sections 501(c)(4) through (9). Organizations tax-exempt under other IRC sections are excluded from the sample frames. The two samples are classified into strata based on the size of end-of-year total assets, with each stratum sampled at a different rate. The exempt organization sample is designed to provide reliable estimates of total assets and total revenue. To accomplish this, 100 percent of returns filed for section 501(c)(3) organizations with total assets of $50 million or more are included in the sample, since these organizations represent the vast majority of financial activity. (One-hundred percent of the section 501(c)(4)-(9) organizations with assets of $10 million or more are included in the sample.) The remaining population is randomly selected for the sample at various rates, ranging from about 1 percent to less than 100 percent, depending on asset size. (For a historical list of exempt organization study sample and population counts, see the table at the end of this section.)
+Recent samples include only those returns with average receipts of more than $25,000, the current filing threshold.
+Starting in tax year 1988, the sample design is split into two parts: the first part includes returns filed by organizations exempt under Internal Revenue Code (IRC) section 501(c)(3), while the second part comprises returns filed by organizations exempt under IRC sections 501(c)(4) through (9). 
 
-For a given tax year, SOI's population estimates differ slightly from the actual population of Forms 990 and 990-EZ returns that post to the IRS Business Master File during the two-year sampling period. This results from sample code changes and the effects of returns that are “rejected” from the sample as part of the editing process. Examples of returns present on the Master file but rejected from the SOI sample include: certain returns that report an incorrect subsection code, returns filed for an incorrect tax year, and duplicate filings by a single organization.
+Organizations that are tax-exempt under other IRC sections are not part of the sample frames. The two samples are organized into strata based on the total assets these organizations have at the end of the year, and each stratum is sampled at different rates. 
 
-The data presented are obtained from returns as originally filed with IRS. In most cases, changes made to the original return because of administrative processing or audit procedures are not captured in the statistics. Changes made based on taxpayer amendment are captured, if available. The data are subjected to comprehensive testing and correction procedures in order to ensure statistical reliability and validity. A general discussion of the reliability of estimates based on samples, methods for evaluating both the magnitude of sampling and non-sampling error, and the precision of sample estimates can be found in the general Appendix of the most recent SOI Bulletin.
+The sample of exempt organizations is designed to provide reliable estimates of their total assets and total revenue. To accomplish this, all returns filed for section 501(c)(3) organizations with total assets of \$50 million or more are included in the sample, since these organizations represent the vast majority of financial activity. All of the section 501(c)(4)-(9) organizations with assets of \$10 million or more are included in the sample. 
 
+The rest of the organizations are randomly selected for the sample at varying rates, ranging from about 1 percent to less than 100 percent, depending on their asset size. (For a historical list of exempt organization study sample and population counts, see the table at the end of this section.)
+
+For a given tax year, the SOI Division's population estimates differ slightly from the actual population of Forms 990 and 990-EZ returns that are recorded in the IRS Business Master File during the two-year sampling period. This results from sample code changes and returns that are “rejected” from the sample during the editing process. 
+
+Returns that are present in the Master file but omitted from the SOI sample include the following: 
+
+ •	certain returns that report an incorrect subsection code
+ •	returns that are filed for an incorrect tax year
+ •	duplicate filings by a single organization
+
+The data presented are obtained from the initial returns filed with the IRS. In most cases, changes made to the original return because of administrative processing or audit procedures are not captured in the statistics. However, changes made by taxpayer amendment are captured, if available. 
+
+Data undergo comprehensive testing and correction procedures to ensure statistical reliability and validity. For a general discussion of the reliability of estimates based on samples, methods for evaluating both the magnitude of sampling and nonsampling error, and the precision of sample estimates, you can refer to the general appendix of the most recent SOI Bulletin.
 
 | Tax Year | Forms 990 processed between: | Sample count 501(c)(3) | Population count 501(c)(3) | Sample count 501(c)(4)-(9) | Population count 501(c)(4)-(9) |
 | -------- | ---------------------------- | ---------------------- | -------------------------- | -------------------------- | ------------------------------ |
