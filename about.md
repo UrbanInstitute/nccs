@@ -1,7 +1,7 @@
 ---
 layout: about
 title: About NCCS
-description: Better data means deeper insight on the health of the sector and more opportunities to advance evidence-based philanthopy.
+description: Better data means deeper insight into the health of the sector and more opportunities to advance evidence-based philanthropy.
 permalink: /about/
 activeLink: /about/
 ---
@@ -17,7 +17,7 @@ We strive for excellence in the following areas:
 
 ### Data Accessibility  
 
-NCCS exemplifies a commitment to transparency and public access by making all data and research findings free to scholars, policymakers, philanthropists, nonprofit practitioners, and the broader public. This commitment fosters informed decision-making, fosters accountability, and facilitates a better understanding of nonprofit activities.
+NCCS exemplifies a commitment to transparency and public access by making all data and research findings free to scholars, policymakers, philanthropists, nonprofit practitioners, and the broader public. This commitment fosters informed decision making, fosters accountability, and facilitates a better understanding of nonprofit activities.
 
 ### Impactful Insights
 
@@ -29,17 +29,17 @@ We serve as the foremost authority for the collection, organization, and dissemi
 
 ### Research Excellence
 
-We are committed to fostering evidence-based research and supporting a wide array of research initiatives aimed at shedding light on the nonprofit sector dynamics, challenges, and impact. Through our research we endeavor to deepen our understanding of the role nonprofits play in addressing pressing community, economic, and civil society challenges.
+We are committed to fostering evidence-based research and supporting a wide array of research initiatives aimed at shedding light on the nonprofit sector's dynamics, challenges, and impact. Through our research we endeavor to deepen our understanding of the role nonprofits play in addressing pressing community, economic, and civil society challenges.
 
 ### Resource Hub
 
-Beyond providing data, NCCS serves as a central hub for information, resources, and tools designed to support nonprofit organizations in their operations, compliance, and reporting requirements. It fosters capacity-building within the sector by offering expertise, guidance and assistance.
+Beyond providing data, NCCS serves as a central hub for information, resources, and tools designed to support nonprofit organizations in their operations, compliance, and reporting requirements. It fosters capacity-building within the sector by offering expertise, guidance, and assistance.
 
 ### Building a Collaborative Network 
 
-We actively engages with a diverse network of partners that includes academics, think tanks, government agencies, foundations, and nonprofit organizations. Collaboration is fundamental to our mission if we are to remain responsive to the evolving needs of the sector.
+We actively engage with a diverse network of partners that includes academics, think tanks, government agencies, foundations, and nonprofit organizations. Collaboration is fundamental to our mission if we are to remain responsive to the evolving needs of the sector.
 
-We remain dedication to providing accurate, comprehensive, and accessible information that empowers stakeholders to make informed decisions and advances the collective understanding of the nonprofit sector's vital contributions to society.
+We remain dedicated to providing accurate, comprehensive, and accessible information that empowers stakeholders to make informed decisions and advances the collective understanding of the nonprofit sector's vital contributions to society.
 
 <br>
 <br>
