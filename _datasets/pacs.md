@@ -38,13 +38,13 @@ citation:
 
 ## Political Nonprofits
 
-Nonprofits with 527 status are organized primarily to "influence the selection, nomination, election, appointment or defeat of candidates to federal, state or local public office." In a post Citizen's United world where powerful interest groups seek new ways to assert political influence data on political nonprofits are more important than ever. 
+Nonprofits with 527 status are [primarily established](https://www.irs.gov/charities-non-profits/political-organizations) to “influence the selection, nomination, election, appointment or defeat of candidates to federal, state or local public office.”  In the post–Citizen's United era, where powerful interest groups are seeking new ways to assert political influence, data related to these political nonprofits have become more important than ever.
 
-Political Action Committees are formed when nonprofits, those typically incorporated with 501c4 status (as opposed to 501c3 charities) apply for 527 status by [completing Form 8871](https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure). **POL-ORGS-FM-8871** and **POL-ORGS-SCHED-D**, **POL-ORGS-SCHED-E**, and **POL-ORGS-SCHED-R** all contain metadata and disclosures from the application process. They are static files describing organizations traits. 
+Political action committees often emerge when nonprofits, typically incorporated with 501(c)(4) status (as opposed to 501(c)(3) charities), apply for 527 status. This application process is documented in forms such as [completing Form 8871](https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure). **POL-ORGS-FM-8871** and **POL-ORGS-SCHED-D**, **POL-ORGS-SCHED-E**, and **POL-ORGS-SCHED-R** all contain metadata and disclosures from the application process. These documents are static files describing the characteristics of these organizations.
 
-Once recognized they are required to continue filing IRS 990 forms like typical nonprofits, but they are also required to complete [Form 8872 disclosures](https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure) described in tables **POL-ORGS-FM-8872**, **POL-ORGS-SCHED-A**, and **POL-ORGS-SCHED-B**. 
+Once recognized, these political nonprofits are required to continue filing IRS 990 forms, similar to typical nonprofits. But they are also required to submit [Form 8872 disclosures](https://www.irs.gov/charities-non-profits/political-organizations/political-organization-filing-and-disclosure) which are described in tables like **POL-ORGS-FM-8872**, **POL-ORGS-SCHED-A**, and **POL-ORGS-SCHED-B**. 
 
-The IRS regularly releases data on PAC activities described in Forms 8871 and 8872. Unfortunately, [data is released in complicated ASCII formats](https://forms.irs.gov/app/pod/dataDownload/dataDownload): data types are mixed by row and a small percentage of cases break the ASCII structure because of malformed data. To make this data available to the sector we have written a parser to convert the raw files into well-structured tables. 
+The IRS regularly releases data on PAC activities,  as documented in Forms 8871 and 8872. Unfortunately, the [data are released in complicated ASCII formats](https://forms.irs.gov/app/pod/dataDownload/dataDownload). These files can be challenging to work with because of mixed data types within rows and occasionally data irregularities that break the ASCII structure. To make these data available to the sector, Jesse Lecy has developed a parser to transform these raw files into well-structured tables. 
 
 ## Usage
 
@@ -134,18 +134,18 @@ For more information on 527 political organizations and other types of political
 
 |         |                                                                                          |
 |:--------|:-----------------------------------------------------------------------------------------|
-| <a class="btn -tertiary " href="https://bolderadvocacy.org/resource/comparison-of-501c3s-501c4s-and-political-527-organizations/"> LINK </a>  |  _Bolder Advocacy's useful taxonomy: **Comparison of 501(c)(3)s, 501(c)(4)s, and Political 527 Organizations**_  |  
-| <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495"> LINK </a>  |   *Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. Nonprofit and Voluntary Sector Quarterly, 52(1), 260-274.*  |    
-| <a class="btn -tertiary " href="https://www.degruyter.com/document/doi/10.1515/npf-2021-0061/html"> LINK </a>   | *Post, M. A., & Boris, E. T. (2022, December). Nonprofit Political Engagement: The Roles of 501 (c)(4) Social Welfare Organizations in Elections and Policymaking. In Nonprofit Policy Forum (Vol. 14, No. 2, pp. 131-155). De Gruyter.* |
-| <a class="btn -tertiary " href="https://bolderadvocacy.org/resource/the-connection-strategies-for-creating-and-operating-501c3s-501c4s-and-political-organizations/"> LINK </a>  |  _Bolder Advocacy's excellent guide for nonprofits: **The Connection: Strategies for Creating and Operating 501(c)(3)s, 501(c)(4)s, and Political Organizations**_ | 
+| <a class="btn -tertiary " href="https://bolderadvocacy.org/resource/comparison-of-501c3s-501c4s-and-political-527-organizations/"> LINK </a>  |  Bolder Advocacy's useful taxonomy: **Comparison of 501(c)(3)s, 501(c)(4)s, and Political 527 Organizations**  |  
+| <a class="btn -tertiary " href="https://journals.sagepub.com/doi/abs/10.1177/08997640211066495"> LINK </a>  |   Post, M. A., Boris, E. T., & Stimmel, C. L. (2023). The advocacy universe: A methodology to identify politically active 501 (c)(4) organizations. ***Nonprofit and Voluntary Sector Quarterly***, 52(1), 260-274. [https://doi.org/10.1177/08997640211066495](https://doi.org/10.1177/08997640211066495).*  |    
+| <a class="btn -tertiary " href="https://www.degruyter.com/document/doi/10.1515/npf-2021-0061/html"> LINK </a>   | Post, M. A., & Boris, E. T. (2022, December). Nonprofit Political Engagement: The Roles of 501 (c)(4) Social Welfare Organizations in Elections and Policymaking. ***In Nonprofit Policy Forum*** (Vol. 14, No. 2, pp. 131-155).[https://doi.org/10.1515/npf-2021-0061](https://doi.org/10.1515/npf-2021-0061). |
+| <a class="btn -tertiary " href="https://bolderadvocacy.org/resource/the-connection-strategies-for-creating-and-operating-501c3s-501c4s-and-political-organizations/"> LINK </a>  |  Bolder Advocacy's excellent guide for nonprofits: **The Connection: Strategies for Creating and Operating 501(c)(3)s, 501(c)(4)s, and Political Organizations** | 
 
 
 ### Related Topics 
 
 |         |                                                                                          |
 |:--------|:-----------------------------------------------------------------------------------------|
-| <a class="btn -tertiary " href="https://osf.io/huz3c/"> REPLICATION FILES </a>  |  *Han, B., Ho, B., & Xia, Z. (2023). Political ideology of nonprofit organizations. Social Science Quarterly.*  |
-| <a class="btn -tertiary " href="https://lecy.github.io/political-ideology-of-nonprofits/"> REPLICATION FILES </a>  | *Lecy, J. D., Ashley, S. R., & Santamarina, F. J. (2019). Do nonprofit missions vary by the political ideology of supporting communities? Some preliminary results. Public Performance & Management Review, 42(1), 115-141.* |
+| <a class="btn -tertiary " href="https://osf.io/huz3c/"> REPLICATION FILES </a>  |  Han, B., Ho, B., & Xia, Z. (2023). Political ideology of nonprofit organizations. ***Social Science Quarterly***. <https://doi.org/10.1111/ssqu.13309>.  |
+| <a class="btn -tertiary " href="https://lecy.github.io/political-ideology-of-nonprofits/"> REPLICATION FILES </a>  | Lecy, J. D., Ashley, S. R., & Santamarina, F. J. (2019). Do nonprofit missions vary by the political ideology of supporting communities? Some preliminary results. ***Public Performance & Management Review***, 42(1), 115-141.<https://doi.org/10.1080/15309576.2018.1526092> |
 
 
 
