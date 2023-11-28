@@ -33,40 +33,43 @@ links:
 ---
 
 
-The nonprofit sector must persistently track programs and activities in order to measure societal benefits and convey impact to key stakeholders. This research note introduces an uncommon but useful approach to measuring sector size though payroll tax information disclosed on IRS form 990s. 
+The nonprofit sector must persistently track its programs and activities to measure societal benefits and communicate its impact to key stakeholders. This research note introduces an uncommon but useful approach to measuring the sector’s size using payroll tax information disclosed on the IRS form 990.
 
-Researchers commonly use counts of nonprofits or total program expenses to measure sector size. Alternatively payroll captures the mobilization of human resources, a complementary way to convey the depth of engagement within communities. 
+Researchers often measure the nonprofit sector size by counting the number of nonprofits or examining total program expenses. An alternative and complementary approach is to consider payroll data because they reflect the mobilization of human resources and can provide insights into the depth of community engagement.
 
-Historically, payroll data has been a difficult to acquire. Partnerships between nonprofit scholars and the Bureau of Labor Statistics have resulted in new methodologies for using the Quarterly Census of Employment and Wages to measure the size of the nonprofit workforce, but QCEW data on nonprofits is currently only updated once every five years. Payroll tax information on 990 forms is more accessible and timely.
+Historically, payroll data have been difficult to acquire. Partnerships between nonprofit scholars and the Bureau of Labor Statistics have led to new methods for using the Quarterly Census of Employment and Wages (QCEW) to measure the size of the nonprofit workforce. But QCEW data on nonprofits are only updated every five years. Payroll tax information on 990 forms is more accessible and updated more frequently. 
 
-Although nonprofits are exempt from many types of taxes they are still required to pay federal payroll taxes. These include a 6.2% Social Security tax and 1.45% for Medicare. Taxes are levied for both part and full-time employees. The aggregate level of payroll taxes paid by the sector can be used as a proxy for the number of full-time equivalent workers employed by the sector.  
+Although nonprofits are exempt from many types of taxes, they are required to pay federal payroll taxes. These payroll taxes include a 6.2% Social Security tax and 1.45% Medicare tax, and apply to part- and full-time employees. The total payroll taxes paid by the sector can serve as a proxy for estimating the number of full-time equivalent workers employed by the sector.
 
-We estimate that nonprofits currently pay approximately $66 billion per year in payroll taxes. See below for details about how we arrive at this estimate. 
+We estimate that nonprofits currently pay approximately $66 billion a year in payroll taxes. See below for details about how we arrive at this estimate.
 
 ### Form 990 Data
 
-We estimate the payroll taxes that the nonprofit sector contributes annually using 2019 IRS 990 data, the most recent full year of available data at the time the analysis was conducted. 
+We estimate the payroll taxes that the nonprofit sector contributes annually using IRS 990 data from 2019, the most recent full year of available data at the time of our analysis.
 
-Three years of IRS 990 data extracts must be utilized to capture a single full year of data since there can be a 2-year lag in returns, resulting in an idiosyncratic data aggregation challenge. Form 990 data is compiled from the 2019, 2020, and 2021 Statistics of Income Extract files available through the IRS:
-<https://www.irs.gov/statistics/soi-tax-stats-annual-extract-of-tax-exempt-organization-financial-data>. 
+It’s important to note that there can be a two-year lag in returns, which makes it necessary to combine three years of IRS 990 data extracts to capture a single full year of data. This results in an idiosyncratic data aggregation challenge. We compiled our Form 990 data from the 2019, 2020, and 2021 Statistics of Income Extract files available through the IRS: <https://www.irs.gov/statistics/soi-tax-stats-annual-extract-of-tax-exempt-organization-financial-data>. 
 
 
 ### Sampling Considerations
 
-Data availability varies greatly by the size of the nonprofit. Larger nonprofits are required to file the full Form 990, which requires significant disclosures on programs and finances. Medium-sized nonprofits file a more compact version of the form called the 990EZ, and small nonprofits are only required to report that they remain active by filing Form 990N. Private foundations utilize the 990-PF. Payroll information disclosures vary by the type of form. 
+Data availability varies greatly by the size of the nonprofit. Larger nonprofits are required to file the full Form 990, which involves significant disclosures on their programs and finances. Medium-sized nonprofits file a more compact version of the form called the 990EZ, and small nonprofits are only required to confirm their active status by filing Form 990N. Private foundations use the 990-PF. Payroll information disclosures vary by the type of form.
 
-***Larger Nonprofits:*** The Form 990 collects data on the amount of payroll taxes that larger nonprofits (i.e., those with gross receipts >= $200K or total assets >= $500K) contribute (**$55B in 2019**).
+***Larger Nonprofits:*** The Form 990 collects data on the amount of payroll taxes contributed by larger nonprofits (those with gross receipts >= $200,000 or total assets >= $500,000), which amounted to $55 billion in 2019. 
 
-***Private foundations:*** The Form 990-PF does not collect data on the amount of payroll taxes that private foundations contribute However, it does collect data on the amount that private foundations spend on salaries and benefits ($3B). The Form 990 collects this data for larger nonprofits, as well. Therefore, we can divide the amount of payroll taxes that larger nonprofits contribute by the amount that larger nonprofits spend on payroll taxes to calculate a payroll tax/salaries and benefits ratio (5.75%). We can then apply that ratio to the salaries and benefits data from the Form 990-PF to estimate the amount of payroll taxes that private foundations contribute.
+***Private foundations:*** As reported on the Form 990-PF, private foundations don’t provide data on the payroll taxes they contribute. Instead, they report the amount spent on salaries and benefits, which was $3 billion. 
+To estimate the payroll taxes that private foundations contribute, we use a ratio calculated from larger nonprofits. 
 
-However, the IRS's Form 990-PF data extract only includes the columns with data on "compensation of officers, directors, trustees, etc." and "pension plans, employee benefits;" it excludes the column with data on "other employee salaries and wages." Therefore, we will underestimate the amount of payroll taxes that private foundations contribute. Additionally, the IRS does not provide a data extract for the 2019 Form 990-PF file. This creates a further underestimation of the amount of payroll taxes that private foundations contribute (**estimated $153M in 2019**).
+We divide the amount of payroll taxes larger nonprofits contribute by the amount they spend on payroll taxes to calculate a payroll tax/salaries and benefits ratio (5.75%). We then apply this ratio to the salaries and benefits data from the Form 990-PF to estimate the payroll taxes private foundations contribute.
 
-***Smaller Nonprofits:*** The Form 990-EZ does not collect data on the amount of payroll taxes that smaller nonprofits (i.e., those with gross receipts <$200K and total assets <$500K) contribute It does collect data on the amount that smaller nonprofits spend on salaries and benefits, but the IRS's Form 990-EZ data extracts exclude these data. Therefore, we are unable to estimate the amount of payroll taxes that smaller nonprofits contribute.
+There are some limitations, however. The IRS’s Form 990-PF data extract only includes the columns with data on “compensation of officers, directors, trustees, etc.” and “pension plans, employee benefits.” It excludes the column with data on “other employee salaries and wages.” 
+
+This means we will underestimate the payroll taxes that private foundations contribute. Additionally, the IRS does not provide a data extract for the 2019 Form 990-PF file, further contributing to the underestimation of the payroll taxes that private foundations contribute (**estimated to be $153 million in 2019**).
+
+***Smaller Nonprofits:*** The Form 990-EZ does not collect data on the amount of payroll taxes contributed by smaller nonprofits (those with gross receipts <$200,000 and total assets <$500,000). While it collects data on the amount that these smaller nonprofits spend on salaries and benefits, the IRS’s Form 990-EZ data extracts exclude these data. Therefore, we are unable to estimate the payroll taxes that smaller nonprofits contribute.
 
 ***Invisible Nonprofits:*** Some nonprofits, such as churches, do not have to file annual returns. See <https://www.irs.gov/charities-non-profits/annual-exempt-organization-return-who-must-file>.
 
-The Form 990-N also does not collect any financial data from the smallest nonprofits (i.e., those with gross receipts <=$50K), nor does it collect data on the amount that these nonprofits spend on salaries and benefits. Therefore, we are unable to estimate the amount of payroll taxes that the smallest nonprofits contribute.
-
+The Form 990-N also does not collect financial data from the smallest nonprofits (those with gross receipts <=$50,000). It also doesn’t collect data on the amount that these nonprofits spend on salaries and benefits. Therefore, we cannot estimate the amount of payroll taxes that the smallest nonprofits contribute.
 
 ## Data Vignette 
 
@@ -181,9 +184,9 @@ head(pc.2021$year)
 
 ### Isolate the Study Period
 
-SOI Extract files are organized by filing dates, the dates the returns were received by the IRS. The filing date is usually around six months after the end of an organization's fiscal year, which is also twelve months ahead of the calendar year that correspond to the nonprofits activities. 
+SOI Extract files are organized by filing dates, which represent when the IRS received the returns. The filing date is usually around six months after the end of an organization’s fiscal year. This fiscal year is also 12 months ahead of the calendar year corresponding to the nonprofit’s activities.
 
-In addition, nonprofits can back-file late returns or submit amended returns, so although the year of the SOI extract file is different from the periods of data contained within: 
+In addition, nonprofits can back-file late returns or submit amended returns, so the year of the SOI extract file is different from the periods of data contained within. 
 
 ```{r}
 pc.2021 %>%
@@ -194,6 +197,7 @@ pc.2021 %>%
          align="c" ) 
 ```
 
+#### Tax Periods in the 2021 Form 990 Dataset
 
 ```{r}
 pf.2021 %>%
@@ -204,6 +208,7 @@ pf.2021 %>%
          align="c" ) 
 ```
 
+#### Tax Periods in the 2021 Form 990-PF Dataset
 
 We need data that corresponds to the 2019 calendar year, the most recent full year available at the time of writing. 
 
@@ -236,7 +241,7 @@ pf.2021.subset %>%
 
 In order to combine files we need to ensure that the variable names are the same. 
 
-R is case-sensitive; if one dataset uses uppercase letters for a column name and another dataset uses lowercase letters for a column name, it will not recognize them as the same column. As a result, it will not combine the columns. 
+R is case-sensitive; if one dataset uses uppercase letters for a column name and another uses lowercase letters for a column name, it will not recognize them as the same column. As a result, it will not combine the columns. 
 
 So we first make the names of all of the columns lowercase. 
 
@@ -249,9 +254,7 @@ names( pf.2020.subset ) <- tolower( names( pf.2020.subset ) )
 ```
 
 
-
-
-Then filter the data to include only the columns we plan to use in the analysis. We use the following fields:
+Then we filter the data to include only the columns we plan to use in the analysis. We use the following fields:
 
 
 **Form 990-PF Columns**
@@ -396,7 +399,7 @@ paste0( 100*round( ratio, 4 ), "%" )
 
 ### Step 3: Estimate PF Contributions 
 
-It's not perfect, but it allows us to roughly estimate the payroll taxes paid by private foundations since that data is not included in the SOI PF Extracts: 
+It's not perfect, but it allows us to roughly estimate the payroll taxes paid by private foundations, even though those data are not included in the SOI PF Extracts: 
 
 ```{r}
 salaries.pf <- 
@@ -418,7 +421,7 @@ prtax.pf %>% dollarize()
 
 ### Step 4: Tabulate Totals 
 
-Add the amount of payroll taxes that nonprofits pay to the estimated amount of payroll taxes contributed by Private Foundations: 
+Add the amount of payroll taxes that nonprofits pay to the estimated amount of payroll taxes contributed by private foundations:
 
 ```{r}
 tax.total <- prtax + prtax.pf
@@ -429,33 +432,25 @@ tax.total %>% dollarize()
 
 ### Step 5: Adjust for Inflation
 
-Normally inflation would be marginal over a 2-3 year period, but inflation was excessive during the time frame of the study (2019 to 2023). As a result we should include an inflation adjustment. This scaling factor can be obtained by entering the start and end year on any reputable online inflation generator. 
+While inflation is usually minimal over a two-to-three-year period, inflation was high during the study’s time frame (2019 to 2023). To adjust for this, we apply a scaling factor, which can be obtained from a reliable online inflation calculator by entering the start and end years.
 
 ```{r}
 ( tax.total * 1.1885 ) %>% dollarize()
 ```
 
-We see that the estimate increased from $55 billion to $66 billion, a significant amount. 
+The estimate increased from $55 billion to $66 billion, a significant amount.
 
-We would interpret this number either as the value of 2019 nonprofit payroll tax contributions in today's dollars, or as an estimate of what nonprofits are likely paying in 2023 if we assume employment rates were similar in those two time periods. 
-
-
+We can interpret this number either as the value of 2019 nonprofit payroll tax contributions in today’s dollars, or as an estimate of what nonprofits are likely paying in 2023, assuming similar employment rates during both periods.
 
 ## Conclusion
 
-We estimate that nonprofits pay approximately $66 billion per year in payroll taxes. 
+We estimate that nonprofits pay approximately $66 billion per year in payroll taxes. But this is a conservative estimate for several reasons:
 
-As we described at the beginning of this tutorial, this is a conservative estimate. 
+ •	It does not include the payroll taxes that Form 990-EZ or Form 990-N filers pay.
+ •	It underestimates the payroll taxes that private foundations pay.
+ •	It excludes the payroll taxes from nonprofits that are not required to file annual 990 returns, such as churches.
 
-* It does not include the payroll taxes that Form 990-EZ or Form 990-N filers pay. 
-* It underestimates the payroll taxes that private foundations pay.
-* It also does not include the payroll taxes from nonprofits that are not required to file annual 990 returns (for example, churches). 
-
-This approach is a useful way to demonstrate the size and economic contributions of the nonprofit sector using freely available IRS administrative tax data.
-
-
-
-
+Despite these limitations, this approach provides a useful way to demonstrate the size and economic contributions of the nonprofit sector using freely available IRS administrative tax data.
 
 <br>
 <br>
