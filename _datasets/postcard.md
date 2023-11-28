@@ -25,17 +25,17 @@ citation:
 
 ## About 
 
-Nonprofits that file IRS Form 990-N, also known as the "e-Postcard," are typically small tax-exempt organizations. Form 990-N is the simplest and least detailed of the annual information returns required by the IRS, and it's intended for organizations with relatively low gross receipts. The characteristics of nonprofits that typically file Form 990-N include:
+Nonprofits that file IRS Form 990-N, also known as the “e-Postcard,” are typically small tax-exempt organizations. Form 990-N is the simplest and least detailed of the annual information returns required by the IRS. It is intended for organizations with relatively modest gross receipts. Here’s what characterizes nonprofits that typically file Form 990-N:
 
-* **Small Revenue:** Nonprofits eligible for Form 990-N usually have annual gross receipts of $50,000 or less. Gross receipts include all income, donations, grants, and other funds the organization receives during the fiscal year.
-* **Exempt from Filing Form 990, 990EZ, not 990PF:** These organizations are generally exempt from filing the more detailed Forms 990 or 990-EZ, which are required for larger nonprofits. Form 990-N serves as a simplified alternative for reporting basic financial and operational information. Private foundations, no matter their size, are required to file Form 990PF and thus cannot utilize the convenient e-postcard version. A small group of specialized nonprofits such as hospitals, regardless of size, are also required to file the full 990.
-* **Typical Types of 990-N Filers:** The types of nonprofits that often use Form 990-N can include community-based organizations, small local charities, volunteer groups, clubs, and other similar entities. Examples might include small youth sports teams, local animal shelters, or neighborhood associations.
-* **Limited Reporting:** Form 990-N is very basic and requires minimal reporting. Organizations typically need to provide their contact information, confirmation of their tax-exempt status, and a statement indicating whether they've had any gross receipts during the reporting year.
-* **It Meets the Annual Filing Requirement:** Even though it's a simplified form, eligible organizations must still file Form 990-N annually to maintain their tax-exempt status. Failure to file for three consecutive years can lead to automatic revocation of tax-exempt status.
+  * **Small Revenue:** These nonprofits usually have annual gross receipts of $50,000 or less. Gross receipts include all income, donations, grants, and other funds received during the fiscal year.
+  * **Exempt from Filing Form 990, 990EZ, not 990PF:** These organizations are generally exempt from filing the more detailed Forms 990 or 990-EZ, required for larger nonprofits. Form 990-N provides a simplified way to report basic financial and operational information. Private foundations, regardless of their size, are required to file Form 990PF and cannot use the convenient e-postcard version. A small group of specialized nonprofits, such as hospitals, are also required to file the full 990, regardless of size.
+  * **Typical Types of 990-N Filers:** The nonprofits that often use Form 990-N include community-based organizations, small local charities, volunteer groups, clubs, and similar entities. Examples might include small youth sports teams, local animal shelters, or neighborhood associations.
+  * **Limited Reporting:** Form 990-N is very basic and requires minimal reporting. Organizations typically need to provide their contact information, confirm their tax-exempt status, and state whether they've had any gross receipts during the reporting year.
+  * **It Meets the Annual Filing Requirement:** Even though it's a simplified form, eligible organizations must file Form 990-N annually to maintain their tax-exempt status. Failure to file for three consecutive years can lead to automatic revocation of tax-exempt status.
 
-Larger nonprofits with gross receipts above $50,000 but below $200,000 (or with total assets below $500,000) may file Form 990-EZ, which provides more detailed financial information than Form 990-N but is still less comprehensive than the full Form 990.
+For larger nonprofits with gross receipts above $50,000 but below $200,000 (or total assets below $500,000), Form 990-EZ can be used. It provides more detailed financial information than Form 990-N but is still less comprehensive than the full Form 990.
 
-The ePostcard 990-N database is an instantaneous database, meaning it only has data from the most recent 990-N an organization has filed, not a historic record of every year filed. Note that an organization may appear in the dataset with the most recent filing dated several years ago, but they are likely still in compliance with annual filing requirements if they have since graduated to filing form 990EZ or the full 990. 
+The ePostcard 990-N database is an instantaneous database. This means it only contains data from the organizations’ most recent 990-N filing and doesn’t provide a historic record of every year filed. An organization may appear in the dataset with the most recent filing dated several years ago, but it is likely still in compliance with annual filing requirements if it has since graduated to filing form 990EZ or the full 990.
 
 ## Use
 
@@ -217,11 +217,15 @@ d %>%
 
 ## Coverage 
 
-As of fall 2023 the database includes one filing from more than 1.3 million organizations. 
+As of the fall of 2023, the database includes a single filing from more than 1.3 million organizations.
 
-The dataset contains the LAST ePostcard files by each organization in the dataset. If they no longer appear in the dataset it either means (1) their status has been revoked - you can check the revocations database, (2) they are not in compliance with filing requirements and their status will be evoked shortly, or (3) they graduated up to the 990EZ or full 990 forms (check the Core data series). 
+The dataset contains the most recent ePostcard filing made by each organization in the dataset. If an organization no longer appears in the dataset it could mean one of the following: 
 
-The last observations for organizations occur in the following periods: 
+  *	Revoked status: Its tax-exempt status has been revoked. You can verify this by checking the revocations database. 
+  *	Noncompliance: It is not complying with the filing requirements, and its tax-exempt status is likely to be revoked shortly. 
+  *	Graduation to the 990EZ or full 990 forms: You can confirm this by checking the Core data series.
+
+The last available observations for organizations occur in the following periods:
 
 ```r
 table( d$tax_year ) %>% 
