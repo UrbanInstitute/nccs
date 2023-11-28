@@ -1,5 +1,5 @@
 ---
-title: Payroll Taxes
+title: Using payroll tax reporting as a proxy for sector size
 date: 2023-08-28
 description: This data story outlines the process for estimating the amount of payroll taxes nonprofits pay annually.
 featured: true
