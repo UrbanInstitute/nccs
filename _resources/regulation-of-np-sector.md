@@ -1,6 +1,6 @@
 ---
 title: Regulation of Nonprofits and Philanthropy Project
-description: A nationally representative survey of nonprofits
+description: A project advancing research and practice on nonprofit regulatory frameworks and their impact on the sector
 date: 2023-10-03
 featured: true
 featuredOrder: 1
@@ -11,7 +11,7 @@ categories:
   - survey
 abstract: "The Regulation of Nonprofits and Philanthropy Project is an initiative of Urban Institute’s Center on Nonprofits and Philanthropy. Organized in conjunction with the Tax Policy and Charities Project at the Urban Institute, the project will focus on empirical research that addresses the current status of the regulatory system and the effects of regulations on nonprofit organizations and philanthropy."
 primaryLinks:
-  - text: Project Overview
+  - text: Main Project Page
     href: https://www.urban.org/policy-centers/center-nonprofits-and-philanthropy/projects/regulation-charitable-sector-project
   - text: The Legal Compendium
     href: https://www.urban.org/sites/default/files/2019/12/06/legal_compendium_oct_2019_update_.xlsx
