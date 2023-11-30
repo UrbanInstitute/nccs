@@ -21,7 +21,7 @@
       url: https://www.lecy.info/
     - name: linkedin
       url: https://www.linkedin.com/in/jesse-lecy-bab1013/
-  projects: [nptrends, project2]
+  projects: [nptrends, regulation]
 - id: hmartin
   first: Hannah
   last: Martin
@@ -65,7 +65,7 @@
       url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
     - name: twitter
       url: https://twitter.com/eborisurban
-  projects: [nptrends, project2]
+  projects: [nptrends, regulation]
 - id: ttraylor
   first: Tené
   last: Traylor
@@ -150,6 +150,7 @@
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/cindy-m-lott-aa385b42/
+  projects: [regulation]
 - id: tderrick-mills
   first: Teresa
   last: Derrick-Mills
@@ -198,14 +199,14 @@
   title: Professor; Director, Center on Nonprofits, Philanthropy, and Social Enterprise
   bio: Professor and Director of the Center on Nonprofits, Philanthropy, and Social Enterprise at the Schar School of Policy and Government at George Mason University.
   email: nccs@urban.org
-  team: collaborator
+  team: collaborator, npregulation
   image: people/aabramson.jpg
   affiliation: 
     - name: George Mason University
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/alan-abramson-88734410
-  projects: [nptrends]
+  projects: [nptrends, regulation]
 - id: smendonca
   first: Sybil
   last: Mendonca
@@ -244,7 +245,56 @@
       url: https://faculty.cc.gatech.edu/~calton/
   projects: [nptrends]
 
+##########
+##########  REGULATION GROUP
+##########
 
+- id: mshelly
+  first: Mary
+  last: Shelly
+  title: 'Reference Law Librarian'
+  bio: 'I help students and faculty find the legal resources they need, collaborate on research projects, and teach Advanced Legal Research.'  
+  orcid: 
+  email: placeholder@email.com
+  team: collaborator
+  image: people/mshelly.jpg
+  affiliation: 
+    - name: UPenn Law
+      url: https://www.library.upenn.edu/staff/mary-shelly
+  projects: [regulation]
+  
+- id: gmitchell
+  first: George
+  last: Mitchell
+  title: 'Associate Professor'
+  bio: 'George E. Mitchell is an associate professor at the Marxe School of Public and International Affairs at Baruch College, City University of New York (CUNY) and is director of the Marxe School’s Center for Nonprofit Strategy and Management, and co-founder of the Transnational NGO Initiative at the Maxwell School of Syracuse University. His research examines topics in NGO and nonprofit management, leadership, and strategy.'  
+  orcid: 
+  email: placeholder@email.com
+  team: collaborator
+  image: people/gmitchell.jpg
+  affiliation: 
+    - name: Baruch College
+      url: https://www.baruch.cuny.edu/profiles/faculty/George-Ellis-Mitchell
+  projects: [regulation]  
+
+- id: mrichburg
+  first: Mykelle 
+  last: Richburg
+  title: 'Policy Analyst'
+  bio: 'Mykelle Richburg is a policy analyst in the Research to Action Lab and the Center on Nonprofits and Philanthropy at the Urban Institute, where she supports the translation of research insights into policy and practice..'  
+  orcid: 
+  email: placeholder@email.com
+  team: collaborator
+  image: people/mrichburg.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/mykelle-richburg
+  projects: [regulation] 
+  
+
+##########
+##########  DEMO ONLY 
+##########
       
 - id: jd
   first: John
