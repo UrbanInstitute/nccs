@@ -9,9 +9,6 @@ layout: project
 project-name: nptrends
 categories:
   - survey
-author:
-  - id: jlecy
-  - id: hmartin
 abstract: "Nonprofit organizations in the United States play a vital role delivering services, strengthening communities, and facilitating civic engagement. In our nationally representative surveys of nonprofit organizations, we focus on operating 501(c)(3) public charities whose activities range from direct service provision to community building and advocacy. We provide public use datasets of most of the survey data we collect so that others across the country can investigate questions of their own."
 primaryLinks:
   - text: 2021 Public Use Dataset
