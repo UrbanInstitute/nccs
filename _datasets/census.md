@@ -189,7 +189,9 @@ https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2017-2021.csv
 
 ## Nonprofit Data Files
 
-In the NCCS system, all nonprofit data that include address information describing the locations of nonprofits or services are geocoded. This process generates latitude and longitude coordinates for these organizations or activities. The resulting geographic coordinate is matched to census blocks using a [spatial join](https://github.com/UI-Research/nccs-geo/blob/main/join_nccs_block.R). 
+In the NCCS system, all nonprofit data that include address information describing the locations of nonprofits or services are geocoded. This process generates latitude and longitude coordinates for these organizations or activities. The resulting geographic coordinate is matched to census blocks using a [SPATIAL JOIN](https://github.com/UI-Research/nccs-geo/blob/main/join_nccs_block.R). 
+
+If you are working with custom data that contains address fields but no latitude and longitude spatial coordinates you might find this [GEO PREP TUTORIAL](https://lecy.github.io/geo-prep/) helpful.
 
 Some of the NCCS files contain a block GEOID and a tract GEOID, which include census block FIPS and tract FIPS. You can use these fields to append whichever geographic level you want using the BLOCKX.csv and TRACTX.csv files.
 
