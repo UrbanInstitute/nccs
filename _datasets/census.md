@@ -131,6 +131,62 @@ Locating all versions of a single variable can be challenging since table names 
 
 To address these issues, we have selected a set of the most commonly used census variables and created data files harmonized to the 2010 census geography, serving as the most common reference point across most data sources. These harmonized files are available at the block and tract levels. Most measures can be “aggregated up” to your desired geography level using the geocrosswalk files.
 
+## Default Census Variables
+
+A small set of census variables [described in this data dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/census_codebook.xlsx) have been harmonized to 2010 geographies and inflation-adjusted to the year 2021. 
+
+They are available for TRACT, COUNTY, and MSA levels of aggregation: 
+
+```
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_1990.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2000.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2005-2009.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2006-2010.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2007-2011.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2008-2012.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2009-2013.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2010-2014.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2011-2015.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2012-2016.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2013-2017.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2014-2018.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2015-2019.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2016-2020.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2017-2021.csv
+
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_1990.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2000.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2005-2009.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2006-2010.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2007-2011.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2008-2012.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2009-2013.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2010-2014.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2011-2015.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2012-2016.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2013-2017.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2014-2018.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2015-2019.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2016-2020.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2017-2021.csv
+
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_1990.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2000.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2005-2009.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2006-2010.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2007-2011.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2008-2012.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2009-2013.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2010-2014.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2011-2015.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2012-2016.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2013-2017.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2014-2018.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2015-2019.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2016-2020.csv
+https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2017-2021.csv
+```
+
 ## Nonprofit Data Files
 
 In the NCCS system, all nonprofit data that include address information describing the locations of nonprofits or services are geocoded. This process generates latitude and longitude coordinates for these organizations or activities. The resulting geographic coordinate is matched to census blocks using a [spatial join](https://github.com/UI-Research/nccs-geo/blob/main/join_nccs_block.R). 
@@ -141,7 +197,7 @@ To access the harmonized census panels, refer to the data catalog provided in th
 
 ## Feedback
 
-This project is in active development. If you have questions or feedback, please contact the creators, Chris Davis and Jesse Lecy, using the "Get Help" link above.
+This project is in active development. If you have questions or feedback please open a [GitHub Issue](https://github.com/UrbanInstitute/geocrosswalk/issues) in the geocrosswalk repo.
 
 <br>
 <br>
