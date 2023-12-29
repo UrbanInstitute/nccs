@@ -2,11 +2,9 @@
 title: "nccsdata Part 2: NTEE Codes"
 date: 2023-11-03
 description: "Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes."
-featured: true
-featuredOrder: 4
+featured: false
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
-primaryCtaIcon: external
 format: gfm
 type: methods
 categories:
@@ -50,31 +48,32 @@ links:
 
 In part 2 of this 4-part series on the
 [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we
-cover how to explore and query NTEE codes with the help of
+explore and query National Taxonomy of Exempt Entities (NTEE) codes
+using the
 [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
 and
-[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html).
+[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
+functions.
 
 ## NTEE Code Structure
 
-The NTEE2 code system is a new code system that builds on the original
-National Taxonomy of Exempt Entities (NTEE) code system used by the IRS
-and NCCS to classify nonprofit organizations. A comprehensive overview
-of NTEE codes is available at [this
-link](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md#ntee2-format).
+The NTEE2 code system is an evolution of the original NTEE code system,
+a classification system used by the IRS and NCCS for nonprofit
+organizations. For all of the NTEE codes, refer to this [comprehensive
+overview](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md#ntee2-format).
 
-This new NTEE system can be split into 5 levels.
+This new NTEE system can be organized into 5 levels.
 
 ![](../../_stories/nccsdata/ntee2-structure.png)
 
-These are grouped into 3 parts:
+The NTEE2 codes are structured in three parts:
 
 1.  Level 1: Industry Group
 2.  Level 2-4: Industry, Division and Subdivision
 3.  Level 5: Organization Type
 
-Each part is separated by a hyphen and all NTEE2 codes must contain all
-3 parts(or 5 Levels) in sequence.
+These parts are separated by a hyphen, and all NTEE2 codes must contain
+all three parts (or five levels) in sequence.
 
 ### Level 1: Industry Groups
 
@@ -95,8 +94,8 @@ The Industry Group is represented by three letters. The 10 options are:
 |      UNI       |           University           |
 |      HOS       |            Hospital            |
 
-Each group represents a broad category that the universe of non-profits
-can be comprehensively sorted into.
+Each group represents a broad category that the entire spectrum of
+nonprofits can be comprehensively sorted into.
 
 ### Level 2: Industry
 
@@ -131,16 +130,17 @@ The industry is represented as one letter. The 26 options are:
 |       Y        |             Mutual & Membership Benefit             |
 |       Z        |                       Unknown                       |
 
-These offer a finer sub classification that builds on the Industry Group
-classification framework.
+These offer a more detailed subclassification that builds on the
+Industry Group classification framework.
 
 ### Level 3 and 4: Division and Subdivision
 
-Levels 3 and 4 are alphanumeric values that reference additional
-subclassifications for the Industry Group - Industry Combinations above.
-There are too many for a simple table and hence will be explored with
+Levels 3 and 4 consist of alphanumeric values that reference additional
+subclassifications corresponding to the Industry Group—Industry
+combinations above. There are too many for a simple table and will be
+explored with
 [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
-in the below sections.
+in the upcoming sections.
 
 ### Level 5: Organization Type
 
@@ -1132,17 +1132,17 @@ ntee_preview(ntee.group = "UNI",
 ```
 
 For any combination of *ntee* arguments, *preview_ntee* returns **all**
-codes that fit **any** of the arguments. Thus, in the above example NTEE
-codes for both \`UNI\* and *CXX* were printed out.
+codes that match **any** of the specified arguments. Thus, in the above
+example NTEE codes for both *UNI* and *CXX* were displayed.
 
 ## Returning to get_data()
 
 The same set of *ntee* arguments used by *preview_ntee()* are also used
 by
 [`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html).
-The below code snippet downloads core data from the year 2015 for all
+The code snippet below downloads core data from the year 2015 for all
 non-profits that file both full 990s and 990EZs, filtering for
-nonprofits belonging to the Education Industry Group.
+nonprofits belonging to the *Education* Industry Group.
 
 ``` r
 core <- get_data(dsname = "core",
@@ -1155,9 +1155,9 @@ core <- get_data(dsname = "core",
 ## Retrieve Complete NTEE2 Codes
 
 [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
-also offers an invisible return, allowing users to save the full NTEE2
-codes that are being previewed in a character vector. Simply assign the
-output of
+also offers an invisible return feature, allowing users to save the
+complete set of NTEE2 codes being previewed in a character vector. This
+can be achieved by assigning the output of
 [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
 to a variable name.
 
@@ -1563,8 +1563,8 @@ only accepts the following arguments:
 - `ntee.code`: Industry, Division and Subdivision (Level 2 - 4)
 - `ntee.orgtype`: Organization Type (Level 5)
 
-Use *all* to include all Levels for that specific argument. For example,
-to retrieve complete NTEE codes for Universities:
+Use *all* to include all levels for that specific argument. For example,
+to retrieve complete NTEE codes for Universities, use:
 
 ``` r
 parse_ntee(ntee.group = c("UNI"),
@@ -1597,7 +1597,7 @@ However,
 [`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
 differs from
 [`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
-in that it only returns NTEE codes that meet all filters
+in that it only returns NTEE codes that meet all filters.
 
 ``` r
 parse_ntee(ntee.group = "HEL",
@@ -1613,7 +1613,7 @@ Since there are no NTEE codes with structure *HEL-A2X-XXX*,
 [`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
 does not return any results. Including *“ART”* in *ntee.group*, as shown
 below, returns valid codes since there are NTEE codes with the
-*ART-A2X-XXX* structure.
+*ART-A2X-XXX* structure:
 
 ``` r
 parse_ntee(ntee.group = c("HEL", "ART"),
@@ -1627,9 +1627,9 @@ parse_ntee(ntee.group = c("HEL", "ART"),
 #> [11] "ART-A26-RG" "ART-A27-RG"
 ```
 
-*parse_ntee* can thus be used to find specific codes which can then be
-fed into *get_data* to filter downloaded data by specific codes as shown
-below:
+Therefore, *parse_ntee* can be used to identify specific codes, which
+can then be fed into *get_data* to filter downloaded data by specific
+codes, as shown below:
 
 ``` r
 ART_A2X_codes <- parse_ntee(ntee.group = c("HEL", "ART"),
@@ -1656,7 +1656,7 @@ core_2015_arta2x <- get_data(dsname = "core",
 
 ## Conclusion
 
-Understanding NTEE codes is crucial to constructing data sets that
+Understanding NTEE codes is crucial for constructing datasets that
 target specific nonprofits. When leveraged correctly, the NTEE taxonomy
-is a useful and powerful framework to structure research projects
+is a useful and powerful framework for structuring research projects
 involving NCCS data.
