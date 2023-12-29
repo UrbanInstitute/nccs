@@ -5,7 +5,6 @@ description: Part 4 of 4 data stories covering the nccsdata R package. This stor
 featured: false
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
-primaryCtaIcon: external
 format: gfm
 type: methods
 categories:
@@ -47,19 +46,20 @@ links:
 
 ## Introduction
 
-In part 4 of this 4-part series on the
+In the final segment of our four-part series on the
 [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we
-cover how to construct tables summarizing NCCS Legacy Data.
+construct tables summarizing NCCS Legacy Data.
 
 ## Create Summary Tables
 
-After preparing data with
+After preparing data using
 [`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html)
-and processing it via additional filtering/wrangling,
+and subsequent processing through additional filtering or wrangling, you
+can use
 [`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
-can be used to compute summary statistics for legacy datasets.
+to compute summary statistics for legacy datasets.
 
-An example is shown below.
+The following example illustrates this process:
 
 ``` r
 core <- get_data(dsname = "core",
@@ -95,9 +95,9 @@ preview_sample(data = core,
 ```
 
 [`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
-groups the data set by the columns provided in `group_by`, and computes
-summary statistics for the user-defined *var* column. The available
-summary statistics are:
+groups the dataset based on the columns specified in `group_by`, and
+computes summary statistics for the user-defined *var* column. The
+available summary statistics are:
 
 - `min`: minimum value
 - `median`: median value
@@ -107,13 +107,11 @@ summary statistics are:
 
 As long as the columns in *group_by* are present in the data set,
 [`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
-will be able to create a summary table for the user.
+will be able to generate a summary table for the user.
 
 ## Conclusion
 
-We hope you have found this series of data stories useful for working
-with the
+We hope this series has been helpful for working with the
 [`nccsdata`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/index.html)
-package! Contact the package maintainers with any comments/suggestions
-and let us know if there are any additional features you would find
-useful.
+package. package. Contact the package maintainers with any comments or
+suggestions and any additional features you would find useful.
