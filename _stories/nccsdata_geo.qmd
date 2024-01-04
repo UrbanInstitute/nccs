@@ -15,7 +15,6 @@ citation:
   container-title: National Center for Charitable Statistics
   volume: 1
   issue: 1
-  doi: 10.5555/12345678
 links:
   - header: Data Stories in this series
     links:

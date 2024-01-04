@@ -15,7 +15,6 @@ citation:
   container-title: National Center for Charitable Statistics
   volume: 1
   issue: 1
-  doi:
 links:
   - header: Replication Files
     links:  
