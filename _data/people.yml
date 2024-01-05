@@ -37,15 +37,16 @@
       url: https://www.linkedin.com/in/hqmartin/
   projects: [nptrends, project2]
 - id: thiya
-  first: Thiya
+  first: Thiyaghessan
   last: Poongundranar
   title: Data Scientist
-  bio: Thiya has a background in political science, data journalism, and high performance computing. 
+  bio: Data Scientist with NCCS; expertise in high performance computing, data engineering and data journalism. 
   email: nccs@urban.org
   team: leadership
   image: people/thiya.jpg
   affiliation: 
     - name: Urban Institute / CNP
+  projects: [ntee]
 - id: eboris
   first: Elizabeth
   last: Boris
