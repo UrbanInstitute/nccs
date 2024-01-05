@@ -9,9 +9,9 @@ layout: project
 project-name: ntee
 categories:
   - metadata
-abstract: "National Taxonomy of Exempt Entities (NTEE) Code system is used by the IRS and NCCS to classify nonprofit organizations. It is also used by the Foundation Center to classify both grants and grant recipients (typically nonprofits or governments). NCCS and the IRS use the NTEE-CC system, described below, while the Foundation Center uses a slightly different version with more codes, as well as "population/beneficiary" codes to indicate the type of population served and "auspice" codes to indicate religious or governmental affiliation."
+abstract: "National Taxonomy of Exempt Entities (NTEE) Code system is used by the IRS and NCCS to classify nonprofit organizations. It is also used by the Foundation Center to classify both grants and grant recipients (typically nonprofits or governments). NCCS and the IRS use the NTEE-CC system, described below, while the Foundation Center uses a slightly different version with more codes, as well as 'population/beneficiary' codes to indicate the type of population served and 'auspice' codes to indicate religious or governmental affiliation."
 primaryLinks:
-  - text: NTEE-CC Codes
+  - text: NTEE CC Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html
 pubs:
   - title: History of NTEE-CC Codes
