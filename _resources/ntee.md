@@ -13,9 +13,9 @@ abstract: "National Taxonomy of Exempt Entities (NTEE) Code system is used by th
 primaryLinks:
   - text: NTEE CC Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html
-  - title: History of NTEE-CC Codes
+  - text: History of NTEE-CC Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
-  - title: Overview of NTEE Codes
+  - text: Overview of NTEE Codes
     href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md#ntee2-format
   - title: Parsing NTEE Codes with nccsdata package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
