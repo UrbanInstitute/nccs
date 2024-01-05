@@ -17,7 +17,7 @@ primaryLinks:
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
   - text: Overview of NTEE Codes
     href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md#ntee2-format
-  - title: Parsing NTEE Codes with nccsdata package
+  - text: Parsing NTEE Codes with nccsdata package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
     link-text: article
 ---
