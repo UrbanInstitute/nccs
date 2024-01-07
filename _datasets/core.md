@@ -141,6 +141,7 @@ The data are organized into five files that have the following naming convention
 The PZ and PF versions of the data series are available from 1989-2022. The PC version is a more recent edition, available from 2012-2022.
 
 See the [Data Guide](https://nccs-data.urban.org/NCCS-data-guide.pdf) for more details. 
+
 **Exclusion of 990N ePostcard Filers:**
 
 The Core Series does not include 990N ePostcard filers, even though they are the most common type of nonprofit. These organizations have annual revenues below $50,000, and the 990N form they file includes minimal information, including updates to the organization address and key contact.
