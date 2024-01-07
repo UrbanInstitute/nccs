@@ -1,5 +1,5 @@
 ---
-title: National Taxonomy of Exempt Entities
+title: National Taxonomy of Exempt Entities (NTEE) Codes
 description: IRS Activity Codes Used to Categorize Nonprofits
 date: 2024-01-05
 featured: true
@@ -9,14 +9,65 @@ layout: project
 project-name: ntee
 categories:
   - metadata
-abstract: "National Taxonomy of Exempt Entities (NTEE) Code system is used by the IRS and NCCS to classify nonprofit organizations. It is also used by the Foundation Center to classify both grants and grant recipients (typically nonprofits or governments). NCCS and the IRS use the NTEE-CC system, described below, while the Foundation Center uses a slightly different version with more codes, as well as 'population/beneficiary' codes to indicate the type of population served and 'auspice' codes to indicate religious or governmental affiliation."
+abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by NCCS and is used by the IRS to classify nonprofit organizations according to their missions and program activities. An updated version of the taxonomy called NTEEV2 (NTEE Version 2.0) is described below. While the NTEE is the official classification designation of the IRS, some other systems are described below. For example, Candid has developed the Philanthropic Classification System (PCS) in order to have a single taxonomy that can be used to classify both nonprofits and grants. It includes some new mission areas as well as 'population/beneficiary' codes to indicate the type of population served, and 'auspice' codes to indicate religious or governmental affiliation. Similarly, the North American Industry Classification System (NAICS) is a more generic taxonomy of industries used broadly for economic analysis. Crosswalks between the NTEE and other taxonomies are provided below when available."
 primaryLinks:
-  - text: NTEE CC Codes
+  - text: Overview of NTEE and NTEEV2 Systems
+    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
+  - text: NTEE Category Descriptions
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html
-  - text: History of NTEE-CC Codes
+  - text: History of NTEE Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
-  - text: Overview of NTEE Codes
-    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md#ntee2-format
-  - text: Parsing NTEE Codes with the nccsdata package
+  - text: Using NTEE Codes within the **nccsdata** Package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
 ---
+
+
+
+## Additional Taxonomies
+
+The NTEE replaced the original IRS Activity Code taxonomy that was used until 1995. NCCS developed an [IRS Activity Code to NTEE Crosswalk](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file#activity-codes) that was used to standardize codes for existing nonprofits.  
+
+Some examples of alternative taxonomies include: 
+
+* Candid [Philanthropy Classification System (PCS)](https://taxonomy.candid.org/resources/downloads) [ [crosswalk](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/PCS) ]
+* Foundation Center Grant Taxonomy ([Subjects under the new PCS](https://taxonomy.candid.org/subjects/))  
+* ICNPO Codes [ [Overview](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf) ] 
+* CLASSIEfier [ [LINK](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593) ] 
+* North American Industry Classification System (NAICS) [ [LINK](https://www.census.gov/naics/) ] [ [crosswalk](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/NAICS) ]
+
+
+
+
+## Useful Citations on the Evolution of Mission Taxonomies 
+
+**1990:** Herman, R. D. (1990). Methodological Issues in Studying the Effectiveness of Nongovernmental and Nonprofit Organizations. Nonprofit and Voluntary Sector Quarterly, 19(3), 293–306. https://doi.org/10.1177/089976409001900309
+
+**1992:** Smith, B. (1992). The Use of Standard Industrial Classification (SIC) Codes to Classify Activities of Nonprofit Tax-Exempt Organizations.
+
+**1992:** Salamon, Lester & K. Anheier, Helmut. (1992). In search of the non-profit sector II: The problem of classification. Voluntas. 3. 267-309. 10.1007/BF01397460.
+
+**1994:** Grønbjerg, K. A. (1994). Using NTEE to classify non-profit organisations: an assessment of human service and regional applications. Voluntas: International Journal of Voluntary and Nonprofit Organizations, 5(3), 301-328.
+
+**1996:** Salamon, Lester M. and Helmut K. Anheier. "The International Classification of Nonprofit Organizations: ICNPO-Revision 1, 1996." Working Papers of the Johns Hopkins Comparative Nonprofit Sector Project, no. 19. Baltimore: The Johns Hopkins Institute for Policy Studies, 1996. [DOWNLOAD](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf)
+
+**1996:** Froelich, K. A., & Knoepfle, T. W. (1996). Internal revenue service 990 data: Fact or fiction?. Nonprofit and Voluntary Sector Quarterly, 25(1), 40-52. 
+
+**1998:** Boris, E., & Mosher-Williams, R. (1998). Nonprofit advocacy organizations: Assessing the definitions, classifications, and data. Nonprofit and Voluntary Sector Quarterly, 27(4), 488-506. 
+
+**2002:** Salamon, L. M., & Dewees, S. (2002). In search of the nonprofit sector. The American Behavioral Scientist, 45(11), 1716. 
+
+**2006:** Boris, E. T., & Steuerle, C. E. (2006). Scope and dimensions of the nonprofit sector. The nonprofit sector: A research handbook, 66-88. 
+
+**2013:** Barman, Emily. (2013). Classificatory Struggles in the Nonprofit Sector: The Formation of the National Taxonomy of Exempt Entities, 1969—1987. Social Science History. 37. 103-141. 10.2307/23361114.
+
+**2018:** Berlan, D. (2018). Understanding nonprofit missions as dynamic and interpretative conceptions.
+Nonprofit Management & Leadership, 28(3), 413-422.
+
+**2019:** Jones, Deondre’. IRS Activity Codes. Published January 22, 2019. https://nccs.urban.org/publication/irs-activity-codes
+
+
+
+
+
+
+
