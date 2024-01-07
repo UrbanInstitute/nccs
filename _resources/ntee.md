@@ -3,7 +3,7 @@ title: National Taxonomy of Exempt Entities (NTEE) Codes
 description: IRS Activity Codes Used to Categorize Nonprofits
 date: 2024-01-05
 featured: true
-featuredOrder: 3
+featuredOrder: 1
 type: project
 layout: project
 project-name: ntee
