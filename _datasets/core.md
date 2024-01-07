@@ -29,10 +29,10 @@ The Core Data Series is a comprehensive dataset that provides essential informat
 
 The NCCS Core Data Series is derived from nonprofits’ annual Form 990 filings with the Internal Revenue Service (IRS). These data include financial information, governance details, and other organizational characteristics. The key components include the following:
 
- •	**Financial data**: includes revenue, expenses, assets, and liabilities, enabling financial analysis and benchmarking  
- •	**Programs and activities**: descriptions of the organization's activities, programs, and mission statements  
- •	**Geographic information**: the location and service areas of nonprofits  
- •	**Time series data**: offer data from 1989 onward, which makes it possible to track trends in the nonprofit sector  
+* **Financial data**: includes revenue, expenses, assets, and liabilities, enabling financial analysis and benchmarking  
+* **Programs and activities**: descriptions of the organization's activities, programs, and mission statements  
+* **Geographic information**: the location and service areas of nonprofits  
+* **Time series data**: offer data from 1989 onward, which makes it possible to track trends in the nonprofit sector  
 
 
 ## Versions
@@ -107,7 +107,8 @@ The data are publicly available through the NCCS website and can be accessed by 
 
 All 990 filers are split into five groups using combinations of two variables:
 
-  * **organizational type scope or tscope** This variable distinguishes between 501c3 public charities, 501c3 private foundations, and all other types of 501c organizations.   * **Form filing scope or fscope**: This variable describes which types of filers are included in the dataset.
+* **organizational type scope or tscope** This variable distinguishes between 501c3 public charities, 501c3 private foundations, and all other types of 501c organizations. 
+* **Form filing scope or fscope**: This variable describes which types of filers are included in the dataset. 
 
 ![image](https://github.com/lecy/nccs/assets/1209099/8a2d94ca-346a-4679-b30e-f3328a7d0df9)
 
@@ -115,14 +116,15 @@ All 990 filers are split into five groups using combinations of two variables:
 
 **Other nonprofits**: For other nonprofits, the situation is a little trickier. They are divided into two categories: 
 
- •	**501(c)(3) public charities**: These organizations are distinct because all donations made to them are tax deductible. Datasets containing 501(c)(3) organizations are labeled 501C3-SCOPE-CHARITIES. 
- •	**Other organizations with tax-exempt types**: This category includes tax-exempt types 501(c)(1) to 501(c)(92), excluding the 501(c)(3) charities. These are labeled as 501CE-SCOPE-NONPROFIT, with 501cE standing for "everything other than 501(c)(3).”
+*	**501(c)(3) public charities**: These organizations are distinct because all donations made to them are tax deductible. Datasets containing 501(c)(3) organizations are labeled 501C3-SCOPE-CHARITIES. 
+*	**Other organizations with tax-exempt types**: This category includes tax-exempt types 501(c)(1) to 501(c)(92), excluding the 501(c)(3) charities. These are labeled as 501CE-SCOPE-NONPROFIT, with 501cE standing for "everything other than 501(c)(3).”  
 
 **Form Scope:**
 
 The Core Data Series contains two types of form scope: 
- * All full 990 filers (fscope=**PC**)
- * The broader 990 + 990EZ filers (fscope=**PZ**).
+
+* All full 990 filers (fscope=**PC**)  
+* The broader 990 + 990EZ filers (fscope=**PZ**)
 
 ![image](https://github.com/lecy/nccs/assets/1209099/cf809446-da58-4867-9870-b0035a942847)
  
