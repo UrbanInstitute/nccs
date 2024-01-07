@@ -3,7 +3,7 @@ title: Regulation of Nonprofits and Philanthropy Project
 description: A project advancing research and practice on nonprofit regulatory frameworks and their impact on the sector
 date: 2023-10-03
 featured: true
-featuredOrder: 1
+featuredOrder: 2
 type: project
 layout: project
 project-name: regulation
