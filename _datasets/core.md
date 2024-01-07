@@ -29,10 +29,10 @@ The Core Data Series is a comprehensive dataset that provides essential informat
 
 The NCCS Core Data Series is derived from nonprofits’ annual Form 990 filings with the Internal Revenue Service (IRS). These data include financial information, governance details, and other organizational characteristics. The key components include the following:
 
- •	**Financial data**: includes revenue, expenses, assets, and liabilities, enabling financial analysis and benchmarking
- •	**Programs and activities**: descriptions of the organization's activities, programs, and mission statements
- •	**Geographic information**: the location and service areas of nonprofits
- •	**Time series data**: offer data from 1989 onward, which makes it possible to track trends in the nonprofit sector
+ •	**Financial data**: includes revenue, expenses, assets, and liabilities, enabling financial analysis and benchmarking  
+ •	**Programs and activities**: descriptions of the organization's activities, programs, and mission statements  
+ •	**Geographic information**: the location and service areas of nonprofits  
+ •	**Time series data**: offer data from 1989 onward, which makes it possible to track trends in the nonprofit sector  
 
 
 ## Versions
