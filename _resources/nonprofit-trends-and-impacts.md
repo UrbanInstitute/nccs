@@ -3,7 +3,7 @@ title: Nonprofit Trends and Impacts
 description: A nationally representative survey of nonprofits
 date: 2023-10-03
 featured: true
-featuredOrder: 1
+featuredOrder: 2
 type: project
 layout: project
 project-name: nptrends
