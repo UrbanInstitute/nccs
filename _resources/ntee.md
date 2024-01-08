@@ -36,7 +36,11 @@ The new format makes organizational type explicit and includes the higher-level 
 - Old:  B0129 (advocacy specifically for charter schools)
 - New:  EDU-B29-AA
   
-![](resources/ntee-v1-vs-v2.png)
+![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/public/img/resources/ntee-v1-vs-v2.png)
+
+<br>
+<hr>
+<br>
 
 ## Additional Taxonomies
 
