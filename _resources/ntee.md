@@ -40,6 +40,41 @@ New:   EDU-B29-AA
   
 ![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/public/img/resources/ntee-v1-vs-v2.png)
 
+
+**Industry Group Definitions XXX-xxx-xx**
+
+```
+ART - Arts, Culture, and Humanities (A)
+EDU - Education (B minus universities)
+ENV - Environment and Animals (C,D)
+HEL - Health (E,F,G,H minus hospitals)
+HMS - Human Services (I,J,K,L,M,N,O,P)
+IFA - International, Foreign Affairs (Q)
+PSB - Public, Societal Benefit (R,S,T,U,V,W)
+REL - Religion Related (X)
+MMB - Mutual/Membership Benefit (Y)
+UNU - Unknown, Unclassified (Z)
+UNI - Universities (B40, B41, B42, B43, and B50)
+HOS - Hospitals (E20, E21, E22, and E24)
+```
+
+**Major Group and Divisions xxx-XXX-xxx**
+
+These will be the same as the traditional NTEE codes except specialty organizations (x01-x19) are replaced with zeroes (x00) and the common codes (01-19) have been recoded as organizational types (see below). 
+
+**Organizational Type xxx-xxx-XX**
+
+```
+RG - Regular Nonprofit  
+AA - Alliance/Advocacy Organizations (*formerly 01*) 
+MT - Management and Technical Assistance (*formerly 02*) 
+PA - Professional Societies/Associations (*formerly 03*) 
+RP - Research Institutes and/or Public Policy Analysis (*formerly 05*) 
+MS - Monetary Support - Single Organization (*formerly 11*) 
+MM - Monetary Support - Multiple Organizations (*formerly 12*) 
+NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*) 
+```
+
 <br>
 <hr>
 <br>
