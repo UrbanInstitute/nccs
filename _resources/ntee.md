@@ -1,7 +1,6 @@
 ---
 title: National Taxonomy of Exempt Entities (NTEE) Codes
 description: IRS Activity Codes Used to Categorize Nonprofits
-date: 2024-01-05
 featured: true
 featuredOrder: 1
 type: project
@@ -11,17 +10,33 @@ categories:
   - metadata
 abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by NCCS and is used by the IRS to classify nonprofit organizations according to their missions and program activities. An updated version of the taxonomy called NTEEV2 (NTEE Version 2.0) is described below. While the NTEE is the official classification designation of the IRS, some other systems are described below. For example, Candid has developed the Philanthropic Classification System (PCS) in order to have a single taxonomy that can be used to classify both nonprofits and grants. It includes some new mission areas as well as 'population/beneficiary' codes to indicate the type of population served, and 'auspice' codes to indicate religious or governmental affiliation. Similarly, the North American Industry Classification System (NAICS) is a more generic taxonomy of industries used broadly for economic analysis. Crosswalks between the NTEE and other taxonomies are provided below when available."
 primaryLinks:
-  - text: Overview of NTEE and NTEEV2 Systems
+  - text: Overview of NTEE and NTEEV2
     href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
   - text: NTEE Category Descriptions
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html
   - text: History of NTEE Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
-  - text: Using NTEE Codes within the **nccsdata** Package
+  - text: Using NTEE Codes within the <b>nccsdata</b> Package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
 ---
 
 
+## NTEE Version 2.0
+
+The original NTEE codes combined mission groups with organizational type, making them confusing at times. 
+
+The new format makes organizational type explicit and includes the higher-level industry code for convenience. 
+
+- Old:  B29 (charter school)
+- New:  EDU-B29-RG (RG = "regular" or non-specialty)
+
+- Old:  B01 (advocacy mission within the education sector)
+- New:  EDU-B00-AA
+
+- Old:  B0129 (advocacy specifically for charter schools)
+- New:  EDU-B29-AA
+  
+![](resources/ntee-v1-vs-v2.png)
 
 ## Additional Taxonomies
 
@@ -29,11 +44,11 @@ The NTEE replaced the original IRS Activity Code taxonomy that was used until 19
 
 Some examples of alternative taxonomies include: 
 
-* Candid [Philanthropy Classification System (PCS)](https://taxonomy.candid.org/resources/downloads) [ [crosswalk](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/PCS) ]
-* Foundation Center Grant Taxonomy ([Subjects under the new PCS](https://taxonomy.candid.org/subjects/))  
-* ICNPO Codes [ [Overview](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf) ] 
-* CLASSIEfier [ [LINK](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593) ] 
-* North American Industry Classification System (NAICS) [ [LINK](https://www.census.gov/naics/) ] [ [crosswalk](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/NAICS) ]
+* Candid's [Philanthropy Classification System (PCS)](https://taxonomy.candid.org/resources/downloads) [[**crosswalk**](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/PCS)]
+* Foundation Center Grant Taxonomy ([See "subjects" in the PCS](https://taxonomy.candid.org/subjects/))  
+* ICNPO Codes [[Overview](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf)] 
+* CLASSIEfier [[Link](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593)] 
+* North American Industry Classification System (NAICS) [[Overview](https://www.census.gov/naics/)] [[**crosswalk**](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/NAICS)]
 
 
 
