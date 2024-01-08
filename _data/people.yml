@@ -1,5 +1,10 @@
 # Teams templated: executive (advisory board), leadership (nccs team), collaborator
 # To exclude a person from the about page, do not set a team field
+
+##########
+##########  JESSE LECY
+##########
+
 - id: jlecy
   first: Jesse
   last: Lecy
@@ -21,7 +26,12 @@
       url: https://www.lecy.info/
     - name: linkedin
       url: https://www.linkedin.com/in/jesse-lecy-bab1013/
-  projects: [nptrends, regulation]
+  projects: [nptrends, regulation, ntee]
+
+##########
+##########  HANNAH MARTIN
+##########
+
 - id: hmartin
   first: Hannah
   last: Martin
@@ -36,6 +46,11 @@
     - name: linkedin
       url: https://www.linkedin.com/in/hqmartin/
   projects: [nptrends, project2]
+
+##########
+##########  THIYA POONGUNDRANAR
+##########
+
 - id: thiya
   first: Thiyaghessan
   last: Poongundranar
@@ -47,6 +62,11 @@
   affiliation: 
     - name: Urban Institute / CNP
   projects: [ntee]
+
+##########
+##########  ELIZABETH BORIS
+##########
+
 - id: eboris
   first: Elizabeth
   last: Boris
@@ -66,7 +86,12 @@
       url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
     - name: twitter
       url: https://twitter.com/eborisurban
-  projects: [nptrends, regulation]
+  projects: [nptrends, regulation, ntee]
+
+##########
+##########  TENE TRAYLOR
+##########
+
 - id: ttraylor
   first: Tené
   last: Traylor
@@ -79,6 +104,11 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/tene-traylor
+
+##########
+##########  ALENA STERN
+##########
+
 - id: astern
   first: Alena
   last: Stern
@@ -91,6 +121,11 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/alena-stern  
+
+##########
+##########  JESSICA KELLY
+##########
+
 - id: jkelly
   first: Jessica
   last: Kelly
@@ -103,6 +138,11 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/jessica-kelly 
+
+##########
+##########  CHRIS DAVIS
+##########
+
 - id: cdavis
   first: Chris
   last: Davis
@@ -115,6 +155,11 @@
   affiliation: 
     - name: Urban Institute
       city: Providence
+
+##########
+##########  MARGARET POST
+##########
+
 - id: mpost
   first: Margaret
   last: Post
@@ -125,6 +170,11 @@
     - name: Clark University
       url: https://www.clarku.edu/faculty/profiles/margaret-post/
   image: people/mpost.jpg  
+
+##########
+##########  OLIVIA BECK
+##########
+
 - id: obeck
   first: Olivia
   last: Beck
@@ -138,6 +188,12 @@
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/olivia-beck-87105a178/
+  projects: [ntee]
+
+##########
+##########  CINDY LOTT
+##########
+
 - id: clott
   first: Cindy
   last: Lott
@@ -152,6 +208,11 @@
     - name: linkedin
       url: https://www.linkedin.com/in/cindy-m-lott-aa385b42/
   projects: [regulation]
+
+##########
+##########  TERESA DERRICK-MILLS 
+##########
+
 - id: tderrick-mills
   first: Teresa
   last: Derrick-Mills
@@ -166,6 +227,11 @@
     - name: linkedin
       url: https://www.linkedin.com/in/teresa-derrick-mills-mpa-phd-b738b720/
   projects: [nptrends]
+
+##########
+##########  LEWIS FAULK
+##########
+
 - id: lfaulk
   first: Lewis
   last: Faulk
@@ -180,6 +246,11 @@
     - name: linkedin
       url: https://www.linkedin.com/in/lewis-faulk-222a3652/
   projects: [nptrends]
+
+##########
+##########  MIRAE KIM
+##########
+
 - id: mkim
   first: Mirae
   last: Kim
@@ -194,6 +265,12 @@
     - name: linkedin
       url: https://www.linkedin.com/in/miraekim/
   projects: [nptrends]
+
+
+##########
+##########  ALAN ABRAMSON
+##########
+  
 - id: aabramson
   first: Alan
   last: Abramson
@@ -208,6 +285,11 @@
     - name: linkedin
       url: https://www.linkedin.com/in/alan-abramson-88734410
   projects: [nptrends, regulation]
+
+##########
+##########  SYBIL MENDOCA
+##########
+  
 - id: smendonca
   first: Sybil
   last: Mendonca
