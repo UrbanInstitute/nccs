@@ -123,6 +123,30 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 
 **2019:** Jones, Deondre’. IRS Activity Codes. Published January 22, 2019. https://nccs.urban.org/publication/irs-activity-codes
 
+## More Recent Computational Work
+
+**2022:** Ren, C., & Bloemraad, I. (2022). New Methods and the Study of Vulnerable Groups: Using Machine Learning to Identify Immigrant-Oriented Nonprofit Organizations. Socius, 8, 23780231221076992. [ [PDF](https://journals.sagepub.com/doi/pdf/10.1177/23780231221076992) ]
+
+**2021:** Ashley, S. & Boyd, C. (2021) Addressing Racial Funding Gaps in the Nonprofit Sector Requires New Data Approaches. [ [Urban Institute Blog](https://www.urban.org/urban-wire/addressing-racial-funding-gaps-nonprofit-sector-requires-new-data-approaches) ] [ [Racial Equity Analytics Lab](https://www.urban.org/racial-equity-analytics-lab) ]
+
+**2021:** LePere-Schloop, M. (2021). Nonprofit role classification using mission descriptions and supervised machine learning. Nonprofit and Voluntary Sector Quarterly, 08997640211057393.
+
+**2021:** Ma, J. (2021). Automated Coding Using Machine Learning and Remapping the US Nonprofit Sector: A Guide and Benchmark. Nonprofit and Voluntary Sector Quarterly, 50(3), 662-687.
+
+**2021:** Messamore, A., & Paxton, P. (2021). Surviving Victimization: How Service and Advocacy Organizations Describe Traumatic Experiences, 1998–2016. Social Currents, 8(1), 3-24.
+
+**2021:** Santamarina, F. J., Lecy, J. D., & van Holm, E. J. (2021). How to Code a Million Missions: Developing Bespoke Nonprofit Activity Codes Using Machine Learning Algorithms. VOLUNTAS: International Journal of Voluntary and Nonprofit Organizations, 1-10. [ [CODE](https://fjsantam.github.io/bespoke-npo-taxonomies/) ]
+
+**2019:** Paxton, P., Velasco, K., & Ressler, R. (2019a). Form 990 Mission Glossary v.1. Ann Arbor, MI: Inter-university Consortium for Political and Social Research.
+
+**2019:** Paxton, P., Velasco, K., & Ressler, R. (2019b). Form 990 Mission Stemmer v.1. Ann Arbor, MI: Inter-university Consortium for Political and Social Research.
+
+**2019:** Lecy, J., Ashley, S. & Santamarina, F. (2019). “Do Nonprofit Missions Vary by the Political Ideology of Supporting Communities? Some Preliminary Results.” *Public Performance and Management Review.*  [ [PDF](https://github.com/Nonprofit-Open-Data-Collective/machine_learning_mission_codes/raw/master/docs/papers/Lecy%20Ashley%20Santamarina%20-%20PPMR%202019.pdf) ]
+
+
+
+
+
 
 
 
