@@ -1,5 +1,5 @@
 ---
-title: "Statistics of Income (SOI) Microdata Samples"
+title: "NCCS 'Core' Data Catalog"
 format: html
 editor: visual
 execute: 
@@ -14,12 +14,12 @@ library( dplyr )
 library( knitr )
 library( kableExtra )
 library( stringr )
-library( flextable )
 library( pander )
 
 GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
 d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
 source( paste0( GH.RAW, "build-catalog-functions.R" ) )
+nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/"
 ```
 
 <br>
@@ -46,9 +46,11 @@ Very small nonprofits (revenues less than \$50k annually) can file Form 990N (th
 
 Form scope describes which types of filers are included in each data set:
 
--   **EZ**: 990EZ filers
+-   **PZ**: 990 + 990EZ filers
 -   **PC**: 990 filers only
 -   **PF**: 990PF private foundations
+
+Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures.
 
 **YEAR**
 
@@ -60,19 +62,45 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
 
 <br>
 
-#### 501c3 CHARITIES FSCOPE PC
+#### 501c3 CHARITIES SCOPE PZ
 
 ```{r}
 #| echo: false
 #| output: asis
  
 catalog <- construct_catalog(s3_catalog = d,
-                             series = "soi",
+                             series = "core",
+                             paths = d$Key,
+                             tscope = "CHARITIES",
+                             fscope = "PZ",
+                             np_type = "501C3-CHARITIES")
+catalog %>%
+  knitr::kable( escape=FALSE,
+                col.names = c("Download Link", 
+                              "Data Dictionary",
+                              "Size",
+                              "Year",
+                              "Nonprofit Type",
+                              "Form Scope" ) ) %>%
+  kableExtra::kable_styling()
+```
+
+<br>
+
+<hr>
+
+<br>
+
+#### 501c3 CHARITIES SCOPE PC
+
+```{r}
+#| echo: false
+catalog <- construct_catalog(s3_catalog = d,
+                             series = "core",
                              paths = d$Key,
                              tscope = "CHARITIES",
                              fscope = "PC",
                              np_type = "501C3-CHARITIES")
-
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
@@ -90,17 +118,16 @@ catalog %>%
 
 <br>
 
-#### 501c3 CHARITIES FSCOPE EZ
+#### NONPROFITS SCOPE PZ
 
 ```{r}
 #| echo: false
 catalog <- construct_catalog(s3_catalog = d,
-                             series = "soi",
+                             series = "core",
                              paths = d$Key,
-                             tscope = "CHARITIES",
-                             fscope = "EZ",
-                             np_type = "501C3-CHARITIES")
-
+                             tscope = "NONPROFIT",
+                             fscope = "PZ",
+                             np_type = "501CE-CHARITIES")
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
@@ -118,17 +145,16 @@ catalog %>%
 
 <br>
 
-#### NONPROFITS FSCOPE PC
+#### NONPROFITS SCOPE PC
 
 ```{r}
 #| echo: false
 catalog <- construct_catalog(s3_catalog = d,
-                             series = "soi",
+                             series = "core",
                              paths = d$Key,
                              tscope = "NONPROFIT",
                              fscope = "PC",
                              np_type = "501CE-NONPROFIT")
-
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
@@ -146,45 +172,16 @@ catalog %>%
 
 <br>
 
-#### NONPROFITS FSCOPE EZ
+#### PRIVATE FOUNDATIONS SCOPE PF
 
 ```{r}
 #| echo: false
 catalog <- construct_catalog(s3_catalog = d,
-                             series = "soi",
-                             paths = d$Key,
-                             tscope = "NONPROFIT",
-                             fscope = "EZ",
-                             np_type = "501CE-NONPROFIT")
-
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("Download Link", 
-                              "Data Dictionary",
-                              "Size",
-                              "Year",
-                              "Nonprofit Type",
-                              "Form Scope" ) ) %>%
-  kableExtra::kable_styling()
-```
-
-<br>
-
-<hr>
-
-<br>
-
-#### PRIVATE FOUNDATIONS FSCOPE PF
-
-```{r}
-#| echo: false
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "soi",
+                             series = "core",
                              paths = d$Key,
                              tscope = "PRIVFOUND",
                              fscope = "PF",
-                             np_type = "501C3-PRIVFOUND")
-
+                             np_type = "501C3-CHARITIES")
 catalog %>%
   knitr::kable( escape=FALSE,
                 col.names = c("Download Link", 
