@@ -16,6 +16,8 @@ primaryLinks:
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html
   - text: History of NTEE Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
+  - text: Convenient Two-Page NTEE Cheatsheet (old codes)
+    href: https://github.com/Nonprofit-Open-Data-Collective/machine_learning_mission_codes/raw/master/docs/assets/NTEE_Two_Page_2005.pdf
   - text: Using NTEE Codes within the <b>nccsdata</b> Package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
 ---
