@@ -158,6 +158,13 @@ The options are:
 |        MM         |       Monetary Support - Multiple Organizations       |
 |        NS         | Nonmonetary Support Not Elsewhere Classified (N.E.C.) |
 
+
+![](../../_stories/nccsdata/nteev2-example.png)
+
+<br>
+<hr>
+<br>
+
 ## Retrieving NTEE Code Descriptions with [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
 
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
