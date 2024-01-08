@@ -1,0 +1,68 @@
+---
+layout: default
+---
+
+{% include components/page-header.html
+  header = page.title
+  description = page.description
+%}
+
+{{ content }}
+
+<form
+  action="https://formspree.io/f/mayrygbg"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email" required/>
+  </label>
+
+  <label>
+    Your message:
+    <textarea name="message" required></textarea>
+  </label>
+  
+  <div class = "form-button">
+    
+    <button type="submit">Send</button>
+    
+  </div>
+  
+</form>
+
+<style>
+  /* Some nice boilerplate CSS to tidy up your form */
+  form {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-gap: 1rem;
+    padding: 2rem 0;
+    margin: 0;
+  }
+  form label {
+    display: contents;
+  }
+  form input[type="email"]{
+    text-align: left;
+  },
+  form textarea{
+    text-align: left;
+  },
+  form button {
+    font-family: inherit;
+    font-size: inherit;
+    border: 1px solid currentColor;
+    background: none;
+    padding: 0.4rem 0.5rem;
+  }
+  form textarea {
+    resize: vertical;
+  }
+  form button {
+    justify-self: start;
+  }
+  form-button{
+    justify-self: start;
+  }
+</style>
