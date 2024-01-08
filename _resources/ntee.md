@@ -1,7 +1,6 @@
 ---
 title: National Taxonomy of Exempt Entities (NTEE) Codes
 description: IRS Activity Codes Used to Categorize Nonprofits
-date: ''
 featured: true
 featuredOrder: 1
 type: project
@@ -29,13 +28,13 @@ The original NTEE codes combined mission groups with organizational type, making
 The new format makes organizational type explicit and includes the higher-level industry code for convenience. 
 
 ```
-Old:   B29 (charter school)
-New:   EDU-B29-RG (RG = "regular" or non-specialty)
+Old:   B29            (charter school)
+New:   EDU-B29-RG     (RG = "regular" or non-specialized nonprofit)
 
-Old:   B01 (advocacy broadly for the education sector)
-New:   EDU-B00-AA
+Old:   B01            (advocacy broadly for the education sector)
+New:   EDU-B00-AA     (AA = advocacy organization) 
 
-Old:   B0129 (advocacy specifically for charter schools)
+Old:   B0129          (advocacy specifically for charter schools)
 New:   EDU-B29-AA
 ```
   
