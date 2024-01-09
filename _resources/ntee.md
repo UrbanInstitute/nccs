@@ -63,7 +63,17 @@ HOS - Hospitals (E20, E21, E22, and E24)
 
 **Major Group and Divisions xxx-XXX-xxx**
 
-These will be the same as the traditional NTEE codes except specialty organizations (x01-x19) are replaced with zeroes (x00) and the common codes (01-19) have been recoded as organizational types (see below). 
+These will be the same as the traditional NTEE codes except specialty organizations (x01-x19) are replaced with zeroes (x00) and the common codes (01-19) have been recoded as organizational types. 
+
+```
+B  EDUCATION                                   (major group)
++--  B20 ELEMENTARY AND SECONDARY SCHOOLS      (division)
+¦ +--B21 Preschools                            (subdivision)
+¦ +--B24 Primary & Elementary Schools
+¦ +--B25 Secondary & High Schools
+¦ +--B28 Special Education
+¦ +--B29 Charter School
+```
 
 **Organizational Type xxx-xxx-XX**
 
