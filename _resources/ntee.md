@@ -42,6 +42,7 @@ New:   EDU-B29-AA
   
 ![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/public/img/resources/ntee-v1-vs-v2.png)
 
+![](../../_stories/nccsdata/ntee2-structure.png)
 
 **Industry Group Definitions XXX-xxx-xx**
 
@@ -76,6 +77,8 @@ MS - Monetary Support - Single Organization (*formerly 11*)
 MM - Monetary Support - Multiple Organizations (*formerly 12*) 
 NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*) 
 ```
+
+![](../../_stories/nccsdata/nteev2-example.png)
 
 <br>
 <hr>
