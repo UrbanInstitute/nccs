@@ -123,7 +123,11 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 
 **2019:** Jones, Deondre’. IRS Activity Codes. Published January 22, 2019. https://nccs.urban.org/publication/irs-activity-codes
 
+**2020:** Plummer, S., Hughes, M. M., & Smith, J. (2020). The challenges of organizational classification: A research note. Social Currents, 7(1), 3-10.
+
 ## More Recent Computational Work
+
+**2023:** Jones, M., McCabe, E., & Olson, R. (2023). Identifying essential nonprofits with a novel NLP Method. Nonprofit Management and Leadership, 33(3), 661-674.
 
 **2022:** Ren, C., & Bloemraad, I. (2022). New Methods and the Study of Vulnerable Groups: Using Machine Learning to Identify Immigrant-Oriented Nonprofit Organizations. Socius, 8, 23780231221076992. [ [PDF](https://journals.sagepub.com/doi/pdf/10.1177/23780231221076992) ]
 
