@@ -92,6 +92,8 @@ globalDatasetLinks:
       href: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
     - text: "Get Help"
       href: "https://github.com/UrbanInstitute/nccs/issues"
+    - text: "Contact Us" 
+      href: "https://nccs.urban.org/contact/" 
       
 # Build settings
 sass:
