@@ -1,9 +1,8 @@
 ---
-title: "The nccsdata Package Part 2: NTEE Codes"
+title: "nccsdata Part 2: NTEE Codes"
 date: 2023-11-03
 description: "Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes."
-featured: true
-featuredOrder: 3
+featured: false
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 format: gfm
@@ -50,21 +49,23 @@ In part 2 of this 4-part series on the
 [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package, we
 explore and query National Taxonomy of Exempt Entities (NTEE) codes
 using the
-[`ntee_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/ntee_preview.html)
+[`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
 and
-[`parse_ntee()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/parse_ntee.html)
+[`parse_ntee()`](https://urbaninstitute.github.io/nccsdata/reference/parse_ntee.html)
 functions.
 
-## NTEE Structure
+## NTEE Code Structure
 
 The NTEEV2 code system is an evolution of the original NTEE code system,
 a classification system used by the IRS and NCCS for nonprofit
 organizations. For all of the NTEE codes, refer to this [comprehensive
-overview](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md).
+overview](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md#NTEEV2-format).
 
-This new NTEEV2 system can be organized into 5 levels.
+This new NTEE system can be organized into 5 levels.
 
-![](../../_stories/nccsdata/ntee2-structure.png)
+<span class="image placeholder"
+original-image-src="nccsdata/NTEEV2-structure.png"
+original-image-title=""></span>
 
 The NTEEV2 codes are structured in three parts:
 
@@ -77,7 +78,7 @@ all three parts (or five levels) in sequence.
 
 ### Level 1: Industry Groups
 
-The Industry Group is represented by three letters. The 12 options are:
+The Industry Group is represented by three letters. The 10 options are:
 
 | Industry Group |          Description           |
 |:--------------:|:------------------------------:|
@@ -99,36 +100,36 @@ nonprofits can be comprehensively sorted into.
 
 ### Level 2: Major Group
 
-The major group is represented as one letter. The 26 options are:
+The Major Group is represented as one letter. The 26 options are:
 
-| Industry Label |                     Description                     |
-|:--------------:|:---------------------------------------------------:|
-|       A        |             Arts, Culture & Humanities              |
-|       B        |                      Education                      |
-|       C        |                     Environment                     |
-|       D        |                   Animal-Related                    |
-|       E        |                     Health Care                     |
-|       F        |         Mental Health & Crisis Intervention         |
-|       G        | Voluntary Health Associations & Medical Disciplines |
-|       H        |                  Medical Research                   |
-|       I        |                Crime & Legal-Related                |
-|       J        |                     Employment                      |
-|       K        |            Food, Agriculture & Nutrition            |
-|       L        |                  Housing & Shelter                  |
-|       M        |    Public Safety, Disaster Preparedness & Relief    |
-|       N        |                 Recreation & Sports                 |
-|       O        |                  Youth Development                  |
-|       P        |                   Human Services                    |
-|       Q        | International, Foreign Affairs & National Security  |
-|       R        |       Civil Rights, Social Action & Advocacy        |
-|       S        |      Community Improvement & Capacity Building      |
-|       T        | Philanthropy, Voluntarism & Grantmaking Foundations |
-|       U        |                Science & Technology                 |
-|       V        |                   Social Science                    |
-|       W        |              Public & Societal Benefit              |
-|       X        |                  Religion-Related                   |
-|       Y        |             Mutual & Membership Benefit             |
-|       Z        |                       Unknown                       |
+| Major Group Label |                     Description                     |
+|:-----------------:|:---------------------------------------------------:|
+|         A         |             Arts, Culture & Humanities              |
+|         B         |                      Education                      |
+|         C         |                     Environment                     |
+|         D         |                   Animal-Related                    |
+|         E         |                     Health Care                     |
+|         F         |         Mental Health & Crisis Intervention         |
+|         G         | Voluntary Health Associations & Medical Disciplines |
+|         H         |                  Medical Research                   |
+|         I         |                Crime & Legal-Related                |
+|         J         |                     Employment                      |
+|         K         |            Food, Agriculture & Nutrition            |
+|         L         |                  Housing & Shelter                  |
+|         M         |    Public Safety, Disaster Preparedness & Relief    |
+|         N         |                 Recreation & Sports                 |
+|         O         |                  Youth Development                  |
+|         P         |                   Human Services                    |
+|         Q         | International, Foreign Affairs & National Security  |
+|         R         |       Civil Rights, Social Action & Advocacy        |
+|         S         |      Community Improvement & Capacity Building      |
+|         T         | Philanthropy, Voluntarism & Grantmaking Foundations |
+|         U         |                Science & Technology                 |
+|         V         |                   Social Science                    |
+|         W         |              Public & Societal Benefit              |
+|         X         |                  Religion-Related                   |
+|         Y         |             Mutual & Membership Benefit             |
+|         Z         |                       Unknown                       |
 
 These offer a more detailed subclassification that builds on the
 Industry Group classification framework.
@@ -136,7 +137,7 @@ Industry Group classification framework.
 ### Level 3 and 4: Division and Subdivision
 
 Levels 3 and 4 consist of alphanumeric values that reference additional
-subclassifications corresponding to the Industry Group—Industry
+subclassifications corresponding to the Industry Group—Major Group
 combinations above. There are too many for a simple table and will be
 explored with
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
@@ -157,13 +158,6 @@ The options are:
 |        MS         |        Monetary Support - Single Organization         |
 |        MM         |       Monetary Support - Multiple Organizations       |
 |        NS         | Nonmonetary Support Not Elsewhere Classified (N.E.C.) |
-
-
-![](../../_stories/nccsdata/nteev2-example.png)
-
-<br>
-<hr>
-<br>
 
 ## Retrieving NTEE Code Descriptions with [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
 
@@ -226,13 +220,13 @@ ntee_preview(ntee = "UNI")
 
 In the above code snippet,
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
-prints out the descriptions of all NTEEV2 codes belonging to the “UNI”
+prints out the descriptions of all NTEE codes belonging to the “UNI”
 (University) Industry Group. The function outputs are nested in the
 following order:
 
 - Industry Group (Level 1)
   - Organization Type (Level 5)
-    - Industry, Division and Subdivision (Levels 2-4)
+    - Major Group, Division and Subdivision (Levels 2-4)
 
 *ntee* takes arguments belonging to **any** of the 3 parts or 5 levels
 above and returns **all** matching NTEE codes. For example, the below
@@ -356,7 +350,7 @@ ntee_preview(ntee = c("ART-A61-AA",
 automatically structures the output to avoid repeating Industry Groups
 or Organization Types.
 
-For Industry, Division and Subdivision (Level 2-4),
+For Major Group, Division and Subdivision (Level 2-4),
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
 accepts placeholder arguments denoted by the letter *x* (case
 insensitive). For example, *ntee = B2x* will provide a preview for all
@@ -756,7 +750,7 @@ additional arguments from
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html):
 
 - `ntee.group` : Industry Group (Level 1)
-- `ntee.code` : Industry, Division and Subdivision (Level 2 - 4)
+- `ntee.code` : Major Group, Division and Subdivision (Level 2 - 4)
 - `ntee.orgtype` : Organization Type (Level 5)
 
 For *ntee.code*, placeholder arguments are supported as well.
@@ -1152,25 +1146,25 @@ non-profits that file both full 990s and 990EZs, filtering for
 nonprofits belonging to the *Education* Industry Group.
 
 ``` r
-core <- get_data( dsname = "core",
-                  time = "2015",
-                  scope.orgtype = "NONPROFIT",
-                  scope.formtype = "PZ",
-                  ntee.group = "EDU" )
+core <- get_data(dsname = "core",
+                 time = "2015",
+                 scope.orgtype = "NONPROFIT",
+                 scope.formtype = "PZ",
+                 ntee.group = "EDU")
 ```
 
 ## Retrieve Complete NTEEV2 Codes
 
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
 also offers an invisible return feature, allowing users to save the
-complete set of NTEE2 codes being previewed in a character vector. This
+complete set of NTEEV2 codes being previewed in a character vector. This
 can be achieved by assigning the output of
 [`ntee_preview()`](https://urbaninstitute.github.io/nccsdata/reference/ntee_preview.html)
 to a variable name.
 
 ``` r
-ntee2_codes <- ntee_preview( ntee.group = "UNI",
-                             ntee.code = "Cxx" )
+NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
+                            ntee.code = "Cxx")
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1543,7 +1537,7 @@ ntee2_codes <- ntee_preview( ntee.group = "UNI",
 #>          professional field leading to a masters degree or doctorate.
 #> 
 #>  End of Preview
-print( ntee2_codes )
+print(NTEEV2_codes)
 #>  [1] "UNI-B40-RG" "UNI-B41-RG" "UNI-B42-RG" "UNI-B43-RG" "UNI-B50-RG"
 #>  [6] "ENV-C00-AA" "ENV-C20-AA" "ENV-C30-AA" "ENV-C32-AA" "ENV-C35-AA"
 #> [11] "ENV-C50-AA" "ENV-C60-AA" "ENV-C00-MT" "ENV-C20-MT" "ENV-C30-MT"
@@ -1561,14 +1555,13 @@ print( ntee2_codes )
 
 A second function,
 [`parse_ntee()`](https://urbaninstitute.github.io/nccsdata/reference/parse_ntee.html),
-can also be used to generate NTEE codes
-that match your sampling criteria.
+can also be used to extract complete NTEE codes.
 
 [`parse_ntee()`](https://urbaninstitute.github.io/nccsdata/reference/parse_ntee.html)
 only accepts the following arguments:
 
 - `ntee.group`: Industry Group (Level 1)
-- `ntee.code`: Industry, Division and Subdivision (Level 2 - 4)
+- `ntee.code`: Major Group, Division and Subdivision (Level 2 - 4)
 - `ntee.orgtype`: Organization Type (Level 5)
 
 Use *all* to include all levels for that specific argument. For example,
@@ -1608,9 +1601,9 @@ differs from
 in that it only returns NTEE codes that meet all filters.
 
 ``` r
-parse_ntee( ntee.group = "HEL",
-            ntee.code = "A2x",
-            ntee.orgtype = "all" )
+parse_ntee(ntee.group = "HEL",
+           ntee.code = "A2x",
+           ntee.orgtype = "all")
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1624,9 +1617,9 @@ below, returns valid codes since there are NTEE codes with the
 *ART-A2X-XXX* structure:
 
 ``` r
-parse_ntee( ntee.group = c("HEL", "ART"),
-            ntee.code = "A2x",
-            ntee.orgtype = "all" )
+parse_ntee(ntee.group = c("HEL", "ART"),
+           ntee.code = "A2x",
+           ntee.orgtype = "all")
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
