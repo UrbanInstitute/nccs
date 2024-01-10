@@ -52,10 +52,10 @@ construct tables summarizing NCCS Legacy Data.
 ## Create Summary Tables
 
 After preparing data using
-[`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html)
+[`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html)
 and subsequent processing through additional filtering or wrangling, you
 can use
-[`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
+[`preview_sample()`](https://urbaninstitute.github.io/nccsdata/reference/preview_sample.html)
 to compute summary statistics for legacy datasets.
 
 The following example illustrates this process:
@@ -93,7 +93,7 @@ preview_sample(data = core,
 #> # ℹ 13,081 more rows
 ```
 
-[`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
+[`preview_sample()`](https://urbaninstitute.github.io/nccsdata/reference/preview_sample.html)
 groups the dataset based on the columns specified in `group_by`, and
 computes summary statistics for the user-defined *var* column. The
 available summary statistics are:
@@ -105,12 +105,12 @@ available summary statistics are:
 - `count`: count of rows belonging to group
 
 As long as the columns in *group_by* are present in the data set,
-[`preview_sample()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/preview_sample.html)
+[`preview_sample()`](https://urbaninstitute.github.io/nccsdata/reference/preview_sample.html)
 will be able to generate a summary table for the user.
 
 ## Conclusion
 
 We hope this series has been helpful for working with the
-[`nccsdata`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/index.html)
+[`nccsdata`](https://urbaninstitute.github.io/nccsdata/index.html)
 package. package. Contact the package maintainers with any comments or
 suggestions and any additional features you would find useful.
