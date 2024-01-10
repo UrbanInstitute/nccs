@@ -79,19 +79,19 @@ Statistical Areas are provided on the Census Crosswalks
 Urban NCCS Site.
 
 In this story, we explore CBSA FIPS codes with the
-[`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html)
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
 function before and demonstrate how these CBSA FIPS can be linked to
 county FIPS codes via
-[`map_countyfips()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/map_countyfips.html).
+[`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html).
 
 ## Exploring CBSA FIPS Codes
 
 The
-[`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html)
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
 function allows users to preview and retrieve CBSA FIPS codes and/or
 their associated metadata from a specific state. The code snippet below
 demonstrates how
-[`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html)
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
 returns the names of all CBSAs and their associated FIPS codes. The
 *within* argument specifies the desired state, in abbreviated form, as
 input while the *geo* argument returns the specified columns:
@@ -187,7 +187,7 @@ geo_preview(geo = c("cbsa", "county", "cbsafips"), within = "FL", type = "metro"
 Because CBSAs include combinations of [metropolitan or micropolitan
 statistical
 areas](https://www.census.gov/programs-surveys/metro-micro/about.html),
-[`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html)
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
 allows the user to select either unit using the `type` argument.
 
 The following code snippet shows how to retrieve CBSA names and FIPS
@@ -225,7 +225,7 @@ geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "metro")
 ## Exploring CSA FIPS
 
 In addition to CBSAs,
-[`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html)
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
 can also retrieve metadata for [Combined Statistical
 Areas](https://en.wikipedia.org/wiki/Combined_statistical_area) (CSAs).
 
@@ -254,10 +254,10 @@ geo_preview(geo = c("csa","csafips"),
 ## Filtering Legacy Data with County FIPS codes
 
 After retrieving the desired CBSA/CSA FIPS codes,
-[`map_countyfips()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/map_countyfips.html)
+[`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html)
 can match them with county FIPS codes present in the legacy data,
 retrieved with
-[`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html).
+[`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html).
 Downloaded data can then be filtered using these county FIPS codes, as
 shown below:
 

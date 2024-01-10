@@ -72,11 +72,11 @@ The last variable, *FIPS*, can be used to match observations based on census uni
 
 In US census data, *FIPS* are also tied to Core Based Statistical Areas (CBSAs) that consist of mutually exclusive Metropolitan Statistical Areas (metros with populations above 50,000) and Micropolitan Statistical Areas (populations above 10,000 and below 50,000). Geographic filtering with US census units therefore requires crosswalking units across multiple levels, such as county and CBSA. Further details and examples of CBSAs and Metropolitan/Micropolitan Statistical Areas are provided on the Census Crosswalks  [page](https://urbaninstitute.github.io/nccs/datasets/census/) of the Urban NCCS Site. 
 
-In this story, we explore CBSA FIPS codes with the [`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html) function before and demonstrate how these CBSA FIPS can be linked to county FIPS codes via [`map_countyfips()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/map_countyfips.html).
+In this story, we explore CBSA FIPS codes with the [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html) function before and demonstrate how these CBSA FIPS can be linked to county FIPS codes via [`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html).
 
 ## Exploring CBSA FIPS Codes
 
-The [`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html) function allows users to preview and retrieve CBSA FIPS codes and/or their associated metadata from a specific state. The code snippet below demonstrates how  [`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html) returns the names of all CBSAs and their associated FIPS codes. The *within* argument specifies the desired state, in abbreviated form, as input while the *geo* argument returns the specified columns:
+The [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html) function allows users to preview and retrieve CBSA FIPS codes and/or their associated metadata from a specific state. The code snippet below demonstrates how  [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html) returns the names of all CBSAs and their associated FIPS codes. The *within* argument specifies the desired state, in abbreviated form, as input while the *geo* argument returns the specified columns:
 
 ```{r}
 geo_preview( geo=c("cbsa","cbsafips"), within="FL", type="metro" )
@@ -90,7 +90,7 @@ geo_preview(geo = c("cbsa", "county", "cbsafips"), within = "FL", type = "metro"
 
 ## Metropolitan and Micropolitan Data
 
-Because CBSAs include combinations of [metropolitan or micropolitan statistical areas](https://www.census.gov/programs-surveys/metro-micro/about.html), [`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html) allows the user to select either unit using the `type` argument.
+Because CBSAs include combinations of [metropolitan or micropolitan statistical areas](https://www.census.gov/programs-surveys/metro-micro/about.html), [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html) allows the user to select either unit using the `type` argument.
 
 The following code snippet shows how to retrieve CBSA names and FIPS codes for all metropolitan statistical areas in Wyoming:
 
@@ -106,7 +106,7 @@ geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "metro")
 
 ## Exploring CSA FIPS
 
-In addition to CBSAs, [`geo_preview()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/geo_preview.html) can also retrieve metadata for [Combined Statistical Areas](https://en.wikipedia.org/wiki/Combined_statistical_area) (CSAs).
+In addition to CBSAs, [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html) can also retrieve metadata for [Combined Statistical Areas](https://en.wikipedia.org/wiki/Combined_statistical_area) (CSAs).
 
 CSAs are created by identifying adjacent micropolitan and metropolitan statistical areas that constitute a coherent economic region, typically characterized by shared commercial and commuting zones.
 
@@ -120,7 +120,7 @@ geo_preview(geo = c("csa","csafips"),
 
 ## Filtering Legacy Data with County FIPS codes
 
-After retrieving the desired CBSA/CSA FIPS codes, [`map_countyfips()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/map_countyfips.html) can match them with county FIPS codes present in the legacy data, retrieved with [`get_data()`](file:///C:/Users/tpoongundranar/Documents/Urban/NCCS/nccsdata/docs/reference/get_data.html). Downloaded data can then be filtered using these county FIPS codes, as shown below:
+After retrieving the desired CBSA/CSA FIPS codes, [`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html) can match them with county FIPS codes present in the legacy data, retrieved with [`get_data()`](https://urbaninstitute.github.io/nccsdata/reference/get_data.html). Downloaded data can then be filtered using these county FIPS codes, as shown below:
 
 ```{r}
 # Retrive CBSA FIPS from NY
