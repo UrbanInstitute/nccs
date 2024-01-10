@@ -57,7 +57,7 @@ knitr::opts_chunk$set(
 
 The [`nccsdata`](https://urbaninstitute.github.io/nccsdata/) package equips users with tools to read, filter, and append metadata in publicly available NCCS Core and Business Master File (BMF) datasets. Its key features include the following:
 
- 1. 1.	downloading legacy Core and BMF datasets from the NCCS Data Archive across multiple years to construct panel datasets for research
+ 1. downloading legacy Core and BMF datasets from the NCCS Data Archive across multiple years to construct panel datasets for research
  2. providing information on the [National Taxonomy of Exempt Entities (NTEE)](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEE-disaggregated/README.md) used by the IRS and NCCS to classify nonprofits
  3. providing information on US census units that can be used to filter downloaded data based on geography
  4. constructing summary tables for downloaded data
