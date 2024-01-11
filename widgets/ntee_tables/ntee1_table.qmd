@@ -1,0 +1,21 @@
+---
+title: "Original NTEE Codes"
+format: html
+editor: visual
+---
+
+```{r include=FALSE}
+library(DT)
+library(readr)
+library(dplyr)
+ntee1_df <- readr::read_csv("https://raw.githubusercontent.com/Nonprofit-Open-Data-Collective/mission-taxonomies/main/NTEE/all-ntee-original.csv")
+ntee1_df <- ntee1_df %>% 
+  dplyr::rename("NTEE Code" = ntee,
+                "Description" = description,
+                "Definition" = definition)
+```
+
+```{r echo=FALSE}
+DT::datatable(ntee1_df,
+              filter = "top")
+```
