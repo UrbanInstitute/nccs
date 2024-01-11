@@ -13,7 +13,7 @@ primaryLinks:
   - text: Overview of NTEE and NTEEV2
     href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
   - text: NTEE Category Descriptions
-    href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html
+    href: "../../widgets/ntee_tables/ntee1_table.html"
   - text: History of NTEE Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
   - text: Convenient Two-Page NTEE Cheatsheet (old codes)
