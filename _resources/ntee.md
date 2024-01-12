@@ -12,11 +12,13 @@ abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by N
 primaryLinks:
   - text: Overview of NTEE and NTEEV2
     href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
-  - text: NTEE Category Descriptions
+  - text: Table of Original NTEE Codes
     href: "../../widgets/ntee_tables/ntee1_table.html"
+  - text: Table of NTEEV2 Codes
+    href: "../../widgets/ntee_tables/nteev2_table.html"
   - text: History of NTEE Codes
     href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
-  - text: Convenient Two-Page NTEE Cheatsheet (old codes)
+  - text: Convenient Two-Page NTEE Cheatsheet (Old Codes)
     href: https://github.com/Nonprofit-Open-Data-Collective/machine_learning_mission_codes/raw/master/docs/assets/NTEE_Two_Page_2005.pdf
   - text: Using NTEE Codes within the <b>nccsdata</b> Package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
