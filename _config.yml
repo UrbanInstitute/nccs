@@ -89,7 +89,7 @@ globalDatasetLinks:
     # - text: "Research Handbook"
     #   href: "https://urbaninstitute.github.io/nccs-handbook/intro.html"
     - text: "Data Guide"
-      href: "https://nccs-data.urban.org/NCCS-data-guide.pdf"
+      href: "https://nccs.urban.org/pubs/nccs-data-guide.pdf"
     - text: "Get Help"
       href: "https://github.com/UrbanInstitute/nccs/issues"
     - text: "Contact Us" 
