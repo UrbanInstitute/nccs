@@ -66,12 +66,14 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
 #| echo: false
 #| output: asis
  
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "soi",
-                             paths = d$Key,
-                             tscope = "CHARITIES",
-                             fscope = "PC",
-                             np_type = "501C3-CHARITIES")
+catalog <- 
+  construct_catalog( 
+       s3_catalog = d,
+       series     = "soi",
+       paths      = d$Key,
+       tscope     = "CHARITIES",
+       fscope     = "PC",
+       np_type    = "501C3-CHARITIES" )
 
 catalog %>%
   knitr::kable( escape=FALSE,
