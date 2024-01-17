@@ -91,15 +91,17 @@ NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)
 
 ![](../../_stories/nccsdata/nteev2-example.png)
 
-<br>
-<hr>
-<br>
+<br> 
 
 ## Machine Readable NTEE Files 
 
 [Download CSV of NTEE Category Descriptions](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions.csv) 
 
 [Download CSV of NTEE Category Descriptions in Tidy Format](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions-tidy-format.csv) 
+
+<br>
+<hr>
+<br>
 
 ## A Note on Appropriate Use and Accuracy of NTEE Codes
 
@@ -145,6 +147,11 @@ Attn: Correspondence Unit
 500 Main Street, Room 6403
 Cincinnati, Ohio 45202
 ```
+
+<br>
+<hr>
+<br>
+
 
 ## Additional Mission Taxonomies
 
