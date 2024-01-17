@@ -112,6 +112,8 @@ New nonprofits are assigned or select their own single NTEE category at the time
 
 [A Brief History of NTEE Codes](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html) 
 
+[A Helpful Blog by Instrumentl](https://www.instrumentl.com/blog/ntee-codes-for-nonprofits)
+
 **Are NTEE Codes Accurate?**
 
 Nonprofit missions are analogous to human careers. Young nonprofits and young adults both have aspirational program missions and career goals that will evolve over time as they gain experience, feedback, and self-awareness about core competencies. Some individuals may spend their entire career in a single profession, perhaps as a doctor or teacher. Most humans, however, do not have linear career paths. They will pursue several interests simultaneously early in their careers and specialize later-on based upon where they find initial success. Most people change jobs 5-7 times throughout their lives, occassionally switching industries or sectors. Additionally, they might transition into administration or training roles as they gain seniority. 
@@ -148,6 +150,8 @@ Attn: Correspondence Unit
 500 Main Street, Room 6403
 Cincinnati, Ohio 45202
 ```
+
+[Example Response Letter from IRS](https://www.irs.gov/pub/irs-wd/13-0005.pdf)  
 
 <br>
 <hr>
