@@ -200,8 +200,8 @@ make_archive_urls <- function(series,
   matches <- gsub("\\.csv", "", matches)
   
   archive_urls <- paste0(base_url, matches)
-  archive_urls <- lapply(archive_urls, 
-                         function(x) if (RCurl::url.exists(x)) x else unavail_url)
+  # archive_urls <- lapply(archive_urls, 
+  #                        function(x) if (RCurl::url.exists(x)) x else unavail_url)
   
   return(archive_urls)  
 }
