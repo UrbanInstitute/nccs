@@ -23,6 +23,7 @@ primaryLinks:
 ---
 
 
+
 ## NTEE Version 2.0
 
 The original NTEE codes combined mission groups with organizational type, making them confusing at times. 
@@ -94,7 +95,58 @@ NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)
 <hr>
 <br>
 
-## Additional Taxonomies
+## Machine Readable NTEE Files 
+
+[Download CSV of NTEE Category Descriptions](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions.csv) 
+
+[Download CSV of NTEE Category Descriptions in Tidy Format](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions-tidy-format.csv) 
+
+## A Note on Appropriate Use and Accuracy of NTEE Codes
+
+NTEE codes are meant to be descriptive and not prescriptive, meaning they are helpful for grouping organizations by types of activities but they are not an official designation that would restrict nonprofit activities. 
+
+**Where Do NTEE Codes Come From?** 
+ 
+New nonprofits are assigned or select their own single NTEE category at the time they submit a 1023 or 1023EZ application. Older nonprofits that existed prior to the creation of the NTEE System were originally assigned three Nonprofit Activity Codes by the IRS. NTEE codes were retroactively assigned to that set of organizations using a [crosswalk of Activity Codes to NTEE Categories](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file?tab=readme-ov-file#activity-codes). 
+
+**Are NTEE Codes Accurate?**
+
+Nonprofit missions are analogous to human careers. Young nonprofits and young adults often have aspirational program missions and career aspirations, but they will evolve over time as they gain experience, feedback, and self-awareness about their core competencies. Some humans pick a profession when they are young and spend their entire career in that profession, perhaps as a doctor or teacher. Most humans, however, do not have linear career paths. They might pursue several interests simultaneously early in their careers and specialize later based upon where they find initial success. Most people will change jobs 5-7 times throughout their careers, occassionally switching industries or sectors. Additionally, they might transition into administration or training as they advance throughout their career. 
+
+Similarly, some nonprofits have missions and activities that do not fit neatly into an existing NTEE category. Many nonprofits have missions that span multiple NTEE categories, especially those with integrated programs that are designed to address service gaps. Missions also evolve over time, thus NTEE codes issued decades in the past may not be a good reflection of an organization's current mission. Some nonprofits also become leaders within their program area and they might "transition into administration" by taking on new policymaking, advocacy, or convening roles. Consequently, NTEE codes will always be imperfect and incomplete. 
+
+NTEE assignment is also challenging. IRS officers reading Form 1023 applications might misjudge the mission based upon the description provided and assign the organization to an imperfect NTEE category. The crosswalk use to generate NTEE codes for older organizations from IRS Activity Codes was also imperfect. The IRS does not require nonprofits to update or verify their NTEE classifications once assigned, so some become outdated. 
+
+As a result, NTEE category assignments are incomplete or inaccurate for approximately 25% of organizations in the data. They are often used as a starting point for classification then further refined using mission statements and program activity descriptions. In the aggregate they provide a tremendous amount of value, but it is not recommended to make decisions about individual organizations based upon their NTEE code without additional context.  
+
+## Modifying NTEE Codes
+
+The IRS issues and maintains the official database of NTEE Codes, as reported in the [Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). NCCS was involved in the creation of the NTEE system and incorporate codes into NCCS datasets to make them more useful to communities and donors, but we do not make initial assignment of codes to nonprofits nor have the ability to make an official update to the IRS records.  
+
+Instructions for requesting a change are available in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf), the IRS handbook of rules for tax-exempt organizations.  A recent excerpt (as of January 2024) states:
+
+> **Organizations that wish to modify or obtain a National Taxonomy of Exempt Entities (NTEE) Code** should send a written request to the Correspondence Unit with the relevant facts, including the Code currently assigned, if any, and
+the requested Code, as well as who selected the currently assigned Code initially, if known.
+
+> The Correspondence Unit will refer to EO Determinations, if necessary, and will notify the organization if a form or user fee is required to make the requested change. The written request must be sent or faxed to:
+
+```
+Internal Revenue Service
+Attn: Correspondence Unit
+P.O. Box 2508, Room 6403
+Cincinnati, Ohio 45201
+```
+
+> Express and Overnight Delivery:
+
+```
+Internal Revenue Service
+Attn: Correspondence Unit
+500 Main Street, Room 6403
+Cincinnati, Ohio 45202
+```
+
+## Additional Mission Taxonomies
 
 The NTEE replaced the original IRS Activity Code taxonomy that was used until 1995. NCCS developed an [IRS Activity Code to NTEE Crosswalk](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file#activity-codes) that was used to standardize codes for existing nonprofits.  
 
@@ -105,8 +157,6 @@ Some examples of alternative taxonomies include:
 * ICNPO Codes [[Overview](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf)] 
 * CLASSIEfier [[Link](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593)] 
 * North American Industry Classification System (NAICS) [[Overview](https://www.census.gov/naics/)] [[**crosswalk**](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/NAICS)]
-
-
 
 
 ## Useful Citations on the Evolution of Mission Taxonomies 
