@@ -10,16 +10,15 @@ categories:
   - metadata
 abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by NCCS and is used by the IRS to classify nonprofit organizations according to their missions and program activities. An updated version of the taxonomy called NTEEV2 (NTEE Version 2.0) is described below. While the NTEE is the official classification designation of the IRS, some other systems are described below. For example, Candid has developed the Philanthropic Classification System (PCS) in order to have a single taxonomy that can be used to classify both nonprofits and grants. It includes some new mission areas as well as 'population/beneficiary' codes to indicate the type of population served, and 'auspice' codes to indicate religious or governmental affiliation. Similarly, the North American Industry Classification System (NAICS) is a more generic taxonomy of industries used broadly for economic analysis. Crosswalks between the NTEE and other taxonomies are provided below when available."
 primaryLinks:
-  - text: Overview of NTEE and NTEEV2
-    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
   - text: NTEE Category Descriptions
     href: "../../widgets/ntee_tables/ntee_descriptions.html" 
-  - text: History of NTEE Codes
-    href: https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html
+  - text: Overview of NTEE and NTEEV2
+    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
   - text: Convenient Two-Page NTEE Cheatsheet (Old Codes)
     href: "../../pubs/ntee-two-page-2005.pdf"
-  - text: Using NTEE Codes within the <b>nccsdata</b> Package
+  - text: Using NTEE Codes within the nccsdata R Package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
+
 ---
 
 
@@ -111,21 +110,23 @@ NTEE codes are meant to be descriptive and not prescriptive, meaning they are he
  
 New nonprofits are assigned or select their own single NTEE category at the time they submit a 1023 or 1023EZ application. Older nonprofits that existed prior to the creation of the NTEE System were originally assigned three Nonprofit Activity Codes by the IRS. NTEE codes were retroactively assigned to that set of organizations using a [crosswalk of Activity Codes to NTEE Categories](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file?tab=readme-ov-file#activity-codes). 
 
+[A Brief History of NTEE Codes](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html) 
+
 **Are NTEE Codes Accurate?**
 
-Nonprofit missions are analogous to human careers. Young nonprofits and young adults often have aspirational program missions and career aspirations, but they will evolve over time as they gain experience, feedback, and self-awareness about their core competencies. Some humans pick a profession when they are young and spend their entire career in that profession, perhaps as a doctor or teacher. Most humans, however, do not have linear career paths. They might pursue several interests simultaneously early in their careers and specialize later based upon where they find initial success. Most people will change jobs 5-7 times throughout their careers, occassionally switching industries or sectors. Additionally, they might transition into administration or training as they advance throughout their career. 
+Nonprofit missions are analogous to human careers. Young nonprofits and young adults both have aspirational program missions and career goals that will evolve over time as they gain experience, feedback, and self-awareness about core competencies. Some individuals may spend their entire career in a single profession, perhaps as a doctor or teacher. Most humans, however, do not have linear career paths. They will pursue several interests simultaneously early in their careers and specialize later-on based upon where they find initial success. Most people change jobs 5-7 times throughout their lives, occassionally switching industries or sectors. Additionally, they might transition into administration or training roles as they gain seniority. 
 
-Similarly, some nonprofits have missions and activities that do not fit neatly into an existing NTEE category. Many nonprofits have missions that span multiple NTEE categories, especially those with integrated programs that are designed to address service gaps. Missions also evolve over time, thus NTEE codes issued decades in the past may not be a good reflection of an organization's current mission. Some nonprofits also become leaders within their program area and they might "transition into administration" by taking on new policymaking, advocacy, or convening roles. Consequently, NTEE codes will always be imperfect and incomplete. 
+Similarly, many nonprofits have missions that do not fit neatly into a single NTEE category. Many missions span multiple categories, especially resource centers or organizations that run integrated programs designed to address service gaps. Missions naturally evolve over time. Some nonprofits also become leaders within their program areas and "transition into administration" by taking on new policymaking, advocacy, or funding roles. The IRS does not require nonprofits to update their NTEE classification, thus they can become outdated over time.  
 
-NTEE assignment is also challenging. IRS officers reading Form 1023 applications might misjudge the mission based upon the description provided and assign the organization to an imperfect NTEE category. The crosswalk use to generate NTEE codes for older organizations from IRS Activity Codes was also imperfect. The IRS does not require nonprofits to update or verify their NTEE classifications once assigned, so some become outdated. 
+NTEE assignment is also challenging. IRS officers might assign the organization to an NTEE category based upon an incomplete understanding of their mission based upon limited information on Form 1023 applications. The crosswalk use to generate NTEE codes from IRS Activity Codes for older organizations was also imperfect.  
 
-As a result, NTEE category assignments are incomplete or inaccurate for approximately 25% of organizations in the data. They are often used as a starting point for classification then further refined using mission statements and program activity descriptions. In the aggregate they provide a tremendous amount of value, but it is not recommended to make decisions about individual organizations based upon their NTEE code without additional context.  
+As a result of all of these things, NTEE category assignments are incomplete or inaccurate for approximately 25% of organizations in the data. They are often used as a starting point for classification then further refined using mission statements and program activity descriptions. In the aggregate add tremendous value to the data, but given the challenges described above it is not recommended to make decisions about individual organizations using NTEE information without additional context.  
 
 ## Modifying NTEE Codes
 
-The IRS issues and maintains the official database of NTEE Codes, as reported in the [Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). NCCS was involved in the creation of the NTEE system and incorporate codes into NCCS datasets to make them more useful to communities and donors, but we do not make initial assignment of codes to nonprofits nor have the ability to make an official update to the IRS records.  
+The IRS issues and maintains the official database of NTEE Codes and reports them as part of the [Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). NCCS was involved in the creation of the NTEE system, but we do not make initial assignment of codes nor have the ability to make an official update to IRS records.  
 
-Instructions for requesting a change are available in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf), the IRS handbook of rules for tax-exempt organizations.  A recent excerpt (as of January 2024) states:
+Instructions for requesting an NTEE change are available in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf), the IRS handbook of rules for tax-exempt organizations.  A recent excerpt (as of January 2024) states:
 
 > **Organizations that wish to modify or obtain a National Taxonomy of Exempt Entities (NTEE) Code** should send a written request to the Correspondence Unit with the relevant facts, including the Code currently assigned, if any, and
 the requested Code, as well as who selected the currently assigned Code initially, if known.
