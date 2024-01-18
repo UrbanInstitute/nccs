@@ -371,25 +371,25 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>      MM: Monetary Support - Multiple Organizations
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>      MS: Monetary Support - Single Organization
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>      MT: Management and Technical Assistance
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          U40: 
 #> 
@@ -401,7 +401,7 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          U21: 
 #> 
@@ -413,7 +413,7 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          U20: 
 #> 
@@ -484,7 +484,10 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U31: 
 #> 
-#>          
+#>          Organizations that conduct research in astronomy, the physical science
+#>          that addresses matter and energy in the universe using observational
+#>          techniques such as spectroscopy, photometry, interferometry, radio
+#>          astronomy and optical astronomy.
 #> 
 #>          U33: 
 #> 
@@ -496,11 +499,15 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U34: 
 #> 
-#>          
+#>          Organizations that conduct research in mathematics, the science which
+#>          addresses quantities, magnitudes, forms and their relationships using
+#>          symbolic logic and language.
 #> 
 #>          U36: 
 #> 
-#>          
+#>          Organizations that conduct research in the area of science that studies
+#>          the earth; the forces acting upon it; and the behavior of the solids,
+#>          liquids and gases comprising it.
 #> 
 #>          U40: 
 #> 
@@ -510,7 +517,10 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U41: 
 #> 
-#>          
+#>          Organizations that conduct research in the area of science that
+#>          addresses the study of data and information storage and processing
+#>          systems including hardware, software, basic design principles, user
+#>          requirements analysis and related economic and policy issues.
 #> 
 #>          U42: 
 #> 
@@ -528,13 +538,15 @@ ntee_preview(ntee = "Uxx")
 #> 
 #>          U99: 
 #> 
-#>          
+#>          Use this code for organizations that clearly provide science and
+#>          technology research services where the major purpose is unclear enough
+#>          that a more specific code cannot be accurately assigned.
 #> 
 #>      RP: Research Institutes and/or Public Policy Analysis
 #> 
 #>          U00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          U40: 
 #> 
@@ -582,7 +594,8 @@ ntee_preview(ntee = "H3x")
 #> 
 #>          H32: 
 #> 
-#>          
+#>          Organizations that conduct research which can be used to improve the
+#>          prevention, diagnosis and treatment of breast cancer.
 #> 
 #>  End of Preview
 ```
@@ -719,7 +732,10 @@ ntee_preview(ntee = "B2x")
 #> 
 #>          B24: 
 #> 
-#>          
+#>          Schools classified as elementary by state and local practice and
+#>          composed of any span of grades not above grade eight. Includes
+#>          preschools and kindergartens if they are an integral part of an
+#>          elementary school or a regularly established school system.
 #> 
 #>          B25: 
 #> 
@@ -732,7 +748,11 @@ ntee_preview(ntee = "B2x")
 #> 
 #>          B28: 
 #> 
-#>          
+#>          Organizations that provide educational services including special
+#>          placement and individualized programming, instruction and support
+#>          services for children and youth who are gifted or have disabilities and
+#>          require appropriately modified curricula, teaching methodologies and
+#>          instructional materials in order to learn.
 #> 
 #>          B29: 
 #> 
@@ -772,7 +792,7 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -822,7 +842,7 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C30: 
 #> 
@@ -846,7 +866,7 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -895,7 +915,7 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -931,13 +951,13 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>      PA: Professional Societies/Associations
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -992,7 +1012,8 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C27: 
 #> 
-#>          
+#>          Organizations that collect and process paper, aluminum, glass, and
+#>          other materials that can be recycled and reused.
 #> 
 #>          C30: 
 #> 
@@ -1012,7 +1033,14 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C34: 
 #> 
-#>          
+#>          Organizations that preserve and protect endangered land resources from
+#>          indiscriminate development, destruction or decay and which manage the
+#>          utilization of renewable and nonrenewable resources to ensure ongoing
+#>          availability. Included are conservation of the nations forests,
+#>          rangeland, vegetation, deserts, wild and scenic rivers and other
+#>          wilderness areas and open land spaces; and reestablishment of areas
+#>          that have been devastated by destructive activities such as strip
+#>          mining or other destructive activities.
 #> 
 #>          C35: 
 #> 
@@ -1033,7 +1061,9 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C41: 
 #> 
-#>          
+#>          Organizations that plant, maintain and display for public study and
+#>          enjoyment collections of flowers, trees, shrubs and ground cover, some
+#>          of which are rare and exotic.
 #> 
 #>          C42: 
 #> 
@@ -1059,13 +1089,15 @@ ntee_preview(ntee.group = "UNI",
 #> 
 #>          C99: 
 #> 
-#>          
+#>          Use this code for organizations that clearly provide environmental
+#>          quality services where the major purpose is unclear enough that a more
+#>          specific code cannot be accurately assigned.
 #> 
 #>      RP: Research Institutes and/or Public Policy Analysis
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -1179,7 +1211,7 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -1229,7 +1261,7 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C30: 
 #> 
@@ -1253,7 +1285,7 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -1302,7 +1334,7 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -1338,13 +1370,13 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>      PA: Professional Societies/Associations
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
@@ -1399,7 +1431,8 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C27: 
 #> 
-#>          
+#>          Organizations that collect and process paper, aluminum, glass, and
+#>          other materials that can be recycled and reused.
 #> 
 #>          C30: 
 #> 
@@ -1419,7 +1452,14 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C34: 
 #> 
-#>          
+#>          Organizations that preserve and protect endangered land resources from
+#>          indiscriminate development, destruction or decay and which manage the
+#>          utilization of renewable and nonrenewable resources to ensure ongoing
+#>          availability. Included are conservation of the nations forests,
+#>          rangeland, vegetation, deserts, wild and scenic rivers and other
+#>          wilderness areas and open land spaces; and reestablishment of areas
+#>          that have been devastated by destructive activities such as strip
+#>          mining or other destructive activities.
 #> 
 #>          C35: 
 #> 
@@ -1440,7 +1480,9 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C41: 
 #> 
-#>          
+#>          Organizations that plant, maintain and display for public study and
+#>          enjoyment collections of flowers, trees, shrubs and ground cover, some
+#>          of which are rare and exotic.
 #> 
 #>          C42: 
 #> 
@@ -1466,13 +1508,15 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #> 
 #>          C99: 
 #> 
-#>          
+#>          Use this code for organizations that clearly provide environmental
+#>          quality services where the major purpose is unclear enough that a more
+#>          specific code cannot be accurately assigned.
 #> 
 #>      RP: Research Institutes and/or Public Policy Analysis
 #> 
 #>          C00: 
 #> 
-#>          
+#>          Alliance/Advocacy Organizations
 #> 
 #>          C20: 
 #> 
