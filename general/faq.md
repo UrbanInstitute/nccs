@@ -5,8 +5,10 @@
 Nonprofits are required to select an NTEE code when applying for tax
 exempt status. A full list of codes and descriptions used by the IRS can
 be found
-[here](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html) and
-a handy 2-page cheat sheet can be found
+[here](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html), a
+searchable table of those same codes can be found
+[here](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee1_table.html),
+and a concise 2-page cheat sheet can be found
 [here](https://nccs.urban.org/nccs/pubs/ntee-two-page-2005.pdf).
 
 It is the IRS and not NCCS that maintains the official database of
