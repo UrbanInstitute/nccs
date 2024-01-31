@@ -35,7 +35,7 @@ Please note that the NCCS was involved in the creation of the NTEE system, but w
 
 If you are in the process of filing for tax-exempt status and you need to select your NTEE category you will find the following resources helpful: 
 
-* [Two-Page List of All NTEE Categories]("../../pubs/ntee-two-page-2005.pdf")
+* [Two-Page List of All NTEE Categories](https://nccs.urban.org/nccs/pubs/ntee-two-page-2005.pdf)
 * [Full Descriptions of All NTEE Categories (IRS Version)](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html)
 
 ## Modifying NTEE Codes
@@ -142,6 +142,8 @@ NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)
 <br> 
 
 [**CATEGORY DESCRIPTIONS**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions.html)
+
+[Interactive Sampling from NTEE Categories with the **nccsdata Package**](https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/) 
 
 <br>
 <hr>
