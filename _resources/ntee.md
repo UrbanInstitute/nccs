@@ -141,7 +141,7 @@ NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)
 
 <br> 
 
-[**CATEGORY DESCRIPTIONS**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions.html)
+[**CATEGORY DESCRIPTIONS**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions.html) {[**printable version**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions_printable.html)}
 
 [Interactive Sampling from NTEE Categories with the **nccsdata Package**](https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/) 
 
@@ -165,7 +165,7 @@ NTEE codes are intended to be descriptive rather than prescriptive. This means t
 
 **Where Do NTEE Codes Come From?**
 
-New nonprofits either receive an assigned or choose their own single NTEE category when submitting a 1023 or 1023EZ application. For older nonprofits that existed before the NTEE System's creation, the IRS originally assigned three Nonprofit Activity Codes. NTEE codes were retrospectively assigned to these organizations using a [crosswalk of Activity Codes to NTEE Categories]((https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file?tab=readme-ov-file#activity-codes)).
+New nonprofits either receive an assigned or choose their own single NTEE category when submitting a 1023 or 1023EZ application. For older nonprofits that existed before the NTEE System's creation, the IRS originally assigned three Nonprofit Activity Codes. NTEE codes were retrospectively assigned to these organizations using a [crosswalk of Activity Codes to NTEE Categories](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file?tab=readme-ov-file#activity-codes).
 
 [A Brief History of NTEE Codes](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html)  
 
@@ -173,13 +173,13 @@ New nonprofits either receive an assigned or choose their own single NTEE catego
 
 **Are NTEE Codes Accurate?**
 
-Nonprofit missions are comparable to human careers. Just as young adults have aspirational career goals that evolve with experience, feedback, and self-awareness, young nonprofits have evolving program missions. Some individuals may dedicate their entire career to a single profession, like being a doctor or teacher. However, most people experience non-linear career paths, exploring various interests early on and specializing later based on initial success. 
+Nonprofit missions can be likened to the career paths of individuals. Just as young adults have evolving career goals shaped by experience, feedback, and self-awareness, emerging nonprofits undergo a similar evolution in their program missions. While some individuals commit their entire careers to a single profession, such as becoming a doctor or teacher, most people navigate non-linear career paths, exploring diverse interests early on and specializing later based on initial successes.
 
-Similarly, many nonprofits have missions that span multiple NTEE categories, especially resource centers or organizations running integrated programs to address service gaps. Missions naturally evolve over time. Nonprofits may take on policymaking, advocacy, fundraising, or grantmaking roles as they gain prominence.
+Likewise, many nonprofits adopt missions that span multiple NTEE (National Taxonomy of Exempt Entities) categories, particularly resource centers or organizations orchestrating integrated programs to address service gaps. Missions naturally transform over time, with nonprofits potentially taking on roles in policymaking, advocacy, fundraising, or grantmaking as they gain prominence.
 
-NTEE assignment is challenging. IRS officers may assign an organization to an NTEE category based on an incomplete understanding of their mission from limited information on Form 1023 applications. The crosswalk used to generate NTEE codes from IRS Activity Codes for older organizations was also imperfect.
+Assigning NTEE categories poses challenges. IRS officers may categorize an organization based on an incomplete understanding of its mission, relying on limited information from Form 1023 applications. The crosswalk used to generate NTEE codes from IRS Activity Codes for older organizations has also proven imperfect.
 
-As a result, NTEE category assignments are incomplete or inaccurate for around 25% of organizations in the data. While they add significant value to data in the aggregate, using NTEE information for individual organizations is not recommended without additional context, as it may not reflect the dynamic nature of nonprofit missions and the challenges in accurate assignment.
+Consequently, approximately 25% of organizations in the data have incomplete or inaccurate NTEE category assignments. While NTEE information contributes significantly to aggregate data, using it for individual organizations is not recommended without additional context, as it may not capture the dynamic nature of nonprofit missions and the challenges in achieving accurate categorization.
 
 <br>
 <hr>
