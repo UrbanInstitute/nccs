@@ -1,0 +1,251 @@
+---
+title: "National Taxonomy of Exempt Entities (NTEE) Code Categories"
+format: 
+  html:
+    page-layout: full
+editor: visual
+---
+
+```{r include=FALSE}
+library( DT )
+library( readr )
+library( dplyr )
+library( kableExtra )
+library( flextable )
+```
+
+```{r}
+#| include: false
+
+###
+###  LOAD LEGACY DESCRIPTION TABLE
+###
+
+url <- "https://raw.githubusercontent.com/Nonprofit-Open-Data-Collective/mission-taxonomies/main/NTEE/all-ntee-original.csv"
+df <- readr::read_csv( url )
+
+
+###
+###  ADD NTEEV2 ORG TYPE LABELS 
+###
+
+# MG - Major Group Designation (LEVEL 2)
+# RG - Regular Nonprofit  
+# AA - Alliance/Advocacy Organizations (*formerly 01*) 
+# MT - Management and Technical Assistance (*formerly 02*) 
+# PA - Professional Societies/Associations (*formerly 03*) 
+# RP - Research Institutes and/or Public Policy Analysis (*formerly 05*) 
+# MS - Monetary Support - Single Organization (*formerly 11*) 
+# MM - Monetary Support - Multiple Organizations (*formerly 12*) 
+# NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*) 
+
+major.group <- substr( df$ntee, 1, 1 )
+div         <- substr( df$ntee, 2, 3 )
+div2        <- substr( df$ntee, 2, 2 )
+lev234      <- df$ntee
+
+df$LEV5 <- ""
+df$LEV5[ div == "01" ] <- "AA"
+df$LEV5[ div == "02" ] <- "MT"
+df$LEV5[ div == "03" ] <- "PA"
+df$LEV5[ div == "05" ] <- "RP"
+df$LEV5[ div == "11" ] <- "MS"
+df$LEV5[ div == "12" ] <- "MM"
+df$LEV5[ div == "19" ] <- "NS"
+
+df$LEV5[ as.numeric(div2) >= 2 ]  <- "RG"
+
+df$LEV5[ div == "" ] <- "Major Group"
+
+fix_org_type <- function( div34, d ) {
+  div <- substr( df$ntee, 2, 3 )
+  major.group <- substr( d$ntee, 1, 1 )
+  new <- paste0( major.group, "00" )
+  old <- paste0( "  (formerly ", d$ntee, ")" )
+  x <- div == div34
+  d$description[ x ] <- paste0( d$description[x], old[x] )
+  d$ntee[x] <- new[x]
+  return(d)
+}
+
+label_rg <- function( d ) {
+  div <- substr( d$ntee, 2, 3 )
+  x <- as.numeric(div) >= 20
+  x[ is.na(x) ] <- FALSE
+  d$description[ x ] <- 
+    paste0( d$description[x], "   (", d$ntee[x], "-RG)" )
+  return(d)
+}
+
+df <- fix_org_type( div34="01", df )
+df <- fix_org_type( div34="02", df )
+df <- fix_org_type( div34="03", df )
+df <- fix_org_type( div34="05", df )
+df <- fix_org_type( div34="11", df )
+df <- fix_org_type( div34="12", df )
+df <- fix_org_type( div34="19", df )
+
+# df <- label_rg( df )
+
+
+# ART - Arts, Culture, and Humanities (A)
+# EDU - Education (B minus universities)
+# ENV - Environment and Animals (C,D)
+# HEL - Health (E,F,G,H minus hospitals)
+# HMS - Human Services (I,J,K,L,M,N,O,P)
+# IFA - International, Foreign Affairs (Q)
+# PSB - Public, Societal Benefit (R,S,T,U,V,W)
+# REL - Religion Related (X)
+# MMB - Mutual/Membership Benefit (Y)
+# UNU - Unknown, Unclassified (Z)
+# UNI - Universities (B40, B41, B42, B43, and B50)
+# HOS - Hospitals (E20, E21, E22, and E24)
+
+major.group <- substr( df$ntee, 1, 1 )
+df$LEV1 <- ""
+df$LEV1[ major.group == "A" ]                                   <- "ART"
+df$LEV1[ major.group == "B" ]                                   <- "EDU"
+df$LEV1[ df$ntee %in% c("B40","B41","B42","B43","B50") ]        <- "UNI"
+df$LEV1[ major.group %in% c("C","D") ]                          <- "ENV"
+df$LEV1[ major.group %in% c("E","F","G","H") ]                  <- "HEL"
+df$LEV1[ df$ntee %in% c("E20","E21","E22","E24") ]              <- "UNI"
+df$LEV1[ major.group %in% c("I","J","K","L","M","N","O","P") ]  <- "HMS"
+df$LEV1[ major.group %in% c("Q") ]                              <- "IFA"
+df$LEV1[ major.group %in% c("R","S","T","U","V","W") ]          <- "PSB"
+df$LEV1[ major.group == "X" ]                                   <- "REL"
+df$LEV1[ major.group == "Y" ]                                   <- "MMB"
+df$LEV1[ major.group == "Z" ]                                   <- "UNU"
+
+df <- df[ c("LEV1","ntee","LEV5","description","definition") ]
+
+# Terminology Revisions
+df$definition[ df$ntee == "P82" ] <- "Organizations that provide or coordinate a wide variety of programs and services for people with developmental disabilities."
+
+df$definition[ df$ntee == "G25" ] <- "Voluntary health organizations active in the prevention or treatment of Down Syndrome, a hereditary condition that results in intellectual disability."
+
+df$definition[ df$ntee == "H25" ] <- "Organizations that conduct research which can be used to improve the prevention, diagnosis and treatment of Down Syndrome, a hereditary condition that results in intellectual disability."
+
+# Wrangle Data
+
+df <- 
+  df %>% 
+  dplyr::mutate(LEV1 = as.factor(LEV1),
+                LEV5 = as.factor(LEV5),
+                description = stringr::str_replace( 
+                  description,
+                  "<.*>", 
+                  ""
+                  )) %>% 
+  dplyr::rename( "Level 1" = LEV1,
+                 "Levels 2-4" = ntee,
+                 "Level 5" = LEV5,
+                 "Category Name" = description,
+                 "Category Description" = definition )
+
+write.csv( df, "nteev2-descriptions.csv", row.names=F )
+```
+
+
+
+## All Codes
+
+The NTEE code convention below reflects the new format of NTEE, NTEE Version 2.0 (NTEEV2).
+
+<a href="nteev2-descriptions.csv" download="nteev2-descriptions.csv">Download CSV of NTEE Category Descriptions</a>
+
+<a href="nteev2-descriptions-tidy-format.csv" download="nteev2-descriptions-tidy-format.csv">Download CSV of NTEE Category Descriptions Tidy Format</a>
+
+The NTEEV2 codes are structured in three parts:
+
+1.  Level 1: Industry Group
+2.  Level 2-4: Major Group, Division and Subdivision
+3.  Level 5: Organization Type
+
+![](img/nteev2-structure.png)
+
+### Level 1 Industry Group Codes:
+
+```{r}
+#| echo: false
+
+ind <- 
+tribble(
+ ~`Level 1`, ~`Industry Group`,
+ "ART",  "Arts, Culture, and Humanities",
+ "EDU",  "Education",
+ "UNI",  "Universities",
+ "ENV",  "Environment and Animals",
+ "HEL",  "Health",
+ "HOS",  "Hospitals",
+ "HMS",  "Human Services",
+ "IFA",  "International, Foreign Affairs",
+ "PSB",  "Public, Societal Benefit",
+ "REL",  "Religion Related",
+ "MMB",  "Mutual/Membership Benefit",
+ "UNU",  "Unknown, Unclassified"
+) 
+
+ind %>% knitr::kable( format="simple" )
+```
+
+<br>
+
+### Level 5 Organization Type Codes:
+
+In the new system, code levels 2-4 are the same as the original NTEE system except organizational type has been changed from a LEV34 code designation (x01-x19) to an independent feature (the LEV5 column).
+
+<br>
+
+```{r}
+#| echo: false
+
+org.type <- 
+tribble(
+ ~`Level 5`, ~`Organization Type`,
+ "Major Group",  "Level 2 NTEE Major Group Designation",
+ "RG",  "Regular Nonprofit",  
+ "AA",  "Alliance/Advocacy Organizations (*formerly 01*)", 
+ "MT",  "Management and Technical Assistance (*formerly 02*)", 
+ "PA",  "Professional Societies/Associations (*formerly 03*)", 
+ "RP",  "Research Institutes and/or Public Policy Analysis (*formerly 05*)", 
+ "MS",  "Monetary Support - Single Organization (*formerly 11*)", 
+ "MM",  "Monetary Support - Multiple Organizations (*formerly 12*)", 
+ "NS",  "Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)"
+)
+
+org.type %>% knitr::kable()
+```
+
+<br> <br>
+
+### Definitions
+
+```{r, eval=F}
+#| echo: false
+ 
+df %>% knitr::kable()
+```
+
+
+```{r, eval=F}
+#| output: asis
+#| echo: false
+df %>% xtable::xtable() %>% print( type="html" )
+```
+
+```{r}
+#| echo: false
+
+df %>% 
+  flextable::flextable() %>% 
+  flextable::theme_zebra( odd_header = "transparent" ) %>%
+  flextable::fit_to_width( max_width=10, inc=F ) %>% 
+  flextable::fontsize( size = 9, part = "body" ) %>%
+  flextable::width( j = 1:3, width=c(0.5,0.5,0.5), unit = "in" ) %>%
+  flextable::width( j = 4, width=1.5, unit = "in" ) %>%
+  flextable::width( j = 5, width=7, unit = "in" ) #  %>% 
+  # flextable::set_table_properties( layout = "fixed" )  
+  
+```
+
+
