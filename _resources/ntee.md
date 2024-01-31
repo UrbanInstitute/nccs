@@ -23,11 +23,60 @@ primaryLinks:
 
 
 
+
+
+# For Nonprofits 
+
+Nonprofits are assigned an NTEE code during the application process for tax-exempt status. The IRS issues and maintains the official database of NTEE codes. You can look up your official NTEE code in the [IRS 990 Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). 
+
+Please note that the NCCS was involved in the creation of the NTEE system, but we do not make initial assignment of codes nor have the ability to make an official update to IRS records.
+
+## Selecting Your NTEE Code
+
+If you are in the process of filing for tax-exempt status and you need to select your NTEE category you will find the following resources helpful: 
+
+* [Two-Page List of All NTEE Categories]("../../pubs/ntee-two-page-2005.pdf")
+* [Full Descriptions of All NTEE Categories (IRS Version)](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html)
+
+## Modifying NTEE Codes
+
+Instructions for requesting an NTEE change are available in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf), the IRS handbook of rules for tax-exempt organizations.  A recent excerpt (as of January 2024) states:
+
+> _**Organizations that wish to modify or obtain a National Taxonomy of Exempt Entities (NTEE) Code** should send a written request to the Correspondence Unit with the relevant facts, including the Code currently assigned, if any, and
+the requested Code, as well as who selected the currently assigned Code initially, if known._
+
+> _The Correspondence Unit will refer to EO Determinations, if necessary, and will notify the organization if a form or user fee is required to make the requested change. The written request must be sent or faxed to:_
+
+```
+Internal Revenue Service
+Attn: Correspondence Unit
+P.O. Box 2508, Room 6403
+Cincinnati, Ohio 45201
+```
+
+> _Express and Overnight Delivery:_
+
+```
+Internal Revenue Service
+Attn: Correspondence Unit
+500 Main Street, Room 6403
+Cincinnati, Ohio 45202
+```
+
+[**Example Response Letter from the IRS**](https://www.irs.gov/pub/irs-wd/13-0005.pdf)  
+
+<br>
+<hr>
+<br>
+
+
+# For Data Users
+
 ## NTEE Version 2.0
 
-The original NTEE codes combined mission groups with organizational type, making them confusing at times. 
+A new version of the NTEE codes are being added to NCCS data files. NTEE-V2 contains the same information as the original but in a format that is better suited for analytics. The original NTEE codes combined mission groups with organizational type, making them confusing at times. The also required frequent cross-referencing of NTEE major group letters with industry labels, making them more difficult to interpret.   
 
-The new format makes organizational type explicit and includes the higher-level industry code for convenience. 
+The new version uses a 3-part "tidy" format that makes the organizational type an explicit level and includes the higher-level industry code for convenience. 
 
 ```
 Old:   B29            (charter school)
@@ -66,7 +115,7 @@ HOS - Hospitals (E20, E21, E22, and E24)
 These will be the same as the traditional NTEE codes except specialty organizations (x01-x19) are replaced with zeroes (x00) and the common codes (01-19) have been recoded as organizational types. 
 
 ```
-B  EDUCATION                                   (major group)
+B  EDUCATION                                   (MAJOR GROUP)
 +--  B20 ELEMENTARY AND SECONDARY SCHOOLS      (division)
 ¦ +--B21 Preschools                            (subdivision)
 ¦ +--B24 Primary & Elementary Schools
@@ -92,6 +141,12 @@ NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)
 
 <br> 
 
+[**CATEGORY DESCRIPTIONS**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions.html)
+
+<br>
+<hr>
+<br> 
+
 ## Machine Readable NTEE Files 
 
 [Download CSV of NTEE Category Descriptions](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions.csv) 
@@ -101,7 +156,6 @@ NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*)
 <br>
 <hr>
 <br>
-
 
 ## A Note on the Appropriate Use and Accuracy of NTEE Codes
 
@@ -125,39 +179,9 @@ NTEE assignment is challenging. IRS officers may assign an organization to an NT
 
 As a result, NTEE category assignments are incomplete or inaccurate for around 25% of organizations in the data. While they add significant value to data in the aggregate, using NTEE information for individual organizations is not recommended without additional context, as it may not reflect the dynamic nature of nonprofit missions and the challenges in accurate assignment.
 
-## Modifying NTEE Codes
-
-The IRS issues and maintains the official database of NTEE Codes and reports them as part of the [Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). NCCS was involved in the creation of the NTEE system, but we do not make initial assignment of codes nor have the ability to make an official update to IRS records.  
-
-Instructions for requesting an NTEE change are available in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf), the IRS handbook of rules for tax-exempt organizations.  A recent excerpt (as of January 2024) states:
-
-> _**Organizations that wish to modify or obtain a National Taxonomy of Exempt Entities (NTEE) Code** should send a written request to the Correspondence Unit with the relevant facts, including the Code currently assigned, if any, and
-the requested Code, as well as who selected the currently assigned Code initially, if known._
-
-> _The Correspondence Unit will refer to EO Determinations, if necessary, and will notify the organization if a form or user fee is required to make the requested change. The written request must be sent or faxed to:_
-
-```
-Internal Revenue Service
-Attn: Correspondence Unit
-P.O. Box 2508, Room 6403
-Cincinnati, Ohio 45201
-```
-
-> _Express and Overnight Delivery:_
-
-```
-Internal Revenue Service
-Attn: Correspondence Unit
-500 Main Street, Room 6403
-Cincinnati, Ohio 45202
-```
-
-[**Example Response Letter from the IRS**](https://www.irs.gov/pub/irs-wd/13-0005.pdf)  
-
 <br>
 <hr>
 <br>
-
 
 ## Additional Mission Taxonomies
 
@@ -171,6 +195,9 @@ Some examples of alternative taxonomies include:
 * CLASSIEfier [[Link](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593)] 
 * North American Industry Classification System (NAICS) [[Overview](https://www.census.gov/naics/)] [[**crosswalk**](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/NAICS)]
 
+<br>
+<hr>
+<br>
 
 ## Useful Citations on the Evolution of Mission Taxonomies 
 
