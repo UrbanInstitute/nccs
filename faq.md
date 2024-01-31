@@ -1,6 +1,15 @@
-# Frequently Asked Questions
+---
+title: "Frequently Asked Questions"
+layout: page
+permalink: /faq/
+activeLink: /faq/
+---
 
-## How Do I Select An NTEE Code For My Organization?
+
+
+## FOR NONPROFITS 
+
+### How Do I Select An NTEE Code For My Organization?
 
 Nonprofits are required to select an NTEE code when applying for tax
 exempt status. A full list of codes and descriptions used by the IRS can
@@ -14,7 +23,7 @@ and a concise 2-page cheat sheet can be found
 It is the IRS and not NCCS that maintains the official database of
 codes. NCCS **cannot** change or assign NTEE codes for any organization.
 
-## How Can I Obtain An NTEE Code Or Change My Current Code?
+### How Can I Obtain An NTEE Code Or Change My Current Code?
 
 To modify or obtain an NTEE code, an organization should send a written
 request to the IRS Correspondence Unit with the relevant facts,
@@ -37,3 +46,6 @@ Correspondence Unit <br> 500 Main Street, Room 6403 <br> Cincinnati,
 Ohio 45202 <br>
 
 More details can be found [here](https://www.irs.gov/publications/p557)
+
+## FOR DATA USERS 
+

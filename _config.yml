@@ -55,7 +55,7 @@ footer_nav:
   - title: Contact Information
     url: /contact/
   - title: FAQ
-    url: general/faq
+    url: /faq/
 #  - title: Parts Kit
 #    url: /parts-kit/
 
