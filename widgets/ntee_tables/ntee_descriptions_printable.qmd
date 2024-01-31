@@ -55,7 +55,7 @@ df$LEV5[ div == "19" ] <- "NS"
 
 df$LEV5[ as.numeric(div2) >= 2 ]  <- "RG"
 
-df$LEV5[ div == "" ] <- "Major Group"
+df$LEV5[ div == "" ] <- "MAJOR GROUP"
 
 fix_org_type <- function( div34, d ) {
   div <- substr( df$ntee, 2, 3 )
@@ -147,30 +147,50 @@ write.csv( df, "nteev2-descriptions.csv", row.names=F )
 
 
 
-## All Codes
+## NTEE Version 2.0 Code Structure
 
-The NTEE code convention below reflects the new format of NTEE, NTEE Version 2.0 (NTEEV2).
-
-<a href="nteev2-descriptions.csv" download="nteev2-descriptions.csv">Download CSV of NTEE Category Descriptions</a>
-
-<a href="nteev2-descriptions-tidy-format.csv" download="nteev2-descriptions-tidy-format.csv">Download CSV of NTEE Category Descriptions Tidy Format</a>
-
-The NTEEV2 codes are structured in three parts:
+The NTEE code conventions below reflect the new format: NTEE Version 2.0 (NTEEV2). The codes are structured in three parts:
 
 1.  Level 1: Industry Group
 2.  Level 2-4: Major Group, Division and Subdivision
 3.  Level 5: Organization Type
 
+This 3-part "tidy" format adds the higher-level industry code for interpretability and makes the organizational type an explicit level. 
+
 ![](img/nteev2-structure.png)
 
+
+*Levels 2-4 are identical to the original NTEE code structure EXCEPT that the "common code" types represented by x01, x02, x03, x05, x11, x12, and x19 have been converted to distinct organizational codes (see Level 5 Organization Type Codes below). The common code digits have been replaced with x00 for all specialized organizations that operate at the Major Group level. If a specialized organization operates within a Division or Subdivision they have been assigned the appropriate 2-digit codes. [See the documentation for more details](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md).* 
+
+<br>
+
+### Example 
+
+```
+Old:   B29            (charter school)
+New:   EDU-B29-RG     (RG = "regular" or non-specialized nonprofit)
+
+Old:   B01            (advocacy broadly for the education sector)
+New:   EDU-B00-AA     (AA = advocacy organization) 
+
+Old:   B0129          (advocacy specifically for charter schools)
+New:   EDU-B29-AA
+```
+
+![](img/nteev2-example.png)
+
+<br>
+
 ### Level 1 Industry Group Codes:
+
+<br>
 
 ```{r}
 #| echo: false
 
 ind <- 
 tribble(
- ~`Level 1`, ~`Industry Group`,
+ ~`Level 1 Code`, ~`Level 1 Label (INDUSTRY GROUPS)`,
  "ART",  "Arts, Culture, and Humanities",
  "EDU",  "Education",
  "UNI",  "Universities",
@@ -190,6 +210,51 @@ ind %>% knitr::kable( format="simple" )
 
 <br>
 
+### Level 2 Major Group Categories: 
+
+<br>
+
+```{r}
+#| echo: false
+
+mg <-
+structure(list(`Level 1 Industry Groups` = c("Arts, Culture, and Humanities", 
+"Education", "Environment and Animals", "Environment and Animals", 
+"Health", "Health", "Health", "Health", "Human Services", "Human Services", 
+"Human Services", "Human Services", "Human Services", "Human Services", 
+"Human Services", "Human Services", "International, Foreign Affairs", 
+"Mutual/Membership Benefit", "Public, Societal Benefit", "Public, Societal Benefit", 
+"Public, Societal Benefit", "Public, Societal Benefit", "Public, Societal Benefit", 
+"Public, Societal Benefit", "Religion Related", "Unknown, Unclassified"
+), `Level 2` = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
+"K", "L", "M", "N", "O", "P", "Q", "Y", "R", "S", "T", "U", "V", 
+"W", "X", "Z"), `Level 2 Label (MAJOR GROUPS)` = c("Arts, Culture & Humanities", 
+"Education", "Environment", "Animal-Related", "Health Care", 
+"Mental Health & Crisis Intervention", "Voluntary Health Associations & Medical Disciplines", 
+"Medical Research", "Crime & Legal-Related", "Employment", "Food, Agriculture & Nutrition", 
+"Housing & Shelter", "Public Safety, Disaster Preparedness & Relief", 
+"Recreation & Sports", "Youth Development", "Human Services", 
+"International, Foreign Affairs & National Security", "Mutual & Membership Benefit", 
+"Civil Rights, Social Action & Advocacy", "Community Improvement & Capacity Building", 
+"Philanthropy, Voluntarism & Grantmaking Foundations", "Science & Technology", 
+"Social Science", "Public & Societal Benefit", "Religion-Related", 
+"Unknown")), class = "data.frame", row.names = c(NA, -26L))
+
+mg %>% knitr::kable( format="simple" )
+```
+
+
+<br>
+
+### Level 3 and Level 4 Categories
+
+There are approximately 650 Level 3 (Division) and Level 4 (Subdivision) NTEE categories. They are represented succinctly in the following two-page table: 
+
+[Level 3-4 Category Labels](https://nccs.urban.org/nccs/pubs/ntee-two-page-2005.pdf)
+
+<br>
+
+
 ### Level 5 Organization Type Codes:
 
 In the new system, code levels 2-4 are the same as the original NTEE system except organizational type has been changed from a LEV34 code designation (x01-x19) to an independent feature (the LEV5 column).
@@ -201,7 +266,7 @@ In the new system, code levels 2-4 are the same as the original NTEE system exce
 
 org.type <- 
 tribble(
- ~`Level 5`, ~`Organization Type`,
+ ~`Level 5`, ~`Level 5 Label (ORGANIZATION TYPE)`,
  "Major Group",  "Level 2 NTEE Major Group Designation",
  "RG",  "Regular Nonprofit",  
  "AA",  "Alliance/Advocacy Organizations (*formerly 01*)", 
@@ -216,9 +281,17 @@ tribble(
 org.type %>% knitr::kable()
 ```
 
-<br> <br>
+<br> 
 
-### Definitions
+### Machine Readable Versions 
+
+<a href="nteev2-descriptions.csv" download="nteev2-descriptions.csv">Download CSV of NTEE Category Descriptions</a>
+
+<a href="nteev2-descriptions-tidy-format.csv" download="nteev2-descriptions-tidy-format.csv">Download CSV of NTEE Category Descriptions Tidy Format</a>
+
+<br>
+
+### Category Descriptions
 
 ```{r, eval=F}
 #| echo: false
