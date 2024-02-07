@@ -82,7 +82,6 @@ make_buttons_2 <- function( urls ) {
 }
 ```
 
-
 <br>
 
 <hr>
@@ -93,23 +92,22 @@ Files are organized as follows:
 
 **FF-PPP-TTT-NAME**
 
-- FF
-  - F9 = Form 990
-  - SA = Schedule A
-  - SB = Schedule B, etc
-- PPP
-  - P01 = Part I
-  - P02 = Part II
-  - P03 = Part III, etc
-  - P99 = field outside of a part on the form
-- TTT
-  - T00 = all one-to-one tables in current section 
-  - T01, T02, etc = all one-to-many tables in a section 
+-   FF
+    -   F9 = Form 990
+    -   SA = Schedule A
+    -   SB = Schedule B, etc
+-   PPP
+    -   P01 = Part I
+    -   P02 = Part II
+    -   P03 = Part III, etc
+    -   P99 = field outside of a part on the form
+-   TTT
+    -   T00 = all one-to-one tables in current section
+    -   T01, T02, etc = all one-to-many tables in a section
 
-Files that end in EZ represent tables that only appear on Form 990EZ. 
+Files that end in EZ represent tables that only appear on Form 990EZ.
 
 All other EFILE tables have PZ form scope, meaning they include data from both full 990 and 990EZ filers.
-
 
 <br>
 
@@ -117,16 +115,19 @@ All other EFILE tables have PZ form scope, meaning they include data from both f
 
 <br>
 
-
 ```{r}
 #| echo: false
 #| output: asis
  
 paths <- get_efile_paths( paths=d$Key )
 urls  <- make_urls( paths )
+dd_urls <- rep(
+  "https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html",
+  length( urls )
+)
 
 BUTTONS  <- make_buttons( urls )
-BUTTONS2 <- make_buttons_2( urls )
+BUTTONS2 <- make_buttons_2( dd_urls )
 FNAME    <- get_efile_names( paths )
 CARD     <- get_rdb_cardinality( paths )
 YEAR     <- get_efile_year( paths )
@@ -164,7 +165,6 @@ for( i in fnames )
 
 
 ```
-
 
 ```{=html}
 <style>
