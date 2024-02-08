@@ -1,5 +1,162 @@
 # Teams templated: executive (advisory board), leadership (nccs team), collaborator
 # To exclude a person from the about page, do not set a team field
+#
+# Alphabetized - impacts order of team galleries on project pages
+
+
+##########
+##########  ALAN ABRAMSON
+##########
+  
+- id: aabramson
+  first: Alan
+  last: Abramson
+  title: Professor; Director, Center on Nonprofits, Philanthropy, and Social Enterprise
+  bio: Professor and Director of the Center on Nonprofits, Philanthropy, and Social Enterprise at the Schar School of Policy and Government at George Mason University.
+  email: nccs@urban.org
+  team: collaborator, npregulation
+  image: people/aabramson.jpg
+  affiliation: 
+    - name: George Mason University
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/alan-abramson-88734410
+  projects: [nptrends, regulation]
+
+##########
+##########  OLIVIA BECK
+##########
+
+- id: obeck
+  first: Olivia
+  last: Beck
+  title: Data Science Intern / PhD Candidate
+  bio: PhD student studying statistics and social data analytics at Penn State University
+  team: collaborator
+  affiliation: 
+    - name: Penn State
+      url: https://science.psu.edu/stat/people/olb5053
+  image: people/obeck.jpg
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/olivia-beck-87105a178/
+  projects: [ntee]
+
+##########
+##########  ELIZABETH BORIS
+##########
+
+- id: eboris
+  first: Elizabeth
+  last: Boris
+  title: Institute Fellow
+  bio: Elizabeth is the founding director of the Center on Nonprofits and Philanthropy at the Aspen Institute’s Nonprofit Sector Research Fund.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/eboris.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/elizabeth-t-boris
+  social:
+    - name: scholar
+      url: https://scholar.google.com/citations?user=WVX-T1UAAAAJ&hl=en&oi=sra 
+    - name: linkedin
+      url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
+    - name: twitter
+      url: https://twitter.com/eborisurban
+  projects: [nptrends, regulation, ntee]
+
+##########
+##########  CHRIS DAVIS
+##########
+
+- id: cdavis
+  first: Chris
+  last: Davis
+  title: Data Scientist
+  bio: Chris works in the Metropolitan Housing and Communities Policy Center at the Urban Institute and is interested in the impact housing inequities have on health, poverty, and career opportunity in disadvantaged communities.
+  orcid: 0000-0002-1825-0097
+  email: placeholder@email.com
+  team: collaborator
+  image: people/cdavis.jpg
+  affiliation: 
+    - name: Urban Institute
+      city: Providence
+
+##########
+##########  TERESA DERRICK-MILLS 
+##########
+
+- id: tderrick-mills
+  first: Teresa
+  last: Derrick-Mills
+  title: Principal Research Associate
+  bio: Principal research associate in the Center on Labor, Human Services, and Population; expertise in performance measurement, policy, and practice—particularly in early care and education and workforce development. 
+  email: nccs@urban.org
+  team: collaborator
+  image: people/tderrick-mills.jpg
+  affiliation: 
+    - name: Urban Institute / LHP
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/teresa-derrick-mills-mpa-phd-b738b720/
+  projects: [nptrends]
+
+##########
+##########  MIRAE KIM
+##########
+
+- id: mkim
+  first: Mirae
+  last: Kim
+  title: Associate Professor; Director, Master of Public Administration Program
+  bio: Associate Professor of Nonprofit Studies and Master of Public Administration Program Director at the Schar School of Policy and Government at George Mason University.
+  email: nccs@urban.org
+  team: collaborator
+  image: people/mkim.jpg
+  affiliation: 
+    - name: George Mason University
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/miraekim/
+  projects: [nptrends]
+
+##########
+##########  LEWIS FAULK
+##########
+
+- id: lfaulk
+  first: Lewis
+  last: Faulk
+  title: Associate Professor
+  bio: Associate Professor in the Department of Public Administration and Policy at American University.
+  email: nccs@urban.org
+  team: collaborator
+  image: people/lfaulk.jpg
+  affiliation: 
+    - name: American University
+  social:
+    - name: linkedin
+      url: https://www.linkedin.com/in/lewis-faulk-222a3652/
+  projects: [nptrends]
+  
+##########
+##########  JESSICA KELLY
+##########
+
+- id: jkelly
+  first: Jessica
+  last: Kelly
+  title: Senior Director, Research and Web Technology
+  bio: Jessica is senior director of research and web technology in the information technology department at the Urban Institute 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/jkelly.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/jessica-kelly 
 
 ##########
 ##########  JESSE LECY
@@ -29,168 +186,6 @@
   projects: [nptrends, regulation, ntee]
 
 ##########
-##########  HANNAH MARTIN
-##########
-
-- id: hmartin
-  first: Hannah
-  last: Martin
-  title: Policy Analyst
-  bio: Policy Analyst with the Center on Nonprofits and Philanthropy; expertise in social sector infrastructure, charitable giving, and mission-related investing. 
-  email: nccs@urban.org
-  team: leadership
-  image: people/hannah-martin.jpg
-  affiliation: 
-    - name: Urban Institute / CNP
-  social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/hqmartin/
-  projects: [nptrends, project2]
-
-##########
-##########  THIYA POONGUNDRANAR
-##########
-
-- id: thiya
-  first: Thiyaghessan
-  last: Poongundranar
-  title: Data Scientist
-  bio: Data Scientist with NCCS; expertise in high performance computing, data engineering and data journalism. 
-  email: nccs@urban.org
-  team: leadership
-  image: people/thiya.jpg
-  affiliation: 
-    - name: Urban Institute / CNP
-  projects: [ntee]
-
-##########
-##########  ELIZABETH BORIS
-##########
-
-- id: eboris
-  first: Elizabeth
-  last: Boris
-  title: Institute Fellow
-  bio: Elizabeth is the founding director of the Center on Nonprofits and Philanthropy at the Aspen Institute’s Nonprofit Sector Research Fund.
-  orcid: 
-  email: placeholder@email.com
-  team: executive
-  image: people/eboris.jpg
-  affiliation: 
-    - name: Urban Institute
-      url: https://www.urban.org/author/elizabeth-t-boris
-  social:
-    - name: scholar
-      url: https://scholar.google.com/citations?user=WVX-T1UAAAAJ&hl=en&oi=sra 
-    - name: linkedin
-      url: https://www.linkedin.com/in/elizabeth-t-boris-a934ba7/
-    - name: twitter
-      url: https://twitter.com/eborisurban
-  projects: [nptrends, regulation, ntee]
-
-##########
-##########  TENE TRAYLOR
-##########
-
-- id: ttraylor
-  first: Tené
-  last: Traylor
-  title: CNP Director
-  bio: Tené Traylor is vice president for nonprofits and philanthropy at the Urban Institute.
-  orcid: 
-  email: placeholder@email.com
-  team: executive
-  image: people/ttraylor.jpg
-  affiliation: 
-    - name: Urban Institute
-      url: https://www.urban.org/author/tene-traylor
-
-##########
-##########  ALENA STERN
-##########
-
-- id: astern
-  first: Alena
-  last: Stern
-  title: Associate Director of Data Science
-  bio: Alena is an associate director of data science at the Urban Institute studying policy solutions to advance equity and inclusion in cities. 
-  orcid: 
-  email: placeholder@email.com
-  team: executive
-  image: people/astern.jpg
-  affiliation: 
-    - name: Urban Institute
-      url: https://www.urban.org/author/alena-stern  
-
-##########
-##########  JESSICA KELLY
-##########
-
-- id: jkelly
-  first: Jessica
-  last: Kelly
-  title: Senior Director, Research and Web Technology
-  bio: Jessica is senior director of research and web technology in the information technology department at the Urban Institute 
-  orcid: 
-  email: placeholder@email.com
-  team: executive
-  image: people/jkelly.jpg
-  affiliation: 
-    - name: Urban Institute
-      url: https://www.urban.org/author/jessica-kelly 
-
-##########
-##########  CHRIS DAVIS
-##########
-
-- id: cdavis
-  first: Chris
-  last: Davis
-  title: Data Scientist
-  bio: Chris works in the Metropolitan Housing and Communities Policy Center at the Urban Institute and is interested in the impact housing inequities have on health, poverty, and career opportunity in disadvantaged communities.
-  orcid: 0000-0002-1825-0097
-  email: placeholder@email.com
-  team: collaborator
-  image: people/cdavis.jpg
-  affiliation: 
-    - name: Urban Institute
-      city: Providence
-
-##########
-##########  MARGARET POST
-##########
-
-- id: mpost
-  first: Margaret
-  last: Post
-  title: Research Associate Professor
-  bio: Assistant Research Professor in International Development, Community and Environment at Clark University
-  team: collaborator
-  affiliation: 
-    - name: Clark University
-      url: https://www.clarku.edu/faculty/profiles/margaret-post/
-  image: people/mpost.jpg  
-
-##########
-##########  OLIVIA BECK
-##########
-
-- id: obeck
-  first: Olivia
-  last: Beck
-  title: Data Science Intern / PhD Candidate
-  bio: PhD student studying statistics and social data analytics at Penn State University
-  team: collaborator
-  affiliation: 
-    - name: Penn State
-      url: https://science.psu.edu/stat/people/olb5053
-  image: people/obeck.jpg
-  social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/olivia-beck-87105a178/
-  projects: [ntee]
-
-##########
 ##########  CINDY LOTT
 ##########
 
@@ -210,81 +205,23 @@
   projects: [regulation]
 
 ##########
-##########  TERESA DERRICK-MILLS 
+##########  HANNAH MARTIN
 ##########
 
-- id: tderrick-mills
-  first: Teresa
-  last: Derrick-Mills
-  title: Principal Research Associate
-  bio: Principal research associate in the Center on Labor, Human Services, and Population; expertise in performance measurement, policy, and practice—particularly in early care and education and workforce development. 
+- id: hmartin
+  first: Hannah
+  last: Martin
+  title: Policy Analyst
+  bio: Policy Analyst with the Center on Nonprofits and Philanthropy; expertise in social sector infrastructure, charitable giving, and mission-related investing. 
   email: nccs@urban.org
-  team: collaborator
-  image: people/tderrick-mills.jpg
+  team: leadership
+  image: people/hannah-martin.jpg
   affiliation: 
-    - name: Urban Institute / LHP
+    - name: Urban Institute / CNP
   social:
     - name: linkedin
-      url: https://www.linkedin.com/in/teresa-derrick-mills-mpa-phd-b738b720/
-  projects: [nptrends]
-
-##########
-##########  LEWIS FAULK
-##########
-
-- id: lfaulk
-  first: Lewis
-  last: Faulk
-  title: Associate Professor
-  bio: Associate Professor in the Department of Public Administration and Policy at American University.
-  email: nccs@urban.org
-  team: collaborator
-  image: people/lfaulk.jpg
-  affiliation: 
-    - name: American University
-  social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/lewis-faulk-222a3652/
-  projects: [nptrends]
-
-##########
-##########  MIRAE KIM
-##########
-
-- id: mkim
-  first: Mirae
-  last: Kim
-  title: Associate Professor; Director, Master of Public Administration Program
-  bio: Associate Professor of Nonprofit Studies and Master of Public Administration Program Director at the Schar School of Policy and Government at George Mason University.
-  email: nccs@urban.org
-  team: collaborator
-  image: people/mkim.jpg
-  affiliation: 
-    - name: George Mason University
-  social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/miraekim/
-  projects: [nptrends]
-
-
-##########
-##########  ALAN ABRAMSON
-##########
-  
-- id: aabramson
-  first: Alan
-  last: Abramson
-  title: Professor; Director, Center on Nonprofits, Philanthropy, and Social Enterprise
-  bio: Professor and Director of the Center on Nonprofits, Philanthropy, and Social Enterprise at the Schar School of Policy and Government at George Mason University.
-  email: nccs@urban.org
-  team: collaborator, npregulation
-  image: people/aabramson.jpg
-  affiliation: 
-    - name: George Mason University
-  social:
-    - name: linkedin
-      url: https://www.linkedin.com/in/alan-abramson-88734410
-  projects: [nptrends, regulation]
+      url: https://www.linkedin.com/in/hqmartin/
+  projects: [nptrends, project2]
 
 ##########
 ##########  SYBIL MENDOCA
@@ -303,11 +240,40 @@
     - name: Urban Institute
       url: https://www.urban.org/author/sybil-mendonca 
 
+##########
+##########  THIYA POONGUNDRANAR
+##########
+
+- id: thiya
+  first: Thiyaghessan
+  last: Poongundranar
+  title: Data Scientist
+  bio: Data Scientist with NCCS; expertise in high performance computing, data engineering and data journalism. 
+  email: nccs@urban.org
+  team: leadership
+  image: people/thiya.jpg
+  affiliation: 
+    - name: Urban Institute / CNP
+  projects: [ntee]
+
+##########
+##########  MARGARET POST
+##########
+
+- id: mpost
+  first: Margaret
+  last: Post
+  title: Research Associate Professor
+  bio: Assistant Research Professor in International Development, Community and Environment at Clark University
+  team: collaborator
+  affiliation: 
+    - name: Clark University
+      url: https://www.clarku.edu/faculty/profiles/margaret-post/
+  image: people/mpost.jpg  
 
 ##########
 ##########  CALTON PU
 ##########
-
 
 - id: cpu
   first: Calton
@@ -327,6 +293,43 @@
     - name: website
       url: https://faculty.cc.gatech.edu/~calton/
   projects: [nptrends]
+
+##########
+##########  ALENA STERN
+##########
+
+- id: astern
+  first: Alena
+  last: Stern
+  title: Associate Director of Data Science
+  bio: Alena is an associate director of data science at the Urban Institute studying policy solutions to advance equity and inclusion in cities. 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/astern.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/alena-stern  
+
+##########
+##########  TENE TRAYLOR
+##########
+
+- id: ttraylor
+  first: Tené
+  last: Traylor
+  title: CNP Director
+  bio: Tené Traylor is vice president for nonprofits and philanthropy at the Urban Institute.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/ttraylor.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/tene-traylor
+
+
+
 
 ##########
 ##########  REGULATION GROUP
@@ -374,6 +377,9 @@
       url: https://www.urban.org/author/mykelle-richburg
   projects: [regulation] 
   
+
+
+
 
 ##########
 ##########  DEMO ONLY 
