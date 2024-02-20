@@ -15,7 +15,7 @@ primaryLinks:
     href: "https://github.com/UI-Research/nccs-geo"
     icon: github
   - text: "R Package"
-    href: "https://github.com/UrbanInstitute/geocrosswalk"
+    href: "https://github.com/UrbanInstitute/nccsdata"
     icon: r
 author:
 - id: cdavis
@@ -31,16 +31,6 @@ Census data are invaluable to social science research and are available through 
 
 To address this problem, we are developing tools to make appending census data to NCCS data series easier. Our aim is a seamlessly integrated and intuitive process requiring minimal effort from users.
 
-Augmenting a file with census data should be as straightforward as:
-
-```r
-get_data( 
-   dsname = "core",
-   time = as.character(2010:2020),
-   geo.region = "south",
-   ntee = "HEL" ) %>%
-append_census( level="tract" )
-```
 
 ## GEOGRAPHIC CROSSWALK FILES
 
@@ -135,6 +125,31 @@ To address these issues, we have selected a set of the most commonly used census
 
 A small set of census variables [described in this data dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/census_codebook.xlsx) have been harmonized to 2010 geographies and inflation-adjusted to the year 2021. 
 
+They are available for TRACT, COUNTY, and MSA levels of aggregation: 
+
+```r
+URL <- "https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"
+source( URL )
+
+df  <- get_census_data( geo="msa" )      # 918 metro areas, all years 
+df  <- get_census_data( geo="county" )   # 3,142 counties, all years 
+df  <- get_census_data( geo="tract" )    # 72,597 tracts, all years 
+
+# default format is 'long' (stacked years)
+df  <- get_census_data( geo="msa", years=2010:2019 )
+
+# return data in a wide format:
+dfw <- get_census_data( geo="msa", years=c(1990,2000,2010), format="wide" )
+
+# available years
+c(  1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012,
+    2013, 2014, 2015, 2016, 2017, 2018, 2019  )
+```
+
+Or you can download files directly via the [DATA DOWNLOAD](https://urbaninstitute.github.io/nccs/catalogs/catalog-census_crosswalk.html) page. 
+
+#### Data Dictionary 
+
 |variable_name            |variable_description                                                          |
 |:------------------------|:-----------------------------------------------------------------------------|
 |year                     |Year of data                                                                  |
@@ -162,48 +177,7 @@ A small set of census variables [described in this data dictionary](https://nccs
 |med_household_income_adj |Median household income, inflation adjusted to 2021 dollars                   |
 |median_value_adj         |Median housing value, inflation adjusted to 2021 dollars                      |
 
-They are available for TRACT, COUNTY, and MSA levels of aggregation: 
-
-```r
-URL <- "https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"
-source( URL )
-
-df  <- get_census_data( geo="msa" )      # 918 metro areas, all years 
-df  <- get_census_data( geo="county" )   # 3,142 counties, all years 
-df  <- get_census_data( geo="tract" )    # 72,597 tracts, all years 
-
-# default format is 'long' (stacked years)
-df  <- get_census_data( geo="msa", years=2010:2019 )
-
-# return data in a wide format:
-dfw <- get_census_data( geo="msa", years=c(1990,2000,2010), format="wide" )
-
-# available years
-c(  1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012,
-    2013, 2014, 2015, 2016, 2017, 2018, 2019  )
-```
-
-Or you can download files directly: 
-
-```
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_1990.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2000.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2005-2009.csv  # '2007' data (center year)
-...
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2017-2021.csv  # '2019' data (center year)
-
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_1990.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2000.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2005-2009.csv
-...
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2017-2021.csv
-
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_1990.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2000.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2005-2009.csv
-...
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2017-2021.csv
-```
+<br>
 
 ## Nonprofit Data Files
 
