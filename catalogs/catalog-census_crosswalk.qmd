@@ -1,6 +1,8 @@
 ---
-title: "NCCS 990 Metadata Catalog"
-format: html
+title: "Census Panel 1990-2019"
+format: 
+  html:
+    html-table-processing: none
 editor: visual
 execute: 
   echo: false
@@ -11,33 +13,285 @@ execute:
 library( dplyr )
 library( knitr )
 library( kableExtra )
-library( stringr )
-library( pander )
-
-GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
-d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
-source( paste0( GH.RAW, "build-catalog-functions.R" ) )
-nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/"
+library( hablar )
 ```
 
-## Census Crosswalks
 
 ```{r}
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "census-crosswalk", 
-                             paths = d$Key)
-catalog$Description <- c(
-  "Census Block Crosswalk",
-  "Census Tract Crosswalk"
-)
 
-catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("Download Link",
-                              "Download Size",
-                              "Description") ) %>%
+make_buttons <- function( urls ) {
+  buttons <- paste0( "<a class='button' href='", urls, "'> DOWNLOAD </a>" )
+  return( buttons ) 
+}
+
+census.files <- 
+structure(list(GEO = c("tract", "tract", "tract", "tract", "tract", 
+"tract", "tract", "tract", "tract", "tract", "tract", "tract", 
+"tract", "tract", "tract", "county", "county", "county", "county", 
+"county", "county", "county", "county", "county", "county", "county", 
+"county", "county", "county", "county", "msa", "msa", "msa", 
+"msa", "msa", "msa", "msa", "msa", "msa", "msa", "msa", "msa", 
+"msa", "msa", "msa"), SOURCE = c("dicennial", "dicennial", "acs", 
+"acs", "acs", "acs", "acs", "acs", "acs", "acs", "acs", "acs", 
+"acs", "acs", "acs", "dicennial", "dicennial", "acs", "acs", 
+"acs", "acs", "acs", "acs", "acs", "acs", "acs", "acs", "acs", 
+"acs", "acs", "dicennial", "dicennial", "acs", "acs", "acs", 
+"acs", "acs", "acs", "acs", "acs", "acs", "acs", "acs", "acs", 
+"acs"), VINTAGE = c(1990L, 2000L, 2007L, 2008L, 2009L, 2010L, 
+2011L, 2012L, 2013L, 2014L, 2015L, 2016L, 2017L, 2018L, 2019L, 
+1990L, 2000L, 2007L, 2008L, 2009L, 2010L, 2011L, 2012L, 2013L, 
+2014L, 2015L, 2016L, 2017L, 2018L, 2019L, 1990L, 2000L, 2007L, 
+2008L, 2009L, 2010L, 2011L, 2012L, 2013L, 2014L, 2015L, 2016L, 
+2017L, 2018L, 2019L), 
+URL = c("https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_1990.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2000.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2005-2009.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2006-2010.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2007-2011.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2008-2012.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2009-2013.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2010-2014.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2011-2015.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2012-2016.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2013-2017.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2014-2018.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2015-2019.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2016-2020.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2017-2021.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_1990.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2000.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2005-2009.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2006-2010.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2007-2011.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2008-2012.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2009-2013.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2010-2014.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2011-2015.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2012-2016.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2013-2017.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2014-2018.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2015-2019.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2016-2020.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2017-2021.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_1990.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2000.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2005-2009.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2006-2010.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2007-2011.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2008-2012.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2009-2013.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2010-2014.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2011-2015.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2012-2016.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2013-2017.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2014-2018.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2015-2019.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2016-2020.csv", 
+"https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2017-2021.csv"
+)), class = "data.frame", row.names = c(NA, -45L))
+
+census.files$DOWNLOAD <- make_buttons( census.files$URL )
+```
+
+
+
+<br>
+<br>
+<br>
+
+#### Harmonized Census Data
+
+For convenience, we provide a small set of census variables that have been harmonized into a coherent data panel. 
+
+All data in each panel has been harmonized to 2010 geographies (shapefiles) and inflation-adjusted to the year 2021.
+
+
+
+<br>
+
+## Load Data Panel With R
+
+Retrieve the census panel using the following R syntax: 
+
+```{r, eval=F, echo=T}
+library( dplyr )
+URL <- "https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"
+source( URL )
+
+df  <- get_census_data( geo="msa" )      # 918 metro areas, all years 
+df  <- get_census_data( geo="county" )   # 3,142 counties, all years 
+df  <- get_census_data( geo="tract" )    # 72,597 tracts, all years 
+
+# default format is 'long' (stacked years)
+df  <- get_census_data( geo="msa", years=2010:2019 )
+
+# return data in a wide format:
+dfw <- get_census_data( geo="msa", years=c(1990,2000,2010), format="wide" )
+
+# available years
+c(  1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012,
+    2013, 2014, 2015, 2016, 2017, 2018, 2019  )
+
+
+get_census_data( geo="county", year=2000 ) %>% head()
+```
+
+```{r}
+URL <- "https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"
+source( URL )
+df  <- get_census_data( geo="county", years=2000 )
+
+df %>%
+  hablar::convert( 
+    num( total_population, housing_units, occupied, 
+        vacant, renter_occ, white_perc, black_perc, 
+        asian_perc, hawaiian_perc, american_alaskan_perc, 
+        two_or_more_perc, other_perc, rural_perc, 
+        bachelors_perc, hispanic_perc, poverty_perc, 
+        unemployment, turnover_perc, med_family_income_adj, 
+        med_gross_rent_adj, med_household_income_adj, 
+        median_value_adj ) ) %>%
+  head() %>% 
+  knitr::kable( escape=FALSE, digits=2 ) %>%
   kableExtra::kable_styling()
 ```
+
+<br>
+<hr>
+<br>
+
+## Download CSV Files
+
+You can also download the files directly: 
+
+
+
+<br>
+
+### TRACTS 
+
+<br>
+
+```{r, results="asis"}
+census.files %>%
+  filter( GEO == "tract" ) %>% 
+  dplyr::select( VINTAGE, DOWNLOAD ) %>% 
+  knitr::kable( escape=FALSE, align = "l"  )
+```
+
+<br>
+
+### COUNTIES 
+
+<br>
+
+```{r, results="asis"}
+census.files %>%
+  filter( GEO == "county" ) %>% 
+  dplyr::select( VINTAGE, DOWNLOAD ) %>% 
+  knitr::kable( escape=FALSE, align = "l"  )
+```
+
+<br>
+
+### METRO AREAS (CBSA) 
+
+```{r, results="asis"}
+
+census.files %>%
+  filter( GEO == "msa" ) %>% 
+  dplyr::select( VINTAGE, DOWNLOAD ) %>% 
+  knitr::kable( escape=FALSE, align = "l"  )
+```
+
+<br>
+<br>
+
+
+## Data Dictionary 
+
+The census files include the following variables (some not available in all geographic aggregations):
+
+
+|variable_name            |variable_description                                                          |
+|:------------------------|:-----------------------------------------------------------------------------|
+|year                     |Year of data                                                                  |
+|geoid                    |Geographic identifier                                                         |
+|total_population         |Total population                                                              |
+|housing_units            |Number of housing units                                                       |
+|occupied                 |Number of occupied housing units                                              |
+|vacant                   |Number of vacant housing units                                                |
+|renter_occ               |Number of renter occupied units                                               |
+|white_perc               |Percent of population that is white                                           |
+|black_perc               |Percent of population that is black                                           |
+|asian_perc               |Percent of population that is asian                                           |
+|hawaiian_perc            |Percent of population that is hawaiian                                        |
+|american_alaskan_perc    |Percent of population that is american indican or alaskan native              |
+|two_or_more_perc         |Percent of population with two or more races                                  |
+|other_perc               |Percent of population with race classified as other                           |
+|rural_perc               |Percent of population living in rural areas                                   |
+|bachelors_perc           |Percent of population 25 and over that have a bachelors degree or more        |
+|hispanic_perc            |Percent of population that is hispanic                                        |
+|poverty_perc             |Percent of population for whom poverty status is determined living in poverty |
+|unemployment             |Percent of population aged 16 or over and in labor force that are unemployed  |
+|turnover_perc            |Percent of population that moved in the past year                             |
+|med_family_income_adj    |Median family income, inflation adjusted to 2021 dollars                      |
+|med_gross_rent_adj       |Median gross rent, inflation adjusted to 2021 dollars                         |
+|med_household_income_adj |Median household income, inflation adjusted to 2021 dollars                   |
+|median_value_adj         |Median housing value, inflation adjusted to 2021 dollars                      |
+
+
+
+<br>
+<hr>
+<br>
+
+
+#### Geographic Crosswalks
+
+Any census-designated geography consists of a collection of either tracts or blocks. We have created a series of crosswalk files that enable interoperability of census data across different geographic scales.
+
+Two crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation. They help researchers select the most meaningful level of aggregation for their study.
+
+
+
+<img src="https://raw.githubusercontent.com/UrbanInstitute/geocrosswalk/main/img/geo-unit-conversion.png" alt="Nested Geographic Units" width="500">
+
+<br>
+<hr>
+<br>
+
+## Geographies Derived from Blocks (11,078,297 blocks/rows, 748MB)
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv'> DOWNLOAD BLOCKX CROSSWALK </a>
+
+- [Census Designated Places](https://www.census.gov/programs-surveys/bas/information/cdp.html)
+- [Urban/Rural Areas (Census Defined)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/urban-rural.html)
+- [Urban/Rural Areas (NCES Defined)](https://nces.ed.gov/surveys/annualreports/topical-studies/locale/definitions)
+- [Voting Districts](https://www2.census.gov/geo/pdfs/reference/GARM/Ch14GARM.pdf)
+- [ZIP Code equivalents (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
+
+
+<br>
+<hr>
+<br>
+
+## Geographies Derived from Tracts (74,091 tracts/rows, 15MB) 
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv'> DOWNLOAD TRACTX CROSSWALK </a>
+
+
+- States (State FIPS)
+- Counties (County FIPS)
+- [Woodard's Cutural Regions](https://www.independent.co.uk/news/world/americas/us-map-11-separate-nations-colin-woodward-yankeedom-new-netherland-the-midlands-tidewater-greater-appalachia-a8078261.html)
+- [American Cultural Regions (Louf et al. 2023)](https://www.nature.com/articles/s41599-023-01611-3)
+- [Census Regions](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf)
+- [Public Use Microdata Areas (PUMAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html)
+- [Core Based Statistical Areas (CBSAs)](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/)
+- [Combined Statistical Areas (CSAs)](https://www.census.gov/geographies/reference-maps/2020/geo/csa.html)
+
+
+
 
 <br>
 
@@ -95,9 +349,9 @@ h4, .h4 {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 18px;
   border-radius: 12px;
-  width: 150px;
+  width: 400px;
 }
 
 .button2 {
@@ -117,6 +371,8 @@ h4, .h4 {
 table td {
   vertical-align: middle;
 }
+
+table.lightable-minimal { width: 30%; }
 
 blockquote {
     border-left: 4px solid #1696d2;
