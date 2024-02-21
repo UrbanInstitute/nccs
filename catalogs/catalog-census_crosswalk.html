@@ -330,6 +330,210 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
+<p>For more details on the data see the <strong>data dictionary</strong> below and the <a href="https://github.com/UI-Research/nccs-geo/blob/main/census_clean_for_sym.R">data aggregation script</a> that generates these statistics.</p>
+<p>Note that some variables like “housing_units” represent counts of housing units but appear as fractions here because of the process of apportioning data over time (integer counts are allocated to fractional geographies when geo units are split or combined over time).</p>
+<p>Note the difference with the 2010 data since that is the temporal reference period (housing_units and similar count variables appear as integers, not fractions):</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">geoid_2010</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">total_population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">housing_units</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">occupied</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vacant</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">renter_occ</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">white_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">black_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">asian_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">hawaiian_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">american_alaskan_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">two_or_more_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">other_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rural_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">bachelors_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">hispanic_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">poverty_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">unemployment</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">turnover_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_family_income_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_gross_rent_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_household_income_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median_value_adj</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">01001</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">54590</td>
+<td style="text-align: right;">22077</td>
+<td style="text-align: right;">19934</td>
+<td style="text-align: right;">2143</td>
+<td style="text-align: right;">4446</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">78978.32</td>
+<td style="text-align: right;">986.70</td>
+<td style="text-align: right;">63466.16</td>
+<td style="text-align: right;">162757.94</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01003</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">183226</td>
+<td style="text-align: right;">103984</td>
+<td style="text-align: right;">72751</td>
+<td style="text-align: right;">31233</td>
+<td style="text-align: right;">18862</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">72888.18</td>
+<td style="text-align: right;">1031.55</td>
+<td style="text-align: right;">59846.30</td>
+<td style="text-align: right;">204067.06</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">01005</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">27469</td>
+<td style="text-align: right;">11878</td>
+<td style="text-align: right;">9423</td>
+<td style="text-align: right;">2455</td>
+<td style="text-align: right;">3138</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">51507.75</td>
+<td style="text-align: right;">681.01</td>
+<td style="text-align: right;">37637.33</td>
+<td style="text-align: right;">104689.12</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01007</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">22769</td>
+<td style="text-align: right;">8958</td>
+<td style="text-align: right;">7386</td>
+<td style="text-align: right;">1572</td>
+<td style="text-align: right;">1407</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">52165.16</td>
+<td style="text-align: right;">685.73</td>
+<td style="text-align: right;">43461.92</td>
+<td style="text-align: right;">108111.87</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">01009</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">57466</td>
+<td style="text-align: right;">23761</td>
+<td style="text-align: right;">21031</td>
+<td style="text-align: right;">2730</td>
+<td style="text-align: right;">3974</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">65211.76</td>
+<td style="text-align: right;">693.99</td>
+<td style="text-align: right;">53338.34</td>
+<td style="text-align: right;">135966.03</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01011</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">10779</td>
+<td style="text-align: right;">4501</td>
+<td style="text-align: right;">3740</td>
+<td style="text-align: right;">761</td>
+<td style="text-align: right;">849</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">50464.40</td>
+<td style="text-align: right;">584.23</td>
+<td style="text-align: right;">40718.99</td>
+<td style="text-align: right;">87221.26</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 <br>
 <hr>
 <p><br></p>
@@ -340,6 +544,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br></p>
 <section id="tracts" class="level3">
 <h3 class="anchored" data-anchor-id="tracts">TRACTS</h3>
+<p><br></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/TRACT-1990-2019-LONG.csv"> TRACT DATA 1990-2019 ‘LONG’ </a></p>
 <p><br></p>
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" class="table">
@@ -420,6 +626,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="counties" class="level3">
 <h3 class="anchored" data-anchor-id="counties">COUNTIES</h3>
 <p><br></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/COUNTY-1990-2019-LONG.csv"> COUNTY DATA 1990-2019 ‘LONG’ </a></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/COUNTY-1990-2019-WIDE.csv"> COUNTY DATA 1990-2019 ‘WIDE’ </a></p>
+<p><br></p>
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" class="table">
 <thead>
@@ -498,6 +707,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="metro-areas-cbsa" class="level3">
 <h3 class="anchored" data-anchor-id="metro-areas-cbsa">METRO AREAS (CBSA)</h3>
+<p><br></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/MSA-1990-2019-LONG.csv"> METRO DATA 1990-2019 ‘LONG’ </a></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/MSA-1990-2019-WIDE.csv"> METRO DATA 1990-2019 ‘WIDE’ </a></p>
+<p><br></p>
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" class="table">
 <thead>
@@ -577,11 +790,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
-<p>The census files include the following variables (some not available in all geographic aggregations):</p>
+<p>The census files include the following variables (some not available in all geographic aggregations).</p>
+<p>Details on the variable creation can be found in the <a href="https://github.com/UI-Research/nccs-geo/blob/main/census_clean_for_sym.R">data aggregation script</a>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 75%">
+<col style="width: 26%">
+<col style="width: 73%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -688,7 +902,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<br>
+<p><br></p>
 <hr>
 <p><br></p>
 <section id="geographic-crosswalks" class="level4">
@@ -696,7 +910,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Any census-designated geography consists of a collection of either tracts or blocks. We have created a series of crosswalk files that enable interoperability of census data across different geographic scales.</p>
 <p>Two crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation. They help researchers select the most meaningful level of aggregation for their study.</p>
 <p><img src="https://raw.githubusercontent.com/UrbanInstitute/geocrosswalk/main/img/geo-unit-conversion.png" alt="Nested Geographic Units" width="500"></p>
-<br>
+<p><br></p>
 <hr>
 <p><br></p>
 </section>
@@ -711,7 +925,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://www2.census.gov/geo/pdfs/reference/GARM/Ch14GARM.pdf">Voting Districts</a></li>
 <li><a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html">ZIP Code equivalents (ZCTAs)</a></li>
 </ul>
-<br>
+<p><br></p>
 <hr>
 <p><br></p>
 </section>

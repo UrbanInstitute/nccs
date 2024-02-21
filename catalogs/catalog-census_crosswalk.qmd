@@ -16,7 +16,6 @@ library( kableExtra )
 library( hablar )
 ```
 
-
 ```{r}
 
 make_buttons <- function( urls ) {
@@ -93,25 +92,19 @@ URL = c("https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_1990.c
 census.files$DOWNLOAD <- make_buttons( census.files$URL )
 ```
 
-
-
-<br>
-<br>
-<br>
+<br> <br> <br>
 
 #### Harmonized Census Data
 
-For convenience, we provide a small set of census variables that have been harmonized into a coherent data panel. 
+For convenience, we provide a small set of census variables that have been harmonized into a coherent data panel.
 
 All data in each panel has been harmonized to 2010 geographies (shapefiles) and inflation-adjusted to the year 2021.
-
-
 
 <br>
 
 ## Load Data Panel With R
 
-Retrieve the census panel using the following R syntax: 
+Retrieve the census panel using the following R syntax:
 
 ```{r, eval=F, echo=T}
 library( dplyr )
@@ -156,19 +149,48 @@ df %>%
   kableExtra::kable_styling()
 ```
 
+For more details on the data see the **data dictionary** below and the [data aggregation script](https://github.com/UI-Research/nccs-geo/blob/main/census_clean_for_sym.R) that generates these statistics.
+
+Note that some variables like "housing_units" represent counts of housing units but appear as fractions here because of the process of apportioning data over time (integer counts are allocated to fractional geographies when geo units are split or combined over time). 
+
+
+Note the difference with the 2010 data since that is the temporal reference period (housing_units and similar count variables appear as integers, not fractions): 
+
+```{r}
+df  <- get_census_data( geo="county", years=2010 )
+
+df %>%
+  hablar::convert( 
+    num( total_population, housing_units, occupied, 
+        vacant, renter_occ, white_perc, black_perc, 
+        asian_perc, hawaiian_perc, american_alaskan_perc, 
+        two_or_more_perc, other_perc, rural_perc, 
+        bachelors_perc, hispanic_perc, poverty_perc, 
+        unemployment, turnover_perc, med_family_income_adj, 
+        med_gross_rent_adj, med_household_income_adj, 
+        median_value_adj ) ) %>%
+  head() %>% 
+  knitr::kable( escape=FALSE, digits=2 ) %>%
+  kableExtra::kable_styling()
+```
+
 <br>
 <hr>
 <br>
 
 ## Download CSV Files
 
-You can also download the files directly: 
-
-
+You can also download the files directly:
 
 <br>
 
-### TRACTS 
+### TRACTS
+
+<br>
+
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/TRACT-1990-2019-LONG.csv'> TRACT DATA 1990-2019 'LONG'  </a>
+
 
 <br>
 
@@ -181,7 +203,13 @@ census.files %>%
 
 <br>
 
-### COUNTIES 
+### COUNTIES
+
+<br>
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/COUNTY-1990-2019-LONG.csv'> COUNTY DATA 1990-2019 'LONG'  </a>
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/COUNTY-1990-2019-WIDE.csv'> COUNTY DATA 1990-2019 'WIDE'  </a>
 
 <br>
 
@@ -194,7 +222,15 @@ census.files %>%
 
 <br>
 
-### METRO AREAS (CBSA) 
+### METRO AREAS (CBSA)
+
+<br>
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/MSA-1990-2019-LONG.csv'> METRO DATA 1990-2019 'LONG'  </a>
+
+<a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/MSA-1990-2019-WIDE.csv'> METRO DATA 1990-2019 'WIDE'  </a>
+
+<br>
 
 ```{r, results="asis"}
 
@@ -204,48 +240,47 @@ census.files %>%
   knitr::kable( escape=FALSE, align = "l"  )
 ```
 
-<br>
-<br>
+<br> <br>
+
+## Data Dictionary
+
+The census files include the following variables (some not available in all geographic aggregations). 
+
+Details on the variable creation can be found in the [data aggregation script](https://github.com/UI-Research/nccs-geo/blob/main/census_clean_for_sym.R). 
 
 
-## Data Dictionary 
-
-The census files include the following variables (some not available in all geographic aggregations):
-
-
-|variable_name            |variable_description                                                          |
-|:------------------------|:-----------------------------------------------------------------------------|
-|year                     |Year of data                                                                  |
-|geoid                    |Geographic identifier                                                         |
-|total_population         |Total population                                                              |
-|housing_units            |Number of housing units                                                       |
-|occupied                 |Number of occupied housing units                                              |
-|vacant                   |Number of vacant housing units                                                |
-|renter_occ               |Number of renter occupied units                                               |
-|white_perc               |Percent of population that is white                                           |
-|black_perc               |Percent of population that is black                                           |
-|asian_perc               |Percent of population that is asian                                           |
-|hawaiian_perc            |Percent of population that is hawaiian                                        |
-|american_alaskan_perc    |Percent of population that is american indican or alaskan native              |
-|two_or_more_perc         |Percent of population with two or more races                                  |
-|other_perc               |Percent of population with race classified as other                           |
-|rural_perc               |Percent of population living in rural areas                                   |
-|bachelors_perc           |Percent of population 25 and over that have a bachelors degree or more        |
-|hispanic_perc            |Percent of population that is hispanic                                        |
-|poverty_perc             |Percent of population for whom poverty status is determined living in poverty |
-|unemployment             |Percent of population aged 16 or over and in labor force that are unemployed  |
-|turnover_perc            |Percent of population that moved in the past year                             |
-|med_family_income_adj    |Median family income, inflation adjusted to 2021 dollars                      |
-|med_gross_rent_adj       |Median gross rent, inflation adjusted to 2021 dollars                         |
-|med_household_income_adj |Median household income, inflation adjusted to 2021 dollars                   |
-|median_value_adj         |Median housing value, inflation adjusted to 2021 dollars                      |
-
-
+| variable_name            | variable_description                                                          |
+|:------------------|:----------------------------------------------------|
+| year                     | Year of data                                                                  |
+| geoid                    | Geographic identifier                                                         |
+| total_population         | Total population                                                              |
+| housing_units            | Number of housing units                                                       |
+| occupied                 | Number of occupied housing units                                              |
+| vacant                   | Number of vacant housing units                                                |
+| renter_occ               | Number of renter occupied units                                               |
+| white_perc               | Percent of population that is white                                           |
+| black_perc               | Percent of population that is black                                           |
+| asian_perc               | Percent of population that is asian                                           |
+| hawaiian_perc            | Percent of population that is hawaiian                                        |
+| american_alaskan_perc    | Percent of population that is american indican or alaskan native              |
+| two_or_more_perc         | Percent of population with two or more races                                  |
+| other_perc               | Percent of population with race classified as other                           |
+| rural_perc               | Percent of population living in rural areas                                   |
+| bachelors_perc           | Percent of population 25 and over that have a bachelors degree or more        |
+| hispanic_perc            | Percent of population that is hispanic                                        |
+| poverty_perc             | Percent of population for whom poverty status is determined living in poverty |
+| unemployment             | Percent of population aged 16 or over and in labor force that are unemployed  |
+| turnover_perc            | Percent of population that moved in the past year                             |
+| med_family_income_adj    | Median family income, inflation adjusted to 2021 dollars                      |
+| med_gross_rent_adj       | Median gross rent, inflation adjusted to 2021 dollars                         |
+| med_household_income_adj | Median household income, inflation adjusted to 2021 dollars                   |
+| median_value_adj         | Median housing value, inflation adjusted to 2021 dollars                      |
 
 <br>
+
 <hr>
-<br>
 
+<br>
 
 #### Geographic Crosswalks
 
@@ -253,45 +288,42 @@ Any census-designated geography consists of a collection of either tracts or blo
 
 Two crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation. They help researchers select the most meaningful level of aggregation for their study.
 
-
-
-<img src="https://raw.githubusercontent.com/UrbanInstitute/geocrosswalk/main/img/geo-unit-conversion.png" alt="Nested Geographic Units" width="500">
+<img src="https://raw.githubusercontent.com/UrbanInstitute/geocrosswalk/main/img/geo-unit-conversion.png" alt="Nested Geographic Units" width="500"/>
 
 <br>
+
 <hr>
+
 <br>
 
 ## Geographies Derived from Blocks (11,078,297 blocks/rows, 748MB)
 
 <a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv'> DOWNLOAD BLOCKX CROSSWALK </a>
 
-- [Census Designated Places](https://www.census.gov/programs-surveys/bas/information/cdp.html)
-- [Urban/Rural Areas (Census Defined)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/urban-rural.html)
-- [Urban/Rural Areas (NCES Defined)](https://nces.ed.gov/surveys/annualreports/topical-studies/locale/definitions)
-- [Voting Districts](https://www2.census.gov/geo/pdfs/reference/GARM/Ch14GARM.pdf)
-- [ZIP Code equivalents (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
-
+-   [Census Designated Places](https://www.census.gov/programs-surveys/bas/information/cdp.html)
+-   [Urban/Rural Areas (Census Defined)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/urban-rural.html)
+-   [Urban/Rural Areas (NCES Defined)](https://nces.ed.gov/surveys/annualreports/topical-studies/locale/definitions)
+-   [Voting Districts](https://www2.census.gov/geo/pdfs/reference/GARM/Ch14GARM.pdf)
+-   [ZIP Code equivalents (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
 
 <br>
+
 <hr>
+
 <br>
 
-## Geographies Derived from Tracts (74,091 tracts/rows, 15MB) 
+## Geographies Derived from Tracts (74,091 tracts/rows, 15MB)
 
 <a class='button2' href='https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv'> DOWNLOAD TRACTX CROSSWALK </a>
 
-
-- States (State FIPS)
-- Counties (County FIPS)
-- [Woodard's Cutural Regions](https://www.independent.co.uk/news/world/americas/us-map-11-separate-nations-colin-woodward-yankeedom-new-netherland-the-midlands-tidewater-greater-appalachia-a8078261.html)
-- [American Cultural Regions (Louf et al. 2023)](https://www.nature.com/articles/s41599-023-01611-3)
-- [Census Regions](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf)
-- [Public Use Microdata Areas (PUMAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html)
-- [Core Based Statistical Areas (CBSAs)](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/)
-- [Combined Statistical Areas (CSAs)](https://www.census.gov/geographies/reference-maps/2020/geo/csa.html)
-
-
-
+-   States (State FIPS)
+-   Counties (County FIPS)
+-   [Woodard's Cutural Regions](https://www.independent.co.uk/news/world/americas/us-map-11-separate-nations-colin-woodward-yankeedom-new-netherland-the-midlands-tidewater-greater-appalachia-a8078261.html)
+-   [American Cultural Regions (Louf et al. 2023)](https://www.nature.com/articles/s41599-023-01611-3)
+-   [Census Regions](https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf)
+-   [Public Use Microdata Areas (PUMAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html)
+-   [Core Based Statistical Areas (CBSAs)](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/)
+-   [Combined Statistical Areas (CSAs)](https://www.census.gov/geographies/reference-maps/2020/geo/csa.html)
 
 <br>
 
