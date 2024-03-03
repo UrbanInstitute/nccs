@@ -207,7 +207,7 @@ For the list of available TTT tables see the [DATA DICTIONARY](https://nonprofit
 
 The SCHEDULE-TABLE documents which 990 Schedules each organized has filed in a given tax year. 
 
-<a href='#schedule-table-1' class='button2' target='_blank'> R PACKAGE: SCHED TABLE </a>
+<a href='#schedule-table-1' class='button2' target='_blank'> SCHED TABLE </a>
 
 <br>
 <br>
