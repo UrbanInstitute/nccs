@@ -61,16 +61,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Efile Data Contents</h2>
    
   <ul>
   <li><a href="#about-nccs-efile-data" id="toc-about-nccs-efile-data">About NCCS Efile Data</a>
   <ul>
+  <li><a href="#data-sources-and-processing" id="toc-data-sources-and-processing">Data Sources and Processing</a></li>
   <li><a href="#data-dictionary" id="toc-data-dictionary">Data Dictionary</a></li>
   <li><a href="#coverage" id="toc-coverage">Coverage</a></li>
   <li><a href="#structure-of-table-and-file-names" id="toc-structure-of-table-and-file-names">Structure of Table and File Names</a></li>
-  <li><a href="#schedule-table" id="toc-schedule-table">Schedule Table</a></li>
+  <li><a href="#schedule-manifest" id="toc-schedule-manifest">Schedule Manifest</a></li>
   </ul></li>
-  <li><a href="#downloads" id="toc-downloads">Downloads</a>
+  <li><a href="#available-tables" id="toc-available-tables">Available Tables</a>
   <ul>
   <li><a href="#f9-p00-t00-header" id="toc-f9-p00-t00-header">F9-P00-T00-HEADER</a></li>
   <li><a href="#f9-p01-t00-summary" id="toc-f9-p01-t00-summary">F9-P01-T00-SUMMARY</a></li>
@@ -99,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#sc-p01-t00-lobby" id="toc-sc-p01-t00-lobby">SC-P01-T00-LOBBY</a></li>
   <li><a href="#sc-p02-t00-lobby" id="toc-sc-p02-t00-lobby">SC-P02-T00-LOBBY</a></li>
   <li><a href="#sc-p03-t00-lobby" id="toc-sc-p03-t00-lobby">SC-P03-T00-LOBBY</a></li>
-  <li><a href="#schedule-table-1" id="toc-schedule-table-1">SCHEDULE-TABLE</a></li>
+  <li><a href="#schedule-table" id="toc-schedule-table">SCHEDULE-TABLE</a></li>
   <li><a href="#sd-p01-t00-orgs-donor-advised-funds-oth" id="toc-sd-p01-t00-orgs-donor-advised-funds-oth">SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH</a></li>
   <li><a href="#sd-p02-t00-conserv-easements" id="toc-sd-p02-t00-conserv-easements">SD-P02-T00-CONSERV-EASEMENTS</a></li>
   <li><a href="#sd-p03-t00-orgs-collect-art-hist-treasure-oth" id="toc-sd-p03-t00-orgs-collect-art-hist-treasure-oth">SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH</a></li>
@@ -140,26 +142,31 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   </ul>
 </nav>
-<br>
+<p><br></p>
 <hr>
 <p><br></p>
 <section id="about-nccs-efile-data" class="level1">
 <h1>About NCCS Efile Data</h1>
-<p>IRS 990 Efile data is generated from XML files hosted on the 990 Data Commons:</p>
-<p>XML files are parsed using an <strong>XML-to-RDB Concordance</strong> file that has been produced by the Nonprofit Open Data Collective.</p>
-<p>XML documents are converted in the data tables described in data dictionary using the <strong>irs990efile</strong> R package:</p>
-<p>The NCCS downloads below include <strong>data from 990 and 990EZ returns and their associated schedules</strong>. The database does not include 990PF or 990T data.</p>
+<section id="data-sources-and-processing" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources-and-processing">Data Sources and Processing</h2>
+<p>IRS 990 Efile data is generated from XML files hosted on the <strong>990 Data Commons</strong>.</p>
+<p>XML files are parsed using an <strong>XML-to-RDB Concordance</strong> file that has been produced by Jesse Lecy, Hyunrang Han, and the Nonprofit Open Data Collective.</p>
+<p>XML documents are converted in the data tables described in data dictionary using the <strong>irs990efile R Package</strong>.</p>
+<p>The NCCS downloads below include <strong>data from 990 and 990EZ returns and their associated schedules</strong>.</p>
 <hr>
 <p><a href="https://www.givingtuesday.org/data-commons/990-data-infrastructure/" class="buttonx" target="_blank"> 990 DATA COMMONS </a></p>
-<p><a href="https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file" class="buttonx" target="_blank"> CONCORDANCE CROSSWALK </a></p>
-<p><a href="https://github.com/Nonprofit-Open-Data-Collective/irs990efile" class="buttonx" target="_blank"> R PACKAGE: irs990efile </a></p>
+<p><a href="https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file" class="buttonx" target="_blank"> CONCORDANCE DETAILS </a></p>
+<p><a href="https://github.com/Nonprofit-Open-Data-Collective/irs990efile" class="buttonx" target="_blank"> R PACKAGE: IRS990EFILE </a></p>
+<p><a href="https://nonprofit-open-data-collective.github.io/tools/" class="buttonx" target="_blank"> NONPROFIT OPEN DATA COLLECTIVE </a></p>
 <hr>
+<p>The database does not currently include 990PF or 990T data.</p>
 <p><br> <br></p>
+</section>
 <section id="data-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
-<p>Efile data has been parsed into 125 tables that correspond to sections (“Parts”) on 990 Forms and Schedules.</p>
+<p>Efile data has been parsed into 125 tables that correspond to sections (“Parts”) on 990 Forms and Schedules. All years use a consistent data dictionary.</p>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="buttonx" target="_blank"> <b>DATA DICTIONARY</b> </a></p>
-<br>
+<p><br></p>
 <hr>
 <p><br></p>
 </section>
@@ -168,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Non-mandatory electronic filing for tax-exempt organizations started around 2010 (note that tax year lags the calendar year by 12-18 months). Utilization of electronic filing options (versus paper returns) grew steadily over the next decade.</p>
 <p>Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. <em>The schemas needed to make sense of the XML file structures, however, have not been made public.</em></p>
 <p>Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations.</p>
-<p><strong>990 Efile Returns by FormType and TaxYear</strong></p>
+<p><strong>990 Efile Returns by FormType and TaxYear (990 Data Commons)</strong></p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -294,6 +301,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+<p><em>Updated February 2024</em></p>
 <p>The NCCS downloads below include data from 990 and 990EZ returns and their associated schedules.</p>
 <p>The 990PF fields have been mapped within the Concordance File, so technically <a href="https://github.com/Nonprofit-Open-Data-Collective/990pf-dev">it is possible to build 990PF tables with the irs990efile package</a>. Due to the complexity of many 990PF tables (mandatory fields are often formatted as Schedule O amendments or file attachments that require additional parsing) we have not created public files for widespread distribution.</p>
 <p><strong>NOTE:</strong></p>
@@ -330,15 +338,91 @@ ul.task-list li input[type="checkbox"] {
 <p>All other EFILE tables have PZ form scope, meaning they include data from both full 990 and 990EZ filers.</p>
 <p>For the list of available TTT tables see the <a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html">DATA DICTIONARY</a>.</p>
 </section>
-<section id="schedule-table" class="level2">
-<h2 class="anchored" data-anchor-id="schedule-table">Schedule Table</h2>
-<p>The SCHEDULE-TABLE documents which 990 Schedules each organized has filed in a given tax year.</p>
-<p><a href="#schedule-table-1" class="button2" target="_blank"> SCHED TABLE </a></p>
+<section id="schedule-manifest" class="level2">
+<h2 class="anchored" data-anchor-id="schedule-manifest">Schedule Manifest</h2>
+<p><a href="#schedule-table" class="button2" target="_blank"> SCHED TABLE </a></p>
+<p>Since schedules are not required for most 990 filers the corresponding schedule data tables only contain organizations that have filed that specific schedule. <strong>SCHEDULE-TABLE.CSV</strong> documents which 990 schedules each organized has filed in a given tax year. It thus can serve as a sampling framework.</p>
+<p><strong>Schedule Prevalence in a Single Tax Year:</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">990 Schedule</th>
+<th style="text-align: left;">Number of Filers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SCHED-A</td>
+<td style="text-align: left;">377,609</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-B</td>
+<td style="text-align: left;">208,367</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-C</td>
+<td style="text-align: left;">34,831</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-D</td>
+<td style="text-align: left;">246,227</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-E</td>
+<td style="text-align: left;">17,536</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-F</td>
+<td style="text-align: left;">15,471</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-G</td>
+<td style="text-align: left;">96,717</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-H</td>
+<td style="text-align: left;">1,850</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-I</td>
+<td style="text-align: left;">67,438</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-J</td>
+<td style="text-align: left;">65,039</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-K</td>
+<td style="text-align: left;">5,387</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-L</td>
+<td style="text-align: left;">26,539</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-M</td>
+<td style="text-align: left;">281,73</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-N</td>
+<td style="text-align: left;">4,753</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SCHED-O</td>
+<td style="text-align: left;">480,069</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SCHED-R</td>
+<td style="text-align: left;">70,464</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/blob/master/README.md#form-990-and-schedule-sections">Schedule Details</a></p>
 <p><br> <br></p>
 </section>
 </section>
-<section id="downloads" class="level1">
-<h1>Downloads</h1>
+<section id="available-tables" class="level1">
+<h1>Available Tables</h1>
 <hr>
 <section id="f9-p00-t00-header" class="level3">
 <h3 class="anchored" data-anchor-id="f9-p00-t00-header">F9-P00-T00-HEADER</h3>
@@ -6361,8 +6445,8 @@ SC-P03-T00-LOBBY
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
-<section id="schedule-table-1" class="level3">
-<h3 class="anchored" data-anchor-id="schedule-table-1">SCHEDULE-TABLE</h3>
+<section id="schedule-table" class="level3">
+<h3 class="anchored" data-anchor-id="schedule-table">SCHEDULE-TABLE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 
 <table class="table" style="margin-left: auto; margin-right: auto;">
@@ -14813,7 +14897,6 @@ NA
 h1.title {
  font-size: 60px;
  color: #0a4c6a;
- margin-bottom: 50px;
 }
 
 
@@ -14822,6 +14905,10 @@ h3, .h3 {
     color: #1696d2;
     margin-top: 50px;
     margin-bottom: 30px;
+}
+
+nav#TOC {
+  margin-top: 100px;
 }
 
 nav#TOC a {

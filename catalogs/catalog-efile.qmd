@@ -5,7 +5,7 @@ format:
     toc: true
     toc-location: body
     toc-expand: 1
-    toc-title: ' '
+    toc-title: 'Efile Data Contents'
 editor: visual
 execute: 
   echo: false
@@ -87,98 +87,98 @@ make_buttons_2 <- function( urls ) {
 }
 ```
 
-
-
-
 <br>
+
 <hr>
-<br>
 
+<br>
 
 # About NCCS Efile Data
 
-IRS 990 Efile data is generated from XML files hosted on the 990 Data Commons: 
+## Data Sources and Processing
 
-XML files are parsed using an **XML-to-RDB Concordance** file that has been produced by the Nonprofit Open Data Collective. 
+IRS 990 Efile data is generated from XML files hosted on the **990 Data Commons**.
 
-XML documents are converted in the data tables described in data dictionary using the **irs990efile** R package:
+XML files are parsed using an **XML-to-RDB Concordance** file that has been produced by Jesse Lecy, Hyunrang Han, and the Nonprofit Open Data Collective.
 
-The NCCS downloads below include **data from 990 and 990EZ returns and their associated schedules**. The database does not include 990PF or 990T data. 
+XML documents are converted in the data tables described in data dictionary using the **irs990efile R Package**.
+
+The NCCS downloads below include **data from 990 and 990EZ returns and their associated schedules**.
 
 <hr>
 
 <a href='https://www.givingtuesday.org/data-commons/990-data-infrastructure/' class='buttonx' target='_blank'> 990 DATA COMMONS </a>
 
-<a href='https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file' class='buttonx' target='_blank'> CONCORDANCE CROSSWALK </a>
+<a href='https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file' class='buttonx' target='_blank'> CONCORDANCE DETAILS </a>
 
-<a href='https://github.com/Nonprofit-Open-Data-Collective/irs990efile' class='buttonx' target='_blank'> R PACKAGE: irs990efile </a>
+<a href='https://github.com/Nonprofit-Open-Data-Collective/irs990efile' class='buttonx' target='_blank'> R PACKAGE: IRS990EFILE </a>
+
+<a href='https://nonprofit-open-data-collective.github.io/tools/' class='buttonx' target='_blank'> NONPROFIT OPEN DATA COLLECTIVE </a>
 
 <hr>
 
-<br>
-<br>
+The database does not currently include 990PF or 990T data.
 
-
+<br> <br>
 
 ## Data Dictionary
 
-Efile data has been parsed into 125 tables that correspond to sections ("Parts") on 990 Forms and Schedules. 
+Efile data has been parsed into 125 tables that correspond to sections ("Parts") on 990 Forms and Schedules. All years use a consistent data dictionary.
 
 <a href='https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html' class='buttonx' target='_blank'> <b>DATA DICTIONARY</b> </a>
 
 <br>
+
 <hr>
+
 <br>
 
- 
+## Coverage
 
+Non-mandatory electronic filing for tax-exempt organizations started around 2010 (note that tax year lags the calendar year by 12-18 months). Utilization of electronic filing options (versus paper returns) grew steadily over the next decade.
 
-## Coverage 
+Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. *The schemas needed to make sense of the XML file structures, however, have not been made public.*
 
-Non-mandatory electronic filing for tax-exempt organizations started around 2010 (note that tax year lags the calendar year by 12-18 months). Utilization of electronic filing options (versus paper returns) grew steadily over the next decade. 
+Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations.
 
-Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. *The schemas needed to make sense of the XML file structures, however, have not been made public.* 
+**990 Efile Returns by FormType and TaxYear (990 Data Commons)**
 
-Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations. 
+|      |     990 |   990EZ |   990PF |   990T |
+|:-----|--------:|--------:|--------:|-------:|
+| 2007 |      17 |      17 |       0 |      0 |
+| 2008 |      87 |     114 |      20 |      0 |
+| 2009 |  33,311 |  15,470 |   2,345 |      0 |
+| 2010 | 123,026 |  63,326 |  25,249 |      0 |
+| 2011 | 159,504 |  82,048 |  34,597 |      0 |
+| 2012 | 179,688 |  93,750 |  39,933 |      0 |
+| 2013 | 198,856 | 104,375 |  45,887 |      0 |
+| 2014 | 218,620 | 116,417 |  53,442 |      0 |
+| 2015 | 233,520 | 124,894 |  58,815 |      0 |
+| 2016 | 243,903 | 130,485 |  62,988 |      0 |
+| 2017 | 261,612 | 139,146 |  68,950 |      0 |
+| 2018 | 271,442 | 149,384 |  80,138 |      0 |
+| 2019 | 283,649 | 152,579 |  87,773 |      0 |
+| 2020 | 318,850 | 169,296 | 114,605 | 22,616 |
+| 2021 | 319,445 | 192,642 | 116,404 | 22,469 |
+| 2022 | 158,730 | 135,775 |  81,631 |  7,154 |
 
-**990 Efile Returns by FormType and TaxYear**
+*Updated February 2024*
 
-|     |     990|   990EZ|   990PF|   990T|
-|:----|-------:|-------:|-------:|------:|
-|2007 |      17|      17|       0|      0|
-|2008 |      87|     114|      20|      0|
-|2009 |  33,311|  15,470|   2,345|      0|
-|2010 | 123,026|  63,326|  25,249|      0|
-|2011 | 159,504|  82,048|  34,597|      0|
-|2012 | 179,688|  93,750|  39,933|      0|
-|2013 | 198,856| 104,375|  45,887|      0|
-|2014 | 218,620| 116,417|  53,442|      0|
-|2015 | 233,520| 124,894|  58,815|      0|
-|2016 | 243,903| 130,485|  62,988|      0|
-|2017 | 261,612| 139,146|  68,950|      0|
-|2018 | 271,442| 149,384|  80,138|      0|
-|2019 | 283,649| 152,579|  87,773|      0|
-|2020 | 318,850| 169,296| 114,605| 22,616|
-|2021 | 319,445| 192,642| 116,404| 22,469|
-|2022 | 158,730| 135,775|  81,631|  7,154|
+The NCCS downloads below include data from 990 and 990EZ returns and their associated schedules.
 
-The NCCS downloads below include data from 990 and 990EZ returns and their associated schedules. 
+The 990PF fields have been mapped within the Concordance File, so technically [it is possible to build 990PF tables with the irs990efile package](https://github.com/Nonprofit-Open-Data-Collective/990pf-dev). Due to the complexity of many 990PF tables (mandatory fields are often formatted as Schedule O amendments or file attachments that require additional parsing) we have not created public files for widespread distribution.
 
-The 990PF fields have been mapped within the Concordance File, so technically [it is possible to build 990PF tables with the irs990efile package](https://github.com/Nonprofit-Open-Data-Collective/990pf-dev). Due to the complexity of many 990PF tables (mandatory fields are often formatted as Schedule O amendments or file attachments that require additional parsing) we have not created public files for widespread distribution. 
+**NOTE:**
 
+Tables from 2009 to 2022 are currently available.
 
-**NOTE:** 
+The IRS releases electronic returns at regularly intervals (typically monthly). The most recent year will typically be a partial file that contains the data available at the time the database was built.
 
-Tables from 2009 to 2022 are currently available. 
+Changes to IRS 990 XML Schemas from 2018 onward have not yet been incorporated into the Concordance Crosswalk file, so some fields will be incomplete (data will be missing) starting in 2018. New data files will be posted once the Concordance has been refreshed, but until then use the recent waves with intentionality.
 
-The IRS releases electronic returns at regularly intervals (typically monthly). The most recent year will typically be a partial file that contains the data available at the time the database was built. 
+If you need to confirm whether an organization has omitted a response or whether the xpath-to-rdb-table is missing from the Concordance, you can always inspect the raw XML files by following the URL provided in the dataset.
 
-Changes to IRS 990 XML Schemas from 2018 onward have not yet been incorporated into the Concordance Crosswalk file, so some fields will be incomplete (data will be missing) starting in 2018. New data files will be posted once the Concordance has been refreshed, but until then use the recent waves with intentionality. 
-
-If you need to confirm whether an organization has omitted a response or whether the xpath-to-rdb-table is missing from the Concordance, you can always inspect the raw XML files by following the URL provided in the dataset. 
-
-
-## Structure of Table and File Names 
+## Structure of Table and File Names
 
 File names are organized as follows:
 
@@ -201,21 +201,43 @@ Files that end in EZ represent tables that only appear on Form 990EZ.
 
 All other EFILE tables have PZ form scope, meaning they include data from both full 990 and 990EZ filers.
 
-For the list of available TTT tables see the [DATA DICTIONARY](https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html). 
+For the list of available TTT tables see the [DATA DICTIONARY](https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html).
 
-## Schedule Table
+## Schedule Manifest
 
-The SCHEDULE-TABLE documents which 990 Schedules each organized has filed in a given tax year. 
+<a href='#schedule-table' class='button2' target='_blank'> SCHED TABLE </a>
 
-<a href='#schedule-table-1' class='button2' target='_blank'> SCHED TABLE </a>
+Since schedules are not required for most 990 filers the corresponding schedule data tables only contain organizations that have filed that specific schedule. **SCHEDULE-TABLE.CSV** documents which 990 schedules each organized has filed in a given tax year. It thus can serve as a sampling framework.
 
-<br>
-<br>
+**Schedule Prevalence in a Single Tax Year:**
 
-# Downloads 
+| 990 Schedule | Number of Filers |
+|:--------- |:------------- |
+| SCHED-A   |       377,609 |
+| SCHED-B   |       208,367 |
+| SCHED-C   |        34,831 |
+| SCHED-D   |       246,227 |
+| SCHED-E   |        17,536 |
+| SCHED-F   |        15,471 |
+| SCHED-G   |        96,717 |
+| SCHED-H   |         1,850 |
+| SCHED-I   |        67,438 |
+| SCHED-J   |        65,039 |
+| SCHED-K   |         5,387 |
+| SCHED-L   |        26,539 |
+| SCHED-M   |        281,73 |
+| SCHED-N   |         4,753 |
+| SCHED-O   |       480,069 |
+| SCHED-R   |        70,464 |
+
+[Schedule Details](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/blob/master/README.md#form-990-and-schedule-sections)
+
+
+<br> <br>
+
+# Available Tables
 
 <hr>
-
 
 ```{r}
 #| echo: false
@@ -279,7 +301,6 @@ for( i in fnames )
 h1.title {
  font-size: 60px;
  color: #0a4c6a;
- margin-bottom: 50px;
 }
 
 
@@ -288,6 +309,10 @@ h3, .h3 {
     color: #1696d2;
     margin-top: 50px;
     margin-bottom: 30px;
+}
+
+nav#TOC {
+  margin-top: 100px;
 }
 
 nav#TOC a {
