@@ -138,7 +138,7 @@ get_file_paths <- function(series,
   } else if (series == "core"){
     expr <- paste0( "CORE-[0-9]{4}-501C[0-9A-Z]-", tscope )
     paths <- grep( expr, paths, value = TRUE )
-    paths <- grep( paste0( "-", fscope, "\\b"), paths, value=T )
+    paths <- grep( paste0( "-", fscope, "\\.csv"), paths, value=T )
   } else if (series == "misc"){
     expr <- "SUPPLEMENTAL-CORE.*"
     paths <- grep(expr, paths, value = TRUE)
@@ -200,8 +200,12 @@ make_archive_urls <- function(series,
   matches <- gsub("\\.csv", "", matches)
   
   archive_urls <- paste0(base_url, matches)
-  # archive_urls <- lapply(archive_urls, 
-  #                        function(x) if (RCurl::url.exists(x)) x else unavail_url)
+  archive_urls <- lapply(archive_urls,
+                         function(x)
+                           if (RCurl::url.exists(x))
+                             x
+                         else
+                           unavail_url)
   
   return(archive_urls)  
 }
