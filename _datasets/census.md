@@ -15,7 +15,7 @@ primaryLinks:
     href: "https://github.com/UI-Research/nccs-geo"
     icon: github
   - text: "R Package"
-    href: "https://github.com/UrbanInstitute/geocrosswalk"
+    href: "https://github.com/UrbanInstitute/nccsdata"
     icon: r
 author:
 - id: cdavis
@@ -31,16 +31,6 @@ Census data are invaluable to social science research and are available through 
 
 To address this problem, we are developing tools to make appending census data to NCCS data series easier. Our aim is a seamlessly integrated and intuitive process requiring minimal effort from users.
 
-Augmenting a file with census data should be as straightforward as:
-
-```r
-get_data( 
-   dsname = "core",
-   time = as.character(2010:2020),
-   geo.region = "south",
-   ntee = "HEL" ) %>%
-append_census( level="tract" )
-```
 
 ## GEOGRAPHIC CROSSWALK FILES
 
@@ -137,55 +127,57 @@ A small set of census variables [described in this data dictionary](https://nccs
 
 They are available for TRACT, COUNTY, and MSA levels of aggregation: 
 
-```
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_1990.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2000.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2005-2009.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2006-2010.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2007-2011.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2008-2012.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2009-2013.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2010-2014.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2011-2015.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2012-2016.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2013-2017.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2014-2018.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2015-2019.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2016-2020.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2017-2021.csv
+```r
+URL <- "https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"
+source( URL )
 
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_1990.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2000.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2005-2009.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2006-2010.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2007-2011.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2008-2012.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2009-2013.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2010-2014.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2011-2015.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2012-2016.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2013-2017.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2014-2018.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2015-2019.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2016-2020.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2017-2021.csv
+df  <- get_census_data( geo="msa" )      # 918 metro areas, all years 
+df  <- get_census_data( geo="county" )   # 3,142 counties, all years 
+df  <- get_census_data( geo="tract" )    # 72,597 tracts, all years 
 
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_1990.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2000.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2005-2009.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2006-2010.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2007-2011.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2008-2012.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2009-2013.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2010-2014.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2011-2015.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2012-2016.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2013-2017.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2014-2018.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2015-2019.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2016-2020.csv
-https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2017-2021.csv
+# default format is 'long' (stacked years)
+df  <- get_census_data( geo="msa", years=2010:2019 )
+
+# return data in a wide format:
+dfw <- get_census_data( geo="msa", years=c(1990,2000,2010), format="wide" )
+
+# available years
+c(  1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012,
+    2013, 2014, 2015, 2016, 2017, 2018, 2019  )
 ```
+
+Or you can download files directly via the [DATA DOWNLOAD](https://urbaninstitute.github.io/nccs/catalogs/catalog-census_crosswalk.html) page. 
+
+#### Data Dictionary 
+
+|variable_name            |variable_description                                                          |
+|:------------------------|:-----------------------------------------------------------------------------|
+|year                     |Year of data                                                                  |
+|geoid                    |Geographic identifier                                                         |
+|total_population         |Total population                                                              |
+|housing_units            |Number of housing units                                                       |
+|occupied                 |Number of occupied housing units                                              |
+|vacant                   |Number of vacant housing units                                                |
+|renter_occ               |Number of renter occupied units                                               |
+|white_perc               |Percent of population that is white                                           |
+|black_perc               |Percent of population that is black                                           |
+|asian_perc               |Percent of population that is asian                                           |
+|hawaiian_perc            |Percent of population that is hawaiian                                        |
+|american_alaskan_perc    |Percent of population that is american indican or alaskan native              |
+|two_or_more_perc         |Percent of population with two or more races                                  |
+|other_perc               |Percent of population with race classified as other                           |
+|rural_perc               |Percent of population living in rural areas                                   |
+|bachelors_perc           |Percent of population 25 and over that have a bachelors degree or more        |
+|hispanic_perc            |Percent of population that is hispanic                                        |
+|poverty_perc             |Percent of population for whom poverty status is determined living in poverty |
+|unemployment             |Percent of population aged 16 or over and in labor force that are unemployed  |
+|turnover_perc            |Percent of population that moved in the past year                             |
+|med_family_income_adj    |Median family income, inflation adjusted to 2021 dollars                      |
+|med_gross_rent_adj       |Median gross rent, inflation adjusted to 2021 dollars                         |
+|med_household_income_adj |Median household income, inflation adjusted to 2021 dollars                   |
+|median_value_adj         |Median housing value, inflation adjusted to 2021 dollars                      |
+
+<br>
 
 ## Nonprofit Data Files
 

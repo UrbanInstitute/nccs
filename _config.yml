@@ -21,7 +21,7 @@
 title: National Center for Charitable Statistics
 short_title: NCCS
 email: 
-tagline: Short descriptor for site
+tagline: An Urban Institute Website
 description: >- # this means to ignore newlines until "baseurl:"
   Longer description for site
 baseurl: "/nccs" # the subpath of your site if not served from the root, e.g. /nccs

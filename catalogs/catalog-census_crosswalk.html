@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>NCCS 990 Metadata Catalog</title>
+<title>Census Panel 1990-2019</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -48,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">NCCS 990 Metadata Catalog</h1>
+<h1 class="title">Census Panel 1990-2019</h1>
 </div>
 
 
@@ -63,28 +97,232 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="census-crosswalks" class="level2">
-<h2 class="anchored" data-anchor-id="census-crosswalks">Census Crosswalks</h2>
+<p><br> <br> <br></p>
+<section id="harmonized-census-data" class="level4">
+<h4 class="anchored" data-anchor-id="harmonized-census-data">Harmonized Census Data</h4>
+<p>For convenience, we provide a small set of census variables that have been harmonized into a coherent data panel.</p>
+<p>All data in each panel has been harmonized to 2010 geographies (shapefiles) and inflation-adjusted to the year 2021.</p>
+<p><br></p>
+</section>
+<section id="load-data-panel-with-r" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-panel-with-r">Load Data Panel With R</h2>
+<p>Retrieve the census panel using the following R syntax:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>( dplyr )</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>( URL )</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">get_census_data</span>( <span class="at">geo=</span><span class="st">"msa"</span> )      <span class="co"># 918 metro areas, all years </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">get_census_data</span>( <span class="at">geo=</span><span class="st">"county"</span> )   <span class="co"># 3,142 counties, all years </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">get_census_data</span>( <span class="at">geo=</span><span class="st">"tract"</span> )    <span class="co"># 72,597 tracts, all years </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># default format is 'long' (stacked years)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df  <span class="ot">&lt;-</span> <span class="fu">get_census_data</span>( <span class="at">geo=</span><span class="st">"msa"</span>, <span class="at">years=</span><span class="dv">2010</span><span class="sc">:</span><span class="dv">2019</span> )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># return data in a wide format:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>dfw <span class="ot">&lt;-</span> <span class="fu">get_census_data</span>( <span class="at">geo=</span><span class="st">"msa"</span>, <span class="at">years=</span><span class="fu">c</span>(<span class="dv">1990</span>,<span class="dv">2000</span>,<span class="dv">2010</span>), <span class="at">format=</span><span class="st">"wide"</span> )</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># available years</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(  <span class="dv">1990</span>, <span class="dv">2000</span>, <span class="dv">2007</span>, <span class="dv">2008</span>, <span class="dv">2009</span>, <span class="dv">2010</span>, <span class="dv">2011</span>, <span class="dv">2012</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="dv">2013</span>, <span class="dv">2014</span>, <span class="dv">2015</span>, <span class="dv">2016</span>, <span class="dv">2017</span>, <span class="dv">2018</span>, <span class="dv">2019</span>  )</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">get_census_data</span>( <span class="at">geo=</span><span class="st">"county"</span>, <span class="at">year=</span><span class="dv">2000</span> ) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Download Link</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Download Size</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">geoid_2010</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">total_population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">housing_units</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">occupied</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vacant</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">renter_occ</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">white_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">black_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">asian_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">hawaiian_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">american_alaskan_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">two_or_more_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">other_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rural_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">bachelors_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">hispanic_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">poverty_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">unemployment</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">turnover_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_family_income_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_gross_rent_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_household_income_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median_value_adj</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">version</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;">820 mb</td>
-<td style="text-align: left;">Census Block Crosswalk</td>
+<td style="text-align: left;">01001</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">43663.68</td>
+<td style="text-align: right;">17659.21</td>
+<td style="text-align: right;">16000.40</td>
+<td style="text-align: right;">1658.81</td>
+<td style="text-align: right;">3073.78</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">78820.55</td>
+<td style="text-align: right;">873.45</td>
+<td style="text-align: right;">68336.66</td>
+<td style="text-align: right;">154201.04</td>
+<td style="text-align: left;">v2000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;">15.6 mb</td>
-<td style="text-align: left;">Census Tract Crosswalk</td>
+<td style="text-align: left;">01003</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">140645.80</td>
+<td style="text-align: right;">74380.61</td>
+<td style="text-align: right;">55422.71</td>
+<td style="text-align: right;">18957.89</td>
+<td style="text-align: right;">11349.33</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.54</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">76482.22</td>
+<td style="text-align: right;">920.53</td>
+<td style="text-align: right;">65458.33</td>
+<td style="text-align: right;">199176.96</td>
+<td style="text-align: left;">v2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">01005</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">29037.90</td>
+<td style="text-align: right;">12460.99</td>
+<td style="text-align: right;">10409.00</td>
+<td style="text-align: right;">2051.99</td>
+<td style="text-align: right;">2797.02</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">51852.62</td>
+<td style="text-align: right;">541.67</td>
+<td style="text-align: right;">40830.46</td>
+<td style="text-align: right;">111587.73</td>
+<td style="text-align: left;">v2000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01007</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">20826.06</td>
+<td style="text-align: right;">8345.03</td>
+<td style="text-align: right;">7421.03</td>
+<td style="text-align: right;">924.00</td>
+<td style="text-align: right;">1470.01</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: right;">0.07</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.21</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">60560.08</td>
+<td style="text-align: right;">566.07</td>
+<td style="text-align: right;">51109.25</td>
+<td style="text-align: right;">121348.09</td>
+<td style="text-align: left;">v2000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">01009</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">51038.30</td>
+<td style="text-align: right;">21165.14</td>
+<td style="text-align: right;">19271.08</td>
+<td style="text-align: right;">1894.06</td>
+<td style="text-align: right;">3191.92</td>
+<td style="text-align: right;">0.92</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">67621.99</td>
+<td style="text-align: right;">626.29</td>
+<td style="text-align: right;">57320.94</td>
+<td style="text-align: right;">141186.78</td>
+<td style="text-align: left;">v2000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01011</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: right;">11700.91</td>
+<td style="text-align: right;">4722.15</td>
+<td style="text-align: right;">3981.95</td>
+<td style="text-align: right;">740.20</td>
+<td style="text-align: right;">1016.17</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.33</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">39033.09</td>
+<td style="text-align: right;">527.07</td>
+<td style="text-align: right;">33522.82</td>
+<td style="text-align: right;">92083.38</td>
+<td style="text-align: left;">v2000</td>
 </tr>
 </tbody>
 </table>
@@ -92,6 +330,618 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
+<p>For more details on the data see the <strong>data dictionary</strong> below and the <a href="https://github.com/UI-Research/nccs-geo/blob/main/census_clean_for_sym.R">data aggregation script</a> that generates these statistics.</p>
+<p>Note that some variables like “housing_units” represent counts of housing units but appear as fractions here because of the process of apportioning data over time (integer counts are allocated to fractional geographies when geo units are split or combined over time).</p>
+<p>Note the difference with the 2010 data since that is the temporal reference period (housing_units and similar count variables appear as integers, not fractions):</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">geoid_2010</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">total_population</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">housing_units</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">occupied</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vacant</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">renter_occ</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">white_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">black_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">asian_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">hawaiian_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">american_alaskan_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">two_or_more_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">other_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rural_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">bachelors_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">hispanic_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">poverty_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">unemployment</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">turnover_perc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_family_income_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_gross_rent_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">med_household_income_adj</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">median_value_adj</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">version</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">01001</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">54590</td>
+<td style="text-align: right;">22077</td>
+<td style="text-align: right;">19934</td>
+<td style="text-align: right;">2143</td>
+<td style="text-align: right;">4446</td>
+<td style="text-align: right;">0.77</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">78978.32</td>
+<td style="text-align: right;">986.70</td>
+<td style="text-align: right;">63466.16</td>
+<td style="text-align: right;">162757.94</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01003</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">183226</td>
+<td style="text-align: right;">103984</td>
+<td style="text-align: right;">72751</td>
+<td style="text-align: right;">31233</td>
+<td style="text-align: right;">18862</td>
+<td style="text-align: right;">0.84</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">72888.18</td>
+<td style="text-align: right;">1031.55</td>
+<td style="text-align: right;">59846.30</td>
+<td style="text-align: right;">204067.06</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">01005</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">27469</td>
+<td style="text-align: right;">11878</td>
+<td style="text-align: right;">9423</td>
+<td style="text-align: right;">2455</td>
+<td style="text-align: right;">3138</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.26</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">51507.75</td>
+<td style="text-align: right;">681.01</td>
+<td style="text-align: right;">37637.33</td>
+<td style="text-align: right;">104689.12</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01007</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">22769</td>
+<td style="text-align: right;">8958</td>
+<td style="text-align: right;">7386</td>
+<td style="text-align: right;">1572</td>
+<td style="text-align: right;">1407</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">52165.16</td>
+<td style="text-align: right;">685.73</td>
+<td style="text-align: right;">43461.92</td>
+<td style="text-align: right;">108111.87</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">01009</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">57466</td>
+<td style="text-align: right;">23761</td>
+<td style="text-align: right;">21031</td>
+<td style="text-align: right;">2730</td>
+<td style="text-align: right;">3974</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.10</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">65211.76</td>
+<td style="text-align: right;">693.99</td>
+<td style="text-align: right;">53338.34</td>
+<td style="text-align: right;">135966.03</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01011</td>
+<td style="text-align: left;">2008-2012</td>
+<td style="text-align: right;">10779</td>
+<td style="text-align: right;">4501</td>
+<td style="text-align: right;">3740</td>
+<td style="text-align: right;">761</td>
+<td style="text-align: right;">849</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">50464.40</td>
+<td style="text-align: right;">584.23</td>
+<td style="text-align: right;">40718.99</td>
+<td style="text-align: right;">87221.26</td>
+<td style="text-align: left;">v2010</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<br>
+<hr>
+<p><br></p>
+</section>
+<section id="download-csv-files" class="level2">
+<h2 class="anchored" data-anchor-id="download-csv-files">Download CSV Files</h2>
+<p>You can also download the files directly:</p>
+<p><br></p>
+<section id="tracts" class="level3">
+<h3 class="anchored" data-anchor-id="tracts">TRACTS</h3>
+<p><br></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/TRACT-1990-2019-LONG.csv"> TRACT DATA 1990-2019 ‘LONG’ </a></p>
+<p><br></p>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">VINTAGE</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DOWNLOAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_1990.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2000.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2007</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2005-2009.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2006-2010.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2007-2011.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2008-2012.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2009-2013.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2010-2014.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2011-2015.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2012-2016.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2013-2017.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2014-2018.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2015-2019.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2016-2020.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/tract/tract_2017-2021.csv" class="button">DOWNLOAD</a></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<p><br></p>
+</section>
+<section id="counties" class="level3">
+<h3 class="anchored" data-anchor-id="counties">COUNTIES</h3>
+<p><br></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/COUNTY-1990-2019-LONG.csv"> COUNTY DATA 1990-2019 ‘LONG’ </a></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/COUNTY-1990-2019-WIDE.csv"> COUNTY DATA 1990-2019 ‘WIDE’ </a></p>
+<p><br></p>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">VINTAGE</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DOWNLOAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_1990.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2000.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2007</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2005-2009.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2006-2010.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2007-2011.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2008-2012.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2009-2013.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2010-2014.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2011-2015.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2012-2016.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2013-2017.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2014-2018.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2015-2019.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2016-2020.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/county/county_2017-2021.csv" class="button">DOWNLOAD</a></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<p><br></p>
+</section>
+<section id="metro-areas-cbsa" class="level3">
+<h3 class="anchored" data-anchor-id="metro-areas-cbsa">METRO AREAS (CBSA)</h3>
+<p><br></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/MSA-1990-2019-LONG.csv"> METRO DATA 1990-2019 ‘LONG’ </a></p>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/MSA-1990-2019-WIDE.csv"> METRO DATA 1990-2019 ‘WIDE’ </a></p>
+<p><br></p>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">VINTAGE</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">DOWNLOAD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_1990.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2000.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2007</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2005-2009.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2006-2010.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2007-2011.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2008-2012.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2009-2013.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2010-2014.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2011-2015.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2012-2016.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2013-2017.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2014-2018.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2015-2019.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2016-2020.csv" class="button">DOWNLOAD</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/data/msa/msa_2017-2021.csv" class="button">DOWNLOAD</a></td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<p><br> <br></p>
+</section>
+</section>
+<section id="data-dictionary" class="level2">
+<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
+<p>The census files include the following variables (some not available in all geographic aggregations).</p>
+<p>Details on the variable creation can be found in the <a href="https://github.com/UI-Research/nccs-geo/blob/main/census_clean_for_sym.R">data aggregation script</a>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">variable_name</th>
+<th style="text-align: left;">variable_description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">Year of data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">geoid</td>
+<td style="text-align: left;">Geographic identifier</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">total_population</td>
+<td style="text-align: left;">Total population</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">housing_units</td>
+<td style="text-align: left;">Number of housing units</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">occupied</td>
+<td style="text-align: left;">Number of occupied housing units</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vacant</td>
+<td style="text-align: left;">Number of vacant housing units</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">renter_occ</td>
+<td style="text-align: left;">Number of renter occupied units</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">white_perc</td>
+<td style="text-align: left;">Percent of population that is white</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">black_perc</td>
+<td style="text-align: left;">Percent of population that is black</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">asian_perc</td>
+<td style="text-align: left;">Percent of population that is asian</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hawaiian_perc</td>
+<td style="text-align: left;">Percent of population that is hawaiian</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">american_alaskan_perc</td>
+<td style="text-align: left;">Percent of population that is american indican or alaskan native</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">two_or_more_perc</td>
+<td style="text-align: left;">Percent of population with two or more races</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">other_perc</td>
+<td style="text-align: left;">Percent of population with race classified as other</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rural_perc</td>
+<td style="text-align: left;">Percent of population living in rural areas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bachelors_perc</td>
+<td style="text-align: left;">Percent of population 25 and over that have a bachelors degree or more</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">hispanic_perc</td>
+<td style="text-align: left;">Percent of population that is hispanic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">poverty_perc</td>
+<td style="text-align: left;">Percent of population for whom poverty status is determined living in poverty</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">unemployment</td>
+<td style="text-align: left;">Percent of population aged 16 or over and in labor force that are unemployed</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">turnover_perc</td>
+<td style="text-align: left;">Percent of population that moved in the past year</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">med_family_income_adj</td>
+<td style="text-align: left;">Median family income, inflation adjusted to 2021 dollars</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">med_gross_rent_adj</td>
+<td style="text-align: left;">Median gross rent, inflation adjusted to 2021 dollars</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">med_household_income_adj</td>
+<td style="text-align: left;">Median household income, inflation adjusted to 2021 dollars</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">median_value_adj</td>
+<td style="text-align: left;">Median housing value, inflation adjusted to 2021 dollars</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<hr>
+<p><br></p>
+<section id="geographic-crosswalks" class="level4">
+<h4 class="anchored" data-anchor-id="geographic-crosswalks">Geographic Crosswalks</h4>
+<p>Any census-designated geography consists of a collection of either tracts or blocks. We have created a series of crosswalk files that enable interoperability of census data across different geographic scales.</p>
+<p>Two crosswalk files contain geographic IDs that describe the nested hierarchy of 14 distinct geographic levels of aggregation. They help researchers select the most meaningful level of aggregation for their study.</p>
+<p><img src="https://raw.githubusercontent.com/UrbanInstitute/geocrosswalk/main/img/geo-unit-conversion.png" alt="Nested Geographic Units" width="500"></p>
+<p><br></p>
+<hr>
+<p><br></p>
+</section>
+</section>
+<section id="geographies-derived-from-blocks-11078297-blocksrows-748mb" class="level2">
+<h2 class="anchored" data-anchor-id="geographies-derived-from-blocks-11078297-blocksrows-748mb">Geographies Derived from Blocks (11,078,297 blocks/rows, 748MB)</h2>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/BLOCKX.csv"> DOWNLOAD BLOCKX CROSSWALK </a></p>
+<ul>
+<li><a href="https://www.census.gov/programs-surveys/bas/information/cdp.html">Census Designated Places</a></li>
+<li><a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/urban-rural.html">Urban/Rural Areas (Census Defined)</a></li>
+<li><a href="https://nces.ed.gov/surveys/annualreports/topical-studies/locale/definitions">Urban/Rural Areas (NCES Defined)</a></li>
+<li><a href="https://www2.census.gov/geo/pdfs/reference/GARM/Ch14GARM.pdf">Voting Districts</a></li>
+<li><a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html">ZIP Code equivalents (ZCTAs)</a></li>
+</ul>
+<p><br></p>
+<hr>
+<p><br></p>
+</section>
+<section id="geographies-derived-from-tracts-74091-tractsrows-15mb" class="level2">
+<h2 class="anchored" data-anchor-id="geographies-derived-from-tracts-74091-tractsrows-15mb">Geographies Derived from Tracts (74,091 tracts/rows, 15MB)</h2>
+<p><a class="button2" href="https://nccsdata.s3.us-east-1.amazonaws.com/geo/xwalk/TRACTX.csv"> DOWNLOAD TRACTX CROSSWALK </a></p>
+<ul>
+<li>States (State FIPS)</li>
+<li>Counties (County FIPS)</li>
+<li><a href="https://www.independent.co.uk/news/world/americas/us-map-11-separate-nations-colin-woodward-yankeedom-new-netherland-the-midlands-tidewater-greater-appalachia-a8078261.html">Woodard’s Cutural Regions</a></li>
+<li><a href="https://www.nature.com/articles/s41599-023-01611-3">American Cultural Regions (Louf et al.&nbsp;2023)</a></li>
+<li><a href="https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf">Census Regions</a></li>
+<li><a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/pumas.html">Public Use Microdata Areas (PUMAs)</a></li>
+<li><a href="https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/">Core Based Statistical Areas (CBSAs)</a></li>
+<li><a href="https://www.census.gov/geographies/reference-maps/2020/geo/csa.html">Combined Statistical Areas (CSAs)</a></li>
+</ul>
 <p><br></p>
 <hr>
 <p><br></p>
@@ -145,9 +995,9 @@ h4, .h4 {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
+  font-size: 18px;
   border-radius: 12px;
-  width: 150px;
+  width: 400px;
 }
 
 .button2 {
@@ -167,6 +1017,8 @@ h4, .h4 {
 table td {
   vertical-align: middle;
 }
+
+table.lightable-minimal { width: 30%; }
 
 blockquote {
     border-left: 4px solid #1696d2;

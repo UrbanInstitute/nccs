@@ -138,7 +138,7 @@ The data are organized into five files that have the following naming convention
 
 **Form Scope PC**: Datasets with form scope of PC will contain the smaller subset of full 990 form filers but contain a larger number of variables. 
 
-The PZ and PF versions of the data series are available from 1989-2022. The PC version is a more recent edition, available from 2012-2022.
+The PZ and PF versions of the data series are available from 1989-2019. The PC version is a more recent edition, available from 2012-2019.
 
 See the [Data Guide](https://nccs-data.urban.org/NCCS-data-guide.pdf) for more details. 
 
@@ -152,9 +152,7 @@ This is an important consideration when designing a sampling framework for a stu
 
 ## Definition of "Year" in File Names
 
-In the past, the NCCS Core data files were organized based on the dates when the tax returns were filed. For example, the 2015 dataset included all of the 990 tax returns that were received by the IRS in the 2015 calendar year.
-
-The new NCCS Core has been reorganized by the tax year, or the closest approximation we can get to the period of performance described by the 990 data. Time gets complicated because nonprofits can select their own accounting periods with fiscal years that can end in any month. As a result, the tax year does not align perfectly with the calendar year. For example, tax year 2018 can include activities from some months in 2018 and some months in 2019. But this new approach approximates the true period of nonprofit performance much more closely than organizing panels by filing dates.
+The NCCS Core data files are organized based on the dates when the tax returns were filed. For example, the 2015 dataset included all of the 990 tax returns that were received by the IRS in the 2015 calendar year.
 
 <br>
 <br>

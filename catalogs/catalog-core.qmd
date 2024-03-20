@@ -18,7 +18,7 @@ library( pander )
 
 GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
 d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
-source( paste0( GH.RAW, "build-catalog-functions.R" ) )
+source("build-catalog-functions.R")
 nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/"
 ```
 
@@ -54,7 +54,7 @@ Note that scope PZ datasets include a large number of organizations but a smalle
 
 **YEAR**
 
-Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.
+Files are organized by **filing year**. See the Research Handbook for details on the differences.
 
 <br>
 
