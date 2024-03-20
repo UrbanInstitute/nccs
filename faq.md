@@ -6,7 +6,9 @@ activeLink: /faq/
 ---
 
 
-## FOR NONPROFITS 
+
+
+## For Nonprofits 
 
 ### How do I select an NTEE code for my organization?
 
@@ -53,8 +55,3 @@ More details can be foundin [IRS Pub 557](https://www.irs.gov/publications/p557#
 
 <br>
 <br>
-
-## FOR DATA USERS 
-
-
-
