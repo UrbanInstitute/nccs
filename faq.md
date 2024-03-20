@@ -7,7 +7,7 @@ activeLink: /faq/
 
 
 
-## FOR NONPROFITS 
+## For Nonprofits 
 
 ### How Do I Select An NTEE Code For My Organization?
 
@@ -46,6 +46,4 @@ Correspondence Unit <br> 500 Main Street, Room 6403 <br> Cincinnati,
 Ohio 45202 <br>
 
 More details can be found [here](https://www.irs.gov/publications/p557)
-
-## FOR DATA USERS 
 
