@@ -24,6 +24,8 @@ NCCS helped design the NTEE system and we provide open data for the nonprofit se
 
 The IRS issues and maintains the official database of NTEE codes that have been assigned to nonprofits. You can look up your official NTEE code in the [IRS 990 Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). 
 
+You may find ProPublica's Nonprofit Explorer useful if you are searching for information on individual organizations or looking for completed 990 forms: https://projects.propublica.org/nonprofits/ 
+
 
 ### How can I change my current code?
 
