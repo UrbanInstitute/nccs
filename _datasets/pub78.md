@@ -162,6 +162,33 @@ cat(k)
 </table>
 
 
+## Deductability Code Meaning
+
+From the IRS website and [Publication 526](https://www.irs.gov/forms-pubs/about-publication-526):
+
+*In general, an individual who itemizes deductions may deduct contributions to most charitable organizations up to 50% (60% for cash contributions) of his or her adjusted gross income computed without regard to net operating loss carrybacks. Individuals generally may deduct charitable contributions to other organizations up to 30% of their adjusted gross income (computed without regard to net operating loss carrybacks). These limitations (and organizational status) are indicated as follows:*
+
+| **Code** | **Type of organization and use of contribution.**                                                                                                                                                                                                                                                                    | **Deductibility Limitation**     |
+|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
+| PC       | A public charity.                                                                                                                                                                                                                                                                                                    | 50% (60% for cash contributions) |
+| POF      | A private operating foundation.                                                                                                                                                                                                                                                                                      | 50% (60% for cash contributions) |
+| PF       | A private foundation.                                                                                                                                                                                                                                                                                                | 30% (generally)                  |
+| GROUP    | Generally, a central organization holding a group exemption letter, whose subordinate units covered by the group exemption are also eligible to receive tax-deductible contributions, even though they are not separately listed.                                                                                    | Depends on various factors       |
+| LODGE    | A domestic fraternal society, operating under the lodge system, but only if the contribution is to be used exclusively for charitable purposes.                                                                                                                                                                      | 30%                              |
+| UNKWN    | A charitable organization whose public charity status has not been determined.                                                                                                                                                                                                                                       | Depends on various factors       |
+| EO       | An organization described in section 170(c) of the Internal Revenue Code other than a public charity or private foundation.                                                                                                                                                                                          | Depends on various factors       |
+| FORGN    | A foreign-addressed organization. These are generally organizations formed in the United States that conduct activities in foreign countries. Certain foreign organizations that receive charitable contributions deductible pursuant to treaty are also included, as are organizations created in U.S. possessions. | Depends on various factors       |
+| SO       | A Type I, Type II, or functionally integrated Type III supporting organization.                                                                                                                                                                                                                                      | 50% (60% for cash contributions) |
+| SONFI    | A non-functionally integrated Type III supporting organization.                                                                                                                                                                                                                                                      | 50% (60% for cash contributions) |
+| SOUNK    | A supporting organization, unspecified type.                                                                                                                                                                                                                                                                         | 50% (60% for cash contributions) |
+
+
+*Contributions must actually be paid in cash or other property before the close of an individual's tax year to be deductible for that tax year, whether the individual uses the cash or accrual method.*
+
+*If an individual donates property other than cash to a qualified organization, the individual may generally deduct the fair market value of the property. If the property has appreciated in value, however, some adjustments may have to be made.*
+
+*The rules relating to how to determine fair market value are discussed in Publication 561, Determining the Value of Donated Property. For a more comprehensive discussion of the rules covering income tax deductions for charitable contributions by individuals, see Publication 526, Charitable Contributions.*
+
 <br>
 <br>
 <hr>
