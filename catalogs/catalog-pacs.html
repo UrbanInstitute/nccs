@@ -63,24 +63,65 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <hr>
 <p><br></p>
-<p><em>Last updated May 2023</em></p>
+<p><em>Last updated <strong>APRIL 2024</strong></em></p>
+<p>Contents:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">File Type</th>
+<th style="text-align: left;">Rows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">8871</td>
+<td style="text-align: left;">66,779</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8872</td>
+<td style="text-align: left;">48,294</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Schedule A</td>
+<td style="text-align: left;">7,661,688</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Schedule B</td>
+<td style="text-align: left;">6,272,489</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Schedule D</td>
+<td style="text-align: left;">165,759</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Schedule E</td>
+<td style="text-align: left;">15,179</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Schedule R</td>
+<td style="text-align: left;">61,603</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
 <section id="organizational-data" class="level2">
 <h2 class="anchored" data-anchor-id="organizational-data">Organizational Data</h2>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-FM-8871.csv" class="button"> FORM 8871 </a></p>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-D.csv" class="button"> SCHEDULE D </a></p>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-E.csv" class="button"> SCHEDULE E </a></p>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-R.csv" class="button"> SCHEDULE R </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-FM-8871.csv" class="button"> FORM 8871 </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-D.csv" class="button"> SCHEDULE D </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-E.csv" class="button"> SCHEDULE E </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-R.csv" class="button"> SCHEDULE R </a></p>
 </section>
 <section id="activities-data" class="level2">
 <h2 class="anchored" data-anchor-id="activities-data">Activities Data</h2>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-FM-8872.csv" class="button"> FORM 8872 </a></p>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-A.csv" class="button"> SCHEDULE A </a></p>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-B.csv" class="button"> SCHEDULE B </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-FM-8872.csv" class="button"> FORM 8872 </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-A.csv" class="button"> SCHEDULE A </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-B.csv" class="button"> SCHEDULE B </a></p>
 </section>
 <section id="corrupted-rows" class="level2">
 <h2 class="anchored" data-anchor-id="corrupted-rows">Corrupted Rows</h2>
 <p>The following rows could not be parsed because of special characters or other issues that break the ASCII code:</p>
-<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-XX-NEED-FIXING.txt" class="button"> NEED-FIXING.txt </a></p>
+<p><a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-XX-NEED-FIXING.txt" class="button"> NEED-FIXING.txt </a></p>
+<p>There are roughly 16,000 ill-structured rows in this file. They are provided for consistency of reporting and for individuals that want to manually fix the cases to ensure the dataset is as complete as possible.</p>
 <p><br></p>
 <hr>
 <p><br></p>
@@ -92,12 +133,15 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="tables">TABLES</h2>
 <p>Form 8871 Tables</p>
 <ul>
+<li><strong>Form 8871</strong>: 527 Political Action Committees organization attributes (name, location, etc.).</li>
 <li><strong>D</strong>: If Director and Officer records exist for an 8871 Form, each record will be printed out in a “D” record. The “D” records for a given 8871 Form will follow it’s related “1” Record. There may be several “D” records for any one “1” record.</li>
 <li><strong>E</strong>: If the PAC has provided an Election Authority Identification Number (EAIN) on the 8871 Form, each record will be printed out in an “E” record. The “E” records for a given 8871 Form will follow its related “1” Record. There may be several “E” records for any one “1” record.</li>
 <li><strong>R</strong>: If Related Entities records exist for an 8871 Form, each record will be printed out in a “R” record. The “R” records for a given 8871 Form will follow it’s related “1” Record. There may be several “R” records for any one “1” record.</li>
 </ul>
 <p>Form 8872 Tables</p>
 <ul>
+<li><strong>Form 8872</strong>: Required annual disclosures for 527 organizations.<br>
+</li>
 <li><strong>A</strong>: If a Schedule A exists for an 8872 Form, each Schedule A record will be printed out in an “A” record. The “A” records for a given 8872 Form will follow its related “2” Record. There may be several “A” records for any one “2” record.</li>
 <li><strong>B</strong>: If a Schedule B exists for an 8872 Form, each Schedule B record will be printed out in an “B” record. The “B” records for a given 8872 Form will follow its related “2” Record. There may be several “B” records for any one “2” record.</li>
 </ul>
@@ -686,15 +730,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="sched-d">SCHED-D</h3>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 16%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -860,15 +904,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="sched-e">SCHED-E</h3>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 18%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -946,15 +990,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="sched-r">SCHED-R</h3>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 15%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1833,15 +1877,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="sched-a">SCHED-A</h3>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 16%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2051,15 +2095,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="sched-b">SCHED-B</h3>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 16%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2272,15 +2316,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="header">HEADER</h3>
 <table class="table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 34%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
-<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -2413,15 +2457,15 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="footer">FOOTER</h3>
 <table class="table">
 <colgroup>
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 12%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
 </colgroup>
 <thead>
 <tr class="header">

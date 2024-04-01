@@ -18,35 +18,48 @@ execute:
 
 <br>
 
-*Last updated May 2023*
+*Last updated **APRIL 2024***
+
+Contents:
+
+|  File Type |      Rows |
+|:-----------|:----------|
+|       8871 |    66,779 |
+|       8872 |    48,294 |
+| Schedule A | 7,661,688 |
+| Schedule B | 6,272,489 |
+| Schedule D |   165,759 |
+| Schedule E |    15,179 |
+| Schedule R |    61,603 | 
+
+
+<br>
 
 ## Organizational Data
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-FM-8871.csv" class='button'> FORM 8871 </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-FM-8871.csv" class='button'> FORM 8871 </a>
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-D.csv" class='button'> SCHEDULE D </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-D.csv" class='button'> SCHEDULE D </a>
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-E.csv" class='button'> SCHEDULE E </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-E.csv" class='button'> SCHEDULE E </a>
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-R.csv" class='button'> SCHEDULE R </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-R.csv" class='button'> SCHEDULE R </a>
 
 ## Activities Data
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-FM-8872.csv" class='button'> FORM 8872 </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-FM-8872.csv" class='button'> FORM 8872 </a>
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-A.csv" class='button'> SCHEDULE A </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-A.csv" class='button'> SCHEDULE A </a>
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-SCHED-B.csv" class='button'> SCHEDULE B </a>
-
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-SCHED-B.csv" class='button'> SCHEDULE B </a>
 
 ## Corrupted Rows
 
-The following rows could not be parsed because of special characters or other issues that break the ASCII code: 
+The following rows could not be parsed because of special characters or other issues that break the ASCII code:
 
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2023-05-POL-ORGS-XX-NEED-FIXING.txt" class='button'> NEED-FIXING.txt </a>
+<a href="https://nccsdata.s3.us-east-1.amazonaws.com/public/pacs/2024-04-POL-ORGS-XX-NEED-FIXING.txt" class='button'> NEED-FIXING.txt </a>
 
-
-
+There are roughly 16,000 ill-structured rows in this file. They are provided for consistency of reporting and for individuals that want to manually fix the cases to ensure the dataset is as complete as possible.
 
 <br>
 
@@ -62,12 +75,14 @@ The [**data-dictionary.csv**](tidy-data-dictionary.csv) file is machine-readable
 
 Form 8871 Tables
 
+-   **Form 8871**: 527 Political Action Committees organization attributes (name, location, etc.). 
 -   **D**: If Director and Officer records exist for an 8871 Form, each record will be printed out in a "D" record. The "D" records for a given 8871 Form will follow it's related "1" Record. There may be several "D" records for any one "1" record.
 -   **E**: If the PAC has provided an Election Authority Identification Number (EAIN) on the 8871 Form, each record will be printed out in an "E" record. The "E" records for a given 8871 Form will follow its related "1" Record. There may be several "E" records for any one "1" record.
 -   **R**: If Related Entities records exist for an 8871 Form, each record will be printed out in a "R" record. The "R" records for a given 8871 Form will follow it's related "1" Record. There may be several "R" records for any one "1" record.
 
 Form 8872 Tables
 
+-   **Form 8872**: Required annual disclosures for 527 organizations.  
 -   **A**: If a Schedule A exists for an 8872 Form, each Schedule A record will be printed out in an "A" record. The "A" records for a given 8872 Form will follow its related "2" Record. There may be several "A" records for any one "2" record.
 -   **B**: If a Schedule B exists for an 8872 Form, each Schedule B record will be printed out in an "B" record. The "B" records for a given 8872 Form will follow its related "2" Record. There may be several "B" records for any one "2" record.
 
@@ -129,7 +144,7 @@ Form 8872 Tables
 ### SCHED-D
 
 | IRS_FIELD_NAME              | SIZE            | VALID_VALUES | FORMAT       | DESCRIPTION                                                  | FORMTYPE | ORDER | F_ORDER    | VARNAME                     |
-|:-------|:-------|:-------|:-------|:------------|:-------|-------:|:-------|:-------|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type                 | 1               | D            | Alphanumeric | Designates a Director/Officer Record for an 8871 Form Record | SCHED-D  |     1 | SCHED-D-01 | RECORD_TYPE                 |
 | Form ID Number              | Up to 38 digits |              | Numeric      |                                                              | SCHED-D  |     3 | SCHED-D-03 | FORM_ID_NUMBER              |
 | DIRECTOR ID                 | Up to 38 digits |              | Numeric      |                                                              | SCHED-D  |     5 | SCHED-D-05 | DIRECTOR_ID                 |
@@ -147,7 +162,7 @@ Form 8872 Tables
 ### SCHED-E
 
 | IRS_FIELD_NAME               | SIZE            | VALID_VALUES                                                                             | FORMAT       | DESCRIPTION                                | FORMTYPE | ORDER | F_ORDER    | VARNAME                      |
-|:-------|:-------|:--------------|:-------|:-------|:-------|-------:|:-------|:-------|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type                  | 1               | E                                                                                        | Alphanumeric | Designates an EAIN Record for an 8871 form | SCHED-E  |     1 | SCHED-E-01 | RECORD_TYPE                  |
 | Form ID Number               | Up to 38 digits |                                                                                          | Numeric      |                                            | SCHED-E  |     3 | SCHED-E-03 | FORM_ID_NUMBER               |
 | EAIN ID                      | Up to 38 digits |                                                                                          | Numeric      |                                            | SCHED-E  |     5 | SCHED-E-05 | EAIN_ID                      |
@@ -157,7 +172,7 @@ Form 8872 Tables
 ### SCHED-R
 
 | IRS_FIELD_NAME          | SIZE            | VALID_VALUES | FORMAT       | DESCRIPTION                                         | FORMTYPE | ORDER | F_ORDER    | VARNAME                 |
-|:-------|:-------|:-------|:-------|:-----------|:-------|-------:|:-------|:-------|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type             | 1               | R            | Alphanumeric | Designates a Related Entity Record for an 8871 Form | SCHED-R  |     1 | SCHED-R-01 | RECORD_TYPE             |
 | Form ID Number          | Up to 38 digits |              | Numeric      |                                                     | SCHED-R  |     3 | SCHED-R-03 | FORM_ID_NUMBER          |
 | ENTITY ID               | Up to 38 digits |              | Numeric      |                                                     | SCHED-R  |     5 | SCHED-R-05 | ENTITY_ID               |
@@ -242,7 +257,7 @@ Form 8872 Tables
 ### SCHED-A
 
 | IRS_FIELD_NAME               | SIZE            | VALID_VALUES | FORMAT       | DESCRIPTION                                                  | FORMTYPE | ORDER | F_ORDER    | VARNAME                      |
-|:-------|:-------|:-------|:-------|:------------|:-------|-------:|:-------|:-------|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type                  | 1               | A            | Alphanumeric | Designates Schedule A Record that relates to an 8872 Form ID | SCHED-A  |     1 | SCHED-A-01 | RECORD_TYPE                  |
 | Form ID Number               | Up to 38 digits |              | Numeric      |                                                              | SCHED-A  |     3 | SCHED-A-03 | FORM_ID_NUMBER               |
 | SCHED A ID                   | Up to 38 digits |              | Numeric      |                                                              | SCHED-A  |     5 | SCHED-A-05 | SCHED_A_ID                   |
@@ -264,7 +279,7 @@ Form 8872 Tables
 ### SCHED-B
 
 | IRS_FIELD_NAME              | SIZE            | VALID_VALUES | FORMAT       | DESCRIPTION                                                  | FORMTYPE | ORDER | F_ORDER    | VARNAME                     |
-|:-------|:-------|:-------|:-------|:------------|:-------|-------:|:-------|:-------|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type                 | 1               | B            | Alphanumeric | Designates Schedule B Record that relates to an 8872 Form ID | SCHED-B  |     1 | SCHED-B-01 | RECORD_TYPE                 |
 | Form ID Number              | Up to 38 digits |              | Numeric      |                                                              | SCHED-B  |     3 | SCHED-B-03 | FORM_ID_NUMBER              |
 | SCHED B ID                  | Up to 38 digits |              | Numeric      |                                                              | SCHED-B  |     5 | SCHED-B-05 | SCHED_B_ID                  |
@@ -288,7 +303,7 @@ Form 8872 Tables
 ### HEADER
 
 | IRS_FIELD_NAME    | SIZE     | VALID_VALUES                              | FORMAT       | DESCRIPTION                                                                                                                                                    | FORMTYPE | ORDER | F_ORDER   | VARNAME           |
-|:-----|:-----|:-----|:-----|:------------------------|:-----|-----:|:-----|:-----|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type Code  | 1        | H                                         | Character    | Designates a file header                                                                                                                                       | HEADER   |     1 | HEADER-01 | RECORD_TYPE_CODE  |
 | Transmission Date | -8       | SYSDATE                                   | Alphanumeric | Date file is created                                                                                                                                           | HEADER   |     3 | HEADER-03 | TRANSMISSION_DATE |
 |                   | yyyymmdd |                                           |              |                                                                                                                                                                | HEADER   |     4 | HEADER-04 |                   |
@@ -303,7 +318,7 @@ Form 8872 Tables
 ### FOOTER
 
 | IRS_FIELD_NAME    | SIZE     | VALID_VALUES | FORMAT       | DESCRIPTION                       | FORMTYPE | ORDER | F_ORDER   | VARNAME           |
-|:-------|:-------|:-------|:-------|:--------|:-------|-------:|:-------|:-------|
+|:-------|:-------|:-------|:-------|:-------|:-------|-------:|:-------|:-------|
 | Record Type Code  | 1        | F            | Character    | Designates a file header          | FOOTER   |     1 | FOOTER-01 | RECORD_TYPE_CODE  |
 | Transmission Date | 8        | SYSDATE      | Alphanumeric | Date on which the file is created | FOOTER   |     3 | FOOTER-03 | TRANSMISSION_DATE |
 |                   | yyyymmdd |              |              |                                   | FOOTER   |     4 | FOOTER-04 |                   |
