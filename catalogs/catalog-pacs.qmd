@@ -22,16 +22,15 @@ execute:
 
 Contents:
 
-|  File Type |      Rows |
-|:-----------|:----------|
-|       8871 |    66,779 |
-|       8872 |    48,294 |
-| Schedule A | 7,661,688 |
-| Schedule B | 6,272,489 |
-| Schedule D |   165,759 |
-| Schedule E |    15,179 |
-| Schedule R |    61,603 | 
-
+| File Type  | Content                          |  Rows     |
+|:-----------|:---------------------------------|:----------|
+| 8871       | organization details             | 66,779    |
+| 8872       | required annual disclosures      | 48,294    |
+| Schedule A | individual donations             | 7,661,688 |
+| Schedule B | organizational donations         | 6,272,489 |
+| Schedule D | director and officer information | 165,759   |
+| Schedule E | election authority IDs           | 15,179    |
+| Schedule R | related entities records         | 61,603    |
 
 <br>
 
@@ -75,14 +74,14 @@ The [**data-dictionary.csv**](tidy-data-dictionary.csv) file is machine-readable
 
 Form 8871 Tables
 
--   **Form 8871**: 527 Political Action Committees organization attributes (name, location, etc.). 
+-   **Form 8871**: 527 Political Action Committees organization attributes (name, location, etc.).
 -   **D**: If Director and Officer records exist for an 8871 Form, each record will be printed out in a "D" record. The "D" records for a given 8871 Form will follow it's related "1" Record. There may be several "D" records for any one "1" record.
 -   **E**: If the PAC has provided an Election Authority Identification Number (EAIN) on the 8871 Form, each record will be printed out in an "E" record. The "E" records for a given 8871 Form will follow its related "1" Record. There may be several "E" records for any one "1" record.
 -   **R**: If Related Entities records exist for an 8871 Form, each record will be printed out in a "R" record. The "R" records for a given 8871 Form will follow it's related "1" Record. There may be several "R" records for any one "1" record.
 
 Form 8872 Tables
 
--   **Form 8872**: Required annual disclosures for 527 organizations.  
+-   **Form 8872**: Required annual disclosures for 527 organizations.\
 -   **A**: If a Schedule A exists for an 8872 Form, each Schedule A record will be printed out in an "A" record. The "A" records for a given 8872 Form will follow its related "2" Record. There may be several "A" records for any one "2" record.
 -   **B**: If a Schedule B exists for an 8872 Form, each Schedule B record will be printed out in an "B" record. The "B" records for a given 8872 Form will follow its related "2" Record. There may be several "B" records for any one "2" record.
 

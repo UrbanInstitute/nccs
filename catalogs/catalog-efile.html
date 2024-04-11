@@ -166,16 +166,18 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
 <p>Efile data has been parsed into 125 tables that correspond to sections (“Parts”) on 990 Forms and Schedules. All years use a consistent data dictionary.</p>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="buttonx" target="_blank"> <b>DATA DICTIONARY</b> </a></p>
+<p>An archive of historic 990 Forms and Schedules is available from the NODC.</p>
+<p><a href="https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master/01-irs-990_forms" class="buttonx" target="_blank"> 990 PDF’s BY YEAR: 1951-2022 </a></p>
 <p><br></p>
 <hr>
 <p><br></p>
 </section>
 <section id="coverage" class="level2">
 <h2 class="anchored" data-anchor-id="coverage">Coverage</h2>
-<p>Non-mandatory electronic filing for tax-exempt organizations started around 2010 (note that tax year lags the calendar year by 12-18 months). Utilization of electronic filing options (versus paper returns) grew steadily over the next decade.</p>
+<p>Non-mandatory electronic filing for tax-exempt organizations started around 2010. Utilization of electronic filing options grew steadily over the next decade (see the table below).</p>
 <p>Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. <em>The schemas needed to make sense of the XML file structures, however, have not been made public.</em></p>
 <p>Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations.</p>
-<p><strong>990 Efile Returns by FormType and TaxYear (990 Data Commons)</strong></p>
+<p><strong>990 Efile Returns by FormType and TaxYear (990 Data Commons, Feb.&nbsp;2024)</strong></p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -301,9 +303,9 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p><em>Updated February 2024</em></p>
 <p>The NCCS downloads below include data from 990 and 990EZ returns and their associated schedules.</p>
 <p>The 990PF fields have been mapped within the Concordance File, so technically <a href="https://github.com/Nonprofit-Open-Data-Collective/990pf-dev">it is possible to build 990PF tables with the irs990efile package</a>. Due to the complexity of many 990PF tables (mandatory fields are often formatted as Schedule O amendments or file attachments that require additional parsing) we have not created public files for widespread distribution.</p>
+<p>Efile datasets are organized by TAX YEAR, as that is the best approximation for the calendar year in which the nonprofit activities occurred. Nonprofits can select the month in which their fiscal ends, and tax filings are due 5 months after the end of the fiscal year (the filing date). The tax year (F9_00_TAX_YEAR) is the same as the fiscal year start date (F9_00_TAX_PERIOD_BEGIN_DATE).</p>
 <p><strong>NOTE:</strong></p>
 <p>Tables from 2009 to 2022 are currently available.</p>
 <p>The IRS releases electronic returns at regularly intervals (typically monthly). The most recent year will typically be a partial file that contains the data available at the time the database was built.</p>

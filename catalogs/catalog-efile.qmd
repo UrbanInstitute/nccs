@@ -127,6 +127,10 @@ Efile data has been parsed into 125 tables that correspond to sections ("Parts")
 
 <a href='https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html' class='buttonx' target='_blank'> <b>DATA DICTIONARY</b> </a>
 
+An archive of historic 990 Forms and Schedules is available from the NODC.
+
+<a href='https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master/01-irs-990_forms' class='buttonx' target='_blank'> 990 PDF's BY YEAR: 1951-2022 </a>
+
 <br>
 
 <hr>
@@ -135,13 +139,13 @@ Efile data has been parsed into 125 tables that correspond to sections ("Parts")
 
 ## Coverage
 
-Non-mandatory electronic filing for tax-exempt organizations started around 2010 (note that tax year lags the calendar year by 12-18 months). Utilization of electronic filing options (versus paper returns) grew steadily over the next decade.
-
+Non-mandatory electronic filing for tax-exempt organizations started around 2010. Utilization of electronic filing options grew steadily over the next decade (see the table below).
+ 
 Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. *The schemas needed to make sense of the XML file structures, however, have not been made public.*
 
 Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations.
 
-**990 Efile Returns by FormType and TaxYear (990 Data Commons)**
+**990 Efile Returns by FormType and TaxYear (990 Data Commons, Feb. 2024)**
 
 |      |     990 |   990EZ |   990PF |   990T |
 |:-----|--------:|--------:|--------:|-------:|
@@ -162,11 +166,11 @@ Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt
 | 2021 | 319,445 | 192,642 | 116,404 | 22,469 |
 | 2022 | 158,730 | 135,775 |  81,631 |  7,154 |
 
-*Updated February 2024*
-
 The NCCS downloads below include data from 990 and 990EZ returns and their associated schedules.
 
 The 990PF fields have been mapped within the Concordance File, so technically [it is possible to build 990PF tables with the irs990efile package](https://github.com/Nonprofit-Open-Data-Collective/990pf-dev). Due to the complexity of many 990PF tables (mandatory fields are often formatted as Schedule O amendments or file attachments that require additional parsing) we have not created public files for widespread distribution.
+
+Efile datasets are organized by TAX YEAR, as that is the best approximation for the calendar year in which the nonprofit activities occurred. Nonprofits can select the month in which their fiscal ends, and tax filings are due 5 months after the end of the fiscal year (the filing date). The tax year (F9_00_TAX_YEAR) is the same as the fiscal year start date (F9_00_TAX_PERIOD_BEGIN_DATE). 
 
 **NOTE:**
 
@@ -212,26 +216,25 @@ Since schedules are not required for most 990 filers the corresponding schedule 
 **Schedule Prevalence in a Single Tax Year:**
 
 | 990 Schedule | Number of Filers |
-|:--------- |:------------- |
-| SCHED-A   |       377,609 |
-| SCHED-B   |       208,367 |
-| SCHED-C   |        34,831 |
-| SCHED-D   |       246,227 |
-| SCHED-E   |        17,536 |
-| SCHED-F   |        15,471 |
-| SCHED-G   |        96,717 |
-| SCHED-H   |         1,850 |
-| SCHED-I   |        67,438 |
-| SCHED-J   |        65,039 |
-| SCHED-K   |         5,387 |
-| SCHED-L   |        26,539 |
-| SCHED-M   |        281,73 |
-| SCHED-N   |         4,753 |
-| SCHED-O   |       480,069 |
-| SCHED-R   |        70,464 |
+|:-------------|:-----------------|
+| SCHED-A      | 377,609          |
+| SCHED-B      | 208,367          |
+| SCHED-C      | 34,831           |
+| SCHED-D      | 246,227          |
+| SCHED-E      | 17,536           |
+| SCHED-F      | 15,471           |
+| SCHED-G      | 96,717           |
+| SCHED-H      | 1,850            |
+| SCHED-I      | 67,438           |
+| SCHED-J      | 65,039           |
+| SCHED-K      | 5,387            |
+| SCHED-L      | 26,539           |
+| SCHED-M      | 281,73           |
+| SCHED-N      | 4,753            |
+| SCHED-O      | 480,069          |
+| SCHED-R      | 70,464           |
 
 [Schedule Details](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/blob/master/README.md#form-990-and-schedule-sections)
-
 
 <br> <br>
 
