@@ -29,14 +29,14 @@ Using a mix of research methodologies and data sources, the project fills gaps i
 
 ## Project History 
 
+
 {% include timeline.html %}
 
 
 
-## Bibliography
+### Bibliography
 
-### Charities Regulation and Oversight Project Policy Conference  
-**"The Future of State Charities Regulation"**  
+**Charities Regulation and Oversight Project Policy Conference: The Future of State Charities Regulation**  
 _**Columbia University Law School, 2013**_  
 
 Charity Oversight: An Alternative Approach  
