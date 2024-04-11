@@ -140,7 +140,29 @@
     - name: linkedin
       url: https://www.linkedin.com/in/lewis-faulk-222a3652/
   projects: [nptrends]
-  
+
+
+
+
+##########
+##########  TERESA HARRISON
+##########
+
+- id: tharrison
+  first: Teresa
+  last: Harrison
+  title: Professor
+  bio: Professor and Academic Director of the Center for Nonprofit Governance
+  email: nccs@urban.org
+  team: collaborator
+  image: people/tharrison.jpg
+  affiliation: 
+    - name: Drexel University
+  social:
+    - name: linkedin
+      url: https://www.lebow.drexel.edu/people/teresaharrison
+  projects: [regulation]
+
 ##########
 ##########  JESSICA KELLY
 ##########
