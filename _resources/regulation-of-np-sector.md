@@ -1,7 +1,6 @@
 ---
 title: Regulation of Nonprofits and Philanthropy Project
 description: A project advancing research and practice on nonprofit regulatory frameworks and their impact on the sector
-date: ''
 featured: true
 featuredOrder: 2
 type: project
