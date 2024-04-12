@@ -8,7 +8,7 @@ layout: project
 project-name: regulation
 categories:
   - survey
-abstract: "The Regulation of Nonprofits and Philanthropy Project is an initiative of Urban Institute’s Center on Nonprofits and Philanthropy. Organized in conjunction with the Tax Policy and Charities Project at the Urban Institute, the project will focus on empirical research that addresses the current status of the regulatory system and the effects of regulations on nonprofit organizations and philanthropy."
+abstract: "The Regulation of Nonprofits and Philanthropy Project, hosted at The Urban Institute, conducts research on the regulatory frameworks that govern the nonprofit sector with the goals of 1) systematically documenting current regulatory frameworks across states, 2) deepening our understanding of how different policies impact nonprofits, and 3) promoting the diffusion of best practices across states. It brings together cross-disciplinary groups of scholars and experts to advance empirical research and our understanding of how regulation effects nonprofit organizations and philanthropy. The work has been done in partnership with the Center on Nonprofits and Philanthropy, the Tax Policy and Charities Project, Indiana University, the University of Pennsylvania's College of Law, Columbia University's School of Law, and the National Center for Charitable Statistics."
 primaryLinks:
   - text: Project Overview
     href: 'https://www.urban.org/sites/default/files/2023-10/Regulation%20of%20Nonprofits%20and%20Philanthropy%20description.pdf'
@@ -31,22 +31,22 @@ pubs:
 
 ## Project History 
 
-Urban Institute’s Regulation of Nonprofits and Philanthropy project, founded and led by Elizabeth T. Boris and Cindy M. Lott, conducts research on the regulatory framework of the nonprofit sector (https://www.urban.org/policy-centers/center-nonprofits-andphilanthropy/projects/regulation-charitable-sector-project). The Regulation Project’s major goals are threefold: 1) document, 2) enhance understanding of and 3) promote dialogue on the state and federal regulatory framework and its effect on charities, philanthropy, and the nonprofit sector in the US. The Regulation Project was founded in 2015 at Urban Institute, subsuming the state-focused research, trainings and program offerings housed at Columbia Law
-School from 2006-2015 as the “Charities Regulation and Oversight Project,” developed and led by Cindy M. Lott within the National State Attorneys General Program at Columbia University.
+<br> 
 
 {% include timeline.html %}
+
+<br> 
+
+The initial project was developed by Cindy M. Lott at Columbia University Law School over the period 2006-2015 with the title of “Charities Regulation and Oversight Project”. The Regulation Project was founded in 2015 at Urban Institute, subsuming the state-focused research, trainings and program offerings housed at 
 
 Using a mix of research methodologies and data sources, this project fills gaps in our understanding of the nonprofit sector regulatory framework. The aim is to develop frameworks that are elastic enough to encompass the constantly evolving nonprofit and philanthropic sectors and provide resources to disseminate best practices.
 
 <br>
 <br>
 
+## The Database
 
-<div class="flow">
-  {% include components/divider.html
-    header = "The Legal Compendium Database"
-    style = "secondary" %}
-</div>
+
 
 The Legal Compendium is a downloadable Excel spreadsheet with statutory citations showing the following information for each of the 56 jurisdictions featured in this research: the grant of jurisdiction to attorneys general and other state agencies, the registration and reporting requirements applicable to charitable entities and their fundraisers, the oversight responsibilities of state charity regulators in connection with certain transactions involving charitable entities, the obligations of charities to notify the attorney general of those transactions, and some enforcement remedies available to charity regulators. 
 
@@ -55,7 +55,7 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
-  text = "Download the Dataset"
+  text = "Dataset"
   href = "#"
   style = "primary"
 %}
@@ -63,28 +63,35 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 {% include components/button.html
   text = "Data Dictionary"
   href = "#"
-  style = "secondary"
+  style = "text"
 %}
 
 {% include components/button.html
   text = "Research Guide"
   href = "#"
-  style = "secondary"
+  style = "text"
 %}
 
 {% include components/button.html
   text = "Version History"
   href = "#"
-  style = "secondary"
+  style = "text"
 %}
 
 <div>
 
 
-**Citing the Database:**
+<div class="flow">
+  {% include components/divider.html
+    header = "Citing the Database"
+    style = "secondary" %}
+</div>
 
-Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell: 
-"Legal Compendium to the Regulation of Nonprofits and Philanthropy Project." Available on Harvard Dataverse: DOI. Updated 2024 (Version 4.0). 
+<br> 
+
+Please use the following citation for the data: 
+
+Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell: "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project." Available on Harvard Dataverse: DOI. Updated 2024 (Version 4.0). 
 
 
 <br>
@@ -92,44 +99,37 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 
 
 
+### Past Events 
 
-<div class="flow">
-  {% include components/divider.html
-    header = "Past Events"
-    style = "secondary" %}
-</div>
+<br> 
 
+- Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight
+- March 25, 2021 - March 26, 2021
+- The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation. Meeting agenda available here.
 
-Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight
-March 25, 2021 - March 26, 2021
+- State Regulation and Enforcement in the Charitable Sector
+- September 26, 2016
+- In this event participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda. Meeting materials available Here.
 
-The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation. Meeting agenda available here.
+- Data Collection, Sharing, and Transparency in the Tax-Exempt Sector
+- December 1, 2015
+- The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders. Meeting materials available Here.
 
-State Regulation and Enforcement in the Charitable Sector
-September 26, 2016
-
-In this event participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda. Meeting materials available Here.
-
-Data Collection, Sharing, and Transparency in the Tax-Exempt Sector
-December 1, 2015
-
-The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders. Meeting materials available Here.
-
-
-
-
-
+<br>
 
 ### Publications
 
-<div class="references text-sm" markdown="1">
-
+<br> 
 <div class="flow">
   {% include components/divider.html
     header = "Framework Development"
     style = "secondary" %}
 </div>
+<br>
 
+
+<div class="references text-sm" markdown="1">
+  
 Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School, published online, Columbia University’s Academic Commons (https://academiccommons.columbia.edu/?f%5Bseries_facet%5D%5B%5D=2013+Charities+Regulation+and+Oversight+Project+Policy+Conference), New York, 2013. {link no longer works – do you have a copy?} https://academiccommons.columbia.edu/search?q=Charities+Regulation+and+Oversight+Project&search_field=all_fields: this is a link to a list of results of papers from the conference; there are 25 separate papers that are returned by this search, and can all be downloaded from Columbia’s Academic Commons
 
 Lott, Cindy M., Elizabeth T. Boris, Karin Kunstler Goldman, Belinda J. Johns, Marcus Gaddy, and Maura Farrell. 2016. State Regulation and Enforcement in the Charitable Sector. Washington D.C.: The Urban Institute.
@@ -138,14 +138,18 @@ Lott, Cindy M. and Marion Fremont-Smith, State Regulatory and Legal Framework, i
 
 Boris, Elizabeth T. and Cindy M. Lott. 2017. “Reflections on Challenged Regulators.” Regulating Charities: The Inside Story. Edited by M. McGregor-Lowndes and R. Wyatt. New York, NY: Routledge.
 
+</div>
 
+<br>
 <div class="flow">
   {% include components/divider.html
     header = "Applications of the Framework"
     style = "secondary" %}
 </div>
+<br>
 
-
+<div class="references text-sm" markdown="1">
+  
 Dietz, Nathan, Cindy M. Lott, Putnam Barber, and Mary Shelly, State Charitable Solicitations Registration Regulations and Fundraising Performance: Theoretical Considerations and Preliminary Results. Nonprofit Policy Forum, 8(2), 2017, 183-204.
 
 Lott, Cindy M., Mary L. Shelly, Nathan Dietz, and Marcus Gaddy, Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and its Impact on Charitable Solicitation Laws. Washington, DC: Urban Institute (2018) found at https://www.urban.org/research/publication/bifurcationstate-regulation-charities.
@@ -192,67 +196,68 @@ State Regulation and Enforcement in the Charitable Sector
 September 13, 2016
 Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell
 
+</div>
 
-
+<br>
 <div class="flow">
   {% include components/divider.html
     header = "Charity Regulation and Oversight Conference: February 26, 2013"
     style = "secondary" %}
 </div>
+<br>
 
+<div class="references" markdown="1">
 
+Marcus S. Owens (2013): "Charity Oversight: An Alternative Approach." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8154F1D  
 
-Marcus S. Owens (2013): "Charity Oversight: An Alternative Approach." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8154F1D  
+Marion R. Fremont-Smith  (2013): "The Future of State Regulation of Charities." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D82R3PQ2  
 
-Marion R. Fremont-Smith  (2013): "The Future of State Regulation of Charities." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D82R3PQ2  
+Douglas M. Mancino (2013): "The Affordable Care Act and State Charities Regulators." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8J38QG1  
 
-Douglas M. Mancino (2013): "The Affordable Care Act and State Charities Regulators." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8J38QG1  
+Mark E. Chopko (2013): "Some Thoughts About Regulating Religious Charity." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8DB7ZSR  
+Mary Beckman, Eric Carriker (2013): "State Charities Regulation In A Dynamic Health Care Market." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8ZC80T9  
 
-Mark E. Chopko (2013): "Some Thoughts About Regulating Religious Charity." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8DB7ZSR  
+Rick Cohen (2013): "A New Ethic of Transparency in Charities: The Shared Goal of Journalists and State Regulators." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8WD3XJQ  
 
-Mary Beckman, Eric Carriker (2013): "State Charities Regulation In A Dynamic Health Care Market." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8ZC80T9  
+George Jepsen (2013): "The Role of State Charities Regulators in Protecting Public Trust in Charitable Responses to Disaster." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8251G5S  
 
-Rick Cohen (2013): "A New Ethic of Transparency in Charities: The Shared Goal of Journalists and State Regulators." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8WD3XJQ  
+Linda Sugin  (2013): "Improving Charity Governance with Advance Rulings." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8MW2F32  
 
-George Jepsen (2013): "The Role of State Charities Regulators in Protecting Public Trust in Charitable Responses to Disaster." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8251G5S  
+Putnam Barber (2013): "The Official Word: What State Charities Webpages Tell The Public." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8348H9M  
 
-Linda Sugin  (2013): "Improving Charity Governance with Advance Rulings." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8MW2F32  
+Dana Brakman Reiser  (2013): "Regulating Social Enterprise." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8TM7830  
 
-Putnam Barber (2013): "The Official Word: What State Charities Webpages Tell The Public." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8348H9M  
+Karin Kunstler-Goldman; Belinda Johns (2013): "Evolving State Regulation: From Index Cards To The Internet." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8NV9G6F  
 
-Dana Brakman Reiser  (2013): "Regulating Social Enterprise." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8TM7830  
+WIlliam P. Marshall (2013): "Government Regulation of Religious Organizations: The Example of Religious Fraud." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D88P5XGR  
 
-Karin Kunstler-Goldman; Belinda Johns (2013): "Evolving State Regulation: From Index Cards To The Internet." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8NV9G6F  
+Robert A. Wexler  (2013): "Attorney General Regulation of Hybrid Entities as Charitable Trusts." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8Z03661  
 
-WIlliam P. Marshall (2013): "Government Regulation of Religious Organizations: The Example of Religious Fraud." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D88P5XGR  
+Hugh R. Jones  (2013): "The Importance of Transparency in the Governmental Regulation of the Nonprofit Sector: Room for Improvement?" The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D86H4FG7  
 
-Robert A. Wexler  (2013): "Attorney General Regulation of Hybrid Entities as Charitable Trusts." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8Z03661  
+Frances R. Hill (2013): "Exempt Entities as Government Contractors: Regulation Through Cooperative Federalism." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8FB50W2  
 
-Hugh R. Jones  (2013): "The Importance of Transparency in the Governmental Regulation of the Nonprofit Sector: Room for Improvement?" The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D86H4FG7  
+Lloyd Hitoshi Mayer (2013): "Limits On State Regulation Of Religious Organizations: Where We Are And Where We Are Going." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D84X55SV  
 
-Frances R. Hill (2013): "Exempt Entities as Government Contractors: Regulation Through Cooperative Federalism." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8FB50W2  
+David Edward Spenard (2013): "Crashing The Party: A State Regulator’s Observations and Suggestions Regarding The Near-Term Supervision of The Simultaneous Pursuit of Margin And Mission." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8RN35TC  
 
-Lloyd Hitoshi Mayer (2013): "Limits On State Regulation Of Religious Organizations: Where We Are And Where We Are Going." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D84X55SV  
+James J. Fishman (2013): "Strange Silence: Attorneys General Reaction to The Internal Revenue Service’s Corporate Governance Initiative." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8K35RMD  
 
-David Edward Spenard (2013): "Crashing The Party: A State Regulator’s Observations and Suggestions Regarding The Near-Term Supervision of The Simultaneous Pursuit of Margin And Mission." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8RN35TC  
+Tim Delaney  (2013): "Advocacy by Charitable Nonprofits: Flipping The Accountability Lens To Focus On Government Actions." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8PV6HBT  
 
-James J. Fishman (2013): "Strange Silence: Attorneys General Reaction to The Internal Revenue Service’s Corporate Governance Initiative." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8K35RMD  
+Scott Harshbarger (2013): "The Case For A Renewal Of Civic Capitalism In The Independent Sector." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D85X26WS  
 
-Tim Delaney  (2013): "Advocacy by Charitable Nonprofits: Flipping The Accountability Lens To Focus On Government Actions." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8PV6HBT  
+James J. Fishman (2013): "Strange Silence: Attorneys General Reaction to The Internal Revenue Service’s Corporate Governance Initiative." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8K35RMD  
 
-Scott Harshbarger (2013): "The Case For A Renewal Of Civic Capitalism In The Independent Sector." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D85X26WS  
+Scott Harshbarger (2013): "The Case For A Renewal Of Civic Capitalism In The Independent Sector." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D85X26WS  
 
-James J. Fishman (2013): "Strange Silence: Attorneys General Reaction to The Internal Revenue Service’s Corporate Governance Initiative." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8K35RMD  
+Elizabeth M. Grant (2013): "Hybrid Enterprises and the Application of State Charitable Regulatory Principles as a Guide Toward an Effective Regulatory Framework." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8SN06X9   
 
-Scott Harshbarger (2013): "The Case For A Renewal Of Civic Capitalism In The Independent Sector." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D85X26WS  
+Anthony Johnstone (2013): "Politics and The Public Benefit Corporation." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8XD0ZNN  
 
-Elizabeth M. Grant (2013): "Hybrid Enterprises and the Application of State Charitable Regulatory Principles as a Guide Toward an Effective Regulatory Framework." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8SN06X9   
+Karen Gano (2013): "The Fundamental Role of The States In Governance Issues." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D89K4866  
 
-Anthony Johnstone (2013): "Politics and The Public Benefit Corporation." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D8XD0ZNN  
-
-Karen Gano (2013): "The Fundamental Role of The States In Governance Issues." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D89K4866  
-
-Robert Cooper (2013): "Deaccessioning and Donor Intent – Lessons Learned from Fisk’s Stieglitz Collection." The Future of State Charities Regulation Conference, Columbia University Law School, NY. **DOI:** https://doi.org/10.7916/D86T0JMV  
+Robert Cooper (2013): "Deaccessioning and Donor Intent – Lessons Learned from Fisk’s Stieglitz Collection." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D86T0JMV  
 
 </div>
 
