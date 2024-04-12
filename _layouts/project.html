@@ -45,7 +45,7 @@ layout: default
 {% if page.abstract %}
 <div class="content flow">
 {% include components/divider.html
-  header = "Abstract"
+  header = "Overview"
   style = "secondary"
 %}
 {% for paragraph in page.abstract %}
@@ -118,13 +118,13 @@ layout: default
 
 {% if page.pubs %}
 <div class="full">
-<div class="content-cta -dark">
+<div class="content-cta -light">
 <div class="content-cta__text flow flow-1">
 
 <h2 style='color: white'>Related Publications</h2>
 
 <br>
-  
+
 <span class="pubs-table">
 <table style='font-family: "Source Sans Pro", helvetica, sans-serif; color: white; margin-left: auto; margin-right: auto; font-size: 15px'>
 <tbody>
@@ -137,7 +137,7 @@ layout: default
 </tbody>
 </table>
 </span>
-  
+
 </div>
 </div>
 </div>
@@ -177,7 +177,7 @@ layout: default
 
 
 <style>
-  
+
 .pubs-table th, td {
   color: white;
   background-color: inherit;

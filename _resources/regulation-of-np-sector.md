@@ -18,26 +18,42 @@ primaryLinks:
 pubs:
   - title: 'Bifurcation of State Regulation of Charities' 
     href: 'https://www.urban.org/research/publication/bifurcation-state-regulation-charities' 
-    link-text: link
+    link-text: html
   - title: 'Testing Nonprofit State Culture: Its Impact on the Health of the Nonprofit Sector' 
     href: 'https://www.researchgate.net/publication/328729120_Testing_Nonprofit_State_Culture_Its_Impact_on_the_Health_of_the_Nonprofit_Sector'
-    link-text: link
+    link-text: html
 ---
 
-
-Using a mix of research methodologies and data sources, the project fills gaps in knowledge and host discussions that will begin to address the strengths and weaknesses of the current regulatory framework and make recommendations to promote a regulatory framework that is elastic enough to encompass the significant changes taking place in the nonprofit and philanthropic sector.
 
 ## Project History 
 
 
 {% include timeline.html %}
 
+Using a mix of research methodologies and data sources, this project fills gaps in our understanding of the nonprofit sector regulatory framework. The aim is to develop frameworks that are elastic enough to encompass the constantly evolving nonprofit and philanthropic sectors and provide resources to disseminate best practices.
 
 
-### Bibliography
+### Extended Bibliography
 
-**Charities Regulation and Oversight Project Policy Conference: The Future of State Charities Regulation**  
-_**Columbia University Law School, 2013**_  
+
+<div class="flow">
+  {% include components/divider.html
+    header = "Regulation and Oversight Conference"
+    style = "secondary" %}
+</div>
+
+
+<div>
+  <p class="text-sm">
+  <b>CHARITY REGULATION AND OVERSIGHT PROJECT</b>  
+  <b>Policy Conference: The Future of State Charities Regulation</b> 
+  <b><i>Columbia University Law School, 2013</i></b>
+  </p>
+</div>
+
+  
+
+<div class="references text-xs">
 
 Charity Oversight: An Alternative Approach  
 Marcus S. Owens
@@ -143,6 +159,7 @@ Deaccessioning and Donor Intent – Lessons Learned from Fisk’s Stieglitz Coll
 Robert Cooper   
 https://doi.org/10.7916/D86T0JMV  
 
+</div>
 
 
 
