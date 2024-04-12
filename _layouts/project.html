@@ -55,11 +55,7 @@ layout: default
 {% endif %}
 
 
-
 {% if page.primaryLinks %}
-
-<hr>
-
 <div class="content flow flex flex-col">
 {% for link in page.primaryLinks %}
   <div class="flow-1/2">
@@ -73,6 +69,10 @@ layout: default
 {% endfor %}
 </div>
 {% endif %}
+
+<hr>
+
+
 
 {% if page.citation %}
   {% include components/citation.html
@@ -118,10 +118,10 @@ layout: default
 
 {% if page.pubs %}
 <div class="full">
-<div class="content-cta -light">
+<div class="content-cta -dark">
 <div class="content-cta__text flow flow-1">
 
-<h2 style='color: white'>Related Publications</h2>
+<h2 style='color: white'>Highlighted Resources</h2>
 
 <br>
 
@@ -131,7 +131,7 @@ layout: default
 {% for pub in page.pubs %}
   <tr>
    <td style="text-align:left;"> <a class="btn -light " href="{{ pub.href }}" target="_blank"> {{ pub.link-text }} </a> </td>
-   <td style="text-align:left;"> {{ pub.title }} </td>
+   <td style="text-align:left;"> {{ pub.title }} {{ pub.full-citation }} </td>
   </tr>
 {% endfor %}
 </tbody>
