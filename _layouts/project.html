@@ -56,7 +56,8 @@ layout: default
 
 
 {% if page.primaryLinks %}
-<div class="content flow flex flex-col">
+<div class="flex flex-wrap gap">
+/* <div class="content flow flex flex-col"> */
 {% for link in page.primaryLinks %}
   <div class="flow-1/2">
   {% include components/button.html
@@ -69,8 +70,6 @@ layout: default
 {% endfor %}
 </div>
 {% endif %}
-
-<hr>
 
 
 

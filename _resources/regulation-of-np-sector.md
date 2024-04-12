@@ -12,10 +12,10 @@ abstract: "The Regulation of Nonprofits and Philanthropy Project, hosted at The 
 primaryLinks:
   - text: Project Overview
     href: 'https://www.urban.org/sites/default/files/2023-10/Regulation%20of%20Nonprofits%20and%20Philanthropy%20description.pdf'
-  - text: Main Project Page
-    href: https://www.urban.org/policy-centers/center-nonprofits-and-philanthropy/projects/regulation-charitable-sector-project
   - text: The Legal Compendium
     href: https://www.urban.org/sites/default/files/2019/12/06/legal_compendium_oct_2019_update_.xlsx
+  - text: Project Page
+    href: https://www.urban.org/policy-centers/center-nonprofits-and-philanthropy/projects/regulation-charitable-sector-project
 pubs:
   - full-citation: 'Lott et al. (2016): "State Regulation and Enforcement in the Charitable Sector." Research Report, Urban Institute, Washington DC.'
     href: https://www.urban.org/research/publication/state-regulation-and-enforcement-charitable-sector
@@ -89,10 +89,11 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 
 <br> 
 
-Please use the following citation for the data: 
+<div class="references" markdown="1">
 
 Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell: "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project." Available on Harvard Dataverse: DOI. Updated 2024 (Version 4.0). 
 
+</div>
 
 <br>
 
@@ -130,7 +131,7 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 
 <div class="references text-sm" markdown="1">
   
-Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School, published online, Columbia University’s Academic Commons (https://academiccommons.columbia.edu/?f%5Bseries_facet%5D%5B%5D=2013+Charities+Regulation+and+Oversight+Project+Policy+Conference), New York, 2013. {link no longer works – do you have a copy?} https://academiccommons.columbia.edu/search?q=Charities+Regulation+and+Oversight+Project&search_field=all_fields: this is a link to a list of results of papers from the conference; there are 25 separate papers that are returned by this search, and can all be downloaded from Columbia’s Academic Commons
+Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School, published online, Columbia University’s Academic Commons, New York, 2013. 
 
 Lott, Cindy M., Elizabeth T. Boris, Karin Kunstler Goldman, Belinda J. Johns, Marcus Gaddy, and Maura Farrell. 2016. State Regulation and Enforcement in the Charitable Sector. Washington D.C.: The Urban Institute.
 
@@ -208,6 +209,8 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 
 <div class="references" markdown="1">
 
+**Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School, published online, Columbia University’s Academic Commons, New York, 2013.**  
+
 Marcus S. Owens (2013): "Charity Oversight: An Alternative Approach." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8154F1D  
 
 Marion R. Fremont-Smith  (2013): "The Future of State Regulation of Charities." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D82R3PQ2  
@@ -265,7 +268,17 @@ Robert Cooper (2013): "Deaccessioning and Donor Intent – Lessons Learned from 
 
 
 
-
+<style>
+div.references {
+  margin-left:2em;
+  text-indent:-2em;
+  margin-bottom: 10px;
+  font-size: calc(0.7em + 0.15vw);
+}
+div.references p {
+  margin-bottom: 10px;
+}
+</style>
 
 
 
