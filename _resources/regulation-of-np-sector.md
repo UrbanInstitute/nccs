@@ -8,7 +8,7 @@ layout: project
 project-name: regulation
 categories:
   - survey
-abstract: "The Regulation of Nonprofits and Philanthropy Project, hosted at The Urban Institute, conducts research on the regulatory frameworks that govern the nonprofit sector with the goals of 1) systematically documenting current regulatory frameworks across states, 2) deepening our understanding of how different policies impact nonprofits, and 3) promoting the diffusion of best practices across states. It brings together cross-disciplinary groups of scholars and experts to advance empirical research and our understanding of how regulation effects nonprofit organizations and philanthropy. The work has been done in partnership with the Center on Nonprofits and Philanthropy, the Tax Policy and Charities Project, Indiana University, the University of Pennsylvania's College of Law, Columbia University's School of Law, and the National Center for Charitable Statistics."
+abstract: "The Regulation of Nonprofits and Philanthropy Project conducts research on the regulatory frameworks that govern the nonprofit sector with the goals of (1) systematically documenting current frameworks across states, (2) deepening our understanding of how policies impact nonprofits, and (3) promoting the diffusion of best practices across states."
 primaryLinks:
   - text: Project Overview
     href: 'https://www.urban.org/sites/default/files/2023-10/Regulation%20of%20Nonprofits%20and%20Philanthropy%20description.pdf'
@@ -28,14 +28,41 @@ pubs:
     link-text: Journal Article
 ---
 
+## Overview 
+
+This project brings together cross-disciplinary groups of scholars and experts to advance a framework for understanding of how regulation effects nonprofit organizations and philanthropy and empirical research on the topic. The work has been conducted in partnership with the Center on Nonprofits and Philanthropy at the Urban Institute (the current project home), the Tax Policy and Charities Project, Indiana University, the University of Pennsylvania's College of Law, Columbia University's School of Law, and supported by the National Center for Charitable Statistics (NCCS).
 
 ## Project History 
 
-<br> 
 
-{% include timeline.html %}
-
-<br> 
+<br>
+<div class="timeline-wrapper">   
+<ul class="StepProgress">
+<li class="StepProgress-item is-done">
+   <div class="bold time">2013</div> 
+   <div class="bold">Conference</div>
+   <div>Charities Regulation and Oversight Symposium at Columbia University</div>
+</li>
+<li class="StepProgress-item is-done">
+   <div class="bold time">2017</div> 
+   <div class="bold">Legal Compendium V1</div>
+   <div>The first Legal Compendium dataset was released</div>
+</li>
+<li class="StepProgress-item current">
+   <div class="bold time">12:00 Pm</div> 
+   <div class="bold">Step 3</div>
+</li>
+<li class="StepProgress-item">
+   <div class="bold time">01:00 Pm</div> 
+   <div class="bold">Step 4</div>
+</li>
+<li class="StepProgress-item">
+   <div class="bold time">02:00 Pm</div> 
+   <div class="bold">Step 5</div>
+</li>
+</ul>
+</div>
+<br>
 
 The initial project was developed by Cindy M. Lott at Columbia University Law School over the period 2006-2015 with the title of “Charities Regulation and Oversight Project”. The Regulation Project was founded in 2015 at Urban Institute, subsuming the state-focused research, trainings and program offerings housed at 
 
@@ -96,6 +123,7 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 </div>
 
 <br>
+<hr>
 
 
 
@@ -104,17 +132,23 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 
 <br> 
 
-- Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight
-- March 25, 2021 - March 26, 2021
-- The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation. Meeting agenda available here.
+**Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight (March 2021)** 
 
-- State Regulation and Enforcement in the Charitable Sector
-- September 26, 2016
-- In this event participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda. Meeting materials available Here.
+> The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation.
 
-- Data Collection, Sharing, and Transparency in the Tax-Exempt Sector
-- December 1, 2015
-- The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders. Meeting materials available Here.
+Meeting agenda available here.
+
+**State Regulation and Enforcement in the Charitable Sector (September 2016)**
+
+> Symposium in which participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda.
+
+Meeting materials available Here.
+
+**Data Collection, Sharing, and Transparency in the Tax-Exempt Sector (December 2015)**
+
+> The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders.
+
+Meeting materials available Here.
 
 <br>
 
