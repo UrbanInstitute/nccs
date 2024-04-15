@@ -74,9 +74,49 @@ Using a mix of research methodologies and data sources, this project aims to fil
 </div>
 <br>
 
+**Phase Zero** 
+
 The initial project was developed by Cindy M. Lott at Columbia University Law School over the period 2006-2015 with the title of “Charities Regulation and Oversight Project”. 
 
+**Phase One**
 
+With funding from the Mott Foundation, The Urban Institute’s Center on Nonprofits and
+Philanthropy became the home for research on state nonprofit regulatory work that had
+previously been undertaken through The Charities Regulation and Oversight Project (“Charities
+Project”), part of the National State Attorneys General Program at Columbia Law School under
+the leadership of Cindy M. Lott. In this first phase of the research, we focused on state
+attorneys’ general jurisdiction over the charitable sector but expanded the scope of the project
+to encompass the entire regulatory framework of the charitable sector, including all state and
+federal charities officials and jurisdiction.
+
+**Phase Two** 
+
+In the second phase of the research, using State Regulation and Enforcement in the Charitable
+Sector by Cindy M. Lott, Elizabeth T. Boris et. al., a report on the ground-breaking survey we
+conducted for the project as the basis for discussion, we identified existing research, needs, and
+gaps. Using the data from that study and other sources, we held a major meeting, completed
+reports and articles, gave presentations, and collaborated with the Federal Trade Commission
+on a regulatory conference.
+
+**Phase Three**
+
+In the third phase of the Project, we updated portions of the Legal Compendium and focused
+on publishing and presenting research in various fora, including two online briefs, Bifurcation of
+State Regulation of Charities: Divided Regulatory Authority Over Charities and Its Impact on
+Charitable Solicitation Law, and State Regulation of the Charitable Sector: Enforcement,
+Outreach and Staffing, as well as a blog article; some of the project data was used for other
+research. We made presentations at major sector, regulatory, and legal education venues.
+
+**Phase Four**
+
+In the current phase of the project, we are: 1) updating the entire Legal Compendium; 2)
+developing a symposium for Spring 2024 that will be an overview of major current regulatory
+issues in the philanthropic and nonprofit sector and potential future changes; 3) with a
+separate, additional grant, we are enhancing the Legal Compendium into a form that will be
+integrated into two major sector data platforms. First, the Legal Compendium data will be
+combined with Legal Text Data compiled by Professor Teresa Harrison at Drexel University. In
+collaboration Jesse Lecy, director of the National Center for Charitable Statistics (NCCS), we are
+working out the logistics of adding the combined legal dataset to the NCCS webpage. 
 
 
 <br>
@@ -141,25 +181,27 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 
 ### Past Events 
 
+<br>
+
 **2015: Data Collection, Sharing, and Transparency in the Tax-Exempt Sector**
 
 > The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders.
 >
-> [event page](https://www.urban.org/events/regulation-nonprofits-and-philanthropy-project)
+> [**{event page}**](https://www.urban.org/events/regulation-nonprofits-and-philanthropy-project)
 
 
 **2016: State Regulation and Enforcement in the Charitable Sector**
 
 > Symposium in which participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda.
 >
-> [event page](https://www.urban.org/events/state-regulation-and-enforcement-charitable-sector)
+> [**{event page}**](https://www.urban.org/events/state-regulation-and-enforcement-charitable-sector)
 
 
 **2021: Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight** 
 
 > The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation.
 >
-> [meeting agenda](http://urban.org/sites/default/files/2021/03/25/final_agenda_-_cnp_regulations_jv_reordered3.pdf)
+> [**{meeting agenda}**](http://urban.org/sites/default/files/2021/03/25/final_agenda_-_cnp_regulations_jv_reordered3.pdf)
 
 <br>
 
