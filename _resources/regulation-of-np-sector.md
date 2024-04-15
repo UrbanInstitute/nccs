@@ -165,13 +165,13 @@ Meeting materials available Here.
 
 <div class="references text-sm" markdown="1">
   
-Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School, published online, Columbia University’s Academic Commons, New York, 2013. 
+**2013:** Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School. SEE BELOW 
 
-Lott, Cindy M., Elizabeth T. Boris, Karin Kunstler Goldman, Belinda J. Johns, Marcus Gaddy, and Maura Farrell. 2016. State Regulation and Enforcement in the Charitable Sector. Washington D.C.: The Urban Institute.
+**2016:** Lott, Cindy M., Elizabeth T. Boris, Karin Kunstler Goldman, Belinda J. Johns, Marcus Gaddy, and Maura Farrell. "State Regulation and Enforcement in the Charitable Sector." Washington D.C.: The Urban Institute.
 
-Lott, Cindy M. and Marion Fremont-Smith, State Regulatory and Legal Framework, in Nonprofits and Government: Collaboration and Conflict, Elizabeth T. Boris and C. Eugene Steuerle (Eds.), Lanham, MD: Rowman & Littlefield, 2017, 163-190.
+**2017:** Lott, Cindy M. and Marion Fremont-Smith. "State Regulatory and Legal Framework." *In Nonprofits and Government: Collaboration and Conflict* (Elizabeth T. Boris & C. Eugene Steuerle Eds.), Lanham, MD: Rowman & Littlefield, 2017, 163-190.
 
-Boris, Elizabeth T. and Cindy M. Lott. 2017. “Reflections on Challenged Regulators.” Regulating Charities: The Inside Story. Edited by M. McGregor-Lowndes and R. Wyatt. New York, NY: Routledge.
+**2017:** Boris, Elizabeth T. and Cindy M. Lott. “Reflections on Challenged Regulators.” *In Regulating Charities: The Inside Story.* Edited by M. McGregor-Lowndes and R. Wyatt. New York, NY: Routledge.
 
 </div>
 
@@ -185,51 +185,32 @@ Boris, Elizabeth T. and Cindy M. Lott. 2017. “Reflections on Challenged Regula
 
 <div class="references text-sm" markdown="1">
   
-Dietz, Nathan, Cindy M. Lott, Putnam Barber, and Mary Shelly, State Charitable Solicitations Registration Regulations and Fundraising Performance: Theoretical Considerations and Preliminary Results. Nonprofit Policy Forum, 8(2), 2017, 183-204.
+**2016:** Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell. "State Regulation and Enforcement in the Charitable Sector."
 
-Lott, Cindy M., Mary L. Shelly, Nathan Dietz, and Marcus Gaddy, Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and its Impact on Charitable Solicitation Laws. Washington, DC: Urban Institute (2018) found at https://www.urban.org/research/publication/bifurcationstate-regulation-charities.
+**2017:** Dietz, Nathan, Cindy M. Lott, Putnam Barber, and Mary Shelly. "State Charitable Solicitations Registration Regulations and Fundraising Performance: Theoretical Considerations and Preliminary Results." Nonprofit Policy Forum, 8(2), 183-204.
 
-Adelstein, Shirley, and Elizabeth T. Boris. 2018. “Why Do Some States Enforce Charity Regulations More than Others?” Urban Wire, June 18, 2018. https://www.urban.org/urban-wire/why-do-some-states-enforce-charityregulations-more-others.
+**2017:** Sarah L. Pettijohn and Elizabeth T. Boris. State Nonprofit Culture: Assessing the Impact of State Regulation on the Government-Nonprofit Relationship (Presentation). 
 
-Bushouse, B. K., Schweik, C. M., Siddiki, S., Rice, D., & Wolfson, I. 2023. The institutional grammar: A method for coding institutions and its potential for advancing third sector research. Voluntas, 34(1), 76-83. https://doi.org/10.1007/s11266-021-00423-w
+**2017:** Nathan Dietz, Putnam Barber, Cindy M. Lott, and Mary Shelly. "Exploring the Relationship between State Charitable Solicitation Regulations and Fundraising Performance."
 
-Mitchell, George E. 2023. Three Models of US State-Level Charity Regulation. Nonprofit Policy Forum, 15(1), 2023, 1-25, https://doi.org/10.1515/npf-2022-0051.
+**2017:** Elizabeth T. Boris and Cindy M. Lott. "Reflections on Challenged Regulators" 
 
-Regulatory Breadth Index: A New Measurement of State-Level Charity Regulation (Presentation)
-November 2019
-Cindy, M. Lott, Mary Shelly and Nathan Dietz.
+**2017:** Cindy M. Lott and Marion Fremont-Smith. "State Regulatory and Legal Framework." *Chapter 5 from Nonprofits and Government: Collaboration and Conflict, 3rd Edition*
 
-Testing Nonprofit State Culture: Its Impact on the Health of the Nonprofit Sector (Subscription required)
-November 2018
-Sarah L. Pettijohn and Elizabeth T. Boris
+**2018:** Lott, Cindy M., Mary L. Shelly, Nathan Dietz, and Marcus Gaddy. "Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and its Impact on Charitable Solicitation Laws." Washington, DC: Urban Institute: https://www.urban.org/research/publication/bifurcationstate-regulation-charities.
 
-Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and Its Impact on Charitable Solicitation Laws
-April 3, 2018
-Cindy M. Lott, Mary L. Shelly, Nathan Dietz, and Marcus Gaddy
+**2018:** Shirley Adelstein and Elizabeth T. Boris. "State Regulation of the Charitable Sector: Enforcement, Outreach, Structure, and Staffing." 
 
-State Regulation of the Charitable Sector: Enforcement, Outreach, Structure, and Staffing
-February 16, 2018
-Shirley Adelstein and Elizabeth T. Boris
+**2018:** Adelstein, Shirley, and Elizabeth T. Boris. “Why Do Some States Enforce Charity Regulations More than Others?” Urban Wire, June 18, 2018. https://www.urban.org/urban-wire/why-do-some-states-enforce-charityregulations-more-others.
 
-State Nonprofit Culture: Assessing the Impact of State Regulation on the Government-Nonprofit Relationship (Presentation)
-November 2017
-Sarah L. Pettijohn and Elizabeth T. Boris
+**2018:** Sarah L. Pettijohn and Elizabeth T. Boris. "Testing Nonprofit State Culture: Its Impact on the Health of the Nonprofit Sector" 
 
-Exploring the Relationship between State Charitable Solicitation Regulations and Fundraising Performance
-October 23, 2017
-Nathan Dietz, Putnam Barber, Cindy M. Lott, and Mary Shelly
+**2019**: Cindy, M. Lott, Mary Shelly and Nathan Dietz. Regulatory Breadth Index: A New Measurement of State-Level Charity Regulation (Presentation). 
 
-Reflections on Challenged Regulators (Subscription required)
-April 7, 2017
-Elizabeth T. Boris and Cindy M. Lott
+**2023:** Bushouse, B. K., Schweik, C. M., Siddiki, S., Rice, D., & Wolfson, I. The institutional grammar: A method for coding institutions and its potential for advancing third sector research. Voluntas, 34(1), 76-83. https://doi.org/10.1007/s11266-021-00423-w
 
-State Regulatory and Legal Framework (Chapter 5 from Nonprofits and Government: Collaboration and Conflict, 3rd Edition)
-April 7, 2017
-Cindy M. Lott and Marion Fremont-Smith
+**2023:** Mitchell, George E. Three Models of US State-Level Charity Regulation. Nonprofit Policy Forum, 15(1), 2023, 1-25, https://doi.org/10.1515/npf-2022-0051.
 
-State Regulation and Enforcement in the Charitable Sector
-September 13, 2016
-Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell
 
 </div>
 
@@ -241,10 +222,12 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 </div>
 <br>
 
+
+> Lott, Cindy M., Ed., Conference Papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program
+> Published online, Columbia University’s Academic Commons, New York.
+
 <div class="references" markdown="1">
-
-**Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School, published online, Columbia University’s Academic Commons, New York, 2013.**  
-
+  
 Marcus S. Owens (2013): "Charity Oversight: An Alternative Approach." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D8154F1D  
 
 Marion R. Fremont-Smith  (2013): "The Future of State Regulation of Charities." The Future of State Charities Regulation Conference, Columbia University Law School, NY. DOI: https://doi.org/10.7916/D82R3PQ2  
