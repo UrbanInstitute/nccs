@@ -57,7 +57,13 @@ layout: default
 
 {% if page.primaryLinks %}
 <div class="flex flex-wrap gap">
-/* <div class="content flow flex flex-col"> */
+  
+{% comment %}
+  // changing the format but preserving original
+  // in case i break it
+  <div class="content flow flex flex-col"> 
+{% endcomment %}
+ 
 {% for link in page.primaryLinks %}
   <div class="flow-1/2">
   {% include components/button.html
