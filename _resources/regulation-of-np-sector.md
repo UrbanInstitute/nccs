@@ -28,45 +28,56 @@ pubs:
     link-text: Journal Article
 ---
 
-## Overview 
+## Background and Support
 
 This project brings together cross-disciplinary groups of scholars and experts to advance a framework for understanding of how regulation effects nonprofit organizations and philanthropy and empirical research on the topic. The work has been conducted in partnership with the Center on Nonprofits and Philanthropy at the Urban Institute (the current project home), the Tax Policy and Charities Project, Indiana University, the University of Pennsylvania's College of Law, Columbia University's School of Law, and supported by the National Center for Charitable Statistics (NCCS).
 
-## Project History 
+Using a mix of research methodologies and data sources, this project aims to fills gaps in the nonprofit sector regulatory framework. The goal is to develop frameworks that are elastic enough to encompass the constantly evolving nonprofit and philanthropic sectors and provide resources to disseminate best practices.
 
+
+## Project History 
 
 <br>
 <div class="timeline-wrapper">   
 <ul class="StepProgress">
 <li class="StepProgress-item is-done">
-   <div class="bold time">2013</div> 
-   <div class="bold">Conference</div>
-   <div>Charities Regulation and Oversight Symposium at Columbia University</div>
+   <div class="bold time">2006</div> 
+   <div class="bold">Project Start</div>
+   <div>Charities Regulation and Oversight Project started at Columbia University</div>
 </li>
 <li class="StepProgress-item is-done">
-   <div class="bold time">2017</div> 
+   <div class="bold time">2013</div> 
+   <div class="bold">Conference</div>
+   <div>The Future of State Charities Regulation, Charities Regulation and Oversight Conference</div>
+</li>
+<li class="StepProgress-item is-done">
+   <div class="bold time">2015</div> 
+   <div class="bold">Project Moved</div>
+   <div>The Regulation Project was founded at the Urban Institute as a more permanent home for the work.</div>
+</li>  
+<li class="StepProgress-item is-done">
+   <div class="bold time">2016</div> 
    <div class="bold">Legal Compendium V1</div>
-   <div>The first Legal Compendium dataset was released</div>
+   <div>The First "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project" Released</div>
+</li>
+<li class="StepProgress-item is-done">
+   <div class="bold time">2019</div> 
+   <div class="bold">Legal Compendium V2</div>
+   <div>"Legal Compendium to the Regulation of Nonprofits and Philanthropy Project" Updated</div>
 </li>
 <li class="StepProgress-item current">
-   <div class="bold time">12:00 Pm</div> 
-   <div class="bold">Step 3</div>
-</li>
-<li class="StepProgress-item">
-   <div class="bold time">01:00 Pm</div> 
-   <div class="bold">Step 4</div>
-</li>
-<li class="StepProgress-item">
-   <div class="bold time">02:00 Pm</div> 
-   <div class="bold">Step 5</div>
+   <div class="bold time">2021</div> 
+   <div class="bold">Conference</div>
+  <div> Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight </div>
 </li>
 </ul>
 </div>
 <br>
 
-The initial project was developed by Cindy M. Lott at Columbia University Law School over the period 2006-2015 with the title of “Charities Regulation and Oversight Project”. The Regulation Project was founded in 2015 at Urban Institute, subsuming the state-focused research, trainings and program offerings housed at 
+The initial project was developed by Cindy M. Lott at Columbia University Law School over the period 2006-2015 with the title of “Charities Regulation and Oversight Project”. 
 
-Using a mix of research methodologies and data sources, this project fills gaps in our understanding of the nonprofit sector regulatory framework. The aim is to develop frameworks that are elastic enough to encompass the constantly evolving nonprofit and philanthropic sectors and provide resources to disseminate best practices.
+
+
 
 <br>
 <br>
@@ -122,33 +133,33 @@ Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus
 
 </div>
 
-<br>
 <hr>
+<br>
 
 
 
 
 ### Past Events 
 
-<br> 
-
-**Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight (March 2021)** 
-
-> The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation.
-
-Meeting agenda available here.
-
-**State Regulation and Enforcement in the Charitable Sector (September 2016)**
-
-> Symposium in which participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda.
-
-Meeting materials available Here.
-
-**Data Collection, Sharing, and Transparency in the Tax-Exempt Sector (December 2015)**
+**2015: Data Collection, Sharing, and Transparency in the Tax-Exempt Sector**
 
 > The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders.
+>
+> [event page](https://www.urban.org/events/regulation-nonprofits-and-philanthropy-project)
 
-Meeting materials available Here.
+
+**2016: State Regulation and Enforcement in the Charitable Sector**
+
+> Symposium in which participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda.
+>
+> [event page](https://www.urban.org/events/state-regulation-and-enforcement-charitable-sector)
+
+
+**2021: Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight** 
+
+> The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation.
+>
+> [meeting agenda](http://urban.org/sites/default/files/2021/03/25/final_agenda_-_cnp_regulations_jv_reordered3.pdf)
 
 <br>
 
@@ -165,7 +176,7 @@ Meeting materials available Here.
 
 <div class="references text-sm" markdown="1">
   
-**2013:** Lott, Cindy M., Ed., conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program, Columbia Law School. SEE BELOW 
+**2013:** Lott, Cindy M., Ed., Conference papers for The Future of State Charities Regulation, Charities Regulation and Oversight - papers available below. 
 
 **2016:** Lott, Cindy M., Elizabeth T. Boris, Karin Kunstler Goldman, Belinda J. Johns, Marcus Gaddy, and Maura Farrell. "State Regulation and Enforcement in the Charitable Sector." Washington D.C.: The Urban Institute.
 
@@ -193,8 +204,6 @@ Meeting materials available Here.
 
 **2017:** Nathan Dietz, Putnam Barber, Cindy M. Lott, and Mary Shelly. "Exploring the Relationship between State Charitable Solicitation Regulations and Fundraising Performance."
 
-**2017:** Elizabeth T. Boris and Cindy M. Lott. "Reflections on Challenged Regulators" 
-
 **2017:** Cindy M. Lott and Marion Fremont-Smith. "State Regulatory and Legal Framework." *Chapter 5 from Nonprofits and Government: Collaboration and Conflict, 3rd Edition*
 
 **2018:** Lott, Cindy M., Mary L. Shelly, Nathan Dietz, and Marcus Gaddy. "Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and its Impact on Charitable Solicitation Laws." Washington, DC: Urban Institute: https://www.urban.org/research/publication/bifurcationstate-regulation-charities.
@@ -203,7 +212,7 @@ Meeting materials available Here.
 
 **2018:** Adelstein, Shirley, and Elizabeth T. Boris. “Why Do Some States Enforce Charity Regulations More than Others?” Urban Wire, June 18, 2018. https://www.urban.org/urban-wire/why-do-some-states-enforce-charityregulations-more-others.
 
-**2018:** Sarah L. Pettijohn and Elizabeth T. Boris. "Testing Nonprofit State Culture: Its Impact on the Health of the Nonprofit Sector" 
+**2018:** Sarah L. Pettijohn and Elizabeth T. Boris. "Testing nonprofit state culture: Its impact on the health of the nonprofit sector." In Nonprofit Policy Forum (Vol. 9, No. 3, p. 20180012). De Gruyter.
 
 **2019**: Cindy, M. Lott, Mary Shelly and Nathan Dietz. Regulatory Breadth Index: A New Measurement of State-Level Charity Regulation (Presentation). 
 
@@ -223,8 +232,7 @@ Meeting materials available Here.
 <br>
 
 
-> Lott, Cindy M., Ed., Conference Papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program
-> Published online, Columbia University’s Academic Commons, New York.
+> *Lott, Cindy M., Ed., Conference Papers for The Future of State Charities Regulation, Charities Regulation and Oversight Project, National State Attorneys General Program. Published online, Columbia University’s Academic Commons, New York.*
 
 <div class="references" markdown="1">
   
@@ -282,20 +290,8 @@ Robert Cooper (2013): "Deaccessioning and Donor Intent – Lessons Learned from 
 </div>
 
 
-
-
-
-<style>
-div.references {
-  margin-left:2em;
-  text-indent:-2em;
-  margin-bottom: 10px;
-  font-size: calc(0.7em + 0.15vw);
-}
-div.references p {
-  margin-bottom: 10px;
-}
-</style>
-
+<br>
+<br>
+<br>
 
 
