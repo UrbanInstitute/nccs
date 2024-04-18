@@ -32,7 +32,7 @@
   last: Beck
   title: Data Science Intern / PhD Candidate
   bio: PhD student studying statistics and social data analytics at Penn State University
-  team: collaborator
+  team: leadership
   affiliation: 
     - name: Penn State
       url: https://science.psu.edu/stat/people/olb5053
@@ -276,7 +276,7 @@
   image: people/thiya.jpg
   affiliation: 
     - name: Urban Institute / CNP
-  projects: [ntee]
+  projects: [ntee, nptrends]
 
 ##########
 ##########  MARGARET POST
@@ -332,6 +332,31 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/alena-stern  
+
+
+##########
+##########  LAURA TOMASKO
+##########
+
+- id: ltomasko
+  first: Laura
+  last: Tomasko
+  title: Senior Policy Program Manager
+  bio: Laura's work focuses on charitable giving, the philanthropic sector, and impact investing. 
+  email: nccs@urban.org 
+  orcid: 
+  team: leadership
+  image: people/ltomasko.jpg
+  affiliation: 
+    - name: Urban Institute
+      city: Washington
+      state: D.C.
+      url: https://www.urban.org/author/laura-tomasko
+  social:
+    - name: website
+      url: https://www.urban.org/author/laura-tomasko
+  projects: [nptrends]
+  
 
 ##########
 ##########  TENE TRAYLOR
