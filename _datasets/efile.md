@@ -6,8 +6,8 @@ categories:
   - 990
   - financial-trends
   - nonprofits
-featured: false
-# featuredOrder: 1
+featured: true
+# featuredOrder: 3
 primaryCtaUrl: "../../catalogs/catalog-efile.html"
 primaryCtaCaption:
 primaryLinks:

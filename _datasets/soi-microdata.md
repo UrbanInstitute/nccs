@@ -6,8 +6,8 @@ categories:
   - 990
   - SOI
   - sampling
-featured: true
-featuredOrder: 5
+featured: false
+featuredOrder: 10
 primaryCtaUrl: "../../catalogs/catalog-soi-microdata.html"
 primaryCtaCaption: "Years Available: 1990-2019"
 author:
