@@ -7,7 +7,7 @@ categories:
   - financial-trends
   - nonprofits
 featured: true
-# featuredOrder: 3
+featuredOrder: 3
 primaryCtaUrl: "../../catalogs/catalog-efile.html"
 primaryCtaCaption:
 primaryLinks:
