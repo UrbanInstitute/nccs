@@ -73,11 +73,11 @@ This project brings together cross-disciplinary groups of scholars and experts t
    <div class="bold time">2013</div> 
    <div class="bold">First Conference Held</div>
    <div>The Future of State Charities Regulation, Charities Regulation and Oversight Conference</div>
-   <div>Part of the National State Attorneys General Program</div>
+   <div>Part of the National State Attorneys General Program at Columbia University</div>
 </li>
 <li class="StepProgress-item is-done">
    <div class="bold time">2015</div> 
-   <div class="bold">Urban Institute Adopts the Project</div>
+   <div class="bold">Urban Institute Houses the Regulation Project</div>
    <div>The Regulation Project was founded at the Urban Institute as a more permanent home for the work.</div>
 </li>  
 <li class="StepProgress-item is-done">
@@ -123,19 +123,19 @@ This project brings together cross-disciplinary groups of scholars and experts t
 
 **Phase One**
 
-With funding from the Mott Foundation, The Urban Institute’s Center on Nonprofits and Philanthropy became the home for research on state nonprofit regulatory work that had previously been undertaken through The Charities Regulation and Oversight Project (“Charities Project”), part of the National State Attorneys General Program at Columbia Law School under the leadership of Cindy M. Lott. In this first phase of the research, we focused on state attorneys’ general jurisdiction over the charitable sector but expanded the scope of the project to encompass the entire regulatory framework of the charitable sector, including all state and federal charities officials and jurisdiction.
+With funding from the Mott Foundation, The Urban Institute’s Center on Nonprofits and Philanthropy became the home for research on state nonprofit regulatory work that had previously been undertaken through The Charities Regulation and Oversight Project (“Charities Project”), part of the National State Attorneys General Program at Columbia Law School under the leadership of Cindy M. Lott. This first phase of the research focused on state attorneys’ general jurisdiction over the charitable sector but expanded the scope of the project to encompass the entire regulatory framework of the charitable sector, including all state and federal charities officials and jurisdiction.
 
 **Phase Two** 
 
-In the second phase of the research, using State Regulation and Enforcement in the Charitable Sector by Cindy M. Lott, Elizabeth T. Boris et. al., a report on the ground-breaking survey conducted for the project as the basis for discussion, we identified existing research, needs, and gaps. Using the data from that study and other sources, a major meeting was planned that resulted in reports, articles, and collaboration with the Federal Trade Commission on a regulatory conference.
+In the second phase of the research, a results from a large-scale survey identified existing research, needs, and gaps that serves as the basis for the report, "State Regulation and Enforcement in the Charitable Sector" by Cindy M. Lott, Elizabeth T. Boris et. al. With the data from the study serving as the foundation, a major meeting was planned that resulted in reports, articles, and a regulatory conference planned in collaboration with the Federal Trade Commission.
 
 **Phase Three**
 
-In the third phase of the Project, portions of the Legal Compendium were updated and research was published in various fora, including two online briefs, Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and Its Impact on Charitable Solicitation Law, and State Regulation of the Charitable Sector: Enforcement, Outreach and Staffing. Research was presented at major sector, regulatory, and legal education venues and blogs helped disseminate the work.
+In the third phase of the Project, portions of the Legal Compendium were updated and research was published in various fora, including two online briefs - "Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and Its Impact on Charitable Solicitation Law", and "State Regulation of the Charitable Sector: Enforcement, Outreach and Staffing". Research was presented at major sector, regulatory, and legal education venues and blogs helped disseminate the work.
 
 **Phase Four**
 
-The most recent phase of the project is focusing on: 1) updating the entire Legal Compendium; 2) organizing a symposium for Spring 2024 as an overview of major current regulatory issues in the philanthropic and nonprofit sector and potential future changes; 3) and enhancing the Legal Compendium as a data source that will be integrated into two major sector data platforms. The Legal Compendium data will be combined with Legal Text Data compiled by Professor Teresa Harrison at Drexel University. The new dataset will be available via The National Center for Charitable Statistics (NCCS). 
+The most recent phase of the project is focusing on: 1) updating the entire Legal Compendium; 2) organizing a symposium for Spring 2024 as an overview of major current regulatory issues in the philanthropic and nonprofit sector and potential future changes; 3) and enhancing the Legal Compendium as a data source that will be integrated into major sector data platforms. The Legal Compendium data will be combined with Legal Text Data compiled by Professor Teresa Harrison at Drexel University and in collaboration with Jesse Lecy made available via The National Center for Charitable Statistics (NCCS). 
 
 
 <br>
@@ -152,8 +152,8 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
-  text = "Dataset"
-  href = "#"
+  text = "Dataset v2.0 (2019)"
+  href = "https://www.urban.org/sites/default/files/2019/12/06/legal_compendium_oct_2019_update_.xlsx"
   style = "primary"
 %}
 
@@ -188,7 +188,7 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 
 <div class="references" markdown="1">
 
-Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell: "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project." Available on Harvard Dataverse: DOI. Updated 2024 (Version 4.0). 
+> Cindy M. Lott, Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcus Gaddy and Maura R. Farrell: "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project."  
 
 </div>
 
