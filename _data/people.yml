@@ -292,6 +292,7 @@
     - name: Clark University
       url: https://www.clarku.edu/faculty/profiles/margaret-post/
   image: people/mpost.jpg  
+  projects: [regulation]
 
 ##########
 ##########  CALTON PU
@@ -316,6 +317,32 @@
       url: https://faculty.cc.gatech.edu/~calton/
   projects: [nptrends]
 
+
+
+##########
+##########  EUGENE STEUERLE
+##########
+
+- id: esteuerle
+  first: Eugene 
+  last: Steuerle
+  title: Institute Fellow and Richard B. Fisher Chair
+  bio: Steuerle is the author, coauthor, or coeditor of 18 books, including Dead Men Ruling, Nonprofits and Government (3rd edition), Contemporary US Tax Policy (2nd edition), and Advancing the Power of Economic Evidence to Inform Investments in Children, Youth, and Families. 
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/esteuerle.jpg
+  affiliation: 
+    - name: Tax Policy center
+      url: https://www.taxpolicycenter.org/author/c-eugene-steuerle
+  social:
+    - name: scholar
+      url: https://scholar.google.com/citations?user=uUrHeUcAAAAJ&hl=en&oi=ao
+    - name: website
+      url: https://www.taxpolicycenter.org/author/c-eugene-steuerle
+  projects: [regulation]
+
+  
 ##########
 ##########  ALENA STERN
 ##########
