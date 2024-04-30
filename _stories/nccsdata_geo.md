@@ -2,7 +2,8 @@
 title: "nccsdata Part 3: Geographic Filters"
 date: 2023-11-03
 description: "Part 3 of 4 data stories covering the nccsdata R package. This story focuses on working with Census FIPS codes."
-featured: false
+featured: true
+featuredOrder: 4
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 format: gfm
@@ -73,31 +74,35 @@ Areas (metros with populations above 50,000) and Micropolitan
 Statistical Areas (populations above 10,000 and below 50,000).
 Geographic filtering with US census units therefore requires
 crosswalking units across multiple levels, such as county and CBSA.
-Further details and examples of CBSAs and Metropolitan/Micropolitan
-Statistical Areas are provided on the Census Crosswalks
-[page](https://urbaninstitute.github.io/nccs/datasets/census/) of the
-Urban NCCS Site.
 
-In this story, we explore CBSA FIPS codes with the
+> Further details and examples of CBSAs and Metropolitan/Micropolitan
+> Statistical Areas are provided on the Census Crosswalks
+> [page](https://urbaninstitute.github.io/nccs/datasets/census/) of the
+> Urban NCCS Site.
+
+All Census-defined metro areas are comprised of counties. This vignette
+explores the process of filtering nonprofit data by geography using
 [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
-function before and demonstrate how these CBSA FIPS can be linked to
-county FIPS codes via
-[`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html).
+and
+[`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html)
+to identify the County FIPS associated with specific Metropolitan or
+Micropolitan Regions.
+
+![CBSA and CSA
+Definitions](../../_stories/1466b86f8100d1f98ddce05851453a4ab4966e1b.png)
 
 ## Exploring CBSA FIPS Codes
 
 The
 [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
 function allows users to preview and retrieve CBSA FIPS codes and/or
-their associated metadata from a specific state. The code snippet below
-demonstrates how
-[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
-returns the names of all CBSAs and their associated FIPS codes. The
-*within* argument specifies the desired state, in abbreviated form, as
-input while the *geo* argument returns the specified columns:
+their associated metadata from a specific state.
 
 ``` r
-geo_preview( geo=c("cbsa","cbsafips"), within="FL", type="metro" )
+geo_preview( 
+  geo    = c("cbsa","cbsafips"), 
+  within = "FL", 
+  type   = "metro" )
 #> 
 #> 
 #> |                                        cbsa| cbsafips|
@@ -126,11 +131,28 @@ geo_preview( geo=c("cbsa","cbsafips"), within="FL", type="metro" )
 #> |                   Wildwood-The Villages, FL|    48680|
 ```
 
-The *geo* argument can also be used to return county metadata, as
-demonstrated below.
+Specifically, filtering on geography requires using GEOIDs (the FIPS
+codes associated with a specific level of geo aggregation). This is
+because (1) city and county names are non-unique, and (2) they are long
+and would be easy to misspell. The **geo_preview()** function offers a
+convenient way to identify all of the GEOIDs associated with your
+desired geography.
+
+The code snippet above demonstrates that
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
+returns the names of all CBSAs and their associated GEOIDs. The
+**within** argument specifies the desired state, in abbreviated form, as
+input while the **geo** argument returns the specified columns. The
+**type** argument specified which type of geography is desired.
+
+The **geo** argument allows uses to select a variety of columns from the
+geographic crosswalk file.
 
 ``` r
-geo_preview(geo = c("cbsa", "county", "cbsafips"), within = "FL", type = "metro")
+geo_preview(
+  geo    = c("cbsa","county","cbsafips"), 
+  within = "FL", 
+  type   = "metro"  )
 #> 
 #> 
 #> |                                        cbsa|                           county| cbsafips|
@@ -194,7 +216,26 @@ The following code snippet shows how to retrieve CBSA names and FIPS
 codes for all metropolitan statistical areas in Wyoming:
 
 ``` r
-geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "micro")
+geo_preview(
+  geo    = c("cbsa","cbsafips"), 
+  within = "WY", 
+  type   = "metro" )
+#> 
+#> 
+#> |         cbsa| cbsafips|
+#> |------------:|--------:|
+#> | Cheyenne, WY|    16940|
+#> |   Casper, WY|    16220|
+```
+
+In the above snippet, setting **type** to **micro** returns data for
+micropolitan statistical areas.
+
+``` r
+geo_preview( 
+  geo    = c("cbsa","cbsafips"), 
+  within = "WY", 
+  type   = "micro" )
 #> 
 #> 
 #> |             cbsa| cbsafips|
@@ -209,37 +250,38 @@ geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "micro")
 #> |  Evanston, WY-UT|    21740|
 ```
 
-In the above snippet, setting *type* to *micro* returns data for
-micropolitan statistical areas.
-
-``` r
-geo_preview(geo = c("cbsa","cbsafips"), within = "WY", type = "metro")
-#> 
-#> 
-#> |         cbsa| cbsafips|
-#> |------------:|--------:|
-#> | Cheyenne, WY|    16940|
-#> |   Casper, WY|    16220|
-```
-
 ## Exploring CSA FIPS
 
-In addition to CBSAs,
-[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
-can also retrieve metadata for [Combined Statistical
-Areas](https://en.wikipedia.org/wiki/Combined_statistical_area) (CSAs).
+Core Based Statistical Areas (CBSAs) delineate the distinct metropolitan
+areas. The Combined Statistical Areas (CSA) geography aggregates the
+data further into metropolital regions where multiple cities function as
+a coherent entities, typically characterized by shared commercial and
+commuting zones.
 
-CSAs are created by identifying adjacent micropolitan and metropolitan
-statistical areas that constitute a coherent economic region, typically
-characterized by shared commercial and commuting zones.
+Similar to how metro areas area comprised of a collection of counties,
+you can think of the Combined Statistical Areas as being comprised of
+collections of metropolitan and micropolitan areas.
+
+    939 Core-Based Statistical Areas =
+        384 Metropolitan statistical areas +
+        547 micropolitan statistical areas
+
+    175 Total Combined Statistical Areas:
+        808 Metro + Micro Areas joined together to form CSAs
+        123 Metro + Micro Areas are not part of any CSA
+
+[`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html)
+can retrieve metadata for [Combined Statistical
+Areas](https://en.wikipedia.org/wiki/Combined_statistical_area) (CSAs).
 
 The code snippet below returns all CSA names and FIPS codes for
 metropolitan statistical areas in Virginia:
 
 ``` r
-geo_preview(geo = c("csa","csafips"), 
-            within = "VA", 
-            type = "metro")
+geo_preview(
+  geo    = c("csa","csafips"), 
+  within = "VA", 
+  type   = "metro")
 #> 
 #> 
 #> |                                            csa| csafips|
@@ -263,8 +305,9 @@ shown below:
 
 ``` r
 # Retrive CBSA FIPS from NY
-cbsa_ny <- geo_preview(geo = c("cbsa", "cbsafips"), 
-                       within = "NY")
+cbsa_ny <- 
+  geo_preview( geo = c("cbsa", "cbsafips"), 
+               within = "NY" )
 #> 
 #> 
 #> |                                  cbsa| cbsafips|
@@ -298,13 +341,15 @@ cbsa_ny <- geo_preview(geo = c("cbsa", "cbsafips"),
 #> |                       Glens Falls, NY|    24020|
 
 # Map these to county FIPS codes
-ny_countyfips <- map_countyfips(geo.cbsafips = cbsa_ny$cbsafips)
+ny_countyfips <- 
+  map_countyfips( geo.cbsafips = cbsa_ny$cbsafips )
 
 # Pull core data for the year 2015
-core_2015 <- get_data(dsname = "core",
-                      time = "2015",
-                      scope.orgtype = "NONPROFIT",
-                      scope.formtype = "PZ")
+core_2015 <- 
+  get_data( dsname         = "core",
+            time           = "2015",
+            scope.orgtype  = "NONPROFIT",
+            scope.formtype = "PZ" )
 #> Valid inputs detected. Retrieving data.
 #> Downloading core data
 #> Requested files have a total size of 115 MB. Proceed
@@ -312,10 +357,11 @@ core_2015 <- get_data(dsname = "core",
 #> Core data downloaded
 
 # Filter with NY county FIPS
-core_2015_nyfips <- core_2015 %>% 
-  dplyr::filter(FIPS %in% ny_countyfips)
+core_2015_nyfips <- 
+  core_2015 %>% 
+  dplyr::filter( FIPS %in% ny_countyfips )
 
-print(as_tibble(core_2015_nyfips))
+print( as_tibble( core_2015_nyfips ))
 #> # A tibble: 11,788 × 170
 #>    NTEECC new.code   type.org broad.category major.group univ  hosp  two.digit
 #>    <chr>  <chr>      <chr>    <chr>          <chr>       <lgl> <lgl> <chr>    

@@ -2,7 +2,8 @@
 title: "nccsdata Part 2: NTEE Codes"
 date: 2023-11-03
 description: "Part 2 of 4 data stories covering the nccsdata R package. This story focuses on parsing NTEE codes."
-featured: false
+featured: true
+featuredOrder: 3
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 format: gfm
@@ -166,7 +167,7 @@ provides descriptions for full codes when the *ntee* argument is
 provided any of the 5 levels above. A sample output is provided below:
 
 ``` r
-ntee_preview(ntee = "UNI")
+ntee_preview( ntee = "UNI" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -234,7 +235,7 @@ code snippet returns all NTEE codes belonging to either the University
 Industry Group (UNI) or A25 Level 2-4 classification.
 
 ``` r
-ntee_preview(ntee = c("UNI", "A25"))
+ntee_preview( ntee = c( "UNI","A25" ) )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -314,8 +315,8 @@ You can also preview specific NTEE codes with the *ntee* argument as
 shown here:
 
 ``` r
-ntee_preview(ntee = c("ART-A61-AA",
-                      "ART-A54-MT"))
+ntee_preview( ntee = c("ART-A61-AA",
+                       "ART-A54-MT" ))
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -359,7 +360,7 @@ user to narrow their search to specific levels. Examples are provided
 below:
 
 ``` r
-ntee_preview(ntee = "Uxx")
+ntee_preview( ntee = "Uxx" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -565,7 +566,7 @@ ntee_preview(ntee = "Uxx")
 ```
 
 ``` r
-ntee_preview(ntee = "H3x")
+ntee_preview( ntee = "H3x" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -601,7 +602,7 @@ ntee_preview(ntee = "H3x")
 ```
 
 ``` r
-ntee_preview(ntee = "B2x")
+ntee_preview( ntee = "B2x" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -776,8 +777,8 @@ additional arguments from
 For *ntee.code*, placeholder arguments are supported as well.
 
 ``` r
-ntee_preview(ntee.group = "UNI",
-             ntee.code = "Cxx")
+ntee_preview( ntee.group = "UNI",
+              ntee.code = "Cxx" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1178,11 +1179,12 @@ non-profits that file both full 990s and 990EZs, filtering for
 nonprofits belonging to the *Education* Industry Group.
 
 ``` r
-core <- get_data(dsname = "core",
-                 time = "2015",
-                 scope.orgtype = "NONPROFIT",
-                 scope.formtype = "PZ",
-                 ntee.group = "EDU")
+core <- 
+  get_data( dsname = "core",
+            time = "2015",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ",
+            ntee.group = "EDU" )
 ```
 
 ## Retrieve Complete NTEEV2 Codes
@@ -1195,8 +1197,8 @@ can be achieved by assigning the output of
 to a variable name.
 
 ``` r
-NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
-                            ntee.code = "Cxx")
+ntee_preview( ntee.group = "UNI",
+              ntee.code = "Cxx"   )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1581,18 +1583,6 @@ NTEEV2_codes <- ntee_preview(ntee.group = "UNI",
 #>          professional field leading to a masters degree or doctorate.
 #> 
 #>  End of Preview
-print(NTEEV2_codes)
-#>  [1] "UNI-B40-RG" "UNI-B41-RG" "UNI-B42-RG" "UNI-B43-RG" "UNI-B50-RG"
-#>  [6] "ENV-C00-AA" "ENV-C20-AA" "ENV-C30-AA" "ENV-C32-AA" "ENV-C35-AA"
-#> [11] "ENV-C50-AA" "ENV-C60-AA" "ENV-C00-MT" "ENV-C20-MT" "ENV-C30-MT"
-#> [16] "ENV-C32-MT" "ENV-C60-MT" "ENV-C00-PA" "ENV-C20-PA" "ENV-C30-PA"
-#> [21] "ENV-C32-PA" "ENV-C36-PA" "ENV-C40-PA" "ENV-C60-PA" "ENV-C00-RP"
-#> [26] "ENV-C20-RP" "ENV-C30-RP" "ENV-C35-RP" "ENV-C00-MS" "ENV-C20-MS"
-#> [31] "ENV-C30-MS" "ENV-C32-MS" "ENV-C40-MS" "ENV-C42-MS" "ENV-C50-MS"
-#> [36] "ENV-C00-MM" "ENV-C30-MM" "ENV-C35-MM" "ENV-C36-MM" "ENV-C00-NS"
-#> [41] "ENV-C20-RG" "ENV-C27-RG" "ENV-C30-RG" "ENV-C32-RG" "ENV-C34-RG"
-#> [46] "ENV-C35-RG" "ENV-C36-RG" "ENV-C40-RG" "ENV-C41-RG" "ENV-C42-RG"
-#> [51] "ENV-C50-RG" "ENV-C60-RG" "ENV-C99-RG"
 ```
 
 ## Alternative Methods to Retrieve Complete NTEEV2 Codes
@@ -1612,9 +1602,9 @@ Use *all* to include all levels for that specific argument. For example,
 to retrieve complete NTEE codes for Universities, use:
 
 ``` r
-parse_ntee(ntee.group = c("UNI"),
-           ntee.code = "all",
-           ntee.orgtype = "all")
+parse_ntee( ntee.group   = c("UNI"),
+            ntee.code    = "all",
+            ntee.orgtype = "all" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1627,9 +1617,9 @@ Similar to
 accepts placeholder arguments.
 
 ``` r
-parse_ntee(ntee.group = "all",
-           ntee.code = "A2x",
-           ntee.orgtype = "all")
+parse_ntee( ntee.group   = "all",
+            ntee.code    = "A2x",
+            ntee.orgtype = "all"  )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1645,9 +1635,9 @@ differs from
 in that it only returns NTEE codes that meet all filters.
 
 ``` r
-parse_ntee(ntee.group = "HEL",
-           ntee.code = "A2x",
-           ntee.orgtype = "all")
+parse_ntee( ntee.group   = "HEL",
+            ntee.code    = "A2x",
+            ntee.orgtype = "all"  )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1661,9 +1651,9 @@ below, returns valid codes since there are NTEE codes with the
 *ART-A2X-XXX* structure:
 
 ``` r
-parse_ntee(ntee.group = c("HEL", "ART"),
-           ntee.code = "A2x",
-           ntee.orgtype = "all")
+parse_ntee( ntee.group   = c("HEL","ART"),
+            ntee.code    = "A2x",
+            ntee.orgtype = "all"   )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
@@ -1677,18 +1667,20 @@ can then be fed into *get_data* to filter downloaded data by specific
 codes, as shown below:
 
 ``` r
-ART_A2X_codes <- parse_ntee(ntee.group = c("HEL", "ART"),
-                            ntee.code = "A2x",
-                            ntee.orgtype = "all")
+ART_A2X_codes <- 
+  parse_ntee( ntee.group = c("HEL","ART"),
+              ntee.code = "A2x",
+              ntee.orgtype = "all" )
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions
 #> Collecting Matching Organization Types
 
-core_2015_arta2x <- get_data(dsname = "core",
-                             time = "2015",
-                             scope.orgtype = "NONPROFIT",
-                             scope.formtype = "PZ",
-                             ntee = ART_A2X_codes)
+core_2015_arta2x <- 
+  get_data( dsname = "core",
+            time = "2015",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ",
+            ntee = ART_A2X_codes )
 #> Valid inputs detected. Retrieving data.
 #> Collecting Matching Industry Groups
 #> Collecting Matching Industry Division and Subdivisions

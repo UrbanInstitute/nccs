@@ -583,10 +583,9 @@ during both periods.
 We estimate that nonprofits pay approximately \$66 billion per year in
 payroll taxes. But this is a conservative estimate for several reasons:
 
-• It does not include the payroll taxes that Form 990-EZ or Form 990-N
-filers pay. • It underestimates the payroll taxes that private
-foundations pay. • It excludes the payroll taxes from nonprofits that
-are not required to file annual 990 returns, such as churches.
+- It does not include the payroll taxes that Form 990-EZ or Form 990-N filers pay.  
+- It underestimates the payroll taxes that private foundations pay.  
+- It excludes the payroll taxes from nonprofits that are not required to file annual 990 returns, such as churches.  
 
 Despite these limitations, this approach provides a useful way to
 demonstrate the size and economic contributions of the nonprofit sector

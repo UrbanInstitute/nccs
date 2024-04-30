@@ -3,9 +3,9 @@ title: "nccsdata Part 1: Downloading Data"
 date: 2023-11-03
 description: "First of four data stories on the nccsdata R Package. This story covers data downloads."
 format: gfm
-featured: false
+featured: true
+featuredOrder: 2
 page-layout: full
-featuredOrder: 1
 primaryCtaUrl: https://urbaninstitute.github.io/nccsdata
 primaryCtaText: Package Website
 type: methods
@@ -75,14 +75,14 @@ You can install the development version of `nccsdata` directly from its
 [GitHub repository](https://github.com/UrbanInstitute/nccsdata) with:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("UrbanInstitute/nccsdata")
+install.packages( "devtools" )
+devtools::install_github( "UrbanInstitute/nccsdata" )
 ```
 
 Next, load in the package with:
 
 ``` r
-library(nccsdata)
+library( nccsdata )
 ```
 
 ## Downloading Data
@@ -98,15 +98,16 @@ of IRS forms files,
 codes, and geographic units from the US census.
 
 ``` r
-core_2005_nonprofit_pz <- get_data(dsname = "core",
-                                   time = "2005",
-                                   scope.orgtype = "NONPROFIT",
-                                   scope.formtype = "PZ")
+core_2005_nonprofit_pz <- 
+  get_data( dsname = "core",
+            time = "2005",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ" )
 #> Requested files have a total size of 82.6 MB. Proceed
 #>                       with download? Enter Y/N (Yes/no/cancel)
 
 
-tibble::as_tibble(core_2005_nonprofit_pz)
+tibble::as_tibble( core_2005_nonprofit_pz )
 #> # A tibble: 157,211 × 150
 #>    NTEECC new.code   type.org broad.category major.group univ  hosp  two.digit
 #>    <chr>  <chr>      <chr>    <chr>          <chr>       <lgl> <lgl> <chr>    
@@ -130,15 +131,17 @@ tibble::as_tibble(core_2005_nonprofit_pz)
 ```
 
 ``` r
-core_2005_artnonprofits_newyork <- get_data(dsname = "core",
-                                            time = "2016",
-                                            scope.orgtype = "NONPROFIT",
-                                            scope.formtype = "PZ",
-                                            ntee = "ART",
-                                            geo.state = "NY")
+core_2005_artnonprofits_newyork <- 
+  get_data( dsname = "core",
+            time = "2016",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ",
+            ntee = "ART",
+            geo.state = "NY" )
 #> Requested files have a total size of 113.6 MB. Proceed
 #>                       with download? Enter Y/N (Yes/no/cancel)
-tibble::as_tibble(core_2005_artnonprofits_newyork)
+
+tibble::as_tibble( core_2005_artnonprofits_newyork )
 #> # A tibble: 346 × 168
 #>    NTEECC new.code   type.org broad.category major.group univ  hosp  two.digit
 #>    <chr>  <chr>      <chr>    <chr>          <chr>       <lgl> <lgl> <chr>    
@@ -201,10 +204,11 @@ For example, the code snippet below downloads NCCS core data from the
 year 2015 for all nonprofits that file both full 990s and 990EZs:
 
 ``` r
-core <- get_data(dsname = "core",
-                 time = "2015",
-                 scope.orgtype = "NONPROFIT",
-                 scope.formtype = "PZ")
+core <- 
+  get_data( dsname = "core",
+            time = "2015",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ" )
 ```
 
 Whenever
@@ -223,11 +227,12 @@ can also pull only a subset of the data based on NTEE classifications
 using its various *ntee* associated arguments, as shown in this example:
 
 ``` r
-core_art <- get_data(dsname = "core",
-                     time = "2015",
-                     scope.orgtype = "NONPROFIT",
-                     scope.formtype = "PZ",
-                     ntee = c("ART"))
+core_art <- 
+  get_data( dsname = "core",
+            time = "2015",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ",
+            ntee = c("ART") )
 ```
 
 In the above code snippet, we pull the same dataset but only select rows
@@ -254,12 +259,13 @@ nonprofits in New York City using *geo.state* and *geo.city* for state-
 and city-level filtering respectively.
 
 ``` r
-core_NYC <- get_data(dsname = "core",
-                     time = "2015",
-                     scope.orgtype = "NONPROFIT",
-                     scope.formtype = "PZ",
-                     geo.state = "NY",
-                     geo.city = "New York City")
+core_NYC <- 
+  get_data( dsname = "core",
+            time = "2015",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ",
+            geo.state = "NY",
+            geo.city = "New York City" )
 ```
 
 Additional *geo* arguments can be used to subset the data by county
@@ -294,11 +300,12 @@ downloading an additional 185 MB and can be toggled on/off with
 *append_bmf*.
 
 ``` r
-corebmf <- get_data(dsname = "core",
-                    time = "2015",
-                    scope.orgtype = "NONPROFIT",
-                    scope.formtype = "PZ",
-                    append.bmf = TRUE)
+corebmf <- 
+  get_data( dsname = "core",
+            time = "2015",
+            scope.orgtype = "NONPROFIT",
+            scope.formtype = "PZ",
+            append.bmf = TRUE )
 ```
 
 ## Downloading BMF Data
@@ -309,9 +316,10 @@ BMF for California-based nonprofits in the Arts, Culture, and Humanities
 group:
 
 ``` r
-bmf <- get_data(dsname = "bmf",
-                ntee = c("ART"),
-                geo.state = c("CA"))
+bmf <- 
+  get_data( dsname = "bmf",
+            ntee = c("ART"),
+            geo.state = c("CA") )
 ```
 
 ## Conclusion
