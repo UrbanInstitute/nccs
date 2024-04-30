@@ -88,8 +88,7 @@ and
 to identify the County FIPS associated with specific Metropolitan or
 Micropolitan Regions.
 
-![CBSA and CSA
-Definitions](../../_stories/1466b86f8100d1f98ddce05851453a4ab4966e1b.png)
+<img src="https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png">
 
 ## Exploring CBSA FIPS Codes
 

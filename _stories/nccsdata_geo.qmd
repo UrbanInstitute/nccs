@@ -79,7 +79,7 @@ Geographic filtering with US census units therefore requires crosswalking units 
 
 All Census-defined metro areas are comprised of counties. This vignette explores the process of filtering nonprofit data by geography using [`geo_preview()`](https://urbaninstitute.github.io/nccsdata/reference/geo_preview.html) and [`map_countyfips()`](https://urbaninstitute.github.io/nccsdata/reference/map_countyfips.html) to identify the County FIPS associated with specific Metropolitan or Micropolitan Regions.  
 
-![CBSA and CSA Definitions](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png)
+<img src="https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/csa-vs-cbsa.png">
 
 ## Exploring CBSA FIPS Codes
 
