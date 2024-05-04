@@ -26,3 +26,13 @@ pubs:
     href: https://www.urban.org/sites/default/files/2021/11/05/national_findings_on_diversity_and_representation_in_the_nonprofit_sector.pdf
     link-text: pdf
 ---
+
+
+
+{% include_relative bibliography/references-nptrends-2024-05.html %}
+
+
+
+<br>
+<br>
+<br>
