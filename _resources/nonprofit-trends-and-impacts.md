@@ -37,38 +37,4 @@ pubs:
 <br>
 
 
-<style>
-
-/* BIBLIOGRAPHY ITEMS */
-
-div.csl-bib-body { }
-
-div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-  margin-bottom: 10px;
-  font-size: calc(0.8em + 0.15vw);
-}
-
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-
-div.csl-indent {
-  margin-left: 2em;
-}
-
-div.cite {
-  margin-left:2em;
-  text-indent:-2em;
-  margin-bottom: 20px;
-}
-
-</style>
 

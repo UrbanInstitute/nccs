@@ -1,3 +1,14 @@
+// FOR BIBLIOGRAPHY ITEMS 
+//
+//   INDENTS SECOND LINE   
+//   ----------------------------------------------------------------------------------------------  
+//   Abramson, Alan J. 2022. “Assessing the State of the US Nonprofit Sector:                        
+//     What Indicators Should We Use?” Nonprofit and Voluntary Sector Quarterly, 08997640221091534.  
+//   ---------------------------------------------------------------------------------------------- 
+//
+//   USE:   <div class="references" markdown="1">
+
+
 div.references {
   margin-left:2em;
   text-indent:-2em;
@@ -9,10 +20,47 @@ div.references p {
 }
 
 
-// FOR BIBLIOGRAPHY ITEMS 
+
+
+
+
+// FOR BIBLIOGRAPHY ITEMS IN _INCLUDES/BIB 
 //
 //   INDENTS SECOND LINE   
 //   ----------------------------------------------------------------------------------------------  
 //   Abramson, Alan J. 2022. “Assessing the State of the US Nonprofit Sector:                        
 //     What Indicators Should We Use?” Nonprofit and Voluntary Sector Quarterly, 08997640221091534.  
-//   ----------------------------------------------------------------------------------------------  
+//   ---------------------------------------------------------------------------------------------- 
+//
+//   HTML generated from REFERENCES.RMD files in _INCLUDES/BIB 
+
+
+div.csl-bib-body { }
+
+div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+  margin-bottom: 10px;
+  font-size: calc(0.8em + 0.15vw);
+}
+
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+
+div.csl-indent {
+  margin-left: 2em;
+}
+
+div.cite {
+  margin-left:2em;
+  text-indent:-2em;
+  margin-bottom: 20px;
+}
+
