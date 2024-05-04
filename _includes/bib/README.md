@@ -6,8 +6,9 @@ The R Markdown file **bibliography.rmd** generates the bibliography from the Bib
 
 The output is specifically an **html_fragment** instead of **html_document** so that the output can be added directly to a page using the jekyll function: 
 
+For example, to insert the bibliography created from **ref-section-nptrends.rmd** add: 
 ```
-{% include_relative _data/bibliography/references-nptrends-2024-05.html %}
+{% include bib/bibliography/ref-section-nptrends.html %}
 ```
 
 ## Updating References
@@ -30,7 +31,7 @@ Sync the updated **bibliography.html** to GitHub and the references will refresh
 
 ## Style Sheet
 
-Note that the following elements are needed to ensure publications are formatting correctly. 
+Note that the following elements are needed to ensure publications are formatting correctly. These are located in **public/scss/components/_bibliography.scss**.  
 
 ```
 <style>
