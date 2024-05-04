@@ -15,46 +15,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ###  for the pubs.md page. Need to download
 ###  recent cites as BibTex file from scholar:
 ###  use Zotero tool to download all at once.
+
+
+**Recent Citations of NP Trends Work as of `r format(Sys.time(), '%B %Y')`:** 
 ```
 
 
-**References as of `r format(Sys.time(), '%B %Y')`:** 
+**Select Works Citing Nonprofit Trends Data:** 
 
 
-
-
-<style>
-/* BIBLIOGRAPHY ITEMS */
-
-div.csl-bib-body { }
-
-div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-  margin-bottom: 10px;
-  font-size: calc(0.8em + 0.15vw);
-}
-
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-
-div.csl-indent {
-  margin-left: 2em;
-}
-
-div.cite {
-  margin-left:2em;
-  text-indent:-2em;
-  margin-bottom: 20px;
-}
-
-</style>
 
 

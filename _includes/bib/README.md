@@ -30,11 +30,9 @@ Sync the updated **bibliography.html** to GitHub and the references will refresh
 
 ## Style Sheet
 
-The following style sheet items for formatting references correctly (second line indented) are embedded within the RMD file, so they should propogate to the HTML fragment. 
+Note that the following elements are needed to ensure publications are formatting correctly. 
 
-
-``` 
-
+```
 <style>
 /* BIBLIOGRAPHY ITEMS */
 
@@ -68,6 +66,4 @@ div.cite {
 }
 
 </style>
-
-```  
-
+```
