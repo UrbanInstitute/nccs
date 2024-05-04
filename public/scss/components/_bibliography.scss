@@ -35,13 +35,13 @@ div.references p {
 //   HTML generated from REFERENCES.RMD files in _INCLUDES/BIB 
 
 
-.references.csl-bib-body { 
+div#refs.references.csl-bib-body { 
   margin-left:2em;
   text-indent:-2em;
   font-size: calc(0.7em + 0.15vw);
 }
 
-.references.csl-bib-body .csl-entry {
+.csl-entry {
   margin-bottom: 10px;
 }
 
