@@ -29,7 +29,7 @@ pubs:
 
 
 
-{% include_relative bibliography/references-nptrends-2024-05.html %}
+{% include_relative _data/bibliography/references-nptrends-2024-05.html %}
 
 
 

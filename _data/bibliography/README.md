@@ -7,7 +7,7 @@ The R Markdown file **bibliography.rmd** generates the bibliography from the Bib
 The output is specifically an **html_fragment** instead of **html_document** so that the output can be added directly to a page using the jekyll function: 
 
 ```
-{% include_relative bibliography/references-nptrends-2024-05.html %}
+{% include_relative _data/bibliography/references-nptrends-2024-05.html %}
 ```
 
 ## Updating References
@@ -32,7 +32,9 @@ Sync the updated **bibliography.html** to GitHub and the references will refresh
 
 The following style sheet items for formatting references correctly (second line indented) are embedded within the RMD file, so they should propogate to the HTML fragment. 
 
-```
+
+``` 
+
 <style>
 /* BIBLIOGRAPHY ITEMS */
 
@@ -66,4 +68,6 @@ div.cite {
 }
 
 </style>
-```
+
+```  
+
