@@ -1,6 +1,6 @@
 ---
 title: Business Master File (BMF)
-date: 2023-05-28
+date: 2024-06-01
 description: All active organizations that have been granted nonprofit status by the IRS.
 categories:
   - BMF
@@ -8,17 +8,38 @@ categories:
   - metadata
 featured: true
 featuredOrder: 2
-primaryCtaUrl: "../../catalogs/catalog-bmf.html"
+primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/harmonized/bmf/unified/BMF_UNIFIED_V1.1.csv"
+primaryCtaCaption: 1.3 GB
 primaryLinks:
-  - text: "R Package"
-    href: "https://urbaninstitute.github.io/nccsdata/"
-    icon: r
+  - text: "Data Dictionary"
+    href: "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx"
+    icon: article
 citation: 
   author: "Jesse Lecy"
-  citationDate: "2023"
-  container-title: "NCCS Legacy BMF Series"
+  citationDate: "2024"
+  container-title: "NCCS Unified BMF"
   doi:
 ---
+
+## Unified BMF
+
+The IRS releases a Business Master File every month which serves as the most recent and comprehensive record of tax exempt organizations in the United States. However, organizations that are no longer active are removed from each new BMF release.
+
+To facilitate the easier creation of time-series panel data sets, NCCS has created a Unified BMF which aggregates all unique EINs (unique identification numbers for nonprofits) across every historic BMF data set into a single panel.
+
+This Unified BMF contains all recorded exempt organizations between 1989 and 2024. The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. The link to downloading these files can be found in the sidebar of this page.
+
+Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
+
+## Version Roadmap
+
+| Version | Release | Notes |
+| :---: | :---: | :---: |
+| 0.0 | June 21 2024 | Beta Version (Current) |
+| 1.0 | July 4th 2024 | Research Guide Complete |
+| 1.1 | July 18th 2024 | State-level Data Marts |
+
+## BMF Overview
 
 The IRS 990 Business Master File, often referred to as the "BMF," is a database maintained by the Internal Revenue Service (IRS) in the United States. It contains information about tax-exempt organizations and other entities that are required to file various forms of the IRS Form 990 series. These organizations include:
 
@@ -38,45 +59,3 @@ The BMF is the defacto sampling framework for many studies involving nonprofits 
 * Some exceptional cases like 501(c)(4) organizations that opt to self-declare their intent to operate using Form 8976 instead of the typical application process with the IRS. They must file 990's to remain compliant, but since the IRS never formally rules on their status they do not appear in the BMF. 
 
 Researchers, government agencies, journalists, and the general public often use the IRS 990 Business Master File to access information about nonprofit organizations, assess their financial health, and evaluate their compliance with tax regulations. The data in this file can provide valuable insights into the operations and finances of these entities. It's worth noting that while certain information from Form 990 filings is publicly available and can be accessed through the IRS website or other sources, sensitive information like donor names and addresses is typically redacted to protect privacy.
-
-|VARIABLE  | DEFINITION |
-|:---------|:---|
-|EIN       |Employer identification number |
-|SEC_NAME  |Secondary organization name |
-|FRCD      |Filing requirements code. The 1st 2 characters indicate the requirements for 990/990-EZ forms. The 3rd character = 1 if a 990-PF is required or 0 if not. |
-|SUBSECCD  |IRS subsection code (03=501(c)(3), etc.) |
-|TAXPER    |Ending date for tax period of financial data. Core files for 1997 on are in "yyyymm" format (199412=Dec. 1994). Earlier years use 2-digit year ("9412"). |
-|ASSETS    |Total assets (end of year) from most recent Form 990 |
-|INCOME    |Gross receipts from most recently filed Form 990 |
-|NAME      |Organization name |
-|ADDRESS   |Address |
-|CITY      |City |
-|STATE     |State |
-|NTEEFINAL |NTEE Code |
-|NAICS     |NAICS Code |
-|ZIP5      |First 5 digits of zip code |
-|RULEDATE  |Ruling date: year and month of IRS ruling or determination letter recognizing orgs exempt status (YYYYMM) |
-|FIPS      |2-digit State + 3-digit County FIPS code (Federal Information Processing Standard). See also U.S. Census Bureau State & County QuickFacts. |
-|FNDNCD    |Reason for & type of 501(c)(3) exempt status including codes for operating and grantmaking foundations, and broad type of public charity |
-|PMSA      |Primary Metropolitan Statistical Area |
-|MSA_NECH  |Metropolitan Statistical Area (NCCS file) |
-|CASSETS   |Total Assets (Book Value at end of year) from most recent Form 990 (Part IV, line 59(B) on Form 990; Part II, line 25(B) on Form 990-EZ; or Part II, line 16(b) on Form 990-PF) |
-|CFINSRC   |Source of financial data added by NCCS (primarily the most recent Form 990 filing as of BMF date from NCCS Core files) |
-|CTAXPER   |Ending date for tax period of NCCS financial data in yyyymm format |
-|CTOTREV   |Total Revenue from most recent Form 990 (Part I, line 12 on Form 990; Part I, line 9 on Form 990-EZ; or Part I, line 12(a) on Form 990-PF) |
-|ACCPER    |Accounting period |
-|RANDNUM   |Random number between 0 and 1 used for creating samples |
-|NTEECC    |NTEECC classification |
-|NTEE1     |NTEE major group (A-Z) |
-|LEVEL4    |NTEE-CC Major Group |
-|LEVEL1    |Public charity or private foundation? |
-|NTMAJ10   |10 NTEE major groups |
-|MAJGRPB   |Major NTEE group plus hospitals and higher education |
-|LEVEL3    |Major NTEE category |
-|LEVEL2    |Reporting public charity groups |
-|NTMAJ12   |12 NTEE major groups: ntmaj10 plus higher education (BH) and hospitals (EH) |
-|NTMAJ5    |Major subsector (5) |
-|FILER     |Filed 990 return (Form 990, Form 990-EZ, Form 990-PF, or Form 990-N) within 24 months of BMF file? (Y/N) |
-|ZFILER    |Filed 990 return with zero income and assets within 24 months of BMF file? (Y/N) - Beginning 2008, over 95% of 'zero filers' (ZFiler=Y) filed Form 990-N (e-Postcard) for tax years ending on or after December 31, 2007. |
-|OUTREAS   |Reason why out of scope |
-|OUTNCCS   |Out-of-scope (IN/OUT) (see OUTREAS doc. for details) |
