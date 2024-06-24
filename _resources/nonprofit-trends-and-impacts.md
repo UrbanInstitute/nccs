@@ -47,6 +47,8 @@ pubs:
     style = "secondary" %}
 </div>
 
+<br> 
+
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
@@ -78,6 +80,8 @@ pubs:
     style = "secondary" %}
 </div>
 
+<br> 
+
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
@@ -107,6 +111,8 @@ pubs:
     header = "2022 Data"
     style = "secondary" %}
 </div>
+
+<br> 
 
 <div class="flex flex-wrap gap">
 
@@ -141,6 +147,8 @@ pubs:
     style = "secondary" %}
 </div>
 
+<br> 
+
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
@@ -173,24 +181,30 @@ pubs:
     style = "secondary" %}
 </div>
 
+<br> 
+
 Qualtrics survey files (QCF) are available for all versions of the survey instrument and are shared so that researchers may incorporate Nonprofit Trends questions into their own surveys. Public use data files serve as nationally-representative benchmarks that are helpful for triangulating results of any custom study samples. Pro-programmed Qualtrics files make it easier to integrate these existing survey tools into your own study. See "Survey Question" links above for word document versions of the instruments. 
+
+
+<br> 
+<hr>
 
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
-  text = "Qualtrics Files"
+  text = "QCF Year 1"
   href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year1-qualtrics-file.zip"
   style = "text"
 %}
 
 {% include components/button.html
-  text = "Qualtrics Files"
+  text = "QCF Year 2"
   href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year2-qualtrics-file.qsf"
   style = "text"
 %}
 
 {% include components/button.html
-  text = "Qualtrics Files"
+  text = "QCF Year 3"
   href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year3-qualtrics-file.qsf"
   style = "text"
 %}
