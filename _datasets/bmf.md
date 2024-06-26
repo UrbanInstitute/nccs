@@ -25,9 +25,21 @@ citation:
 
 The IRS releases a Business Master File every month which serves as the most recent and comprehensive record of tax exempt organizations in the United States. However, organizations that are no longer active are removed from each new BMF release.
 
-To facilitate the easier creation of time-series panel data sets, NCCS has created a Unified BMF which aggregates all unique EINs (unique identification numbers for nonprofits) across every historic BMF data set into a single panel.
+To facilitate the creation of consistent time-series datasets, NCCS has created a Unified BMF which aggregates information from every historic BMF dataset into a single file. The Unified BMF contains one row for each organization that was granted tax-exempt status and appeared in any BMF file from 1989 to present day. There are ~3.8 million nonprofits present in the file, ~1.8 million of which are currently active. 
 
-This Unified BMF contains all recorded exempt organizations between 1989 and 2024. The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. The link to downloading these files can be found in the sidebar of this page.
+The Unified BMF has some additional upgrades:
+
+* The most recent address available for each organization has been geocoded and matched to a Census Block.
+* The BLOCK FIPS variable can be decomposed into a TRACT, COUNTY, or STATE FIPS to make it easier to [merge Census Data](https://urbaninstitute.github.io/nccs/catalogs/catalog-census_crosswalk.html).
+* [NCCS Census Crosswalk](https://nccs.urban.org/nccs/datasets/census/) files make it easy to aggregate data to 14 different geographic levels (metros, regions, urban/rural areas, etc.).
+* A Metro FIPS code that uses [CBSA metropolitan and micropolitan definitions](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/) has been added, replacing the previous PMSA designations.
+* The BMF includes an indicator for the first and last years the organization appears in the NCCS Core data series, making it easier to build sampling frameworks using information about availability data for each organization. 
+
+The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. The link to downloading these files can be found in the sidebar of this page.
+
+Legacy single-year BMF files can be accessed on the following page: 
+
+* [BMF Download Page](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html) 
 
 Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
 
@@ -41,7 +53,7 @@ Users are encouraged to submit any questions and comments regarding this data se
 
 ## BMF Overview
 
-The IRS 990 Business Master File, often referred to as the "BMF," is a database maintained by the Internal Revenue Service (IRS) in the United States. It contains information about tax-exempt organizations and other entities that are required to file various forms of the IRS Form 990 series. These organizations include:
+The IRS 990 Business Master File, often referred to as the "BMF," is a database maintained by the Internal Revenue Service (IRS). It contains information about tax-exempt organizations and other entities that are required to file various forms of the IRS Form 990 series. These organizations include:
 
 1. All 501(c)(3) charitable organizations, foundations, religious entities.
 2. Social welfare organizations, civic leagues, and associations with status 501c4. 
