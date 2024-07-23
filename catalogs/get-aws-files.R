@@ -63,7 +63,7 @@ dt <- unique( dt )
 
 dt$URL <- paste0( "https://nccsdata.s3.us-east-1.amazonaws.com/", dt$Key )
 
-write.csv( dt, "AWS-NCCSDATA.csv", row.names=F )
+write.csv( dt, "catalogs/AWS-NCCSDATA.csv", row.names=F )
 
 
 
