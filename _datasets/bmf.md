@@ -43,11 +43,12 @@ Legacy single-year BMF files can be accessed on the following page:
 
 Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
 
-## Version Roadmap
+## Version Control
 
 | Version | Release | Notes |
 | :---: | :---: | :---: |
 | 0.0 | June 21 2024 | Beta Version (Current) |
+| 0.01 | July 31 2024 | Reformatted EIN and EIN2 |
 | 1.0 | July 4th 2024 | Research Guide Complete |
 | 1.1 | July 18th 2024 | State-level Data Marts |
 
