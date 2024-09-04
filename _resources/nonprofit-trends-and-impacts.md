@@ -65,14 +65,18 @@ pubs:
 
 {% include components/button.html
   text = "Technical Guide"
-  href = "https://urbaninstitute.github.io/nccs-nptrends/data-guidebook/GUIDEBOOK/"
+  href = ""
   style = "text"
 %}
 
 <div>
 
+<!--     https://urbaninstitute.github.io/nccs-nptrends/data-guidebook/GUIDEBOOK/     -->
 
 <!--     ###############     2021 DATA      ###################     -->
+
+
+
 
 <div class="flow">
   {% include components/divider.html
@@ -193,7 +197,7 @@ Qualtrics survey files (QCF) are available for all versions of the survey instru
 
 {% include components/button.html
   text = "QCF Year 1"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year1-qualtrics-file.zip"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year1.zip"
   style = "text"
 %}
 
