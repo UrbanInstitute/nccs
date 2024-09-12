@@ -10,12 +10,10 @@ project-name: nptrends
 categories:
   - survey
 abstract: "Nonprofit organizations in the United States play a vital role delivering services, strengthening communities, and facilitating civic engagement. In our nationally representative surveys of nonprofit organizations, we focus on operating 501(c)(3) public charities whose activities range from direct service provision to community building and advocacy. We provide public use datasets of most of the survey data we collect so that others across the country can investigate questions of their own."
-primaryLinks:
-  - text: 2021 Public Use Dataset
-    href: https://datacatalog.urban.org/dataset/national-survey-nonprofit-trends-and-impacts-public-use-files
-  - text: Project Site
-    href: https://www.urban.org/partnering-understand-long-term-trends-nonprofit-organization-activities-and-needs
 pubs:
+  - title:  Project Website
+    href: https://www.urban.org/partnering-understand-long-term-trends-nonprofit-organization-activities-and-needs
+    link-text: link
   - title: Nonprofit Trends and Impacts 2021
     href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021
     link-text: link
@@ -34,6 +32,9 @@ pubs:
 
 ## Public Use Data Files 
 
+Please cite the dataset as follows: 
+
+> Kim, Mirae; Faulk, Lewis; Derrick-Mills, Teresa; Lecy, Jesse; Pu, Calton; Martin, Hannah; Poongundranar, Thiyaghessan; Abramson, Alan; Boris, Elizabeth; Tomasko, Laura, 2024, "Nonprofit Trends Longitudinal Survey Public Use Data Files", [https://doi.org/10.7910/DVN/T4OT1J](https://doi.org/10.7910/DVN/T4OT1J), Harvard Dataverse, V1, UNF:6:CNHUxmZ6pbuNDc+pDaxR/Q== [fileUNF]
 
 
 <br> 
@@ -52,26 +53,23 @@ pubs:
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
-  text = "Sampling Methods"
+  text = "Sampling Framework"
   href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/sampling-frame/research-methods.pdf"
   style = "primary"
 %}
 
 {% include components/button.html
-  text = "PUF Details"
+  text = "Survey Details"
   href = "https://datacatalog.urban.org/sites/default/files/related-documents/National%20Survey%20of%20Nonprofit%20Trends%20and%20Impacts%20Spring%202021%20Data%20Description.pdf"
   style = "text"
 %}
 
-{% include components/button.html
-  text = "Technical Guide"
-  href = ""
-  style = "text"
-%}
 
 <div>
 
+<!--     Technical Guide      -->
 <!--     https://urbaninstitute.github.io/nccs-nptrends/data-guidebook/GUIDEBOOK/     -->
+
 
 <!--     ###############     2021 DATA      ###################     -->
 
@@ -122,7 +120,7 @@ pubs:
 
 {% include components/button.html
   text = "Public Use Data File"
-  href = ""
+  href = "https://dataverse.harvard.edu/file.xhtml?fileId=10518806&version=1.0"
   style = "primary"
 %}
 
@@ -157,7 +155,7 @@ pubs:
 
 {% include components/button.html
   text = "Public Use Data File"
-  href = ""
+  href = "https://dataverse.harvard.edu/file.xhtml?fileId=10518809&version=1.1"
   style = "primary"
 %}
 
@@ -227,6 +225,8 @@ Qualtrics survey files (QCF) are available for all versions of the survey instru
 ## Restricted Use Data Files 
 
 Restricted use files are available to qualified researchers upon request. 
+
+Please contact Hannah Martin at nptrends@urban.org for information about the process. 
 
 <br>
 <hr>
