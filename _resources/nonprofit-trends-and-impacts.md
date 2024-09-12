@@ -54,7 +54,7 @@ Please cite the dataset as follows:
 
 {% include components/button.html
   text = "Sampling Framework"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/sampling-frame/research-methods.pdf"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/sample-frame/research-methods.pdf"
   style = "primary"
 %}
 
@@ -195,19 +195,19 @@ Qualtrics survey files (QCF) are available for all versions of the survey instru
 
 {% include components/button.html
   text = "QCF Year 1"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year1.zip"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-questions/survey-year1-qualtrics-file.zip"
   style = "text"
 %}
 
 {% include components/button.html
   text = "QCF Year 2"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year2-qualtrics-file.qsf"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-questions/survey-year2-qualtrics-file.qsf"
   style = "text"
 %}
 
 {% include components/button.html
   text = "QCF Year 3"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-year3-qualtrics-file.qsf"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-questions/survey-year3-qualtrics-file.qsf"
   style = "text"
 %}
 
@@ -226,7 +226,7 @@ Qualtrics survey files (QCF) are available for all versions of the survey instru
 
 Restricted use files are available to qualified researchers upon request. 
 
-Please contact Hannah Martin at nptrends@urban.org for information about the process. 
+Please contact Hannah Martin at NPSurvey@urban.org for information about the process. 
 
 <br>
 <hr>
