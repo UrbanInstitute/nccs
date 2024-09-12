@@ -14,7 +14,7 @@ pubs:
   - title:  Project Website
     href: https://www.urban.org/partnering-understand-long-term-trends-nonprofit-organization-activities-and-needs
     link-text: link
-  - title: Nonprofit Trends and Impacts 2021
+  - title: Nonprofit Trends and Impacts Report 2021
     href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021
     link-text: link
   - title: "Findings on US Donation Trends, 2015–2020: Nonprofit Trends and Impacts 2021"
