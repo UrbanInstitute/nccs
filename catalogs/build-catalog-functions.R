@@ -261,8 +261,9 @@ make_buttons <- function(urls, button_name) {
   button_dic = list("download" = " class='button'> DOWNLOAD </a>",
                     "profile" = " class='button2'> PROFILE </a>")
   
-  buttons <- paste0("<a href=",
+  buttons <- paste0("<a href='",
                     urls,
+                    "'",
                     button_dic[[button_name]] )
   return( buttons ) 
 }
