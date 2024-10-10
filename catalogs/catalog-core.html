@@ -67,13 +67,13 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <p><br></p>
 <p>Files are organized as follows:</p>
-<p><strong>TAX EXEMPT TYPE (tscope)</strong></p>
+<p><strong>Tax Exempt Type (tscope)</strong></p>
 <ul>
 <li>CHARITIES - 501c3 nonprofit organizations</li>
 <li>NONPROFITS - All other 501c type organizations besides 501c3</li>
 <li>PRIVATE FOUNDATIONS - 501c3 private foundations</li>
 </ul>
-<p><strong>IRS 990 FORM SCOPE (fscope)</strong></p>
+<p><strong>IRS 990 Form Scope (fscope)</strong></p>
 <p>Nonprofits can file Form 990, 990EZ, 990PF, or 990N.</p>
 <p>Private foundations must file Form 990PF. Small nonprofits can file form 990EZ, which is a shorter version of the full form. Organizations with more than $250k in revenues must file full Form 990.</p>
 <p>Very small nonprofits (revenues less than $50k annually) can file Form 990N (the postcard form). Since they disclose no finances or organizational activities form 990N filers are not included in the Core Data Series.</p>
@@ -84,19 +84,70 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>PF</strong>: 990PF private foundations</li>
 </ul>
 <p>Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures.</p>
-<p><strong>YEAR</strong></p>
-<p>Files are organized by <strong>filing year</strong>. See the Research Handbook for details on the differences.</p>
+<p><strong>Year</strong></p>
+<p>Files for form scopes PZ and PC are organized by <strong>tax year</strong>. While PF files are organized by <strong>filing year</strong> See the Research Handbook for details on the differences.</p>
+<p><strong>Data Dictionary</strong></p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Column</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">variable_name</td>
+<td style="text-align: center;">Name of variable in CORE data set</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">variable_description</td>
+<td style="text-align: center;">Variable description taken from concordance</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">variable_source</td>
+<td style="text-align: center;">Variable Source</td>
+<td style="text-align: center;">HD: Header, PC: Form 990, PZ: Form 990 + 990-EZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">form_location</td>
+<td style="text-align: center;">Location on Form 990</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">variable_coverage</td>
+<td style="text-align: center;">Tax Years Where Variable Is Present</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">variable_datatype</td>
+<td style="text-align: center;">Data Type</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv" class="button3">Download Dictionary</a></p>
 <p><br></p>
 <hr>
 <p><br></p>
-<section id="c3-charities-scope-pz" class="level4">
-<h4 class="anchored" data-anchor-id="c3-charities-scope-pz">501c3 CHARITIES SCOPE PZ</h4>
+<section id="c3-charities" class="level4">
+<h4 class="anchored" data-anchor-id="c3-charities">501(c)(3) Charities</h4>
+</section>
+<section id="scope-pz" class="level3">
+<h3 class="anchored" data-anchor-id="scope-pz">Scope: PZ</h3>
+<div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Download Link</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Data Dictionary</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
@@ -105,339 +156,345 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1989-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">63.6 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1989-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">37.3 mb</td>
 <td style="text-align: left;">1989</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1990-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1990-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">39.8 mb</td>
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1991-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">44.2 mb</td>
+<td style="text-align: left;">1991</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1992-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">46.7 mb</td>
+<td style="text-align: left;">1992</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1993-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">49.2 mb</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1994-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51 mb</td>
+<td style="text-align: left;">1994</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1995-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">64.2 mb</td>
+<td style="text-align: left;">1995</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1996-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">88.6 mb</td>
+<td style="text-align: left;">1996</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1997-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">92.4 mb</td>
+<td style="text-align: left;">1997</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1998-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">99.1 mb</td>
+<td style="text-align: left;">1998</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-1999-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">104.4 mb</td>
+<td style="text-align: left;">1999</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2000-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">107.6 mb</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2001-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">105 mb</td>
+<td style="text-align: left;">2001</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2002-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">122.1 mb</td>
+<td style="text-align: left;">2002</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2003-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">126 mb</td>
+<td style="text-align: left;">2003</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2004-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">131.9 mb</td>
+<td style="text-align: left;">2004</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2005-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">138.5 mb</td>
+<td style="text-align: left;">2005</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2006-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">136.8 mb</td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2007-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">156.5 mb</td>
+<td style="text-align: left;">2007</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2008-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">137.1 mb</td>
+<td style="text-align: left;">2008</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2009-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">158.7 mb</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2010-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">144.5 mb</td>
+<td style="text-align: left;">2010</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2011-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">148.3 mb</td>
+<td style="text-align: left;">2011</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2012-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">291.8 mb</td>
+<td style="text-align: left;">2012</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2013-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">326.9 mb</td>
+<td style="text-align: left;">2013</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2014-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">303.3 mb</td>
+<td style="text-align: left;">2014</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2015-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">312.1 mb</td>
+<td style="text-align: left;">2015</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2016-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">314.6 mb</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2017-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">338.5 mb</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2018-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">341.5 mb</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2019-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">288.4 mb</td>
+<td style="text-align: left;">2019</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2020-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">258 mb</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2021-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">504.7 mb</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pz/CORE-2022-501C3-CHARITIES-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
 <td style="text-align: left;">66.6 mb</td>
-<td style="text-align: left;">1990</td>
+<td style="text-align: left;">2022</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PZ</td>
 </tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><br></p>
+<hr>
+<p><br></p>
+<section id="c3-charities-1" class="level4">
+<h4 class="anchored" data-anchor-id="c3-charities-1">501(c)(3) Charities</h4>
+</section>
+</section>
+<section id="scope-pc" class="level3">
+<h3 class="anchored" data-anchor-id="scope-pc">Scope: PC</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Download Link</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1991-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">72.3 mb</td>
-<td style="text-align: left;">1991</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2012-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">179.8 mb</td>
+<td style="text-align: left;">2012</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1992-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">76.7 mb</td>
-<td style="text-align: left;">1992</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2013-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">171.8 mb</td>
+<td style="text-align: left;">2013</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">PC</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1993-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1993-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">79.9 mb</td>
-<td style="text-align: left;">1993</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2014-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">155.9 mb</td>
+<td style="text-align: left;">2014</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1994-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">84.5 mb</td>
-<td style="text-align: left;">1994</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2015-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">157.7 mb</td>
+<td style="text-align: left;">2015</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">PC</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1995-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">90 mb</td>
-<td style="text-align: left;">1995</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2016-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">159.4 mb</td>
+<td style="text-align: left;">2016</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1996-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">100.9 mb</td>
-<td style="text-align: left;">1996</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2017-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">167.7 mb</td>
+<td style="text-align: left;">2017</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
+<td style="text-align: left;">PC</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1997-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">134.7 mb</td>
-<td style="text-align: left;">1997</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1998-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">176.1 mb</td>
-<td style="text-align: left;">1998</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1999-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2018-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
 <td style="text-align: left;">176.5 mb</td>
-<td style="text-align: left;">1999</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2000-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">198.1 mb</td>
-<td style="text-align: left;">2000</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2001-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">230.9 mb</td>
-<td style="text-align: left;">2001</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2002-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">259.4 mb</td>
-<td style="text-align: left;">2002</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2003-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">227.3 mb</td>
-<td style="text-align: left;">2003</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2004-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">299.8 mb</td>
-<td style="text-align: left;">2004</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2005-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">226.1 mb</td>
-<td style="text-align: left;">2005</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2006-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">237.6 mb</td>
-<td style="text-align: left;">2006</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2007-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">253.3 mb</td>
-<td style="text-align: left;">2007</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2008-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">254.4 mb</td>
-<td style="text-align: left;">2008</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2009-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">263.5 mb</td>
-<td style="text-align: left;">2009</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2010-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">316.8 mb</td>
-<td style="text-align: left;">2010</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2011-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">263.2 mb</td>
-<td style="text-align: left;">2011</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2012-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">260.1 mb</td>
-<td style="text-align: left;">2012</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2013-501C3-CHARITIES-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">351.1 mb</td>
-<td style="text-align: left;">2013</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">343.2 mb</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">348.3 mb</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">339.1 mb</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">349.4 mb</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">351.8 mb</td>
-<td style="text-align: left;">2018</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-501C3-CHARITIES-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">355.1 mb</td>
-<td style="text-align: left;">2019</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PZ</td>
-</tr>
-</tbody>
-</table>
-
-
-</div>
-<p><br></p>
-<hr>
-<p><br></p>
-</section>
-<section id="c3-charities-scope-pc" class="level4">
-<h4 class="anchored" data-anchor-id="c3-charities-scope-pc">501c3 CHARITIES SCOPE PC</h4>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Download Link</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Data Dictionary</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Form Scope</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2012-501C3-CHARITIES-PC" class="button2">PROFILE</a></td>
-<td style="text-align: left;">209.9 mb</td>
-<td style="text-align: left;">2012</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PC</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2013-501C3-CHARITIES-PC" class="button2">PROFILE</a></td>
-<td style="text-align: left;">233.4 mb</td>
-<td style="text-align: left;">2013</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PC</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">228.4 mb</td>
-<td style="text-align: left;">2014</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PC</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">240.5 mb</td>
-<td style="text-align: left;">2015</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PC</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">236.6 mb</td>
-<td style="text-align: left;">2016</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PC</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">242.6 mb</td>
-<td style="text-align: left;">2017</td>
-<td style="text-align: left;">501C3-CHARITIES</td>
-<td style="text-align: left;">PC</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">241.5 mb</td>
 <td style="text-align: left;">2018</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-501C3-CHARITIES-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">223.2 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2019-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">178.5 mb</td>
 <td style="text-align: left;">2019</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2020-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">163.8 mb</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PC</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2021-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">168 mb</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">501C3-CHARITIES</td>
+<td style="text-align: left;">PC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pc/CORE-2022-501C3-CHARITIES-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">19.3 mb</td>
+<td style="text-align: left;">2022</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PC</td>
 </tr>
@@ -450,16 +507,18 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <hr>
 <p><br></p>
+<section id="all-other-501c-nonprofits" class="level4">
+<h4 class="anchored" data-anchor-id="all-other-501c-nonprofits">All Other 501(c) Nonprofits</h4>
 </section>
-<section id="nonprofits-scope-pz" class="level4">
-<h4 class="anchored" data-anchor-id="nonprofits-scope-pz">NONPROFITS SCOPE PZ</h4>
+</section>
+<section id="scope-pz-1" class="level3">
+<h3 class="anchored" data-anchor-id="scope-pz-1">Scope: PZ</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Download Link</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Data Dictionary</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
@@ -468,251 +527,241 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1989-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">90.2 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1989-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51.7 mb</td>
 <td style="text-align: left;">1989</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1990-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">84.2 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1990-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">54.7 mb</td>
 <td style="text-align: left;">1990</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1991-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">92.1 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1991-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">55.6 mb</td>
 <td style="text-align: left;">1991</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1992-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">93.9 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1992-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51.9 mb</td>
 <td style="text-align: left;">1992</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1993-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1993-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">89.2 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1993-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51 mb</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1994-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">89.9 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1994-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">57.1 mb</td>
 <td style="text-align: left;">1994</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1995-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">90.1 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1995-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51.2 mb</td>
 <td style="text-align: left;">1995</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1996-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">92.1 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1996-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">43.9 mb</td>
 <td style="text-align: left;">1996</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1997-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">62 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1997-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">32.6 mb</td>
 <td style="text-align: left;">1997</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1998-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">79.9 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1998-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">49.4 mb</td>
 <td style="text-align: left;">1998</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1999-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">80.5 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-1999-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">43.7 mb</td>
 <td style="text-align: left;">1999</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2000-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">72.7 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2000-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">47.6 mb</td>
 <td style="text-align: left;">2000</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2001-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">76.2 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2001-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">55.5 mb</td>
 <td style="text-align: left;">2001</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2002-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">117 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2002-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">56 mb</td>
 <td style="text-align: left;">2002</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2003-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">91.6 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2003-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">58.5 mb</td>
 <td style="text-align: left;">2003</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2004-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">87.9 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2004-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">62.1 mb</td>
 <td style="text-align: left;">2004</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2005-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">82.6 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2005-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">58.2 mb</td>
 <td style="text-align: left;">2005</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2006-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">87.7 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2006-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">56.2 mb</td>
 <td style="text-align: left;">2006</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2007-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">93.8 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2007-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">62.5 mb</td>
 <td style="text-align: left;">2007</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2008-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">93.7 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2008-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">57.3 mb</td>
 <td style="text-align: left;">2008</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">96.1 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2009-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">66.1 mb</td>
 <td style="text-align: left;">2009</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">98 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2010-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">59.4 mb</td>
 <td style="text-align: left;">2010</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2011-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">101.3 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2011-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">53.3 mb</td>
 <td style="text-align: left;">2011</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2012-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">94.5 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2012-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">105.5 mb</td>
 <td style="text-align: left;">2012</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2013-501CE-NONPROFIT-PZ" class="button2">PROFILE</a></td>
-<td style="text-align: left;">90.9 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2013-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">111.4 mb</td>
 <td style="text-align: left;">2013</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">115.7 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2014-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">105.6 mb</td>
 <td style="text-align: left;">2014</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">115 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2015-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">105.5 mb</td>
 <td style="text-align: left;">2015</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">113.6 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2016-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">103.2 mb</td>
 <td style="text-align: left;">2016</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">110.8 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2017-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">111.9 mb</td>
 <td style="text-align: left;">2017</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2018-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
 <td style="text-align: left;">111.1 mb</td>
 <td style="text-align: left;">2018</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-501CE-NONPROFIT-PZ.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">110.7 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2019-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">88.1 mb</td>
 <td style="text-align: left;">2019</td>
-<td style="text-align: left;">501CE-CHARITIES</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2020-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">151.4 mb</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2021-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">144.2 mb</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
+<td style="text-align: left;">PZ</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pz/CORE-2022-501CE-NONPROFIT-PZ-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">25 mb</td>
+<td style="text-align: left;">2022</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PZ</td>
 </tr>
 </tbody>
@@ -724,16 +773,18 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <hr>
 <p><br></p>
+<section id="all-other-501c-nonprofits-1" class="level4">
+<h4 class="anchored" data-anchor-id="all-other-501c-nonprofits-1">All Other 501(c) Nonprofits</h4>
 </section>
-<section id="nonprofits-scope-pc" class="level4">
-<h4 class="anchored" data-anchor-id="nonprofits-scope-pc">NONPROFITS SCOPE PC</h4>
+</section>
+<section id="scope-pc-1" class="level3">
+<h3 class="anchored" data-anchor-id="scope-pc-1">Scope: PC</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Download Link</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Data Dictionary</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Year</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Nonprofit Type</th>
@@ -742,66 +793,79 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2012-501CE-NONPROFIT-PC" class="button2">PROFILE</a></td>
-<td style="text-align: left;">73.1 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2012-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">62.6 mb</td>
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2013-501CE-NONPROFIT-PC" class="button2">PROFILE</a></td>
-<td style="text-align: left;">80.8 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2013-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">58.3 mb</td>
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">76.3 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2014-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">52.1 mb</td>
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">79.3 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2015-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51.8 mb</td>
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2016-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">76.9 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2016-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">51.3 mb</td>
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2017-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">77.4 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2017-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">52.8 mb</td>
 <td style="text-align: left;">2017</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2018-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">75.6 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2018-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">54.1 mb</td>
 <td style="text-align: left;">2018</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-501CE-NONPROFIT-PC.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
-<td style="text-align: left;">64.4 mb</td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2019-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">54.1 mb</td>
 <td style="text-align: left;">2019</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
+<td style="text-align: left;">PC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2020-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">47.9 mb</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
+<td style="text-align: left;">PC</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2021-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">48.1 mb</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">501CE-NONPROFIT</td>
+<td style="text-align: left;">PC</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.amazonaws.com/harmonized/core/501ce-pc/CORE-2022-501CE-NONPROFIT-PC-HRMN.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">7.6 mb</td>
+<td style="text-align: left;">2022</td>
 <td style="text-align: left;">501CE-NONPROFIT</td>
 <td style="text-align: left;">PC</td>
 </tr>
@@ -814,9 +878,12 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <hr>
 <p><br></p>
+<section id="private-foundations" class="level4">
+<h4 class="anchored" data-anchor-id="private-foundations">Private Foundations</h4>
 </section>
-<section id="private-foundations-scope-pf" class="level4">
-<h4 class="anchored" data-anchor-id="private-foundations-scope-pf">PRIVATE FOUNDATIONS SCOPE PF</h4>
+</section>
+<section id="scope-pf" class="level3">
+<h3 class="anchored" data-anchor-id="scope-pf">Scope: PF</h3>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
@@ -832,216 +899,216 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1989-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1989-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1989-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">17.1 mb</td>
 <td style="text-align: left;">1989</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1990-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1990-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1990-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">17.6 mb</td>
 <td style="text-align: left;">1990</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1991-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1991-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1991-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">18.6 mb</td>
 <td style="text-align: left;">1991</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1992-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1992-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1992-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">21.6 mb</td>
 <td style="text-align: left;">1992</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1994-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1994-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1994-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">21.1 mb</td>
 <td style="text-align: left;">1994</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1995-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1995-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1995-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">21.9 mb</td>
 <td style="text-align: left;">1995</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1996-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1996-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1996-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">23.1 mb</td>
 <td style="text-align: left;">1996</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1997-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1997-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1997-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">33.6 mb</td>
 <td style="text-align: left;">1997</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1998-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1998-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1998-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">35.4 mb</td>
 <td style="text-align: left;">1998</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1999-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-1999-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-1999-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">38.8 mb</td>
 <td style="text-align: left;">1999</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2000-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2000-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2000-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">49 mb</td>
 <td style="text-align: left;">2000</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2001-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2001-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2001-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">49.8 mb</td>
 <td style="text-align: left;">2001</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2002-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2002-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2002-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">56.6 mb</td>
 <td style="text-align: left;">2002</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2003-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2003-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2003-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">53.6 mb</td>
 <td style="text-align: left;">2003</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2004-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2004-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2004-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">55.4 mb</td>
 <td style="text-align: left;">2004</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2005-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2005-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2005-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">55.6 mb</td>
 <td style="text-align: left;">2005</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2006-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2006-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2006-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">58.4 mb</td>
 <td style="text-align: left;">2006</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2007-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2007-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2007-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">60 mb</td>
 <td style="text-align: left;">2007</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2008-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2008-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2008-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">63.2 mb</td>
 <td style="text-align: left;">2008</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2009-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2009-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2009-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">64.6 mb</td>
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2010-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2010-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2010-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">66.4 mb</td>
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2011-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2011-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2011-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">68.2 mb</td>
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2012-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2012-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2012-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">64.9 mb</td>
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2013-501C3-PRIVFOUND-PF" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2013-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/CORE-2013-501C3-PRIVFOUND-PF class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">63.5 mb</td>
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2014-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">72.5 mb</td>
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2015-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">73.9 mb</td>
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
 <td style="text-align: left;">PF</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-501C3-PRIVFOUND-PF.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html" class="button2">PROFILE</a></td>
+<td style="text-align: left;">&lt;a href=https://nccsdata.s3.us-east-1.amazonaws.com/legacy/core/CORE-2019-501C3-PRIVFOUND-PF.csv class='button'&gt; DOWNLOAD &lt;/a&gt;</td>
+<td style="text-align: left;">&lt;a href=https://urbaninstitute.github.io/nccs/catalogs/dd_unavailable.html class='button2'&gt; PROFILE &lt;/a&gt;</td>
 <td style="text-align: left;">57.4 mb</td>
 <td style="text-align: left;">2019</td>
 <td style="text-align: left;">501C3-CHARITIES</td>
@@ -1144,9 +1211,11 @@ blockquote {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 4px;
-  width: 100px;
+  width: 200px;
+  display: grid;
+  margin: auto;
 }
 </style>
 </section>

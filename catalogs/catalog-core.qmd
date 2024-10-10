@@ -16,10 +16,12 @@ library( kableExtra )
 library( stringr )
 library( pander )
 
-GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
-d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
+aws_df <- read.csv(
+  "AWS-NCCSDATA.csv"
+)
 source("build-catalog-functions.R")
 nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/"
+aws_base_url <- "https://nccsdata.s3.amazonaws.com/"
 ```
 
 <br>
@@ -30,13 +32,13 @@ nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary
 
 Files are organized as follows:
 
-**TAX EXEMPT TYPE (tscope)**
+**Tax Exempt Type (tscope)**
 
 -   CHARITIES - 501c3 nonprofit organizations
 -   NONPROFITS - All other 501c type organizations besides 501c3
 -   PRIVATE FOUNDATIONS - 501c3 private foundations
 
-**IRS 990 FORM SCOPE (fscope)**
+**IRS 990 Form Scope (fscope)**
 
 Nonprofits can file Form 990, 990EZ, 990PF, or 990N.
 
@@ -52,9 +54,22 @@ Form scope describes which types of filers are included in each data set:
 
 Note that scope PZ datasets include a large number of organizations but a smaller number of variables since Form 990EZ has a more limited set of disclosures.
 
-**YEAR**
+**Year**
 
-Files are organized by **filing year**. See the Research Handbook for details on the differences.
+Files for form scopes PZ and PC are organized by **tax year**. While PF files are organized by **filing year** See the Research Handbook for details on the differences.
+
+**Data Dictionary**
+
+| Column | Description | Details |
+| :---: | :---: | :---: |
+| variable_name | Name of variable in CORE data set| |
+| variable_description | Variable description taken from concordance | |
+| variable_source | Variable Source | HD: Header, PC: Form 990, PZ: Form 990 + 990-EZ |
+| form_location | Location on Form 990 | |
+| variable_coverage | Tax Years Where Variable Is Present | |
+| variable_datatype | Data Type | |
+
+<a href="https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv" class="button3">Download Dictionary</a>
 
 <br>
 
@@ -62,26 +77,29 @@ Files are organized by **filing year**. See the Research Handbook for details on
 
 <br>
 
-#### 501c3 CHARITIES SCOPE PZ
+#### 501(c)(3) Charities 
+### Scope: PZ
 
 ```{r}
 #| echo: false
-#| output: asis
- 
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "core",
-                             paths = d$Key,
-                             tscope = "CHARITIES",
-                             fscope = "PZ",
-                             np_type = "501C3-CHARITIES")
+
+paths <- aws_df$Key[grepl("harmonized/core/501c3-pz", aws_df$Key)]
+download_urls <- paste0(aws_base_url, paths)
+download_buttons <- make_buttons(urls = download_urls, button_name = "download")
+size <- aws_df %>%
+  dplyr::filter(Key %in% paths) %>%
+  dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)), " mb")) %>%
+  dplyr::pull("size_mb")
+year <- get_year(paths)
+catalog <- data.frame(download_buttons, size, year)
+catalog$np_type <- "501C3-CHARITIES"
+catalog$fscope <- "PZ"
+
 catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("Download Link", 
-                              "Data Dictionary",
-                              "Size",
-                              "Year",
-                              "Nonprofit Type",
-                              "Form Scope" ) ) %>%
+  knitr::kable(
+    escape = FALSE,
+    col.names = c("Download Link", "Size", "Year", "Nonprofit Type", "Form Scope")
+  ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -91,24 +109,28 @@ catalog %>%
 
 <br>
 
-#### 501c3 CHARITIES SCOPE PC
+#### 501(c)(3) Charities
+### Scope: PC
 
 ```{r}
 #| echo: false
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "core",
-                             paths = d$Key,
-                             tscope = "CHARITIES",
-                             fscope = "PC",
-                             np_type = "501C3-CHARITIES")
+paths <- aws_df$Key[grepl("harmonized/core/501c3-pc", aws_df$Key)]
+download_urls <- paste0(aws_base_url, paths)
+download_buttons <- make_buttons(urls = download_urls, button_name = "download")
+size <- aws_df %>%
+  dplyr::filter(Key %in% paths) %>%
+  dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)), " mb")) %>%
+  dplyr::pull("size_mb")
+year <- get_year(paths)
+catalog <- data.frame(download_buttons, size, year)
+catalog$np_type <- "501C3-CHARITIES"
+catalog$fscope <- "PC"
+
 catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("Download Link", 
-                              "Data Dictionary",
-                              "Size",
-                              "Year",
-                              "Nonprofit Type",
-                              "Form Scope" ) ) %>%
+  knitr::kable(
+    escape = FALSE,
+    col.names = c("Download Link", "Size", "Year", "Nonprofit Type", "Form Scope")
+  ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -118,24 +140,28 @@ catalog %>%
 
 <br>
 
-#### NONPROFITS SCOPE PZ
+#### All Other 501(c) Nonprofits
+### Scope: PZ
 
 ```{r}
 #| echo: false
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "core",
-                             paths = d$Key,
-                             tscope = "NONPROFIT",
-                             fscope = "PZ",
-                             np_type = "501CE-CHARITIES")
+paths <- aws_df$Key[grepl("harmonized/core/501ce-pz", aws_df$Key)]
+download_urls <- paste0(aws_base_url, paths)
+download_buttons <- make_buttons(urls = download_urls, button_name = "download")
+size <- aws_df %>%
+  dplyr::filter(Key %in% paths) %>%
+  dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)), " mb")) %>%
+  dplyr::pull("size_mb")
+year <- get_year(paths)
+catalog <- data.frame(download_buttons, size, year)
+catalog$np_type <- "501CE-NONPROFIT"
+catalog$fscope <- "PZ"
+
 catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("Download Link", 
-                              "Data Dictionary",
-                              "Size",
-                              "Year",
-                              "Nonprofit Type",
-                              "Form Scope" ) ) %>%
+  knitr::kable(
+    escape = FALSE,
+    col.names = c("Download Link", "Size", "Year", "Nonprofit Type", "Form Scope")
+  ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -145,24 +171,28 @@ catalog %>%
 
 <br>
 
-#### NONPROFITS SCOPE PC
+#### All Other 501(c) Nonprofits 
+### Scope: PC
 
 ```{r}
 #| echo: false
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "core",
-                             paths = d$Key,
-                             tscope = "NONPROFIT",
-                             fscope = "PC",
-                             np_type = "501CE-NONPROFIT")
+paths <- aws_df$Key[grepl("harmonized/core/501ce-pc", aws_df$Key)]
+download_urls <- paste0(aws_base_url, paths)
+download_buttons <- make_buttons(urls = download_urls, button_name = "download")
+size <- aws_df %>%
+  dplyr::filter(Key %in% paths) %>%
+  dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)), " mb")) %>%
+  dplyr::pull("size_mb")
+year <- get_year(paths)
+catalog <- data.frame(download_buttons, size, year)
+catalog$np_type <- "501CE-NONPROFIT"
+catalog$fscope <- "PC"
+
 catalog %>%
-  knitr::kable( escape=FALSE,
-                col.names = c("Download Link", 
-                              "Data Dictionary",
-                              "Size",
-                              "Year",
-                              "Nonprofit Type",
-                              "Form Scope" ) ) %>%
+  knitr::kable(
+    escape = FALSE,
+    col.names = c("Download Link", "Size", "Year", "Nonprofit Type", "Form Scope")
+  ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -172,13 +202,14 @@ catalog %>%
 
 <br>
 
-#### PRIVATE FOUNDATIONS SCOPE PF
+#### Private Foundations 
+### Scope: PF
 
 ```{r}
 #| echo: false
-catalog <- construct_catalog(s3_catalog = d,
+catalog <- construct_catalog(s3_catalog = aws_df,
                              series = "core",
-                             paths = d$Key,
+                             paths = aws_df$Key,
                              tscope = "PRIVFOUND",
                              fscope = "PF",
                              np_type = "501C3-CHARITIES")
@@ -287,9 +318,11 @@ blockquote {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 4px;
-  width: 100px;
+  width: 200px;
+  display: grid;
+  margin: auto;
 }
 </style>
 ```

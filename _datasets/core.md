@@ -1,6 +1,6 @@
 ---
 title: NCCS Core Series
-date: 2023-05-27
+date: 2024-07-23
 description: A comprehensive panel of nonprofit organizations that file IRS form 990
 categories:
   - 990
@@ -9,19 +9,37 @@ categories:
 featured: true
 featuredOrder: 1
 primaryCtaUrl: "../../catalogs/catalog-core.html"
+primaryCtaText: Data Catalog
 primaryCtaCaption:
 primaryLinks:
-  - text: "R Package"
-    href: "https://urbaninstitute.github.io/nccsdata/"
-    icon: r
+  - text: "Data Dictionary"
+    href: "https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv"
+    icon: article
 author:
 - id: jlecy
 - id: thiya
 citation: 
   author: "Jesse Lecy"
-  citationDate: "2023"
-  container-title: "NCCS Legacy Core Series"
+  citationDate: "2024"
+  container-title: "NCCS Core Series"
 ---
+
+## Update: Harmonized Core Dataset
+
+The NCCS CORE data set for PC and PZ filers has been updated with the following changes:
+
+1. **Variable Harmonization**: Standardized variable names based on the [master concordance file](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file) created by the [Nonprofit Open Data Collective](https://nonprofit-open-data-collective.github.io/). PC and PZ data sets now require 1 data dictionary.
+2. **Tax Year**: Files have been reorganized according to tax year and not filing year. See section at the bottom of the page for difference between tax year and fiscal year.
+3. **Updated Data**: Data for tax years 2020 and 2021 have been added.Filings for the 2022 tax year are still being periodically released by the IRS and will be updated periodically.
+
+The PF filings for private foundations will require significant additional processing before they can be made ready for release. They are currently scheduled for release early 2025.
+
+## Versioning
+
+| Version | Release | Notes |
+| :---: | :---: | :---: |
+| 0.0 | July 23rd 2024 | Beta Version (Current) |
+| 1.0 | September 23rd 2024 | Research Guide Complete |
 
 ## Overview
 
@@ -54,46 +72,7 @@ Private foundations all file Form 990PF, regardless of size.
 
 ## Use
 
-Data can be downloaded via the [**data catalog**](https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html) page or the [**nccsdata R package**](https://urbaninstitute.github.io/nccsdata/). Statistical packages have the advantage of process documentation and reproducibility. Data acquisition steps with the package might look like one of the following queries: 
-
-```r
-###  SELECT DATA BY: 
-###    dsname = nccs data series
-###    time = years of data desired
-###    ntee = subsectors to include
-###    desired geography: 
-###    geo.state, geo.city, geo.county
-
-install.packages("devtools")
-devtools::install_github("UrbanInstitute/nccsdata")
-library(nccsdata)
-
-dat <- get_data(dsname = "core",
-                time   = "2005")
-
-dat <- get_data(dsname = "core",
-                time   = "2005",
-                ntee   = "ART")
-
-###
-###  MULTIPLE GEOGRAPHIES ARE SUPPORTED 
-###
-
-dat <- get_data(dsname = "core",
-                time   = "2005",
-                ntee   = "ART",   
-                geo.state = "CA")
-
-dat <- get_data(dsname = "core",
-                time   = "2005",
-                geo.city = "san francisco")
-
-dat <- get_data(dsname = "core",
-                time   = "2005",
-                geo.county = "autauga")
-```
-
-Learn more from the “Introducing the nccsdata Package” [data story](https://urbaninstitute.github.io/nccs/stories/nccsdata/) or the [package website](https://urbaninstitute.github.io/nccsdata/index.html). 
+Data can be downloaded via the [**data catalog**](https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html). 
 
 ## Data Series Attributes 
 
