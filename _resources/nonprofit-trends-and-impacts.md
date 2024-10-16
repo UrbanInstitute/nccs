@@ -23,10 +23,16 @@ pubs:
   - title: National Findings on Diversity and Representation in the Nonprofit Sector
     href: https://www.urban.org/sites/default/files/2021/11/05/national_findings_on_diversity_and_representation_in_the_nonprofit_sector.pdf
     link-text: pdf
+  - title: National Findings on Nonprofits Contact with Agencies That Regulate Charities from 2022 to 2023
+    href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021-2023-national-findings-nonprofits-contact-agencies-regulate-charities-2022-2023
+    link-text: link
+  - title: National Findings on Nonprofit Civic Engagement from 2019 to 2023
+    href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021-2023-national-findings-nonprofit-civic-engagement-2019-2023
+    link-text: link
+  - title: National Findings on Government Grants and Contracts from 2019 to 2023
+    href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021-2023-national-findings-government-grants-contracts-2019-2023
+    link-text: link
 ---
-
-
-
 
 
 
@@ -232,6 +238,15 @@ Please contact Hannah Martin at NPSurvey@urban.org for information about the pro
 <hr>
 <br>
 
+## More Publications
+
+Visit the [project publications page](https://www.urban.org/projects/partnering-understand-long-term-trends-nonprofit-organization-activities-and-needs/publications-data) for a full list of available reports. 
+
+<br>
+<hr>
+<br>
+
+The publications below offer examples of how the Nonprofit Trends and Impact data is being used in context. 
 
 {% include bib/ref-section-nptrends.html %}
 
