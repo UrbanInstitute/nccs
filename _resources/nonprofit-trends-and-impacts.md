@@ -201,7 +201,7 @@ Qualtrics survey files (QCF) are available for all versions of the survey instru
 
 {% include components/button.html
   text = "QCF Year 1"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-questions/survey-year1-qualtrics-file.zip"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/raw/refs/heads/main/survey-questions/survey-year1-qualtrics-file.zip"
   style = "text"
 %}
 
@@ -242,11 +242,11 @@ Please contact Hannah Martin at NPSurvey@urban.org for information about the pro
 
 Visit the [project publications page](https://www.urban.org/projects/partnering-understand-long-term-trends-nonprofit-organization-activities-and-needs/publications-data) for a full list of available reports. 
 
+The publications below offer examples of how the Nonprofit Trends and Impact data is being used in context. 
+
 <br>
 <hr>
 <br>
-
-The publications below offer examples of how the Nonprofit Trends and Impact data is being used in context. 
 
 {% include bib/ref-section-nptrends.html %}
 
