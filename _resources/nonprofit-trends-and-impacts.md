@@ -120,7 +120,7 @@ Please cite the dataset as follows:
 
 {% include components/button.html
   text = "Public Use Data File"
-  href = "https://dataverse.harvard.edu/file.xhtml?fileId=10518806&version=2.0"
+  href = "https://dataverse.harvard.edu/file.xhtml?fileId=10518806&version=4.0"
   style = "primary"
 %}
 
@@ -155,7 +155,7 @@ Please cite the dataset as follows:
 
 {% include components/button.html
   text = "Public Use Data File"
-  href = "https://dataverse.harvard.edu/file.xhtml?fileId=10518809&version=2.0"
+  href = "https://dataverse.harvard.edu/file.xhtml?fileId=10620315&version=4.0"
   style = "primary"
 %}
 
