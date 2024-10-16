@@ -201,13 +201,13 @@ Qualtrics survey files (QCF) are available for all versions of the survey instru
 
 {% include components/button.html
   text = "QCF Year 2"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-questions/survey-year2-qualtrics-file.qsf"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/raw/refs/heads/main/survey-questions/survey-year2-qualtrics-file.zip"
   style = "text"
 %}
 
 {% include components/button.html
   text = "QCF Year 3"
-  href = "https://github.com/UrbanInstitute/nccs-nptrends/blob/main/survey-questions/survey-year3-qualtrics-file.qsf"
+  href = "https://github.com/UrbanInstitute/nccs-nptrends/raw/refs/heads/main/survey-questions/survey-year3-qualtrics-file.zip"
   style = "text"
 %}
 
