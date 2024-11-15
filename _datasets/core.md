@@ -74,6 +74,34 @@ Private foundations all file Form 990PF, regardless of size.
 
 Data can be downloaded via the [**data catalog**](https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html). 
 
+Variables are described in the [**data dictionary**](https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv). Please note that documentation of variable locations on the 990 Forms and Scheulues is based upon 2016 versions. They are 99% the same as current forms but you may encounter a few discrepancies. The [**2016 990 Forms**]( https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master/01-irs-990_forms/2016) are linked here for reference. 
+
+A table listing all information that nonprofits disclose, organized by [Form 990 and Schedule Parts](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master?tab=readme-ov-file#form-990-and-schedule-sections), has been compiled for your convenience.  
+
+Static organizational attributes (501c type, corporate form, NTEE code, etc.) and geocoded attributes (address, lat-lon coordinates, census FIPS codes) are all available in the [Business Master File](https://nccs.urban.org/nccs/datasets/bmf/). They can be used with [**Census Crosswalk**](https://nccs.urban.org/nccs/datasets/census/) files to aggregate data to your desired geographic level (tracts, zips, counties, metro areas, etc.) or join NCCS data without other datasets that use standard Census FIPS GEOIDs. 
+
+A basic [**Census Demographics Data File**](https://urbaninstitute.github.io/nccs/catalogs/catalog-census_crosswalk.html) has been prepared. It contains ~20 demographic variables (population size, income, poverty, and race) covering four decades and is available at the tract, county, and MSA level. 
+
+```r
+library( dplyr )
+URL <- "https://raw.githubusercontent.com/UI-Research/nccs-geo/main/get_census_data.R"
+source( URL )
+
+df  <- get_census_data( geo="msa" )      # 918 metro areas, all years 
+df  <- get_census_data( geo="county" )   # 3,142 counties, all years 
+df  <- get_census_data( geo="tract" )    # 72,597 tracts, all years 
+
+# default format is 'long' (stacked years)
+df  <- get_census_data( geo="msa", years=2010:2019 )
+
+# return data in a wide format:
+dfw <- get_census_data( geo="msa", years=c(1990,2000,2010), format="wide" )
+
+# available years
+c(  1990, 2000, 2007, 2008, 2009, 2010, 2011, 2012,
+    2013, 2014, 2015, 2016, 2017, 2018, 2019  )
+```
+
 ## Data Series Attributes 
 
 The dataset covers a wide range of nonprofit organizations, including charities, foundations, religious organizations, educational institutions, and more. It encompasses organizations of various sizes, missions, and locations across the United States.
