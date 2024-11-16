@@ -17,32 +17,48 @@ library( stringr )
 library( flextable )
 library( pander )
 
-GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
-d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
 source("build-catalog-functions.R")
+
+fn  <- "AWS-NCCSDATA.csv"
+d   <- read.csv( fn )
+
+# fn   <- "AWS-NCCSDATA.csv"
+# path <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
+# d    <- read.csv( paste0( path, fn  ) )
+
 ```
 
 <br>
-
 <hr>
-
 <br>
 
-#### Revocations Database
+
+#### Import to R 
+
+Retrieve the most recent file available using the following script: 
+
+```{r, eval=F, echo=T}
+part_1 <- "https://nccsdata.s3.us-east-1.amazonaws.com/raw/revocations/" 
+YYYYMM <- format( Sys.Date(), "%Y-%m" )
+part_2 <- "-REVOCATIONS-ORGS.csv"
+
+URL <- paste0( part_1, YYYYMM, part_2 )
+d <- read.csv( URL )
+```
+
+
+<br>
+<hr>
+<br>
+
+#### Download Data in CSV Format 
 
 ```{r}
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "revocations",
-                             paths = d$Key)
+catalog <- get_catalog_revocations( d$URL )
 
 catalog %>%
-  knitr::kable(escape=FALSE,
-               col.names = c("Log of Revocations", 
-                             "Revoked Organizations",
-                             "Number of Revocations",
-                             "Year",
-                             "Month")) %>%
-  kableExtra::kable_styling()
+  knitr::kable( format="html", escape=FALSE ) %>%
+  kableExtra::kable_styling() 
 ```
 
 <br>
@@ -51,7 +67,6 @@ catalog %>%
 
 <br>
 
-```{=html}
 <style>
 
 
@@ -144,4 +159,3 @@ blockquote {
   width: 100px;
 }
 </style>
-```

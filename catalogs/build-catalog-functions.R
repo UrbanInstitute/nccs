@@ -255,7 +255,6 @@ get_month <- function( paths ) {
 #' values are "DOWNLOAD" or "PROFILE".
 #' 
 #' @return character scalar. HTML code to construct button.
-
 make_buttons <- function(urls, button_name) {
   
   button_dic = list("download" = " class='button'> DOWNLOAD </a>",
@@ -267,6 +266,48 @@ make_buttons <- function(urls, button_name) {
                     button_dic[[button_name]] )
   return( buttons ) 
 }
+
+
+#' @title Build catalog table for revocations
+#' 
+#' @description Use the URL from the AWS-NCCSDATA file to construct
+#' a table of buttons. 
+#' 
+#' @param URLS The Url field from AWS-NCCSDATA 
+#' 
+#' @return character scalar. HTML code to construct button.
+get_catalog_revocations <- function( URLS ) {
+  
+  series <- "raw/revocations"
+  series_urls <- grep( series, URLS, value=TRUE )
+  
+  log_urls <- grep("LOG", series_urls, value = TRUE)
+  log_buttons <- make_buttons( urls = log_urls, button_name = "download" )
+  
+  org_urls <- grep("ORG", series_urls, value = TRUE)
+  org_buttons <- make_buttons(urls = org_urls, button_name = "download")
+      
+  table_urls <- grep("TABLE", series_urls, value = TRUE)
+  table_buttons <- make_buttons(urls = table_urls, button_name = "download")
+  
+  YEAR <- get_year( log_urls )
+  MONTH <- get_month( log_urls ) 
+  
+  catalog <- 
+    data.frame( YEAR, MONTH, log_buttons,  
+                org_buttons, table_buttons ) %>% 
+    arrange( desc(YEAR), desc(MONTH) )
+  
+  names(catalog) <- 
+    c( "Year",
+       "Month",
+       "Revoked Organizations",
+       "Log of Revocations", 
+       "Number of Revocations" )
+       
+  return( catalog )
+}
+
 
 ##### Undocumented functions #########
 

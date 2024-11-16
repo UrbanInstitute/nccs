@@ -46,20 +46,23 @@ setwd("AWS")
 
 
 buck.list <- 
-  get_bucket( bucket = 'nccsdata' )
+  get_bucket( bucket = 'nccsdata', max = Inf )
 
-dt       <- rbindlist( buck.list )
-dt       <- as.data.frame( dt )
-dt$Owner <- as.character( dt$Owner )
+dt <- buck.list %>% rbindlist() %>% as.data.frame()
 
 # remove duplicate rows - drop Owner field
+# dt$Owner <- as.character( dt$Owner )
 
 keep <- 
-  c( "Key", "LastModified", "ETag", "Size", 
+  c( "Key", "LastModified", 
+     "ETag", "Size", 
      "StorageClass", "Bucket" )
 
 dt <- dt[ keep ]
 dt <- unique( dt )
+
+sizemb <- as.character( round( dt$Size / 1000000, 1 ) )
+dt$SizeMB <- paste0( sizemb," mb" ) 
 
 dt$URL <- paste0( "https://nccsdata.s3.us-east-1.amazonaws.com/", dt$Key )
 
