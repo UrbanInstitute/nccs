@@ -22,13 +22,24 @@ isFrontPage: true
 </div>
 
 
-
+<div class="content text-center flow-4">
+  <h2 class="text-4xl">Nonprofit Sector In Brief Dashboard</h2>
+  <p class="mt-1">Visualize and download more than three decades of NCCS data on nonprofits. View trends by organization type, subsector, asset size, geography, and time period to see a snapshot of the nonprofit sector. </p>
+  <br>
+  <div class="text-center">
+  {% include components/button.html
+    text = "Access The Dashboard"
+    href = 'https://nccs-urban.shinyapps.io/sector-in-brief/'
+  %}
+  </div>
+</div>
 
 
 <div class="content text-center flow-4">
   <h2 class="text-4xl">Datasets</h2>
   <p class="mt-1">The data catalog contains a broad array of data on the nonprofit sector including IRS 990 tax data, survey panels, and political action committees.</p>
 </div>
+
 
 <div class="content flow-4">
   {% for post in site.datasets limit:8 %}
