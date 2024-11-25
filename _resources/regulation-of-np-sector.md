@@ -26,7 +26,16 @@ pubs:
   - title: 'Sarah Pettijohn & Elizabeth Boris (2018): "Testing Nonprofit State Culture: Its Impact on the Health of the Nonprofit Sector." Nonprofit Policy Forum, vol. 9, no. 3, https://doi.org/10.1515/npf-2018-0012' 
     href: 'https://www.researchgate.net/publication/328729120_Testing_Nonprofit_State_Culture_Its_Impact_on_the_Health_of_the_Nonprofit_Sector'
     link-text: Journal Article
+  - title: 'Lott, C. M., Shelly, M. L., Dietz, N., & Mitchell, G. E. The regulatory breadth index: A new tool for the measurement and comparison of state‐level charity regulation in the United States. Nonprofit Management and Leadership, 33(3), 633-645.' 
+    href: 'https://onlinelibrary.wiley.com/doi/full/10.1002/nml.21536'
+    link-text: Journal Article
+  - title: 'Charity Regulatory Breadth Index' 
+    href: 'https://osf.io/dgyn9/?view_only=df51432f3592403ebc69c6e7df65ee07'
+    link-text: Open Dataset
 ---
+
+
+
 
 ## Background and Support
 
@@ -277,6 +286,7 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 
 **2023:** Mitchell, George E. Three Models of US State-Level Charity Regulation. Nonprofit Policy Forum, 15(1), 2023, 1-25, https://doi.org/10.1515/npf-2022-0051.
 
+**2023:** Lott, C. M., Shelly, M. L., Dietz, N., & Mitchell, G. E. The regulatory breadth index: A new tool for the measurement and comparison of state‐level charity regulation in the United States. Nonprofit Management and Leadership, 33(3), 633-645. https://onlinelibrary.wiley.com/doi/full/10.1002/nml.21536
 
 </div>
 
