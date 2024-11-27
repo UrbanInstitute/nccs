@@ -179,7 +179,7 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/jessica-kelly 
-
+  projects: [sib-dashboard]
 ##########
 ##########  JESSE LECY
 ##########
@@ -205,7 +205,7 @@
       url: https://www.lecy.info/
     - name: linkedin
       url: https://www.linkedin.com/in/jesse-lecy-bab1013/
-  projects: [nptrends, regulation, ntee]
+  projects: [nptrends, regulation, ntee, sib-dashboard]
 
 ##########
 ##########  CINDY LOTT
@@ -243,7 +243,7 @@
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/hqmartin/
-  projects: [nptrends, project2]
+  projects: [nptrends, project2, sib-dashboard]
 
 ##########
 ##########  SYBIL MENDOCA
@@ -261,6 +261,7 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/sybil-mendonca 
+  projects: [sib-dashboard]
 
 ##########
 ##########  THIYA POONGUNDRANAR
@@ -276,7 +277,7 @@
   image: people/thiya.jpg
   affiliation: 
     - name: Urban Institute / CNP
-  projects: [ntee, nptrends]
+  projects: [ntee, nptrends, sib-dashboard]
 
 ##########
 ##########  MARGARET POST
@@ -358,7 +359,7 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/alena-stern  
-
+  projects: [sib-dashboard]
 
 ##########
 ##########  LAURA TOMASKO
@@ -381,7 +382,7 @@
   social:
     - name: website
       url: https://www.urban.org/author/laura-tomasko
-  projects: [nptrends]
+  projects: [nptrends, sib-dashboard]
   
 
 ##########
@@ -401,7 +402,41 @@
     - name: Urban Institute
       url: https://www.urban.org/author/tene-traylor
 
+##########
+##########  ERIKA TYAGI
+##########
 
+- id: etyagi
+  first: Erika
+  last: Tyagi
+  title: Lead Data Engineer
+  bio: Erika Tyagi is a lead data engineer at the Urban Institute, where she builds data-intensive tools and systems that involve data engineering, data science, and web development components. She also co-leads Urban’s Python users group and cloud governance committee.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/etyagi.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/erika-tyagi
+  projects: [sib-dashboard]
+  
+##########
+##########  Judah Axelrod
+##########
+
+- id: jaxelrod
+  first: Judah
+  last: Axelrod
+  title: Senior Data Scientist, Racial Equity Analytics
+  bio: Judah Axelrod is a senior data scientist at the Urban Institute. He works in collaboration with Urban’s Technology and Data Science team and Racial Equity Analytics Lab to provide analysis and support for policies that strive to mitigate structural racism.
+  orcid: 
+  email: placeholder@email.com
+  team: executive
+  image: people/jaxelrod.jpg
+  affiliation: 
+    - name: Urban Institute
+      url: https://www.urban.org/author/erika-tyagi
+  projects: [sib-dashboard]
 
 
 ##########
