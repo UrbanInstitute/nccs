@@ -21,7 +21,7 @@
   social:
     - name: linkedin
       url: https://www.linkedin.com/in/alan-abramson-88734410
-  projects: [nptrends, regulation]
+  projects: [nptrends]
 
 ##########
 ##########  OLIVIA BECK
@@ -292,7 +292,6 @@
     - name: Clark University
       url: https://www.clarku.edu/faculty/profiles/margaret-post/
   image: people/mpost.jpg  
-  projects: [regulation]
 
 ##########
 ##########  CALTON PU
@@ -449,7 +448,7 @@
   affiliation: 
     - name: Urban Institute
       url: https://www.urban.org/author/mykelle-richburg
-  projects: [regulation] 
+
   
 
 
