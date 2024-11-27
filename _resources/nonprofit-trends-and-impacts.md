@@ -34,8 +34,6 @@ pubs:
     link-text: link
 ---
 
-
-
 ## Public Use Data Files 
 
 Please cite the dataset as follows: 
