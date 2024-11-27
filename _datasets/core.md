@@ -72,9 +72,25 @@ Private foundations all file Form 990PF, regardless of size.
 
 ## Use
 
-Data can be downloaded via the [**data catalog**](https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html). 
+CSV files for individual years can be downloaded via the **CORE Data Catalog**. 
 
-Variables are described in the [**data dictionary**](https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv). Please note that documentation of variable locations on the 990 Forms and Scheulues is based upon 2016 versions. They are 99% the same as current forms but you may encounter a few discrepancies. The [**2016 990 Forms**]( https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master/01-irs-990_forms/2016) are linked here for reference. 
+    {% include components/button.html
+      text = "Data Catalog"
+      href = "https://urbaninstitute.github.io/nccs/catalogs/catalog-core.html"
+      style = "primary"
+    %}
+    
+Note that you will want to merge those files with the [**Unified BMF**](https://nccs.urban.org/nccs/datasets/bmf/) to add organizational attributes like 501c type and NTEE code (use the **EIN2 field** as the merge ID). 
+
+Alternatively, you can make a request for a full panel using the **Sector in Brief Dashboard**. BMF fields are added to these datasets automatically as part of the panel construction process.  
+
+    {% include components/button.html
+      text = "Data Dashboard"
+      href = "https://nccs-urban.shinyapps.io/sector-in-brief/"
+      style = "primary"
+    %}
+
+Variables are described in the [**Data Dictionary**](https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv). Please note that documentation of variable locations on the 990 Forms and Scheulues is based upon 2016 versions. They are 99% the same as current forms but you may encounter a few discrepancies. The [**2016 990 Forms**]( https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master/01-irs-990_forms/2016) are linked here for reference. 
 
 A table listing all information that nonprofits disclose, organized by [Form 990 and Schedule Parts](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/tree/master?tab=readme-ov-file#form-990-and-schedule-sections), has been compiled for your convenience.  
 
