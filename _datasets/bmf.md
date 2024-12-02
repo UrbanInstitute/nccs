@@ -35,11 +35,22 @@ The Unified BMF has some additional upgrades:
 * A Metro FIPS code that uses [CBSA metropolitan and micropolitan definitions](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/) has been added, replacing the previous PMSA designations.
 * The BMF includes an indicator for the first and last years the organization appears in the NCCS Core data series, making it easier to build sampling frameworks using information about availability data for each organization. 
 
-The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. The link to downloading these files can be found in the sidebar of this page.
+The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. Legacy single-year BMF files can still be accessed as well. 
 
-Legacy single-year BMF files can be accessed on the following page: 
+{% include components/button.html
+  text = "Unified BMF"
+  href = "https://nccsdata.s3.amazonaws.com/harmonized/bmf/unified/BMF_UNIFIED_V1.1.csv"
+  style = "primary"
+%}
 
-* [BMF Download Page](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html) 
+<br>
+
+{% include components/button.html
+  text = "Legacy BMF Files"
+  href = "https://nccs.urban.org/nccs/catalogs/catalog-bmf.html"
+  style = "primary"
+%}
+
 
 Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
 
