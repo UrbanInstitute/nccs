@@ -48,6 +48,6 @@ pubs:
 
 <br>
 
-![](../../_resources/sector-in-brief.png)
+![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/public/img/resources/sector-in-brief.png)
 
 <br>
