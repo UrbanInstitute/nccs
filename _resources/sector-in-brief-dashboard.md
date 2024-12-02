@@ -44,3 +44,10 @@ pubs:
     href: https://www.urban.org/sites/default/files/publication/28606/412085-The-Nonprofit-Sector-in-Brief.PDF
     link-text: PDF
 ---
+
+
+<br>
+
+![](../../_resources/sector-in-brief.png)
+
+<br>

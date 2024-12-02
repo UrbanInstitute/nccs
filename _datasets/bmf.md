@@ -51,8 +51,61 @@ The team is currently developing a research guide to accompany this BMF. While t
   style = "primary"
 %}
 
+## Raw IRS BMF Files 
 
-Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
+Starting in June, 2023, we began archiving monthly snapshots of IRS BMF files released on their [Exempt Organizations Business Master File Extract (EO BMF)](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) page. 
+
+Note that it will use a separate [Data Dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf) and it will not include all of the variables in the NCCS BMF files. For the typical user these will not be as useful, but we include them here for those that need to replicate a workflow built using raw IRS files from a specific point a time. 
+
+
+```r
+# install.packages( "curl" )
+# install.packages( "data.table" )
+# install.packages( "readr" )
+
+library( curl )
+library( data.table )
+library( readr )
+
+# ------------------
+
+base     <- "https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/"
+YYYYMM   <- format( Sys.time(), "%Y-%m-" )  # "2024-12-"  current month
+filename <- paste0( YYYYMM, "BMF.csv" )     # "2024-12-BMF.csv"
+URL      <- paste0( base, filename )        # "https://.../2024-12-BMF.csv"
+ 
+# ------------------ 
+
+dir.create("bmf")
+setwd("bmf")
+
+# SLIGHTLY FASTER DOWNLOAD FUNCTION
+curl::curl_download( url=URL, destfile=filename, mode="wb" )
+bmf <- read.csv( filename )
+
+# ------------------
+
+# DEFAULT DOWNLOAD FUNCTION 
+download.file( url=URL, destfile=filename, method="curl" )
+bmf <- read.csv( filename )
+
+# ------------------
+
+# FASTER READ CSV OPTIONS 
+bmf <- data.table::fread( filename )
+bmf <- readr::read_csv( filename )
+
+# ------------------ 
+
+# ARCHIVED VERSIONS FROM JUNE 2023 ONWARD:
+filename <- "2023-06-BMF.csv"
+URL      <- paste0( base, filename ) 
+curl::curl_download( url=URL, destfile=filename, mode="wb" )
+bmf <- read.csv( filename )
+```
+
+<br>
+
 
 ## Version Control
 
@@ -62,6 +115,9 @@ Users are encouraged to submit any questions and comments regarding this data se
 | 0.01 | July 31 2024 | Reformatted EIN and EIN2 |
 | 1.0 | July 4th 2024 | Research Guide Complete |
 | 1.1 | July 18th 2024 | State-level Data Marts |
+
+Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
+
 
 ## BMF Overview
 
