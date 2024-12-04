@@ -7,7 +7,7 @@ categories:
   - grassroots
   - orgs
 featured: false
-primaryCtaUrl: "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/2023-09-E-POSTCARD.csv"
+primaryCtaUrl: "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/2024-12-E-POSTCARD.csv"
 primaryCtaCaption: "File size: 330MB"
 primaryLinks:
   - text: "GitHub Repository"
@@ -40,12 +40,37 @@ The ePostcard 990-N database is an instantaneous database. This means it only co
 ## Use
 
 ```r
+# install.packages( "curl" )
+# install.packages( "readr" )
+# install.packages( "dplyr" )
+# install.packages( "readr" )
+# install.packages( "kableExtra" )
+
+# ------------------
+
+library( curl )
+library( readr )
+
+BASE      <- "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/"
+YYYYMM    <- format( Sys.time(), "%Y-%m-" )         # "2024-12-"  current month
+FILENAME  <- paste0( YYYYMM, "E-POSTCARD.csv" )     # "2024-12-E-POSTCARD.csv"
+URL       <- paste0( BASE, FILENAME )                   # "https://.../2024-12-BMF.csv"
+
+# READ DIRECTLY IF YOUR
+# INTERNET SPEED IS HIGH
+d <- read.csv( URL )
+
+# OR TRY A FASTER VERSION 
+d <- readr::read_csv( URL )
+
+# DOWNLOAD FILE FIRST (BETTER FOR SLOW INTERNET)  
+curl::curl_download( url=URL, destfile=FILENAME, mode="wb" )
+d <- read.csv( FILENAME )
+
+# ------------------
+
 library( dplyr )
 library( kableExtra )
-
-BASE.URL <- "https://nccsdata.s3.us-east-1.amazonaws.com/raw/e-postcard/"
-FILE     <- "2023-09-E-POSTCARD.csv" 
-d <- read.csv( paste0( BASE.URL, FILE ) )
 
 preview1 <- 
   c("ein", "legal_name", "tax_year",  "gross_receipts_under_25000", 
