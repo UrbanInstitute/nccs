@@ -10,13 +10,15 @@ categories:
   - metadata
 abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by NCCS and is used by the IRS to classify nonprofit organizations according to their missions and program activities. An updated version of the taxonomy called NTEEV2 (NTEE Version 2.0) is described below. While the NTEE is the official classification designation of the IRS, some other systems are described below. For example, Candid has developed the Philanthropic Classification System (PCS) in order to have a single taxonomy that can be used to classify both nonprofits and grants. It includes some new mission areas as well as 'population/beneficiary' codes to indicate the type of population served, and 'auspice' codes to indicate religious or governmental affiliation. Similarly, the North American Industry Classification System (NAICS) is a more generic taxonomy of industries used broadly for economic analysis. Crosswalks between the NTEE and other taxonomies are provided below when available."
 primaryLinks:
-  - text: NTEE Category Descriptions
-    href: "../../widgets/ntee_tables/ntee_descriptions.html" 
-  - text: Overview of NTEE and NTEEV2
-    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
-  - text: Convenient Two-Page NTEE Cheatsheet (Old Codes)
+  - text: NTEE Category Descriptions (IRS Version)
+    href: "https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html"
+  - text: Convenient Two-Page NTEE Cheatsheet (IRS Version)
     href: "../../pubs/ntee-two-page-2005.pdf"
-  - text: Using NTEE Codes within the nccsdata R Package
+  - text: Overview of NTEE (IRS Version) vs NTEEV2 (Data User) Revisions
+    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
+  - text: NTEEV2 Category Descriptions (NCCS Data User Version)
+    href: "../../widgets/ntee_tables/ntee_descriptions.html"  
+  - text: NTEE Codes within the nccsdata R Package
     href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
 
 ---
@@ -29,7 +31,7 @@ primaryLinks:
 
 Nonprofits are assigned an NTEE code during the application process for tax-exempt status. The IRS issues and maintains the official database of NTEE codes. You can look up your official NTEE code in the [IRS 990 Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). 
 
-Please note that the NCCS was involved in the creation of the NTEE system, but we do not make initial assignment of codes nor have the ability to make an official update to IRS records.
+Please note that the NCCS was involved in the creation of the NTEE system, but **we do not make initial assignment of codes** nor do we **have the ability to make an official update to IRS records**.
 
 ## Selecting Your NTEE Code
 
@@ -37,6 +39,10 @@ If you are in the process of filing for tax-exempt status and you need to select
 
 * [Two-Page List of All NTEE Categories](https://nccs.urban.org/nccs/pubs/ntee-two-page-2005.pdf)
 * [Full Descriptions of All NTEE Categories (IRS Version)](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html)
+
+## Appropriate Uses of NTEE Codes
+
+The National Taxonomy of Exempt Entities (NTEE) is a _**descriptive**_ taxonomy that helps regulators and researchers aggregate data for statistical analysis. While certain nonprofit characteristics like the assigned 501(c) subsection code can have significant binding implications such as whether a donation can be treated as tax-deductible (501c3 public charities) or NOT (most other 501c types). The NTEE classification, on the other hand, should not be used as a limiting factor by funders or other institutional actors. The NTEE is often not precise and many nonprofits have missions that span multiple NTEE categories. It is NOT recommended to ever eliminate nonprofits from funding considerations because of their NTEE code or assume that their NTEE category captures their full range of activities. 
 
 ## Modifying NTEE Codes
 
@@ -70,11 +76,11 @@ Cincinnati, Ohio 45202
 <br>
 
 
-# For Data Users
+# For NCCS Data Users
 
-## NTEE Version 2.0
+## NTEE Version 2.0 (NTEEV2)
 
-A new version of the NTEE codes are being added to NCCS data files. NTEE-V2 contains the same information as the original but in a format that is better suited for analytics. The original NTEE codes combined mission groups with organizational type, making them confusing at times. The also required frequent cross-referencing of NTEE major group letters with industry labels, making them more difficult to interpret.   
+A newly reformatted version of the NTEE codes have been added to NCCS data files. NTEE-V2 contains the same information as the original but in a format that is better suited for analytics. The original NTEE codes combined mission groups with organizational type, making them confusing at times. The also required frequent cross-referencing of NTEE major group letters with industry labels, making them more difficult to interpret.   
 
 The new version uses a 3-part "tidy" format that makes the organizational type an explicit level and includes the higher-level industry code for convenience. 
 
@@ -179,7 +185,9 @@ Likewise, many nonprofits adopt missions that span multiple NTEE (National Taxon
 
 Assigning NTEE categories poses challenges. IRS officers may categorize an organization based on an incomplete understanding of its mission, relying on limited information from Form 1023 applications. The crosswalk used to generate NTEE codes from IRS Activity Codes for older organizations has also proven imperfect.
 
-Consequently, approximately 25% of organizations in the data have incomplete or inaccurate NTEE category assignments. While NTEE information contributes significantly to aggregate data, using it for individual organizations is not recommended without additional context, as it may not capture the dynamic nature of nonprofit missions and the challenges in achieving accurate categorization.
+Consequently, we estimate that approximately 25% of organizations in the data have incomplete or inaccurate NTEE category assignments. While NTEE information contributes significantly to aggregate data, using it for individual organizations is not recommended without additional context, as it may not capture the dynamic nature of nonprofit missions and the challenges in achieving accurate categorization.
+
+If you are using the NCCS BMF files, you will notice there are two NTEE variables: **NTEE_IRS** and **NTEE_NCCS**. The NTEE_IRS variable will be the same as the NTEE code that appears in the official IRS BMF database. The NTEE_NCCS variable is meant to be a slightly more accurate version of the NTEE based upon manual updates made by NCCS staff over time. The NTEE_IRS version should be treated as the official version and the NTEE_NCCS version used for research purposes primarily. See above if you are a nonprofit that has questions about officially changing your NTEE designation.  
 
 <br>
 <hr>
