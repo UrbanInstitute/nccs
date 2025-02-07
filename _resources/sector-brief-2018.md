@@ -3,7 +3,7 @@ title: 2018 Nonprofit Sector in Brief
 description: 'The 2018 Sector Brief discusses trends in the number and finances of 501(c)(3) public charities and key findings on two important resources for the nonprofit sector: private charitable contributions and volunteering.'
 date: 2018-12-13
 featured: true
-featuredOrder: 3
+featuredOrder: 4
 type: brief
 author:
   - id: nccs
