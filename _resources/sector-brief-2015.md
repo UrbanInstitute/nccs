@@ -4,8 +4,8 @@ description: 'The 2015 Sector Brief discusses trends in the number and finances 
 501(c)(3) public charities and key findings on two important resources for the
 nonprofit sector: private charitable contributions and volunteering.'  
 date: 2015-10-29
-featured: true
-featuredOrder: 4
+featured: false
+featuredOrder: 6
 type: brief
 categories:
   - cat
