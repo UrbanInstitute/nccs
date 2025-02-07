@@ -32,6 +32,9 @@ pubs:
   - title: National Findings on Government Grants and Contracts from 2019 to 2023
     href: https://www.urban.org/research/publication/nonprofit-trends-and-impacts-2021-2023-national-findings-government-grants-contracts-2019-2023
     link-text: link
+  - title: Government Grants and Contracts for Nonprofits in 2023
+    href: https://www.urban.org/research/publication/government-grants-and-contracts-nonprofits-2023
+    link-text: link
 ---
 
 ## Public Use Data Files 
