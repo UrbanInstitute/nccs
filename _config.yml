@@ -172,6 +172,7 @@ exclude:
   - "Rakefile"
   - "*.qmd"
   - "readme.md"
+  - "_resources/nonprofit-trends-and-impacts.md"
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
