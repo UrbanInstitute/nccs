@@ -14,6 +14,9 @@ primaryLinks:
   - text: "Data Dictionary"
     href: "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx"
     icon: article
+  - text: "BMF By State"
+    href: "../../catalogs/catalog-bmf.html"
+    icon: download
 citation: 
   author: "Jesse Lecy"
   citationDate: "2024"
@@ -111,10 +114,11 @@ bmf <- read.csv( filename )
 
 | Version | Release | Notes |
 | :---: | :---: | :---: |
-| 0.0 | June 21 2024 | Beta Version (Current) |
-| 0.01 | July 31 2024 | Reformatted EIN and EIN2 |
-| 1.0 | July 4th 2024 | Research Guide Complete |
-| 1.1 | July 18th 2024 | State-level Data Marts |
+| 0.0 | June 21 2024 | Beta Version |
+| 1.0 | July 1st 2024 | Unified BMF |
+| 1.1 | Marc 4th 2024 | Fixed EIN2 for consistent formatting |
+| 1.1 | Marc 4th 2024 | State-level BMFs |
+
 
 Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
 
