@@ -48,7 +48,7 @@ setwd("AWS")
 buck.list <- 
   get_bucket( bucket = 'nccsdata', max = Inf )
 
-dt <- buck.list %>% rbindlist() %>% as.data.frame()
+dt <- buck.list %>% rbindlist(fill=TRUE) %>% as.data.frame()
 
 # remove duplicate rows - drop Owner field
 # dt$Owner <- as.character( dt$Owner )

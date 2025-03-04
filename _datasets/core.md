@@ -39,7 +39,7 @@ The PF filings for private foundations will require significant additional proce
 | Version | Release | Notes |
 | :---: | :---: | :---: |
 | 0.0 | July 23rd 2024 | Beta Version (Current) |
-| 1.0 | September 23rd 2024 | Research Guide Complete |
+| 0.1 | March 4th 2025 | Deduplicated All Datasets in the Core Series |
 
 ## Overview
 

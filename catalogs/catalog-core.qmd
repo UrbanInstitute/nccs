@@ -61,7 +61,7 @@ Files for form scopes PZ and PC are organized by **tax year**. While PF files ar
 **Data Dictionary**
 
 |        Column        |                 Description                 |                     Details                     |
-|:----------------------:|:----------------------:|:----------------------:|
+|:--------------------:|:-------------------------------------------:|:-----------------------------------------------:|
 |    variable_name     |      Name of variable in CORE data set      |                                                 |
 | variable_description | Variable description taken from concordance |                                                 |
 |   variable_source    |               Variable Source               | HD: Header, PC: Form 990, PZ: Form 990 + 990-EZ |
