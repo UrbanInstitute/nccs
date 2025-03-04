@@ -14,12 +14,74 @@ library( dplyr )
 library( knitr )
 library( kableExtra )
 library( stringr )
-library( flextable )
 library( pander )
 
-GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
-d <- read.csv( paste0( GH.RAW, "AWS-NCCSDATA.csv" ) )
-source( paste0( GH.RAW, "build-catalog-functions.R" ) )
+aws_df <- read.csv(
+  "AWS-NCCSDATA.csv"
+)
+source("build-catalog-functions.R")
+nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/"
+aws_base_url <- "https://nccsdata.s3.amazonaws.com/"
+
+state_mapping <- c(
+  "AK" = "Alaska",
+  "AL" = "Alabama",
+  "AR" = "Arkansas",
+  "AS" = "American Samoa",
+  "AZ" = "Arizona",
+  "CA" = "California",
+  "CO" = "Colorado",
+  "CT" = "Connecticut",
+  "DC" = "District of Columbia",
+  "DE" = "Delaware",
+  "FL" = "Florida",
+  "GA" = "Georgia",
+  "GU" = "Guam",
+  "HI" = "Hawaii",
+  "IA" = "Iowa",
+  "ID" = "Idaho",
+  "IL" = "Illinois",
+  "IN" = "Indiana",
+  "KS" = "Kansas",
+  "KY" = "Kentucky",
+  "LA" = "Louisiana",
+  "MA" = "Massachusetts",
+  "MD" = "Maryland",
+  "ME" = "Maine",
+  "MI" = "Michigan",
+  "MN" = "Minnesota",
+  "MO" = "Missouri",
+  "MP" = "Northern Mariana Islands",
+  "MS" = "Mississippi",
+  "MT" = "Montana",
+  "NC" = "North Carolina",
+  "ND" = "North Dakota",
+  "NE" = "Nebraska",
+  "NH" = "New Hampshire",
+  "NJ" = "New Jersey",
+  "NM" = "New Mexico",
+  "NV" = "Nevada",
+  "NY" = "New York",
+  "OH" = "Ohio",
+  "OK" = "Oklahoma",
+  "OR" = "Oregon",
+  "PA" = "Pennsylvania",
+  "PR" = "Puerto Rico",
+  "RI" = "Rhode Island",
+  "SC" = "South Carolina",
+  "SD" = "South Dakota",
+  "TN" = "Tennessee",
+  "TX" = "Texas",
+  "UT" = "Utah",
+  "Un" = "Unmapped",
+  "VA" = "Virginia",
+  "VI" = "U.S. Virgin Islands",
+  "VT" = "Vermont",
+  "WA" = "Washington",
+  "WI" = "Wisconsin",
+  "WV" = "West Virginia",
+  "WY" = "Wyoming"
+)
 ```
 
 <br>
@@ -28,9 +90,11 @@ source( paste0( GH.RAW, "build-catalog-functions.R" ) )
 
 <br>
 
-**YEAR**
+**Overview**
 
-Files are organized by **tax year**, not calendar year, filing year, or accounting year. See the Research Handbook for details on the differences.
+Files are organized by **state/territory**. Unmapped records are saved in the "Unmapped" File. A link to the data dictionary is available here:
+
+<a href="https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx" class="button3">Download Data Dictionary</a>
 
 <br>
 
@@ -38,20 +102,33 @@ Files are organized by **tax year**, not calendar year, filing year, or accounti
 
 <br>
 
-#### Business Master Files
+#### Unified BMF by State/Territory
 
 ```{r}
-catalog <- construct_catalog(s3_catalog = d,
-                             series = "bmf",
-                             paths = d$Key)
+paths <- aws_df$Key[grepl("harmonized/bmf/unified", aws_df$Key)]
+paths <- paths[grepl("_BMF_", paths)]
 
+state_abbrs <- substr(paths, 24, 25)
+
+download_urls <- paste0(aws_base_url, paths)
+
+
+download_buttons <- make_buttons(urls = download_urls, button_name = "download")
+size <- aws_df %>%
+  dplyr::filter(Key %in% paths) %>%
+  dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)), " mb")) %>%
+  dplyr::pull("size_mb")
+
+state <- unlist(state_mapping)
+catalog <- data.frame(download_buttons, size, state)
+
+rownames(catalog) <- NULL
 catalog %>%
-  knitr::kable(escape=FALSE,
-               col.names = c("Download Link", 
-                             "Data Dictionary",
-                             "Size",
-                             "Month",
-                             "Year")) %>%
+  knitr::kable(
+    escape = FALSE,
+    col.names = c("Download Link", "Size", "State/Territory"),
+    format = "html"
+  ) %>%
   kableExtra::kable_styling()
 ```
 
@@ -149,9 +226,11 @@ blockquote {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 4px;
-  width: 100px;
+  width: 200px;
+  display: grid;
+  margin: auto;
 }
 </style>
 ```
