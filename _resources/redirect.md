@@ -1,5 +1,11 @@
 ---
-layout: null
+title: Nonprofit Trends and Impacts
+description: A nationally representative survey of nonprofits
+date: 2024-09-03
+featured: true
+featuredOrder: 2
+type: project
+layout: project
 permalink: "../../resources/nonprofit-trends-and-impacts/"
 ---
 <!DOCTYPE html>
