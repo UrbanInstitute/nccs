@@ -75,14 +75,21 @@ write.csv( dt, "catalogs/AWS-NCCSDATA.csv", row.names=F )
 ######
 
 
+# ORIGINAL EFILE CATALOG
+# buck.list <- 
+#   get_bucket( 
+#     bucket = 'nccs-efile', 
+#     prefix="parsed", 
+#     max = Inf  )
+
 
 buck.list <- 
   get_bucket( 
     bucket = 'nccs-efile', 
-    prefix="parsed", 
+    prefix="public", 
     max = Inf  )
 
-dt       <- rbindlist( buck.list )
+dt       <- rbindlist( buck.list, fill=TRUE )
 dt       <- as.data.frame(dt)
 dt$Owner <- as.character( dt$Owner )
 
@@ -97,7 +104,8 @@ dt <- unique( dt )
 
 dt$URL <- paste0( "https://nccs-efile.s3.us-east-1.amazonaws.com/", dt$Key )
 
-write.csv( dt, "AWS-NCCS-EFILE.csv", row.names=F )
+write.csv( dt, "AWS-NCCS-EFILE-V2.csv", row.names=F )
+
 
 
 
