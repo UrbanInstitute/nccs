@@ -104,26 +104,8 @@ dt <- unique( dt )
 
 dt$URL <- paste0( "https://nccs-efile.s3.us-east-1.amazonaws.com/", dt$Key )
 
-write.csv( dt, "AWS-NCCS-EFILE.csv", row.names=F )
+write.csv( dt, "AWS-NCCS-EFILE-V2.csv", row.names=F )
 
-
-
-dt       <- rbindlist( buck.list )
-dt       <- as.data.frame(dt)
-dt$Owner <- as.character( dt$Owner )
-
-# remove duplicate rows - drop Owner field
-
-keep <- 
-  c( "Key", "LastModified", "ETag", "Size", 
-     "StorageClass", "Bucket" )
-
-dt <- dt[ keep ]
-dt <- unique( dt ) 
-
-dt$URL <- paste0( "https://nccs-efile.s3.us-east-1.amazonaws.com/", dt$Key )
-
-write.csv( dt, "AWS-NCCS-EFILE.csv", row.names=F )
 
 
 
