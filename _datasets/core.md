@@ -26,20 +26,19 @@ citation:
 
 ## Update: Harmonized Core Dataset
 
-The NCCS CORE data set for PC and PZ filers has been updated with the following changes:
+The NCCS CORE data set for PC, PZ and PF filers has been updated with the following changes:
 
 1. **Variable Harmonization**: Standardized variable names based on the [master concordance file](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file) created by the [Nonprofit Open Data Collective](https://nonprofit-open-data-collective.github.io/). PC and PZ data sets now require 1 data dictionary.
 2. **Tax Year**: Files have been reorganized according to tax year and not filing year. See section at the bottom of the page for difference between tax year and fiscal year.
-3. **Updated Data**: Data for tax years 2020 and 2021 have been added.Filings for the 2022 tax year are still being periodically released by the IRS and will be updated periodically.
-
-The PF filings for private foundations will require significant additional processing before they can be made ready for release. They are currently scheduled for release early 2025.
+3. **Updated Data**: Data for tax years 2020, 2021 and 2022 have been added. Filings for the 2022 tax year are still being periodically released by the IRS and will be updated periodically.
 
 ## Versioning
 
 | Version | Release | Notes |
 | :---: | :---: | :---: |
-| 0.0 | July 23rd 2024 | Beta Version (Current) |
+| 0.0 | July 23rd 2024 | Beta Version for PC/PZ |
 | 0.1 | March 4th 2025 | Deduplicated All Datasets in the Core Series |
+| 0.0 | April 1st 2025 | Beta Version for PF |
 
 ## Overview
 
