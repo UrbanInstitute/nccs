@@ -50,7 +50,7 @@ The team is currently developing a research guide to accompany this BMF. While t
 
 {% include components/button.html
   text = "Legacy BMF Files"
-  href = "https://nccs.urban.org/nccs/catalogs/catalog-bmf.html"
+  href = "https://nccs.urban.org/nccs/catalogs/catalog-bmf.html#legacy-bmf"
   style = "primary"
 %}
 
