@@ -134,7 +134,7 @@ catalog %>%
 
 ## Legacy BMF
 
-The files below contain links to the archived BMF files maintained by the now defunct [legacy NCCS website](<https://urbaninstitute.github.io/nccs-legacy/>). There are several legacy data dictionaries that are incomplete. NCCS has since shifted to compiling a Unified BMF that aggregates the various BMF fields instead.
+The files below contain links to the archived BMF files maintained by the now defunct [legacy NCCS website](https://urbaninstitute.github.io/nccs-legacy/). There are several legacy data dictionaries that are incomplete. NCCS has since shifted to compiling a Unified BMF that aggregates the various BMF fields instead.
 
 ```{r}
 
