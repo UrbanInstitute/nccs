@@ -17,6 +17,9 @@ primaryLinks:
   - text: "BMF By State"
     href: "../../catalogs/catalog-bmf.html"
     icon: download
+  - text: "Legacy BMF"
+    href: ../../catalogs/catalog-bmf.html#legacy-bmf"
+    icon: download
 citation: 
   author: "Jesse Lecy"
   citationDate: "2024"
@@ -38,22 +41,7 @@ The Unified BMF has some additional upgrades:
 * A Metro FIPS code that uses [CBSA metropolitan and micropolitan definitions](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/) has been added, replacing the previous PMSA designations.
 * The BMF includes an indicator for the first and last years the organization appears in the NCCS Core data series, making it easier to build sampling frameworks using information about availability data for each organization. 
 
-The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. Legacy single-year BMF files can still be accessed as well. 
-
-{% include components/button.html
-  text = "Unified BMF"
-  href = "https://nccsdata.s3.amazonaws.com/harmonized/bmf/unified/BMF_UNIFIED_V1.1.csv"
-  style = "primary"
-%}
-
-<br>
-
-{% include components/button.html
-  text = "Legacy BMF Files"
-  href = "https://nccs.urban.org/nccs/catalogs/catalog-bmf.html#legacy-bmf"
-  style = "primary"
-%}
-
+The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. Legacy single-year BMF files can still be accessed as well on the side bar. 
 ## Raw IRS BMF Files 
 
 Starting in June, 2023, we began archiving monthly snapshots of IRS BMF files released on their [Exempt Organizations Business Master File Extract (EO BMF)](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) page. 
