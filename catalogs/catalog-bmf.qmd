@@ -132,6 +132,26 @@ catalog %>%
   kableExtra::kable_styling()
 ```
 
+## Legacy BMF
+
+```{r}
+
+bmf_legacy_catalog <- construct_catalog(s3_catalog = aws_df,
+                             series = "bmf",
+                             paths = aws_df$Key)
+bmf_legacy_catalog |>
+  knitr::kable(escape=FALSE,
+               col.names = c(
+                 "Download Link",
+                 "Data Dictionary",
+                 "Size",
+                 "Month",
+                 "Year"
+               ),
+               format = "html") |>
+   kableExtra::kable_styling()
+```
+
 <br>
 
 <hr>
