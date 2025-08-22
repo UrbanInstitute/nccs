@@ -239,6 +239,10 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 
 ## More Recent Computational Work
 
+**2025** Kim, J. Y., de Vries, M., & Han, H. (2025). MapAgora, civic opportunity datasets for the study of American local politics and public policy. Scientific Data, 12(1), 1162. [ [PDF](https://www.nature.com/articles/s41597-025-05353-6.pdf) ]
+
+**2024** de Vries, M., Kim, J. Y., & Han, H. (2024). The unequal landscape of civic opportunity in America. Nature Human Behaviour, 8(2), 256-263.
+
 **2023:** Jones, M., McCabe, E., & Olson, R. (2023). Identifying essential nonprofits with a novel NLP Method. Nonprofit Management and Leadership, 33(3), 661-674.
 
 **2023:** Han, B., Ho, B., & Xia, Z. (2023). Political ideology of nonprofit organizations. Social Science Quarterly, 104(6), 1207-1221.
@@ -262,6 +266,8 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 **2019:** Paxton, P., Velasco, K., & Ressler, R. (2019b). Form 990 Mission Stemmer v.1. Ann Arbor, MI: Inter-university Consortium for Political and Social Research.
 
 **2019:** Lecy, J., Ashley, S. & Santamarina, F. (2019). “Do Nonprofit Missions Vary by the Political Ideology of Supporting Communities? Some Preliminary Results.” *Public Performance and Management Review.*  [ [PDF](https://github.com/Nonprofit-Open-Data-Collective/machine_learning_mission_codes/raw/master/docs/papers/Lecy%20Ashley%20Santamarina%20-%20PPMR%202019.pdf) ]
+
+**2006** Rupasingha, A., Goetz, S. J., & Freshwater, D. (2006). The production of social capital in US counties. The journal of socio-economics, 35(1), 83-101.
 
 
 
