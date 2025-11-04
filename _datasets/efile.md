@@ -46,8 +46,7 @@ There was rapid adoption because electronic filing is convenient, but it took so
 
 **990 Efile Returns by Form Type and Tax Year (990 Data Commons, Oct. 2025)**
 
-![image](https://raw.githubusercontent.com/UrbanInstitute/nccs/refs/heads/main/_datasets/img/efile_count.png)
-
+![image](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/efile_count.png)
 
 
 | YEAR |     990 |   990EZ |   990PF |   990T |
