@@ -6,6 +6,7 @@ format:
     toc-location: body
     toc-expand: 1
     toc-title: 'Efile Data Contents'
+    embed-resources: true
 editor: visual
 execute: 
   echo: false
@@ -282,6 +283,7 @@ df.rows$Table <- gsub( "-[0-9]{4}$", "", df.rows$Table )
 names( df.rows ) <- c("YEAR","NAME","NUM_ROWS")
 catalog <- merge( catalog, df.rows, all.x=TRUE )
 
+catalog <- dplyr::filter( catalog, NAME != "COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE.CSV" )
 catalog <- dplyr::arrange( catalog, NAME, desc(YEAR) )
 catalog$NUM_ROWS[ is.na(catalog$NUM_ROWS) ] <- ""
 catalog$NUM_ROWS <- format( as.numeric(catalog$NUM_ROWS), big.mark="," )
@@ -292,16 +294,17 @@ catalog[1,1] <- "ALL"
 #| echo: false
 #| output: asis
  
-fnames <- unique( FNAME )
+table_names    <- unique( catalog$NAME )
+data_dict_html <- "\n\n<a href='https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html' class='button2' target='_blank'> DATA DICTIONARY </a>\n\n"
 
-for( i in fnames )
+for( i in table_names )
 {
   cat( paste0( "### ", i, " \n\n" ) )
 
-  cat( "\n\n<a href='https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html' class='button2' target='_blank'> DATA DICTIONARY </a>\n\n" )
+  cat( data_dict_html )
   
   k <- 
-  dplyr::filter( catalog, FNAME == i ) %>%
+  dplyr::filter( catalog, NAME == i ) %>%
   knitr::kable( 
     format = "html",
     escape=FALSE,

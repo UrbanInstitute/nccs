@@ -163,7 +163,6 @@ df2$EFILE_X <- factor( df2$EFILE_X )
 table( df2$TAXYEAR, df2$EFILE_X ) |> prop.table(margin=1) |> round(2) |> knitr::kable()
 ```
 
-
 Non-mandatory electronic filing for tax-exempt organizations started around 2010. Utilization of electronic filing options grew steadily over the next decade (see the table below).
 
 Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. *The schemas needed to make sense of the XML file structures, however, have not been made public.*
