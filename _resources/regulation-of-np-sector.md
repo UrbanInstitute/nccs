@@ -4,7 +4,7 @@ description: A project advancing research and practice on nonprofit regulatory f
 featured: true
 featuredOrder: 3
 type: project
-layout: np-regulation
+layout: project
 project-name: regulation
 categories:
   - survey
