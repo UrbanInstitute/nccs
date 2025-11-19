@@ -12,7 +12,7 @@ abstract: "The Regulation of Nonprofits and Philanthropy Project conducts resear
 primaryLinks:
   - text: Project Overview
     href: 'https://www.urban.org/sites/default/files/2023-10/Regulation of Nonprofits and Philanthropy description.pdf'
-  - text: Legal Compendium V 3.0
+  - text: Digitized Legal Compendium
     href: https://airtable.com/app2JZnG1dnoselbB/shr6UmCN2dosIrTtN
   - text: Project Page
     href: https://www.urban.org/policy-centers/center-nonprofits-and-philanthropy/projects/regulation-charitable-sector-project
@@ -135,29 +135,32 @@ In this third phase of the Project, the project held a symposium on the Future o
 
 ## The Database
 
-The Legal Compendium was created as a downloadable Excel spreadsheet with statutory citations showing the following information for each of the 56 jurisdictions featured in this research: the grant of jurisdiction to attorneys general and other state agencies, the registration and reporting requirements applicable to charitable entities and their fundraisers, the oversight responsibilities of state charity regulators in connection with certain transactions involving charitable entities, the obligations of charities to notify the attorney general of those transactions, and some enforcement remedies available to charity regulators.
+The Legal Compendium was created as a downloadable Excel spreadsheet, accessed by clicking the "Legal Compendium Version 3.0" button with statutory citations showing the following information for each of the 56 jurisdictions featured in this research: the grant of jurisdiction to attorneys general and other state agencies, the registration and reporting requirements applicable to charitable entities and their fundraisers, the oversight responsibilities of state charity regulators in connection with certain transactions involving charitable entities, the obligations of charities to notify the attorney general of those transactions, and some enforcement remedies available to charity regulators.
 
 In the current phase, the Legal Compendium has been updated with the most current data available and is being enhanced with digital text data that will be available in late 2025.
 
-This interactive table allows you to explore the legal compendium by grouping, filtering, and sorting the records. It comes prepopulated with a record of all nonprofit regulations grouped by State and Subcategory. Each row in the table corresponds to a single piece of legislation regulating nonprofits while each column contains additional information about each legislation.
+An interactive version of the compendium is hosted via Airtable and can be accessed by clicking "Digitized Legal Compendium". It allows you to explore the legal compendium by grouping, filtering, and sorting the records. It comes prepopulated with a record of all nonprofit regulations grouped by State and Subcategory. Each row in the table corresponds to a single piece of legislation regulating nonprofits while each column contains additional information about each legislation.
 
 -	Group: Click the Group button to organize the data based on the values in a specific column (e.g., grouping all entries by "State").
 -	Filter: Click the Filter button to show only the records that meet your criteria (e.g., filtering to only show entries where "Regulation Indicator" is "Yes").
 -	Descriptions: Mouse over the Information bubble to read descriptions of each column’s contents.
 
-{% include components/table.html %}
-
-
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
-  text = "Dataset v3.0 (2019)"
+  text = "Digitized Legal Compendium"
+  href = "https://airtable.com/app2JZnG1dnoselbB/shrTlYpAk53YAzjyV"
+  style = "primary"
+%}
+
+{% include components/button.html
+  text = "Legal Compendium Version 3.0 - Source Data"
   href = "https://urbanorg.box.com/s/xwje48psocj0zxz6titlz8t133eslr53"
   style = "primary"
 %}
 
 {% include components/button.html
-  text = "Research Guide"
+  text = "Research Guide and Data Dictionary"
   href = "https://urbaninstitute.github.io/nccs-regulation/"
   style = "text"
 %}
@@ -183,9 +186,6 @@ This interactive table allows you to explore the legal compendium by grouping, f
 <br>
 <br>
 <br>
-
-
-
 
 ### Events 
 
