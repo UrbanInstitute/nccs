@@ -145,10 +145,8 @@ This interactive table allows you to explore the legal compendium by grouping, f
 -	Filter: Click the Filter button to show only the records that meet your criteria (e.g., filtering to only show entries where "Regulation Indicator" is "Yes").
 -	Descriptions: Mouse over the Information bubble to read descriptions of each column’s contents.
 
+{% include components/table.html %}
 
-{% raw %}
-<iframe class="airtable-embed" src="https://airtable.com/embed/app2JZnG1dnoselbB/shr6UmCN2dosIrTtN?viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
-{% endraw %}
 
 <div class="flex flex-wrap gap">
 
