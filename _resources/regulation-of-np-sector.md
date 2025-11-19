@@ -162,7 +162,7 @@ An interactive version of the compendium is hosted via Airtable and can be acces
 {% include components/button.html
   text = "Research Guide and Data Dictionary"
   href = "https://urbaninstitute.github.io/nccs-regulation/"
-  style = "text"
+  style = "primary"
 %}
 
 <div>
