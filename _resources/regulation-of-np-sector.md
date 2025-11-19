@@ -4,7 +4,7 @@ description: A project advancing research and practice on nonprofit regulatory f
 featured: true
 featuredOrder: 3
 type: project
-layout: project
+layout: np-regulation
 project-name: regulation
 categories:
   - survey
@@ -162,7 +162,7 @@ An interactive version of the compendium is hosted via Airtable and can be acces
 {% include components/button.html
   text = "Research Guide and Data Dictionary"
   href = "https://urbaninstitute.github.io/nccs-regulation/"
-  style = "text"
+  style = "primary"
 %}
 
 <div>
