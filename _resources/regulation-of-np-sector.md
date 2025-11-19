@@ -8,12 +8,12 @@ layout: project
 project-name: regulation
 categories:
   - survey
-abstract: "The Regulation of Nonprofits and Philanthropy Project conducts research on the regulatory frameworks that govern the nonprofit sector with the goals of (1) systematically documenting current frameworks across states, (2) deepening our understanding of how policies impact nonprofits, and (3) promoting the diffusion of best practices across states."
+abstract: "The Regulation of Nonprofits and Philanthropy Project conducts research on the regulatory frameworks that govern the nonprofit sector with the goals of (1) systematically documenting current regulations across states, (2) developing research tools to access those regulations and promote research through the nonprofit Legal Compendium, (3) conducting research on regulation of nonprofits and philanthropy to deepening our understanding of how policies impact nonprofits, and (4) promoting the diffusion of research and best practices through publications and convenings."
 primaryLinks:
   - text: Project Overview
-    href: 'https://www.urban.org/sites/default/files/2023-10/Regulation%20of%20Nonprofits%20and%20Philanthropy%20description.pdf'
-  - text: The Legal Compendium
-    href: https://www.urban.org/sites/default/files/2019/12/06/legal_compendium_oct_2019_update_.xlsx
+    href: 'https://www.urban.org/sites/default/files/2023-10/Regulation of Nonprofits and Philanthropy description.pdf'
+  - text: Legal Compendium V 3.0
+    href: https://airtable.com/app2JZnG1dnoselbB/shr6UmCN2dosIrTtN
   - text: Project Page
     href: https://www.urban.org/policy-centers/center-nonprofits-and-philanthropy/projects/regulation-charitable-sector-project
 pubs:
@@ -32,155 +32,135 @@ pubs:
   - title: 'Charity Regulatory Breadth Index' 
     href: 'https://osf.io/dgyn9/?view_only=df51432f3592403ebc69c6e7df65ee07'
     link-text: Open Dataset
+  - full-citation: Legal Compendium - Version 3.0
+    href: https://urbanorg.box.com/s/xwje48psocj0zxz6titlz8t133eslr53
+    link-text: Dataset
 ---
-
-
-
 
 ## Background and Support
 
-This project brings together cross-disciplinary groups of scholars and experts to advance a framework for understanding of how regulation effects nonprofit organizations and philanthropy and empirical research on the topic. The work has been conducted in partnership with the Center on Nonprofits and Philanthropy at the Urban Institute (the current project home), the Tax Policy and Charities Project, Indiana University, the University of Pennsylvania's College of Law, Columbia University's School of Law, the National Center for Charitable Statistics (NCCS), and has been supported by several foundations.
+This project brings together cross-disciplinary groups of scholars and experts to document and understand how regulation effects nonprofit organizations and philanthropy through empirical research. This work is a partnership of the Center on Nonprofits and Philanthropy and its National Center for Charitable Statistics (NCCS) at the Urban Institute, and the Lilly Family School of Philanthropy at Indiana University, with support from the Mott Foundation.
 
 **Advisors:**
 
 - Alan J. Abramson, George Mason University
-- Courtney Aladro, Massachusetts Attorney General Office
-- Putnam Barber, Nancy Bell Evans Center
 - Angela Bies, University of Maryland
-- Tim Delaney, National Council of Nonprofits
 - Nathan Dietz, University of Maryland
+- Leslie Friedlander, Office of Oklahoma Attorney General
 - Brian Galle, Georgetown University
 - Karen Gano, (formerly Connecticut Attorney General Office)
-- Alissa Gardenswartz, Walmart (formerly Colorado Attorney General Office)
 - Karin Kunstler Goldman, New York State Department of Law, Charities Bureau
 - Ruth Madrigal, KPMG (formerly U.S. Treasury Department)
 - Amy Coates Madsen, Maryland Nonprofits
 - Lloyd Hitoshi Mayer, Notre Dame University
 - George Mitchell, City University of New York
-- Una Osili, Indiana University
 - Cinthia Schuman Ottinger, Aspen Institute
 - Marc Owens, Loeb & Loeb, LLP (formerly IRS Exempt Organizations Division)
 - Sue Santa, Girl Scouts of America (formerly Council on Foundations)
+- Steven R. Smith, (formerly APSA)
 - Eugene Steuerle, Urban Institute
-- John Tyler, Kauffman Foundation
-- Marion Fremont-Smith (deceased; formerly Harvard University)
-- Belinda Johns (former advisor; Charities Division, California Department of Justice)
-
-
 
 ## Project History 
+
+The Center on Nonprofits and Philanthropy at the Urban Institute and Columbia University’s Charities Regulatory and Oversight Project joined forces in 2015 to create and co-lead the Regulation of Nonprofits and Philanthropy Project at the Urban Institute with funding by the Mott Foundation. Both entities promoted research and knowledge sharing and had programs that brought together charities officials to discuss issues affecting the Nonprofit Sector.
+
+### Background
+
+Shortly after its founding by Elizabeth Boris in 1996, the Center on Nonprofits and Philanthropy (CNP) and its flagship program, the National Center for Charitable Statistics (NCCS), began to host twice yearly meetings with state charities officials and Internal Revenue Service officials, primarily to discuss data and reporting issues on Form 990 affecting the nonprofit sector. These sessions were augmented by Emerging Issues Seminars on a variety of policy issues facing the nonprofit sector that were co-hosted by CNP and the Hauser Center for Nonprofit Organizations at Harvard University. 
+
+Inaugurated with the first conference to convene state attorneys general, foundations, and nonprofit leaders, in 2006 Columbia University launched the Charities Regulatory and Oversight Project as part of the National State Attorney’s General Program. The conference and the Project at the time were supported by the Ford Foundation, C.S. Mott Foundation, New York Community Trust and the Surdna Foundation. Hosting regular meetings and trainings for state charities officials, the Project developed conferences with state and federal regulators, practitioners and academics in attendance. In 2013, the Project hosted a major research conference on the Future of State Charities Regulation; those papers may be found at [cite to Columbia Academic Commons- all the papers are listed together and individually]. 
+
+Cindy M. Lott, founder and director of the Columbia University project within the National State Attorneys General Program, initiated a research collaboration with CNP led by Elizabeth Boris to conduct a ground breaking study of state charity offices resulting in the report: "State Regulation and Enforcement in the Charitable Sector." (see below). 
+
+### Timeline
 
 <br>
 <div class="timeline-wrapper">   
 <ul class="StepProgress">
 <li class="StepProgress-item is-done">
-   <div class="bold time">2006</div> 
-   <div class="bold">Regulatory Project is Launched</div>
-   <div>Charities Regulation and Oversight Project started at Columbia University</div>
-</li>
-<li class="StepProgress-item is-done">
-   <div class="bold time">2013</div> 
-   <div class="bold">First Conference Held</div>
-   <div>The Future of State Charities Regulation, Charities Regulation and Oversight Conference</div>
-   <div>Part of the National State Attorneys General Program at Columbia University</div>
+   <div class="bold time">2015</div> 
+   <div>Regulation of Nonprofits and Philanthropy project launched at the Urban Institute under the leadership of Elizabeth T. Boris, Urban Institute and Cindy M. Lott, Columbia University.</div>
 </li>
 <li class="StepProgress-item is-done">
    <div class="bold time">2015</div> 
-   <div class="bold">Urban Institute Houses the Regulation Project</div>
-   <div>The Regulation Project was founded at the Urban Institute as a more permanent home for the work.</div>
+   <div>Symposium: "Data Collection, Sharing, and Transparency in the Tax-Exempt Sector."</div>
+</li>
+<li class="StepProgress-item is-done">
+   <div class="bold time">2016</div> 
+   <div>"<em>Legal Compendium to the Regulation of Nonprofits and Philanthropy Project</em>" created and published.</div>
 </li>  
 <li class="StepProgress-item is-done">
-   <div class="bold time">2015</div> 
-   <div class="bold">Second Major Conference</div>
-   <div>Conference on "Data Collection, Sharing, and Transparency in the Tax-Exempt Sector"</div>
+   <div class="bold time">2016</div> 
+   <div>Symposium held:  “State Regulation and Enforcement in the Charitable Sector.”</div>
 </li> 
 <li class="StepProgress-item is-done">
-   <div class="bold time">2016</div> 
-   <div class="bold">Legal Compendium Released</div>
-   <div>The first "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project" was published</div>
-</li>
-<li class="StepProgress-item is-done">
-   <div class="bold time">2016</div> 
-   <div class="bold">Symposium Gathers Experts</div>
-   <div>State Regulation and Enforcement in the Charitable Sector</div>
-</li>
-<li class="StepProgress-item is-done">
    <div class="bold time">2019</div> 
-   <div class="bold">Legal Compendium Updates</div>
-   <div>"Version 2 of the "Legal Compendium to the Regulation of Nonprofits and Philanthropy Project" was published</div>
-</li>
+   <div><em>Legal Compendium</em> updated (Version 2). </div>
+</li> 
 <li class="StepProgress-item is-done">
    <div class="bold time">2021</div> 
-   <div class="bold">Conference</div>
-  <div> Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight </div>
+   <div>Symposium held: “Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight.”</div>
+</li> 
+<li class="StepProgress-item is-done">
+   <div class="bold time">2024</div> 
+   <div>Symposium held: "The Future of Nonprofit Regulation in the United States."</div>
+   <br>
+   <div>Papers prepared for the Symposium will be available in a special Issue of <em>Nonprofit Policy Forum</em> in early 2026. Individual papers will be available in the fall of 2025.</div>
+</li>
+<li class="StepProgress-item is-done">
+   <div class="bold time">2024</div> 
+   <div>Legal Compendium updated to Version 3.0</div>
 </li>
 <li class="StepProgress-item current">
-   <div class="bold time">2024</div> 
-   <div class="bold">Symposium on State of the Field</div>
-  <div>Conference titled "The Future of Nonprofit Regulation in the United States" held at the Urban Institute</div>
-</li>
-<li class="StepProgress-item current">
-   <div class="bold time">2024</div> 
-   <div class="bold">Legal Compendium Updates</div>
-  <div>New updates to the Legal Compendium released</div>
-</li>
+   <div class="bold time">2025</div> 
+   <div>"Legal Compendium expanded with legal text of statutes provided by Teresa Harrison, Drexel University with assistance of Jesse Lecy, Arizona State and NCCS. (in process).</div>
+   
 </ul>
 </div>
 <br>
 
-
-
 **Phase One**
 
-With funding from the Mott Foundation, The Urban Institute’s Center on Nonprofits and Philanthropy became the home for research on state nonprofit regulatory work that had previously been undertaken through The Charities Regulation and Oversight Project (“Charities Project”), part of the National State Attorneys General Program at Columbia Law School under the leadership of Cindy M. Lott. This first phase of the research focused on state attorneys’ general jurisdiction over the charitable sector but expanded the scope of the project to encompass the entire regulatory framework of the charitable sector, including all state and federal charities officials and jurisdiction.
+The first phase of the research focused on state attorneys’ general jurisdiction over the charitable sector but expanded the scope of the project to encompass the entire regulatory framework of the charitable sector, including all state and federal charities officials and jurisdiction. 
+
+Results from a large-scale survey identified existing research, needs, and gaps that serves as the basis for the report, "State Regulation and Enforcement in the Charitable Sector" by Cindy M. Lott, Elizabeth T. Boris et. al. With the data from the study serving as the foundation, a major meeting was planned that resulted in reports, articles, and a regulatory conference planned in collaboration with the Federal Trade Commission.
 
 **Phase Two** 
 
-In the second phase of the research, a results from a large-scale survey identified existing research, needs, and gaps that serves as the basis for the report, "State Regulation and Enforcement in the Charitable Sector" by Cindy M. Lott, Elizabeth T. Boris et. al. With the data from the study serving as the foundation, a major meeting was planned that resulted in reports, articles, and a regulatory conference planned in collaboration with the Federal Trade Commission.
+In the second phase of the Project, portions of the Legal Compendium were updated and research was published in various fora, including two online briefs - "Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and Its Impact on Charitable Solicitation Law", and "State Regulation of the Charitable Sector: Enforcement, Outreach and Staffing". Research was presented at major sector, regulatory, and legal education venues and blogs helped disseminate the work.
 
 **Phase Three**
 
-In the third phase of the Project, portions of the Legal Compendium were updated and research was published in various fora, including two online briefs - "Bifurcation of State Regulation of Charities: Divided Regulatory Authority Over Charities and Its Impact on Charitable Solicitation Law", and "State Regulation of the Charitable Sector: Enforcement, Outreach and Staffing". Research was presented at major sector, regulatory, and legal education venues and blogs helped disseminate the work.
-
-**Phase Four**
-
-The most recent phase of the project is focusing on: 1) updating the entire Legal Compendium; 2) organizing a symposium for Spring 2024 as an overview of major current regulatory issues in the philanthropic and nonprofit sector and potential future changes; 3) and enhancing the Legal Compendium as a data source that will be integrated into major sector data platforms. The Legal Compendium data will be combined with Legal Text Data compiled by Professor Teresa Harrison at Drexel University and in collaboration with Jesse Lecy made available via The National Center for Charitable Statistics (NCCS). 
-
-
-<br>
-<br>
+In this third phase of the Project, the project held a symposium on the Future of Regulation in the United States with research papers presented by major scholars and practitioners that will be published in a special issue of Nonprofit Policy Forum.  We initiated questions on Urban’s Nonprofit Trends and Impacts survey to learn about interactions of nonprofits and government and the impact of regulations on nonprofit organizations. In addition, the Legal Compendium is being expanded with digital text of the statutes affecting nonprofits which will enable more detailed research on regulatory issues.
 
 ## The Database
 
+The Legal Compendium was created as a downloadable Excel spreadsheet with statutory citations showing the following information for each of the 56 jurisdictions featured in this research: the grant of jurisdiction to attorneys general and other state agencies, the registration and reporting requirements applicable to charitable entities and their fundraisers, the oversight responsibilities of state charity regulators in connection with certain transactions involving charitable entities, the obligations of charities to notify the attorney general of those transactions, and some enforcement remedies available to charity regulators.
+
+In the current phase, the Legal Compendium has been updated with the most current data available and is being enhanced with digital text data that will be available in late 2025.
+
+This interactive table allows you to explore the legal compendium by grouping, filtering, and sorting the records. It comes prepopulated with a record of all nonprofit regulations grouped by State and Subcategory. Each row in the table corresponds to a single piece of legislation regulating nonprofits while each column contains additional information about each legislation.
+
+-	Group: Click the Group button to organize the data based on the values in a specific column (e.g., grouping all entries by "State").
+-	Filter: Click the Filter button to show only the records that meet your criteria (e.g., filtering to only show entries where "Regulation Indicator" is "Yes").
+-	Descriptions: Mouse over the Information bubble to read descriptions of each column’s contents.
 
 
-The Legal Compendium is a downloadable Excel spreadsheet with statutory citations showing the following information for each of the 56 jurisdictions featured in this research: the grant of jurisdiction to attorneys general and other state agencies, the registration and reporting requirements applicable to charitable entities and their fundraisers, the oversight responsibilities of state charity regulators in connection with certain transactions involving charitable entities, the obligations of charities to notify the attorney general of those transactions, and some enforcement remedies available to charity regulators. 
-
-
+{% raw %}
+<iframe class="airtable-embed" src="https://airtable.com/embed/app2JZnG1dnoselbB/shr6UmCN2dosIrTtN?viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+{% endraw %}
 
 <div class="flex flex-wrap gap">
 
 {% include components/button.html
-  text = "Dataset v2.0 (2019)"
-  href = "https://www.urban.org/sites/default/files/2019/12/06/legal_compendium_oct_2019_update_.xlsx"
+  text = "Dataset v3.0 (2019)"
+  href = "https://urbanorg.box.com/s/xwje48psocj0zxz6titlz8t133eslr53"
   style = "primary"
 %}
 
 {% include components/button.html
-  text = "Data Dictionary"
-  href = "#"
-  style = "text"
-%}
-
-{% include components/button.html
   text = "Research Guide"
-  href = "#"
-  style = "text"
-%}
-
-{% include components/button.html
-  text = "Version History"
-  href = "#"
+  href = "https://urbaninstitute.github.io/nccs-regulation/"
   style = "text"
 %}
 
@@ -209,23 +189,27 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 
 
 
-### Past Events 
+### Events 
 
 <br>
 
+**2024: The Future of Nonprofit Regulation in the United States**
+
+> This two-day hybrid symposium featured 21 presentations of papers written for the meeting on topics including: First Amendment and Political Activities,  Civic Engagement, Improving Regulatory Structures, Global Perspectives, and Commentaries on the Future of Regulation. These papers will be peer reviewed and edited for inclusion in a special issue of Nonprofit Policy Forum available in early 2026. The agenda for the symposium is available [here]().
+
+
+**2021: Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight**
+
+> The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation. [meeting agenda](http://urban.org/sites/default/files/2021/03/25/final_agenda_-_cnp_regulations_jv_reordered3.pdf).
+
+
+**2016: State Regulation and Enforcement in the Charitable Sector** 
+
+> Symposium in which participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report served as a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics included: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda. [event page](https://www.urban.org/events/state-regulation-and-enforcement-charitable-sector).
+
 **2015: Data Collection, Sharing, and Transparency in the Tax-Exempt Sector**
 
-> The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders. [**{event page}**](https://www.urban.org/events/regulation-nonprofits-and-philanthropy-project)
-
-
-**2016: State Regulation and Enforcement in the Charitable Sector**
-
-> Symposium in which participants discussed the report: State Regulation and Enforcement in the Charitable Sector. This report is a primer and road map for all who wish to gain insight into the state regulatory structures that oversee the charitable and nonprofit sector, toward the goal of more effective and efficient charity regulation. Topics include: a summary and discussion of the report findings, the status of state charitable regulatory and enforcement activity, and next steps in formulating a research agenda. [**{event page}**](https://www.urban.org/events/state-regulation-and-enforcement-charitable-sector)
-
-
-**2021: Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight** 
-
-> The event focused on data and technologies state and federal charities regulators require to succeed in their oversight roles. Researchers, leaders from data-providing organizations, and state and federal charities regulators explored how to promote data-informed nonprofit regulation. [**{meeting agenda}**](http://urban.org/sites/default/files/2021/03/25/final_agenda_-_cnp_regulations_jv_reordered3.pdf)
+> The goal of this convening was to discuss the ripple effect of regulatory changes regarding data collection, sharing, and transparency; discuss opportunities and challenges in the nonprofit sector due to these challenges; and explore inefficiencies and redundancies in data transfer that might be eliminated in the future among the sector’s stakeholders. [meeting agenda](https://www.urban.org/events/regulation-nonprofits-and-philanthropy-project).
 
 <br>
 
@@ -255,7 +239,7 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 <br>
 <div class="flow">
   {% include components/divider.html
-    header = "Applications of the Framework"
+    header = "Applications of the Framework and Related Research"
     style = "secondary" %}
 </div>
 <br>
@@ -287,6 +271,9 @@ The Legal Compendium is a downloadable Excel spreadsheet with statutory citation
 **2023:** Mitchell, George E. Three Models of US State-Level Charity Regulation. Nonprofit Policy Forum, 15(1), 2023, 1-25, https://doi.org/10.1515/npf-2022-0051.
 
 **2023:** Lott, C. M., Shelly, M. L., Dietz, N., & Mitchell, G. E. The regulatory breadth index: A new tool for the measurement and comparison of state‐level charity regulation in the United States. Nonprofit Management and Leadership, 33(3), 633-645. https://onlinelibrary.wiley.com/doi/full/10.1002/nml.21536
+
+**2024**: Papers presented in the Symposium, The Future of Nonprofit Regulation in the United States, will be available in a special issue of Nonprofit Policy Forum in early 2026.
+[link needed]().
 
 </div>
 

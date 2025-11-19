@@ -340,7 +340,7 @@
       url: https://scholar.google.com/citations?user=uUrHeUcAAAAJ&hl=en&oi=ao
     - name: website
       url: https://www.taxpolicycenter.org/author/c-eugene-steuerle
-  projects: [regulation]
+  projects: []
 
   
 ##########
@@ -455,7 +455,7 @@
   affiliation: 
     - name: UPenn Law
       url: https://www.library.upenn.edu/staff/mary-shelly
-  projects: [regulation]
+  projects: []
   
 - id: gmitchell
   first: George
@@ -469,7 +469,7 @@
   affiliation: 
     - name: Baruch College
       url: https://www.baruch.cuny.edu/profiles/faculty/George-Ellis-Mitchell
-  projects: [regulation]  
+  projects: []  
 
 - id: mrichburg
   first: Mykelle 
