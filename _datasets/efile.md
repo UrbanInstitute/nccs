@@ -8,7 +8,7 @@ categories:
   - nonprofits
 featured: true
 featuredOrder: 3
-primaryCtaUrl: "../../catalogs/catalog-efile-v2.html"
+primaryCtaUrl: "../../catalogs/catalog-efile-v2_1.html"
 primaryCtaCaption:
 primaryLinks:
   - text: "R Package"
