@@ -104,8 +104,8 @@ bmf <- read.csv( filename )
 | :---: | :---: | :---: |
 | 0.0 | June 21 2024 | Beta Version |
 | 1.0 | July 1st 2024 | Unified BMF |
-| 1.1 | March 4th 2024 | Fixed EIN2 for consistent formatting |
-| 1.1 | March 4th 2024 | State-level BMFs |
+| 1.1 | March 4th 2025 | Fixed EIN2 for consistent formatting |
+| 1.1 | March 4th 2025 | State-level BMFs |
 
 
 Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
