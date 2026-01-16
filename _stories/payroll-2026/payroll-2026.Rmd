@@ -1,0 +1,197 @@
+---
+title: "Estimating the Nonprofit and Philanthropic Sector's Payroll Taxes, 2026"
+output: html_document
+date: "2026-01-16"
+---
+
+```{r, message=FALSE, warning=FALSE}
+# Load libraries
+library( knitr )
+library( tidyverse )
+library( pander )
+```
+
+```{r, message=FALSE, warning=FALSE}
+# Read data
+pc.2022 <- readr::read_csv( "22eoextract990.csv" )
+pc.2023 <- readr::read_csv( "23eoextract990.csv" )
+pc.2024 <- readr::read_csv( "24eoextract990.csv" )
+pf.2022 <- readr::read_csv( "22eoextract990pf.csv" )
+pf.2023 <- readr::read_csv( "23eoextract990pf.csv" )
+pf.2024 <- readr::read_csv( "24eoextract990pf.csv" )
+```
+
+```{r, echo=TRUE}
+# Add year variables
+pc.2022$year <- pc.2022$tax_pd  %>% substr( 1, 4 )
+pc.2023$year <- pc.2023$tax_pd  %>% substr( 1, 4 )
+pc.2024$year <- pc.2024$tax_pd  %>% substr( 1, 4 )
+pf.2022$year <- pf.2022$TAX_PRD %>% substr( 1, 4 )
+pf.2023$year <- pf.2023$TAX_PRD %>% substr( 1, 4 )
+pf.2024$year <- pf.2024$TAX_PRD %>% substr( 1, 4 )
+```
+
+```{r, echo=TRUE}
+# Create tax period tables
+pc.2024 %>%
+  group_by( year ) %>%
+  summarise( n() ) %>%
+  kable( col.names = c( "Tax Period", "Frequency" ),
+         caption = "Tax Periods in the 2024 Form 990 Dataset" )
+
+pf.2024 %>%
+  group_by( year ) %>%
+  summarise( n() ) %>%
+  kable( col.names = c( "Tax Period", "Frequency" ),
+         caption = "Tax Periods in the 2024 Form 990-PF Dataset" )
+```
+
+```{r, echo=TRUE}
+# Subset to tax period 2022
+pc.2024.subset <- filter( pc.2024, year=="2022" )
+pc.2023.subset <- filter( pc.2023, year=="2022" )
+pc.2022.subset <- filter( pc.2022, year=="2022" )
+pf.2024.subset <- filter( pf.2024, year=="2022" )
+pf.2023.subset <- filter( pf.2023, year=="2022" )
+pf.2022.subset <- filter( pf.2022, year=="2022" )
+```
+
+```{r, echo=TRUE}
+# Check subsets
+pc.2024.subset %>%
+  group_by( year ) %>%
+  summarise( n() ) %>%
+  kable( col.names = c( "Tax Period", "Frequency" ),
+         caption = "Tax Periods in the Subsetted 2024 Form 990 Dataset" )
+
+pf.2024.subset %>%
+  group_by( year ) %>%
+  summarise( n() ) %>%
+  kable( col.names = c( "Tax Period", "Frequency" ),
+         caption = "Tax Periods in the Subsetted 2024 Form 990-PF Dataset" )
+```
+
+```{r, echo=TRUE}
+# Standardize names
+names( pc.2024.subset ) <- tolower( names( pc.2024.subset ) )
+names( pc.2023.subset ) <- tolower( names( pc.2023.subset ) )
+names( pc.2022.subset ) <- tolower( names( pc.2022.subset ) )
+names( pf.2024.subset ) <- tolower( names( pf.2024.subset ) )
+names( pf.2023.subset ) <- tolower( names( pf.2023.subset ) )
+names( pf.2022.subset ) <- tolower( names( pf.2022.subset ) )
+```
+
+```{r, echo=TRUE}
+# Select relevant variables
+pc.2024.subset2 <- 
+  pc.2024.subset %>%
+  select( ein, payrolltx, compnsatncurrofcr, 
+          compnsatnandothr, othrsalwages, 
+          pensionplancontrb, othremplyeebenef ) 
+
+pc.2023.subset2 <- 
+  pc.2023.subset %>%
+  select( ein, payrolltx, compnsatncurrofcr, 
+          compnsatnandothr, othrsalwages, 
+          pensionplancontrb, othremplyeebenef ) 
+
+pc.2022.subset2 <- 
+  pc.2022.subset %>%
+  select( ein, payrolltx, compnsatncurrofcr, 
+          compnsatnandothr, othrsalwages, 
+          pensionplancontrb, othremplyeebenef ) 
+
+pf.2024.subset2 <- 
+  pf.2024.subset %>%
+  select( ein, compofficers, pensplemplbenf ) 
+
+pf.2023.subset2 <- 
+  pf.2023.subset %>%
+  select( ein, compofficers, pensplemplbenf )
+
+pf.2022.subset2 <- 
+  pf.2022.subset %>%
+  select( ein, compofficers, pensplemplbenf ) 
+```
+
+```{r, echo=TRUE}
+# Combine years
+pc <- 
+  bind_rows( pc.2024.subset2, 
+             pc.2023.subset2, 
+             pc.2022.subset2 )
+pf <- 
+  bind_rows( pf.2024.subset2, 
+             pf.2023.subset2,
+             pf.2022.subset2)
+```
+
+```{r, echo=TRUE}
+# Check for duplicate EINs
+n_distinct( pc$ein )
+nrow( pc )
+
+n_distinct( pf$ein )
+nrow( pf )
+```
+
+```{r, echo=TRUE}
+# Deduplicate EINs
+pc <- pc %>% distinct( ein, .keep_all = TRUE )
+pf <- pf %>% distinct( ein, .keep_all = TRUE )
+```
+
+```{r, echo=TRUE}
+# Check deduplication
+n_distinct( pc$ein )
+nrow( pc )
+
+n_distinct( pf$ein )
+nrow( pf )
+```
+
+```{r, echo=TRUE}
+# Create helper function
+dollarize <- function(x) 
+{ paste0( "$", format( round(x,0), big.mark="," ) ) }
+```
+
+```{r, echo=TRUE}
+# Calculate payroll taxes
+prtax <- sum( pc$payrolltx, na.rm = T )
+dollarize( prtax )
+
+salaries <- 
+  sum( pc$compnsatncurrofcr,
+       pc$compnsatnandothr,
+       pc$othrsalwages,
+       pc$pensionplancontrb,
+       pc$othremplyeebenef, 
+       na.rm = T )
+
+dollarize( salaries )
+
+ratio <- prtax / salaries
+paste0( 100*round( ratio, 4 ), "%" )
+
+salaries.pf <- 
+  sum( pf$compofficers, 
+       pf$pensplemplbenf, 
+       na.rm = T )
+
+dollarize( salaries.pf )
+
+prtax.pf <- ratio * salaries.pf
+
+dollarize( prtax.pf )
+
+tax.total <- prtax + prtax.pf
+dollarize( tax.total )
+```
+
+```{r, echo=TRUE}
+# Adjust for inflation
+# According to https://www.bls.gov/data/inflation_calculator.htm, a dollar in
+# January 2022 has the same buying power as $1.15 in December 2025, which is
+# the latest available data.
+( tax.total * 1.15 ) %>% dollarize()
