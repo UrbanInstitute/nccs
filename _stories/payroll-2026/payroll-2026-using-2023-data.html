@@ -12,7 +12,7 @@
 
 <meta name="date" content="2026-01-16" />
 
-<title>Estimating the Nonprofit and Philanthropic Sector’s Payroll Taxes, 2026</title>
+<title>Estimating the Nonprofit and Philanthropic Sector’s Payroll Taxes, 2026, Using 2023 Data</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,7 +350,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Estimating the Nonprofit and Philanthropic
-Sector’s Payroll Taxes, 2026</h1>
+Sector’s Payroll Taxes, 2026, Using 2023 Data</h1>
 <h4 class="date">2026-01-16</h4>
 
 </div>
@@ -361,17 +361,13 @@ library( knitr )
 library( tidyverse )
 library( pander )</code></pre>
 <pre class="r"><code># Read data
-pc.2022 &lt;- readr::read_csv( &quot;22eoextract990.csv&quot; )
 pc.2023 &lt;- readr::read_csv( &quot;23eoextract990.csv&quot; )
 pc.2024 &lt;- readr::read_csv( &quot;24eoextract990.csv&quot; )
-pf.2022 &lt;- readr::read_csv( &quot;22eoextract990pf.csv&quot; )
 pf.2023 &lt;- readr::read_csv( &quot;23eoextract990pf.csv&quot; )
 pf.2024 &lt;- readr::read_csv( &quot;24eoextract990pf.csv&quot; )</code></pre>
 <pre class="r"><code># Add year variables
-pc.2022$year &lt;- pc.2022$tax_pd  %&gt;% substr( 1, 4 )
 pc.2023$year &lt;- pc.2023$tax_pd  %&gt;% substr( 1, 4 )
 pc.2024$year &lt;- pc.2024$tax_pd  %&gt;% substr( 1, 4 )
-pf.2022$year &lt;- pf.2022$TAX_PRD %&gt;% substr( 1, 4 )
 pf.2023$year &lt;- pf.2023$TAX_PRD %&gt;% substr( 1, 4 )
 pf.2024$year &lt;- pf.2024$TAX_PRD %&gt;% substr( 1, 4 )</code></pre>
 <pre class="r"><code># Create tax period tables
@@ -548,12 +544,10 @@ pc.2024 %&gt;%
 </tbody>
 </table>
 <pre class="r"><code># Subset to tax period 2022
-pc.2024.subset &lt;- filter( pc.2024, year==&quot;2022&quot; )
-pc.2023.subset &lt;- filter( pc.2023, year==&quot;2022&quot; )
-pc.2022.subset &lt;- filter( pc.2022, year==&quot;2022&quot; )
-pf.2024.subset &lt;- filter( pf.2024, year==&quot;2022&quot; )
-pf.2023.subset &lt;- filter( pf.2023, year==&quot;2022&quot; )
-pf.2022.subset &lt;- filter( pf.2022, year==&quot;2022&quot; )</code></pre>
+pc.2024.subset &lt;- filter( pc.2024, year==&quot;2023&quot; )
+pc.2023.subset &lt;- filter( pc.2023, year==&quot;2023&quot; )
+pf.2024.subset &lt;- filter( pf.2024, year==&quot;2023&quot; )
+pf.2023.subset &lt;- filter( pf.2023, year==&quot;2023&quot; )</code></pre>
 <pre class="r"><code># Check subsets
 pc.2024.subset %&gt;%
   group_by( year ) %&gt;%
@@ -570,8 +564,8 @@ pc.2024.subset %&gt;%
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2022</td>
-<td align="right">10153</td>
+<td align="left">2023</td>
+<td align="right">290029</td>
 </tr>
 </tbody>
 </table>
@@ -590,18 +584,16 @@ pc.2024.subset %&gt;%
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">2022</td>
-<td align="right">3164</td>
+<td align="left">2023</td>
+<td align="right">103551</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code># Standardize names
 names( pc.2024.subset ) &lt;- tolower( names( pc.2024.subset ) )
 names( pc.2023.subset ) &lt;- tolower( names( pc.2023.subset ) )
-names( pc.2022.subset ) &lt;- tolower( names( pc.2022.subset ) )
 names( pf.2024.subset ) &lt;- tolower( names( pf.2024.subset ) )
-names( pf.2023.subset ) &lt;- tolower( names( pf.2023.subset ) )
-names( pf.2022.subset ) &lt;- tolower( names( pf.2022.subset ) )</code></pre>
+names( pf.2023.subset ) &lt;- tolower( names( pf.2023.subset ) )</code></pre>
 <pre class="r"><code># Select relevant variables
 pc.2024.subset2 &lt;- 
   pc.2024.subset %&gt;%
@@ -617,12 +609,12 @@ names(   pc.2024.subset2   )</code></pre>
 <pre><code>## # A tibble: 6 × 7
 ##   ein       payrolltx compnsatncurrofcr compnsatnandothr othrsalwages
 ##   &lt;chr&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
-## 1 010061300      1791              3484                0        16764
-## 2 010131390     12488                 0                0       100209
-## 3 010165117     27834            114506                0       277503
-## 4 010180531    139784            427212                0      1153902
-## 5 010211569     18592             59700                0       169037
-## 6 010211784    112709             73646                0      1330539
+## 1 010018923      9125                 0                0       107990
+## 2 010018927         0                 0                0            0
+## 3 010022320    108580            104571                0       792223
+## 4 010022415     24574            117633                0       183653
+## 5 010024245     25075                 0            99501       229086
+## 6 010024645     16711             75000                0       131480
 ## # ℹ 2 more variables: pensionplancontrb &lt;dbl&gt;, othremplyeebenef &lt;dbl&gt;</code></pre>
 <pre class="r"><code>pc.2023.subset2 &lt;- 
   pc.2023.subset %&gt;%
@@ -638,33 +630,12 @@ names(   pc.2023.subset2   )</code></pre>
 <pre><code>## # A tibble: 6 × 7
 ##   ein       payrolltx compnsatncurrofcr compnsatnandothr othrsalwages
 ##   &lt;chr&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
-## 1 010017496      3981                 0                0        52045
-## 2 010018927         0                 0                0            0
-## 3 010019705      5627             47458                0        47093
-## 4 010021545     71206            229429                0       732168
-## 5 010022320    112823                 0                0       906915
-## 6 010022415     21818            102372                0       170881
-## # ℹ 2 more variables: pensionplancontrb &lt;dbl&gt;, othremplyeebenef &lt;dbl&gt;</code></pre>
-<pre class="r"><code>pc.2022.subset2 &lt;- 
-  pc.2022.subset %&gt;%
-  select( ein, payrolltx, compnsatncurrofcr, 
-          compnsatnandothr, othrsalwages, 
-          pensionplancontrb, othremplyeebenef )
-
-names(   pc.2022.subset2   )</code></pre>
-<pre><code>## [1] &quot;ein&quot;               &quot;payrolltx&quot;         &quot;compnsatncurrofcr&quot;
-## [4] &quot;compnsatnandothr&quot;  &quot;othrsalwages&quot;      &quot;pensionplancontrb&quot;
-## [7] &quot;othremplyeebenef&quot;</code></pre>
-<pre class="r"><code>head(   pc.2022.subset2   )</code></pre>
-<pre><code>## # A tibble: 6 × 7
-##   ein       payrolltx compnsatncurrofcr compnsatnandothr othrsalwages
-##   &lt;chr&gt;         &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;        &lt;dbl&gt;
-## 1 010018922      2846             42750                0         1350
-## 2 010018923      8936                 0                0       102765
-## 3 010018930     25556            126489                0       123833
-## 4 010024455         0             17800                0            0
-## 5 010027741      9226             15992                0        80119
-## 6 010027751     18932             13337                0       199738
+## 1 010018930     24667             88487                0       201855
+## 2 010019705      3969             44486                0        43835
+## 3 010021545     76054            199220                0       764525
+## 4 010024455     36297             22800                0            0
+## 5 010027741     14214             23332                0       137483
+## 6 010027746         0             16250                0            0
 ## # ℹ 2 more variables: pensionplancontrb &lt;dbl&gt;, othremplyeebenef &lt;dbl&gt;</code></pre>
 <pre class="r"><code>pf.2024.subset2 &lt;- 
   pf.2024.subset %&gt;%
@@ -676,12 +647,12 @@ names(   pf.2024.subset2   )</code></pre>
 <pre><code>## # A tibble: 6 × 3
 ##        ein compofficers pensplemplbenf
 ##      &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;
-## 1 10131950            0              0
-## 2 10471523        45000          21568
-## 3 10477840         5500              0
-## 4 10494042            0              0
-## 5 10644503            0              0
-## 6 10733803            0              0</code></pre>
+## 1 10024907            0              0
+## 2 10131950            0              0
+## 3 10211537            0              0
+## 4 10211545         4200              0
+## 5 10211547        12000              0
+## 6 10211792            0              0</code></pre>
 <pre class="r"><code>pf.2023.subset2 &lt;- 
   pf.2023.subset %&gt;%
   select( ein, compofficers, pensplemplbenf )
@@ -692,65 +663,47 @@ names(   pf.2023.subset2   )</code></pre>
 <pre><code>## # A tibble: 6 × 3
 ##        ein compofficers pensplemplbenf
 ##      &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;
-## 1 10211504         1000              0
-## 2 10211537            0              0
-## 3 10211545         4200              0
-## 4 10211547        12000              0
-## 5 10211792            0              0
-## 6 10212437            0              0</code></pre>
-<pre class="r"><code>pf.2022.subset2 &lt;- 
-  pf.2022.subset %&gt;%
-  select( ein, compofficers, pensplemplbenf ) 
-
-names(   pf.2022.subset2   )</code></pre>
-<pre><code>## [1] &quot;ein&quot;            &quot;compofficers&quot;   &quot;pensplemplbenf&quot;</code></pre>
-<pre class="r"><code>head(   pf.2022.subset2   )</code></pre>
-<pre><code>## # A tibble: 6 × 3
-##        ein compofficers pensplemplbenf
-##      &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;
-## 1 10024907            0              0
-## 2 10211484       143987          55372
+## 1 10211484       144891          62277
+## 2 10211504         1000              0
 ## 3 10211803            0              0
-## 4 10215216            0              0
-## 5 10217212            0           6790
-## 6 10226346        96935          21064</code></pre>
+## 4 10213987        97883         117136
+## 5 10215216            0              0
+## 6 10217212            0           9156</code></pre>
 <pre class="r"><code># Combine years
 pc &lt;- 
   bind_rows( pc.2024.subset2, 
-             pc.2023.subset2, 
-             pc.2022.subset2 )
+             pc.2023.subset2 )
 pf &lt;- 
   bind_rows( pf.2024.subset2, 
-             pf.2023.subset2,
-             pf.2022.subset2)</code></pre>
+             pf.2023.subset2)</code></pre>
 <pre class="r"><code># Check for duplicate EINs
 n_distinct( pc$ein )</code></pre>
-<pre><code>## [1] 331532</code></pre>
+<pre><code>## [1] 329157</code></pre>
 <pre class="r"><code>nrow( pc )</code></pre>
-<pre><code>## [1] 332015</code></pre>
+<pre><code>## [1] 329583</code></pre>
 <pre class="r"><code>n_distinct( pf$ein )</code></pre>
-<pre><code>## [1] 116026</code></pre>
+<pre><code>## [1] 114107</code></pre>
 <pre class="r"><code>nrow( pf )</code></pre>
-<pre><code>## [1] 116138</code></pre>
+<pre><code>## [1] 114199</code></pre>
 <pre class="r"><code># Deduplicate EINs
 pc &lt;- pc %&gt;% distinct( ein, .keep_all = TRUE )
 pf &lt;- pf %&gt;% distinct( ein, .keep_all = TRUE )</code></pre>
 <pre class="r"><code># Check deduplication
 n_distinct( pc$ein )</code></pre>
-<pre><code>## [1] 331532</code></pre>
+<pre><code>## [1] 329157</code></pre>
 <pre class="r"><code>nrow( pc )</code></pre>
-<pre><code>## [1] 331532</code></pre>
+<pre><code>## [1] 329157</code></pre>
 <pre class="r"><code>n_distinct( pf$ein )</code></pre>
-<pre><code>## [1] 116026</code></pre>
+<pre><code>## [1] 114107</code></pre>
 <pre class="r"><code>nrow( pf )</code></pre>
-<pre><code>## [1] 116026</code></pre>
+<pre><code>## [1] 114107</code></pre>
 <pre class="r"><code># Create helper function
 dollarize &lt;- function(x) 
 { paste0( &quot;$&quot;, format( round(x,0), big.mark=&quot;,&quot; ) ) }</code></pre>
 <pre class="r"><code># Calculate payroll taxes
 prtax &lt;- sum( pc$payrolltx, na.rm = T )
 dollarize( prtax )</code></pre>
-<pre><code>## [1] &quot;$65,036,058,764&quot;</code></pre>
+<pre><code>## [1] &quot;$68,976,419,765&quot;</code></pre>
 <pre class="r"><code>salaries &lt;- 
   sum( pc$compnsatncurrofcr,
        pc$compnsatnandothr,
@@ -760,30 +713,30 @@ dollarize( prtax )</code></pre>
        na.rm = T )
 
 dollarize( salaries )</code></pre>
-<pre><code>## [1] &quot;$1.143615e+12&quot;</code></pre>
+<pre><code>## [1] &quot;$1.205283e+12&quot;</code></pre>
 <pre class="r"><code>ratio &lt;- prtax / salaries
 paste0( 100*round( ratio, 4 ), &quot;%&quot; )</code></pre>
-<pre><code>## [1] &quot;5.69%&quot;</code></pre>
+<pre><code>## [1] &quot;5.72%&quot;</code></pre>
 <pre class="r"><code>salaries.pf &lt;- 
   sum( pf$compofficers, 
        pf$pensplemplbenf, 
        na.rm = T )
 
 dollarize( salaries.pf )</code></pre>
-<pre><code>## [1] &quot;$3,324,648,242&quot;</code></pre>
+<pre><code>## [1] &quot;$3,486,721,962&quot;</code></pre>
 <pre class="r"><code>prtax.pf &lt;- ratio * salaries.pf
 
 dollarize( prtax.pf )</code></pre>
-<pre><code>## [1] &quot;$189,068,902&quot;</code></pre>
+<pre><code>## [1] &quot;$199,539,596&quot;</code></pre>
 <pre class="r"><code>tax.total &lt;- prtax + prtax.pf
 dollarize( tax.total )</code></pre>
-<pre><code>## [1] &quot;$65,225,127,666&quot;</code></pre>
+<pre><code>## [1] &quot;$69,175,959,361&quot;</code></pre>
 <pre class="r"><code># Adjust for inflation
 # According to https://www.bls.gov/data/inflation_calculator.htm, a dollar in
-# January 2022 has the same buying power as $1.15 in December 2025, which is
+# January 2022 has the same buying power as $1.08 in December 2025, which is
 # the latest available data.
-( tax.total * 1.15 ) %&gt;% dollarize()</code></pre>
-<pre><code>## [1] &quot;$75,008,896,816&quot;</code></pre>
+( tax.total * 1.08 ) %&gt;% dollarize()</code></pre>
+<pre><code>## [1] &quot;$74,710,036,110&quot;</code></pre>
 
 
 
