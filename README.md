@@ -10,12 +10,18 @@
 
 ### To install the site locally:
 
+You should first install `Ruby` by downloading the relevant installer from the [Ruby website](https://rubyinstaller.org/downloads/). 
+
 Command-line instructions
 
 1. Clone the repo with `git clone future-address-here`
 2. `cd` (navigate) into the repo
 3. `bundle install` to load gems
 4. `bundle exec jekyll serve` to spin the site up locally
+
+If you're encountering installation errors, consider removing the existing lockfile before step 3:
+
+`rm Gemfile.lock`
 
 Alternatively after you've set up the project, you can use the command shortcuts in the `Rakefile` to save yourself some typing:
 
