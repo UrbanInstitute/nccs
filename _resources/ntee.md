@@ -10,17 +10,14 @@ categories:
   - metadata
 abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by NCCS and is used by the IRS to classify nonprofit organizations according to their missions and program activities. An updated version of the taxonomy called NTEEV2 (NTEE Version 2.0) is described below. While the NTEE is the official classification designation of the IRS, some other systems are described below. For example, Candid has developed the Philanthropic Classification System (PCS) in order to have a single taxonomy that can be used to classify both nonprofits and grants. It includes some new mission areas as well as 'population/beneficiary' codes to indicate the type of population served, and 'auspice' codes to indicate religious or governmental affiliation. Similarly, the North American Industry Classification System (NAICS) is a more generic taxonomy of industries used broadly for economic analysis. Crosswalks between the NTEE and other taxonomies are provided below when available."
 primaryLinks:
-  - text: NTEE Category Descriptions (IRS Version)
-    href: "https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html"
+  - text: NTEE Code Descriptions (IRS Version) with NAICS Crosswalk
+    href: "../../widgets/ntee_tables/ntee-naics_table.html"
   - text: Convenient Two-Page NTEE Cheatsheet (IRS Version)
     href: "../../pubs/ntee-two-page-2005.pdf"
-  - text: Overview of NTEE (IRS Version) vs NTEEV2 (Data User) Revisions
+  - text: Methodology for NTEE (IRS Version) to NTEEV2 (NCCS Version) Conversions
     href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
-  - text: NTEEV2 Category Descriptions (NCCS Data User Version)
+  - text: NTEEV2 Category Descriptions (NCCS Version)
     href: "../../widgets/ntee_tables/ntee_descriptions.html"  
-  - text: NTEE Codes within the nccsdata R Package
-    href: https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/
-
 ---
 
 
@@ -203,7 +200,7 @@ Some examples of alternative taxonomies include:
 * Foundation Center Grant Taxonomy ([See "subjects" in the PCS](https://taxonomy.candid.org/subjects/))  
 * ICNPO Codes [[Overview](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf)] 
 * CLASSIEfier [[Link](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593)] 
-* North American Industry Classification System (NAICS) [[Overview](https://www.census.gov/naics/)] [[**crosswalk**](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/NAICS)]
+* North American Industry Classification System (NAICS) [[Overview](https://www.census.gov/naics/)] [[**crosswalk**](../../widgets/ntee_tables/ntee-naics_table.html)]
 
 <br>
 <hr>
@@ -242,6 +239,10 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 
 ## More Recent Computational Work
 
+**2025** Kim, J. Y., de Vries, M., & Han, H. (2025). MapAgora, civic opportunity datasets for the study of American local politics and public policy. Scientific Data, 12(1), 1162. [ [PDF](https://www.nature.com/articles/s41597-025-05353-6.pdf) ]
+
+**2024** de Vries, M., Kim, J. Y., & Han, H. (2024). The unequal landscape of civic opportunity in America. Nature Human Behaviour, 8(2), 256-263.
+
 **2023:** Jones, M., McCabe, E., & Olson, R. (2023). Identifying essential nonprofits with a novel NLP Method. Nonprofit Management and Leadership, 33(3), 661-674.
 
 **2023:** Han, B., Ho, B., & Xia, Z. (2023). Political ideology of nonprofit organizations. Social Science Quarterly, 104(6), 1207-1221.
@@ -265,6 +266,8 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 **2019:** Paxton, P., Velasco, K., & Ressler, R. (2019b). Form 990 Mission Stemmer v.1. Ann Arbor, MI: Inter-university Consortium for Political and Social Research.
 
 **2019:** Lecy, J., Ashley, S. & Santamarina, F. (2019). “Do Nonprofit Missions Vary by the Political Ideology of Supporting Communities? Some Preliminary Results.” *Public Performance and Management Review.*  [ [PDF](https://github.com/Nonprofit-Open-Data-Collective/machine_learning_mission_codes/raw/master/docs/papers/Lecy%20Ashley%20Santamarina%20-%20PPMR%202019.pdf) ]
+
+**2006** Rupasingha, A., Goetz, S. J., & Freshwater, D. (2006). The production of social capital in US counties. The journal of socio-economics, 35(1), 83-101.
 
 
 

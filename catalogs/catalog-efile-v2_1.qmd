@@ -1,12 +1,15 @@
 ---
 title: "990 EFILER Data Catalog"
-# Most settings inherited from _quarto.yml; TOC settings override for this page
 format:
   html:
     toc: true
     toc-location: body
     toc-expand: 1
     toc-title: 'Efile Data Contents'
+editor: visual
+execute: 
+  echo: false
+  warning: false
 ---
 
 ```{r}
@@ -18,15 +21,17 @@ library( kableExtra )
 library( stringr )
 
 # GH.RAW <- "https://raw.githubusercontent.com/UrbanInstitute/nccs/main/catalogs/"
-# d <- read.csv( paste0( GH.RAW, "AWS-NCCS-EFILE-V2.csv" ) )
+# d <- read.csv( paste0( GH.RAW, "AWS-NCCS-EFILE-V2_1.csv" ) )
 
-d <- read.csv( "AWS-NCCS-EFILE-V2.csv" )
-keep.these.rows <- grepl( "public/efile_v2_0/", d$Key )
+d <- read.csv( "aws/AWS-NCCS-EFILE-V2_1.csv" )
+keep.these.rows <- grepl( "public/efile_v2_1/", d$Key )
 d <- dplyr::filter( d, keep.these.rows  )
+d <- dplyr::filter( d, Key != "public/efile_v2_1/COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE-EFILE_V2_1.CSV" )
 ```
 
 ```{r}
 #| echo: false
+
 ############
 ############   EFILE
 ############
@@ -50,7 +55,7 @@ get_efile_year <- function( paths ) {
 # x <- "parsed/F9-P00-T00-HEADER-2009.csv"
 
 get_efile_names <- function( x ) {
-  x <- gsub( "public/efile_v2_0/", "", x )
+  x <- gsub( "public/efile_v2_1/", "", x )
   x <- gsub( "-[0-9]{4}.CSV", "", x )
   return(x)
 }
@@ -110,7 +115,9 @@ The NCCS downloads below include **data from 990 and 990EZ returns and their ass
 
 <a href='https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file' class='buttonx' target='_blank'> CONCORDANCE DETAILS </a>
 
-<a href='https://github.com/Nonprofit-Open-Data-Collective/irs990efile' class='buttonx' target='_blank'> R PACKAGE: IRS990EFILE </a>
+<a href='https://github.com/Nonprofit-Open-Data-Collective/ef2' class='buttonx' target='_blank'> R PACKAGE: ef2 </a>
+
+<a href='https://github.com/Nonprofit-Open-Data-Collective/irs990efile' class='buttonx' target='_blank'> R PACKAGE: irs990efile </a>
 
 <a href='https://nonprofit-open-data-collective.github.io/tools/' class='buttonx' target='_blank'> NONPROFIT OPEN DATA COLLECTIVE </a>
 
@@ -138,45 +145,78 @@ An archive of historic 990 Forms and Schedules is available from the NODC.
 
 ## Coverage
 
+```{r, eval=FALSE, echo=FALSE}
+#| eval: false
+#| echo: false
+
+library( irs990efile )
+library( dplyr )
+# EFILER COUNTS
+options( timeout = 600 ) # allows 10 minutes before timeout for large files                      
+index <- irs990efile::get_current_index_full()
+t <- table( index$TaxYear, index$FormType ) 
+t |> format( big.mark="," ) |> knitr::kable( align="r" )
+# SOI EXTRACTS SAMPLE FRAME FILE
+df <- data.table::fread( file.path(path,"SOI-PANEL-SAMPLE-FRAME-COLUMNS-AUGMENTED.CSV")  )
+df2 <- filter( df, EFILE_X != "UNK" & V501C == 3 & MISSING_YEAR == 0 )
+df2$EFILE_X <- factor( df2$EFILE_X )
+table( df2$TAXYEAR, df2$EFILE_X ) |> prop.table(margin=1) |> round(2) |> knitr::kable()
+```
+
 Non-mandatory electronic filing for tax-exempt organizations started around 2010. Utilization of electronic filing options grew steadily over the next decade (see the table below).
 
 Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. *The schemas needed to make sense of the XML file structures, however, have not been made public.*
 
-Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations.
+Beginning in the 2021 tax year (the 2022 calendar year) efiling became mandatory for most tax-exempt organizations. Prior to 2021 the rate of 990/990EZ efilers had been increasing steadily.
 
-**990 Efile Returns by FormType and TaxYear (990 Data Commons, Feb. 2025)**
+**Proportion of Paper vs Electronic 990/990EZ Filers**
 
-|     |990     |990EZ   |990PF   |990T   |
-|:----|:-------|:-------|:-------|:------|
-|2007 |17      |17      |0       |0      |
-|2008 |87      |114     |20      |0      |
-|2009 |33,311  |15,470  |2,345   |0      |
-|2010 |123,026 |63,326  |25,249  |0      |
-|2011 |159,504 |82,048  |34,597  |0      |
-|2012 |179,688 |93,750  |39,933  |0      |
-|2013 |198,856 |104,375 |45,887  |0      |
-|2014 |218,620 |116,417 |53,442  |0      |
-|2015 |233,520 |124,894 |58,815  |0      |
-|2016 |243,903 |130,485 |62,988  |0      |
-|2017 |261,612 |139,146 |68,950  |0      |
-|2018 |271,442 |149,384 |80,138  |0      |
-|2019 |283,695 |152,624 |87,789  |0      |
-|2020 |319,300 |169,092 |114,627 |22,562 |
-|2021 |323,614 |197,431 |117,081 |22,612 |
-|2022 |217,242 |139,139 |81,065  |13,148 |
-|2023 |231,162 |165,615 |105,712 |13,435 |
+| YEAR | EFILE | PAPER |
+|:----:|:-----:|:-----:|
+| 2013 | 0.50  | 0.50  |
+| 2014 | 0.65  | 0.35  |
+| 2015 | 0.68  | 0.32  |
+| 2016 | 0.71  | 0.29  |
+| 2017 | 0.73  | 0.27  |
+| 2018 | 0.76  | 0.24  |
+| 2019 | 0.81  | 0.19  |
+| 2020 | 0.91  | 0.09  |
+| 2021 | 0.99  | 0.01  |
+| 2022 | 0.99  | 0.01  |
+| 2023 | 1.00  | 0.00  |
+
+<br>
+
+**990 Efile Returns by FormType and TaxYear (990 Data Commons, Oct. 2025)**
+
+| YEAR |     990 |   990EZ |   990PF |   990T |
+|:-----|--------:|--------:|--------:|-------:|
+| 2009 |  33,311 |  15,470 |   2,345 |      0 |
+| 2010 | 123,025 |  63,326 |  25,249 |      0 |
+| 2011 | 159,504 |  82,048 |  34,597 |      0 |
+| 2012 | 179,688 |  93,750 |  39,933 |      0 |
+| 2013 | 198,855 | 104,375 |  45,887 |      0 |
+| 2014 | 218,619 | 116,417 |  53,442 |      0 |
+| 2015 | 233,519 | 124,894 |  58,815 |      0 |
+| 2016 | 243,903 | 130,484 |  62,988 |      0 |
+| 2017 | 261,612 | 139,145 |  68,950 |      0 |
+| 2018 | 271,442 | 149,384 |  80,138 |      0 |
+| 2019 | 284,515 | 152,689 |  87,790 |      0 |
+| 2020 | 343,790 | 171,891 | 114,967 | 22,674 |
+| 2021 | 336,521 | 202,730 | 119,360 | 23,927 |
+| 2022 | 348,034 | 205,532 | 122,533 | 22,611 |
+| 2023 | 329,042 | 198,731 | 121,156 | 20,743 |
+| 2024 |  78,817 |  80,682 |  48,860 |  3,245 |
 
 The NCCS downloads below include data from 990 and 990EZ returns and their associated schedules.
-
-The 990PF fields have been mapped within the Concordance File, so technically [it is possible to build 990PF tables with the irs990efile package](https://github.com/Nonprofit-Open-Data-Collective/990pf-dev). Due to the complexity of many 990PF tables (mandatory fields are often formatted as Schedule O amendments or file attachments that require additional parsing) we have not created public files for widespread distribution.
 
 Efile datasets are organized by TAX YEAR, as that is the best approximation for the calendar year in which the nonprofit activities occurred. Nonprofits can select the month in which their fiscal ends, and tax filings are due 5 months after the end of the fiscal year (the filing date). The tax year (F9_00_TAX_YEAR) is the same as the fiscal year start date (F9_00_TAX_PERIOD_BEGIN_DATE).
 
 **NOTE:**
 
-Tables from 2009 to 2022 are currently available.
+Tables from 2009 to 2023 are currently available with the 2021-2023 waves representing near full samples of all 990+990EZ filers from those periods. The 2024 tax year wave is a partial year as those are primarily the files the IRS started releasing in 2025.
 
-The IRS releases electronic returns at regularly intervals (typically monthly). The most recent year will typically be a partial file that contains the data available at the time the database was built.
+The IRS releases electronic returns at regularly intervals (typically monthly). The most recent year in the panel should always be treated as a partial year since it can take 2-3 years for the bulk of returns to be processed and released.
 
 Changes to IRS 990 XML Schemas from 2018 onward have not yet been incorporated into the Concordance Crosswalk file, so some fields will be incomplete (data will be missing) starting in 2018. New data files will be posted once the Concordance has been refreshed, but until then use the recent waves with intentionality.
 
@@ -240,9 +280,7 @@ TBL |> knitr::kable()
 
 ```
 
-
-
-[Schedule Details](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/blob/master/README.md#form-990-and-schedule-sections)
+[Schedule Details](https://github.com/Nonprofit-Open-Data-Collective/irs-efile-master-concordance-file/blob/master/f990-parts-and-schedules.md)
 
 <br> <br>
 
@@ -272,32 +310,32 @@ catalog <-
               NAME=FNAME, RDB=CARD ) %>% 
   dplyr::arrange( NAME, desc(YEAR) )
 
-df.rows <- data.table::fread( "https://nccs-efile.s3.us-east-1.amazonaws.com/public/efile_v2_0/COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE.CSV")
+DF_ROWS <- "https://nccs-efile.s3.us-east-1.amazonaws.com/public/efile_v2_1/COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE-EFILE_V2_1.CSV"
+df.rows <- data.table::fread( DF_ROWS )
 
-df.rows <- dplyr::select( df.rows, Year, Table, NumRowsTot ) |> unique()
-df.rows$Table <- gsub( "-[0-9]{4}$", "", df.rows$Table )
+df.rows <- dplyr::select( df.rows, year, table, rows_tot ) |> unique()
 names( df.rows ) <- c("YEAR","NAME","NUM_ROWS")
 catalog <- merge( catalog, df.rows, all.x=TRUE )
 
-catalog <- dplyr::filter( catalog, NAME != "COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE.CSV" )
+catalog <- dplyr::filter( catalog, NUM_ROWS > 0 )
 catalog <- dplyr::arrange( catalog, NAME, desc(YEAR) )
 catalog$NUM_ROWS[ is.na(catalog$NUM_ROWS) ] <- ""
 catalog$NUM_ROWS <- format( as.numeric(catalog$NUM_ROWS), big.mark="," )
-catalog[1,1] <- "ALL"
 ```
 
 ```{r}
 #| echo: false
 #| output: asis
  
-table_names    <- unique( catalog$NAME )
-data_dict_html <- "\n\n<a href='https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html' class='button2' target='_blank'> DATA DICTIONARY </a>\n\n"
+dd_button_txt <- "\n\n<a href='https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html' class='button2' target='_blank'> DATA DICTIONARY </a>\n\n"
+
+table_names <- unique( catalog$NAME )
 
 for( i in table_names )
 {
   cat( paste0( "### ", i, " \n\n" ) )
 
-  cat( data_dict_html )
+  cat( dd_button_txt )
   
   k <- 
   dplyr::filter( catalog, NAME == i ) %>%
@@ -320,4 +358,137 @@ for( i in table_names )
 
 ```
 
-<!-- Styles loaded from shared catalog.css via _quarto.yml -->
+```{=html}
+<style>
+
+
+h1.title {
+ font-size: 60px;
+ color: #0a4c6a;
+}
+
+
+h3, .h3 {
+    font-size: 40px;
+    color: #1696d2;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+nav#TOC {
+  margin-top: 100px;
+}
+
+nav#TOC a {
+  font-family: var(--bs-font-monospace);
+  text-transform: uppercase;
+  font-size: 14px;
+  text-decoration: none;
+  color: #003b4f;
+}
+
+ul ul {
+    list-style-type: none;
+}
+
+.button {
+  background-color: white;
+  color:  #12719e;
+  border: 2px solid  #12719e;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+ 
+.button {
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #1696d2; 
+  color: white;
+  border: 2px solid #12719e;
+}
+
+
+.button2 {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;   /* #008CBA; */
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+}
+
+.button2 {
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  background-color: #fff2cf; 
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+
+.center {text-align: center;}
+
+table td {
+  vertical-align: middle;
+}
+
+blockquote {
+    border-left: 4px solid #1696d2;
+    margin-left: 10px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding: 15px;
+}
+
+.button3 {
+  background-color: #0a4c6a;
+  color: white;
+  border: 2px solid #0a4c6a;   
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  width: 100px;
+}
+
+.buttonx {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;   /* #008CBA; */
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 350px;
+}
+
+.buttonx {
+  transition-duration: 0.4s;
+}
+
+.buttonx:hover {
+  background-color: #fff2cf; 
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+</style>
+```

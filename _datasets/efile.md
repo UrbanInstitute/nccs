@@ -8,7 +8,7 @@ categories:
   - nonprofits
 featured: true
 featuredOrder: 3
-primaryCtaUrl: "../../catalogs/catalog-efile-v2.html"
+primaryCtaUrl: "../../catalogs/catalog-efile-v2_1.html"
 primaryCtaCaption:
 primaryLinks:
   - text: "R Package"
@@ -44,30 +44,29 @@ The Efile Data is more comprehensive in terms of the fields that are available, 
 
 There was rapid adoption because electronic filing is convenient, but it took some time for nonprofits to adapt and transition from paper filings. As a result, you see a steady increase in the number of efilers across time (see the table below). Efiling became mandatory in 2022 (which impacts 2021 tax year data), so into the future the efile dataset should contain all of the same nonprofits as the NCCS Core data series with about 10x more variables available.   
 
-**990 Efile Returns by Form Type and Tax Year (Dec. 2024)**
+**990 Efile Returns by Form Type and Tax Year (990 Data Commons, Oct. 2025)**
 
-![image](https://github.com/user-attachments/assets/815833e8-9125-4915-a587-6369531051cd)
+![image](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/_datasets/img/efile_count.png)
 
 
-|     |990     |990EZ   |990PF   |990T   |
-|:----|:-------|:-------|:-------|:------|
-|2007 |17      |17      |0       |0      |
-|2008 |87      |114     |20      |0      |
-|2009 |33,311  |15,470  |2,345   |0      |
-|2010 |123,026 |63,326  |25,249  |0      |
-|2011 |159,504 |82,048  |34,597  |0      |
-|2012 |179,688 |93,750  |39,933  |0      |
-|2013 |198,856 |104,375 |45,887  |0      |
-|2014 |218,620 |116,417 |53,442  |0      |
-|2015 |233,520 |124,894 |58,815  |0      |
-|2016 |243,903 |130,485 |62,988  |0      |
-|2017 |261,612 |139,146 |68,950  |0      |
-|2018 |271,442 |149,384 |80,138  |0      |
-|2019 |283,695 |152,624 |87,789  |0      |
-|2020 |319,300 |169,092 |114,627 |22,562 |
-|2021 |323,614 |197,431 |117,081 |22,612 |
-|2022 |217,242 |139,139 |81,065  |13,148 |
-|2023 |231,162 |165,615 |105,712 |13,435 |
+| YEAR |     990 |   990EZ |   990PF |   990T |
+|:-----|--------:|--------:|--------:|-------:|
+| 2009 |  33,311 |  15,470 |   2,345 |      0 |
+| 2010 | 123,025 |  63,326 |  25,249 |      0 |
+| 2011 | 159,504 |  82,048 |  34,597 |      0 |
+| 2012 | 179,688 |  93,750 |  39,933 |      0 |
+| 2013 | 198,855 | 104,375 |  45,887 |      0 |
+| 2014 | 218,619 | 116,417 |  53,442 |      0 |
+| 2015 | 233,519 | 124,894 |  58,815 |      0 |
+| 2016 | 243,903 | 130,484 |  62,988 |      0 |
+| 2017 | 261,612 | 139,145 |  68,950 |      0 |
+| 2018 | 271,442 | 149,384 |  80,138 |      0 |
+| 2019 | 284,515 | 152,689 |  87,790 |      0 |
+| 2020 | 343,790 | 171,891 | 114,967 | 22,674 |
+| 2021 | 336,521 | 202,730 | 119,360 | 23,927 |
+| 2022 | 348,034 | 205,532 | 122,533 | 22,611 |
+| 2023 | 329,042 | 198,731 | 121,156 | 20,743 |
+| 2024 |  78,817 |  80,682 |  48,860 |  3,245 |
 
 
 Due to the absense of paper filers in this data series it is recommended for research that does not require the full population of filers. The larger the organization is the more likely they are to file electronically. Sample weights can also be created by comparing efilers to the nonprofits in the BMF or Core files.  

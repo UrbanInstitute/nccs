@@ -1,0 +1,24 @@
+---
+title: "NTEE NAICS Crosswalk"
+format: 
+  html:
+    page-layout: full
+editor: visual
+---
+
+```{r include=FALSE}
+library(DT)
+library(readr)
+library(dplyr)
+ntee_naics_xwalk <- readr::read_csv(here::here("data-raw", "NTEE-NAICS-XWALK.csv"))
+```
+
+```{r echo=FALSE}
+ntee_naics_xwalk <- ntee_naics_xwalk |>
+  dplyr::mutate(NAICS = ifelse(is.na(NAICS), "No NAICS Code", NAICS)) |>
+  dplyr::rename("NTEE Code" = NTEE_IRS,
+                "NAICS Code" = NAICS)
+DT::datatable(ntee_naics_xwalk,
+              filter = "top")
+```
+
