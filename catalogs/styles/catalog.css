@@ -1,0 +1,222 @@
+/**
+ * Shared styles for NCCS data catalog pages
+ * Extracted from individual catalog .qmd files to reduce duplication
+ */
+
+/* =============================================================================
+   Typography
+   ============================================================================= */
+
+h1.title {
+  font-size: 60px;
+  color: #0a4c6a;
+}
+
+h4, .h4 {
+  font-size: 40px;
+  color: #1696d2;
+  margin-bottom: 50px;
+}
+
+/* =============================================================================
+   Buttons - Download, Profile, and Primary actions
+   ============================================================================= */
+
+/* Primary download button (blue outline) */
+.button {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #12719e;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #1696d2;
+  color: white;
+  border: 2px solid #12719e;
+}
+
+/* Secondary profile button (gray outline) */
+.button2 {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 150px;
+  transition-duration: 0.4s;
+}
+
+.button2:hover {
+  background-color: #fff2cf;
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+/* Large centered button (for data dictionary downloads) */
+.button3 {
+  background-color: #0a4c6a;
+  color: white;
+  border: 2px solid #0a4c6a;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 4px;
+  width: 200px;
+  display: grid;
+  margin: auto;
+  padding: 10px;
+}
+
+.button3:hover {
+  background-color: #1696d2;
+  border-color: #1696d2;
+}
+
+/* =============================================================================
+   Layout
+   ============================================================================= */
+
+.center {
+  text-align: center;
+}
+
+/* =============================================================================
+   Tables
+   ============================================================================= */
+
+table td {
+  vertical-align: middle;
+}
+
+/* Ensure tables are responsive */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =============================================================================
+   Content elements
+   ============================================================================= */
+
+blockquote {
+  border-left: 4px solid #1696d2;
+  margin-left: 10px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding: 15px;
+}
+
+/* =============================================================================
+   kableExtra table styling (from R output)
+   ============================================================================= */
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+}
+
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  background-color: #f8f9fa;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+/* =============================================================================
+   Additional button styles (from efile catalog)
+   ============================================================================= */
+
+/* Wide external link button */
+.buttonx {
+  background-color: white;
+  color: #12719e;
+  border: 2px solid #9d9d9d;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 12px;
+  width: 350px;
+  transition-duration: 0.4s;
+}
+
+.buttonx:hover {
+  background-color: #fff2cf;
+  color: #1696d2;
+  font-weight: bold;
+  border: 2px solid #1696d2;
+}
+
+/* =============================================================================
+   Table of Contents (for efile catalog)
+   ============================================================================= */
+
+nav#TOC {
+  margin-top: 100px;
+}
+
+nav#TOC a {
+  font-family: var(--bs-font-monospace);
+  text-transform: uppercase;
+  font-size: 14px;
+  text-decoration: none;
+  color: #003b4f;
+}
+
+ul ul {
+  list-style-type: none;
+}
+
+/* =============================================================================
+   H3 styling (for efile catalog)
+   ============================================================================= */
+
+h3, .h3 {
+  font-size: 40px;
+  color: #1696d2;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+/* =============================================================================
+   Lightable table override (for census crosswalk)
+   ============================================================================= */
+
+table.lightable-minimal {
+  width: 30%;
+}

@@ -1,0 +1,41 @@
+name: Build Validation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+          working-directory: ./nccs
+
+      - name: Build Jekyll site
+        working-directory: ./nccs
+        run: bundle exec jekyll build
+
+      - name: Check HTML validity
+        uses: anishathalye/proof-html@v2
+        with:
+          directory: ./nccs/_site
+          check_external_hash: false
+          check_html: true
+          check_opengraph: false
+          enforce_https: false
+
+      - name: Link Check
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress --exclude-mail './nccs/_site/**/*.html'
+          fail: false  # Don't fail on broken external links initially
