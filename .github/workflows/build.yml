@@ -18,7 +18,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
-          bundler-cache: true
+
+      - name: Add Linux platform and install dependencies
+        run: |
+          bundle lock --add-platform x86_64-linux
+          bundle install
 
       - name: Build Jekyll site
         run: bundle exec jekyll build
