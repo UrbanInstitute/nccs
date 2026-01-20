@@ -1,16 +1,12 @@
 ---
 title: "990 EFILER Data Catalog"
+# Most settings inherited from _quarto.yml; TOC settings override for this page
 format:
   html:
     toc: true
     toc-location: body
     toc-expand: 1
     toc-title: 'Efile Data Contents'
-    embed-resources: true
-editor: visual
-execute: 
-  echo: false
-  warning: false
 ---
 
 ```{r}
@@ -324,137 +320,4 @@ for( i in table_names )
 
 ```
 
-```{=html}
-<style>
-
-
-h1.title {
- font-size: 60px;
- color: #0a4c6a;
-}
-
-
-h3, .h3 {
-    font-size: 40px;
-    color: #1696d2;
-    margin-top: 50px;
-    margin-bottom: 30px;
-}
-
-nav#TOC {
-  margin-top: 100px;
-}
-
-nav#TOC a {
-  font-family: var(--bs-font-monospace);
-  text-transform: uppercase;
-  font-size: 14px;
-  text-decoration: none;
-  color: #003b4f;
-}
-
-ul ul {
-    list-style-type: none;
-}
-
-.button {
-  background-color: white;
-  color:  #12719e;
-  border: 2px solid  #12719e;   /* #008CBA; */
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 12px;
-  width: 150px;
-}
- 
-.button {
-  transition-duration: 0.4s;
-}
-
-.button:hover {
-  background-color: #1696d2; 
-  color: white;
-  border: 2px solid #12719e;
-}
-
-
-.button2 {
-  background-color: white;
-  color: #12719e;
-  border: 2px solid #9d9d9d;   /* #008CBA; */
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 12px;
-  width: 150px;
-}
-
-.button2 {
-  transition-duration: 0.4s;
-}
-
-.button2:hover {
-  background-color: #fff2cf; 
-  color: #1696d2;
-  font-weight: bold;
-  border: 2px solid #1696d2;
-}
-
-
-.center {text-align: center;}
-
-table td {
-  vertical-align: middle;
-}
-
-blockquote {
-    border-left: 4px solid #1696d2;
-    margin-left: 10px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding: 15px;
-}
-
-.button3 {
-  background-color: #0a4c6a;
-  color: white;
-  border: 2px solid #0a4c6a;   
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
-  width: 100px;
-}
-
-.buttonx {
-  background-color: white;
-  color: #12719e;
-  border: 2px solid #9d9d9d;   /* #008CBA; */
-  padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 12px;
-  width: 350px;
-}
-
-.buttonx {
-  transition-duration: 0.4s;
-}
-
-.buttonx:hover {
-  background-color: #fff2cf; 
-  color: #1696d2;
-  font-weight: bold;
-  border: 2px solid #1696d2;
-}
-
-</style>
-```
+<!-- Styles loaded from shared catalog.css via _quarto.yml -->

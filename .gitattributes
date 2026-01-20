@@ -1,0 +1,19 @@
+# Mark generated files to exclude from language stats and diffs
+catalogs/*_files/** linguist-generated=true
+widgets/ntee_tables/*_files/** linguist-generated=true
+_stories/*_files/** linguist-generated=true
+_stories/*_cache/** linguist-generated=true
+public/vendor/** linguist-vendored=true
+_site/** linguist-generated=true
+
+# Ensure consistent line endings
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+*.R text eol=lf
+*.qmd text eol=lf

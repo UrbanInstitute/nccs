@@ -1,0 +1,40 @@
+# Quarto configuration for NCCS data catalogs
+# This config optimizes output by sharing libraries across all catalog pages
+
+project:
+  type: default
+  output-dir: .
+
+# CRITICAL: All catalogs share a single lib directory to avoid duplication
+# This reduces build size from ~12MB to ~1MB for libraries
+format:
+  html:
+    # Shared library directory - all catalogs use the same JS/CSS files
+    lib-dir: _shared-libs
+
+    # Minimal output - removes unnecessary Quarto scaffolding
+    minimal: true
+
+    # Don't embed resources inline - use external files
+    embed-resources: false
+    self-contained: false
+
+    # Use our shared CSS instead of Quarto's default theme
+    theme: none
+    css: styles/catalog.css
+
+    # Disable features we don't need
+    anchor-sections: false
+    smooth-scroll: false
+
+    # Table of contents not needed for catalog pages
+    toc: false
+
+    # Code display settings (most code is hidden anyway)
+    code-tools: false
+    code-fold: false
+
+execute:
+  echo: false
+  warning: false
+  message: false

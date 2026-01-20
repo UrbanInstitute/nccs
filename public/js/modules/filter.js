@@ -1,10 +1,28 @@
+/**
+ * Filter module for search and category-based content filtering
+ * @module modules/filter
+ */
+
+/**
+ * Provides search, category, and type filtering for content entries
+ * with animated transitions between filter states
+ * @class
+ */
 export default class filter {
+  /**
+   * Creates a new filter instance
+   * @param {HTMLElement} el - The filter container element
+   */
   constructor(el) {
     this.el = el;
     this.setVars();
     this.bindEvents();
   }
 
+  /**
+   * Initializes DOM references and animation presets
+   * @private
+   */
   setVars() {
     this.sortSearch = this.el.querySelector("[data-filter-search]");
     this.sortCat = this.el.querySelector("[data-filter-sort-category]");
@@ -33,6 +51,10 @@ export default class filter {
     };
   }
 
+  /**
+   * Binds event listeners for search input, dropdowns, and clear button
+   * @private
+   */
   bindEvents() {
     if (this.sortSearch) {
       this.sortSearch.addEventListener("keyup", this.handleSearchChange);
@@ -49,6 +71,9 @@ export default class filter {
     this.clear.addEventListener("click", this.handleClear);
   }
 
+  /**
+   * Resets all filter inputs and shows all entries
+   */
   handleClear = () => {
     this.sortSearch ? this.sortSearch.value = "" : null;
     this.sortCat ? this.sortCat.value = "" : null;
@@ -56,6 +81,11 @@ export default class filter {
     this.filterSort("", "", "");
   };
 
+  /**
+   * Handles search input changes with debouncing (750ms delay)
+   * @param {KeyboardEvent} e - The keyup event
+   * @private
+   */
   handleSearchChange = (e) => {
     clearTimeout(this.timeout)
 
@@ -64,6 +94,11 @@ export default class filter {
     }, 750)
   }
 
+  /**
+   * Handles filter dropdown changes, collects values and triggers filter
+   * @param {Event} [e] - The change event (optional)
+   * @private
+   */
   handleChange = (e) => {
     const searchValue = this.sortSearch ? this.sortSearch.value.toLowerCase() : "";
     const catValue = this.sortCat ? this.sortCat.value : "";
@@ -72,6 +107,13 @@ export default class filter {
     this.filterSort(searchValue, catValue, typeValue)
   };
 
+  /**
+   * Filters entries based on search text, category, and type
+   * Applies fade animations during filter transitions
+   * @param {string} filterSearch - Text to search for in entry content
+   * @param {string} filterCat - Category to filter by (empty string for all)
+   * @param {string} filterType - Type to filter by (empty string for all)
+   */
   filterSort(filterSearch, filterCat, filterType) {
     // build array of matches
     const matches = Array.prototype.filter.call(

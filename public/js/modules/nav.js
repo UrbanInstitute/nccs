@@ -1,21 +1,44 @@
+/**
+ * Navigation module for responsive mobile menu functionality
+ * @module modules/nav
+ */
+
 import {
   disableBodyScroll,
   enableBodyScroll,
 } from "../lib/bodyScrollLock.esm.js";
 
+/**
+ * Manages the responsive navigation menu with mobile toggle, focus trapping,
+ * and keyboard accessibility support
+ * @class
+ */
 export default class nav {
+  /**
+   * Creates a new navigation instance
+   * @param {HTMLElement} el - The navigation container element
+   */
   constructor(el) {
     this.el = el;
     this.setVars();
     this.bindEvents();
   }
 
+  /** @type {MediaQueryList} Media query for desktop breakpoint */
   mql = window.matchMedia("(min-width: 768px)");
 
+  /**
+   * Whether the mobile navigation menu is currently open
+   * @type {boolean}
+   */
   get mobileOpen() {
     return this.el.dataset.mobile === "true";
   }
 
+  /**
+   * Initializes DOM references and observers
+   * @private
+   */
   setVars() {
     // grab targets
     this.navTarget = this.el.querySelector("[data-nav-target]");
@@ -46,6 +69,10 @@ export default class nav {
     );
   }
 
+  /**
+   * Binds event listeners for toggle, resize, intersection, and keyboard events
+   * @private
+   */
   bindEvents() {
     this.navToggle.addEventListener("click", this.toggleVisibilty.bind(this));
     this.resizeObserver.observe(this.el);
@@ -54,6 +81,10 @@ export default class nav {
     window.addEventListener('keydown', this.handleKeyDown)
   }
 
+  /**
+   * Toggles the mobile navigation menu open/closed state
+   * Handles body scroll locking and focus management
+   */
   toggleVisibilty = () => {
     if (this.mobileOpen) {
       // close
@@ -75,12 +106,22 @@ export default class nav {
     }
   };
 
+  /**
+   * Removes visibility class after close transition completes
+   * @private
+   */
   toggleOpacity = () => {
     if (!this.mobileOpen) {
       this.navTarget.classList.remove("-visible");
     }
   };
 
+  /**
+   * Traps focus within the navigation menu when open
+   * Handles Tab and Escape key presses for accessibility
+   * @param {KeyboardEvent} e - The keyboard event
+   * @private
+   */
   focusTrap = (e) => {
     const isTabPressed = e.key === "Tab" || e.keyCode === "9";
     const isEscapedPressed = e.key === "Escape" || e.keyCode === "27";
@@ -108,7 +149,11 @@ export default class nav {
     }
   };
   
-  // close nav on Escape press if nav is open
+  /**
+   * Global keyboard handler - closes nav on Escape press if nav is open
+   * @param {KeyboardEvent} e - The keyboard event
+   * @private
+   */
   handleKeyDown = (e) => {
     if (!this.mobileOpen) {
       return
