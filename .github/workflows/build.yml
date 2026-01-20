@@ -19,16 +19,14 @@ jobs:
         with:
           ruby-version: '3.1'
           bundler-cache: true
-          working-directory: ./nccs
 
       - name: Build Jekyll site
-        working-directory: ./nccs
         run: bundle exec jekyll build
 
       - name: Check HTML validity
         uses: anishathalye/proof-html@v2
         with:
-          directory: ./nccs/_site
+          directory: ./_site
           check_external_hash: false
           check_html: true
           check_opengraph: false
@@ -37,5 +35,5 @@ jobs:
       - name: Link Check
         uses: lycheeverse/lychee-action@v1
         with:
-          args: --verbose --no-progress --exclude-mail './nccs/_site/**/*.html'
-          fail: false  # Don't fail on broken external links initially
+          args: --verbose --no-progress --exclude-mail './_site/**/*.html'
+          fail: false
