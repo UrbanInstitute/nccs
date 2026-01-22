@@ -309,45 +309,45 @@ The papers from this 2024 symposium will be published in a special issue of Nonp
 
 **I. First Amendment and Political Activity**
 
-Faulk, Lewis, Mirae Kim, and Heather MacIndoe. “Bounded Rationality: The Role of Knowledge of Regulations in Nonprofits’ Engagement in Policy Advocacy.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0044.
+Faulk, Lewis, Mirae Kim, and Heather MacIndoe. “Bounded Rationality: The Role of Knowledge of Regulations in Nonprofits’ Engagement in Policy Advocacy.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0044.
 
-Gazley, Beth, and Jennifer Alexander. “Authoritarianism in US State Policy and Its Impact on Nonprofit Civil Liberties.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0022.
+Gazley, Beth, and Jennifer Alexander. “Authoritarianism in US State Policy and Its Impact on Nonprofit Civil Liberties.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0022.
 
 **II. Civic Engagement**
 
-Aprill, Ellen P., and Jill R. Horwitz. “Fiduciaries, Constituencies, and the Duty of Loyalty in Modern Nonprofits.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0036.
+Aprill, Ellen P., and Jill R. Horwitz. “Fiduciaries, Constituencies, and the Duty of Loyalty in Modern Nonprofits.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0036.
 
-Flannery, Helen, and Brian Mittendorf. “Are Donor-Advised Funds Facilitating Opaque Giving to Politically Engaged Charities?” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0028.
+Flannery, Helen, and Brian Mittendorf. “Are Donor-Advised Funds Facilitating Opaque Giving to Politically Engaged Charities?” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0028.
 
-Murray, Ian, Dan Heist, and Kendra Stone. “Donor Advised Fund Policies and Intergenerational Justice.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0024.
+Murray, Ian, Dan Heist, and Kendra Stone. “Donor Advised Fund Policies and Intergenerational Justice.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0024.
 
 **III. Improving Regulatory Structures**
 
-Atkins, Lynda, Karin Kunstler Goldman, Jonathan Green, Brien Winfield Heckman, Janet M. Kleinfelter, Hanna Rubin, Beth Short, Tracy Thorleifson, Heather L. Weigler, and Josaphine Yuzuik. “Charitable Oversight: Insight from Regulators and Enforcers.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0029.
+Atkins, Lynda, Karin Kunstler Goldman, Jonathan Green, Brien Winfield Heckman, Janet M. Kleinfelter, Hanna Rubin, Beth Short, Tracy Thorleifson, Heather L. Weigler, and Josaphine Yuzuik. “Charitable Oversight: Insight from Regulators and Enforcers.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0029.
 
-Gano, Karen, and Karl Emerson. “Toward the Ideal of Uniformity, Transparency and Efficiency in State Regulation of Charitable Activity in the United States.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0042.
+Gano, Karen, and Karl Emerson. “Toward the Ideal of Uniformity, Transparency and Efficiency in State Regulation of Charitable Activity in the United States.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0042.
 
 **IV. Global Perspectives**
 
-Lackritz-Peltier, Martha Bird. “Furthering Unrestricted Grantmaking Across Borders: Proposals for Updated Tax Law Guidance.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0037.
+Lackritz-Peltier, Martha Bird. “Furthering Unrestricted Grantmaking Across Borders: Proposals for Updated Tax Law Guidance.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0037.
 
-Tyler, John. “Regulation and Incentives for ‘Social Enterprise’ in the United States: But First Greater and More Substantive Differentiation.” *Nonprofit Policy Forum*, 2024. https://doi.org/10.1515/npf-2024-0026.
+Tyler, John. “Regulation and Incentives for ‘Social Enterprise’ in the United States: But First Greater and More Substantive Differentiation.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0026.
 
-Gugerty, Mary Kay, and George Mitchell. “Can Nongovernmental Regulation Resolve NGO Trust Deficits? Policy Considerations for the United States.” *Nonprofit Policy Forum*, 2024.
+Gugerty, Mary Kay, and George Mitchell. “Can Nongovernmental Regulation Resolve NGO Trust Deficits? Policy Considerations for the United States.” *Nonprofit Policy Forum*, 2026. https://doi.org/10.1515/npf-2024-0052.
 
 **V. Data and Research Tools**
 
-Harrison, Teresa, and Jesse Lecy. “Advancing an Understanding of the Regulatory Environments in Which Nonprofits Operate through the Creation and Digitization of an Open-Source Legal Compendium of Nonprofit Law.” *Nonprofit Policy Forum*, 2024.
+Harrison, Teresa, and Jesse Lecy. “Advancing an Understanding of the Regulatory Environments in Which Nonprofits Operate through the Creation and Digitization of an Open-Source Legal Compendium of Nonprofit Law.” *Nonprofit Policy Forum*, 2026.
 
-Bushouse, Brenda K., Santiago Virgüez-Ruiz, Mahasweta Chakraborti, and Seth Frey. “Advancing Text Analysis for Nonprofit Research: Using Semantic Role Labeling to Automate Institutional Grammar Coding of Nonprofit Laws and Policies.” *Nonprofit Policy Forum*, 2024.
+Bushouse, Brenda K., Santiago Virgüez-Ruiz, Mahasweta Chakraborti, and Seth Frey. “Advancing Text Analysis for Nonprofit Research: Using Semantic Role Labeling to Automate Institutional Grammar Coding of Nonprofit Laws and Policies.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0048.
 
 **VI. Commentary**
 
-Mayer, Lloyd Hitoshi. “The Future of Nonprofit Regulation in the United States: Three Dynamic Trends.” *Nonprofit Policy Forum*, 2024.
+Mayer, Lloyd Hitoshi. “The Future of Nonprofit Regulation in the United States: Three Dynamic Trends.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0034.
 
-Owens, Marcus S. “Lessons from the Unintentional Fifty-Year Longitudinal Study: The Nonprofit Regulatory Structure in the US.” *Nonprofit Policy Forum*, 2024.
+Owens, Marcus S. “Lessons from the Unintentional Fifty-Year Longitudinal Study: The Nonprofit Regulatory Structure in the US.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2025-0017.
 
-Schmidt, Elizabeth. “Designing a Legal Framework to Encourage Nonprofit Success.” *Nonprofit Policy Forum*, 2024.
+Schmidt, Elizabeth. “Designing a Legal Framework to Encourage Nonprofit Success.” *Nonprofit Policy Forum*, 2025. https://doi.org/10.1515/npf-2024-0038.
 
 </div>
 
