@@ -12,15 +12,11 @@ format:
     # Shared library directory - all catalogs use the same JS/CSS files
     lib-dir: _shared-libs
 
-    # Minimal output - removes unnecessary Quarto scaffolding
-    minimal: true
-
     # Don't embed resources inline - use external files
     embed-resources: false
     self-contained: false
 
     # Use our shared CSS instead of Quarto's default theme
-    theme: none
     css: styles/catalog.css
 
     # Disable features we don't need
