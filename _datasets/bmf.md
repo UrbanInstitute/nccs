@@ -1,133 +1,160 @@
 ---
 title: Business Master File (BMF)
-date: 2024-06-01
+date: 2026-02-04
 description: All active organizations that have been granted nonprofit status by the IRS.
 categories:
   - BMF
-  - sample-framework
-  - metadata
 featured: true
 featuredOrder: 2
-primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/harmonized/bmf/unified/BMF_UNIFIED_V1.1.csv"
-primaryCtaCaption: 1.3 GB
-primaryLinks:
-  - text: "Data Dictionary"
-    href: "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx"
-    icon: article
-  - text: "BMF By State"
-    href: "../../catalogs/catalog-bmf.html"
-    icon: download
-  - text: "Legacy BMF"
-    href: ../../catalogs/catalog-bmf.html#legacy-bmf"
-    icon: download
-citation: 
-  author: "Jesse Lecy"
-  citationDate: "2024"
-  container-title: "NCCS Unified BMF"
+primaryCtaUrl: "../../catalogs/catalog-bmf.html"
+primaryCtaCaption: "Data catalog containing downloadable files"
+citation:
+  author: "Thiyaghessan Poongundranar"
+  citationDate: "2026"
+  container-title: "NCCS BMF"
   doi:
+primaryLinks:
+  - text: "BMF Data Guide"
+    href: "https://urbaninstitute.github.io/nccs-data-bmf/index.html"
+    icon: article
 ---
 
-## Unified BMF
+## What is the Business Master File?
 
-The IRS releases a Business Master File every month which serves as the most recent and comprehensive record of tax exempt organizations in the United States. However, organizations that are no longer active are removed from each new BMF release.
+The IRS Business Master File (BMF) is a comprehensive registry of tax-exempt organizations in the United States. Updated monthly by the IRS, it serves as the authoritative record of organizations that have been granted tax-exempt status and remain in compliance with federal filing requirements.
 
-To facilitate the creation of consistent time-series datasets, NCCS has created a Unified BMF which aggregates information from every historic BMF dataset into a single file. The Unified BMF contains one row for each organization that was granted tax-exempt status and appeared in any BMF file from 1989 to present day. There are ~3.8 million nonprofits present in the file, ~1.8 million of which are currently active. 
+The BMF includes organizations across all tax-exempt categories, including:
 
-The Unified BMF has some additional upgrades:
+-   **501(c)(3)** — Charitable organizations, foundations, and religious entities
+-   **501(c)(4)** — Social welfare organizations and civic leagues
+-   **501(c)(6)** — Business leagues, chambers of commerce, and trade associations
+-   **501(c)(7)** — Social clubs
+-   **527** — Political organizations, including political action committees (PACs)
 
-* The most recent address available for each organization has been geocoded and matched to a Census Block.
-* The BLOCK FIPS variable can be decomposed into a TRACT, COUNTY, or STATE FIPS to make it easier to [merge Census Data](https://urbaninstitute.github.io/nccs/catalogs/catalog-census_crosswalk.html).
-* [NCCS Census Crosswalk](https://nccs.urban.org/nccs/datasets/census/) files make it easy to aggregate data to 14 different geographic levels (metros, regions, urban/rural areas, etc.).
-* A Metro FIPS code that uses [CBSA metropolitan and micropolitan definitions](https://carolinatracker.unc.edu/stories/2020/10/28/cbsa_geography/) has been added, replacing the previous PMSA designations.
-* The BMF includes an indicator for the first and last years the organization appears in the NCCS Core data series, making it easier to build sampling frameworks using information about availability data for each organization. 
+The IRS recognizes [over 30 categories of tax-exempt organizations](https://www.irs.gov/charities-non-profits/types-of-tax-exempt-organizations); the above represent the most common in nonprofit research.
 
-The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing a beta version of the Unified BMF together with a rudimentary data dictionary. Legacy single-year BMF files can still be accessed as well on the side bar. 
-## Raw IRS BMF Files 
+For each organization, the BMF contains identifying information (name, address, EIN), filing status, and the IRS forms associated with their tax-exempt designation.
 
-Starting in June, 2023, we began archiving monthly snapshots of IRS BMF files released on their [Exempt Organizations Business Master File Extract (EO BMF)](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) page. 
+### The BMF as a Research Framework
 
-Note that it will use a separate [Data Dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf) and it will not include all of the variables in the NCCS BMF files. For the typical user these will not be as useful, but we include them here for those that need to replicate a workflow built using raw IRS files from a specific point a time. 
+The BMF functions as the primary sampling frame for nonprofit research, containing the universe of organizations with recognized federal tax-exempt status. However, it does not capture all nonprofit activity. The following are excluded:
 
+-   Organizations incorporated as nonprofits at the state level that have not applied for federal tax-exempt recognition
+-   Churches and religious organizations that exercise tax-exempt status without seeking formal IRS recognition
+-   Unincorporated civic groups, social movements, and organizations operating under fiscal sponsorship arrangements
+-   501(c)(4) organizations that self-declare intent to operate via Form 8976 rather than completing the formal IRS application process
 
-```r
-# install.packages( "curl" )
-# install.packages( "data.table" )
-# install.packages( "readr" )
+Understanding these scope limitations is essential when using the BMF for research design or policy analysis.
 
-library( curl )
-library( data.table )
-library( readr )
+## Available Datasets
 
-# ------------------
+NCCS provides BMF data in several formats to support different research needs. All files are available through the [BMF Data Catalog](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html).
 
-base     <- "https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/"
-YYYYMM   <- format( Sys.time(), "%Y-%m-" )  # "2024-12-"  current month
-filename <- paste0( YYYYMM, "BMF.csv" )     # "2024-12-BMF.csv"
-URL      <- paste0( base, filename )        # "https://.../2024-12-BMF.csv"
- 
-# ------------------ 
+### Transformed BMF
 
-dir.create("bmf")
-setwd("bmf")
+The Transformed BMF applies standardized cleaning and validation to monthly IRS releases. Each file includes:
 
-# SLIGHTLY FASTER DOWNLOAD FUNCTION
-curl::curl_download( url=URL, destfile=filename, mode="wb" )
-bmf <- read.csv( filename )
+-   Standardized column names and data types
+-   Quality flags identifying potential data issues
+-   Documentation of all transformations applied
 
-# ------------------
+**Use when:** You need current BMF data with consistent formatting and documented quality checks.
 
-# DEFAULT DOWNLOAD FUNCTION 
-download.file( url=URL, destfile=filename, method="curl" )
-bmf <- read.csv( filename )
+**Coverage:** Current with latest IRS releases
 
-# ------------------
+**Documentation:** [Processing pipeline and data dictionary](https://urbaninstitute.github.io/nccs-data-bmf/)
 
-# FASTER READ CSV OPTIONS 
-bmf <- data.table::fread( filename )
-bmf <- readr::read_csv( filename )
+**Source code:** [GitHub repository](https://github.com/UrbanInstitute/nccs-data-bmf)
 
-# ------------------ 
+### Unified BMF
 
-# ARCHIVED VERSIONS FROM JUNE 2023 ONWARD:
-filename <- "2023-06-BMF.csv"
-URL      <- paste0( base, filename ) 
-curl::curl_download( url=URL, destfile=filename, mode="wb" )
-bmf <- read.csv( filename )
-```
+The Unified BMF consolidates all historical BMF releases into a single file, with one row per organization that has ever held tax-exempt status. This enables longitudinal analysis without merging multiple annual files.
 
-<br>
+Features include:
 
+-   `ORG_YEAR_FIRST` and `ORG_YEAR_LAST` variables tracking when organizations entered and exited the BMF
+-   Most recent address geocoded to Census block
+-   FIPS codes at block, tract, county, and state levels for merging with Census data
+-   Metropolitan area codes using current CBSA definitions
 
-## Version Control
+**Use when:** You need to track organizations over time, build historical sampling frames, or link nonprofit data to Census geographies.
 
-| Version | Release | Notes |
-| :---: | :---: | :---: |
-| 0.0 | June 21 2024 | Beta Version |
-| 1.0 | July 1st 2024 | Unified BMF |
-| 1.1 | March 4th 2025 | Fixed EIN2 for consistent formatting |
-| 1.1 | March 4th 2025 | State-level BMFs |
+**Coverage:** 1989 through mid-2025 (update pending)
 
+**Access:** [Public S3 Link](https://nccsdata.s3.us-east-1.amazonaws.com/bmf/unified/v1.2/UNIFIED_BMF_V1.2.csv)
+
+**Related resources:** [NCCS Census Crosswalk](https://nccs.urban.org/nccs/datasets/census/) for aggregating to additional geographic levels
+
+### Raw BMF Archives
+
+NCCS archives unmodified monthly BMF files as released by the IRS on their [Exempt Organizations Business Master File Extract](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) page. These files use the IRS's original schema and [data dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf).
+
+**Use when:** You need to replicate analysis built on raw IRS files from a specific point in time, or require data exactly as the IRS published it.
+
+**Coverage:** June 2023 to present (monthly snapshots)
+
+**Format:** `YYYY-MM-BMF.csv`
+
+**Access:** Files are available from the public `nccsdata` S3 bucket at: `https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/{filename}`
+
+Example: [2023-06-BMF.csv](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2023-06-BMF.csv)
+
+### Legacy BMFs
+
+Historical BMF files produced by NCCS between 1989 and 2022. These files retain their original schemas, which vary across years. Data dictionaries are available for most but not all years.
+
+**Use when:** You need to replicate historical NCCS analyses or require BMF data in its original pre-transformation format.
+
+**Coverage:** 1989–2022
+
+**Note:** Column names are not standardized across files. For longitudinal work, consider the Unified BMF or wait for the forthcoming Harmonized Legacy BMFs.
+
+## In Development
+
+The following datasets are currently in progress. Expected timelines are estimates and subject to change.
+
+### Harmonized Legacy BMFs
+
+The Legacy BMF files (1989–2022) use inconsistent column names and schemas across years, making longitudinal analysis difficult. The Harmonized Legacy BMFs will standardize these files to align with the Transformed BMF schema, enabling seamless merging across the full 1989–present time series.
+
+**Expected:** Q1 2026
+
+### Metadata Tables
+
+Organizational attributes in the BMF—such as name, address, and NTEE code—can change over time. Currently, only the most recent value is retained. The Metadata Tables will track these changes using a slowly changing dimension (SCD Type 2) structure, preserving the full history of:
+
+-   Organization names
+-   Addresses
+-   NTEE classifications
+
+This will support research on organizational relocation, rebranding, and mission drift.
+
+**Expected:** Q1 2026
+
+### Unified BMF v2.0
+
+An updated Unified BMF that:
+
+-   Incorporates BMF releases through late 2025
+-   Adopts column names consistent with the Transformed BMF schema
+-   Rebuilds the processing pipeline for compatibility with current infrastructure
+
+This replaces the current Unified BMF, which uses a legacy architecture and covers data only through mid-2025.
+
+**Expected:** Q1 2026
+
+## Release Status
+
+| Dataset                |  Status   | Last Updated | Expected | Coverage             | Documentation                                                         |
+|:-----------------------|:---------:|:------------:|:--------:|:---------------------|:----------------------------------------------------------------------|
+| Transformed BMF        | Available |   Ongoing    |    —     | Current IRS releases | [Pipeline docs](https://urbaninstitute.github.io/nccs-data-bmf/)      |
+| Raw BMF Archives       | Available |   Ongoing    |    —     | June 2023–present    | [IRS data dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf)    |
+| Unified BMF            | Available |   Mid-2025   |    —     | 1989–mid-2025        | [Data catalog](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html) |
+| Legacy BMFs            | Archived  |      —       |    —     | 1989–2022            | [Data catalog](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html) |
+| Harmonized Legacy BMFs |  Planned  |      —       | Q1 2026  | 1989–2022            | TBD                                                                   |
+| Metadata Tables        |  Planned  |      —       | Q1 2026  | 1989–present         | TBD                                                                   |
+| Unified BMF v2.0       |  Planned  |      —       | Q1 2026  | 1989–late 2025       | TBD                                                                   |
+
+## Contact
 
 Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
-
-
-## BMF Overview
-
-The IRS 990 Business Master File, often referred to as the "BMF," is a database maintained by the Internal Revenue Service (IRS). It contains information about tax-exempt organizations and other entities that are required to file various forms of the IRS Form 990 series. These organizations include:
-
-1. All 501(c)(3) charitable organizations, foundations, religious entities.
-2. Social welfare organizations, civic leagues, and associations with status 501c4. 
-3. Business leagues and associations: Such as chambers of commerce, trade associations, and other organizations eligible for tax-exempt status under section 501(c)(6).
-4. Social clubs: Organizations that meet the criteria for tax-exempt status under section 501(c)(7) of the Internal Revenue Code.
-5. Political organizations including entities that are tax-exempt under section 527, which includes political action committees (PACs).
-
-The IRS 990 Business Master File contains key information about these organizations, including their legal names, addresses, EINs (Employer Identification Numbers), filing statuses, and the forms they have filed. This database helps the IRS and the public track and monitor the activities of tax-exempt organizations and ensures that they comply with the tax laws and regulations applicable to their specific tax-exempt status.
-
-The BMF is the defacto sampling framework for many studies involving nonprofits as it contains the universe of all organizations that have been granted recognized tax exempt status by the IRS, remain active, and have filed required IRS 990 forms to remain in compliance with requirements about disclosure of activities and governance. The BMF does NOT include, however: 
-
-* Organizations that are legal organizations incorporated and operating as nonprofits at the state level but have opted to not apply for formal tax-exempt status from the IRS.
-* Some special categories of nonprofits such as churches and religious groups that are not required to seek formal recognition to exercise their tax-exempt status.
-* Informal civic groups or social movements that are unincorporated, including organizations that are allowed to exercise nonprofit status through a fiscal sponsorship program under parent nonprofit.
-* Some exceptional cases like 501(c)(4) organizations that opt to self-declare their intent to operate using Form 8976 instead of the typical application process with the IRS. They must file 990's to remain compliant, but since the IRS never formally rules on their status they do not appear in the BMF. 
-
-Researchers, government agencies, journalists, and the general public often use the IRS 990 Business Master File to access information about nonprofit organizations, assess their financial health, and evaluate their compliance with tax regulations. The data in this file can provide valuable insights into the operations and finances of these entities. It's worth noting that while certain information from Form 990 filings is publicly available and can be accessed through the IRS website or other sources, sensitive information like donor names and addresses is typically redacted to protect privacy.
