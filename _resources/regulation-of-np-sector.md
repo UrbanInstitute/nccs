@@ -143,7 +143,7 @@ In the second phase of the project, parts of the legal compendium were updated a
 
 **Phase Three**
 
-In the third phase, the project held a symposium, “The Future of Regulation in the United States,” with research papers presented by scholars and practitioners that were published online at the journal in a special issue of the journal *nonprofit policy forum* in early 2026.
+In the third phase, the project held a symposium, “The Future of Regulation in the United States,” with research papers presented by scholars and practitioners that were published online at the journal in a special issue of the journal *Nonprofit Policy Forum* in early 2026.
 
 Questions about nonprofit regulation were added to Urban’s National Survey of Nonprofit Trends and Impacts to learn about interactions between nonprofits and government and the impact of regulations on nonprofit organizations. Those findings were first reported in a 2025 brief, “[Nonprofits’ Contact with Offices or Agencies That Regulate Charities, 2024](https://www.urban.org/research/publication/nonprofits-contact-offices-and-agencies-regulate-charities-2024).”
 
@@ -209,7 +209,7 @@ An interactive version of the compendium can be accessed via the link below. Use
 
 **2024: The Future of Nonprofit Regulation in the United States**
 
-> This two-day hybrid symposium featured 21 presentations of papers written for the meeting on topics including the first amendment and political activities, civic engagement, improving regulatory structures, global perspectives, and commentaries on the future of regulation. These papers were peer reviewed and edited for inclusion in a [special issue](https://www.degruyterbrill.com/journal/key/npf/17/1-2/html) of *nonprofit policy forum* published in early 2026. The agenda for the symposium is available [here](https://urbanorg.box.com/shared/static/xjxsx90u6jfqglu4bh9f9u2wj9q7ez34.docx). Papers are listed under Select Publications below. 
+> This two-day hybrid symposium featured 21 presentations of papers written for the meeting on topics including the first amendment and political activities, civic engagement, improving regulatory structures, global perspectives, and commentaries on the future of regulation. These papers were peer reviewed and edited for inclusion in a [special issue](https://www.degruyterbrill.com/journal/key/npf/17/1-2/html) of *Nonprofit Policy Forum* published in early 2026. The agenda for the symposium is available [here](https://urbanorg.box.com/shared/static/xjxsx90u6jfqglu4bh9f9u2wj9q7ez34.docx). Papers are listed under Select Publications below. 
 
 **2021: Data and Technology: Resources and Implications for Nonprofit Regulation and Oversight**
 
@@ -301,7 +301,7 @@ Lott, Cindy M., Elizabeth T. Boris, Karin Kunstler Goldman, Belinda Johns, Marcu
 
 <br>
 
-The papers from this 2024 symposium were published in a [special issue](https://www.degruyterbrill.com/journal/key/npf/17/1-2/html) of *nonprofit policy forum* in early 2026. 
+The papers from this 2024 symposium were published in a [special issue](https://www.degruyterbrill.com/journal/key/npf/17/1-2/html) of *Nonprofit Policy Forum* in early 2026. 
 
 <br>
 
