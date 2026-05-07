@@ -9,6 +9,9 @@ featuredOrder: 2
 primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/master/bmf/bmf_master.csv"
 primaryCtaCaption: "Master BMF"
 primaryLinks:
+  - text: "Data Catalog"
+    href: "../../catalogs/catalog-bmf.html"
+    icon: database
   - text: "Data Dictionary"
     href: "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx"
     icon: article
@@ -29,10 +32,6 @@ citation:
   citationDate: "2024"
   container-title: "NCCS Master BMF"
   doi:
-primaryLinks:
-  - text: "BMF Data Guide"
-    href: "https://urbaninstitute.github.io/nccs-data-bmf/index.html"
-    icon: article
 ---
 
 ## Master BMF
