@@ -91,8 +91,15 @@ check(grepl("Which dataset should I use?", html, fixed = TRUE),
       "Hero decision section heading present")
 check(grepl(">Master BMF<", html),
       "Master BMF section heading present")
-check(grepl("Geocoded Master BMF", html, fixed = TRUE),
-      "Geocoded Master section heading present")
+check(grepl("Master BMF (geocoded)", html, fixed = TRUE),
+      "Geocoded variant labeled in headline table")
+check(grepl("DICTIONARY", html, fixed = TRUE),
+      "Headline table renders DICTIONARY button per row")
+# Geocoded row appears before plain row in headline table
+pos_geo <- regexpr("Master BMF \\(geocoded\\)", html)
+pos_plain <- regexpr(">Master BMF<", html)
+check(pos_geo > 0 && pos_plain > 0 && pos_geo < pos_plain,
+      "Geocoded variant rendered before plain variant in headline table")
 check(grepl(">Monthly BMF<", html),
       "Monthly BMF section heading present")
 check(grepl("Raw Archives", html, fixed = TRUE),

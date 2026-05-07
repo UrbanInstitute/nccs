@@ -12,10 +12,25 @@ h1.title {
   color: #0a4c6a;
 }
 
-h4, .h4 {
-  font-size: 40px;
+h2, .h2 {
+  font-size: 50px;
+  color: #0a4c6a;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+h3, .h3 {
+  font-size: 32px;
   color: #1696d2;
-  margin-bottom: 50px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+h4, .h4 {
+  font-size: 24px;
+  color: #1696d2;
+  margin-top: 30px;
+  margin-bottom: 15px;
 }
 
 /* =============================================================================
@@ -200,17 +215,6 @@ nav#TOC a {
 
 ul ul {
   list-style-type: none;
-}
-
-/* =============================================================================
-   H3 styling (for efile catalog)
-   ============================================================================= */
-
-h3, .h3 {
-  font-size: 40px;
-  color: #1696d2;
-  margin-top: 50px;
-  margin-bottom: 30px;
 }
 
 /* =============================================================================

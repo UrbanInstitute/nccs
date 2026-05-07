@@ -246,6 +246,44 @@ test_that("build_geocoded_master_row returns NULL when absent", {
 })
 
 # =============================================================================
+# build_master_headline_table
+# =============================================================================
+
+test_that("build_master_headline_table puts geocoded first", {
+  manifest <- make_fixture()
+  out <- build_master_headline_table(
+    manifest,
+    dictionary_url     = "https://example.com/dict.xlsx",
+    quality_report_url = "https://example.com/qr.html"
+  )
+  expect_equal(out$variant[1], "Master BMF (geocoded)")
+  expect_equal(out$variant[2], "Master BMF")
+  # Geocoded points at the geocoded URL
+  expect_match(out$download[1], "geocoding/master/merged")
+  # Plain points at the unsuffixed master file
+  expect_match(out$download[2], "master/bmf/BMF_MASTER\\.csv")
+})
+
+test_that("build_master_headline_table fills shared dictionary and qr URLs", {
+  manifest <- make_fixture()
+  dict_url <- "https://example.com/dict.xlsx"
+  qr_url   <- "https://example.com/qr.html"
+  out <- build_master_headline_table(manifest, dict_url, qr_url)
+  expect_true(all(grepl("DICTIONARY", out$dictionary)))
+  expect_true(all(grepl("QUALITY REPORT", out$quality_report)))
+  expect_true(all(grepl(dict_url, out$dictionary, fixed = TRUE)))
+  expect_true(all(grepl(qr_url,   out$quality_report, fixed = TRUE)))
+})
+
+test_that("build_master_headline_table omits missing variants gracefully", {
+  manifest <- make_fixture()
+  manifest <- manifest[manifest$source != "geocoded", , drop = FALSE]
+  out <- build_master_headline_table(manifest, "d", "q")
+  expect_equal(nrow(out), 1)
+  expect_equal(out$variant, "Master BMF")
+})
+
+# =============================================================================
 # build_raw_legacy_section
 # =============================================================================
 

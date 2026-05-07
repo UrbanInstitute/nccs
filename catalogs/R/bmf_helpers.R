@@ -169,6 +169,60 @@ build_geocoded_master_row <- function(manifest) {
   rows[, c("file", "download", "size")]
 }
 
+#' Build the headline Master BMF table — one row per variant (geocoded first,
+#' then plain), with columns for download, data dictionary, and quality report.
+#' Replaces the stacked CTA buttons with a compact tabular view. Returns a data
+#' frame with columns: variant, download, dictionary, quality_report, size.
+#'
+#' @param manifest data.frame from AWS-BMF.csv.
+#' @param dictionary_url URL to the harmonized data dictionary used by both
+#'   variants.
+#' @param quality_report_url URL to the master quality report used by both
+#'   variants.
+build_master_headline_table <- function(manifest,
+                                        dictionary_url,
+                                        quality_report_url) {
+  geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
+  master   <- manifest[manifest$source == "master", , drop = FALSE]
+
+  # Headline plain file is the unsuffixed bmf_master.csv (no state code).
+  headline_plain <- master[is.na(extract_bmf_state(master$Key)) &
+                             grepl("(?i)bmf_master(\\.csv|\\.parquet)?$",
+                                   basename(master$Key), perl = TRUE),
+                           , drop = FALSE]
+
+  rows <- list()
+  if (nrow(geocoded) > 0) {
+    rows[[length(rows) + 1L]] <- data.frame(
+      variant = "Master BMF (geocoded)",
+      URL     = geocoded$URL[1],
+      Size    = geocoded$Size[1],
+      stringsAsFactors = FALSE
+    )
+  }
+  if (nrow(headline_plain) > 0) {
+    rows[[length(rows) + 1L]] <- data.frame(
+      variant = "Master BMF",
+      URL     = headline_plain$URL[1],
+      Size    = headline_plain$Size[1],
+      stringsAsFactors = FALSE
+    )
+  }
+  if (length(rows) == 0) return(NULL)
+  out <- do.call(rbind, rows)
+
+  out$download <- paste0("<a href='", out$URL, "' class='button'> DOWNLOAD </a>")
+  out$dictionary <- paste0(
+    "<a href='", dictionary_url, "' class='button2'> DICTIONARY </a>"
+  )
+  out$quality_report <- paste0(
+    "<a href='", quality_report_url, "' class='button2'> QUALITY REPORT </a>"
+  )
+  out$size <- paste0(round(out$Size / 1e6, 1), " mb")
+
+  out[, c("variant", "download", "dictionary", "quality_report", "size")]
+}
+
 #' Build the raw legacy BMF section. PROFILE URLs are derived from the data
 #' filename: strip `.csv`, prepend the legacy dictionary base URL. Returns rows
 #' sorted by vintage descending (most recent first). Files whose PROFILE page

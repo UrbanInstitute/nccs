@@ -75,10 +75,31 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 
 One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame.
 
-<a href="https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx" class="button3">Download Data Dictionary</a>
-<a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html" class="button3">Master Quality Report</a>
+The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table.
+
+```{r}
+headline <- build_master_headline_table(
+  manifest,
+  dictionary_url     = "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx",
+  quality_report_url = "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
+)
+if (!is.null(headline)) {
+  knitr::kable(
+    headline,
+    escape    = FALSE,
+    col.names = c("Variant", "Download", "Dictionary", "Quality Report", "Size"),
+    format    = "html",
+    row.names = FALSE
+  ) |>
+    kableExtra::kable_styling()
+} else {
+  cat("_Master BMF is not yet listed in the manifest._\n")
+}
+```
 
 ### Download by State/Territory
+
+For users who only need a single state, the Master BMF is also published as state-sliced files. Schema and dictionary are identical to the headline files above.
 
 ```{r}
 master <- build_master_section(manifest, state_mapping)
@@ -92,31 +113,11 @@ knitr::kable(
   kableExtra::kable_styling()
 ```
 
-### Geocoded Master BMF
-
-Master BMF joined to lat/lon coordinates against a deduplicated address table. Use this when you need to map nonprofit locations or aggregate to geographies.
-
-```{r}
-geocoded <- build_geocoded_master_row(manifest)
-if (!is.null(geocoded) && nrow(geocoded) > 0) {
-  knitr::kable(
-    geocoded,
-    escape    = FALSE,
-    col.names = c("File", "Download", "Size"),
-    format    = "html",
-    row.names = FALSE
-  ) |>
-    kableExtra::kable_styling()
-} else {
-  cat("_Geocoded master BMF is not yet listed in the manifest._\n")
-}
-```
-
 ### Access via S3
 
 ```
-s3://nccsdata/master/bmf/                  # Master BMF, state-sliced
-s3://nccsdata/geocoding/master/merged/     # Geocoded variant
+s3://nccsdata/geocoding/master/merged/     # Geocoded variant (recommended)
+s3://nccsdata/master/bmf/                  # Plain Master BMF + state slices
 ```
 
 <br><hr><br>
