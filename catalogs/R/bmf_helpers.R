@@ -100,35 +100,28 @@ build_master_section <- function(manifest, state_mapping) {
   out[, c("download", "size", "state")]
 }
 
-#' Build a monthly BMF section (processed or legacy).
-#' Returns a data.frame sorted with the most recent month first.
-#'
-#' @param manifest data.frame from AWS-BMF.csv.
-#' @param source_name "processed" or "legacy".
-build_monthly_section <- function(manifest, source_name) {
-  rows <- manifest[manifest$source == source_name, , drop = FALSE]
-  if (nrow(rows) == 0) return(rows)
-
-  ym <- extract_bmf_year_month(rows$Key)
-  rows$year  <- ym$year
-  rows$month <- ym$month
-
-  rows <- rows[!is.na(rows$year) & !is.na(rows$month), , drop = FALSE]
-  if (nrow(rows) == 0) return(rows)
-
-  rows$download <- paste0("<a href='", rows$URL, "' class='button'> DOWNLOAD </a>")
-  rows$quality_report <- make_quality_report_links(
-    build_quality_report_url(rows$year, rows$month)
-  )
-  rows$size <- paste0(round(rows$Size / 1e6, 1), " mb")
-
-  rows <- rows[order(rows$year, rows$month, decreasing = TRUE), , drop = FALSE]
-  rows[, c("year", "month", "download", "quality_report", "size")]
+#' Classify a monthly BMF S3 key into one of: "data_csv", "data_parquet",
+#' "dictionary", "quality_report_json", "other". Used to collapse multiple
+#' artifact files in the same /YYYY_MM/ prefix into a single catalog row.
+classify_bmf_artifact <- function(keys) {
+  base <- basename(keys)
+  ifelse(grepl("_data_dictionary\\.csv$",   base, ignore.case = TRUE), "dictionary",
+  ifelse(grepl("_quality_report\\.json$",   base, ignore.case = TRUE), "quality_report_json",
+  ifelse(grepl("_processed\\.parquet$",     base, ignore.case = TRUE), "data_parquet",
+  ifelse(grepl("_processed\\.csv$",         base, ignore.case = TRUE), "data_csv",
+  ifelse(grepl("\\.csv$",                   base, ignore.case = TRUE), "data_csv",
+         "other")))))
 }
 
 #' Build a combined monthly BMF section that interleaves the transformed
 #' (2023-06+) and harmonized legacy (1989-2022) products into a single
-#' chronologically sorted table. Each row tags its `era`.
+#' chronologically sorted table — one row per (year, month, era), with
+#' separate columns for the data file, dictionary, and HTML quality report.
+#'
+#' Multiple artifact files in the same /YYYY_MM/ prefix (data CSV, parquet,
+#' dictionary CSV, quality_report.json) are collapsed into a single row.
+#' The data download links the CSV (canonical format); the dictionary and
+#' quality report are derived from sibling files in the same prefix.
 #'
 #' @param manifest data.frame from AWS-BMF.csv.
 #' @param n_recent Number of most-recent rows to return; pass NA for all.
@@ -139,23 +132,77 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
     cbind(proc, era = "Transformed"),
     cbind(leg,  era = "Harmonized legacy")
   )
-  if (nrow(rows) == 0) return(rows)
+  if (nrow(rows) == 0) {
+    return(data.frame(
+      year = character(0), month = character(0), era = character(0),
+      download = character(0), dictionary = character(0),
+      quality_report = character(0), size = character(0),
+      stringsAsFactors = FALSE
+    ))
+  }
 
   ym <- extract_bmf_year_month(rows$Key)
   rows$year  <- ym$year
   rows$month <- ym$month
   rows <- rows[!is.na(rows$year) & !is.na(rows$month), , drop = FALSE]
-  if (nrow(rows) == 0) return(rows)
+  rows$artifact <- classify_bmf_artifact(rows$Key)
 
-  rows$download <- paste0("<a href='", rows$URL, "' class='button'> DOWNLOAD </a>")
-  rows$quality_report <- make_quality_report_links(
-    build_quality_report_url(rows$year, rows$month)
-  )
-  rows$size <- paste0(round(rows$Size / 1e6, 1), " mb")
+  # Group keys
+  rows$group <- paste(rows$year, rows$month, rows$era, sep = "|")
+  groups <- unique(rows$group)
 
-  rows <- rows[order(rows$year, rows$month, decreasing = TRUE), , drop = FALSE]
-  if (!is.na(n_recent)) rows <- head(rows, n_recent)
-  rows[, c("year", "month", "era", "download", "quality_report", "size")]
+  pick <- function(g, type) {
+    sel <- rows[rows$group == g & rows$artifact == type, , drop = FALSE]
+    if (nrow(sel) == 0) return(NULL)
+    sel[1, , drop = FALSE]
+  }
+
+  out_rows <- lapply(groups, function(g) {
+    csv_row    <- pick(g, "data_csv")
+    dict_row   <- pick(g, "dictionary")
+    parts      <- strsplit(g, "\\|", perl = TRUE)[[1]]
+
+    # Drop groups that have no actual data file (e.g. only a dictionary
+    # uploaded so far) — there's nothing to download.
+    if (is.null(csv_row)) return(NULL)
+
+    download <- paste0("<a href='", csv_row$URL, "' class='button'> DOWNLOAD </a>")
+    dictionary <- if (!is.null(dict_row)) {
+      paste0("<a href='", dict_row$URL, "' class='button2'> DICTIONARY </a>")
+    } else {
+      "&mdash;"
+    }
+    quality_report <- make_quality_report_links(
+      build_quality_report_url(parts[1], parts[2])
+    )
+    size <- paste0(round(csv_row$Size / 1e6, 1), " mb")
+
+    data.frame(
+      year           = parts[1],
+      month          = parts[2],
+      era            = parts[3],
+      download       = download,
+      dictionary     = dictionary,
+      quality_report = quality_report,
+      size           = size,
+      stringsAsFactors = FALSE
+    )
+  })
+  out_rows <- out_rows[!vapply(out_rows, is.null, logical(1))]
+  if (length(out_rows) == 0) {
+    return(data.frame(
+      year = character(0), month = character(0), era = character(0),
+      download = character(0), dictionary = character(0),
+      quality_report = character(0), size = character(0),
+      stringsAsFactors = FALSE
+    ))
+  }
+  out <- do.call(rbind, out_rows)
+
+  out <- out[order(out$year, out$month, decreasing = TRUE), , drop = FALSE]
+  if (!is.na(n_recent)) out <- head(out, n_recent)
+  rownames(out) <- NULL
+  out
 }
 
 #' Build a single-row table for the geocoded Master BMF variant.

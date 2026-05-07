@@ -461,6 +461,7 @@ s3://nccsdata/master/bmf/                  # Plain Master BMF + state slices</co
 <p>Cleaned, schema-stable monthly snapshots covering 1989 to the present. The transformed pipeline (2023-06+) and the harmonized legacy pipeline (1989-2022) write to different S3 prefixes but share a column schema, so you can stack them across the era boundary without reshaping.</p>
 <section id="recent-releases" class="level3">
 <h3 data-anchor-id="recent-releases">Recent Releases</h3>
+<p>One row per release. The Download column links the CSV (canonical format); a parquet variant is also available for some months at the same S3 prefix.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small">
@@ -470,6 +471,7 @@ s3://nccsdata/master/bmf/                  # Plain Master BMF + state slices</co
 <th style="text-align: left;" data-quarto-table-cell-role="th">Month</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Pipeline</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Download</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dictionary</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Quality Report</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
 </tr>
@@ -479,41 +481,46 @@ s3://nccsdata/master/bmf/                  # Plain Master BMF + state slices</co
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Transformed</td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_data_dictionary.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_05_quality_report.html" class="button2">QUALITY REPORT</a></td>
-<td style="text-align: left;">0 mb</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2026</td>
-<td style="text-align: left;">05</td>
-<td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_processed.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_data_dictionary.csv" class="button2">DICTIONARY</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_05_quality_report.html" class="button2">QUALITY REPORT</a></td>
 <td style="text-align: left;">1766.2 mb</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">2026</td>
-<td style="text-align: left;">05</td>
-<td style="text-align: left;">Transformed</td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_quality_report.json" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_05_quality_report.html" class="button2">QUALITY REPORT</a></td>
-<td style="text-align: left;">0.1 mb</td>
-</tr>
 <tr class="even">
-<td style="text-align: left;">2026</td>
-<td style="text-align: left;">03</td>
-<td style="text-align: left;">Transformed</td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_data_dictionary.csv" class="button">DOWNLOAD</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_03_quality_report.html" class="button2">QUALITY REPORT</a></td>
-<td style="text-align: left;">0 mb</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_processed.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_data_dictionary.csv" class="button2">DICTIONARY</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_03_quality_report.html" class="button2">QUALITY REPORT</a></td>
 <td style="text-align: left;">1712.8 mb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2026</td>
+<td style="text-align: left;">01</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_processed.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_data_dictionary.csv" class="button2">DICTIONARY</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_01_quality_report.html" class="button2">QUALITY REPORT</a></td>
+<td style="text-align: left;">1704.2 mb</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2025</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_processed.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_data_dictionary.csv" class="button2">DICTIONARY</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_12_quality_report.html" class="button2">QUALITY REPORT</a></td>
+<td style="text-align: left;">1702.4 mb</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2025</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_11/bmf_2025_11_processed.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_11/bmf_2025_11_data_dictionary.csv" class="button2">DICTIONARY</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_11_quality_report.html" class="button2">QUALITY REPORT</a></td>
+<td style="text-align: left;">1681.3 mb</td>
 </tr>
 </tbody>
 </table>

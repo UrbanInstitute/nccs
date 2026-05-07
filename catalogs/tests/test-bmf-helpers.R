@@ -42,13 +42,20 @@ make_fixture <- function() {
     list(source = "master", Key = "master/bmf/BMF_MASTER.csv",     Size = 1300e6),  # no state suffix
     # Geocoded master
     list(source = "geocoded", Key = "geocoding/master/merged/bmf_master_geocoded.parquet", Size = 1500e6),
-    # Processed: monthly
-    list(source = "processed", Key = "processed/bmf/2026_01/BMF.csv", Size = 200e6),
-    list(source = "processed", Key = "processed/bmf/2025_12/BMF.csv", Size = 198e6),
-    list(source = "processed", Key = "processed/bmf/2025_06/BMF.csv", Size = 195e6),
+    # Processed: monthly — each month has data csv + parquet + dictionary + QR json
+    list(source = "processed", Key = "processed/bmf/2026_01/bmf_2026_01_processed.csv", Size = 200e6),
+    list(source = "processed", Key = "processed/bmf/2026_01/bmf_2026_01_processed.parquet", Size = 50e6),
+    list(source = "processed", Key = "processed/bmf/2026_01/bmf_2026_01_data_dictionary.csv", Size = 7e3),
+    list(source = "processed", Key = "processed/bmf/2026_01/bmf_2026_01_quality_report.json", Size = 100e3),
+    list(source = "processed", Key = "processed/bmf/2025_12/bmf_2025_12_processed.csv", Size = 198e6),
+    list(source = "processed", Key = "processed/bmf/2025_12/bmf_2025_12_data_dictionary.csv", Size = 7e3),
+    list(source = "processed", Key = "processed/bmf/2025_12/bmf_2025_12_quality_report.json", Size = 100e3),
+    list(source = "processed", Key = "processed/bmf/2025_06/bmf_2025_06_processed.csv", Size = 195e6),
     # Legacy: monthly
-    list(source = "legacy", Key = "processed/bmf-legacy/2024_03/BMF.csv", Size = 180e6),
-    list(source = "legacy", Key = "processed/bmf-legacy/2023_11/BMF.csv", Size = 175e6),
+    list(source = "legacy", Key = "processed/bmf-legacy/2024_03/bmf_legacy_2024_03_processed.csv", Size = 180e6),
+    list(source = "legacy", Key = "processed/bmf-legacy/2024_03/bmf_legacy_2024_03_data_dictionary.csv", Size = 4e3),
+    list(source = "legacy", Key = "processed/bmf-legacy/2024_03/bmf_legacy_2024_03_quality_report.json", Size = 90e3),
+    list(source = "legacy", Key = "processed/bmf-legacy/2023_11/bmf_legacy_2023_11_processed.csv", Size = 175e6),
     # Raw legacy
     list(source = "raw_legacy", Key = "legacy/bmf/BMF-1989-06-501CX-NONPROFIT-PX.csv", Size = 80e6),
     list(source = "raw_legacy", Key = "legacy/bmf/BMF-2010-04-501CX-NONPROFIT-PX.csv", Size = 120e6),
@@ -159,54 +166,14 @@ test_that("build_master_section ignores the no-state-code master file", {
 })
 
 # =============================================================================
-# build_monthly_section
-# =============================================================================
-
-test_that("build_monthly_section returns sorted, decorated rows", {
-  manifest <- make_fixture()
-  out <- build_monthly_section(manifest, "processed")
-
-  # 3 valid monthly rows (README.txt has no YYYY_MM segment so it's dropped)
-  expect_equal(nrow(out), 3)
-
-  # Sort: most recent first
-  expect_equal(out$year,  c("2026", "2025", "2025"))
-  expect_equal(out$month, c("01",   "12",   "06"))
-
-  # Every row has buttons
-  expect_true(all(grepl("DOWNLOAD", out$download)))
-  expect_true(all(grepl("QUALITY REPORT", out$quality_report)))
-
-  # Quality report URL templated correctly for the top row
-  expect_match(out$quality_report[1], "bmf_2026_01_quality_report\\.html")
-})
-
-test_that("build_monthly_section is independent across sources", {
-  manifest <- make_fixture()
-  proc <- build_monthly_section(manifest, "processed")
-  leg  <- build_monthly_section(manifest, "legacy")
-
-  expect_false(any(grepl("bmf-legacy", proc$download)))
-  expect_true(all(grepl("bmf-legacy", leg$download)))
-  expect_equal(nrow(leg), 2)
-})
-
-test_that("build_monthly_section handles empty source", {
-  manifest <- make_fixture()
-  manifest <- manifest[manifest$source != "legacy", , drop = FALSE]
-  out <- build_monthly_section(manifest, "legacy")
-  expect_equal(nrow(out), 0)
-})
-
-# =============================================================================
 # build_combined_monthly_section
 # =============================================================================
 
-test_that("build_combined_monthly_section interleaves transformed and harmonized legacy", {
+test_that("build_combined_monthly_section collapses sibling artifacts to one row per month", {
   manifest <- make_fixture()
   out <- build_combined_monthly_section(manifest, n_recent = NA)
 
-  # 3 processed + 2 legacy valid rows (README dropped)
+  # 3 processed months + 2 legacy months = 5 rows (sibling artifacts collapsed)
   expect_equal(nrow(out), 5)
 
   # Sort: most recent first
@@ -218,11 +185,32 @@ test_that("build_combined_monthly_section interleaves transformed and harmonized
   expect_true("Harmonized legacy" %in% out$era)
 })
 
+test_that("build_combined_monthly_section links data CSV, dictionary, and HTML quality report", {
+  manifest <- make_fixture()
+  out <- build_combined_monthly_section(manifest, n_recent = NA)
+
+  top <- out[1, ]
+  expect_match(top$download,       "bmf_2026_01_processed\\.csv")
+  expect_match(top$dictionary,     "bmf_2026_01_data_dictionary\\.csv")
+  expect_match(top$dictionary,     "DICTIONARY")
+  expect_match(top$quality_report, "bmf_2026_01_quality_report\\.html")
+  expect_match(top$size,           "200")  # data CSV size, not parquet/dictionary
+})
+
+test_that("build_combined_monthly_section em-dashes a missing dictionary", {
+  manifest <- make_fixture()
+  # 2025-06 has no dictionary in the fixture
+  out <- build_combined_monthly_section(manifest, n_recent = NA)
+  row_2025_06 <- out[out$year == "2025" & out$month == "06", ]
+  expect_equal(nrow(row_2025_06), 1)
+  expect_equal(row_2025_06$dictionary, "&mdash;")
+})
+
 test_that("build_combined_monthly_section caps to n_recent", {
   manifest <- make_fixture()
   out <- build_combined_monthly_section(manifest, n_recent = 3)
   expect_equal(nrow(out), 3)
-  # The cap takes the 3 most recent
+  # The cap takes the 3 most recent (2026-01, 2025-12, 2025-06)
   expect_equal(out$year, c("2026", "2025", "2025"))
 })
 

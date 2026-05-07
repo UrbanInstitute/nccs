@@ -128,12 +128,14 @@ Cleaned, schema-stable monthly snapshots covering 1989 to the present. The trans
 
 ### Recent Releases
 
+One row per release. The Download column links the CSV (canonical format); a parquet variant is also available for some months at the same S3 prefix.
+
 ```{r}
 recent <- build_combined_monthly_section(manifest, n_recent = 5)
 knitr::kable(
   recent,
   escape    = FALSE,
-  col.names = c("Year", "Month", "Pipeline", "Download", "Quality Report", "Size"),
+  col.names = c("Year", "Month", "Pipeline", "Download", "Dictionary", "Quality Report", "Size"),
   format    = "html",
   row.names = FALSE
 ) |>

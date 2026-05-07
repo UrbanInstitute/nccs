@@ -34,12 +34,13 @@ fixture <- data.frame(
   source = c("master","master","master","master",
              "geocoded",
              "processed","processed","processed",
-             "legacy","legacy",
+             "processed","processed","processed",
+             "legacy","legacy","legacy","legacy",
              "raw_legacy","raw_legacy"),
   Prefix = c(rep("master/bmf/", 4),
              "geocoding/master/merged/",
-             rep("processed/bmf/", 3),
-             rep("processed/bmf-legacy/", 2),
+             rep("processed/bmf/", 6),
+             rep("processed/bmf-legacy/", 4),
              rep("legacy/bmf/", 2)),
   Key = c(
     "master/bmf/BMF_MASTER_CA.csv",
@@ -47,16 +48,28 @@ fixture <- data.frame(
     "master/bmf/BMF_MASTER_TX.csv",
     "master/bmf/BMF_MASTER.csv",
     "geocoding/master/merged/bmf_master_geocoded.parquet",
-    "processed/bmf/2026_01/BMF.csv",
-    "processed/bmf/2025_12/BMF.csv",
-    "processed/bmf/2025_06/BMF.csv",
-    "processed/bmf-legacy/2024_03/BMF.csv",
-    "processed/bmf-legacy/2023_11/BMF.csv",
+    # 2026-01 monthly (data + dict + qr)
+    "processed/bmf/2026_01/bmf_2026_01_processed.csv",
+    "processed/bmf/2026_01/bmf_2026_01_data_dictionary.csv",
+    "processed/bmf/2026_01/bmf_2026_01_quality_report.json",
+    # 2025-12 monthly (data + dict + qr)
+    "processed/bmf/2025_12/bmf_2025_12_processed.csv",
+    "processed/bmf/2025_12/bmf_2025_12_data_dictionary.csv",
+    "processed/bmf/2025_12/bmf_2025_12_quality_report.json",
+    # 2024-03 legacy monthly (data + dict + qr)
+    "processed/bmf-legacy/2024_03/bmf_legacy_2024_03_processed.csv",
+    "processed/bmf-legacy/2024_03/bmf_legacy_2024_03_data_dictionary.csv",
+    "processed/bmf-legacy/2024_03/bmf_legacy_2024_03_quality_report.json",
+    # 2023-11 legacy monthly (data only)
+    "processed/bmf-legacy/2023_11/bmf_legacy_2023_11_processed.csv",
     "legacy/bmf/BMF-1989-06-501CX-NONPROFIT-PX.csv",
     "legacy/bmf/BMF-2010-04-501CX-NONPROFIT-PX.csv"
   ),
   Size = c(50e6, 60e6, 55e6, 1300e6, 1500e6,
-           200e6, 198e6, 195e6, 180e6, 175e6,
+           200e6, 7e3, 100e3,
+           198e6, 7e3, 100e3,
+           180e6, 4e3, 90e3,
+           175e6,
            80e6, 120e6),
   stringsAsFactors = FALSE
 )
@@ -95,10 +108,12 @@ check(grepl("Master BMF (geocoded)", html, fixed = TRUE),
       "Geocoded variant labeled in headline table")
 check(grepl("DICTIONARY", html, fixed = TRUE),
       "Headline table renders DICTIONARY button per row")
-# Geocoded row appears before plain row in headline table
-pos_geo <- regexpr("Master BMF \\(geocoded\\)", html)
-pos_plain <- regexpr(">Master BMF<", html)
-check(pos_geo > 0 && pos_plain > 0 && pos_geo < pos_plain,
+# Geocoded row appears before plain row in headline table.
+# Use the geocoded *URL* (unique to the table) and the plain master CSV URL
+# instead of "Master BMF" text (which also appears in the H2 heading).
+pos_geo_url   <- regexpr("geocoding/master/merged/", html)
+pos_plain_url <- regexpr("master/bmf/BMF_MASTER\\.csv", html)
+check(pos_geo_url > 0 && pos_plain_url > 0 && pos_geo_url < pos_plain_url,
       "Geocoded variant rendered before plain variant in headline table")
 check(grepl(">Monthly BMF<", html),
       "Monthly BMF section heading present")
@@ -129,13 +144,24 @@ check(grepl(">Harmonized legacy<", html),
       "Combined monthly table tags Harmonized legacy era")
 
 # Combined monthly table is capped to 5 most recent rows by default
-pos_2026 <- regexpr("2026_01/BMF\\.csv", html)
-pos_2025_12 <- regexpr("2025_12/BMF\\.csv", html)
+pos_2026 <- regexpr("bmf_2026_01_processed\\.csv", html)
+pos_2025_12 <- regexpr("bmf_2025_12_processed\\.csv", html)
 check(pos_2026 > 0 && pos_2025_12 > 0 && pos_2026 < pos_2025_12,
       "Combined monthly table sorted descending (2026-01 before 2025-12)")
 
-check(!grepl("processed/bmf/README\\.txt", html),
-      "Junk paths excluded from monthly tables")
+# One row per month: each year-month should appear exactly once in the table
+# section, not three times (data + dict + qr) like the bug we fixed.
+data_dl_count <- length(gregexpr("bmf_2026_01_processed\\.csv", html)[[1]])
+check(data_dl_count == 1,
+      "2026-01 appears as a single row in the monthly table (no 3x duplication)")
+
+# Dictionary column links the dictionary CSV
+check(grepl("bmf_2026_01_data_dictionary\\.csv", html),
+      "Dictionary column links the per-month dictionary CSV")
+
+# Months without a dictionary file render an em-dash, not a broken link
+check(grepl("bmf_legacy_2023_11_processed\\.csv", html),
+      "Legacy month without sibling dictionary still renders its data row")
 
 # Raw legacy section: PROFILE buttons templated correctly, no .csv extension
 check(grepl("BMF-2010-04-501CX-NONPROFIT-PX</a>", html) ||
@@ -148,12 +174,14 @@ check(!grepl("nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-04-501CX-NONP
 check(grepl("Last verified:", html, fixed = TRUE),
       "Auto-stamped 'Last verified' footer present")
 
-# The unsuffixed master/bmf/BMF_MASTER.csv must not appear in the state table.
-# It may legitimately appear in the geocoded/raw URL pattern blocks, so just
-# check it's not in a state row (states are rendered with em-dashes when missing).
-state_links <- gregexpr("BMF_MASTER\\.csv[\"']", html)[[1]]
+# The unsuffixed master/bmf/BMF_MASTER.csv now appears intentionally in the
+# headline table (as the plain Master BMF variant), but should NOT appear in
+# the state-by-state slice table. The state table only contains state-suffixed
+# files (BMF_MASTER_CA.csv etc) plus em-dashes for missing states.
+# Verify the unsuffixed file appears exactly once (in the headline table only).
+state_links <- gregexpr("master/bmf/BMF_MASTER\\.csv", html)[[1]]
 state_link_count <- if (length(state_links) == 1 && state_links[1] == -1L) 0L else length(state_links)
-check(state_link_count == 0,
-      "Unsuffixed master file did not leak into the state-by-state table")
+check(state_link_count == 1,
+      "Unsuffixed master file appears once (in headline table) and not in state slices")
 
 cat("\nAll render assertions passed.\n")
