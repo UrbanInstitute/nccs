@@ -6,12 +6,28 @@ categories:
   - BMF
 featured: true
 featuredOrder: 2
-primaryCtaUrl: "../../catalogs/catalog-bmf.html"
-primaryCtaCaption: "Data catalog containing downloadable files"
-citation:
-  author: "Thiyaghessan Poongundranar"
-  citationDate: "2026"
-  container-title: "NCCS BMF"
+primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/master/bmf/bmf_master.csv"
+primaryCtaCaption: "Master BMF"
+primaryLinks:
+  - text: "Data Dictionary"
+    href: "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx"
+    icon: article
+  - text: "BMF By State"
+    href: "../../catalogs/catalog-bmf.html"
+    icon: download
+  - text: "Monthly BMF"
+    href: "../../catalogs/catalog-bmf.html#processed-bmf-monthly"
+    icon: download
+  - text: "Legacy BMF"
+    href: "../../catalogs/catalog-bmf.html#legacy-bmf-monthly"
+    icon: download
+  - text: "Quality Reports"
+    href: "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
+    icon: article
+citation: 
+  author: "Jesse Lecy"
+  citationDate: "2024"
+  container-title: "NCCS Master BMF"
   doi:
 primaryLinks:
   - text: "BMF Data Guide"
@@ -19,21 +35,23 @@ primaryLinks:
     icon: article
 ---
 
-## What is the Business Master File?
+## Master BMF
 
 The IRS Business Master File (BMF) is a comprehensive registry of tax-exempt organizations in the United States. Updated monthly by the IRS, it serves as the authoritative record of organizations that have been granted tax-exempt status and remain in compliance with federal filing requirements.
 
-The BMF includes organizations across all tax-exempt categories, including:
+To facilitate the creation of consistent time-series datasets, NCCS has created a Master BMF (formerly known as the Unified BMF) which aggregates information from every historic BMF dataset into a single file. The Master BMF contains one row for each organization that was granted tax-exempt status and appeared in any BMF file from 1989 to present day. There are ~3.8 million nonprofits present in the file, ~1.8 million of which are currently active. 
 
--   **501(c)(3)** — Charitable organizations, foundations, and religious entities
--   **501(c)(4)** — Social welfare organizations and civic leagues
--   **501(c)(6)** — Business leagues, chambers of commerce, and trade associations
--   **501(c)(7)** — Social clubs
--   **527** — Political organizations, including political action committees (PACs)
+The Master BMF has some additional upgrades:
 
 The IRS recognizes [over 30 categories of tax-exempt organizations](https://www.irs.gov/charities-non-profits/types-of-tax-exempt-organizations); the above represent the most common in nonprofit research.
 
-For each organization, the BMF contains identifying information (name, address, EIN), filing status, and the IRS forms associated with their tax-exempt designation.
+The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing the Master BMF together with a rudimentary data dictionary. Monthly processed and legacy BMF files can still be accessed from the side bar.
+
+## Quality Reports
+
+Each monthly processed and legacy BMF release is accompanied by a quality report describing coverage, completeness, and key field distributions. Reports are linked from the [BMF data catalog](../../catalogs/catalog-bmf.html) per month, and indexed at [nccs-data-bmf/quality-reports/](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/).
+
+## Raw IRS BMF Files 
 
 ### The BMF as a Research Framework
 
@@ -79,7 +97,13 @@ Features include:
 
 **Use when:** You need to track organizations over time, build historical sampling frames, or link nonprofit data to Census geographies.
 
-**Coverage:** 1989 through mid-2025 (update pending)
+| Version | Release | Notes |
+| :---: | :---: | :---: |
+| 0.0 | June 21 2024 | Beta Version |
+| 1.0 | July 1st 2024 | Unified BMF |
+| 1.1 | March 4th 2025 | Fixed EIN2 for consistent formatting |
+| 1.1 | March 4th 2025 | State-level BMFs |
+| 2.0 | 2026 | Renamed Unified BMF to Master BMF; relocated to `master/bmf/`; added monthly processed/legacy folders and quality reports |
 
 **Access:** [Public S3 Link](https://nccsdata.s3.us-east-1.amazonaws.com/bmf/unified/v1.2/UNIFIED_BMF_V1.2.csv)
 

@@ -10,77 +10,48 @@ execute:
 ```{r}
 #| echo: false
 
-library( dplyr )
-library( knitr )
-library( kableExtra )
-library( stringr )
-library( pander )
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(knitr)
+  library(kableExtra)
+  library(stringr)
+})
 
-aws_df <- read.csv(
-  "AWS-NCCSDATA.csv"
-)
-source("build-catalog-functions.R")
-nccs_legacy_base_url <- "https://urbaninstitute.github.io/nccs-legacy/dictionary/core/core_archive_html/"
-aws_base_url <- "https://nccsdata.s3.amazonaws.com/"
+source("R/bmf_helpers.R")
+
+manifest <- read.csv("AWS-BMF.csv", stringsAsFactors = FALSE)
 
 state_mapping <- c(
-  "AK" = "Alaska",
-  "AL" = "Alabama",
-  "AR" = "Arkansas",
-  "AS" = "American Samoa",
-  "AZ" = "Arizona",
-  "CA" = "California",
-  "CO" = "Colorado",
-  "CT" = "Connecticut",
+  "AL" = "Alabama",          "AK" = "Alaska",
+  "AZ" = "Arizona",          "AR" = "Arkansas",
+  "CA" = "California",       "CO" = "Colorado",
+  "CT" = "Connecticut",      "DE" = "Delaware",
   "DC" = "District of Columbia",
-  "DE" = "Delaware",
-  "FL" = "Florida",
-  "GA" = "Georgia",
-  "GU" = "Guam",
-  "HI" = "Hawaii",
-  "IA" = "Iowa",
-  "ID" = "Idaho",
-  "IL" = "Illinois",
-  "IN" = "Indiana",
-  "KS" = "Kansas",
-  "KY" = "Kentucky",
-  "LA" = "Louisiana",
-  "MA" = "Massachusetts",
-  "MD" = "Maryland",
-  "ME" = "Maine",
-  "MI" = "Michigan",
-  "MN" = "Minnesota",
-  "MO" = "Missouri",
+  "FL" = "Florida",          "GA" = "Georgia",
+  "HI" = "Hawaii",           "ID" = "Idaho",
+  "IL" = "Illinois",         "IN" = "Indiana",
+  "IA" = "Iowa",             "KS" = "Kansas",
+  "KY" = "Kentucky",         "LA" = "Louisiana",
+  "ME" = "Maine",            "MD" = "Maryland",
+  "MA" = "Massachusetts",    "MI" = "Michigan",
+  "MN" = "Minnesota",        "MS" = "Mississippi",
+  "MO" = "Missouri",         "MT" = "Montana",
+  "NE" = "Nebraska",         "NV" = "Nevada",
+  "NH" = "New Hampshire",    "NJ" = "New Jersey",
+  "NM" = "New Mexico",       "NY" = "New York",
+  "NC" = "North Carolina",   "ND" = "North Dakota",
+  "OH" = "Ohio",             "OK" = "Oklahoma",
+  "OR" = "Oregon",           "PA" = "Pennsylvania",
+  "RI" = "Rhode Island",     "SC" = "South Carolina",
+  "SD" = "South Dakota",     "TN" = "Tennessee",
+  "TX" = "Texas",            "UT" = "Utah",
+  "VT" = "Vermont",          "VA" = "Virginia",
+  "WA" = "Washington",       "WV" = "West Virginia",
+  "WI" = "Wisconsin",        "WY" = "Wyoming",
+  "AS" = "American Samoa",   "GU" = "Guam",
   "MP" = "Northern Mariana Islands",
-  "MS" = "Mississippi",
-  "MT" = "Montana",
-  "NC" = "North Carolina",
-  "ND" = "North Dakota",
-  "NE" = "Nebraska",
-  "NH" = "New Hampshire",
-  "NJ" = "New Jersey",
-  "NM" = "New Mexico",
-  "NV" = "Nevada",
-  "NY" = "New York",
-  "OH" = "Ohio",
-  "OK" = "Oklahoma",
-  "OR" = "Oregon",
-  "PA" = "Pennsylvania",
-  "PR" = "Puerto Rico",
-  "RI" = "Rhode Island",
-  "SC" = "South Carolina",
-  "SD" = "South Dakota",
-  "TN" = "Tennessee",
-  "TX" = "Texas",
-  "UT" = "Utah",
-  "Un" = "Unmapped",
-  "VA" = "Virginia",
-  "VI" = "U.S. Virgin Islands",
-  "VT" = "Vermont",
-  "WA" = "Washington",
-  "WI" = "Wisconsin",
-  "WV" = "West Virginia",
-  "WY" = "Wyoming"
+  "PR" = "Puerto Rico",      "VI" = "U.S. Virgin Islands",
+  "Un" = "Unmapped"
 )
 ```
 
@@ -92,153 +63,75 @@ This catalog is organized by dataset type. Each section includes download links,
 
 ## Transformed BMF
 
-The Transformed BMF applies standardized cleaning and validation to monthly IRS releases. Each file includes standardized column names, quality flags identifying potential data issues, and documentation of all transformations applied.
-
-**Use when:** You need current BMF data with consistent formatting and documented quality checks.
-
-**Documentation:** [BMF Processing Guide](https://urbaninstitute.github.io/nccs-data-bmf/index.html) — explains how NCCS cleans and transforms raw IRS data, including field definitions and quality checks | [Source code](https://github.com/UrbanInstitute/nccs-data-bmf)
-
-For background on this dataset, see the [BMF overview page](../datasets/bmf.html#transformed-bmf).
-
-### Recent Releases
-
-| Release | Dataset | Data Dictionary | Quality Report |
-|:--------|:-------:|:---------------:|:--------------:|
-| 2026-01 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_processed.csv) | [Dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_data_dictionary.csv) | [Report](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_01_quality_report.html) |
-| 2025-12 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_processed.csv) | [Dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_data_dictionary.csv) | [Report](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_12_quality_report.html) |
-| 2025-11 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_11/bmf_2025_11_processed.csv) | [Dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_11/bmf_2025_11_data_dictionary.csv) | [Report](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_11_quality_report.html) |
-| 2025-10 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_10/bmf_2025_10_processed.csv) | [Dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_10/bmf_2025_10_data_dictionary.csv) | [Report](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_10_quality_report.html) |
-| 2025-09 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_09/bmf_2025_09_processed.csv) | [Dictionary](https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_09/bmf_2025_09_data_dictionary.csv) | [Report](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_09_quality_report.html) |
-
-### Older Releases
-
-Transformed BMF files are available monthly from June 2023 through the present. To access older releases, construct URLs using these patterns:
-
-| File Type | URL Pattern |
-|:----------|:------------|
-| Dataset | `https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/{YYYY_MM}/bmf_{YYYY_MM}_processed.csv` |
-| Data Dictionary | `https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/{YYYY_MM}/bmf_{YYYY_MM}_data_dictionary.csv` |
-| Quality Report | `https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_{YYYY_MM}_quality_report.html` |
-
-Replace `{YYYY_MM}` with the desired year and month (e.g., `2023_06` for June 2023).
-
-## Unified BMF
-
-The Unified BMF consolidates all historical BMF releases into a single file, with one row per organization that has ever held tax-exempt status. This enables longitudinal analysis without merging multiple annual files.
-
-Features include:
-
-- `ORG_YEAR_FIRST` and `ORG_YEAR_LAST` variables tracking when organizations entered and exited the BMF
-- Most recent address geocoded to Census block
-- FIPS codes at block, tract, county, and state levels for merging with Census data
-- Metropolitan area codes using current CBSA definitions
-
-**Use when:** You need to track organizations over time, build historical sampling frames, or link nonprofit data to Census geographies.
-
-**Coverage:** 1989 through mid-2025 (update pending)
-
-**Related resources:** [NCCS Census Crosswalk](https://nccs.urban.org/nccs/datasets/census/) for aggregating to additional geographic levels
-
-For background on this dataset, see the [BMF overview page](../datasets/bmf.html#unified-bmf).
-
-### Downloads
-
-Files are organized by state/territory. Unmapped records are in the "Unmapped" file.
-
-<a href="https://nccsdata.s3.us-east-1.amazonaws.com/bmf/unified/v1.2/UNIFIED_BMF_V1.2.csv" class="button3">Download Full Unified BMF (v1.2)</a>
+The BMF catalog has three sections. The **Master BMF** is the unified state-level dataset (formerly "Unified BMF"). **Processed BMF** and **Legacy BMF** provide monthly snapshots, each linked to a quality report.
 
 <a href="https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx" class="button3">Download Data Dictionary</a>
 
+<br>
+
+<hr>
+
+<br>
+
+#### Master BMF by State/Territory
+
 ```{r}
-paths <- aws_df$Key[grepl("harmonized/bmf/unified", aws_df$Key)]
-paths <- paths[grepl("_BMF_", paths)]
+master <- build_master_section(manifest, state_mapping)
 
-state_abbrs <- substr(paths, 24, 25)
-
-download_urls <- paste0(aws_base_url, paths)
-
-
-download_buttons <- make_buttons(urls = download_urls, button_name = "download")
-size <- aws_df %>%
-  dplyr::filter(Key %in% paths) %>%
-  dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)), " mb")) %>%
-  dplyr::pull("size_mb")
-
-state <- unlist(state_mapping)
-catalog <- data.frame(download_buttons, size, state)
-
-rownames(catalog) <- NULL
-catalog %>%
-  knitr::kable(
-    escape = FALSE,
-    col.names = c("Download Link", "Size", "State/Territory"),
-    format = "html"
-  ) %>%
+knitr::kable(
+  master,
+  escape    = FALSE,
+  col.names = c("Download Link", "Size", "State/Territory"),
+  format    = "html",
+  row.names = FALSE
+) |>
   kableExtra::kable_styling()
 ```
 
-## Raw BMF Archives
+<br>
 
-NCCS archives unmodified monthly BMF files as released by the IRS on their [Exempt Organizations Business Master File Extract](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) page. These files use the IRS's original schema and variable names.
+<hr>
 
-**Use when:** You need to replicate analysis built on raw IRS files from a specific point in time, or require data exactly as the IRS published it.
+<br>
 
-**Coverage:** June 2023 to present (monthly snapshots)
+## Processed BMF (Monthly)
 
-**Documentation:** [IRS data dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf)
-
-For background on this dataset, see the [BMF overview page](../datasets/bmf.html#raw-bmf-archives).
-
-### Downloads
-
-Files are available from the public `nccsdata` S3 bucket using this URL pattern:
-
-`https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/{YYYY-MM}-BMF.csv`
-
-**Recent releases:**
-
-| Release | Download |
-|:--------|:--------:|
-| 2026-01 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2026-01-BMF.csv) |
-| 2025-12 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2025-12-BMF.csv) |
-| 2025-11 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2025-11-BMF.csv) |
-| 2025-10 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2025-10-BMF.csv) |
-| 2025-09 | [Download](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2025-09-BMF.csv) |
-
-For older releases back to June 2023, replace `{YYYY-MM}` in the URL pattern above (e.g., `2023-06-BMF.csv`).
-
-## Legacy BMF
-
-Historical BMF files produced by NCCS between 1989 and 2022. These files retain their original schemas, which vary across years. Data dictionaries are available for most but not all years.
-
-**Use when:** You need to replicate historical NCCS analyses or require BMF data in its original pre-transformation format.
-
-**Coverage:** 1989–2022
-
-**Note:** Column names are not standardized across files. For longitudinal work, consider the [Unified BMF](#unified-bmf) or wait for the forthcoming Harmonized Legacy BMFs (expected Q1 2026).
-
-For background on this dataset, see the [BMF overview page](../datasets/bmf.html#legacy-bmfs).
-
-### Downloads
-
-The files below link to archived BMF files from the [legacy NCCS website](https://urbaninstitute.github.io/nccs-legacy/). Some data dictionaries are incomplete.
+Monthly processed snapshots from `processed/bmf/`. Each row links the dataset and its quality report.
 
 ```{r}
+processed <- build_monthly_section(manifest, "processed")
 
-bmf_legacy_catalog <- construct_catalog(s3_catalog = aws_df,
-                             series = "bmf",
-                             paths = aws_df$Key)
-bmf_legacy_catalog |>
-  knitr::kable(escape=FALSE,
-               col.names = c(
-                 "Download Link",
-                 "Data Dictionary",
-                 "Size",
-                 "Month",
-                 "Year"
-               ),
-               format = "html") |>
-   kableExtra::kable_styling()
+knitr::kable(
+  processed,
+  escape    = FALSE,
+  col.names = c("Year", "Month", "Download", "Quality Report", "Size"),
+  format    = "html",
+  row.names = FALSE
+) |>
+  kableExtra::kable_styling()
+```
+
+<br>
+
+<hr>
+
+<br>
+
+## Legacy BMF (Monthly)
+
+Monthly legacy snapshots from `processed/bmf-legacy/`. NCCS has since shifted to compiling a Master BMF that aggregates the various BMF fields.
+
+```{r}
+legacy <- build_monthly_section(manifest, "legacy")
+
+knitr::kable(
+  legacy,
+  escape    = FALSE,
+  col.names = c("Year", "Month", "Download", "Quality Report", "Size"),
+  format    = "html",
+  row.names = FALSE
+) |>
+  kableExtra::kable_styling()
 ```
 
 ## In Development

@@ -1,4 +1,80 @@
 
+# Monthly BMF Catalog Refresh
+
+The BMF catalog (`catalog-bmf.qmd`) is rendered from a static manifest CSV
+(`AWS-BMF.csv`) that is committed to the repo. There is **no CI automation** —
+when new monthly BMF data is published to S3, run this procedure locally to
+refresh the snapshot, then commit and push.
+
+### Prerequisites (one-time)
+
+1. Install AWS CLI v2:
+   ```bash
+   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+   unzip -q awscliv2.zip && sudo ./aws/install
+   ```
+2. Configure your SSO profile:
+   ```bash
+   aws configure sso
+   ```
+   Use your Urban Institute SSO; choose any profile name (this guide assumes
+   `thiya`). Your role must have `s3:ListBucket` on `nccsdata`.
+
+### Refresh procedure
+
+Run from the `nccs/` project root:
+
+```bash
+# 1. Refresh SSO credentials (they expire every 24 hours)
+aws sso login --profile thiya
+
+# 2. Export credentials into env vars (aws.s3 R package reads from env, not profile files)
+eval "$(aws configure export-credentials --profile thiya --format env)"
+export AWS_DEFAULT_REGION=us-east-1
+
+# 3. Rebuild AWS-BMF.csv by listing the three BMF prefixes in s3://nccsdata
+Rscript catalogs/get-aws-files.R bmf
+
+# 4. (Optional) re-run tests
+Rscript catalogs/tests/test-bmf-helpers.R
+Rscript catalogs/tests/render-bmf-with-fixture.R
+
+# 5. Re-render the catalog page
+quarto render catalogs/catalog-bmf.qmd
+
+# 6. Commit and push
+git add catalogs/AWS-BMF.csv catalogs/catalog-bmf.html catalogs/catalog-bmf_files
+git commit -m "Refresh BMF catalog snapshot (YYYY-MM)"
+git push
+```
+
+### S3 layout (for reference)
+
+`get-aws-files.R` builds `AWS-BMF.csv` from three prefixes in the public
+`nccsdata` bucket:
+
+| Source     | S3 prefix                       | Notes                             |
+|------------|---------------------------------|-----------------------------------|
+| `master`   | `master/bmf/`                   | Master BMF, state-sliced + headline `bmf_master.csv` |
+| `processed`| `processed/bmf/YYYY_MM/`        | Monthly processed BMF             |
+| `legacy`   | `processed/bmf-legacy/YYYY_MM/` | Monthly legacy BMF (note: `bmf-legacy`, not `legacy_bmf` or `legacy-bmf`) |
+
+Per-month quality reports are templated to
+`https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_<YYYY>_<MM>_quality_report.html`
+and rendered automatically by `catalogs/R/bmf_helpers.R`.
+
+### Troubleshooting
+
+- **`Access Denied` on `get_bucket()`** — credentials aren't in the env. Re-run
+  step 2 above. Check with `env | grep AWS_`.
+- **`No objects under prefix '...'` warning** — the prefix string in
+  `get-aws-files.R` doesn't match what's in the bucket. Verify with
+  `aws s3 ls s3://nccsdata/processed/`.
+- **SSO session expired** — re-run `aws sso login --profile thiya` and
+  re-export credentials (step 2). Sessions last 24 hours.
+
+---
+
 # STEP 01 - [GENERATE S3 MANIFESTS](https://github.com/UrbanInstitute/nccs/blob/main/catalogs/get-aws-files.R)
 
 [AWS-NCCS-EFILE2.csv](https://github.com/UrbanInstitute/nccs/blob/main/catalogs/AWS-NCCS-EFILE2.csv)
