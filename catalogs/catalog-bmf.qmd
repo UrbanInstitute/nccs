@@ -78,11 +78,7 @@ One row per EIN spanning 1989 to present, with most-recent values for each organ
 The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table.
 
 ```{r}
-headline <- build_master_headline_table(
-  manifest,
-  dictionary_url     = "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx",
-  quality_report_url = "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
-)
+headline <- build_master_headline_table(manifest)
 if (!is.null(headline)) {
   knitr::kable(
     headline,

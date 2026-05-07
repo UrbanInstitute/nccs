@@ -218,25 +218,36 @@ build_geocoded_master_row <- function(manifest) {
 
 #' Build the headline Master BMF table — one row per variant (geocoded first,
 #' then plain), with columns for download, data dictionary, and quality report.
-#' Replaces the stacked CTA buttons with a compact tabular view. Returns a data
-#' frame with columns: variant, download, dictionary, quality_report, size.
+#'
+#' The dictionary URL is derived from the manifest by finding the
+#' `bmf_master_data_dictionary.csv` sibling under `master/bmf/`. The quality
+#' report links the rendered HTML version on the nccs-data-bmf Pages site
+#' (the manifest holds the JSON variant in S3, but users want the HTML).
 #'
 #' @param manifest data.frame from AWS-BMF.csv.
-#' @param dictionary_url URL to the harmonized data dictionary used by both
-#'   variants.
-#' @param quality_report_url URL to the master quality report used by both
-#'   variants.
-build_master_headline_table <- function(manifest,
-                                        dictionary_url,
-                                        quality_report_url) {
+#' @param quality_report_url URL to the master quality report HTML.
+build_master_headline_table <- function(
+  manifest,
+  quality_report_url =
+    "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
+) {
   geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
   master   <- manifest[manifest$source == "master", , drop = FALSE]
 
-  # Headline plain file is the unsuffixed bmf_master.csv (no state code).
-  headline_plain <- master[is.na(extract_bmf_state(master$Key)) &
-                             grepl("(?i)bmf_master(\\.csv|\\.parquet)?$",
-                                   basename(master$Key), perl = TRUE),
-                           , drop = FALSE]
+  # Master dictionary derived from the manifest (single source of truth)
+  dict_rows <- master[grepl("(?i)bmf_master_data_dictionary\\.csv$",
+                            basename(master$Key)), , drop = FALSE]
+  dictionary_url <- if (nrow(dict_rows) > 0) dict_rows$URL[1] else NA_character_
+
+  # Headline plain file: unsuffixed bmf_master.csv / .parquet (no state code,
+  # not a dictionary or quality report).
+  is_state_sliced <- !is.na(extract_bmf_state(master$Key))
+  is_artifact     <- classify_bmf_artifact(master$Key) %in%
+                       c("dictionary", "quality_report_json")
+  headline_plain  <- master[!is_state_sliced & !is_artifact, , drop = FALSE]
+  # Prefer .csv over .parquet for the headline link
+  headline_plain  <- headline_plain[order(!grepl("\\.csv$", headline_plain$Key)),
+                                    , drop = FALSE]
 
   rows <- list()
   if (nrow(geocoded) > 0) {
@@ -259,9 +270,11 @@ build_master_headline_table <- function(manifest,
   out <- do.call(rbind, rows)
 
   out$download <- paste0("<a href='", out$URL, "' class='button'> DOWNLOAD </a>")
-  out$dictionary <- paste0(
-    "<a href='", dictionary_url, "' class='button2'> DICTIONARY </a>"
-  )
+  out$dictionary <- if (is.na(dictionary_url)) {
+    "&mdash;"
+  } else {
+    paste0("<a href='", dictionary_url, "' class='button2'> DICTIONARY </a>")
+  }
   out$quality_report <- paste0(
     "<a href='", quality_report_url, "' class='button2'> QUALITY REPORT </a>"
   )

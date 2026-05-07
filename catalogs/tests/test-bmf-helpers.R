@@ -40,6 +40,7 @@ make_fixture <- function() {
     list(source = "master", Key = "master/bmf/BMF_MASTER_NY.csv", Size = 60e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER_TX.csv", Size = 55e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER.csv",     Size = 1300e6),  # no state suffix
+    list(source = "master", Key = "master/bmf/bmf_master_data_dictionary.csv", Size = 9e3),
     # Geocoded master
     list(source = "geocoded", Key = "geocoding/master/merged/bmf_master_geocoded.parquet", Size = 1500e6),
     # Processed: monthly — each month has data csv + parquet + dictionary + QR json
@@ -239,11 +240,7 @@ test_that("build_geocoded_master_row returns NULL when absent", {
 
 test_that("build_master_headline_table puts geocoded first", {
   manifest <- make_fixture()
-  out <- build_master_headline_table(
-    manifest,
-    dictionary_url     = "https://example.com/dict.xlsx",
-    quality_report_url = "https://example.com/qr.html"
-  )
+  out <- build_master_headline_table(manifest)
   expect_equal(out$variant[1], "Master BMF (geocoded)")
   expect_equal(out$variant[2], "Master BMF")
   # Geocoded points at the geocoded URL
@@ -252,23 +249,48 @@ test_that("build_master_headline_table puts geocoded first", {
   expect_match(out$download[2], "master/bmf/BMF_MASTER\\.csv")
 })
 
-test_that("build_master_headline_table fills shared dictionary and qr URLs", {
+test_that("build_master_headline_table derives the dictionary URL from the manifest", {
   manifest <- make_fixture()
-  dict_url <- "https://example.com/dict.xlsx"
-  qr_url   <- "https://example.com/qr.html"
-  out <- build_master_headline_table(manifest, dict_url, qr_url)
+  out <- build_master_headline_table(manifest)
   expect_true(all(grepl("DICTIONARY", out$dictionary)))
+  expect_true(all(grepl("master/bmf/bmf_master_data_dictionary\\.csv",
+                        out$dictionary)))
+  # Should NOT use the old harmonized monthly dictionary URL
+  expect_false(any(grepl("harmonized/harmonized_data_dictionary",
+                         out$dictionary)))
+})
+
+test_that("build_master_headline_table em-dashes when dictionary is absent", {
+  manifest <- make_fixture()
+  manifest <- manifest[!grepl("data_dictionary",
+                              basename(manifest$Key)) |
+                       manifest$source != "master", , drop = FALSE]
+  out <- build_master_headline_table(manifest)
+  expect_true(all(out$dictionary == "&mdash;"))
+})
+
+test_that("build_master_headline_table uses the templated quality report URL", {
+  manifest <- make_fixture()
+  out <- build_master_headline_table(manifest)
   expect_true(all(grepl("QUALITY REPORT", out$quality_report)))
-  expect_true(all(grepl(dict_url, out$dictionary, fixed = TRUE)))
-  expect_true(all(grepl(qr_url,   out$quality_report, fixed = TRUE)))
+  expect_true(all(grepl("bmf_master_quality_report\\.html",
+                        out$quality_report)))
 })
 
 test_that("build_master_headline_table omits missing variants gracefully", {
   manifest <- make_fixture()
   manifest <- manifest[manifest$source != "geocoded", , drop = FALSE]
-  out <- build_master_headline_table(manifest, "d", "q")
+  out <- build_master_headline_table(manifest)
   expect_equal(nrow(out), 1)
   expect_equal(out$variant, "Master BMF")
+})
+
+test_that("build_master_headline_table excludes dictionary/QR from headline plain row", {
+  manifest <- make_fixture()
+  out <- build_master_headline_table(manifest)
+  # Plain row's download must point at a data file, not the dictionary CSV
+  expect_false(grepl("data_dictionary", out$download[2]))
+  expect_false(grepl("quality_report",  out$download[2]))
 })
 
 # =============================================================================

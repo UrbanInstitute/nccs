@@ -31,13 +31,13 @@ file.copy(file.path(catalogs_dir, "styles", "catalog.css"), file.path(work, "sty
 
 # Synthetic manifest
 fixture <- data.frame(
-  source = c("master","master","master","master",
+  source = c("master","master","master","master","master",
              "geocoded",
              "processed","processed","processed",
              "processed","processed","processed",
              "legacy","legacy","legacy","legacy",
              "raw_legacy","raw_legacy"),
-  Prefix = c(rep("master/bmf/", 4),
+  Prefix = c(rep("master/bmf/", 5),
              "geocoding/master/merged/",
              rep("processed/bmf/", 6),
              rep("processed/bmf-legacy/", 4),
@@ -47,6 +47,7 @@ fixture <- data.frame(
     "master/bmf/BMF_MASTER_NY.csv",
     "master/bmf/BMF_MASTER_TX.csv",
     "master/bmf/BMF_MASTER.csv",
+    "master/bmf/bmf_master_data_dictionary.csv",
     "geocoding/master/merged/bmf_master_geocoded.parquet",
     # 2026-01 monthly (data + dict + qr)
     "processed/bmf/2026_01/bmf_2026_01_processed.csv",
@@ -65,7 +66,7 @@ fixture <- data.frame(
     "legacy/bmf/BMF-1989-06-501CX-NONPROFIT-PX.csv",
     "legacy/bmf/BMF-2010-04-501CX-NONPROFIT-PX.csv"
   ),
-  Size = c(50e6, 60e6, 55e6, 1300e6, 1500e6,
+  Size = c(50e6, 60e6, 55e6, 1300e6, 9e3, 1500e6,
            200e6, 7e3, 100e3,
            198e6, 7e3, 100e3,
            180e6, 4e3, 90e3,
@@ -149,11 +150,12 @@ pos_2025_12 <- regexpr("bmf_2025_12_processed\\.csv", html)
 check(pos_2026 > 0 && pos_2025_12 > 0 && pos_2026 < pos_2025_12,
       "Combined monthly table sorted descending (2026-01 before 2025-12)")
 
-# One row per month: each year-month should appear exactly once in the table
-# section, not three times (data + dict + qr) like the bug we fixed.
+# One row per month: 2026-01's data CSV should appear exactly twice in the
+# rendered page (once in Recent Releases, once in the full Browse Older
+# Releases archive) — NOT three times like the per-artifact-row bug we fixed.
 data_dl_count <- length(gregexpr("bmf_2026_01_processed\\.csv", html)[[1]])
-check(data_dl_count == 1,
-      "2026-01 appears as a single row in the monthly table (no 3x duplication)")
+check(data_dl_count == 2,
+      "2026-01 appears as a single row in each monthly table (no 3x duplication)")
 
 # Dictionary column links the dictionary CSV
 check(grepl("bmf_2026_01_data_dictionary\\.csv", html),
