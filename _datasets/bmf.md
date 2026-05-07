@@ -1,7 +1,7 @@
 ---
 title: Business Master File (BMF)
 date: 2026-02-04
-description: All active organizations that have been granted nonprofit status by the IRS.
+description: The IRS registry of organizations exempt from federal income tax.
 categories:
   - BMF
 featured: true
@@ -12,22 +12,7 @@ primaryLinks:
   - text: "Data Catalog"
     href: "../../catalogs/catalog-bmf.html"
     icon: database
-  - text: "Data Dictionary"
-    href: "https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx"
-    icon: article
-  - text: "BMF By State"
-    href: "../../catalogs/catalog-bmf.html"
-    icon: download
-  - text: "Monthly BMF"
-    href: "../../catalogs/catalog-bmf.html#processed-bmf-monthly"
-    icon: download
-  - text: "Legacy BMF"
-    href: "../../catalogs/catalog-bmf.html#legacy-bmf-monthly"
-    icon: download
-  - text: "Quality Reports"
-    href: "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/"
-    icon: article
-  - text: "BMF Data Guide"
+  - text: "Processing Guide"
     href: "https://urbaninstitute.github.io/nccs-data-bmf/index.html"
     icon: article
 citation: 
@@ -37,150 +22,70 @@ citation:
   doi:
 ---
 
-## Master BMF
+The Business Master File (BMF) is the IRS registry of organizations exempt from federal income tax. NCCS publishes the BMF in several harmonized forms; the **Master BMF** is the flagship product — one row per EIN spanning 1989 to present.
 
-The IRS Business Master File (BMF) is a comprehensive registry of tax-exempt organizations in the United States. Updated monthly by the IRS, it serves as the authoritative record of organizations that have been granted tax-exempt status and remain in compliance with federal filing requirements.
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; padding: 1.5rem; background: #f5f5f5; border-radius: 4px;">
+  <div style="flex: 1 1 160px; min-width: 140px;">
+    <div style="font-size: 1.6rem; font-weight: 600; line-height: 1.1;">~3.8 million</div>
+    <div style="font-size: 0.85rem; color: #555;">organizations ever</div>
+  </div>
+  <div style="flex: 1 1 160px; min-width: 140px;">
+    <div style="font-size: 1.6rem; font-weight: 600; line-height: 1.1;">~1.8 million</div>
+    <div style="font-size: 0.85rem; color: #555;">currently active</div>
+  </div>
+  <div style="flex: 1 1 160px; min-width: 140px;">
+    <div style="font-size: 1.6rem; font-weight: 600; line-height: 1.1;">1989&ndash;present</div>
+    <div style="font-size: 0.85rem; color: #555;">coverage span</div>
+  </div>
+  <div style="flex: 1 1 160px; min-width: 140px;">
+    <div style="font-size: 1.6rem; font-weight: 600; line-height: 1.1;">{{ site.time | date: "%Y-%m-%d" }}</div>
+    <div style="font-size: 0.85rem; color: #555;">last verified</div>
+  </div>
+</div>
 
-To facilitate the creation of consistent time-series datasets, NCCS has created a Master BMF (formerly known as the Unified BMF) which aggregates information from every historic BMF dataset into a single file. The Master BMF contains one row for each organization that was granted tax-exempt status and appeared in any BMF file from 1989 to present day. There are ~3.8 million nonprofits present in the file, ~1.8 million of which are currently active. 
+Need to download specific files? **[Browse the BMF Data Catalog &rarr;](../../catalogs/catalog-bmf.html)**
 
-The Master BMF has some additional upgrades:
+## What's in (and what's missing from) the BMF
 
-The IRS recognizes [over 30 categories of tax-exempt organizations](https://www.irs.gov/charities-non-profits/types-of-tax-exempt-organizations); the above represent the most common in nonprofit research.
+The BMF functions as the primary sampling frame for nonprofit research, containing the universe of organizations with recognized federal tax-exempt status. The IRS recognizes [over 30 categories of tax-exempt organizations](https://www.irs.gov/charities-non-profits/types-of-tax-exempt-organizations); the most common in nonprofit research are:
 
-The team is currently developing a research guide to accompany this BMF. While that effort is underway, we are releasing the Master BMF together with a rudimentary data dictionary. Monthly processed and legacy BMF files can still be accessed from the side bar.
+- **501(c)(3)** — charitable organizations, foundations, and religious entities
+- **501(c)(4)** — social welfare organizations and civic leagues
+- **501(c)(6)** — business leagues, chambers of commerce, trade associations
+- **501(c)(7)** — social clubs
+- **527** — political organizations, including PACs
 
-## Quality Reports
+The BMF does **not** capture all nonprofit activity. Important exclusions:
 
-Each monthly processed and legacy BMF release is accompanied by a quality report describing coverage, completeness, and key field distributions. Reports are linked from the [BMF data catalog](../../catalogs/catalog-bmf.html) per month, and indexed at [nccs-data-bmf/quality-reports/](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/).
-
-## Raw IRS BMF Files 
-
-### The BMF as a Research Framework
-
-The BMF functions as the primary sampling frame for nonprofit research, containing the universe of organizations with recognized federal tax-exempt status. However, it does not capture all nonprofit activity. The following are excluded:
-
--   Organizations incorporated as nonprofits at the state level that have not applied for federal tax-exempt recognition
--   Churches and religious organizations that exercise tax-exempt status without seeking formal IRS recognition
--   Unincorporated civic groups, social movements, and organizations operating under fiscal sponsorship arrangements
--   501(c)(4) organizations that self-declare intent to operate via Form 8976 rather than completing the formal IRS application process
+- Organizations incorporated as nonprofits at the state level that have not applied for federal tax-exempt recognition
+- Churches and religious organizations that exercise tax-exempt status without seeking formal IRS recognition
+- Unincorporated civic groups, social movements, and organizations operating under fiscal sponsorship arrangements
+- 501(c)(4) organizations that self-declare intent to operate via Form 8976 rather than completing the formal IRS application process
 
 Understanding these scope limitations is essential when using the BMF for research design or policy analysis.
 
-## Available Datasets
+Source: [IRS Exempt Organizations BMF Extract](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). Field definitions and processing rules follow [IRM 25.7.1](https://www.irs.gov/irm/part25/irm_25-007-001).
 
-NCCS provides BMF data in several formats to support different research needs. All files are available through the [BMF Data Catalog](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html).
+## Which dataset should I use?
 
-### Transformed BMF
+| If you need... | Use | Where to get it |
+|:---|:---|:---|
+| One row per nonprofit, ever (1989–present) | **Master BMF** | [Catalog &rarr; Master BMF](../../catalogs/catalog-bmf.html#master-bmf) |
+| A specific month's snapshot | **Monthly BMF** (transformed for 2023-06+, harmonized legacy for earlier) | [Catalog &rarr; Monthly BMF](../../catalogs/catalog-bmf.html#monthly-bmf) |
+| The unmodified IRS or NCCS file | **Raw archives** (for replication only) | [Catalog &rarr; Raw Archives](../../catalogs/catalog-bmf.html#raw-archives) |
 
-The Transformed BMF applies standardized cleaning and validation to monthly IRS releases. Each file includes:
+Each catalog section also exposes the underlying S3 prefix for programmatic access.
 
--   Standardized column names and data types
--   Quality flags identifying potential data issues
--   Documentation of all transformations applied
+## Documentation & support
 
-**Use when:** You need current BMF data with consistent formatting and documented quality checks.
+**Primary sources**
 
-**Coverage:** Current with latest IRS releases
+- [IRS Exempt Organizations BMF Extract](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) — the upstream IRS data product, with the original schema and release cadence.
+- [IRM 25.7.1 — Exempt Organizations Business Master File](https://www.irs.gov/irm/part25/irm_25-007-001) — the IRS Internal Revenue Manual chapter governing BMF maintenance, code definitions, and authoritative scope.
 
-**Documentation:** [Processing pipeline and data dictionary](https://urbaninstitute.github.io/nccs-data-bmf/)
+**NCCS resources**
 
-**Source code:** [GitHub repository](https://github.com/UrbanInstitute/nccs-data-bmf)
-
-### Unified BMF
-
-The Unified BMF consolidates all historical BMF releases into a single file, with one row per organization that has ever held tax-exempt status. This enables longitudinal analysis without merging multiple annual files.
-
-Features include:
-
--   `ORG_YEAR_FIRST` and `ORG_YEAR_LAST` variables tracking when organizations entered and exited the BMF
--   Most recent address geocoded to Census block
--   FIPS codes at block, tract, county, and state levels for merging with Census data
--   Metropolitan area codes using current CBSA definitions
-
-**Use when:** You need to track organizations over time, build historical sampling frames, or link nonprofit data to Census geographies.
-
-| Version | Release | Notes |
-| :---: | :---: | :---: |
-| 0.0 | June 21 2024 | Beta Version |
-| 1.0 | July 1st 2024 | Unified BMF |
-| 1.1 | March 4th 2025 | Fixed EIN2 for consistent formatting |
-| 1.1 | March 4th 2025 | State-level BMFs |
-| 2.0 | 2026 | Renamed Unified BMF to Master BMF; relocated to `master/bmf/`; added monthly processed/legacy folders and quality reports |
-
-**Access:** [Public S3 Link](https://nccsdata.s3.us-east-1.amazonaws.com/bmf/unified/v1.2/UNIFIED_BMF_V1.2.csv)
-
-**Related resources:** [NCCS Census Crosswalk](https://nccs.urban.org/nccs/datasets/census/) for aggregating to additional geographic levels
-
-### Raw BMF Archives
-
-NCCS archives unmodified monthly BMF files as released by the IRS on their [Exempt Organizations Business Master File Extract](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) page. These files use the IRS's original schema and [data dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf).
-
-**Use when:** You need to replicate analysis built on raw IRS files from a specific point in time, or require data exactly as the IRS published it.
-
-**Coverage:** June 2023 to present (monthly snapshots)
-
-**Format:** `YYYY-MM-BMF.csv`
-
-**Access:** Files are available from the public `nccsdata` S3 bucket at: `https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/{filename}`
-
-Example: [2023-06-BMF.csv](https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/2023-06-BMF.csv)
-
-### Legacy BMFs
-
-Historical BMF files produced by NCCS between 1989 and 2022. These files retain their original schemas, which vary across years. Data dictionaries are available for most but not all years.
-
-**Use when:** You need to replicate historical NCCS analyses or require BMF data in its original pre-transformation format.
-
-**Coverage:** 1989–2022
-
-**Note:** Column names are not standardized across files. For longitudinal work, consider the Unified BMF or wait for the forthcoming Harmonized Legacy BMFs.
-
-## In Development
-
-The following datasets are currently in progress. Expected timelines are estimates and subject to change.
-
-### Harmonized Legacy BMFs
-
-The Legacy BMF files (1989–2022) use inconsistent column names and schemas across years, making longitudinal analysis difficult. The Harmonized Legacy BMFs will standardize these files to align with the Transformed BMF schema, enabling seamless merging across the full 1989–present time series.
-
-**Expected:** Q1 2026
-
-### Metadata Tables
-
-Organizational attributes in the BMF—such as name, address, and NTEE code—can change over time. Currently, only the most recent value is retained. The Metadata Tables will track these changes using a slowly changing dimension (SCD Type 2) structure, preserving the full history of:
-
--   Organization names
--   Addresses
--   NTEE classifications
-
-This will support research on organizational relocation, rebranding, and mission drift.
-
-**Expected:** Q1 2026
-
-### Unified BMF v2.0
-
-An updated Unified BMF that:
-
--   Incorporates BMF releases through late 2025
--   Adopts column names consistent with the Transformed BMF schema
--   Rebuilds the processing pipeline for compatibility with current infrastructure
-
-This replaces the current Unified BMF, which uses a legacy architecture and covers data only through mid-2025.
-
-**Expected:** Q1 2026
-
-## Release Status
-
-| Dataset                |  Status   | Last Updated | Expected | Coverage             | Documentation                                                         |
-|:-----------------------|:---------:|:------------:|:--------:|:---------------------|:----------------------------------------------------------------------|
-| Transformed BMF        | Available |   Ongoing    |    —     | Current IRS releases | [Pipeline docs](https://urbaninstitute.github.io/nccs-data-bmf/)      |
-| Raw BMF Archives       | Available |   Ongoing    |    —     | June 2023–present    | [IRS data dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf)    |
-| Unified BMF            | Available |   Mid-2025   |    —     | 1989–mid-2025        | [Data catalog](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html) |
-| Legacy BMFs            | Archived  |      —       |    —     | 1989–2022            | [Data catalog](https://nccs.urban.org/nccs/catalogs/catalog-bmf.html) |
-| Harmonized Legacy BMFs |  Planned  |      —       | Q1 2026  | 1989–2022            | TBD                                                                   |
-| Metadata Tables        |  Planned  |      —       | Q1 2026  | 1989–present         | TBD                                                                   |
-| Unified BMF v2.0       |  Planned  |      —       | Q1 2026  | 1989–late 2025       | TBD                                                                   |
-
-## Contact
-
-Users are encouraged to submit any questions and comments regarding this data set on our [contact page](https://nccs.urban.org/nccs/contact/).
+- [Processing guide](https://urbaninstitute.github.io/nccs-data-bmf/index.html) — how NCCS cleans, harmonizes, and validates BMF data.
+- [Quality reports index](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/) — every per-month and per-product quality report.
+- [Source repository](https://github.com/UrbanInstitute/nccs-data-bmf) — pipeline code and issue tracker.
+- [Contact / Get Help](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests.
