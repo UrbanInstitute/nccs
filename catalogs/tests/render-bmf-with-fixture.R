@@ -107,7 +107,7 @@ check(grepl(">Master BMF<", html),
       "Master BMF section heading present")
 check(grepl("Master BMF (geocoded)", html, fixed = TRUE),
       "Geocoded variant labeled in headline table")
-check(grepl("DICTIONARY", html, fixed = TRUE),
+check(grepl("Dictionary", html, fixed = TRUE),
       "Headline table renders DICTIONARY button per row")
 # Geocoded row appears before plain row in headline table.
 # Use the geocoded *URL* (unique to the table) and the plain master CSV URL

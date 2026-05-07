@@ -133,8 +133,8 @@ test_that("make_quality_report_links renders dash for NA", {
     "https://example.com/r1.html",
     NA
   ))
-  expect_match(links[1], "QUALITY REPORT")
-  expect_match(links[1], "class='button2'")
+  expect_match(links[1], "Quality report")
+  expect_match(links[1], "<a href=")
   expect_equal(links[2], "&mdash;")
 })
 
@@ -151,7 +151,7 @@ test_that("build_master_section joins states and preserves order", {
   expect_equal(out$state, unname(state_mapping_min))
 
   # Present states render a real download button
-  expect_true(grepl("DOWNLOAD", out$download[out$state == "California"]))
+  expect_true(grepl("Download", out$download[out$state == "California"]))
   expect_match(out$size[out$state == "California"], "mb$")
 
   # Missing states render an em-dash, not a phantom row
@@ -193,7 +193,7 @@ test_that("build_combined_monthly_section links data CSV, dictionary, and HTML q
   top <- out[1, ]
   expect_match(top$download,       "bmf_2026_01_processed\\.csv")
   expect_match(top$dictionary,     "bmf_2026_01_data_dictionary\\.csv")
-  expect_match(top$dictionary,     "DICTIONARY")
+  expect_match(top$dictionary,     "Dictionary")
   expect_match(top$quality_report, "bmf_2026_01_quality_report\\.html")
   expect_match(top$size,           "200")  # data CSV size, not parquet/dictionary
 })
@@ -224,7 +224,7 @@ test_that("build_geocoded_master_row returns one row when present", {
   out <- build_geocoded_master_row(manifest)
   expect_equal(nrow(out), 1)
   expect_match(out$file[1], "geocoded")
-  expect_match(out$download[1], "DOWNLOAD")
+  expect_match(out$download[1], "Download")
 })
 
 test_that("build_geocoded_master_row returns NULL when absent", {
@@ -252,7 +252,7 @@ test_that("build_master_headline_table puts geocoded first", {
 test_that("build_master_headline_table derives the dictionary URL from the manifest", {
   manifest <- make_fixture()
   out <- build_master_headline_table(manifest)
-  expect_true(all(grepl("DICTIONARY", out$dictionary)))
+  expect_true(all(grepl("Dictionary", out$dictionary)))
   expect_true(all(grepl("master/bmf/bmf_master_data_dictionary\\.csv",
                         out$dictionary)))
   # Should NOT use the old harmonized monthly dictionary URL
@@ -272,7 +272,7 @@ test_that("build_master_headline_table em-dashes when dictionary is absent", {
 test_that("build_master_headline_table uses the templated quality report URL", {
   manifest <- make_fixture()
   out <- build_master_headline_table(manifest)
-  expect_true(all(grepl("QUALITY REPORT", out$quality_report)))
+  expect_true(all(grepl("Quality report", out$quality_report)))
   expect_true(all(grepl("bmf_master_quality_report\\.html",
                         out$quality_report)))
 })
@@ -309,7 +309,7 @@ test_that("build_raw_legacy_section parses vintage and templates PROFILE URL", {
   # PROFILE URL templated from filename stem
   expect_match(out$profile[1], "BMF-2010-04-501CX-NONPROFIT-PX")
   expect_false(grepl("\\.csv", out$profile[1]))
-  expect_match(out$profile[1], "class='button2'")
+  expect_match(out$profile[1], "<a href=")
 })
 
 test_that("build_raw_legacy_section em-dashes missing profiles", {
@@ -323,7 +323,7 @@ test_that("build_raw_legacy_section em-dashes missing profiles", {
   expect_equal(row_1989$profile, "&mdash;")
   # 2010 row still has button
   row_2010 <- out[out$year == "2010", , drop = FALSE]
-  expect_match(row_2010$profile, "PROFILE")
+  expect_match(row_2010$profile, "Profile")
 })
 
 test_that("build_raw_legacy_section handles empty source", {

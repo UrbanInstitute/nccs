@@ -63,7 +63,7 @@ make_quality_report_links <- function(urls) {
   ifelse(
     is.na(urls),
     "&mdash;",
-    paste0("<a href='", urls, "' class='button2'> QUALITY REPORT </a>")
+    paste0("<a href='", urls, "'>Quality report</a>")
   )
 }
 
@@ -89,7 +89,7 @@ build_master_section <- function(manifest, state_mapping) {
   out$download <- ifelse(
     is.na(out$URL),
     "&mdash;",
-    paste0("<a href='", out$URL, "' class='button'> DOWNLOAD </a>")
+    paste0("<a href='", out$URL, "'>Download</a>")
   )
   out$size <- ifelse(
     is.na(out$Size),
@@ -166,9 +166,9 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
     # uploaded so far) — there's nothing to download.
     if (is.null(csv_row)) return(NULL)
 
-    download <- paste0("<a href='", csv_row$URL, "' class='button'> DOWNLOAD </a>")
+    download <- paste0("<a href='", csv_row$URL, "'>Download</a>")
     dictionary <- if (!is.null(dict_row)) {
-      paste0("<a href='", dict_row$URL, "' class='button2'> DICTIONARY </a>")
+      paste0("<a href='", dict_row$URL, "'>Dictionary</a>")
     } else {
       "&mdash;"
     }
@@ -210,7 +210,7 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
 build_geocoded_master_row <- function(manifest) {
   rows <- manifest[manifest$source == "geocoded", , drop = FALSE]
   if (nrow(rows) == 0) return(NULL)
-  rows$download <- paste0("<a href='", rows$URL, "' class='button'> DOWNLOAD </a>")
+  rows$download <- paste0("<a href='", rows$URL, "'>Download</a>")
   rows$size <- paste0(round(rows$Size / 1e6, 1), " mb")
   rows$file <- basename(rows$Key)
   rows[, c("file", "download", "size")]
@@ -269,14 +269,14 @@ build_master_headline_table <- function(
   if (length(rows) == 0) return(NULL)
   out <- do.call(rbind, rows)
 
-  out$download <- paste0("<a href='", out$URL, "' class='button'> DOWNLOAD </a>")
+  out$download <- paste0("<a href='", out$URL, "'>Download</a>")
   out$dictionary <- if (is.na(dictionary_url)) {
     "&mdash;"
   } else {
-    paste0("<a href='", dictionary_url, "' class='button2'> DICTIONARY </a>")
+    paste0("<a href='", dictionary_url, "'>Dictionary</a>")
   }
   out$quality_report <- paste0(
-    "<a href='", quality_report_url, "' class='button2'> QUALITY REPORT </a>"
+    "<a href='", quality_report_url, "'>Quality report</a>"
   )
   out$size <- paste0(round(out$Size / 1e6, 1), " mb")
 
@@ -312,10 +312,10 @@ build_raw_legacy_section <- function(manifest, missing_profiles = character(0)) 
   )
   has_profile <- !(stem %in% missing_profiles)
 
-  rows$download <- paste0("<a href='", rows$URL, "' class='button'> DOWNLOAD </a>")
+  rows$download <- paste0("<a href='", rows$URL, "'>Download</a>")
   rows$profile  <- ifelse(
     has_profile,
-    paste0("<a href='", profile_url, "' class='button2'> PROFILE </a>"),
+    paste0("<a href='", profile_url, "'>Profile</a>"),
     "&mdash;"
   )
   rows$size <- paste0(round(rows$Size / 1e6, 1), " mb")
