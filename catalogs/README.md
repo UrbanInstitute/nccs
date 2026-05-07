@@ -42,11 +42,25 @@ Rscript catalogs/tests/render-bmf-with-fixture.R
 # 5. Re-render the catalog page
 quarto render catalogs/catalog-bmf.qmd
 
-# 6. Commit and push
-git add catalogs/AWS-BMF.csv catalogs/catalog-bmf.html catalogs/catalog-bmf_files
+# 6. Commit and push BOTH the source AND the rendered output
+git add catalogs/AWS-BMF.csv catalogs/catalog-bmf.qmd catalogs/catalog-bmf.html catalogs/catalog-bmf_files
 git commit -m "Refresh BMF catalog snapshot (YYYY-MM)"
 git push
 ```
+
+> **Important: CI does not render Quarto.** The GitHub Actions workflow
+> (`.github/workflows/build.yml`) only runs `bundle exec jekyll build`. It
+> does **not** run `quarto render`. The deployed catalog page is whatever
+> `catalogs/catalog-bmf.html` is committed to the repo.
+>
+> This means **any change to `catalog-bmf.qmd` must be followed by
+> `quarto render` locally, and BOTH files committed together.** If you
+> commit the `.qmd` without re-rendering, the live site will keep showing
+> the old HTML and your change will appear to have done nothing.
+>
+> The same applies to the other Quarto catalog pages
+> (`catalog-core.qmd`, `catalog-efile-v2.qmd`, etc.) — edit `.qmd`,
+> render, commit both.
 
 ### S3 layout (for reference)
 
