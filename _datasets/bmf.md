@@ -16,8 +16,8 @@ primaryLinks:
     href: "https://urbaninstitute.github.io/nccs-data-bmf/index.html"
     icon: article
 citation: 
-  author: "Jesse Lecy"
-  citationDate: "2024"
+  author: "Thiyaghessan Poongundranar"
+  citationDate: "2026"
   container-title: "NCCS Master BMF"
   doi:
 ---
