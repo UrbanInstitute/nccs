@@ -55,29 +55,33 @@ state_mapping <- c(
 )
 ```
 
-The IRS Business Master File (BMF) is the authoritative registry of tax-exempt organizations in the United States. NCCS provides BMF data in several formats to support different research needs.
+The IRS Business Master File (BMF) is the authoritative registry of tax-exempt organizations in the United States. NCCS publishes BMF data in several forms; this catalog organizes them by what you're trying to do.
 
-For background on what the BMF contains, its scope limitations, and guidance on choosing the right dataset, see the [BMF overview page](../datasets/bmf.html).
+For background on what the BMF contains and its scope limitations, see the [BMF overview page](../datasets/bmf.html).
 
-This catalog is organized by dataset type. Each section includes download links, documentation, and guidance on when to use that dataset.
+## Which dataset should I use?
 
-## Transformed BMF
+| If you need... | Use | Why |
+|:---|:---|:---|
+| One row per nonprofit, ever (1989–present) | **Master BMF** | Combines every vintage into a single longitudinal frame |
+| A specific month's snapshot (2023-06 or later) | **Transformed monthly BMF** | Cleaned and standardized; column schema is stable across months |
+| A specific month's snapshot (1989–2022) | **Harmonized legacy BMF** | Same column schema as transformed; aligns historical vintages |
+| The unmodified IRS file | **Raw monthly archive** | Untouched IRS releases, for replication of upstream analysis |
+| The original NCCS legacy file | **Raw legacy archive** | Original 501CX-NONPROFIT-PX vintages, for reproducibility only |
 
-The BMF catalog has three sections. The **Master BMF** is the unified state-level dataset (formerly "Unified BMF"). **Processed BMF** and **Legacy BMF** provide monthly snapshots, each linked to a quality report.
+<br><hr><br>
+
+## Master BMF
+
+One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame.
 
 <a href="https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx" class="button3">Download Data Dictionary</a>
+<a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html" class="button3">Master Quality Report</a>
 
-<br>
-
-<hr>
-
-<br>
-
-#### Master BMF by State/Territory
+### Download by State/Territory
 
 ```{r}
 master <- build_master_section(manifest, state_mapping)
-
 knitr::kable(
   master,
   escape    = FALSE,
@@ -88,76 +92,122 @@ knitr::kable(
   kableExtra::kable_styling()
 ```
 
-<br>
+### Geocoded Master BMF
 
-<hr>
-
-<br>
-
-## Processed BMF (Monthly)
-
-Monthly processed snapshots from `processed/bmf/`. Each row links the dataset and its quality report.
+Master BMF joined to lat/lon coordinates against a deduplicated address table. Use this when you need to map nonprofit locations or aggregate to geographies.
 
 ```{r}
-processed <- build_monthly_section(manifest, "processed")
+geocoded <- build_geocoded_master_row(manifest)
+if (!is.null(geocoded) && nrow(geocoded) > 0) {
+  knitr::kable(
+    geocoded,
+    escape    = FALSE,
+    col.names = c("File", "Download", "Size"),
+    format    = "html",
+    row.names = FALSE
+  ) |>
+    kableExtra::kable_styling()
+} else {
+  cat("_Geocoded master BMF is not yet listed in the manifest._\n")
+}
+```
 
+### Access via S3
+
+```
+s3://nccsdata/master/bmf/                  # Master BMF, state-sliced
+s3://nccsdata/geocoding/master/merged/     # Geocoded variant
+```
+
+<br><hr><br>
+
+## Monthly BMF
+
+Cleaned, schema-stable monthly snapshots covering 1989 to the present. The transformed pipeline (2023-06+) and the harmonized legacy pipeline (1989-2022) write to different S3 prefixes but share a column schema, so you can stack them across the era boundary without reshaping.
+
+### Recent Releases
+
+```{r}
+recent <- build_combined_monthly_section(manifest, n_recent = 5)
 knitr::kable(
-  processed,
+  recent,
   escape    = FALSE,
-  col.names = c("Year", "Month", "Download", "Quality Report", "Size"),
+  col.names = c("Year", "Month", "Pipeline", "Download", "Quality Report", "Size"),
   format    = "html",
   row.names = FALSE
 ) |>
   kableExtra::kable_styling()
 ```
 
-<br>
+### Browse Older Releases
 
-<hr>
+The full archive of monthly releases (1989–present) is browseable at the [quality reports index](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/). Each report links the dataset, dictionary, and quality summary for that month.
 
-<br>
+### Access via S3
 
-## Legacy BMF (Monthly)
-
-Monthly legacy snapshots from `processed/bmf-legacy/`. NCCS has since shifted to compiling a Master BMF that aggregates the various BMF fields.
-
-```{r}
-legacy <- build_monthly_section(manifest, "legacy")
-
-knitr::kable(
-  legacy,
-  escape    = FALSE,
-  col.names = c("Year", "Month", "Download", "Quality Report", "Size"),
-  format    = "html",
-  row.names = FALSE
-) |>
-  kableExtra::kable_styling()
+```
+s3://nccsdata/processed/bmf/{YYYY_MM}/         # Transformed (2023-06 -> present)
+s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -> 2022)
 ```
 
-## In Development
+Each month directory contains:
 
-The following datasets are currently in progress. Expected timelines are estimates and subject to change.
+- `bmf_{YYYY_MM}_processed.csv` (or `.parquet`) — the data
+- `bmf_{YYYY_MM}_data_dictionary.csv` — column definitions
+- `bmf_{YYYY_MM}_quality_report.json` — machine-readable quality metrics
 
-| Dataset | Description | Expected |
-|:--------|:------------|:--------:|
-| Harmonized Legacy BMFs | Legacy files (1989–2022) with standardized column names aligned to Transformed BMF schema | Q1 2026 |
-| Metadata Tables | Track changes in organization names, addresses, and NTEE codes over time | Q1 2026 |
-| Unified BMF v2.0 | Updated Unified BMF with late 2025 data and new architecture | Q1 2026 |
+<br><hr><br>
 
-For details on these planned releases, see the [BMF overview page](../datasets/bmf.html#in-development).
+## Raw Archives
 
-## Release Status
+<details>
+<summary><strong>Show raw IRS and NCCS files</strong> (for reproducibility only — most users want the products above)</summary>
 
-| Dataset | Status | Coverage | Documentation |
-|:--------|:------:|:---------|:--------------|
-| Transformed BMF | Available | June 2023–present | [BMF Processing Guide](https://urbaninstitute.github.io/nccs-data-bmf/index.html) |
-| Unified BMF | Available | 1989–mid-2025 | [Data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx) |
-| Raw BMF Archives | Available | June 2023–present | [IRS data dictionary](https://www.irs.gov/pub/irs-soi/eo-info.pdf) |
-| Legacy BMFs | Archived | 1989–2022 | Per-file dictionaries above |
-| Harmonized Legacy BMFs | Planned (Q1 2026) | 1989–2022 | TBD |
-| Metadata Tables | Planned (Q1 2026) | 1989–present | TBD |
-| Unified BMF v2.0 | Planned (Q1 2026) | 1989–late 2025 | TBD |
+### Raw Monthly BMF
 
-## Contact
+Untouched IRS monthly releases. Use these when you need to replicate analysis built on a specific raw file or verify upstream NCCS transformations.
 
-Questions or feedback about BMF datasets? Visit our [contact page](https://nccs.urban.org/nccs/contact/).
+**URL pattern:**
+
+```
+https://nccsdata.s3.us-east-1.amazonaws.com/raw/bmf/{YYYY-MM}-BMF.csv
+```
+
+Replace `{YYYY-MM}` with the desired vintage (e.g. `2026-01`). See the [IRS BMF documentation](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf) for the original schema.
+
+### Raw Legacy BMF
+
+Original NCCS 501CX-NONPROFIT-PX vintages. Each row links the unmodified file and its profile (data dictionary). Most users should prefer the **harmonized legacy BMF** above — it has the same schema as the transformed monthly product.
+
+```{r}
+raw_legacy <- build_raw_legacy_section(manifest)
+if (nrow(raw_legacy) > 0) {
+  knitr::kable(
+    raw_legacy,
+    escape    = FALSE,
+    col.names = c("Year", "Month", "File", "Download", "Profile", "Size"),
+    format    = "html",
+    row.names = FALSE
+  ) |>
+    kableExtra::kable_styling()
+} else {
+  cat("_Raw legacy BMF files are not yet listed in the manifest._\n")
+}
+```
+
+</details>
+
+<br><hr><br>
+
+## Documentation & Support
+
+- [BMF Processing Guide](https://urbaninstitute.github.io/nccs-data-bmf/index.html) — how NCCS cleans and harmonizes BMF data
+- [Quality Reports Index](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/) — every per-month and per-product quality report
+- [Source repository](https://github.com/UrbanInstitute/nccs-data-bmf) — pipeline code and issue tracker
+- [Contact](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests
+
+```{r}
+#| results: asis
+cat(sprintf("\n<p style='font-size: 0.85em; color: #666; margin-top: 2em;'>Last verified: %s</p>\n",
+            format(Sys.Date(), "%Y-%m-%d")))
+```

@@ -59,9 +59,11 @@ decorate <- function(dt, base_url) {
 # BMF manifest (new layout)
 #
 # Source folders, all in the public `nccsdata` bucket:
-#   master/bmf/                 -- Master BMF (renamed from "Unified")
-#   processed/bmf/YYYY_MM/      -- monthly processed BMF
-#   processed/bmf-legacy/YYYY_MM/  -- monthly legacy BMF
+#   master/bmf/                       -- Master BMF (renamed from "Unified")
+#   geocoding/master/merged/          -- Master BMF with lat/lon
+#   processed/bmf/YYYY_MM/            -- monthly transformed BMF (2023-06+)
+#   processed/bmf-legacy/YYYY_MM/     -- monthly harmonized legacy BMF (1989-2022)
+#   legacy/bmf/                       -- raw NCCS 501CX-NONPROFIT-PX vintages
 #
 # Output: catalogs/AWS-BMF.csv with an extra `source` column tagging each row.
 # -----------------------------------------------------------------------------
@@ -69,9 +71,11 @@ decorate <- function(dt, base_url) {
 build_bmf_manifest <- function(out_path = "catalogs/AWS-BMF.csv") {
   message("Building BMF manifest")
   sources <- list(
-    master    = "master/bmf/",
-    processed = "processed/bmf/",
-    legacy    = "processed/bmf-legacy/"
+    master     = "master/bmf/",
+    geocoded   = "geocoding/master/merged/",
+    processed  = "processed/bmf/",
+    legacy     = "processed/bmf-legacy/",
+    raw_legacy = "legacy/bmf/"
   )
 
   parts <- lapply(names(sources), function(src) {

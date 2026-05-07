@@ -40,6 +40,8 @@ make_fixture <- function() {
     list(source = "master", Key = "master/bmf/BMF_MASTER_NY.csv", Size = 60e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER_TX.csv", Size = 55e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER.csv",     Size = 1300e6),  # no state suffix
+    # Geocoded master
+    list(source = "geocoded", Key = "geocoding/master/merged/bmf_master_geocoded.parquet", Size = 1500e6),
     # Processed: monthly
     list(source = "processed", Key = "processed/bmf/2026_01/BMF.csv", Size = 200e6),
     list(source = "processed", Key = "processed/bmf/2025_12/BMF.csv", Size = 198e6),
@@ -47,6 +49,9 @@ make_fixture <- function() {
     # Legacy: monthly
     list(source = "legacy", Key = "processed/bmf-legacy/2024_03/BMF.csv", Size = 180e6),
     list(source = "legacy", Key = "processed/bmf-legacy/2023_11/BMF.csv", Size = 175e6),
+    # Raw legacy
+    list(source = "raw_legacy", Key = "legacy/bmf/BMF-1989-06-501CX-NONPROFIT-PX.csv", Size = 80e6),
+    list(source = "raw_legacy", Key = "legacy/bmf/BMF-2010-04-501CX-NONPROFIT-PX.csv", Size = 120e6),
     # Junk row that shouldn't pollute output
     list(source = "processed", Key = "processed/bmf/README.txt", Size = 1e3)
   )
@@ -190,5 +195,92 @@ test_that("build_monthly_section handles empty source", {
   manifest <- make_fixture()
   manifest <- manifest[manifest$source != "legacy", , drop = FALSE]
   out <- build_monthly_section(manifest, "legacy")
+  expect_equal(nrow(out), 0)
+})
+
+# =============================================================================
+# build_combined_monthly_section
+# =============================================================================
+
+test_that("build_combined_monthly_section interleaves transformed and harmonized legacy", {
+  manifest <- make_fixture()
+  out <- build_combined_monthly_section(manifest, n_recent = NA)
+
+  # 3 processed + 2 legacy valid rows (README dropped)
+  expect_equal(nrow(out), 5)
+
+  # Sort: most recent first
+  expect_equal(out$year[1],  "2026")
+  expect_equal(out$month[1], "01")
+
+  # Era column tags both pipelines
+  expect_true("Transformed" %in% out$era)
+  expect_true("Harmonized legacy" %in% out$era)
+})
+
+test_that("build_combined_monthly_section caps to n_recent", {
+  manifest <- make_fixture()
+  out <- build_combined_monthly_section(manifest, n_recent = 3)
+  expect_equal(nrow(out), 3)
+  # The cap takes the 3 most recent
+  expect_equal(out$year, c("2026", "2025", "2025"))
+})
+
+# =============================================================================
+# build_geocoded_master_row
+# =============================================================================
+
+test_that("build_geocoded_master_row returns one row when present", {
+  manifest <- make_fixture()
+  out <- build_geocoded_master_row(manifest)
+  expect_equal(nrow(out), 1)
+  expect_match(out$file[1], "geocoded")
+  expect_match(out$download[1], "DOWNLOAD")
+})
+
+test_that("build_geocoded_master_row returns NULL when absent", {
+  manifest <- make_fixture()
+  manifest <- manifest[manifest$source != "geocoded", , drop = FALSE]
+  out <- build_geocoded_master_row(manifest)
+  expect_null(out)
+})
+
+# =============================================================================
+# build_raw_legacy_section
+# =============================================================================
+
+test_that("build_raw_legacy_section parses vintage and templates PROFILE URL", {
+  manifest <- make_fixture()
+  out <- build_raw_legacy_section(manifest)
+
+  expect_equal(nrow(out), 2)
+  # Sorted descending
+  expect_equal(out$year, c("2010", "1989"))
+  expect_equal(out$month, c("04", "06"))
+
+  # PROFILE URL templated from filename stem
+  expect_match(out$profile[1], "BMF-2010-04-501CX-NONPROFIT-PX")
+  expect_false(grepl("\\.csv", out$profile[1]))
+  expect_match(out$profile[1], "class='button2'")
+})
+
+test_that("build_raw_legacy_section em-dashes missing profiles", {
+  manifest <- make_fixture()
+  out <- build_raw_legacy_section(
+    manifest,
+    missing_profiles = "BMF-1989-06-501CX-NONPROFIT-PX"
+  )
+  # 1989 row should now show em-dash
+  row_1989 <- out[out$year == "1989", , drop = FALSE]
+  expect_equal(row_1989$profile, "&mdash;")
+  # 2010 row still has button
+  row_2010 <- out[out$year == "2010", , drop = FALSE]
+  expect_match(row_2010$profile, "PROFILE")
+})
+
+test_that("build_raw_legacy_section handles empty source", {
+  manifest <- make_fixture()
+  manifest <- manifest[manifest$source != "raw_legacy", , drop = FALSE]
+  out <- build_raw_legacy_section(manifest)
   expect_equal(nrow(out), 0)
 })

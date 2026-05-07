@@ -50,14 +50,19 @@ git push
 
 ### S3 layout (for reference)
 
-`get-aws-files.R` builds `AWS-BMF.csv` from three prefixes in the public
+`get-aws-files.R` builds `AWS-BMF.csv` from five prefixes in the public
 `nccsdata` bucket:
 
-| Source     | S3 prefix                       | Notes                             |
-|------------|---------------------------------|-----------------------------------|
-| `master`   | `master/bmf/`                   | Master BMF, state-sliced + headline `bmf_master.csv` |
-| `processed`| `processed/bmf/YYYY_MM/`        | Monthly processed BMF             |
-| `legacy`   | `processed/bmf-legacy/YYYY_MM/` | Monthly legacy BMF (note: `bmf-legacy`, not `legacy_bmf` or `legacy-bmf`) |
+| Source       | S3 prefix                       | Notes                                                     |
+|--------------|---------------------------------|-----------------------------------------------------------|
+| `master`     | `master/bmf/`                   | Master BMF, state-sliced + headline `bmf_master.csv`      |
+| `geocoded`   | `geocoding/master/merged/`      | Master BMF with lat/lon                                   |
+| `processed`  | `processed/bmf/YYYY_MM/`        | Transformed monthly BMF (2023-06 → present)               |
+| `legacy`     | `processed/bmf-legacy/YYYY_MM/` | Harmonized legacy monthly BMF (1989-2022)                 |
+| `raw_legacy` | `legacy/bmf/`                   | Raw NCCS 501CX-NONPROFIT-PX vintages                      |
+
+Raw IRS monthly archives at `raw/bmf/{YYYY-MM}-BMF.csv` are *not* in the
+manifest — the catalog page references them via URL pattern only.
 
 Per-month quality reports are templated to
 `https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_<YYYY>_<MM>_quality_report.html`
