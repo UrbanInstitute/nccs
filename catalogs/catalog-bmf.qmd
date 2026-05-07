@@ -144,7 +144,24 @@ knitr::kable(
 
 ### Browse Older Releases
 
-The full archive of monthly releases (1989–present) is browseable at the [quality reports index](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/). Each report links the dataset, dictionary, and quality summary for that month.
+The complete archive of every monthly release — data, dictionary, and quality report — is below. (There is no separate centralized index; this catalog is the canonical listing.)
+
+<details>
+<summary><strong>Show all monthly releases (1989–present)</strong></summary>
+
+```{r}
+all_releases <- build_combined_monthly_section(manifest, n_recent = NA)
+knitr::kable(
+  all_releases,
+  escape    = FALSE,
+  col.names = c("Year", "Month", "Pipeline", "Download", "Dictionary", "Quality Report", "Size"),
+  format    = "html",
+  row.names = FALSE
+) |>
+  kableExtra::kable_styling()
+```
+
+</details>
 
 ### Access via S3
 
