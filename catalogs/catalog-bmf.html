@@ -118,9 +118,34 @@ ul.task-list li input[type="checkbox"] {
 <section id="master-bmf" class="level2">
 <h2 data-anchor-id="master-bmf">Master BMF</h2>
 <p>One row per EIN spanning 1989 to present, with most-recent values for each organization plus <code>first_vintage_ym</code>, <code>last_vintage_ym</code>, and <code>bmf_source</code> to track provenance. This is the primary product for longitudinal analysis and as a sampling frame.</p>
-<p><a href="https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx" class="button3">Download Data Dictionary</a> <a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html" class="button3">Master Quality Report</a></p>
+<p>The <strong>geocoded</strong> variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variant</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Download</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Dictionary</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Quality Report</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Master BMF</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/bmf_master.csv" class="button">DOWNLOAD</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.amazonaws.com/harmonized/harmonized_data_dictionary.xlsx" class="button2">DICTIONARY</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html" class="button2">QUALITY REPORT</a></td>
+<td style="text-align: left;">2899.1 mb</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <section id="download-by-stateterritory" class="level3">
 <h3 data-anchor-id="download-by-stateterritory">Download by State/Territory</h3>
+<p>For users who only need a single state, the Master BMF is also published as state-sliced files. Schema and dictionary are identical to the headline files above.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small">
@@ -422,19 +447,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="geocoded-master-bmf" class="level3">
-<h3 data-anchor-id="geocoded-master-bmf">Geocoded Master BMF</h3>
-<p>Master BMF joined to lat/lon coordinates against a deduplicated address table. Use this when you need to map nonprofit locations or aggregate to geographies.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>_Geocoded master BMF is not yet listed in the manifest._</code></pre>
-</div>
-</div>
-</section>
 <section id="access-via-s3" class="level3">
 <h3 data-anchor-id="access-via-s3">Access via S3</h3>
-<pre><code>s3://nccsdata/master/bmf/                  # Master BMF, state-sliced
-s3://nccsdata/geocoding/master/merged/     # Geocoded variant</code></pre>
+<pre><code>s3://nccsdata/geocoding/master/merged/     # Geocoded variant (recommended)
+s3://nccsdata/master/bmf/                  # Plain Master BMF + state slices</code></pre>
 <br>
 <hr>
 <p><br></p>
