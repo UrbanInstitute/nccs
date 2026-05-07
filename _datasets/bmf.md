@@ -27,6 +27,9 @@ primaryLinks:
   - text: "Quality Reports"
     href: "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
     icon: article
+  - text: "BMF Data Guide"
+    href: "https://urbaninstitute.github.io/nccs-data-bmf/index.html"
+    icon: article
 citation: 
   author: "Jesse Lecy"
   citationDate: "2024"
