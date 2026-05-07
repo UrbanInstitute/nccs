@@ -25,7 +25,7 @@ primaryLinks:
     href: "../../catalogs/catalog-bmf.html#legacy-bmf-monthly"
     icon: download
   - text: "Quality Reports"
-    href: "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
+    href: "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/"
     icon: article
   - text: "BMF Data Guide"
     href: "https://urbaninstitute.github.io/nccs-data-bmf/index.html"
