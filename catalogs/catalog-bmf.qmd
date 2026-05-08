@@ -22,6 +22,7 @@ source("R/bmf_helpers.R")
 manifest <- read.csv("AWS-BMF.csv", stringsAsFactors = FALSE)
 
 state_mapping <- c(
+  # 50 states + DC
   "AL" = "Alabama",          "AK" = "Alaska",
   "AZ" = "Arizona",          "AR" = "Arkansas",
   "CA" = "California",       "CO" = "Colorado",
@@ -48,10 +49,20 @@ state_mapping <- c(
   "VT" = "Vermont",          "VA" = "Virginia",
   "WA" = "Washington",       "WV" = "West Virginia",
   "WI" = "Wisconsin",        "WY" = "Wyoming",
+  # U.S. territories
   "AS" = "American Samoa",   "GU" = "Guam",
   "MP" = "Northern Mariana Islands",
   "PR" = "Puerto Rico",      "VI" = "U.S. Virgin Islands",
-  "Un" = "Unmapped"
+  # APO/FPO military
+  "AA" = "Armed Forces Americas",
+  "AE" = "Armed Forces Europe",
+  "AP" = "Armed Forces Pacific",
+  # Compact of Free Association
+  "FM" = "Federated States of Micronesia",
+  "MH" = "Marshall Islands",
+  "PW" = "Palau",
+  # Missing/unknown state
+  "ZZ" = "Unknown / unmapped"
 )
 ```
 
@@ -95,7 +106,7 @@ if (!is.null(headline)) {
 
 ### Download by State/Territory
 
-For users who only need a single state, the Master BMF is also published as state-sliced files. Schema and dictionary are identical to the headline files above.
+For users who only need a single state, the geocoded Master BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a `ZZ` bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above.
 
 ```{r}
 master <- build_master_section(manifest, state_mapping)
@@ -112,8 +123,9 @@ knitr::kable(
 ### Access via S3
 
 ```
-s3://nccsdata/geocoding/master/merged/     # Geocoded variant (recommended)
-s3://nccsdata/master/bmf/                  # Plain Master BMF + state slices
+s3://nccsdata/geocoding/bmf-master/merged/   # Geocoded variant (recommended)
+s3://nccsdata/master/bmf/                    # Plain Master BMF
+s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts
 ```
 
 <br><hr><br>

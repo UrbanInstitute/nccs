@@ -36,9 +36,21 @@ KEEP_COLS       <- c("Key", "LastModified", "ETag", "Size", "StorageClass", "Buc
 # -----------------------------------------------------------------------------
 
 #' List a single S3 prefix and return a tidy data.frame.
+#'
+#' Credentials are read from env vars and passed explicitly to `get_bucket`.
+#' Newer aws.s3 builds don't always auto-detect AWS_SESSION_TOKEN, which
+#' silently falls back to anonymous and returns only public-listable keys.
 list_prefix <- function(bucket, prefix) {
   message(sprintf("  listing s3://%s/%s", bucket, prefix))
-  buck <- aws.s3::get_bucket(bucket = bucket, prefix = prefix, max = Inf)
+  buck <- aws.s3::get_bucket(
+    bucket        = bucket,
+    prefix        = prefix,
+    max           = Inf,
+    key           = Sys.getenv("AWS_ACCESS_KEY_ID"),
+    secret        = Sys.getenv("AWS_SECRET_ACCESS_KEY"),
+    session_token = Sys.getenv("AWS_SESSION_TOKEN"),
+    region        = Sys.getenv("AWS_DEFAULT_REGION", "us-east-1")
+  )
   if (length(buck) == 0) {
     return(data.frame())
   }
@@ -60,7 +72,8 @@ decorate <- function(dt, base_url) {
 #
 # Source folders, all in the public `nccsdata` bucket:
 #   master/bmf/                       -- Master BMF (renamed from "Unified")
-#   geocoding/master/merged/          -- Master BMF with lat/lon
+#   master/bmf/state_marts/csv/       -- Per-state geocoded marts (CSV)
+#   geocoding/bmf-master/merged/      -- Master BMF with lat/lon
 #   processed/bmf/YYYY_MM/            -- monthly transformed BMF (2023-06+)
 #   processed/bmf-legacy/YYYY_MM/     -- monthly harmonized legacy BMF (1989-2022)
 #   legacy/bmf/                       -- raw NCCS 501CX-NONPROFIT-PX vintages
@@ -72,7 +85,8 @@ build_bmf_manifest <- function(out_path = "catalogs/AWS-BMF.csv") {
   message("Building BMF manifest")
   sources <- list(
     master     = "master/bmf/",
-    geocoded   = "geocoding/master/merged/",
+    state_mart = "master/bmf/state_marts/csv/",
+    geocoded   = "geocoding/bmf-master/merged/",
     processed  = "processed/bmf/",
     legacy     = "processed/bmf-legacy/",
     raw_legacy = "legacy/bmf/"

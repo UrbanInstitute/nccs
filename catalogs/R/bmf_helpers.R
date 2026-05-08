@@ -2,7 +2,7 @@
 # BMF catalog helpers
 # Path-based parsers and URL builders for the BMF S3 layout:
 #   master/bmf/                      -> Master BMF (state-sliced + headline)
-#   geocoding/master/merged/         -> Master BMF with lat/lon
+#   geocoding/bmf-master/merged/     -> Master BMF with lat/lon
 #   processed/bmf/YYYY_MM/           -> Transformed monthly BMF (2023-06+)
 #   processed/bmf-legacy/YYYY_MM/    -> Harmonized legacy monthly BMF (1989-2022)
 #   legacy/bmf/                      -> Raw NCCS 501CX-NONPROFIT-PX vintages
@@ -74,7 +74,7 @@ make_quality_report_links <- function(urls) {
 #' @param state_mapping named character vector: abbreviation -> full name.
 #' @return data.frame with columns: download, size, state.
 build_master_section <- function(manifest, state_mapping) {
-  master <- manifest[manifest$source == "master", , drop = FALSE]
+  master <- manifest[manifest$source %in% c("master", "state_mart"), , drop = FALSE]
   master$state_abbr <- extract_bmf_state(master$Key)
 
   lookup <- data.frame(
