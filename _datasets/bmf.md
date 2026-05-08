@@ -6,8 +6,8 @@ categories:
   - BMF
 featured: true
 featuredOrder: 2
-primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/master/bmf/bmf_master.csv"
-primaryCtaCaption: "Master BMF"
+primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/geocoding/bmf-master/merged/bmf_master_geocoded.csv"
+primaryCtaCaption: 'Master BMF (geocoded) &middot; <a href="https://nccsdata.s3.amazonaws.com/geocoding/bmf-master/merged/bmf_master_geocoded_data_dictionary.csv">Data dictionary</a>'
 primaryLinks:
   - text: "Data Catalog"
     href: "../../catalogs/catalog-bmf.html"
