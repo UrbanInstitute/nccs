@@ -234,47 +234,46 @@ build_master_headline_table <- function(
   geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
   master   <- manifest[manifest$source == "master", , drop = FALSE]
 
-  # Master dictionary derived from the manifest (single source of truth)
-  dict_rows <- master[grepl("(?i)bmf_master_data_dictionary\\.csv$",
-                            basename(master$Key)), , drop = FALSE]
-  dictionary_url <- if (nrow(dict_rows) > 0) dict_rows$URL[1] else NA_character_
+  # Pick a single headline data CSV + matching dictionary URL out of a manifest
+  # subset. Returns a 1-row data.frame or NULL.
+  pick_variant <- function(rows, dict_pattern) {
+    if (nrow(rows) == 0) return(NULL)
+    is_dict    <- grepl(dict_pattern, basename(rows$Key), ignore.case = TRUE)
+    is_qr      <- grepl("_quality_report\\.json$", basename(rows$Key), ignore.case = TRUE)
+    is_state   <- !is.na(extract_bmf_state(rows$Key))
+    headline   <- rows[!is_dict & !is_qr & !is_state, , drop = FALSE]
+    headline   <- headline[order(!grepl("\\.csv$", headline$Key)), , drop = FALSE]
+    if (nrow(headline) == 0) return(NULL)
 
-  # Headline plain file: unsuffixed bmf_master.csv / .parquet (no state code,
-  # not a dictionary or quality report).
-  is_state_sliced <- !is.na(extract_bmf_state(master$Key))
-  is_artifact     <- classify_bmf_artifact(master$Key) %in%
-                       c("dictionary", "quality_report_json")
-  headline_plain  <- master[!is_state_sliced & !is_artifact, , drop = FALSE]
-  # Prefer .csv over .parquet for the headline link
-  headline_plain  <- headline_plain[order(!grepl("\\.csv$", headline_plain$Key)),
-                                    , drop = FALSE]
+    dict_rows  <- rows[is_dict, , drop = FALSE]
+    dict_url   <- if (nrow(dict_rows) > 0) dict_rows$URL[1] else NA_character_
 
-  rows <- list()
-  if (nrow(geocoded) > 0) {
-    rows[[length(rows) + 1L]] <- data.frame(
-      variant = "Master BMF (geocoded)",
-      URL     = geocoded$URL[1],
-      Size    = geocoded$Size[1],
+    data.frame(
+      URL  = headline$URL[1],
+      Size = headline$Size[1],
+      dict = dict_url,
       stringsAsFactors = FALSE
     )
   }
-  if (nrow(headline_plain) > 0) {
-    rows[[length(rows) + 1L]] <- data.frame(
-      variant = "Master BMF",
-      URL     = headline_plain$URL[1],
-      Size    = headline_plain$Size[1],
-      stringsAsFactors = FALSE
-    )
+
+  rows <- list()
+  geo_row <- pick_variant(geocoded, "bmf_master_geocoded_data_dictionary\\.csv$")
+  if (!is.null(geo_row)) {
+    rows[[length(rows) + 1L]] <- cbind(variant = "Master BMF (geocoded)", geo_row)
+  }
+  plain_row <- pick_variant(master, "bmf_master_data_dictionary\\.csv$")
+  if (!is.null(plain_row)) {
+    rows[[length(rows) + 1L]] <- cbind(variant = "Master BMF", plain_row)
   }
   if (length(rows) == 0) return(NULL)
   out <- do.call(rbind, rows)
 
   out$download <- paste0("<a href='", out$URL, "'>Download</a>")
-  out$dictionary <- if (is.na(dictionary_url)) {
-    "&mdash;"
-  } else {
-    paste0("<a href='", dictionary_url, "'>Dictionary</a>")
-  }
+  out$dictionary <- ifelse(
+    is.na(out$dict),
+    "&mdash;",
+    paste0("<a href='", out$dict, "'>Dictionary</a>")
+  )
   out$quality_report <- paste0(
     "<a href='", quality_report_url, "'>Quality report</a>"
   )
