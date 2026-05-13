@@ -60,11 +60,12 @@ classify_core_artifact <- function(keys) {
 #' @param form_type one of CORE_FORM_TYPES.
 #' @param n_recent number of most-recent years to return; pass NA for all.
 #' @param min_size_bytes drop years whose data CSV is smaller than this. The
-#'   new pipeline writes placeholder files for some pre-2010 years that contain
-#'   only headers; these are listed in the manifest but have no analytic value.
-#'   The default cutoff (1 MB) cleanly excludes them for every form type.
+#'   new pipeline writes near-empty placeholder files for the earliest years
+#'   (mostly pre-2008): they are listed in the manifest but have no analytic
+#'   value. The default cutoff (300 KB) excludes those without hiding sparse
+#'   but legitimate mid-series releases (e.g. 990PF 2017 at ~0.4 MB).
 build_core_year_section <- function(manifest, form_type, n_recent = 5,
-                                    min_size_bytes = 1e6) {
+                                    min_size_bytes = 3e5) {
   rows <- filter_core_manifest(manifest)
   yf <- extract_core_year_form(rows$Key)
   rows$year      <- yf$year
