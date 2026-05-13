@@ -37,6 +37,10 @@ The NCCS Core Data Series is a panel of nonprofit organizations derived from ann
 
 For background on what the Core Series contains and its scope limitations, see the [Core overview page](../datasets/core.html).
 
+::: {.callout-note title="Files are organized by tax year, not filing year"}
+Every year label in this catalog refers to the **tax year covered by the return** — the fiscal period the filing describes — not the calendar year the IRS received it. A nonprofit's 2022 tax-year return is in the `2022` directory regardless of when it was actually filed (typically 6&ndash;18 months later). Recent tax years are still in-progress as the IRS continues to release returns over time.
+:::
+
 ## Which dataset should I use?
 
 | If you need... | Use | Why |
