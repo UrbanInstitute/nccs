@@ -213,6 +213,53 @@ Full pipeline guide and per-form quality reports are at the [CORE Pipeline Guide
 
 <br><hr><br>
 
+## Blank IRS Forms Archive
+
+Blank IRS Form 990, 990-EZ, 990-PF, their schedules (A&ndash;O and R), and the corresponding instruction booklets are mirrored at `s3://nccsdata/raw/core/forms/`. Each cell below links the blank **F**orm and (where IRS publishes one standalone) the **I**nstructions. Empty cells reflect years IRS did not publish that combination &mdash; not a coverage gap on our side. See the [Forms archive](https://urbaninstitute.github.io/nccs-data-core/02-data-lineage.html) section of the Pipeline Guide for the year-coverage details and refresh SOP.
+
+Direct download URLs follow:
+
+```
+https://nccsdata.s3.us-east-1.amazonaws.com/raw/core/forms/<basename>_<YYYY>.pdf
+```
+
+A note on schedule instructions: M, N, and parts of I/L have no standalone instruction PDF because IRS folds those instructions into the main `i990_YYYY.pdf` booklet linked under Form 990 below.
+
+### Main Forms
+
+```{r}
+forms_main <- build_forms_matrix(manifest, CORE_MAIN_FORMS)
+knitr::kable(
+  forms_main,
+  escape    = FALSE,
+  format    = "html",
+  row.names = FALSE,
+  align     = c("l", rep("c", length(CORE_MAIN_FORMS)))
+) |>
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+### Schedules
+
+```{r}
+#| results: asis
+cat("<div style='overflow-x: auto;'>")
+forms_sched <- build_forms_matrix(manifest, CORE_SCHEDULES)
+cat(
+  knitr::kable(
+    forms_sched,
+    escape    = FALSE,
+    format    = "html",
+    row.names = FALSE,
+    align     = c("l", rep("c", length(CORE_SCHEDULES)))
+  ) |>
+    kableExtra::kable_styling(full_width = FALSE)
+)
+cat("</div>")
+```
+
+<br><hr><br>
+
 ## Legacy: Harmonized Core (deprecated)
 
 <details>

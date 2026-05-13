@@ -90,6 +90,7 @@ Each catalog section exposes the underlying S3 prefix for programmatic access an
 **NCCS resources**
 
 - [Core Data Catalog](../../catalogs/catalog-core.html) — every published file with downloads, dictionaries, and quality reports.
+- [Blank IRS Forms Archive](../../catalogs/catalog-core.html#blank-irs-forms-archive) — every year of blank Form 990 / 990-EZ / 990-PF and their schedules, plus IRS instruction booklets.
 - [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/) — architecture, harmonization logic, known upstream-IRS data quirks, and per-year/per-form quality reports.
 - [Business Master File](bmf.html) — merge organizational attributes (NTEE, 501c type, address, lat/lon) onto Core rows via EIN.
 - [Census Crosswalk](census.html) — aggregate Core data to tracts, counties, or metro areas using standard FIPS codes.

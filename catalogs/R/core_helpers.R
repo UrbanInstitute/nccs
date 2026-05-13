@@ -141,6 +141,78 @@ build_core_year_section <- function(manifest, form_type, n_recent = 5,
 # PRODUCT in: 501c3-pc, 501c3-pz, 501ce-pc, 501ce-pz, 501c3-pf
 # -----------------------------------------------------------------------------
 
+# -----------------------------------------------------------------------------
+# Blank IRS forms archive (raw/core/forms/)
+#
+# Filenames: f<base>_<YYYY>.pdf for blank forms, i<base>_<YYYY>.pdf for
+# instructions. Schedule B uses basename "990ezb" (IRS naming quirk).
+# -----------------------------------------------------------------------------
+
+CORE_MAIN_FORMS <- c(
+  "990"   = "Form 990",
+  "990ez" = "Form 990-EZ",
+  "990pf" = "Form 990-PF"
+)
+
+CORE_SCHEDULES <- c(
+  "990sa"  = "A", "990ezb" = "B", "990sc"  = "C", "990sd"  = "D",
+  "990se"  = "E", "990sf"  = "F", "990sg"  = "G", "990sh"  = "H",
+  "990si"  = "I", "990sj"  = "J", "990sk"  = "K", "990sl"  = "L",
+  "990sm"  = "M", "990sn"  = "N", "990so"  = "O", "990sr"  = "R"
+)
+
+#' Build a year-by-form matrix of PDF links for the blank forms archive.
+#'
+#' Rows are years (most recent first); columns are form codes in the order
+#' given by `form_codes`. Each cell is an HTML fragment containing two
+#' single-letter links: F (blank form) and I (instructions). Cells are empty
+#' where IRS did not publish that year/form combination.
+#'
+#' @param manifest data.frame from AWS-NCCSDATA.csv.
+#' @param form_codes named character vector: basename -> column label.
+build_forms_matrix <- function(manifest, form_codes) {
+  rows <- manifest[grepl("^raw/core/forms/", manifest$Key) &
+                     grepl("\\.pdf$", manifest$Key, ignore.case = TRUE), ,
+                   drop = FALSE]
+  if (nrow(rows) == 0) return(NULL)
+  m <- stringr::str_match(basename(rows$Key), "^([fi])(.+)_(\\d{4})\\.pdf$")
+  rows$kind <- m[, 2]
+  rows$base <- m[, 3]
+  rows$year <- m[, 4]
+  rows <- rows[!is.na(rows$year) & rows$base %in% names(form_codes), ,
+               drop = FALSE]
+  if (nrow(rows) == 0) return(NULL)
+
+  years <- sort(unique(rows$year), decreasing = TRUE)
+
+  cell <- function(year, base) {
+    sel_f <- rows[rows$year == year & rows$base == base & rows$kind == "f", ,
+                  drop = FALSE]
+    sel_i <- rows[rows$year == year & rows$base == base & rows$kind == "i", ,
+                  drop = FALSE]
+    parts <- character(0)
+    if (nrow(sel_f) > 0) {
+      parts <- c(parts, paste0("<a href='", sel_f$URL[1], "' title='Form'>F</a>"))
+    }
+    if (nrow(sel_i) > 0) {
+      parts <- c(parts, paste0("<a href='", sel_i$URL[1], "' title='Instructions'>I</a>"))
+    }
+    if (length(parts) == 0) return("")
+    paste(parts, collapse = "&nbsp;")
+  }
+
+  mat <- vapply(
+    names(form_codes),
+    function(b) vapply(years, function(y) cell(y, b), character(1)),
+    character(length(years))
+  )
+  if (is.null(dim(mat))) mat <- matrix(mat, ncol = length(form_codes))
+  out <- data.frame(Year = years, mat, stringsAsFactors = FALSE,
+                    check.names = FALSE)
+  colnames(out) <- c("Year", unname(form_codes))
+  out
+}
+
 #' Build a year-by-year download table for a single legacy product directory.
 #'
 #' @param manifest data.frame from AWS-NCCSDATA.csv.
