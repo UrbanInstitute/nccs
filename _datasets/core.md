@@ -12,9 +12,12 @@ primaryCtaUrl: "../../catalogs/catalog-core.html"
 primaryCtaText: Data Catalog
 primaryCtaCaption:
 primaryLinks:
-  - text: "Data Catalog"
-    href: "../../catalogs/catalog-core.html"
-    icon: database
+  - text: "Processing Guide"
+    href: "https://urbaninstitute.github.io/nccs-data-core/"
+    icon: article
+  - text: "Quality Reports"
+    href: "https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html"
+    icon: assessment
 author:
 - id: jlecy
 - id: thiya
