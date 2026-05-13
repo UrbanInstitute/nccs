@@ -170,7 +170,11 @@ CORE_SCHEDULES <- c(
 #'
 #' @param manifest data.frame from AWS-NCCSDATA.csv.
 #' @param form_codes named character vector: basename -> column label.
-build_forms_matrix <- function(manifest, form_codes) {
+#' @param compact if TRUE, label cell links "F" / "I" instead of "Form" /
+#'   "Instr." (useful for the 16-column schedules grid).
+build_forms_matrix <- function(manifest, form_codes, compact = FALSE) {
+  label_f <- if (compact) "F" else "Form"
+  label_i <- if (compact) "I" else "Instr."
   rows <- manifest[grepl("^raw/core/forms/", manifest$Key) &
                      grepl("\\.pdf$", manifest$Key, ignore.case = TRUE), ,
                    drop = FALSE]
@@ -192,13 +196,13 @@ build_forms_matrix <- function(manifest, form_codes) {
                   drop = FALSE]
     parts <- character(0)
     if (nrow(sel_f) > 0) {
-      parts <- c(parts, paste0("<a href='", sel_f$URL[1], "'>Form</a>"))
+      parts <- c(parts, paste0("<a href='", sel_f$URL[1], "' title='Form'>", label_f, "</a>"))
     }
     if (nrow(sel_i) > 0) {
-      parts <- c(parts, paste0("<a href='", sel_i$URL[1], "'>Instr.</a>"))
+      parts <- c(parts, paste0("<a href='", sel_i$URL[1], "' title='Instructions'>", label_i, "</a>"))
     }
     if (length(parts) == 0) return("")
-    paste(parts, collapse = "<br>")
+    paste(parts, collapse = if (compact) "&nbsp;" else "<br>")
   }
 
   mat <- vapply(

@@ -241,10 +241,12 @@ knitr::kable(
 
 ### Schedules
 
+Columns are too narrow for the full labels here, so cells use **F** = blank form, **I** = instruction booklet.
+
 ```{r}
 #| results: asis
 cat("<div style='overflow-x: auto;'>")
-forms_sched <- build_forms_matrix(manifest, CORE_SCHEDULES)
+forms_sched <- build_forms_matrix(manifest, CORE_SCHEDULES, compact = TRUE)
 cat(
   knitr::kable(
     forms_sched,
