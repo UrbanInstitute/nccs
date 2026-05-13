@@ -22,8 +22,8 @@ author:
 - id: jlecy
 - id: thiya
 citation:
-  author: "Jesse Lecy"
-  citationDate: "2024"
+  author: "Thiyaghessan Poongundranar"
+  citationDate: "2026"
   container-title: "NCCS Core Series"
 ---
 
