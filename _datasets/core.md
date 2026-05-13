@@ -50,6 +50,8 @@ The NCCS Core Data Series is a panel of nonprofit organizations derived from ann
 
 Need to download specific files? **[Browse the Core Data Catalog &rarr;](../../catalogs/catalog-core.html)**
 
+Looking for blank IRS forms? **[Blank IRS Forms Archive &rarr;](../../catalogs/catalog-core.html#blank-irs-forms-archive)** &mdash; every year of Form 990 / 990-EZ / 990-PF, their schedules, and IRS instruction booklets.
+
 ## What's in (and what's missing from) the Core Series
 
 The Core Series harmonizes annual Form 990 filings into year-by-form-type files with stable variable names. Each year/file pools 501(c)(3) charities and all other 501(c) types into a single product. Use the `is_501c3` column (boolean, `TRUE` for 501(c)(3) public charities) to filter when needed; the raw `subsection_cd` is also available for finer-grained 501(c) subclassification.
