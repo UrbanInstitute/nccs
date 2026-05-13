@@ -198,7 +198,7 @@ build_forms_matrix <- function(manifest, form_codes) {
       parts <- c(parts, paste0("<a href='", sel_i$URL[1], "'>Instr.</a>"))
     }
     if (length(parts) == 0) return("")
-    paste(parts, collapse = " &middot; ")
+    paste(parts, collapse = "<br>")
   }
 
   mat <- vapply(
