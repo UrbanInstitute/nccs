@@ -1,6 +1,6 @@
 ---
 title: NCCS Core Series
-date: 2024-07-23
+date: 2026-05-13
 description: A panel of nonprofit organizations derived from annual IRS Form 990 filings, spanning 1990 to present.
 categories:
   - 990
