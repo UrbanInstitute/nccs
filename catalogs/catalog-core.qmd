@@ -45,18 +45,18 @@ Every year label in this catalog refers to the **tax year covered by the return*
 
 | If you need... | Use | Why |
 |:---|:---|:---|
-| Full Form 990 filers only, max variables | **990** | Larger nonprofits filing the long form (≈300 variables). Best for detailed financial analysis. |
-| Short-form filers only | **990EZ** | Smaller nonprofits filing the short form. Limited variable set. |
-| Every 990 + 990EZ filer in one file | **990 Combined** | The broadest population per year. Stacks 990 and 990EZ filers using the shared variable subset. |
-| Private foundations | **990PF** | Filed by all private foundations regardless of size. Separate variable set from public charities. |
+| Full Form 990 filers only, max variables | **990** | Larger nonprofits filing the long form (251 columns in 2024). Best for detailed financial analysis. |
+| Short-form filers only | **990EZ** | Smaller nonprofits filing the short form (76 columns in 2024). |
+| Every 990 + 990EZ filer in one file | **990 Combined** | The broadest population per year. Stacks 990 and 990EZ filers using the 53-column shared variable subset (plus pipeline-derived universals: `tax_year`, `tax_month`, `is_501c3`, `extract_year`, `is_amendment`). |
+| Private foundations | **990PF** | Filed by all private foundations regardless of size. Separate variable set from public charities (187 columns in 2024). |
 
-Each file pools 501(c)(3) charities and all other 501(c) types into a single product. Use the `tscope` column to filter to a specific tax-exempt class post-download.
+Each file pools 501(c)(3) charities and all other 501(c) types into a single product. Use the **`is_501c3`** column (boolean, `TRUE` for 501(c)(3) public charities) to filter when needed; the raw **`subsection_cd`** (IRC EO subsection code, 1&ndash;93) is also available for finer 501(c) subclassification.
 
 <br><hr><br>
 
 ## 990 {#section-990}
 
-Full Form 990 filers — the long-form return required for nonprofits with gross receipts ≥ \$200k or assets ≥ \$500k. The richest variable set in the Core Series (≈300 fields) but a narrower population than 990 Combined.
+Full Form 990 filers — the long-form return required for nonprofits with gross receipts ≥ \$200k or assets ≥ \$500k. The richest variable set in the Core Series (251 columns in 2024) but a narrower population than 990 Combined.
 
 ### Recent Releases
 
@@ -87,7 +87,7 @@ s3://nccsdata/processed/core/{YYYY}/990/
 
 ## 990EZ {#section-990ez}
 
-Short-form filers only — Form 990EZ is filed by mid-sized nonprofits (gross receipts < \$200k and assets < \$500k). Fewer variables than the full 990 but covers a substantially different population.
+Short-form filers only — Form 990EZ is filed by mid-sized nonprofits (gross receipts < \$200k and assets < \$500k). Fewer columns than the full 990 (76 in 2024) but covers a substantially different population.
 
 Most users want **990 Combined** below; this standalone slice is useful when you specifically need only the EZ filers.
 
@@ -120,7 +120,7 @@ s3://nccsdata/processed/core/{YYYY}/990ez/
 
 ## 990 Combined {#section-990combined}
 
-The broadest single-file product per year — Form 990 + Form 990EZ filers stacked together using the shared variable subset. Use this when you want the full population of 990/990EZ filers and don't need the long-form-only variables.
+The broadest single-file product per year — Form 990 + Form 990EZ filers stacked together using the 53-column shared variable subset (plus pipeline-derived universals: `tax_year`, `tax_month`, `is_501c3`, `extract_year`, `is_amendment`). Use this when you want the full population of 990/990EZ filers and don't need the long-form-only variables.
 
 ### Recent Releases
 
@@ -151,7 +151,7 @@ s3://nccsdata/processed/core/{YYYY}/990combined/
 
 ## 990PF {#section-990pf}
 
-Private foundations — all private foundations must file Form 990PF regardless of size. Has its own variable set distinct from public charities.
+Private foundations — all private foundations must file Form 990PF regardless of size. Has its own variable set distinct from public charities (187 columns in 2024).
 
 ### Recent Releases
 
@@ -190,11 +190,26 @@ processed/core/{YYYY}/{FORM_TYPE}/
     core_{YYYY}_{FORM_TYPE}_dictionary.csv  # variable definitions for this year
 ```
 
-Quality reports are not served from S3 (the S3 copies are gzipped). They are published on the [nccs-data-core Pages site](https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html) and linked from the Quality Report column in each table above.
+Quality reports are published on GitHub Pages alongside the [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/) and linked from the Quality Report column in each table above. The [Quality Reports Index](https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html) lists all 109 published reports.
 
 Data dictionaries are per-year because the variable set evolves as the underlying 990 forms change. Always read the dictionary for the year you're using rather than assuming column stability across years.
 
-The **`tscope`** column distinguishes 501(c)(3) charities (`CHARITIES`) from all other 501(c) types (`NONPROFIT`) within each file. Filter on this column when your analysis needs charities only or excludes them.
+Filter on **`is_501c3`** (boolean) to subset to 501(c)(3) public charities or their complement. The raw **`subsection_cd`** (IRC EO subsection code, 1&ndash;93) is also present for finer breakdowns.
+
+Tables above start in 2010 for the 990/990EZ/990 Combined forms and in 2010 for 990PF — earlier years exist as placeholder files only. For pre-2010 coverage, use the **Legacy: Harmonized Core** section below.
+
+<br><hr><br>
+
+## Before you analyze
+
+Known upstream-IRS data shapes that look like pipeline bugs but aren't &mdash; documented in the pipeline guide so analysts don't have to rediscover them:
+
+- [No top-coding or winsorization](https://urbaninstitute.github.io/nccs-data-core/08-output-schema.html#no-top-coding-or-winsorization) &mdash; identical maxes across related columns (e.g. `total_contributions` = `total_revenue`) reflect real-world equality for one filer, not capping.
+- [~12% of 990-EZ rows fail the balance-sheet identity](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html#filer-supplied-balance-sheet-identity-failures-12-of-990-ez-rows) &mdash; filer-supplied, not a harmonization error.
+- [Schedule A `_sec170` / `_sec509` zeros are filer-test-specific](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html#schedule-a-sec170-sec509-blocks-are-filer-test-specific-zeros-are-not-necessarily-missing) &mdash; cross-reference `non_pf_status_reason` before interpreting them as missing data.
+- [Filer-supplied negatives on revenue fields](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html#filer-supplied-negatives-on-conceptually-non-negative-fields) &mdash; IRS-supplied as-filed; not amendments.
+
+Full pipeline guide and per-form quality reports are at the [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/).
 
 <br><hr><br>
 
@@ -203,7 +218,7 @@ The **`tscope`** column distinguishes 501(c)(3) charities (`CHARITIES`) from all
 <details>
 <summary><strong>Show legacy <code>harmonized/core/</code> files</strong> (for reproducibility only — use the by-form-type tables above)</summary>
 
-These files predate the current by-form-type layout. They split each year's filers along two axes — **tax-exempt class** (501c3 charities vs. all other 501c types) and **form scope** (PC = full 990 only, PZ = 990 + 990EZ) — producing five products. The current pipeline pools these into single per-form-type files with a `tscope` column for filtering, so the products below are kept only to support replication of analyses built on the older layout.
+These files predate the current by-form-type layout. They split each year's filers along two axes — **tax-exempt class** (501c3 charities vs. all other 501c types) and **form scope** (PC = full 990 only, PZ = 990 + 990EZ) — producing five products. The current pipeline pools these into single per-form-type files with an `is_501c3` column for filtering, so the products below are kept only to support replication of analyses built on the older layout.
 
 **Shared dictionaries** (PC/PZ variants share a single dictionary; PF has its own):
 

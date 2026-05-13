@@ -52,7 +52,7 @@ Need to download specific files? **[Browse the Core Data Catalog &rarr;](../../c
 
 ## What's in (and what's missing from) the Core Series
 
-The Core Series harmonizes annual Form 990 filings into year-by-form-type files with stable variable names. Each year/file contains all 501(c) tax-exempt organizations that filed that form — both 501(c)(3) public charities and other 501(c) types are pooled together, with a `tscope` column for filtering.
+The Core Series harmonizes annual Form 990 filings into year-by-form-type files with stable variable names. Each year/file pools 501(c)(3) charities and all other 501(c) types into a single product. Use the `is_501c3` column (boolean, `TRUE` for 501(c)(3) public charities) to filter when needed; the raw `subsection_cd` is also available for finer-grained 501(c) subclassification.
 
 Files are organized by **filing form** rather than organization type. The four products are:
 
@@ -65,7 +65,7 @@ The Core Series does **not** include 990N ePostcard filers — the smallest nonp
 
 Other scope notes:
 
-- The `tscope` column distinguishes `CHARITIES` (501(c)(3) public charities) from `NONPROFIT` (all other 501(c) types). Filter on this column rather than expecting separate files.
+- The `is_501c3` column (boolean) distinguishes 501(c)(3) public charities from all other 501(c) types within each file; filter on this rather than expecting separate files. `subsection_cd` is also available for finer 501(c) subclass breakdowns.
 - Data dictionaries are **per year, per form type**. The variable set evolves with the underlying 990 form, so dictionary files are not interchangeable across years.
 - Variables in the Core Series are financial and governance fields disclosed on the 990 itself. For organizational attributes like NTEE code, 501c type, or address, merge against the [Business Master File](bmf.html) using EIN.
 
@@ -90,6 +90,7 @@ Each catalog section exposes the underlying S3 prefix for programmatic access an
 **NCCS resources**
 
 - [Core Data Catalog](../../catalogs/catalog-core.html) — every published file with downloads, dictionaries, and quality reports.
+- [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/) — architecture, harmonization logic, known upstream-IRS data quirks, and per-year/per-form quality reports.
 - [Business Master File](bmf.html) — merge organizational attributes (NTEE, 501c type, address, lat/lon) onto Core rows via EIN.
 - [Census Crosswalk](census.html) — aggregate Core data to tracts, counties, or metro areas using standard FIPS codes.
 - [Sector in Brief dashboard](https://nccs-urban.shinyapps.io/sector-in-brief/) — request full panels with BMF attributes pre-joined.

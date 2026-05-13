@@ -59,13 +59,24 @@ classify_core_artifact <- function(keys) {
 #' @param manifest data.frame from AWS-NCCSDATA.csv (must have Key, URL, Size).
 #' @param form_type one of CORE_FORM_TYPES.
 #' @param n_recent number of most-recent years to return; pass NA for all.
-build_core_year_section <- function(manifest, form_type, n_recent = 5) {
+#' @param min_size_bytes drop years whose data CSV is smaller than this. The
+#'   new pipeline writes placeholder files for some pre-2010 years that contain
+#'   only headers; these are listed in the manifest but have no analytic value.
+#'   The default cutoff (1 MB) cleanly excludes them for every form type.
+build_core_year_section <- function(manifest, form_type, n_recent = 5,
+                                    min_size_bytes = 1e6) {
   rows <- filter_core_manifest(manifest)
   yf <- extract_core_year_form(rows$Key)
   rows$year      <- yf$year
   rows$form_type <- yf$form_type
   rows$artifact  <- classify_core_artifact(rows$Key)
   rows <- rows[!is.na(rows$year) & rows$form_type == form_type, , drop = FALSE]
+
+  # Drop years whose data CSV is below the size cutoff (placeholder/empty).
+  small_years <- unique(rows$year[rows$artifact == "data" &
+                                    !is.na(rows$Size) &
+                                    rows$Size < min_size_bytes])
+  rows <- rows[!(rows$year %in% small_years), , drop = FALSE]
   if (nrow(rows) == 0) {
     return(data.frame(
       year = character(0), download = character(0), dictionary = character(0),
