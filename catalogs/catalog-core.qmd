@@ -178,14 +178,15 @@ s3://nccsdata/processed/core/{YYYY}/990pf/
 
 ## File Conventions
 
-Every year/form directory contains three artifacts with a consistent naming pattern:
+Every year/form directory contains two artifacts on S3:
 
 ```
 processed/core/{YYYY}/{FORM_TYPE}/
     core_{YYYY}_{FORM_TYPE}.csv             # the data
     core_{YYYY}_{FORM_TYPE}_dictionary.csv  # variable definitions for this year
-    core_{YYYY}_{FORM_TYPE}_quality.html    # rendered quality report
 ```
+
+Quality reports are not served from S3 (the S3 copies are gzipped). They are published on the [nccs-data-core Pages site](https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html) and linked from the Quality Report column in each table above.
 
 Data dictionaries are per-year because the variable set evolves as the underlying 990 forms change. Always read the dictionary for the year you're using rather than assuming column stability across years.
 
@@ -260,6 +261,7 @@ where `{PRODUCT}` is one of `501c3-pc`, `501c3-pz`, `501ce-pc`, `501ce-pz`, `501
 ## Documentation & Support
 
 - [Core overview page](../datasets/core.html) — what's in the Core Series, scope limitations, and merging guidance
+- [Quality Reports Index](https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html) — every per-year, per-form quality report
 - [BMF Data Catalog](catalog-bmf.html) — Business Master File, for merging organizational attributes (NTEE, 501c type, address) onto Core rows via EIN
 - [Census Crosswalk Catalog](catalog-census_crosswalk.html) — aggregate Core data to tracts, counties, or MSAs
 - [Contact](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests

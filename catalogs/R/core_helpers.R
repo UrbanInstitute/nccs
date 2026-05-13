@@ -11,6 +11,20 @@
 
 CORE_FORM_TYPES <- c("990", "990ez", "990combined", "990pf")
 
+# Quality reports are published on the nccs-data-core Pages site. The S3
+# copies are gzipped HTML and not directly browsable, so always link the
+# Pages-site URL.
+CORE_QUALITY_REPORT_URL <-
+  "https://urbaninstitute.github.io/nccs-data-core/quality-reports/%s/%s/core_%s_%s_quality.html"
+
+build_core_quality_url <- function(year, form_type) {
+  ifelse(
+    is.na(year) | is.na(form_type),
+    NA_character_,
+    sprintf(CORE_QUALITY_REPORT_URL, year, form_type, year, form_type)
+  )
+}
+
 #' Filter a full nccsdata manifest down to processed/core/ rows.
 filter_core_manifest <- function(manifest) {
   manifest[grepl("^processed/core/", manifest$Key), , drop = FALSE]
@@ -71,7 +85,6 @@ build_core_year_section <- function(manifest, form_type, n_recent = 5) {
   out_rows <- lapply(years, function(y) {
     csv_row  <- pick(y, "data")
     dict_row <- pick(y, "dictionary")
-    qr_row   <- pick(y, "quality")
     if (is.null(csv_row)) return(NULL)
 
     download <- paste0("<a href='", csv_row$URL, "'>Download</a>")
@@ -80,11 +93,9 @@ build_core_year_section <- function(manifest, form_type, n_recent = 5) {
     } else {
       "&mdash;"
     }
-    quality_report <- if (!is.null(qr_row)) {
-      paste0("<a href='", qr_row$URL, "'>Quality report</a>")
-    } else {
-      "&mdash;"
-    }
+    quality_report <- paste0(
+      "<a href='", build_core_quality_url(y, form_type), "'>Quality report</a>"
+    )
     size <- paste0(round(csv_row$Size / 1e6, 1), " mb")
 
     data.frame(
