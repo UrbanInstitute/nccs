@@ -215,7 +215,7 @@ Full pipeline guide and per-form quality reports are at the [CORE Pipeline Guide
 
 ## Blank IRS Forms Archive
 
-Blank IRS Form 990, 990-EZ, 990-PF, their schedules (A&ndash;O and R), and the corresponding instruction booklets are mirrored at `s3://nccsdata/raw/core/forms/`. Each cell below links the blank **F**orm and (where IRS publishes one standalone) the **I**nstructions. Empty cells reflect years IRS did not publish that combination &mdash; not a coverage gap on our side. See the [Forms archive](https://urbaninstitute.github.io/nccs-data-core/02-data-lineage.html) section of the Pipeline Guide for the year-coverage details and refresh SOP.
+Blank IRS Form 990, 990-EZ, 990-PF, their schedules (A&ndash;O and R), and the corresponding instruction booklets are mirrored at `s3://nccsdata/raw/core/forms/`. Each cell below links the blank **Form** and (where IRS publishes one standalone) the **Instr.**uction booklet. Empty cells reflect years IRS did not publish that combination &mdash; not a coverage gap on our side. See the [Forms archive](https://urbaninstitute.github.io/nccs-data-core/02-data-lineage.html) section of the Pipeline Guide for the year-coverage details and refresh SOP.
 
 Direct download URLs follow:
 

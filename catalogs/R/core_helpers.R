@@ -192,13 +192,13 @@ build_forms_matrix <- function(manifest, form_codes) {
                   drop = FALSE]
     parts <- character(0)
     if (nrow(sel_f) > 0) {
-      parts <- c(parts, paste0("<a href='", sel_f$URL[1], "' title='Form'>F</a>"))
+      parts <- c(parts, paste0("<a href='", sel_f$URL[1], "'>Form</a>"))
     }
     if (nrow(sel_i) > 0) {
-      parts <- c(parts, paste0("<a href='", sel_i$URL[1], "' title='Instructions'>I</a>"))
+      parts <- c(parts, paste0("<a href='", sel_i$URL[1], "'>Instr.</a>"))
     }
     if (length(parts) == 0) return("")
-    paste(parts, collapse = "&nbsp;")
+    paste(parts, collapse = " &middot; ")
   }
 
   mat <- vapply(
