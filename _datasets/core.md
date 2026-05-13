@@ -17,7 +17,7 @@ primaryLinks:
     icon: article
   - text: "Quality Reports"
     href: "https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html"
-    icon: assessment
+    icon: chart-bar
 author:
 - id: jlecy
 - id: thiya
