@@ -29,9 +29,11 @@ citation:
 
 The NCCS Core Data Series is a panel of nonprofit organizations derived from annual IRS Form 990 filings. It is the flagship product for tracking nonprofit financials, governance, and program activity over time, and serves as a primary research dataset alongside the [Business Master File](bmf.html).
 
+Files are published in three processing tiers (merged, SOI-current, legacy) &mdash; see the [Core Data Catalog](../../catalogs/catalog-core.html#which-tier-should-i-use) for the tier picker. Most analysts should default to the **merged panel**, which spans the full 1987&ndash;2024 record.
+
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; padding: 1.5rem; background: #f5f5f5; border-radius: 4px;">
   <div style="flex: 1 1 160px; min-width: 140px;">
-    <div style="font-size: 1.6rem; font-weight: 600; line-height: 1.1;">1990&ndash;2024</div>
+    <div style="font-size: 1.6rem; font-weight: 600; line-height: 1.1;">1987&ndash;2024</div>
     <div style="font-size: 0.85rem; color: #555;">coverage span</div>
   </div>
   <div style="flex: 1 1 160px; min-width: 140px;">
@@ -94,6 +96,9 @@ Each catalog section exposes the underlying S3 prefix for programmatic access an
 - [Core Data Catalog](../../catalogs/catalog-core.html) — every published file with downloads, dictionaries, and quality reports.
 - [Blank IRS Forms Archive](../../catalogs/catalog-core.html#blank-irs-forms-archive) — every year of blank Form 990 / 990-EZ / 990-PF and their schedules, plus IRS instruction booklets.
 - [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/) — architecture, harmonization logic, known upstream-IRS data quirks, and per-year/per-form quality reports.
+- [Architecture overview](https://urbaninstitute.github.io/nccs-data-core/01-architecture.html) — how the three processing tiers (merged, SOI-current, legacy) fit together.
+- [Output schema reference](https://urbaninstitute.github.io/nccs-data-core/08-output-schema.html) — column-by-column definitions, including `is_amendment`, `extract_year`, `source_pipeline`, `has_legacy_augment`.
+- [Legacy harmonization &amp; merge semantics](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) — SOI precedence, disagreement audit, and merged-panel dedup rules.
 - [Business Master File](bmf.html) — merge organizational attributes (NTEE, 501c type, address, lat/lon) onto Core rows via EIN.
 - [Census Crosswalk](census.html) — aggregate Core data to tracts, counties, or metro areas using standard FIPS codes.
 - [Sector in Brief dashboard](https://nccs-urban.shinyapps.io/sector-in-brief/) — request full panels with BMF attributes pre-joined.

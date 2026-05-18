@@ -1,39 +1,66 @@
 # =============================================================================
 # Core catalog helpers
-# Path-based parsers and URL builders for the Core S3 layout:
-#   processed/core/{YYYY}/{FORM_TYPE}/
-#     core_{YYYY}_{FORM_TYPE}.csv             -> the data
-#     core_{YYYY}_{FORM_TYPE}_dictionary.csv  -> per-year data dictionary
-#     core_{YYYY}_{FORM_TYPE}_quality.html    -> per-year HTML quality report
 #
-# Form types: "990", "990ez", "990combined", "990pf".
+# Three S3 tiers are now published, all under s3://nccsdata:
+#   processed_merged/core/{YYYY}/{FORM_TYPE}/    -- 1987-2024, merged panel
+#   processed/core/{YYYY}/{FORM_TYPE}/           -- 2012-2024, SOI-current
+#   processed_legacy/core/{YYYY}/{FORM_TYPE}/    -- 1987-2011, legacy NCCS
+#
+# Each partition contains both CSV and Parquet for the data file and the data
+# dictionary, e.g.:
+#     core_{YYYY}_{FORM_TYPE}.csv
+#     core_{YYYY}_{FORM_TYPE}.parquet
+#     core_{YYYY}_{FORM_TYPE}_dictionary.csv
+#     core_{YYYY}_{FORM_TYPE}_dictionary.parquet
+#
+# Quality reports are HTML pages served from GitHub Pages, NOT from S3. Each
+# tier has its own URL prefix (see CORE_QUALITY_REPORT_URL).
+#
+# Form types: "990", "990ez", "990combined", "990pf". The merged and legacy
+# tiers publish only "990combined" and "990pf".
 # =============================================================================
 
 CORE_FORM_TYPES <- c("990", "990ez", "990combined", "990pf")
 
-# Quality reports are published on the nccs-data-core Pages site. The S3
-# copies are gzipped HTML and not directly browsable, so always link the
-# Pages-site URL.
-CORE_QUALITY_REPORT_URL <-
-  "https://urbaninstitute.github.io/nccs-data-core/quality-reports/%s/%s/core_%s_%s_quality.html"
+CORE_TIERS <- c(
+  merged = "processed_merged/core",
+  soi    = "processed/core",
+  legacy = "processed_legacy/core"
+)
 
-build_core_quality_url <- function(year, form_type) {
+# Forms published in each tier.
+CORE_TIER_FORMS <- list(
+  merged = c("990combined", "990pf"),
+  soi    = c("990", "990ez", "990combined", "990pf"),
+  legacy = c("990combined", "990pf")
+)
+
+# Per-tier slug inside the Pages-site quality-report URL. SOI-current has no
+# tier slug (reports live at the root quality-reports/ path).
+CORE_QUALITY_TIER_SLUG <- c(merged = "merged/", soi = "", legacy = "legacy/")
+
+CORE_QUALITY_REPORT_URL <-
+  "https://urbaninstitute.github.io/nccs-data-core/quality-reports/%s%s/%s/core_%s_%s_quality.html"
+
+build_core_quality_url <- function(year, form_type, tier = "soi") {
+  slug <- CORE_QUALITY_TIER_SLUG[[tier]]
   ifelse(
     is.na(year) | is.na(form_type),
     NA_character_,
-    sprintf(CORE_QUALITY_REPORT_URL, year, form_type, year, form_type)
+    sprintf(CORE_QUALITY_REPORT_URL, slug, year, form_type, year, form_type)
   )
 }
 
-#' Filter a full nccsdata manifest down to processed/core/ rows.
-filter_core_manifest <- function(manifest) {
-  manifest[grepl("^processed/core/", manifest$Key), , drop = FALSE]
+#' Filter a full nccsdata manifest down to one tier's rows.
+filter_core_manifest <- function(manifest, tier = "soi") {
+  prefix <- paste0("^", CORE_TIERS[[tier]], "/")
+  manifest[grepl(prefix, manifest$Key), , drop = FALSE]
 }
 
-#' Parse `processed/core/{YYYY}/{FORM_TYPE}/...` into a data.frame with
-#' character columns `year` and `form_type`. Non-matching keys yield NA.
-extract_core_year_form <- function(keys) {
-  m <- stringr::str_match(keys, "^processed/core/(\\d{4})/([^/]+)/")
+#' Parse `{tier_prefix}/{YYYY}/{FORM_TYPE}/...` keys into year + form_type.
+extract_core_year_form <- function(keys, tier = "soi") {
+  pattern <- paste0("^", CORE_TIERS[[tier]], "/(\\d{4})/([^/]+)/")
+  m <- stringr::str_match(keys, pattern)
   data.frame(
     year      = m[, 2],
     form_type = m[, 3],
@@ -41,50 +68,72 @@ extract_core_year_form <- function(keys) {
   )
 }
 
-#' Classify a Core S3 key as "data", "dictionary", "quality", or "other".
+#' Classify a Core S3 key as one of: "data_csv", "data_parquet",
+#' "dictionary_csv", "dictionary_parquet", "quality", "other".
 classify_core_artifact <- function(keys) {
   base <- basename(keys)
-  ifelse(grepl("_dictionary\\.csv$", base, ignore.case = TRUE), "dictionary",
-  ifelse(grepl("_quality\\.html$",   base, ignore.case = TRUE), "quality",
-  ifelse(grepl("\\.csv$",            base, ignore.case = TRUE), "data",
-         "other")))
+  ifelse(grepl("_dictionary\\.csv$",     base, ignore.case = TRUE), "dictionary_csv",
+  ifelse(grepl("_dictionary\\.parquet$", base, ignore.case = TRUE), "dictionary_parquet",
+  ifelse(grepl("_quality\\.html$",       base, ignore.case = TRUE), "quality",
+  ifelse(grepl("\\.parquet$",            base, ignore.case = TRUE), "data_parquet",
+  ifelse(grepl("\\.csv$",                base, ignore.case = TRUE), "data_csv",
+         "other")))))
 }
 
-#' Build the per-form-type yearly download table.
+# Known IRS-side coverage gaps where partitions exist but are mostly empty
+# (late-filer spillover only). Cells are marked with a stripe + dagger in the
+# rendered table so analysts don't treat them as normal coverage.
+#   - SOI 990PF 2017-2019: IRS never published those year extracts.
+#   - Legacy 990PF 1993:   CORE-1993-...-PF.csv missing from legacy bucket.
+#   - Merged inherits the union.
+CORE_GAP_YEARS <- list(
+  soi    = list("990pf" = c("2017", "2018", "2019")),
+  legacy = list("990pf" = c("1993")),
+  merged = list("990pf" = c("1993", "2017", "2018", "2019"))
+)
+
+#' Build the per-form-type yearly download table for one tier.
 #'
-#' One row per year, with separate columns for the data file, dictionary, and
-#' quality report. Multiple artifact files in the same /YYYY/FORM_TYPE/ prefix
-#' (data CSV, dictionary CSV, quality HTML) are collapsed into a single row.
+#' Each row collapses the four sibling artifacts (data CSV + parquet,
+#' dictionary CSV + parquet) into one row, plus the per-partition quality
+#' report URL.
 #'
 #' @param manifest data.frame from AWS-NCCSDATA.csv (must have Key, URL, Size).
 #' @param form_type one of CORE_FORM_TYPES.
-#' @param n_recent number of most-recent years to return; pass NA for all.
-#' @param min_size_bytes drop years whose data CSV is smaller than this. The
-#'   new pipeline writes near-empty placeholder files for the earliest years
-#'   (mostly pre-2008): they are listed in the manifest but have no analytic
-#'   value. The default cutoff (300 KB) excludes those without hiding sparse
-#'   but legitimate mid-series releases (e.g. 990PF 2017 at ~0.4 MB).
-build_core_year_section <- function(manifest, form_type, n_recent = 5,
-                                    min_size_bytes = 3e5) {
-  rows <- filter_core_manifest(manifest)
-  yf <- extract_core_year_form(rows$Key)
+#' @param tier one of names(CORE_TIERS): "merged" (default), "soi", "legacy".
+#' @param n_recent number of most-recent years to return; NA for all.
+#' @param min_size_bytes drop years whose data CSV is below this size. The
+#'   pipeline writes near-empty placeholder files for some early years; the
+#'   default (300 KB) excludes those without hiding legitimate sparse years.
+#'   The known IRS-side gap years (CORE_GAP_YEARS) are kept and visually
+#'   flagged via the .core-gap-mark CSS hook.
+build_core_year_section <- function(manifest, form_type, tier = "merged",
+                                    n_recent = 5, min_size_bytes = 3e5,
+                                    gap_years = CORE_GAP_YEARS) {
+  rows <- filter_core_manifest(manifest, tier)
+  yf <- extract_core_year_form(rows$Key, tier)
   rows$year      <- yf$year
   rows$form_type <- yf$form_type
   rows$artifact  <- classify_core_artifact(rows$Key)
   rows <- rows[!is.na(rows$year) & rows$form_type == form_type, , drop = FALSE]
 
-  # Drop years whose data CSV is below the size cutoff (placeholder/empty).
-  small_years <- unique(rows$year[rows$artifact == "data" &
+  gaps <- gap_years[[tier]][[form_type]]
+  if (is.null(gaps)) gaps <- character(0)
+
+  # Drop years whose data CSV is below the size cutoff -- except known gap
+  # years, which we keep and flag.
+  small_years <- unique(rows$year[rows$artifact == "data_csv" &
                                     !is.na(rows$Size) &
                                     rows$Size < min_size_bytes])
+  small_years <- setdiff(small_years, gaps)
   rows <- rows[!(rows$year %in% small_years), , drop = FALSE]
-  if (nrow(rows) == 0) {
-    return(data.frame(
-      year = character(0), download = character(0), dictionary = character(0),
-      quality_report = character(0), size = character(0),
-      stringsAsFactors = FALSE
-    ))
-  }
+
+  empty <- data.frame(
+    year = character(0), data = character(0), dictionary = character(0),
+    quality_report = character(0), size = character(0),
+    stringsAsFactors = FALSE
+  )
+  if (nrow(rows) == 0) return(empty)
 
   years <- sort(unique(rows$year), decreasing = TRUE)
 
@@ -94,52 +143,100 @@ build_core_year_section <- function(manifest, form_type, n_recent = 5,
     sel[1, , drop = FALSE]
   }
 
-  out_rows <- lapply(years, function(y) {
-    csv_row  <- pick(y, "data")
-    dict_row <- pick(y, "dictionary")
-    if (is.null(csv_row)) return(NULL)
-
-    download <- paste0("<a href='", csv_row$URL, "'>Download</a>")
-    dictionary <- if (!is.null(dict_row)) {
-      paste0("<a href='", dict_row$URL, "'>Dictionary</a>")
-    } else {
-      "&mdash;"
+  link_pair <- function(csv_row, parquet_row, csv_label, parquet_label) {
+    parts <- character(0)
+    if (!is.null(csv_row)) {
+      parts <- c(parts, sprintf("<a href='%s'>%s</a>", csv_row$URL, csv_label))
     }
-    quality_report <- paste0(
-      "<a href='", build_core_quality_url(y, form_type), "'>Quality report</a>"
-    )
-    size <- paste0(round(csv_row$Size / 1e6, 1), " mb")
+    if (!is.null(parquet_row)) {
+      parts <- c(parts, sprintf("<a href='%s'>%s</a>", parquet_row$URL, parquet_label))
+    }
+    if (length(parts) == 0) return("&mdash;")
+    paste(parts, collapse = " &middot; ")
+  }
+
+  out_rows <- lapply(years, function(y) {
+    csv_row     <- pick(y, "data_csv")
+    parquet_row <- pick(y, "data_parquet")
+    dict_csv    <- pick(y, "dictionary_csv")
+    dict_par    <- pick(y, "dictionary_parquet")
+    if (is.null(csv_row) && is.null(parquet_row)) return(NULL)
+
+    is_gap <- y %in% gaps
+    year_cell <- if (is_gap) {
+      sprintf("<span class='core-gap-mark'>%s</span>", y)
+    } else {
+      y
+    }
+    size_row <- if (!is.null(csv_row)) csv_row else parquet_row
+    size <- paste0(round(size_row$Size / 1e6, 1), " mb")
 
     data.frame(
-      year           = y,
-      download       = download,
-      dictionary     = dictionary,
-      quality_report = quality_report,
+      year           = year_cell,
+      data           = link_pair(csv_row, parquet_row, "CSV", "Parquet"),
+      dictionary     = link_pair(dict_csv, dict_par, "CSV", "Parquet"),
+      quality_report = sprintf(
+        "<a href='%s'>Quality report</a>",
+        build_core_quality_url(y, form_type, tier)
+      ),
       size           = size,
       stringsAsFactors = FALSE
     )
   })
   out_rows <- out_rows[!vapply(out_rows, is.null, logical(1))]
-  if (length(out_rows) == 0) {
-    return(data.frame(
-      year = character(0), download = character(0), dictionary = character(0),
-      quality_report = character(0), size = character(0),
-      stringsAsFactors = FALSE
-    ))
-  }
+  if (length(out_rows) == 0) return(empty)
   out <- do.call(rbind, out_rows)
   if (!is.na(n_recent)) out <- head(out, n_recent)
   rownames(out) <- NULL
   out
 }
 
+#' Render a per-year table built by build_core_year_section().
+render_year_table <- function(df) {
+  knitr::kable(
+    df,
+    escape    = FALSE,
+    col.names = c("Year", "Data", "Dictionary", "Quality Report", "Size"),
+    format    = "html",
+    row.names = FALSE,
+    align     = c("l", "l", "l", "l", "r")
+  ) |>
+    kableExtra::kable_styling()
+}
+
 # -----------------------------------------------------------------------------
-# Legacy harmonized/core/ layout (deprecated; kept for reproducibility)
+# Deprecated harmonized/core/ layout
 #
 # Path shape:
 #   harmonized/core/{PRODUCT}/marts/CORE-{YYYY}-{...}-HRMN[-V0].csv
 # PRODUCT in: 501c3-pc, 501c3-pz, 501ce-pc, 501ce-pz, 501c3-pf
+#
+# Superseded by the processed_legacy/ tier; kept for reproducibility of
+# analyses built against the older five-product layout.
 # -----------------------------------------------------------------------------
+
+#' Build a year-by-year download table for a single deprecated legacy product.
+build_legacy_core_section <- function(manifest, product) {
+  prefix <- paste0("^harmonized/core/", product, "/marts/")
+  rows <- manifest[grepl(prefix, manifest$Key) &
+                     grepl("\\.csv$", manifest$Key, ignore.case = TRUE), ,
+                   drop = FALSE]
+  if (nrow(rows) == 0) {
+    return(data.frame(
+      year = character(0), download = character(0), size = character(0),
+      stringsAsFactors = FALSE
+    ))
+  }
+  rows$year <- stringr::str_match(basename(rows$Key), "CORE-(\\d{4})-")[, 2]
+  rows <- rows[!is.na(rows$year), , drop = FALSE]
+  rows <- rows[order(rows$year, decreasing = TRUE), , drop = FALSE]
+  data.frame(
+    year     = rows$year,
+    download = paste0("<a href='", rows$URL, "'>Download</a>"),
+    size     = paste0(round(rows$Size / 1e6, 1), " mb"),
+    stringsAsFactors = FALSE
+  )
+}
 
 # -----------------------------------------------------------------------------
 # Blank IRS forms archive (raw/core/forms/)
@@ -162,16 +259,6 @@ CORE_SCHEDULES <- c(
 )
 
 #' Build a year-by-form matrix of PDF links for the blank forms archive.
-#'
-#' Rows are years (most recent first); columns are form codes in the order
-#' given by `form_codes`. Each cell is an HTML fragment containing two
-#' single-letter links: F (blank form) and I (instructions). Cells are empty
-#' where IRS did not publish that year/form combination.
-#'
-#' @param manifest data.frame from AWS-NCCSDATA.csv.
-#' @param form_codes named character vector: basename -> column label.
-#' @param compact if TRUE, label cell links "F" / "I" instead of "Form" /
-#'   "Instr." (useful for the 16-column schedules grid).
 build_forms_matrix <- function(manifest, form_codes, compact = FALSE) {
   label_f <- if (compact) "F" else "Form"
   label_i <- if (compact) "I" else "Instr."
@@ -215,31 +302,4 @@ build_forms_matrix <- function(manifest, form_codes, compact = FALSE) {
                     check.names = FALSE)
   colnames(out) <- c("Year", unname(form_codes))
   out
-}
-
-#' Build a year-by-year download table for a single legacy product directory.
-#'
-#' @param manifest data.frame from AWS-NCCSDATA.csv.
-#' @param product one of "501c3-pc", "501c3-pz", "501ce-pc", "501ce-pz",
-#'   "501c3-pf".
-build_legacy_core_section <- function(manifest, product) {
-  prefix <- paste0("^harmonized/core/", product, "/marts/")
-  rows <- manifest[grepl(prefix, manifest$Key) &
-                     grepl("\\.csv$", manifest$Key, ignore.case = TRUE), ,
-                   drop = FALSE]
-  if (nrow(rows) == 0) {
-    return(data.frame(
-      year = character(0), download = character(0), size = character(0),
-      stringsAsFactors = FALSE
-    ))
-  }
-  rows$year <- stringr::str_match(basename(rows$Key), "CORE-(\\d{4})-")[, 2]
-  rows <- rows[!is.na(rows$year), , drop = FALSE]
-  rows <- rows[order(rows$year, decreasing = TRUE), , drop = FALSE]
-  data.frame(
-    year     = rows$year,
-    download = paste0("<a href='", rows$URL, "'>Download</a>"),
-    size     = paste0(round(rows$Size / 1e6, 1), " mb"),
-    stringsAsFactors = FALSE
-  )
 }

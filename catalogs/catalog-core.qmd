@@ -20,59 +20,74 @@ suppressPackageStartupMessages({
 source("R/core_helpers.R")
 
 manifest <- read.csv("AWS-NCCSDATA.csv", stringsAsFactors = FALSE)
-
-render_year_table <- function(df) {
-  knitr::kable(
-    df,
-    escape    = FALSE,
-    col.names = c("Year", "Download", "Dictionary", "Quality Report", "Size"),
-    format    = "html",
-    row.names = FALSE
-  ) |>
-    kableExtra::kable_styling()
-}
 ```
 
-The NCCS Core Data Series is a panel of nonprofit organizations derived from annual IRS Form 990 filings. This catalog organizes the published files by **form type** — pick the variant whose filing scope matches your analysis.
+The NCCS Core Data Series is a panel of nonprofit organizations derived from annual IRS Form 990 filings. This catalog organizes the published files by **processing tier** &mdash; pick the tier that matches your time-span and analytic needs, then drill into a form type within it.
 
 For background on what the Core Series contains and its scope limitations, see the [Core overview page](../datasets/core.html).
 
 ::: {.callout-note title="Files are organized by tax year, not filing year"}
-Every year label in this catalog refers to the **tax year covered by the return** — the fiscal period the filing describes — not the calendar year the IRS received it. A nonprofit's 2022 tax-year return is in the `2022` directory regardless of when it was actually filed (typically 6&ndash;18 months later). Recent tax years are still in-progress as the IRS continues to release returns over time.
+Every year label in this catalog refers to the **tax year covered by the return** &mdash; the fiscal period the filing describes &mdash; not the calendar year the IRS received it. A nonprofit's 2022 tax-year return is in the `2022` directory regardless of when it was actually filed (typically 6&ndash;18 months later). Recent tax years are still in-progress as the IRS continues to release returns over time.
 :::
 
-## Which dataset should I use?
+## Which tier should I use?
 
-| If you need... | Use | Why |
-|:---|:---|:---|
-| Full Form 990 filers only, max variables | **990** | Larger nonprofits filing the long form (251 columns in 2024). Best for detailed financial analysis. |
-| Short-form filers only | **990EZ** | Smaller nonprofits filing the short form (76 columns in 2024). |
-| Every 990 + 990EZ filer in one file | **990 Combined** | The broadest population per year. Stacks 990 and 990EZ filers using the 53-column shared variable subset (plus pipeline-derived universals: `tax_year`, `tax_month`, `is_501c3`, `extract_year`, `is_amendment`). |
-| Private foundations | **990PF** | Filed by all private foundations regardless of size. Separate variable set from public charities (187 columns in 2024). |
+The Core Series is now published in three tiers. Most analysts should default to the **merged panel**; the SOI-current and legacy tiers expose the underlying per-pipeline sources for cases where the merged dedup is too aggressive.
 
-Each file pools 501(c)(3) charities and all other 501(c) types into a single product. Use the **`is_501c3`** column (boolean, `TRUE` for 501(c)(3) public charities) to filter when needed; the raw **`subsection_cd`** (IRC EO subsection code, 1&ndash;93) is also available for finer 501(c) subclassification.
+| Tier | Coverage | Forms | When to use |
+|:---|:---|:---|:---|
+| **Merged panel** &mdash; [jump &darr;](#section-merged) | 1987&ndash;2024 | `990combined`, `990pf` | **Default for most analysts.** One row per `(ein, tax_period)` across the full historical record. SOI takes precedence on overlap years. |
+| **SOI-current** &mdash; [jump &darr;](#section-soi) | 2012&ndash;2024 | `990`, `990ez`, `990combined`, `990pf` | When you need the long-form 990 or 990-EZ standalone variable sets, or every filing including amendments (use the `is_amendment` flag). |
+| **Legacy** &mdash; [jump &darr;](#section-legacy) | 1987&ndash;2011 | `990combined`, `990pf` | Pre-SOI-era filings, harmonized from the historical NCCS CORE files. Includes all rows from the source files without dedup. |
+
+::: {.callout-warning title="Merged-panel dedup caveat"}
+The merged panel is deliberately **one row per `(ein, tax_period)`**, keeping the first occurrence on each side with SOI-current taking precedence over legacy. It is **not** a complete revision history. Analysts who need every original filing plus amendments should use:
+
+- **SOI-current** &mdash; carries the `is_amendment` flag; filter `is_amendment == FALSE` for originals only.
+- **Legacy** &mdash; raw harmonized legacy with no dedup, includes every row from the source files.
+
+See [legacy harmonization &amp; merge semantics](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) in the pipeline guide for SOI-precedence rules and the disagreement audit.
+:::
 
 <br><hr><br>
 
-## 990 {#section-990}
+## Merged Panel {#section-merged}
 
-Full Form 990 filers — the long-form return required for nonprofits with gross receipts ≥ \$200k or assets ≥ \$500k. The richest variable set in the Core Series (251 columns in 2024) but a narrower population than 990 Combined.
+Default analyst-facing tier. Column-merge of the legacy and SOI-current panels on `(ein, tax_period)`, one row per filer-period. SOI-current values take precedence; legacy contributes columns where it has them and SOI does not. Includes two tag columns:
 
-### Recent Releases
+- `source_pipeline` &mdash; `"legacy"` or `"soi_current"`, indicates which side a row came from.
+- `has_legacy_augment` &mdash; `TRUE` iff legacy contributed columns to a SOI row at merge time (overlap row).
+
+### 990 Combined &mdash; merged {#section-merged-990combined}
+
+Stacked 990 + 990-EZ filers on the 53-column shared variable subset, spanning 1987&ndash;2024.
 
 ```{r}
-recent <- build_core_year_section(manifest, "990", n_recent = 5)
-render_year_table(recent)
+render_year_table(build_core_year_section(manifest, "990combined", tier = "merged"))
 ```
 
-### Browse Older Releases
-
 <details>
-<summary><strong>Show all 990 releases</strong></summary>
+<summary><strong>Show all years (merged 990combined)</strong></summary>
 
 ```{r}
-all_990 <- build_core_year_section(manifest, "990", n_recent = NA)
-render_year_table(all_990)
+render_year_table(build_core_year_section(manifest, "990combined", tier = "merged", n_recent = NA))
+```
+
+</details>
+
+### 990PF &mdash; merged {#section-merged-990pf}
+
+Private foundations, 1987&ndash;2024. Tax years 1993 and 2017&ndash;2019 are striped: those partitions exist but are mostly empty (see [Known coverage gaps](#known-coverage-gaps) below).
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990pf", tier = "merged"))
+```
+
+<details>
+<summary><strong>Show all years (merged 990pf)</strong></summary>
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990pf", tier = "merged", n_recent = NA))
 ```
 
 </details>
@@ -80,32 +95,79 @@ render_year_table(all_990)
 ### Access via S3
 
 ```
-s3://nccsdata/processed/core/{YYYY}/990/
+s3://nccsdata/processed_merged/core/{YYYY}/{form_type}/
 ```
 
 <br><hr><br>
 
-## 990EZ {#section-990ez}
+## SOI-Current Panel (2012&ndash;2024) {#section-soi}
 
-Short-form filers only — Form 990EZ is filed by mid-sized nonprofits (gross receipts < \$200k and assets < \$500k). Fewer columns than the full 990 (76 in 2024) but covers a substantially different population.
+The annual SOI-current pipeline: IRS Statistics of Income extracts harmonized into year-by-form-type files. Carries the `is_amendment` flag (`TRUE` iff the `(ein, tax_period)` has appeared in an earlier processing-year extract) and `extract_year` (the processing year the row was sourced from).
 
-Most users want **990 Combined** below; this standalone slice is useful when you specifically need only the EZ filers.
+### 990 {#section-990}
 
-### Recent Releases
+Full Form 990 filers &mdash; the long-form return required for nonprofits with gross receipts &ge; \$200k or assets &ge; \$500k. Richest variable set in the Core Series (251 columns in 2024).
 
 ```{r}
-recent_ez <- build_core_year_section(manifest, "990ez", n_recent = 5)
-render_year_table(recent_ez)
+render_year_table(build_core_year_section(manifest, "990", tier = "soi"))
 ```
 
-### Browse Older Releases
-
 <details>
-<summary><strong>Show all 990EZ releases</strong></summary>
+<summary><strong>Show all 990 releases (SOI)</strong></summary>
 
 ```{r}
-all_ez <- build_core_year_section(manifest, "990ez", n_recent = NA)
-render_year_table(all_ez)
+render_year_table(build_core_year_section(manifest, "990", tier = "soi", n_recent = NA))
+```
+
+</details>
+
+### 990EZ {#section-990ez}
+
+Short-form filers only. 76 columns in 2024. Most users want **990 Combined** below; this standalone slice is useful when you specifically need only the EZ filers.
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990ez", tier = "soi"))
+```
+
+<details>
+<summary><strong>Show all 990EZ releases (SOI)</strong></summary>
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990ez", tier = "soi", n_recent = NA))
+```
+
+</details>
+
+### 990 Combined {#section-990combined}
+
+Form 990 + Form 990-EZ filers stacked on the 53-column shared variable subset (plus pipeline-derived universals: `tax_year`, `tax_month`, `is_501c3`, `extract_year`, `is_amendment`).
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990combined", tier = "soi"))
+```
+
+<details>
+<summary><strong>Show all 990 Combined releases (SOI)</strong></summary>
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990combined", tier = "soi", n_recent = NA))
+```
+
+</details>
+
+### 990PF {#section-990pf}
+
+Private foundations. 187 columns in 2024. Tax years 2017&ndash;2019 are striped: IRS never published 990-PF extracts for those years (see [Known coverage gaps](#known-coverage-gaps)).
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990pf", tier = "soi"))
+```
+
+<details>
+<summary><strong>Show all 990PF releases (SOI)</strong></summary>
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990pf", tier = "soi", n_recent = NA))
 ```
 
 </details>
@@ -113,30 +175,43 @@ render_year_table(all_ez)
 ### Access via S3
 
 ```
-s3://nccsdata/processed/core/{YYYY}/990ez/
+s3://nccsdata/processed/core/{YYYY}/{form_type}/
 ```
 
 <br><hr><br>
 
-## 990 Combined {#section-990combined}
+## Legacy Panel (1987&ndash;2011) {#section-legacy}
 
-The broadest single-file product per year — Form 990 + Form 990EZ filers stacked together using the 53-column shared variable subset (plus pipeline-derived universals: `tax_year`, `tax_month`, `is_501c3`, `extract_year`, `is_amendment`). Use this when you want the full population of 990/990EZ filers and don't need the long-form-only variables.
+Pre-SOI-era filings harmonized from the historical NCCS CORE bucket. No dedup is applied; every row from the source legacy files is preserved. Use this when you need the full pre-2012 record including duplicates.
 
-### Recent Releases
+### 990 Combined &mdash; legacy {#section-legacy-990combined}
 
 ```{r}
-recent_c <- build_core_year_section(manifest, "990combined", n_recent = 5)
-render_year_table(recent_c)
+render_year_table(build_core_year_section(manifest, "990combined", tier = "legacy"))
 ```
 
-### Browse Older Releases
-
 <details>
-<summary><strong>Show all 990 Combined releases</strong></summary>
+<summary><strong>Show all years (legacy 990combined)</strong></summary>
 
 ```{r}
-all_c <- build_core_year_section(manifest, "990combined", n_recent = NA)
-render_year_table(all_c)
+render_year_table(build_core_year_section(manifest, "990combined", tier = "legacy", n_recent = NA))
+```
+
+</details>
+
+### 990PF &mdash; legacy {#section-legacy-990pf}
+
+Tax year 1993 is striped: the source `CORE-1993-501C3-PRIVFOUND-PF.csv` is missing from the legacy NCCS bucket, so the partition contains only ~11k spillover rows.
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990pf", tier = "legacy"))
+```
+
+<details>
+<summary><strong>Show all years (legacy 990pf)</strong></summary>
+
+```{r}
+render_year_table(build_core_year_section(manifest, "990pf", tier = "legacy", n_recent = NA))
 ```
 
 </details>
@@ -144,59 +219,63 @@ render_year_table(all_c)
 ### Access via S3
 
 ```
-s3://nccsdata/processed/core/{YYYY}/990combined/
+s3://nccsdata/processed_legacy/core/{YYYY}/{form_type}/
 ```
 
 <br><hr><br>
 
-## 990PF {#section-990pf}
+## Output schema additions
 
-Private foundations — all private foundations must file Form 990PF regardless of size. Has its own variable set distinct from public charities (187 columns in 2024).
+Columns added by the new pipeline that are worth knowing about &mdash; see the [output schema reference](https://urbaninstitute.github.io/nccs-data-core/08-output-schema.html) and [legacy harmonization guide](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) for the full definitions.
 
-### Recent Releases
-
-```{r}
-recent_pf <- build_core_year_section(manifest, "990pf", n_recent = 5)
-render_year_table(recent_pf)
-```
-
-### Browse Older Releases
-
-<details>
-<summary><strong>Show all 990PF releases</strong></summary>
-
-```{r}
-all_pf <- build_core_year_section(manifest, "990pf", n_recent = NA)
-render_year_table(all_pf)
-```
-
-</details>
-
-### Access via S3
-
-```
-s3://nccsdata/processed/core/{YYYY}/990pf/
-```
+| Column | Tier | Type | What it means |
+|:---|:---|:---|:---|
+| `is_amendment` | SOI-current | boolean | `TRUE` iff this `(ein, tax_period)` has appeared in an earlier processing-year extract. Filter `== FALSE` for original filings only. |
+| `extract_year` | SOI-current | integer | The processing year of the IRS extract this row came from. Useful for amendment provenance. |
+| `source_pipeline` | Merged | string | `"legacy"` or `"soi_current"`. Which side of the merge contributed this row. |
+| `has_legacy_augment` | Merged | boolean | `TRUE` iff legacy contributed columns to this SOI-current row at merge time (overlap-year augmentation). |
+| `is_501c3` | all | boolean | `TRUE` for 501(c)(3) public charities; pair with `subsection_cd` (1&ndash;93) for finer 501(c) subclass breakdowns. |
 
 <br><hr><br>
 
-## File Conventions
+## Known coverage gaps {#known-coverage-gaps}
 
-Every year/form directory contains two artifacts on S3:
+These partitions exist in the manifest but reflect IRS-side gaps rather than normal coverage. Rows are striped and flagged with a `&dagger;` in the tables above.
+
+- **SOI 990PF, tax years 2017&ndash;2019** &mdash; IRS never published 990-PF extracts for those tax years. The `processed/core/.../990pf/` partitions contain only late-filer spillover (~665 / 3,348 / 100,359 rows vs. ~100k typical full-year extract). The merged tier inherits this gap.
+- **Legacy 990PF, tax year 1993** &mdash; `CORE-1993-501C3-PRIVFOUND-PF.csv` is missing from the legacy NCCS bucket. The `processed_legacy/1993/990pf/` and `processed_merged/1993/990pf/` partitions contain ~11k spillover rows vs. ~40k in 1992 and 1994.
+
+See the [upstream-source quirks](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html) section of the pipeline guide for the full list of IRS-side coverage issues.
+
+<br><hr><br>
+
+## File conventions
+
+Every year/form directory in all three tiers contains the same four artifacts:
 
 ```
-processed/core/{YYYY}/{FORM_TYPE}/
-    core_{YYYY}_{FORM_TYPE}.csv             # the data
-    core_{YYYY}_{FORM_TYPE}_dictionary.csv  # variable definitions for this year
+{TIER_PREFIX}/{YYYY}/{FORM_TYPE}/
+    core_{YYYY}_{FORM_TYPE}.csv                # data, CSV
+    core_{YYYY}_{FORM_TYPE}.parquet            # data, Parquet (3-5x smaller; fastest for DuckDB / arrow)
+    core_{YYYY}_{FORM_TYPE}_dictionary.csv     # variable definitions
+    core_{YYYY}_{FORM_TYPE}_dictionary.parquet # variable definitions, Parquet
 ```
 
-Quality reports are published on GitHub Pages alongside the [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/) and linked from the Quality Report column in each table above. The [Quality Reports Index](https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html) lists all 109 published reports.
+Where `{TIER_PREFIX}` is one of `processed_merged/core`, `processed/core`, or `processed_legacy/core`.
+
+Quality reports are HTML pages served from GitHub Pages, with one URL prefix per tier:
+
+```
+https://urbaninstitute.github.io/nccs-data-core/quality-reports/{YYYY}/{form}/core_{YYYY}_{form}_quality.html         # SOI-current
+https://urbaninstitute.github.io/nccs-data-core/quality-reports/legacy/{YYYY}/{form}/core_{YYYY}_{form}_quality.html  # Legacy
+https://urbaninstitute.github.io/nccs-data-core/quality-reports/merged/{YYYY}/{form}/core_{YYYY}_{form}_quality.html  # Merged
+```
+
+This catalog page is the index for those reports &mdash; the **Quality Report** column links the appropriate per-tier URL on every row.
 
 Data dictionaries are per-year because the variable set evolves as the underlying 990 forms change. Always read the dictionary for the year you're using rather than assuming column stability across years.
 
 Filter on **`is_501c3`** (boolean) to subset to 501(c)(3) public charities or their complement. The raw **`subsection_cd`** (IRC EO subsection code, 1&ndash;93) is also present for finer breakdowns.
-
-Tables above start in 2010 for the 990/990EZ/990 Combined forms and in 2010 for 990PF — earlier years exist as placeholder files only. For pre-2010 coverage, use the **Legacy: Harmonized Core** section below.
 
 <br><hr><br>
 
@@ -208,12 +287,13 @@ Known upstream-IRS data shapes that look like pipeline bugs but aren't &mdash; d
 - [~12% of 990-EZ rows fail the balance-sheet identity](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html#filer-supplied-balance-sheet-identity-failures-12-of-990-ez-rows) &mdash; filer-supplied, not a harmonization error.
 - [Schedule A `_sec170` / `_sec509` zeros are filer-test-specific](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html#schedule-a-sec170-sec509-blocks-are-filer-test-specific-zeros-are-not-necessarily-missing) &mdash; cross-reference `non_pf_status_reason` before interpreting them as missing data.
 - [Filer-supplied negatives on revenue fields](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html#filer-supplied-negatives-on-conceptually-non-negative-fields) &mdash; IRS-supplied as-filed; not amendments.
+- [Legacy + SOI merge precedence and disagreement audit](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) &mdash; how the merged panel resolves overlapping `(ein, tax_period)` rows.
 
 Full pipeline guide and per-form quality reports are at the [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/).
 
 <br><hr><br>
 
-## Blank IRS Forms Archive
+## Blank IRS Forms Archive {#blank-irs-forms-archive}
 
 Blank IRS Form 990, 990-EZ, 990-PF, their schedules (A&ndash;O and R), and the corresponding instruction booklets are mirrored at `s3://nccsdata/raw/core/forms/`. Each cell below links the blank **Form** and (where IRS publishes one standalone) the **Instr.**uction booklet. Empty cells reflect years IRS did not publish that combination &mdash; not a coverage gap on our side. See the [Forms archive](https://urbaninstitute.github.io/nccs-data-core/02-data-lineage.html) section of the Pipeline Guide for the year-coverage details and refresh SOP.
 
@@ -262,19 +342,17 @@ cat("</div>")
 
 <br><hr><br>
 
-## Legacy: Harmonized Core (deprecated)
+## Deprecated: `harmonized/core/` (pre-tier layout)
 
 <details>
-<summary><strong>Show legacy <code>harmonized/core/</code> files</strong> (for reproducibility only — use the by-form-type tables above)</summary>
+<summary><strong>Show legacy <code>harmonized/core/</code> files</strong> (for reproducibility only &mdash; use the [Legacy Panel](#section-legacy) above)</summary>
 
-These files predate the current by-form-type layout. They split each year's filers along two axes — **tax-exempt class** (501c3 charities vs. all other 501c types) and **form scope** (PC = full 990 only, PZ = 990 + 990EZ) — producing five products. The current pipeline pools these into single per-form-type files with an `is_501c3` column for filtering, so the products below are kept only to support replication of analyses built on the older layout.
+These files predate the current three-tier layout. They split each year's filers along two axes &mdash; **tax-exempt class** (501c3 charities vs. all other 501c types) and **form scope** (PC = full 990 only, PZ = 990 + 990EZ) &mdash; producing five products. The current pipeline pools these into a single set of by-form-type files with an `is_501c3` column for filtering, so the products below are kept only to support replication of analyses built on the older layout.
 
 **Shared dictionaries** (PC/PZ variants share a single dictionary; PF has its own):
 
 - [PC/PZ data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv)
 - [PF data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pf/dd/DD-PF-HRMN-V0.csv)
-
-### 501(c)(3) Charities &mdash; PC (full 990 only)
 
 ```{r}
 render_legacy_table <- function(df) {
@@ -287,6 +365,11 @@ render_legacy_table <- function(df) {
   ) |>
     kableExtra::kable_styling()
 }
+```
+
+### 501(c)(3) Charities &mdash; PC (full 990 only)
+
+```{r}
 render_legacy_table(build_legacy_core_section(manifest, "501c3-pc"))
 ```
 
@@ -326,13 +409,17 @@ where `{PRODUCT}` is one of `501c3-pc`, `501c3-pz`, `501ce-pc`, `501ce-pz`, `501
 
 <br><hr><br>
 
-## Documentation & Support
+## Documentation &amp; Support
 
-- [Core overview page](../datasets/core.html) — what's in the Core Series, scope limitations, and merging guidance
-- [Quality Reports Index](https://urbaninstitute.github.io/nccs-data-core/12-quality-reports.html) — every per-year, per-form quality report
-- [BMF Data Catalog](catalog-bmf.html) — Business Master File, for merging organizational attributes (NTEE, 501c type, address) onto Core rows via EIN
-- [Census Crosswalk Catalog](catalog-census_crosswalk.html) — aggregate Core data to tracts, counties, or MSAs
-- [Contact](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests
+- [Core overview page](../datasets/core.html) &mdash; what's in the Core Series, scope limitations, and merging guidance
+- [CORE Pipeline Guide](https://urbaninstitute.github.io/nccs-data-core/) &mdash; root of the pipeline documentation site
+- [Architecture overview](https://urbaninstitute.github.io/nccs-data-core/01-architecture.html) &mdash; how the three tiers fit together
+- [Output schema reference](https://urbaninstitute.github.io/nccs-data-core/08-output-schema.html) &mdash; column-by-column definitions
+- [Legacy harmonization &amp; merge semantics](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) &mdash; SOI precedence, disagreement audit, dedup rules
+- [Upstream-source quirks](https://urbaninstitute.github.io/nccs-data-core/11-upstream-source-quirks.html) &mdash; IRS extract format changes and missing-year gaps
+- [BMF Data Catalog](catalog-bmf.html) &mdash; Business Master File, for merging organizational attributes (NTEE, 501c type, address) onto Core rows via EIN
+- [Census Crosswalk Catalog](catalog-census_crosswalk.html) &mdash; aggregate Core data to tracts, counties, or MSAs
+- [Contact](https://nccs.urban.org/nccs/contact/) &mdash; questions, corrections, data requests
 
 ```{r}
 #| results: asis

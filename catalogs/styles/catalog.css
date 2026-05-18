@@ -172,6 +172,26 @@ blockquote {
 }
 
 /* =============================================================================
+   Core catalog: gap-year row marker
+   Rows for tax years where IRS never published the extract (or where the
+   legacy CORE file is missing) carry a <span class="core-gap-mark"> in the
+   Year cell. Stripe the whole row and append a dagger to the year.
+   ============================================================================= */
+
+.core-gap-mark::after {
+  content: " \2020";
+  color: #888;
+}
+
+tr:has(.core-gap-mark) td {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 6px,
+    rgba(0, 0, 0, 0.06) 6px 12px
+  );
+}
+
+/* =============================================================================
    Additional button styles (from efile catalog)
    ============================================================================= */
 
