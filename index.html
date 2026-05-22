@@ -24,13 +24,17 @@ isFrontPage: true
 
 <div class="content text-center flow-4">
   <h2 class="text-4xl">Nonprofit Sector In Brief Dashboard</h2>
-  <p class="mt-1">Visualize and download more than three decades of NCCS data on nonprofits. View trends by organization type, subsector, asset size, geography, and time period to see a snapshot of the nonprofit sector. </p>
+  <p class="mt-1">An interactive tool for exploring decades of IRS data on the U.S. nonprofit sector. Visualize organization counts, finances, foundation grantmaking, and donor advised funds; filter by geography, subsector, and size; download CSVs.</p>
   <br>
-  <div class="text-center">
-  {% include components/button.html
-    text = "NCCS Website Project Page"
-    href = '/nccs/resources/sector-in-brief-dashboard/'
-  %}
+  <div class="text-center flex flex-wrap gap" style="justify-content: center; align-items: center;">
+    <a class="btn -primary" href="https://urban-main.shinyapps.io/sector-in-brief/" target="_blank" rel="noopener">
+      <span>Open the Dashboard</span>
+    </a>
+    {% include components/button.html
+      text = "About this project"
+      href = '/nccs/resources/sector-in-brief-dashboard/'
+      style = "text"
+    %}
   </div>
 </div>
 

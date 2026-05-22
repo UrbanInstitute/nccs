@@ -203,3 +203,27 @@ layout: default
   margin-bottom: 4em;
 }
 </style>
+
+{% if page.url contains 'sector-in-brief-dashboard' %}
+<style>
+/* Page-specific override: promote the primary "Access the Dashboard" CTA */
+.flex.flex-wrap.gap {
+  justify-content: center;
+  margin: 1.5em 0 2.5em;
+}
+.flex.flex-wrap.gap .btn.-tertiary {
+  background-color: #1696d2 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  padding: 0.95em 2.25em;
+  letter-spacing: 0.03em;
+}
+.flex.flex-wrap.gap .btn.-tertiary:hover,
+.flex.flex-wrap.gap .btn.-tertiary:focus-visible {
+  background-color: #12719e !important;
+  color: #ffffff !important;
+}
+</style>
+{% endif %}

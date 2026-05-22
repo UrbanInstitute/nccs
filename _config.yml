@@ -37,7 +37,7 @@ markdown: GFM
 # Entries here will show up in the _includes/nav.html partial
 nav:
   - title: Dashboard
-    url: https://nccs-urban.shinyapps.io/sector-in-brief/
+    url: https://urban-main.shinyapps.io/sector-in-brief/
   - title: Data
     url: /datasets/
   - title: Resources

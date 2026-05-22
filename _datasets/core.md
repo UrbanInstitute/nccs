@@ -101,5 +101,5 @@ Each catalog section exposes the underlying S3 prefix for programmatic access an
 - [Legacy harmonization &amp; merge semantics](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) — SOI precedence, disagreement audit, and merged-panel dedup rules.
 - [Business Master File](bmf.html) — merge organizational attributes (NTEE, 501c type, address, lat/lon) onto Core rows via EIN.
 - [Census Crosswalk](census.html) — aggregate Core data to tracts, counties, or metro areas using standard FIPS codes.
-- [Sector in Brief dashboard](https://nccs-urban.shinyapps.io/sector-in-brief/) — request full panels with BMF attributes pre-joined.
+- [Sector in Brief dashboard](https://urban-main.shinyapps.io/sector-in-brief/) — request full panels with BMF attributes pre-joined.
 - [Contact / Get Help](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests.
