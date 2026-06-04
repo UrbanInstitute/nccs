@@ -79,6 +79,7 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 | A specific month's snapshot (1989–2022) | **Harmonized legacy BMF** | Same column schema as transformed; aligns historical vintages |
 | The unmodified IRS file | **Raw monthly archive** | Untouched IRS releases, for replication of upstream analysis |
 | The original NCCS legacy file | **Raw legacy archive** | Original 501CX-NONPROFIT-PX vintages, for reproducibility only |
+| Canonical county FIPS, or to roll up to metro areas | **Geography crosswalks** | Optional join layers for the geocoded BMF (TIGER 2023 / OMB 2023) |
 
 <br><hr><br>
 
@@ -183,6 +184,67 @@ Each month directory contains:
 - `bmf_{YYYY_MM}_processed.csv` (or `.parquet`) — the data
 - `bmf_{YYYY_MM}_data_dictionary.csv` — column definitions
 - `bmf_{YYYY_MM}_quality_report.json` — machine-readable quality metrics
+
+<br><hr><br>
+
+## Geography Crosswalks
+
+Optional join layers for the **geocoded Master BMF**: attach a canonical county FIPS code to each organization, then chain to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore **city** (`24510`) is not Baltimore **County** (`24005`) — or want to roll nonprofits up to metro areas.
+
+These rows **link the canonical S3 copies** — the same files the pipeline consumes — so the catalog never drifts from the machine contract. The CSV is for humans and spreadsheets; the parquet is the machine-typed copy; each `_manifest.json` records the row count, sha256, and geography vintage.
+
+**Join recipe:** attach the county crosswalk on `(geo_state_abbr, geo_county)` — the crosswalk side of the county key is `geo_county_raw` — then chain the CBSA crosswalk on `county_fips`. FIPS/CBSA/CSA codes are **strings** — preserve leading zeros. Rows with an ambiguous/unresolved county label, or rural counties, get `NA` codes by design (see each file's `_audit.csv`).
+
+| Crosswalk | Geography vintage | Rows | Download | Machine copy | Manifest |
+|:---|:---|:---|:---|:---|:---|
+| **County FIPS** | Census TIGER **2023** | ~3,635 (99.6% resolved) | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/county-fips/county_fips_crosswalk.csv'>CSV</a> | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/county-fips/county_fips_crosswalk.parquet'>Parquet</a> | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/county-fips/_manifest.json'>manifest.json</a> |
+| **CBSA** (metro/micro) | OMB **2023** delineations | ~3,224 (1,911 in a CBSA, 1,313 rural) | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/cbsa/cbsa_crosswalk.csv'>CSV</a> | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/cbsa/cbsa_crosswalk.parquet'>Parquet</a> | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/cbsa/_manifest.json'>manifest.json</a> |
+
+> **Geography vintage matters.** County boundaries shift — Connecticut replaced its counties with planning regions in 2022 — so a stale vintage is a silent trap. The county FIPS crosswalk is built against **Census TIGER 2023** boundaries; the CBSA crosswalk against the **OMB 2023** delineations. Filter against the boundary year you intend.
+
+### County FIPS crosswalk
+
+Maps the geocoder's dirty county label (`geo_county`) to the canonical Census county FIPS GEOID + `NAMELSAD`, so you can canonicalize names and filter by a collision-proof key. ~3,635 rows; 99.6% resolved.
+
+| Column | Description |
+|:---|:---|
+| `geo_state_abbr` | 2-letter state postal code (join key) |
+| `geo_county_raw` | The geocoder's raw, dirty county label (join key) |
+| `geo_county_fips` | Canonical 5-char county FIPS GEOID (string — keep leading zeros) |
+| `state_fips` | 2-char state FIPS (string) |
+| `geo_county_canonical` | Canonical county name (`NAMELSAD`) |
+| `resolution` | How the raw label was matched to a FIPS code |
+| `tiger_year` | Census TIGER boundary vintage (2023) |
+
+### CBSA crosswalk
+
+Derived from the county FIPS crosswalk. Maps each county FIPS to its OMB metro/micropolitan statistical area (Core-Based Statistical Area), so you can roll nonprofits up to metro areas. ~3,224 rows (1,911 in a CBSA, 1,313 rural).
+
+| Column | Description |
+|:---|:---|
+| `county_fips` | 5-char county FIPS (string; joins to the county crosswalk's `geo_county_fips`) |
+| `county_name` | County name |
+| `cbsa_code` | CBSA code (string — keep leading zeros) |
+| `cbsa_title` | CBSA name |
+| `cbsa_type` | `Metropolitan` or `Micropolitan` |
+| `central_outlying` | Whether the county is central or outlying within the CBSA |
+| `csa_code` | Combined Statistical Area code (string), if any |
+| `csa_title` | Combined Statistical Area name, if any |
+| `delineation_year` | OMB delineation vintage (2023) |
+
+**Caveats**
+
+- **FIPS, CBSA, and CSA codes are strings.** Opening a CSV directly in Excel may strip leading zeros on display — read these columns as text.
+- **Some county labels are intentionally `NA`.** Ambiguous city-vs-county labels (a bare "Baltimore" or "Roanoke") and Connecticut's pre-2022 county labels are left unresolved by design. **Rural counties** (those in no CBSA) carry `NA` CBSA codes.
+
+### Access via S3
+
+```
+s3://nccsdata/crosswalks/county-fips/   # county FIPS crosswalk (.csv + .parquet + _manifest.json)
+s3://nccsdata/crosswalks/cbsa/          # CBSA crosswalk (.csv + .parquet + _manifest.json)
+```
+
+Full producer documentation: [County FIPS crosswalk](https://urbaninstitute.github.io/nccs-data-bmf/13-county-fips-crosswalk.html) · [CBSA crosswalk](https://urbaninstitute.github.io/nccs-data-bmf/14-cbsa-crosswalk.html).
 
 <br><hr><br>
 
