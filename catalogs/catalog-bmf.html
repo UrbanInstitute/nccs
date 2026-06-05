@@ -1668,21 +1668,31 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 </section>
 <section id="geography-crosswalks" class="level2">
 <h2 data-anchor-id="geography-crosswalks">Geography Crosswalks</h2>
-<p>Optional join layers for the <strong>geocoded Master BMF</strong>: attach a canonical county FIPS code to each organization, then chain to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore <strong>city</strong> (<code>24510</code>) is not Baltimore <strong>County</strong> (<code>24005</code>) — or want to roll nonprofits up to metro areas.</p>
+<p>Optional join layers for the <strong>geocoded Master BMF</strong> that turn a messy address into clean geography: attach a canonical county FIPS code to each organization, then roll that county up to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore <strong>city</strong> (<code>24510</code>) is not Baltimore <strong>County</strong> (<code>24005</code>) — or want to aggregate nonprofits to metro areas.</p>
 <p>These rows <strong>link the canonical S3 copies</strong> — the same files the pipeline consumes — so the catalog never drifts from the machine contract. The CSV is for humans and spreadsheets; the parquet is the machine-typed copy; each <code>_manifest.json</code> records the row count, sha256, and geography vintage.</p>
-<p><strong>Join recipe:</strong> attach the county crosswalk on <code>(geo_state_abbr, geo_county)</code> — the crosswalk side of the county key is <code>geo_county_raw</code> — then chain the CBSA crosswalk on <code>county_fips</code>. FIPS/CBSA/CSA codes are <strong>strings</strong> — preserve leading zeros. Rows with an ambiguous/unresolved county label, or rural counties, get <code>NA</code> codes by design (see each file’s <code>_audit.csv</code>).</p>
+<section id="how-the-crosswalks-chain-together" class="level3">
+<h3 data-anchor-id="how-the-crosswalks-chain-together">How the crosswalks chain together</h3>
+<p>These are <strong>derived, multi-hop</strong> artifacts: you don’t start from <code>county_fips</code>, you arrive at it. The geocoded BMF gives you a dirty county label and a lat/lon; the crosswalks walk that to a metro area:</p>
+<ol type="1">
+<li><strong>County label → county FIPS.</strong> Join the <strong>county FIPS</strong> crosswalk on <code>(geo_state_abbr, geo_county)</code> — the crosswalk side of the county key is <code>geo_county_raw</code> — to get a canonical 5-char <code>geo_county_fips</code>.</li>
+<li><strong>Connecticut detour (by coordinate).</strong> CT replaced its counties with planning regions in 2022, so CT’s old county labels are deferred in step 1 (<code>resolution = deferred_ct_planning_region</code>). Resolve them instead from the org’s coordinate: round lat/lon to 2 decimals and join the <strong>CT planning-region</strong> crosswalk on <code>(lat2, lon2)</code> to get the planning-region FIPS (<code>09110</code>–<code>09190</code>).</li>
+<li><strong>County FIPS → metro area.</strong> Chain the <strong>CBSA</strong> crosswalk on <code>county_fips</code> to attach the metro/micropolitan area (and Combined Statistical Area, where applicable). The CBSA crosswalk already keys CT on the new planning-region FIPS, so step 2 lands cleanly here.</li>
+</ol>
+<p>All three share <strong>one geography vintage</strong> (Census TIGER 2023 / OMB 2023) and are designed to be chained — present them together, not in isolation. FIPS/CBSA/CSA codes are <strong>strings</strong>; preserve leading zeros. Unresolved/ambiguous county labels and rural counties carry <code>NA</code> codes <strong>by design</strong>, not as missing data.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Crosswalk</th>
+<th style="text-align: left;">Role in the chain</th>
 <th style="text-align: left;">Geography vintage</th>
 <th style="text-align: left;">Rows</th>
 <th style="text-align: left;">Download</th>
@@ -1693,16 +1703,27 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><strong>County FIPS</strong></td>
+<td style="text-align: left;">label → FIPS (hop 1)</td>
 <td style="text-align: left;">Census TIGER <strong>2023</strong></td>
-<td style="text-align: left;">~3,635 (99.6% resolved)</td>
+<td style="text-align: left;">3,635 (3,615 resolved, 99.4%)</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/county-fips/county_fips_crosswalk.csv">CSV</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/county-fips/county_fips_crosswalk.parquet">Parquet</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/county-fips/_manifest.json">manifest.json</a></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><strong>CT planning-region</strong></td>
+<td style="text-align: left;">CT by coordinate (hop 2)</td>
+<td style="text-align: left;">Census TIGER <strong>2023</strong></td>
+<td style="text-align: left;">14,271 (coordinate grid)</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ct-planning-region/ct_planning_region_crosswalk.csv">CSV</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ct-planning-region/ct_planning_region_crosswalk.parquet">Parquet</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ct-planning-region/_manifest.json">manifest.json</a></td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><strong>CBSA</strong> (metro/micro)</td>
+<td style="text-align: left;">FIPS → metro area (hop 3)</td>
 <td style="text-align: left;">OMB <strong>2023</strong> delineations</td>
-<td style="text-align: left;">~3,224 (1,911 in a CBSA, 1,313 rural)</td>
+<td style="text-align: left;">3,228 (1,915 in a CBSA, 1,313 rural)</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/cbsa/cbsa_crosswalk.csv">CSV</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/cbsa/cbsa_crosswalk.parquet">Parquet</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/cbsa/_manifest.json">manifest.json</a></td>
@@ -1710,11 +1731,12 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 </tbody>
 </table>
 <blockquote class="blockquote">
-<p><strong>Geography vintage matters.</strong> County boundaries shift — Connecticut replaced its counties with planning regions in 2022 — so a stale vintage is a silent trap. The county FIPS crosswalk is built against <strong>Census TIGER 2023</strong> boundaries; the CBSA crosswalk against the <strong>OMB 2023</strong> delineations. Filter against the boundary year you intend.</p>
+<p><strong>Geography vintage matters.</strong> County boundaries shift — Connecticut replaced its counties with planning regions in 2022 — so a stale vintage is a silent trap. All three crosswalks are built against the <strong>2023</strong> vintage (Census TIGER 2023 boundaries; OMB 2023 CBSA delineations) and carry the year in-column (<code>tiger_year</code> / <code>delineation_year</code>). Filter against the boundary year you intend, and don’t mix vintages across the chain.</p>
 </blockquote>
+</section>
 <section id="county-fips-crosswalk" class="level3">
 <h3 data-anchor-id="county-fips-crosswalk">County FIPS crosswalk</h3>
-<p>Maps the geocoder’s dirty county label (<code>geo_county</code>) to the canonical Census county FIPS GEOID + <code>NAMELSAD</code>, so you can canonicalize names and filter by a collision-proof key. ~3,635 rows; 99.6% resolved.</p>
+<p>Maps the geocoder’s dirty county label (<code>geo_county</code>) to the canonical Census county FIPS GEOID + <code>NAMELSAD</code>, so you can canonicalize names and filter by a collision-proof key. <strong>3,635 rows; 3,615 resolved (99.4%)</strong> — the remainder are 8 ambiguous city-vs-county labels, 8 CT labels deferred to the planning-region crosswalk, and 4 unresolved.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1749,7 +1771,7 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>resolution</code></td>
-<td style="text-align: left;">How the raw label was matched to a FIPS code</td>
+<td style="text-align: left;">How the raw label was matched (<code>resolved</code>, <code>ambiguous</code>, <code>unresolved</code>, <code>deferred_ct_planning_region</code>)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>tiger_year</code></td>
@@ -1758,9 +1780,59 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 </tbody>
 </table>
 </section>
+<section id="ct-planning-region-crosswalk" class="level3">
+<h3 data-anchor-id="ct-planning-region-crosswalk">CT planning-region crosswalk</h3>
+<p>Connecticut’s companion to the county crosswalk. Because CT’s old county labels can’t be trusted post-2022, this resolves CT geography from the <strong>organization’s coordinate</strong> instead of its label. It’s a <strong>lookup grid</strong> — one row per ~1 km cell (lat/lon rounded to 2 decimals) mapped to one of CT’s <strong>9 planning regions</strong> (FIPS <code>09110</code>–<code>09190</code>). <strong>14,271 rows.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>geo_state_abbr</code></td>
+<td style="text-align: left;">Always <code>CT</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>lat2</code>, <code>lon2</code></td>
+<td style="text-align: left;">Latitude/longitude rounded to 2 decimals (the join key — round the org’s coordinate the same way)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>geo_county_fips</code></td>
+<td style="text-align: left;">CT planning-region FIPS (<code>09110</code>–<code>09190</code>; joins to the CBSA crosswalk’s <code>county_fips</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>state_fips</code></td>
+<td style="text-align: left;"><code>09</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>geo_county_canonical</code></td>
+<td style="text-align: left;">Planning-region name</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>area_share</code></td>
+<td style="text-align: left;">Fraction of the cell falling in this planning region (1 when the cell sits fully inside one region)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>straddle</code></td>
+<td style="text-align: left;"><code>TRUE</code> where a cell straddles a region boundary (529 cells); pick the row with the largest <code>area_share</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>tiger_year</code></td>
+<td style="text-align: left;">Census TIGER boundary vintage (2023)</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="cbsa-crosswalk" class="level3">
 <h3 data-anchor-id="cbsa-crosswalk">CBSA crosswalk</h3>
-<p>Derived from the county FIPS crosswalk. Maps each county FIPS to its OMB metro/micropolitan statistical area (Core-Based Statistical Area), so you can roll nonprofits up to metro areas. ~3,224 rows (1,911 in a CBSA, 1,313 rural).</p>
+<p>The metro/micropolitan rollup. Maps each county FIPS to its OMB Core-Based Statistical Area, so you can aggregate nonprofits to metro areas. <strong>3,228 rows</strong> (one per county GEOID): <strong>1,915 counties fall in a CBSA</strong> — 1,252 metropolitan, 663 micropolitan, across 935 distinct CBSAs (184 of which are grouped into Combined Statistical Areas) — and <strong>1,313 rural counties</strong> carry <code>NA</code>.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1791,7 +1863,7 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>cbsa_type</code></td>
-<td style="text-align: left;"><code>Metropolitan</code> or <code>Micropolitan</code></td>
+<td style="text-align: left;"><code>Metropolitan Statistical Area</code> or <code>Micropolitan Statistical Area</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>central_outlying</code></td>
@@ -1814,14 +1886,16 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 <p><strong>Caveats</strong></p>
 <ul>
 <li><strong>FIPS, CBSA, and CSA codes are strings.</strong> Opening a CSV directly in Excel may strip leading zeros on display — read these columns as text.</li>
-<li><strong>Some county labels are intentionally <code>NA</code>.</strong> Ambiguous city-vs-county labels (a bare “Baltimore” or “Roanoke”) and Connecticut’s pre-2022 county labels are left unresolved by design. <strong>Rural counties</strong> (those in no CBSA) carry <code>NA</code> CBSA codes.</li>
+<li><strong><code>NA</code> is a value, not a gap.</strong> <strong>Rural counties</strong> (those in no CBSA) carry <code>NA</code> CBSA/CSA codes by design; that’s the correct value. Likewise, ambiguous city-vs-county labels (a bare “Baltimore” or “Roanoke”) are intentionally left unresolved upstream in the county crosswalk.</li>
 </ul>
 </section>
 <section id="access-via-s3-2" class="level3">
 <h3 data-anchor-id="access-via-s3-2">Access via S3</h3>
-<pre><code>s3://nccsdata/crosswalks/county-fips/   # county FIPS crosswalk (.csv + .parquet + _manifest.json)
-s3://nccsdata/crosswalks/cbsa/          # CBSA crosswalk (.csv + .parquet + _manifest.json)</code></pre>
-<p>Full producer documentation: <a href="https://urbaninstitute.github.io/nccs-data-bmf/13-county-fips-crosswalk.html">County FIPS crosswalk</a> · <a href="https://urbaninstitute.github.io/nccs-data-bmf/14-cbsa-crosswalk.html">CBSA crosswalk</a>.</p>
+<pre><code>s3://nccsdata/crosswalks/county-fips/         # county FIPS crosswalk (.csv + .parquet + _manifest.json)
+s3://nccsdata/crosswalks/ct-planning-region/  # CT planning-region crosswalk (.csv + .parquet + _manifest.json)
+s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet + _manifest.json)</code></pre>
+<p>Each prefix is flat — the vintage is carried in-column and in <code>_manifest.json</code> (use its <code>sha256</code> to detect changes), not in the path.</p>
+<p>Full producer documentation: <a href="https://urbaninstitute.github.io/nccs-data-bmf/13-county-fips-crosswalk.html">County FIPS crosswalk</a> · <a href="https://urbaninstitute.github.io/nccs-data-bmf/14-cbsa-crosswalk.html">CBSA crosswalk</a> · <a href="https://urbaninstitute.github.io/nccs-data-bmf/15-ct-planning-region-crosswalk.html">CT planning-region crosswalk</a>.</p>
 <br>
 <hr>
 <p><br></p>
@@ -2580,7 +2654,7 @@ s3://nccsdata/crosswalks/cbsa/          # CBSA crosswalk (.csv + .parquet + _man
 <li><a href="https://nccs.urban.org/nccs/contact/">Contact</a> — questions, corrections, data requests</li>
 </ul>
 <p style="font-size: 0.85em; color: #666; margin-top: 2em;">
-Last verified: 2026-06-04
+Last verified: 2026-06-05
 </p>
 </section>
 
