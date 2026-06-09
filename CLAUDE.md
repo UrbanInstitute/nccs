@@ -53,3 +53,16 @@ GitHub Pages serves from `main` directly (no Action publishes the site). The `Bu
 
 - Per-collection `readme.md` files inside `_datasets/`, `_resources/`, `_stories/` document the accepted frontmatter fields (these `readme.md`s are gitignored from Jekyll output via `_config.yml` exclude).
 - Author/citation frontmatter follows the [Quarto citation](https://quarto.org/docs/authoring/create-citeable-articles.html) shape. Prefer `author.id` referencing an entry in `_data/people.yml` over inlining `name`/`bio`.
+
+## Contract-change guard (ADR 0022)
+
+This site is a **consumer** of the geography crosswalks and NCCS data via the
+BMF/data catalogs. A PR that changes the catalog manifests enumerating the
+contracted S3 artifacts the site links must acknowledge the
+[`nccs-contracts`](https://github.com/UrbanInstitute/nccs-contracts) impact, or
+CI fails. The `.github/workflows/contracts-guard.yml` caller (a thin wrapper
+over the reusable guard in `nccs-contracts`) fires on PRs that change
+`catalogs/AWS-*.csv`, `catalogs/build-catalog-functions.R`, or `catalogs/aws/*`.
+To pass: add an `ADR NNNN` breadcrumb to a commit message or the PR body, **or**
+add the `contracts-ack` label if there's genuinely no contract impact. The guard
+checks *acknowledgment, not correctness*.
