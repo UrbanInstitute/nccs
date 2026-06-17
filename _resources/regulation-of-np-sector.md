@@ -13,7 +13,7 @@ primaryLinks:
   - text: Project Overview
     href: 'https://www.urban.org/sites/default/files/2023-10/Regulation of Nonprofits and Philanthropy description.pdf'
   - text: Digitized Legal Compendium
-    href: https://airtable.com/app2JZnG1dnoselbB/shr6UmCN2dosIrTtN
+    href: https://airtable.com/app2JZnG1dnoselbB/shrTlYpAk53YAzjyV
   - text: Project Page
     href: https://www.urban.org/policy-centers/center-nonprofits-and-philanthropy/projects/regulation-charitable-sector-project
 pubs:
