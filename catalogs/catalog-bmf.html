@@ -114,6 +114,11 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;"><strong>Geography crosswalks</strong></td>
 <td style="text-align: left;">Optional join layers for the geocoded BMF (TIGER 2023 / OMB 2023)</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">An NTEE code for an org whose current code is blank</td>
+<td style="text-align: left;"><strong>NTEE-resolved crosswalk</strong></td>
+<td style="text-align: left;">Recovers a per-EIN NTEE across all vintages (current + legacy); join by <code>ein</code></td>
+</tr>
 </tbody>
 </table>
 <br>
@@ -1901,6 +1906,211 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <p><br></p>
 </section>
 </section>
+<section id="ntee-resolved-crosswalk" class="level2">
+<h2 data-anchor-id="ntee-resolved-crosswalk">NTEE-Resolved Crosswalk</h2>
+<p>A per-EIN NTEE classification <strong>recovered across every vintage</strong> of both BMF pipelines (the current monthly file and the legacy 501CX archive). The Master BMF carries each organization’s NTEE <em>as reported in its most-recent vintage</em> — which silently discards a known older code when the newest one is blank. The IRS sometimes nulls an organization’s <code>NTEE_CD</code> at source: <strong>Carnegie Mellon (EIN 25-0969449)</strong> is blank in the current BMF but was coded <code>B43</code> (University) in the legacy vintages. No cleaner can classify a null; only a cross-vintage lookup can recover it.</p>
+<p>This crosswalk does that recovery. It aggregates the verbatim raw NTEE code per EIN across all 114 vintages, cleans the distinct codes once with the current NTEE transform, and exposes the full history so <strong>you pick the resolution rule that fits your use</strong> — it takes no opinionated single pick (per <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0016-no-canonical-cross-dataset-merge.md">ADR 0016</a>, consumer-composes). It is <strong>not</strong> a column on the Master BMF: <strong>join it onto the BMF or CORE by <code>ein</code></strong> (<code>XX-XXXXXXX</code>) and apply the rule you want.</p>
+<p><strong>The four resolution views</strong> (each EIN carries all of them):</p>
+<ul>
+<li><strong><code>ntee_current</code></strong> — the code in the latest <em>current</em> vintage. May be <code>NA</code> by design — this is the IRS’s current answer (CMU’s state today).</li>
+<li><strong><code>ntee_most_recent</code></strong> — the newest vintage with a <em>non-null</em> code, from either pipeline (CMU → <code>B43</code>). This is the view that recovers IRS-nulled codes.</li>
+<li><strong><code>ntee_modal</code></strong> — the most-observed code across vintages (resistant to a one-off miscode; ties broken by recency).</li>
+<li><strong><code>ntee_code_distribution</code></strong> — the full per-code history as JSON, for your own custom rule.</li>
+</ul>
+<p>Each of the first three carries <code>_subsector</code> (NTEEv2 subsector, e.g.&nbsp;<code>UNI</code>/<code>HOS</code>/<code>EDU</code>) and <code>_nteev2</code> (full NTEEv2 code) derivatives, plus <code>n_distinct_codes</code>, <code>n_vintages_with_ntee</code>, and <code>ntee_agreement</code> (<code>single</code>/<code>unanimous</code>/<code>mixed</code>) as a confidence signal. To filter for universities, for example, use <code>ntee_most_recent_subsector == 'UNI'</code> — not a substring guess.</p>
+<p><strong>Scale &amp; recovery.</strong> 3,613,958 EINs (one row per EIN with an NTEE in ≥1 vintage). Of <strong>2,054,414</strong> EINs whose <code>ntee_current</code> is null/blank, <strong>2,031,485 (98.9%)</strong> recover a usable code via <code>ntee_most_recent</code>. Agreement across vintages: unanimous 71.5% / mixed 21.5% / single 7.0%.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Format</th>
+<th style="text-align: left;">Size</th>
+<th style="text-align: left;">Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_resolved_crosswalk.parquet</code></td>
+<td style="text-align: left;">Parquet (zstd) — machine contract, recommended</td>
+<td style="text-align: left;">~78 MB</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.parquet">Parquet</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_resolved_crosswalk.csv</code></td>
+<td style="text-align: left;">CSV mirror</td>
+<td style="text-align: left;">~640 MB</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.csv">CSV</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>_manifest.json</code></td>
+<td style="text-align: left;">Provenance (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md">ADR 0014</a>)</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/_manifest.json">manifest.json</a></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>The 640 MB CSV is not Excel-friendly</strong> — it is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON <code>ntee_code_distribution</code> column. <strong>Prefer the parquet</strong> (the machine contract); reach for the CSV only for a streaming/<code>awk</code>-style read where parquet tooling isn’t available.</p>
+</blockquote>
+<section id="column-dictionary" class="level3">
+<h3 data-anchor-id="column-dictionary">Column dictionary</h3>
+<p>One row per EIN. NTEE codes are <strong>strings</strong> (NTEE-CC) — never cast them numeric.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Column</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>ein</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Formatted EIN (<code>XX-XXXXXXX</code>) — the join key (never null)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_current</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Cleaned NTEE-CC from the latest current vintage; <code>NA</code> if never in current or IRS-nulled</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_current_subsector</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">NTEEv2 subsector (e.g.&nbsp;<code>UNI</code>/<code>HOS</code>/<code>EDU</code>) for the current code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_current_nteev2</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Full NTEEv2 code for the current code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>current_vintage</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;"><code>YYYY_MM</code> of the latest current vintage observed for the EIN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_most_recent</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Cleaned NTEE-CC from the newest vintage carrying a non-null code (any source)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_most_recent_subsector</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">NTEEv2 subsector for the most-recent code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_most_recent_nteev2</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Full NTEEv2 code for the most-recent code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_most_recent_vintage</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;"><code>YYYY_MM</code> that supplied <code>ntee_most_recent</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_most_recent_source</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;"><code>current</code> | <code>legacy</code> — pipeline that supplied <code>ntee_most_recent</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_modal</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Most-observed cleaned code across vintages (ties broken by recency)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_modal_subsector</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">NTEEv2 subsector for the modal code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_modal_nteev2</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Full NTEEv2 code for the modal code</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_modal_n</code></td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">Vintage-observations supporting the modal code</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ntee_code_distribution</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">JSON keyed on cleaned NTEE-CC: <code>{code:{n,first,last}}</code> — full history</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>n_distinct_codes</code></td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">Count of distinct cleaned codes ever observed for the EIN</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>n_vintages_with_ntee</code></td>
+<td style="text-align: left;">int</td>
+<td style="text-align: left;">Total vintage-observations carrying an NTEE</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ntee_agreement</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;"><code>single</code> (one obs) | <code>unanimous</code> (all agree) | <code>mixed</code></td>
+</tr>
+</tbody>
+</table>
+<p>There is <strong>no separate data-dictionary CSV</strong> for this artifact — the contracted truth is the parquet/CSV plus <code>_manifest.json</code>, and the column docs above come from the <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/contracts/ntee-resolved-crosswalk.yml">crosswalk contract</a>.</p>
+</section>
+<section id="provenance" class="level3">
+<h3 data-anchor-id="provenance">Provenance</h3>
+<p>The <code>_manifest.json</code> (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md">ADR 0014</a> shape) records the published provenance — use its <code>sha256</code> to detect changes. As of first publish:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>vintage</code></td>
+<td style="text-align: left;"><code>2026_06</code> (newest current BMF vintage at build)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>built_at</code></td>
+<td style="text-align: left;"><code>2026-06-24T19:54:22Z</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>git_sha</code></td>
+<td style="text-align: left;"><code>1e1290d</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>row_count</code></td>
+<td style="text-align: left;">3,613,958</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Inputs</td>
+<td style="text-align: left;">current + legacy intermediate parquets (<code>ntee_code_raw</code>), plus the sha256 of <code>transform_ntee_code.R</code> and the legacy 5-char lookup</td>
+</tr>
+</tbody>
+</table>
+<p>The crosswalk is <strong>rebuilt monthly</strong> after each new current BMF lands, so <code>ntee_current</code> tracks the newest vintage (the legacy half is static); uploads are idempotent (unchanged files skipped via the manifest <code>sha256</code>). Always read the live <code>_manifest.json</code> for the current <code>vintage</code>/<code>git_sha</code>/<code>built_at</code>.</p>
+</section>
+<section id="access-via-s3-3" class="level3">
+<h3 data-anchor-id="access-via-s3-3">Access via S3</h3>
+<pre><code>s3://nccsdata/crosswalks/ntee-resolved/   # .parquet (machine contract) + .csv mirror + _manifest.json</code></pre>
+<p>The prefix is flat — the vintage is carried in <code>_manifest.json</code>, not in the path. Rationale: <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0034-ntee-resolved-crosswalk.md">ADR 0034</a>.</p>
+<br>
+<hr>
+<p><br></p>
+</section>
+</section>
 <section id="raw-archives" class="level2">
 <h2 data-anchor-id="raw-archives">Raw Archives</h2>
 <details>
@@ -2654,7 +2864,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <li><a href="https://nccs.urban.org/nccs/contact/">Contact</a> — questions, corrections, data requests</li>
 </ul>
 <p style="font-size: 0.85em; color: #666; margin-top: 2em;">
-Last verified: 2026-06-05
+Last verified: 2026-06-26
 </p>
 </section>
 
