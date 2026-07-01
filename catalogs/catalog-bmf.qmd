@@ -74,7 +74,7 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 
 | If you need... | Use | Why |
 |:---|:---|:---|
-| One row per nonprofit, ever (1989–present) | **Master BMF** | Combines every vintage into a single longitudinal frame |
+| One row per nonprofit, ever (1989–present) | **Unified BMF** | Combines every vintage into a single longitudinal frame |
 | A specific month's snapshot (2023-06 or later) | **Transformed monthly BMF** | Cleaned and standardized; column schema is stable across months |
 | A specific month's snapshot (1989–2022) | **Harmonized legacy BMF** | Same column schema as transformed; aligns historical vintages |
 | The unmodified IRS file | **Raw monthly archive** | Untouched IRS releases, for replication of upstream analysis |
@@ -84,11 +84,15 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 
 <br><hr><br>
 
-## Master BMF
+## Unified BMF
 
-One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame.
+One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame. **3,687,435 unique EINs**, built from 118 source files across 114 vintages (1989–2026).
 
-The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table.
+The join key is `ein` (`XX-XXXXXXX`), unchanged. The Unified BMF additionally carries two coercion-safe renderings of the same key ([ADR 0036](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md)): **`ein_prefixed`** (`ein-XX-XXXXXXX`, lowercase — provably text, recommended for new joins) and **`EIN2`** (`EIN-XX-XXXXXXX`, uppercase — a legacy-compatibility alias for merges written against the older Unified BMF / harmonized CORE format). Use whichever fits your existing code; all renderings are bijective with the same underlying 9-digit EIN.
+
+> **Renamed from "Master BMF" (2026-07-01).** This product was briefly published as "Master BMF"; it has been renamed back to **Unified BMF**, restoring the name the research community originally knew it by ([ADR 0037](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0037-master-bmf-rename-unified-supersession-provenance.md)). This is a **non-silent supersession**: the prior `s3://nccsdata/master/bmf/` path stays live and reachable through **2026-09-28** (a 90-day window), after which it moves to a retained, citable archive — it is never deleted. If you bookmarked or scripted against the old path, re-pin to `s3://nccsdata/unified/bmf/` before the cutover.
+
+The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. (The geocoded extension and its per-state marts are a separate product, still named "Master BMF" — they are **not** renamed by this change.)
 
 ```{r}
 headline <- build_master_headline_table(manifest)
@@ -102,7 +106,7 @@ if (!is.null(headline)) {
   ) |>
     kableExtra::kable_styling()
 } else {
-  cat("_Master BMF is not yet listed in the manifest._\n")
+  cat("_Unified BMF is not yet listed in the manifest._\n")
 }
 ```
 
@@ -126,7 +130,8 @@ knitr::kable(
 
 ```
 s3://nccsdata/geocoding/bmf-master/merged/   # Geocoded variant (recommended)
-s3://nccsdata/master/bmf/                    # Plain Master BMF
+s3://nccsdata/unified/bmf/                   # Plain Unified BMF (bmf_unified.{parquet,csv} + dictionary + quality report + _manifest.json)
+s3://nccsdata/master/bmf/                    # Superseded plain path — reachable through 2026-09-28, then archived (not deleted)
 s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts
 ```
 
@@ -278,9 +283,9 @@ Full producer documentation: [County FIPS crosswalk](https://urbaninstitute.gith
 
 ## NTEE-Resolved Crosswalk
 
-A per-EIN NTEE classification **recovered across every vintage** of both BMF pipelines (the current monthly file and the legacy 501CX archive). The Master BMF carries each organization's NTEE *as reported in its most-recent vintage* — which silently discards a known older code when the newest one is blank. The IRS sometimes nulls an organization's `NTEE_CD` at source: **Carnegie Mellon (EIN 25-0969449)** is blank in the current BMF but was coded `B43` (University) in the legacy vintages. No cleaner can classify a null; only a cross-vintage lookup can recover it.
+A per-EIN NTEE classification **recovered across every vintage** of both BMF pipelines (the current monthly file and the legacy 501CX archive). The Unified BMF carries each organization's NTEE *as reported in its most-recent vintage* — which silently discards a known older code when the newest one is blank. The IRS sometimes nulls an organization's `NTEE_CD` at source: **Carnegie Mellon (EIN 25-0969449)** is blank in the current BMF but was coded `B43` (University) in the legacy vintages. No cleaner can classify a null; only a cross-vintage lookup can recover it.
 
-This crosswalk does that recovery. It aggregates the verbatim raw NTEE code per EIN across all 114 vintages, cleans the distinct codes once with the current NTEE transform, and exposes the full history so **you pick the resolution rule that fits your use** — it takes no opinionated single pick (per [ADR 0016](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0016-no-canonical-cross-dataset-merge.md), consumer-composes). It is **not** a column on the Master BMF: **join it onto the BMF or CORE by `ein`** (`XX-XXXXXXX`) and apply the rule you want.
+This crosswalk does that recovery. It aggregates the verbatim raw NTEE code per EIN across all 114 vintages, cleans the distinct codes once with the current NTEE transform, and exposes the full history so **you pick the resolution rule that fits your use** — it takes no opinionated single pick (per [ADR 0016](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0016-no-canonical-cross-dataset-merge.md), consumer-composes). It is **not** a column on the Unified BMF: **join it onto the BMF or CORE by `ein`** (`XX-XXXXXXX`) and apply the rule you want.
 
 **The four resolution views** (each EIN carries all of them):
 
@@ -303,11 +308,13 @@ Each of the first three carries `_subsector` (NTEEv2 subsector, e.g. `UNI`/`HOS`
 
 ### Column dictionary
 
-One row per EIN. NTEE codes are **strings** (NTEE-CC) — never cast them numeric.
+One row per EIN, **20 columns**. NTEE codes are **strings** (NTEE-CC) — never cast them numeric.
 
 | Column | Type | Description |
 |:---|:---|:---|
-| `ein` | string | Formatted EIN (`XX-XXXXXXX`) — the join key (never null) |
+| `ein` | string | Formatted EIN (`XX-XXXXXXX`) — the join key (never null); unchanged |
+| `ein_prefixed` | string | `ein-XX-XXXXXXX` — coercion-safe lowercase-prefixed rendering of `ein` ([ADR 0036](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md)) |
+| `EIN2` | string | `EIN-XX-XXXXXXX` — legacy-compatibility alias of `ein` (matches the older Unified BMF / harmonized CORE join format) |
 | `ntee_current` | string | Cleaned NTEE-CC from the latest current vintage; `NA` if never in current or IRS-nulled |
 | `ntee_current_subsector` | string | NTEEv2 subsector (e.g. `UNI`/`HOS`/`EDU`) for the current code |
 | `ntee_current_nteev2` | string | Full NTEEv2 code for the current code |

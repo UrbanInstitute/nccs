@@ -1,8 +1,13 @@
 # =============================================================================
 # BMF catalog helpers
 # Path-based parsers and URL builders for the BMF S3 layout:
-#   master/bmf/                      -> Master BMF (state-sliced + headline)
-#   geocoding/bmf-master/merged/     -> Master BMF with lat/lon
+#   unified/bmf/                     -> Unified BMF, plain (headline); renamed
+#                                        from "Master BMF" 2026-07-01 (ADR 0037)
+#   master/bmf/                      -> Superseded plain path (state-sliced +
+#                                        headline, old convention); reachable
+#                                        through 2026-09-28, then archived
+#   geocoding/bmf-master/merged/     -> Master BMF with lat/lon (NOT renamed
+#                                        by ADR 0037 — geocoded extension)
 #   processed/bmf/YYYY_MM/           -> Transformed monthly BMF (2023-06+)
 #   processed/bmf-legacy/YYYY_MM/    -> Harmonized legacy monthly BMF (1989-2022)
 #   legacy/bmf/                      -> Raw NCCS 501CX-NONPROFIT-PX vintages
@@ -216,23 +221,29 @@ build_geocoded_master_row <- function(manifest) {
   rows[, c("file", "download", "size")]
 }
 
-#' Build the headline Master BMF table — one row per variant (geocoded first,
-#' then plain), with columns for download, data dictionary, and quality report.
+#' Build the headline BMF table — one row per variant (geocoded first,
+#' then plain Unified BMF), with columns for download, data dictionary, and
+#' quality report.
 #'
 #' The dictionary URL is derived from the manifest by finding the
-#' `bmf_master_data_dictionary.csv` sibling under `master/bmf/`. The quality
-#' report links the rendered HTML version on the nccs-data-bmf Pages site
-#' (the manifest holds the JSON variant in S3, but users want the HTML).
+#' `bmf_unified_data_dictionary.csv` sibling under `unified/bmf/` (the plain
+#' variant, renamed from "Master BMF" 2026-07-01 per ADR 0037) or the
+#' `bmf_master_geocoded_data_dictionary.csv` sibling under
+#' `geocoding/bmf-master/merged/` (the geocoded variant, not renamed). The
+#' quality report links the rendered HTML version on the nccs-data-bmf Pages
+#' site (the manifest holds the JSON variant in S3, but users want the HTML).
 #'
 #' @param manifest data.frame from AWS-BMF.csv.
-#' @param quality_report_url URL to the master quality report HTML.
+#' @param quality_report_url URL to the master quality report HTML. Points at
+#'   the producer's pre-rename Pages slug (`bmf_master_quality_report.html`)
+#'   until nccs-data-bmf renames its docs to match ADR 0037.
 build_master_headline_table <- function(
   manifest,
   quality_report_url =
     "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
 ) {
   geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
-  master   <- manifest[manifest$source == "master", , drop = FALSE]
+  master   <- manifest[manifest$source == "unified", , drop = FALSE]
 
   # Pick a single headline data CSV + matching dictionary URL out of a manifest
   # subset. Returns a 1-row data.frame or NULL.
@@ -261,9 +272,9 @@ build_master_headline_table <- function(
   if (!is.null(geo_row)) {
     rows[[length(rows) + 1L]] <- cbind(variant = "Master BMF (geocoded)", geo_row)
   }
-  plain_row <- pick_variant(master, "bmf_master_data_dictionary\\.csv$")
+  plain_row <- pick_variant(master, "bmf_unified_data_dictionary\\.csv$")
   if (!is.null(plain_row)) {
-    rows[[length(rows) + 1L]] <- cbind(variant = "Master BMF", plain_row)
+    rows[[length(rows) + 1L]] <- cbind(variant = "Unified BMF", plain_row)
   }
   if (length(rows) == 0) return(NULL)
   out <- do.call(rbind, rows)

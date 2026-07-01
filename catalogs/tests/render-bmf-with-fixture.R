@@ -31,13 +31,15 @@ file.copy(file.path(catalogs_dir, "styles", "catalog.css"), file.path(work, "sty
 
 # Synthetic manifest
 fixture <- data.frame(
-  source = c("master","master","master","master","master",
+  source = c("master","master","master",
+             "unified","unified",
              "geocoded",
              "processed","processed","processed",
              "processed","processed","processed",
              "legacy","legacy","legacy","legacy",
              "raw_legacy","raw_legacy"),
-  Prefix = c(rep("master/bmf/", 5),
+  Prefix = c(rep("master/bmf/", 3),
+             rep("unified/bmf/", 2),
              "geocoding/master/merged/",
              rep("processed/bmf/", 6),
              rep("processed/bmf-legacy/", 4),
@@ -46,8 +48,8 @@ fixture <- data.frame(
     "master/bmf/BMF_MASTER_CA.csv",
     "master/bmf/BMF_MASTER_NY.csv",
     "master/bmf/BMF_MASTER_TX.csv",
-    "master/bmf/BMF_MASTER.csv",
-    "master/bmf/bmf_master_data_dictionary.csv",
+    "unified/bmf/bmf_unified.csv",
+    "unified/bmf/bmf_unified_data_dictionary.csv",
     "geocoding/master/merged/bmf_master_geocoded.parquet",
     # 2026-01 monthly (data + dict + qr)
     "processed/bmf/2026_01/bmf_2026_01_processed.csv",
@@ -103,17 +105,17 @@ check <- function(condition, msg) {
 
 check(grepl("Which dataset should I use?", html, fixed = TRUE),
       "Hero decision section heading present")
-check(grepl(">Master BMF<", html),
-      "Master BMF section heading present")
+check(grepl(">Unified BMF<", html),
+      "Unified BMF section heading present")
 check(grepl("Master BMF (geocoded)", html, fixed = TRUE),
-      "Geocoded variant labeled in headline table")
+      "Geocoded variant labeled in headline table (not renamed by ADR 0037)")
 check(grepl("Dictionary", html, fixed = TRUE),
       "Headline table renders DICTIONARY button per row")
 # Geocoded row appears before plain row in headline table.
-# Use the geocoded *URL* (unique to the table) and the plain master CSV URL
-# instead of "Master BMF" text (which also appears in the H2 heading).
+# Use the geocoded *URL* (unique to the table) and the plain unified BMF URL
+# instead of "Unified BMF" text (which also appears in the H2 heading).
 pos_geo_url   <- regexpr("geocoding/master/merged/", html)
-pos_plain_url <- regexpr("master/bmf/BMF_MASTER\\.csv", html)
+pos_plain_url <- regexpr("unified/bmf/bmf_unified\\.csv", html)
 check(pos_geo_url > 0 && pos_plain_url > 0 && pos_geo_url < pos_plain_url,
       "Geocoded variant rendered before plain variant in headline table")
 check(grepl(">Monthly BMF<", html),
@@ -176,14 +178,13 @@ check(!grepl("nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-04-501CX-NONP
 check(grepl("Last verified:", html, fixed = TRUE),
       "Auto-stamped 'Last verified' footer present")
 
-# The unsuffixed master/bmf/BMF_MASTER.csv now appears intentionally in the
-# headline table (as the plain Master BMF variant), but should NOT appear in
-# the state-by-state slice table. The state table only contains state-suffixed
-# files (BMF_MASTER_CA.csv etc) plus em-dashes for missing states.
-# Verify the unsuffixed file appears exactly once (in the headline table only).
-state_links <- gregexpr("master/bmf/BMF_MASTER\\.csv", html)[[1]]
-state_link_count <- if (length(state_links) == 1 && state_links[1] == -1L) 0L else length(state_links)
-check(state_link_count == 1,
-      "Unsuffixed master file appears once (in headline table) and not in state slices")
+# The unified/bmf/bmf_unified.csv headline file lives at a different S3
+# prefix (unified/bmf/) than the state-by-state slice table (master/bmf/
+# state-suffixed files, e.g. BMF_MASTER_CA.csv) — it should appear exactly
+# once, in the headline table only, and never bleed into the state table.
+unified_links <- gregexpr("unified/bmf/bmf_unified\\.csv", html)[[1]]
+unified_link_count <- if (length(unified_links) == 1 && unified_links[1] == -1L) 0L else length(unified_links)
+check(unified_link_count == 1,
+      "Unified BMF headline file appears once (in headline table) and not in state slices")
 
 cat("\nAll render assertions passed.\n")

@@ -71,9 +71,15 @@ decorate <- function(dt, base_url) {
 # BMF manifest (new layout)
 #
 # Source folders, all in the public `nccsdata` bucket:
-#   master/bmf/                       -- Master BMF (renamed from "Unified")
-#   master/bmf/state_marts/csv/       -- Per-state geocoded marts (CSV)
-#   geocoding/bmf-master/merged/      -- Master BMF with lat/lon
+#   unified/bmf/                       -- Unified BMF, plain (renamed from
+#                                         "Master BMF" 2026-07-01, ADR 0037)
+#   master/bmf/                       -- Superseded plain path; reachable
+#                                         through 2026-09-28, then archived
+#                                         (non-silent supersession, ADR 0037)
+#   master/bmf/state_marts/csv/       -- Per-state geocoded marts (CSV); NOT
+#                                         renamed by ADR 0037
+#   geocoding/bmf-master/merged/      -- Master BMF with lat/lon; NOT renamed
+#                                         by ADR 0037 (geocoded extension)
 #   processed/bmf/YYYY_MM/            -- monthly transformed BMF (2023-06+)
 #   processed/bmf-legacy/YYYY_MM/     -- monthly harmonized legacy BMF (1989-2022)
 #   legacy/bmf/                       -- raw NCCS 501CX-NONPROFIT-PX vintages
@@ -84,6 +90,7 @@ decorate <- function(dt, base_url) {
 build_bmf_manifest <- function(out_path = "catalogs/AWS-BMF.csv") {
   message("Building BMF manifest")
   sources <- list(
+    unified    = "unified/bmf/",
     master     = "master/bmf/",
     state_mart = "master/bmf/state_marts/csv/",
     geocoded   = "geocoding/bmf-master/merged/",

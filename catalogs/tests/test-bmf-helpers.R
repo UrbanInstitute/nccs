@@ -35,12 +35,17 @@ source(find_helpers())
 
 make_fixture <- function() {
   rows <- list(
-    # Master: state-sliced
+    # Master: state-sliced (superseded plain path; state-mart naming convention
+    # unaffected by the ADR 0037 rename)
     list(source = "master", Key = "master/bmf/BMF_MASTER_CA.csv", Size = 50e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER_NY.csv", Size = 60e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER_TX.csv", Size = 55e6),
     list(source = "master", Key = "master/bmf/BMF_MASTER.csv",     Size = 1300e6),  # no state suffix
     list(source = "master", Key = "master/bmf/bmf_master_data_dictionary.csv", Size = 9e3),
+    # Unified BMF: plain headline (renamed from "Master BMF" 2026-07-01, ADR 0037)
+    list(source = "unified", Key = "unified/bmf/bmf_unified.csv",     Size = 2900e6),
+    list(source = "unified", Key = "unified/bmf/bmf_unified.parquet", Size = 486e6),
+    list(source = "unified", Key = "unified/bmf/bmf_unified_data_dictionary.csv", Size = 9e3),
     # Geocoded master
     list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded.csv",     Size = 3300e6),
     list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded.parquet", Size = 550e6),
@@ -244,11 +249,11 @@ test_that("build_master_headline_table puts geocoded first", {
   manifest <- make_fixture()
   out <- build_master_headline_table(manifest)
   expect_equal(out$variant[1], "Master BMF (geocoded)")
-  expect_equal(out$variant[2], "Master BMF")
+  expect_equal(out$variant[2], "Unified BMF")
   # Geocoded points at the geocoded URL
   expect_match(out$download[1], "geocoding/bmf-master/merged")
-  # Plain points at the unsuffixed master file
-  expect_match(out$download[2], "master/bmf/BMF_MASTER\\.csv")
+  # Plain points at the unified BMF file, not the superseded master path
+  expect_match(out$download[2], "unified/bmf/bmf_unified\\.csv")
 })
 
 test_that("build_master_headline_table picks per-variant dictionary URLs", {
@@ -258,11 +263,11 @@ test_that("build_master_headline_table picks per-variant dictionary URLs", {
   # Geocoded row uses the geocoded dictionary
   expect_match(out$dictionary[1],
                "geocoding/bmf-master/merged/bmf_master_geocoded_data_dictionary\\.csv")
-  # Plain row uses the plain master dictionary
+  # Plain row uses the unified BMF dictionary
   expect_match(out$dictionary[2],
-               "master/bmf/bmf_master_data_dictionary\\.csv")
-  # Geocoded row must NOT silently inherit the plain master dictionary
-  expect_false(grepl("master/bmf/bmf_master_data_dictionary",
+               "unified/bmf/bmf_unified_data_dictionary\\.csv")
+  # Geocoded row must NOT silently inherit the plain unified dictionary
+  expect_false(grepl("unified/bmf/bmf_unified_data_dictionary",
                      out$dictionary[1]))
 })
 
@@ -270,7 +275,7 @@ test_that("build_master_headline_table em-dashes when dictionary is absent", {
   manifest <- make_fixture()
   manifest <- manifest[!grepl("data_dictionary",
                               basename(manifest$Key)) |
-                       manifest$source != "master", , drop = FALSE]
+                       manifest$source != "unified", , drop = FALSE]
   out <- build_master_headline_table(manifest)
   expect_true(all(out$dictionary == "&mdash;"))
 })
@@ -288,7 +293,7 @@ test_that("build_master_headline_table omits missing variants gracefully", {
   manifest <- manifest[manifest$source != "geocoded", , drop = FALSE]
   out <- build_master_headline_table(manifest)
   expect_equal(nrow(out), 1)
-  expect_equal(out$variant, "Master BMF")
+  expect_equal(out$variant, "Unified BMF")
 })
 
 test_that("build_master_headline_table excludes dictionary/QR from headline plain row", {
@@ -297,6 +302,13 @@ test_that("build_master_headline_table excludes dictionary/QR from headline plai
   # Plain row's download must point at a data file, not the dictionary CSV
   expect_false(grepl("data_dictionary", out$download[2]))
   expect_false(grepl("quality_report",  out$download[2]))
+})
+
+test_that("build_master_headline_table ignores the superseded master/bmf/ path", {
+  manifest <- make_fixture()
+  out <- build_master_headline_table(manifest)
+  # The plain row must come from unified/bmf/, not the superseded master/bmf/
+  expect_false(grepl("^master/bmf/|/master/bmf/", out$download[2]))
 })
 
 # =============================================================================
