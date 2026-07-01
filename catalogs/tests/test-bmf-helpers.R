@@ -138,6 +138,17 @@ test_that("build_quality_report_url templates correctly and is NA-safe", {
   )
 })
 
+test_that("build_quality_report_url uses the legacy filename convention when legacy = TRUE", {
+  urls <- build_quality_report_url(c("1989", "2022"), c("06", "08"), legacy = TRUE)
+  expect_equal(
+    urls,
+    c(
+      "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1989_06_quality_report.html",
+      "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2022_08_quality_report.html"
+    )
+  )
+})
+
 test_that("make_quality_report_links renders dash for NA", {
   links <- make_quality_report_links(c(
     "https://example.com/r1.html",
@@ -206,6 +217,20 @@ test_that("build_combined_monthly_section links data CSV, dictionary, and HTML q
   expect_match(top$dictionary,     "Dictionary")
   expect_match(top$quality_report, "bmf_2026_01_quality_report\\.html")
   expect_match(top$size,           "200")  # data CSV size, not parquet/dictionary
+})
+
+test_that("build_combined_monthly_section uses the legacy quality-report filename for harmonized legacy months", {
+  # The two pipelines publish per-month HTML quality reports under different
+  # filenames on the nccs-data-bmf Pages site (bmf_YYYY_MM_... vs
+  # bmf_legacy_YYYY_MM_...) — a plain era-blind template 404s for every
+  # legacy month.
+  manifest <- make_fixture()
+  out <- build_combined_monthly_section(manifest, n_recent = NA)
+
+  legacy_row <- out[out$year == "2024" & out$month == "03", ]
+  expect_equal(nrow(legacy_row), 1)
+  expect_match(legacy_row$quality_report, "bmf_legacy_2024_03_quality_report\\.html")
+  expect_false(grepl("^bmf_2024_03_quality_report", legacy_row$quality_report))
 })
 
 test_that("build_combined_monthly_section em-dashes a missing dictionary", {

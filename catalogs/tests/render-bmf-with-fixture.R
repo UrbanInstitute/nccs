@@ -137,8 +137,13 @@ check(grepl("bmf_master_geocoded\\.parquet", html),
 
 check(grepl("bmf_2026_01_quality_report\\.html", html),
       "2026-01 quality report URL present")
-check(grepl("bmf_2024_03_quality_report\\.html", html),
-      "2024-03 harmonized legacy quality report URL present")
+# Harmonized legacy months publish their quality report under a different
+# filename on the Pages site (bmf_legacy_YYYY_MM_... vs bmf_YYYY_MM_...) --
+# an era-blind template 404s for every legacy month.
+check(grepl("bmf_legacy_2024_03_quality_report\\.html", html),
+      "2024-03 harmonized legacy quality report URL uses the legacy filename")
+check(!grepl("bmf_2024_03_quality_report\\.html", html),
+      "2024-03 legacy quality report is NOT linked with the era-blind (non-legacy) filename")
 
 # Combined monthly table: should have an Era / Pipeline column tagging both eras
 check(grepl(">Transformed<", html),

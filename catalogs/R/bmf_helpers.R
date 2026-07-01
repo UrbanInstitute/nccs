@@ -12,8 +12,9 @@
 #   processed/bmf-legacy/YYYY_MM/    -> Harmonized legacy monthly BMF (1989-2022)
 #   legacy/bmf/                      -> Raw NCCS 501CX-NONPROFIT-PX vintages
 #
-# Per-month quality reports:
-#   https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_YYYY_MM_quality_report.html
+# Per-month quality reports (nccs-data-bmf Pages site; naming differs by era):
+#   Transformed (2023-06+):        bmf_YYYY_MM_quality_report.html
+#   Harmonized legacy (1989-2022): bmf_legacy_YYYY_MM_quality_report.html
 #
 # Per-vintage raw legacy data dictionaries (PROFILE):
 #   https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/<filename-without-.csv>
@@ -21,6 +22,8 @@
 
 BMF_QUALITY_REPORT_URL <-
   "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_%s_%s_quality_report.html"
+BMF_LEGACY_QUALITY_REPORT_URL <-
+  "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_%s_%s_quality_report.html"
 
 #' Extract YYYY and MM from an S3 key that contains a /YYYY_MM/ path segment.
 #' Returns a data.frame with character columns `year` and `month`. Non-matching
@@ -55,11 +58,17 @@ extract_bmf_state <- function(keys) {
 
 #' Build a quality-report URL for a (year, month) pair. Vectorized.
 #' Returns NA where either input is NA so callers can render a dash instead.
-build_quality_report_url <- function(year, month) {
+#'
+#' @param legacy Logical (vectorized). TRUE selects the harmonized-legacy
+#'   pipeline's filename (`bmf_legacy_YYYY_MM_...`); the two pipelines publish
+#'   their per-month reports under different filenames on the nccs-data-bmf
+#'   Pages site, so era must be threaded through or legacy months 404.
+build_quality_report_url <- function(year, month, legacy = FALSE) {
+  template <- ifelse(legacy, BMF_LEGACY_QUALITY_REPORT_URL, BMF_QUALITY_REPORT_URL)
   ifelse(
     is.na(year) | is.na(month),
     NA_character_,
-    sprintf(BMF_QUALITY_REPORT_URL, year, month)
+    sprintf(template, year, month)
   )
 }
 
@@ -178,7 +187,7 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
       "&mdash;"
     }
     quality_report <- make_quality_report_links(
-      build_quality_report_url(parts[1], parts[2])
+      build_quality_report_url(parts[1], parts[2], legacy = parts[3] == "Harmonized legacy")
     )
     size <- paste0(round(csv_row$Size / 1e6, 1), " mb")
 
