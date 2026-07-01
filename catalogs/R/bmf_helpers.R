@@ -230,13 +230,16 @@ build_geocoded_master_row <- function(manifest) {
 #' variant, renamed from "Master BMF" 2026-07-01 per ADR 0037) or the
 #' `bmf_master_geocoded_data_dictionary.csv` sibling under
 #' `geocoding/bmf-master/merged/` (the geocoded variant, not renamed). The
-#' quality report links the rendered HTML version on the nccs-data-bmf Pages
-#' site (the manifest holds the JSON variant in S3, but users want the HTML).
+#' quality report prefers a rendered HTML sibling in the manifest itself
+#' (e.g. `bmf_unified_quality_report.html`, the ADR 0014 per-build artifact);
+#' `quality_report_url` is only a fallback for variants that don't publish
+#' one (the geocoded pipeline currently only emits the JSON variant).
 #'
 #' @param manifest data.frame from AWS-BMF.csv.
-#' @param quality_report_url URL to the master quality report HTML. Points at
-#'   the producer's pre-rename Pages slug (`bmf_master_quality_report.html`)
-#'   until nccs-data-bmf renames its docs to match ADR 0037.
+#' @param quality_report_url Fallback URL when a variant has no HTML quality
+#'   report sibling in the manifest. Points at the producer's pre-rename Pages
+#'   slug (`bmf_master_quality_report.html`) until nccs-data-bmf renames its
+#'   docs to match ADR 0037.
 build_master_headline_table <- function(
   manifest,
   quality_report_url =
@@ -245,24 +248,30 @@ build_master_headline_table <- function(
   geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
   master   <- manifest[manifest$source == "unified", , drop = FALSE]
 
-  # Pick a single headline data CSV + matching dictionary URL out of a manifest
-  # subset. Returns a 1-row data.frame or NULL.
+  # Pick a single headline data CSV + matching dictionary/quality-report URLs
+  # out of a manifest subset. Returns a 1-row data.frame or NULL.
   pick_variant <- function(rows, dict_pattern) {
     if (nrow(rows) == 0) return(NULL)
-    is_dict    <- grepl(dict_pattern, basename(rows$Key), ignore.case = TRUE)
-    is_qr      <- grepl("_quality_report\\.json$", basename(rows$Key), ignore.case = TRUE)
-    is_state   <- !is.na(extract_bmf_state(rows$Key))
-    headline   <- rows[!is_dict & !is_qr & !is_state, , drop = FALSE]
-    headline   <- headline[order(!grepl("\\.csv$", headline$Key)), , drop = FALSE]
+    is_dict     <- grepl(dict_pattern, basename(rows$Key), ignore.case = TRUE)
+    is_qr_html  <- grepl("_quality_report\\.html$", basename(rows$Key), ignore.case = TRUE)
+    is_qr_json  <- grepl("_quality_report\\.json$", basename(rows$Key), ignore.case = TRUE)
+    is_manifest <- grepl("^_manifest\\.json$", basename(rows$Key), ignore.case = TRUE)
+    is_state    <- !is.na(extract_bmf_state(rows$Key))
+    headline    <- rows[!is_dict & !is_qr_html & !is_qr_json & !is_manifest & !is_state, , drop = FALSE]
+    headline    <- headline[order(!grepl("\\.csv$", headline$Key)), , drop = FALSE]
     if (nrow(headline) == 0) return(NULL)
 
-    dict_rows  <- rows[is_dict, , drop = FALSE]
-    dict_url   <- if (nrow(dict_rows) > 0) dict_rows$URL[1] else NA_character_
+    dict_rows <- rows[is_dict, , drop = FALSE]
+    dict_url  <- if (nrow(dict_rows) > 0) dict_rows$URL[1] else NA_character_
+
+    qr_rows  <- rows[is_qr_html, , drop = FALSE]
+    qr_url   <- if (nrow(qr_rows) > 0) qr_rows$URL[1] else NA_character_
 
     data.frame(
       URL  = headline$URL[1],
       Size = headline$Size[1],
       dict = dict_url,
+      qr   = qr_url,
       stringsAsFactors = FALSE
     )
   }
@@ -286,7 +295,7 @@ build_master_headline_table <- function(
     paste0("<a href='", out$dict, "'>Dictionary</a>")
   )
   out$quality_report <- paste0(
-    "<a href='", quality_report_url, "'>Quality report</a>"
+    "<a href='", ifelse(is.na(out$qr), quality_report_url, out$qr), "'>Quality report</a>"
   )
   out$size <- paste0(round(out$Size / 1e6, 1), " mb")
 

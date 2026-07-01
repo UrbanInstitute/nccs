@@ -46,6 +46,9 @@ make_fixture <- function() {
     list(source = "unified", Key = "unified/bmf/bmf_unified.csv",     Size = 2900e6),
     list(source = "unified", Key = "unified/bmf/bmf_unified.parquet", Size = 486e6),
     list(source = "unified", Key = "unified/bmf/bmf_unified_data_dictionary.csv", Size = 9e3),
+    list(source = "unified", Key = "unified/bmf/bmf_unified_quality_report.html", Size = 1.9e6),
+    list(source = "unified", Key = "unified/bmf/bmf_unified_quality_report.json", Size = 19e3),
+    list(source = "unified", Key = "unified/bmf/_manifest.json", Size = 6e3),
     # Geocoded master
     list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded.csv",     Size = 3300e6),
     list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded.parquet", Size = 550e6),
@@ -280,12 +283,22 @@ test_that("build_master_headline_table em-dashes when dictionary is absent", {
   expect_true(all(out$dictionary == "&mdash;"))
 })
 
-test_that("build_master_headline_table uses the templated quality report URL", {
+test_that("build_master_headline_table prefers a manifest-supplied quality report over the fallback URL", {
   manifest <- make_fixture()
   out <- build_master_headline_table(manifest)
   expect_true(all(grepl("Quality report", out$quality_report)))
-  expect_true(all(grepl("bmf_master_quality_report\\.html",
-                        out$quality_report)))
+  # Geocoded has no HTML quality report in the fixture -> falls back to the templated URL
+  expect_match(out$quality_report[1], "bmf_master_quality_report\\.html")
+  # Unified BMF ships its own per-build HTML quality report in the manifest -> use it, not the fallback
+  expect_match(out$quality_report[2], "unified/bmf/bmf_unified_quality_report\\.html")
+  expect_false(grepl("bmf_master_quality_report", out$quality_report[2]))
+})
+
+test_that("build_master_headline_table's plain download excludes the quality report and manifest siblings", {
+  manifest <- make_fixture()
+  out <- build_master_headline_table(manifest)
+  expect_false(grepl("quality_report", out$download[2]))
+  expect_false(grepl("_manifest\\.json", out$download[2]))
 })
 
 test_that("build_master_headline_table omits missing variants gracefully", {
