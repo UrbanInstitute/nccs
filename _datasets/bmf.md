@@ -6,8 +6,8 @@ categories:
   - BMF
 featured: true
 featuredOrder: 2
-primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/geocoding/bmf-master/merged/bmf_master_geocoded.csv"
-primaryCtaCaption: 'Master BMF (geocoded) &middot; <a href="https://nccsdata.s3.amazonaws.com/geocoding/bmf-master/merged/bmf_master_geocoded_data_dictionary.csv">Data dictionary</a>'
+primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/geocoding/unified-bmf/latest/bmf_unified_geocoded.csv"
+primaryCtaCaption: 'Unified BMF (geocoded) &middot; <a href="https://nccsdata.s3.amazonaws.com/geocoding/unified-bmf/latest/bmf_unified_geocoded_data_dictionary.csv">Data dictionary</a>'
 primaryLinks:
   - text: "Data Catalog"
     href: "../../catalogs/catalog-bmf.html"
@@ -18,11 +18,11 @@ primaryLinks:
 citation: 
   author: "Thiyaghessan Poongundranar"
   citationDate: "2026"
-  container-title: "NCCS Master BMF"
+  container-title: "NCCS Unified BMF"
   doi:
 ---
 
-The Business Master File (BMF) is the IRS registry of organizations exempt from federal income tax. NCCS publishes the BMF in several harmonized forms; the **Master BMF** is the flagship product — one row per EIN spanning 1989 to present.
+The Business Master File (BMF) is the IRS registry of organizations exempt from federal income tax. NCCS publishes the BMF in several harmonized forms; the **Unified BMF** is the flagship product — one row per EIN spanning 1989 to present.
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; padding: 1.5rem; background: #f5f5f5; border-radius: 4px;">
   <div style="flex: 1 1 160px; min-width: 140px;">
@@ -70,7 +70,7 @@ Source: [IRS Exempt Organizations BMF Extract](https://www.irs.gov/charities-non
 
 | If you need... | Use | Where to get it |
 |:---|:---|:---|
-| One row per nonprofit, ever (1989–present) | **Master BMF** | [Catalog &rarr; Master BMF](../../catalogs/catalog-bmf.html#master-bmf) |
+| One row per nonprofit, ever (1989–present) | **Unified BMF** | [Catalog &rarr; Unified BMF](../../catalogs/catalog-bmf.html#unified-bmf) |
 | A specific month's snapshot | **Monthly BMF** (transformed for 2023-06+, harmonized legacy for earlier) | [Catalog &rarr; Monthly BMF](../../catalogs/catalog-bmf.html#monthly-bmf) |
 | The unmodified IRS or NCCS file | **Raw archives** (for replication only) | [Catalog &rarr; Raw Archives](../../catalogs/catalog-bmf.html#raw-archives) |
 | Canonical county FIPS, or to roll up to metro areas | **Geography crosswalks** (TIGER 2023 / OMB 2023) | [Catalog &rarr; Geography Crosswalks](../../catalogs/catalog-bmf.html#geography-crosswalks) |

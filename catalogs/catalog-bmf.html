@@ -33,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="catalog-bmf_files/libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="catalog-bmf_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="catalog-bmf_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="catalog-bmf_files/libs/bootstrap/bootstrap-11d4f8990290ac9a721d15dc9257e5db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="catalog-bmf_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="catalog-bmf_files/libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="catalog-bmf_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
@@ -132,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p><strong>Renamed from “Master BMF” (2026-07-01).</strong> This product was briefly published as “Master BMF”; it has been renamed back to <strong>Unified BMF</strong>, restoring the name the research community originally knew it by (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0037-master-bmf-rename-unified-supersession-provenance.md">ADR 0037</a>). This is a <strong>non-silent supersession</strong>: the prior <code>s3://nccsdata/master/bmf/</code> path stays live and reachable through <strong>2026-09-28</strong> (a 90-day window), after which it moves to a retained, citable archive — it is never deleted. If you bookmarked or scripted against the old path, re-pin to <code>s3://nccsdata/unified/bmf/</code> before the cutover.</p>
 </blockquote>
-<p>The <strong>geocoded</strong> variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. (The geocoded extension and its per-state marts are a separate product, still named “Master BMF” — they are <strong>not</strong> renamed by this change.)</p>
+<p>The <strong>geocoded</strong> variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. The geocoded extension and its per-state marts completed the same rename (2026-07-02, <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0039-unified-bmf-geocoded-extension-rename.md">ADR 0039</a>): they are now the <strong>geocoded Unified BMF</strong> at <code>geocoding/unified-bmf/</code> and <code>unified/bmf/state_marts/</code>, with the prior <code>bmf-master</code>/<code>master</code> paths dual-published through their 90-day windows. As of the 2026-07 rebuild, both artifacts also publish permanent per-build vintages (<code>v{YYYY_MM}/</code>) plus a stable <strong><code>latest/</code></strong> folder that always serves the newest build (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md">ADR 0042</a>) — link <code>latest/</code> for always-current, cite <code>v*/</code> for reproducibility. The 2026-07 rebuild also recovered street addresses from the 2009-2022 legacy vintages, lifting geocoded coverage from 59.9% to <strong>82.7%</strong> of organizations.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small">
@@ -148,17 +148,17 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Master BMF (geocoded)</td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geocoding/bmf-master/merged/bmf_master_geocoded.csv">Download</a></td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geocoding/bmf-master/merged/bmf_master_geocoded_data_dictionary.csv">Dictionary</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geocoding/unified-bmf/latest/bmf_unified_geocoded.csv">Download</a></td>
+<td style="text-align: left;">—</td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">3253.4 mb</td>
+<td style="text-align: left;">3569.7 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Unified BMF</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/bmf_unified.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/bmf_unified_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/bmf_unified_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">2973.4 mb</td>
+<td style="text-align: left;">3053.3 mb</td>
 </tr>
 </tbody>
 </table>
@@ -166,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="download-by-stateterritory" class="level3">
 <h3 data-anchor-id="download-by-stateterritory">Download by State/Territory</h3>
-<p>For users who only need a single state, the geocoded Master BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a <code>ZZ</code> bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above.</p>
+<p>For users who only need a single state, the geocoded Unified BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a <code>ZZ</code> bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small">
@@ -179,258 +179,258 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AL.csv">Download</a></td>
-<td style="text-align: left;">44 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AL.csv">Download</a></td>
+<td style="text-align: left;">48.3 mb</td>
 <td style="text-align: left;">Alabama</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AK.csv">Download</a></td>
-<td style="text-align: left;">9.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AK.csv">Download</a></td>
+<td style="text-align: left;">10.5 mb</td>
 <td style="text-align: left;">Alaska</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AZ.csv">Download</a></td>
-<td style="text-align: left;">51.7 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AZ.csv">Download</a></td>
+<td style="text-align: left;">56.8 mb</td>
 <td style="text-align: left;">Arizona</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AR.csv">Download</a></td>
-<td style="text-align: left;">28.2 mb</td>
+<td style="text-align: left;">31.2 mb</td>
 <td style="text-align: left;">Arkansas</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_CA.csv">Download</a></td>
-<td style="text-align: left;">343.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_CA.csv">Download</a></td>
+<td style="text-align: left;">379.1 mb</td>
 <td style="text-align: left;">California</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_CO.csv">Download</a></td>
-<td style="text-align: left;">61 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_CO.csv">Download</a></td>
+<td style="text-align: left;">67.2 mb</td>
 <td style="text-align: left;">Colorado</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_CT.csv">Download</a></td>
-<td style="text-align: left;">39.2 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_CT.csv">Download</a></td>
+<td style="text-align: left;">42.7 mb</td>
 <td style="text-align: left;">Connecticut</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_DE.csv">Download</a></td>
-<td style="text-align: left;">15.6 mb</td>
+<td style="text-align: left;">16.9 mb</td>
 <td style="text-align: left;">Delaware</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_DC.csv">Download</a></td>
-<td style="text-align: left;">29.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_DC.csv">Download</a></td>
+<td style="text-align: left;">33.5 mb</td>
 <td style="text-align: left;">District of Columbia</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_FL.csv">Download</a></td>
-<td style="text-align: left;">186.9 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_FL.csv">Download</a></td>
+<td style="text-align: left;">205.2 mb</td>
 <td style="text-align: left;">Florida</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_GA.csv">Download</a></td>
-<td style="text-align: left;">100.9 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_GA.csv">Download</a></td>
+<td style="text-align: left;">110.6 mb</td>
 <td style="text-align: left;">Georgia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_HI.csv">Download</a></td>
-<td style="text-align: left;">15.5 mb</td>
+<td style="text-align: left;">17 mb</td>
 <td style="text-align: left;">Hawaii</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_ID.csv">Download</a></td>
-<td style="text-align: left;">17.4 mb</td>
+<td style="text-align: left;">19 mb</td>
 <td style="text-align: left;">Idaho</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_IL.csv">Download</a></td>
-<td style="text-align: left;">132.8 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_IL.csv">Download</a></td>
+<td style="text-align: left;">146.6 mb</td>
 <td style="text-align: left;">Illinois</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_IN.csv">Download</a></td>
-<td style="text-align: left;">73.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_IN.csv">Download</a></td>
+<td style="text-align: left;">80.6 mb</td>
 <td style="text-align: left;">Indiana</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_IA.csv">Download</a></td>
-<td style="text-align: left;">48.9 mb</td>
+<td style="text-align: left;">53 mb</td>
 <td style="text-align: left;">Iowa</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_KS.csv">Download</a></td>
-<td style="text-align: left;">31.8 mb</td>
+<td style="text-align: left;">35 mb</td>
 <td style="text-align: left;">Kansas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_KY.csv">Download</a></td>
-<td style="text-align: left;">38 mb</td>
+<td style="text-align: left;">41.7 mb</td>
 <td style="text-align: left;">Kentucky</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_LA.csv">Download</a></td>
-<td style="text-align: left;">41.9 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_LA.csv">Download</a></td>
+<td style="text-align: left;">46.4 mb</td>
 <td style="text-align: left;">Louisiana</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_ME.csv">Download</a></td>
-<td style="text-align: left;">16.8 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_ME.csv">Download</a></td>
+<td style="text-align: left;">18.2 mb</td>
 <td style="text-align: left;">Maine</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MD.csv">Download</a></td>
-<td style="text-align: left;">72.5 mb</td>
+<td style="text-align: left;">79.6 mb</td>
 <td style="text-align: left;">Maryland</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MA.csv">Download</a></td>
-<td style="text-align: left;">73.8 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MA.csv">Download</a></td>
+<td style="text-align: left;">80.9 mb</td>
 <td style="text-align: left;">Massachusetts</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MI.csv">Download</a></td>
-<td style="text-align: left;">97.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MI.csv">Download</a></td>
+<td style="text-align: left;">107.8 mb</td>
 <td style="text-align: left;">Michigan</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MN.csv">Download</a></td>
-<td style="text-align: left;">66.2 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MN.csv">Download</a></td>
+<td style="text-align: left;">72.3 mb</td>
 <td style="text-align: left;">Minnesota</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MS.csv">Download</a></td>
-<td style="text-align: left;">26.7 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MS.csv">Download</a></td>
+<td style="text-align: left;">29.4 mb</td>
 <td style="text-align: left;">Mississippi</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MO.csv">Download</a></td>
-<td style="text-align: left;">74.4 mb</td>
+<td style="text-align: left;">81.7 mb</td>
 <td style="text-align: left;">Missouri</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MT.csv">Download</a></td>
-<td style="text-align: left;">18.8 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MT.csv">Download</a></td>
+<td style="text-align: left;">20.3 mb</td>
 <td style="text-align: left;">Montana</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NE.csv">Download</a></td>
-<td style="text-align: left;">24.1 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NE.csv">Download</a></td>
+<td style="text-align: left;">26.2 mb</td>
 <td style="text-align: left;">Nebraska</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NV.csv">Download</a></td>
-<td style="text-align: left;">22.7 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NV.csv">Download</a></td>
+<td style="text-align: left;">25 mb</td>
 <td style="text-align: left;">Nevada</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NH.csv">Download</a></td>
-<td style="text-align: left;">15.5 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NH.csv">Download</a></td>
+<td style="text-align: left;">16.9 mb</td>
 <td style="text-align: left;">New Hampshire</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NJ.csv">Download</a></td>
-<td style="text-align: left;">88.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NJ.csv">Download</a></td>
+<td style="text-align: left;">97.2 mb</td>
 <td style="text-align: left;">New Jersey</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NM.csv">Download</a></td>
-<td style="text-align: left;">19.7 mb</td>
+<td style="text-align: left;">21.8 mb</td>
 <td style="text-align: left;">New Mexico</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NY.csv">Download</a></td>
-<td style="text-align: left;">198.5 mb</td>
+<td style="text-align: left;">216.1 mb</td>
 <td style="text-align: left;">New York</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NC.csv">Download</a></td>
-<td style="text-align: left;">96.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NC.csv">Download</a></td>
+<td style="text-align: left;">105.9 mb</td>
 <td style="text-align: left;">North Carolina</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_ND.csv">Download</a></td>
-<td style="text-align: left;">11 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_ND.csv">Download</a></td>
+<td style="text-align: left;">12.1 mb</td>
 <td style="text-align: left;">North Dakota</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_OH.csv">Download</a></td>
-<td style="text-align: left;">129.4 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_OH.csv">Download</a></td>
+<td style="text-align: left;">141.6 mb</td>
 <td style="text-align: left;">Ohio</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_OK.csv">Download</a></td>
-<td style="text-align: left;">38.4 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_OK.csv">Download</a></td>
+<td style="text-align: left;">42.3 mb</td>
 <td style="text-align: left;">Oklahoma</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_OR.csv">Download</a></td>
-<td style="text-align: left;">44.5 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_OR.csv">Download</a></td>
+<td style="text-align: left;">48.6 mb</td>
 <td style="text-align: left;">Oregon</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_PA.csv">Download</a></td>
-<td style="text-align: left;">134.8 mb</td>
+<td style="text-align: left;">147.4 mb</td>
 <td style="text-align: left;">Pennsylvania</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_RI.csv">Download</a></td>
-<td style="text-align: left;">11.6 mb</td>
+<td style="text-align: left;">12.7 mb</td>
 <td style="text-align: left;">Rhode Island</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_SC.csv">Download</a></td>
-<td style="text-align: left;">50.4 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_SC.csv">Download</a></td>
+<td style="text-align: left;">54.8 mb</td>
 <td style="text-align: left;">South Carolina</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_SD.csv">Download</a></td>
-<td style="text-align: left;">12.5 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_SD.csv">Download</a></td>
+<td style="text-align: left;">13.7 mb</td>
 <td style="text-align: left;">South Dakota</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_TN.csv">Download</a></td>
-<td style="text-align: left;">64.3 mb</td>
+<td style="text-align: left;">70.3 mb</td>
 <td style="text-align: left;">Tennessee</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_TX.csv">Download</a></td>
-<td style="text-align: left;">244.4 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_TX.csv">Download</a></td>
+<td style="text-align: left;">267.2 mb</td>
 <td style="text-align: left;">Texas</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_UT.csv">Download</a></td>
-<td style="text-align: left;">21.4 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_UT.csv">Download</a></td>
+<td style="text-align: left;">23.5 mb</td>
 <td style="text-align: left;">Utah</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_VT.csv">Download</a></td>
-<td style="text-align: left;">10.9 mb</td>
+<td style="text-align: left;">11.9 mb</td>
 <td style="text-align: left;">Vermont</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_VA.csv">Download</a></td>
-<td style="text-align: left;">89.1 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_VA.csv">Download</a></td>
+<td style="text-align: left;">97.5 mb</td>
 <td style="text-align: left;">Virginia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WA.csv">Download</a></td>
-<td style="text-align: left;">72.4 mb</td>
+<td style="text-align: left;">79.5 mb</td>
 <td style="text-align: left;">Washington</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WV.csv">Download</a></td>
-<td style="text-align: left;">20.7 mb</td>
+<td style="text-align: left;">22.8 mb</td>
 <td style="text-align: left;">West Virginia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WI.csv">Download</a></td>
-<td style="text-align: left;">65.5 mb</td>
+<td style="text-align: left;">71.5 mb</td>
 <td style="text-align: left;">Wisconsin</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WY.csv">Download</a></td>
-<td style="text-align: left;">9.6 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_WY.csv">Download</a></td>
+<td style="text-align: left;">10.5 mb</td>
 <td style="text-align: left;">Wyoming</td>
 </tr>
 <tr class="even">
@@ -439,23 +439,23 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">American Samoa</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_GU.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_GU.csv">Download</a></td>
 <td style="text-align: left;">0.3 mb</td>
 <td style="text-align: left;">Guam</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MP.csv">Download</a></td>
-<td style="text-align: left;">0.1 mb</td>
+<td style="text-align: left;">0.2 mb</td>
 <td style="text-align: left;">Northern Mariana Islands</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_PR.csv">Download</a></td>
-<td style="text-align: left;">4.6 mb</td>
+<td style="text-align: left;">5.1 mb</td>
 <td style="text-align: left;">Puerto Rico</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_VI.csv">Download</a></td>
-<td style="text-align: left;">0.9 mb</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_VI.csv">Download</a></td>
+<td style="text-align: left;">1.1 mb</td>
 <td style="text-align: left;">U.S. Virgin Islands</td>
 </tr>
 <tr class="odd">
@@ -464,12 +464,12 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;">Armed Forces Americas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AE.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AE.csv">Download</a></td>
 <td style="text-align: left;">0.3 mb</td>
 <td style="text-align: left;">Armed Forces Europe</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AP.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AP.csv">Download</a></td>
 <td style="text-align: left;">0.2 mb</td>
 <td style="text-align: left;">Armed Forces Pacific</td>
 </tr>
@@ -490,7 +490,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_ZZ.csv">Download</a></td>
-<td style="text-align: left;">4.5 mb</td>
+<td style="text-align: left;">5 mb</td>
 <td style="text-align: left;">Unknown / unmapped</td>
 </tr>
 </tbody>
@@ -500,10 +500,14 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="access-via-s3" class="level3">
 <h3 data-anchor-id="access-via-s3">Access via S3</h3>
-<pre><code>s3://nccsdata/geocoding/bmf-master/merged/   # Geocoded variant (recommended)
+<pre><code>s3://nccsdata/geocoding/unified-bmf/latest/  # Geocoded variant (recommended; always the newest build)
+s3://nccsdata/geocoding/unified-bmf/merged/  # Geocoded rolling build
+s3://nccsdata/geocoding/unified-bmf/v2026_07/ # Permanent per-build vintage (parquet)
+s3://nccsdata/geocoding/bmf-master/merged/   # Superseded geocoded path — dual-published through the ADR 0039 window
 s3://nccsdata/unified/bmf/                   # Plain Unified BMF (bmf_unified.{parquet,csv} + dictionary + quality report + _manifest.json)
 s3://nccsdata/master/bmf/                    # Superseded plain path — reachable through 2026-09-28, then archived (not deleted)
-s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></pre>
+s3://nccsdata/unified/bmf/state_marts/csv/   # Per-state geocoded marts
+s3://nccsdata/master/bmf/state_marts/csv/    # Superseded marts path — dual-published through the ADR 0039 window</code></pre>
 <br>
 <hr>
 <p><br></p>
@@ -897,7 +901,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_08/bmf_legacy_2022_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_08/bmf_legacy_2022_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2022_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">774.7 mb</td>
+<td style="text-align: left;">960 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2022</td>
@@ -906,7 +910,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_01/bmf_legacy_2022_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_01/bmf_legacy_2022_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2022_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">773.5 mb</td>
+<td style="text-align: left;">957.1 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2020</td>
@@ -915,7 +919,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2020_04/bmf_legacy_2020_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2020_04/bmf_legacy_2020_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2020_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">765.3 mb</td>
+<td style="text-align: left;">943.9 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2019</td>
@@ -924,7 +928,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2019_08/bmf_legacy_2019_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2019_08/bmf_legacy_2019_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2019_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">763.1 mb</td>
+<td style="text-align: left;">940.2 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2018</td>
@@ -942,7 +946,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_08/bmf_legacy_2016_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_08/bmf_legacy_2016_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">821.3 mb</td>
+<td style="text-align: left;">982.4 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2016</td>
@@ -951,7 +955,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_04/bmf_legacy_2016_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_04/bmf_legacy_2016_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">816 mb</td>
+<td style="text-align: left;">976 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2016</td>
@@ -960,7 +964,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_03/bmf_legacy_2016_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_03/bmf_legacy_2016_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">814.5 mb</td>
+<td style="text-align: left;">974.1 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2016</td>
@@ -969,7 +973,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_02/bmf_legacy_2016_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_02/bmf_legacy_2016_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">811.2 mb</td>
+<td style="text-align: left;">970.2 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -978,7 +982,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_12/bmf_legacy_2015_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_12/bmf_legacy_2015_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">804.4 mb</td>
+<td style="text-align: left;">962 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2015</td>
@@ -987,7 +991,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_11/bmf_legacy_2015_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_11/bmf_legacy_2015_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">804.8 mb</td>
+<td style="text-align: left;">962.4 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -996,7 +1000,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_09/bmf_legacy_2015_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_09/bmf_legacy_2015_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">796.1 mb</td>
+<td style="text-align: left;">951.9 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2015</td>
@@ -1005,7 +1009,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_07/bmf_legacy_2015_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_07/bmf_legacy_2015_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">801.7 mb</td>
+<td style="text-align: left;">958.5 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -1014,7 +1018,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_05/bmf_legacy_2015_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_05/bmf_legacy_2015_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">795.3 mb</td>
+<td style="text-align: left;">950.8 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2015</td>
@@ -1023,7 +1027,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_04/bmf_legacy_2015_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_04/bmf_legacy_2015_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">790.9 mb</td>
+<td style="text-align: left;">945.5 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -1032,7 +1036,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_02/bmf_legacy_2015_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_02/bmf_legacy_2015_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">783.6 mb</td>
+<td style="text-align: left;">936.7 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2014</td>
@@ -1041,7 +1045,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_12/bmf_legacy_2014_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_12/bmf_legacy_2014_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">777.3 mb</td>
+<td style="text-align: left;">929 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2014</td>
@@ -1050,7 +1054,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_11/bmf_legacy_2014_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_11/bmf_legacy_2014_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">773 mb</td>
+<td style="text-align: left;">924 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2014</td>
@@ -1059,7 +1063,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_09/bmf_legacy_2014_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_09/bmf_legacy_2014_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">757.8 mb</td>
+<td style="text-align: left;">905.7 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2014</td>
@@ -1068,7 +1072,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_06/bmf_legacy_2014_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_06/bmf_legacy_2014_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">743.8 mb</td>
+<td style="text-align: left;">888.8 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2014</td>
@@ -1077,7 +1081,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_04/bmf_legacy_2014_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_04/bmf_legacy_2014_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">741.1 mb</td>
+<td style="text-align: left;">885.5 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2014</td>
@@ -1086,7 +1090,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_02/bmf_legacy_2014_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_02/bmf_legacy_2014_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">666.8 mb</td>
+<td style="text-align: left;">810.3 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -1095,7 +1099,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_12/bmf_legacy_2013_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_12/bmf_legacy_2013_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">664.2 mb</td>
+<td style="text-align: left;">807.1 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -1104,7 +1108,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_10/bmf_legacy_2013_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_10/bmf_legacy_2013_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">663 mb</td>
+<td style="text-align: left;">805.6 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -1113,7 +1117,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_09/bmf_legacy_2013_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_09/bmf_legacy_2013_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">662.5 mb</td>
+<td style="text-align: left;">804.9 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -1122,7 +1126,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_08/bmf_legacy_2013_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_08/bmf_legacy_2013_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">661.9 mb</td>
+<td style="text-align: left;">804 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -1131,7 +1135,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_07/bmf_legacy_2013_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_07/bmf_legacy_2013_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">671.9 mb</td>
+<td style="text-align: left;">816.1 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -1140,7 +1144,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_06/bmf_legacy_2013_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_06/bmf_legacy_2013_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">670.6 mb</td>
+<td style="text-align: left;">814.5 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -1149,7 +1153,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_05/bmf_legacy_2013_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_05/bmf_legacy_2013_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">670.7 mb</td>
+<td style="text-align: left;">814.9 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -1158,7 +1162,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_04/bmf_legacy_2013_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_04/bmf_legacy_2013_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">670.2 mb</td>
+<td style="text-align: left;">814.3 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -1167,7 +1171,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_03/bmf_legacy_2013_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_03/bmf_legacy_2013_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">668.2 mb</td>
+<td style="text-align: left;">811.7 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -1176,7 +1180,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_02/bmf_legacy_2013_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_02/bmf_legacy_2013_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">677.2 mb</td>
+<td style="text-align: left;">822.7 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -1185,7 +1189,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_12/bmf_legacy_2012_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_12/bmf_legacy_2012_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">685.4 mb</td>
+<td style="text-align: left;">832.5 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -1194,7 +1198,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_11/bmf_legacy_2012_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_11/bmf_legacy_2012_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">684.3 mb</td>
+<td style="text-align: left;">831.1 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -1203,7 +1207,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_10/bmf_legacy_2012_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_10/bmf_legacy_2012_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">683.9 mb</td>
+<td style="text-align: left;">830.6 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -1212,7 +1216,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_08/bmf_legacy_2012_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_08/bmf_legacy_2012_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">683.3 mb</td>
+<td style="text-align: left;">829.7 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -1221,7 +1225,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_07/bmf_legacy_2012_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_07/bmf_legacy_2012_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">682.7 mb</td>
+<td style="text-align: left;">828.8 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -1230,7 +1234,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_06/bmf_legacy_2012_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_06/bmf_legacy_2012_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">684.4 mb</td>
+<td style="text-align: left;">830.9 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -1239,7 +1243,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_04/bmf_legacy_2012_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_04/bmf_legacy_2012_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">678.8 mb</td>
+<td style="text-align: left;">824.8 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -1248,7 +1252,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_03/bmf_legacy_2012_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_03/bmf_legacy_2012_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">680.4 mb</td>
+<td style="text-align: left;">825.9 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -1257,7 +1261,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_02/bmf_legacy_2012_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_02/bmf_legacy_2012_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">674.5 mb</td>
+<td style="text-align: left;">819.6 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -1266,7 +1270,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_12/bmf_legacy_2011_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_12/bmf_legacy_2011_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">691.6 mb</td>
+<td style="text-align: left;">839.3 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2011</td>
@@ -1275,7 +1279,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_11/bmf_legacy_2011_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_11/bmf_legacy_2011_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">690.9 mb</td>
+<td style="text-align: left;">838.4 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -1284,7 +1288,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_10/bmf_legacy_2011_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_10/bmf_legacy_2011_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">689.3 mb</td>
+<td style="text-align: left;">836.4 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2011</td>
@@ -1293,7 +1297,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_09/bmf_legacy_2011_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_09/bmf_legacy_2011_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">688.6 mb</td>
+<td style="text-align: left;">835.5 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -1302,7 +1306,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_08/bmf_legacy_2011_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_08/bmf_legacy_2011_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">688.4 mb</td>
+<td style="text-align: left;">835.2 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2011</td>
@@ -1311,7 +1315,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_07/bmf_legacy_2011_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_07/bmf_legacy_2011_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">689.1 mb</td>
+<td style="text-align: left;">836 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -1320,7 +1324,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_06/bmf_legacy_2011_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_06/bmf_legacy_2011_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">759.2 mb</td>
+<td style="text-align: left;">910.1 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2010</td>
@@ -1329,7 +1333,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_11/bmf_legacy_2010_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_11/bmf_legacy_2010_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">765.4 mb</td>
+<td style="text-align: left;">928.8 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2010</td>
@@ -1338,7 +1342,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_08/bmf_legacy_2010_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_08/bmf_legacy_2010_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">758.2 mb</td>
+<td style="text-align: left;">920 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2010</td>
@@ -1347,7 +1351,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_07/bmf_legacy_2010_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_07/bmf_legacy_2010_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">756.3 mb</td>
+<td style="text-align: left;">917.7 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2010</td>
@@ -1356,7 +1360,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_05/bmf_legacy_2010_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_05/bmf_legacy_2010_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">755.6 mb</td>
+<td style="text-align: left;">917 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2010</td>
@@ -1365,7 +1369,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_04/bmf_legacy_2010_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_04/bmf_legacy_2010_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">753.4 mb</td>
+<td style="text-align: left;">914.4 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2010</td>
@@ -1374,7 +1378,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_01/bmf_legacy_2010_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_01/bmf_legacy_2010_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">713.5 mb</td>
+<td style="text-align: left;">873.2 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2009</td>
@@ -1383,7 +1387,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_10/bmf_legacy_2009_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_10/bmf_legacy_2009_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2009_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">708.2 mb</td>
+<td style="text-align: left;">866.6 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2009</td>
@@ -1410,7 +1414,7 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts</code></
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_01/bmf_legacy_2009_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_01/bmf_legacy_2009_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2009_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">687.6 mb</td>
+<td style="text-align: left;">841.2 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2008</td>
@@ -1687,7 +1691,7 @@ s3://nccsdata/processed/bmf-legacy/{YYYY_MM}/  # Harmonized legacy (1989-06 -&gt
 </section>
 <section id="geography-crosswalks" class="level2">
 <h2 data-anchor-id="geography-crosswalks">Geography Crosswalks</h2>
-<p>Optional join layers for the <strong>geocoded Master BMF</strong> that turn a messy address into clean geography: attach a canonical county FIPS code to each organization, then roll that county up to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore <strong>city</strong> (<code>24510</code>) is not Baltimore <strong>County</strong> (<code>24005</code>) — or want to aggregate nonprofits to metro areas.</p>
+<p>Optional join layers for the <strong>geocoded Unified BMF</strong> that turn a messy address into clean geography: attach a canonical county FIPS code to each organization, then roll that county up to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore <strong>city</strong> (<code>24510</code>) is not Baltimore <strong>County</strong> (<code>24005</code>) — or want to aggregate nonprofits to metro areas.</p>
 <p>These rows <strong>link the canonical S3 copies</strong> — the same files the pipeline consumes — so the catalog never drifts from the machine contract. The CSV is for humans and spreadsheets; the parquet is the machine-typed copy; each <code>_manifest.json</code> records the row count, sha256, and geography vintage.</p>
 <section id="how-the-crosswalks-chain-together" class="level3">
 <h3 data-anchor-id="how-the-crosswalks-chain-together">How the crosswalks chain together</h3>
@@ -1963,6 +1967,47 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 </tr>
 </tbody>
 </table>
+</section>
+<section id="section-address-resolved" class="level2">
+<h2 data-anchor-id="section-address-resolved">Address-resolved crosswalk (address history log)</h2>
+<p>A complete mailing-address log: <strong>one row per (EIN, address spell)</strong>, <code>spell_rank</code> 0 = the current/most-recent address, covering every vintage of both BMF pipelines back to 1989 (11.45M spells across 3.69M organizations; 68% have more than one address). Keyed on <code>EIN2</code> with canonical <code>ein</code> and <code>ein_prefixed</code> alongside (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md">ADR 0036</a>); shape per <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md">ADR 0042</a>. Street values begin at the 2009 legacy vintages (earlier legacy files never carried streets); pre-2009 spells keep city/state/zip honestly. ZIPs are normalized to 5 digits for the spell key.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Notes</th>
+<th style="text-align: left;">Size</th>
+<th style="text-align: left;">Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>address_resolved_crosswalk.parquet</code></td>
+<td style="text-align: left;">Parquet (zstd) — machine contract, recommended</td>
+<td style="text-align: left;">~182 MB</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/address_resolved_crosswalk.parquet">Parquet</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>address_resolved_crosswalk.csv</code></td>
+<td style="text-align: left;">CSV mirror</td>
+<td style="text-align: left;">~1.15 GB</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/address_resolved_crosswalk.csv">CSV</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>address_resolved_crosswalk_quality.json</code></td>
+<td style="text-align: left;">Build quality summary</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/address_resolved_crosswalk_quality.json">quality.json</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>_manifest.json</code></td>
+<td style="text-align: left;">Provenance (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md">ADR 0014</a>)</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/_manifest.json">manifest.json</a></td>
+</tr>
+</tbody>
+</table>
+<p>Links point at <strong><code>latest/</code></strong> (always the newest build); permanent vintages live at <code>crosswalks/address-resolved/v{YYYY_MM}/</code>.</p>
 <blockquote class="blockquote">
 <p><strong>The 640 MB CSV is not Excel-friendly</strong> — it is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON <code>ntee_code_distribution</code> column. <strong>Prefer the parquet</strong> (the machine contract); reach for the CSV only for a streaming/<code>awk</code>-style read where parquet tooling isn’t available.</p>
 </blockquote>
@@ -2883,7 +2928,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <li><a href="https://nccs.urban.org/nccs/contact/">Contact</a> — questions, corrections, data requests</li>
 </ul>
 <p style="font-size: 0.85em; color: #666; margin-top: 2em;">
-Last verified: 2026-07-01
+Last verified: 2026-07-26
 </p>
 </section>
 
