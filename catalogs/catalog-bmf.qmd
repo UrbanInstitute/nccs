@@ -81,6 +81,7 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 | The original NCCS legacy file | **Raw legacy archive** | Original 501CX-NONPROFIT-PX vintages, for reproducibility only |
 | Canonical county FIPS, or to roll up to metro areas | **Geography crosswalks** | Optional join layers for the geocoded BMF (TIGER 2023 / OMB 2023) |
 | An NTEE code for an org whose current code is blank | **NTEE-resolved crosswalk** | Recovers a per-EIN NTEE across all vintages (current + legacy); join by `ein` |
+| Where an organization was located in a given year, or whether it moved | **[Address-resolved crosswalk](#section-address-resolved)** | Full mailing-address history, one row per (EIN, address); the Unified BMF carries only the latest address |
 
 <br><hr><br>
 
@@ -342,7 +343,13 @@ is published.
 
 Links point at **`latest/`** (always the newest build); permanent vintages live at `crosswalks/address-resolved/v{YYYY_MM}/`.
 
-> **The 640 MB CSV is not Excel-friendly** — it is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON `ntee_code_distribution` column. **Prefer the parquet** (the machine contract); reach for the CSV only for a streaming/`awk`-style read where parquet tooling isn't available.
+> **The 1.15 GB CSV is not Excel-friendly.** It is far past what a spreadsheet
+> will open, and Excel strips the leading zeros from `zip5`, which is the same
+> corruption described in the warning above. **Prefer the parquet** (~182 MB,
+> the machine contract); use the CSV only for a streaming read where parquet
+> tooling is unavailable.
+
+> **The 750 MB CSV is not Excel-friendly.** It is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON `ntee_code_distribution` column. **Prefer the parquet** (the machine contract); reach for the CSV only for a streaming/`awk`-style read where parquet tooling isn't available.
 
 ### Column dictionary
 

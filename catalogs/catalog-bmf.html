@@ -2021,7 +2021,10 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 </table>
 <p>Links point at <strong><code>latest/</code></strong> (always the newest build); permanent vintages live at <code>crosswalks/address-resolved/v{YYYY_MM}/</code>.</p>
 <blockquote class="blockquote">
-<p><strong>The 640 MB CSV is not Excel-friendly</strong> — it is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON <code>ntee_code_distribution</code> column. <strong>Prefer the parquet</strong> (the machine contract); reach for the CSV only for a streaming/<code>awk</code>-style read where parquet tooling isn’t available.</p>
+<p><strong>The 1.15 GB CSV is not Excel-friendly.</strong> It is far past what a spreadsheet will open, and Excel strips the leading zeros from <code>zip5</code>, which is the same corruption described in the warning above. <strong>Prefer the parquet</strong> (~182 MB, the machine contract); use the CSV only for a streaming read where parquet tooling is unavailable.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>The 750 MB CSV is not Excel-friendly.</strong> It is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON <code>ntee_code_distribution</code> column. <strong>Prefer the parquet</strong> (the machine contract); reach for the CSV only for a streaming/<code>awk</code>-style read where parquet tooling isn’t available.</p>
 </blockquote>
 <section id="column-dictionary" class="level3">
 <h3 data-anchor-id="column-dictionary">Column dictionary</h3>
