@@ -1971,6 +1971,18 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <section id="section-address-resolved" class="level2">
 <h2 data-anchor-id="section-address-resolved">Address-resolved crosswalk (address history log)</h2>
 <p>A complete mailing-address log: <strong>one row per (EIN, address spell)</strong>, <code>spell_rank</code> 0 = the current/most-recent address, covering every vintage of both BMF pipelines back to 1989 (11.45M spells across 3.69M organizations; 68% have more than one address). Keyed on <code>EIN2</code> with canonical <code>ein</code> and <code>ein_prefixed</code> alongside (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md">ADR 0036</a>); shape per <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md">ADR 0042</a>. Street values begin at the 2009 legacy vintages (earlier legacy files never carried streets); pre-2009 spells keep city/state/zip honestly. ZIPs are normalized to 5 digits for the spell key.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container"><i class="callout-icon"></i></div>
+<div class="callout-title-container flex-fill">Known defect in the current build: ZIP codes in nine states</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The build currently served at <code>latest/</code> (<code>v2026_07</code>) has a ZIP normalization defect. Legacy source files lost the leading zero from ZIP codes, so <code>zip5</code> is 3-4 characters instead of 5 for legacy rows in <strong>ME, NH, VT, MA, RI, CT, NJ, PR and VI</strong>, and those values will not join to any ZIP-keyed dataset.</p>
+<p>The practical consequence for address history: in those nine states an organization&rsquo;s legacy and current records fail to match on ZIP, so the log can show an address change in 2023 where none occurred. Treat address changes in those states as unreliable until this is corrected.</p>
+<p>Workaround: left-pad <code>zip5</code> to five digits with zeros before joining. The underlying digits are intact.</p>
+<p>The producer fix is merged; this page will be updated when the corrected build is published.</p>
+</div>
+</div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2009,7 +2021,10 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 </table>
 <p>Links point at <strong><code>latest/</code></strong> (always the newest build); permanent vintages live at <code>crosswalks/address-resolved/v{YYYY_MM}/</code>.</p>
 <blockquote class="blockquote">
-<p><strong>The 640 MB CSV is not Excel-friendly</strong> — it is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON <code>ntee_code_distribution</code> column. <strong>Prefer the parquet</strong> (the machine contract); reach for the CSV only for a streaming/<code>awk</code>-style read where parquet tooling isn’t available.</p>
+<p><strong>The 1.15 GB CSV is not Excel-friendly.</strong> It is far past what a spreadsheet will open, and Excel strips the leading zeros from <code>zip5</code>, which is the same corruption described in the warning above. <strong>Prefer the parquet</strong> (~182 MB, the machine contract); use the CSV only for a streaming read where parquet tooling is unavailable.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>The 750 MB CSV is not Excel-friendly.</strong> It is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON <code>ntee_code_distribution</code> column. <strong>Prefer the parquet</strong> (the machine contract); reach for the CSV only for a streaming/<code>awk</code>-style read where parquet tooling isn’t available.</p>
 </blockquote>
 <section id="column-dictionary" class="level3">
 <h3 data-anchor-id="column-dictionary">Column dictionary</h3>
