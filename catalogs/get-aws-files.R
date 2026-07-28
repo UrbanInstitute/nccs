@@ -90,13 +90,16 @@ decorate <- function(dt, base_url) {
 build_bmf_manifest <- function(out_path = "catalogs/AWS-BMF.csv") {
   message("Building BMF manifest")
   sources <- list(
-    unified    = "unified/bmf/",
-    master     = "master/bmf/",
-    state_mart = "master/bmf/state_marts/csv/",
-    geocoded   = "geocoding/bmf-master/merged/",
-    processed  = "processed/bmf/",
-    legacy     = "processed/bmf-legacy/",
-    raw_legacy = "legacy/bmf/"
+    unified        = "unified/bmf/",
+    master         = "master/bmf/",                   # superseded alias (ADR 0037 window)
+    state_mart     = "unified/bmf/state_marts/csv/",  # renamed per ADR 0039
+    state_mart_old = "master/bmf/state_marts/csv/",   # superseded alias (ADR 0039 window)
+    geocoded       = "geocoding/unified-bmf/",        # renamed per ADR 0039; includes merged/ + v*/ + latest/
+    geocoded_old   = "geocoding/bmf-master/merged/",  # superseded alias (ADR 0039 window)
+    addr_resolved  = "crosswalks/address-resolved/",  # ADR 0042 address log
+    processed      = "processed/bmf/",
+    legacy         = "processed/bmf-legacy/",
+    raw_legacy     = "legacy/bmf/"
   )
 
   parts <- lapply(names(sources), function(src) {

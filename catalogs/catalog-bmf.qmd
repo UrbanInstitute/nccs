@@ -92,7 +92,7 @@ The join key is `ein` (`XX-XXXXXXX`), unchanged. The Unified BMF additionally ca
 
 > **Renamed from "Master BMF" (2026-07-01).** This product was briefly published as "Master BMF"; it has been renamed back to **Unified BMF**, restoring the name the research community originally knew it by ([ADR 0037](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0037-master-bmf-rename-unified-supersession-provenance.md)). This is a **non-silent supersession**: the prior `s3://nccsdata/master/bmf/` path stays live and reachable through **2026-09-28** (a 90-day window), after which it moves to a retained, citable archive — it is never deleted. If you bookmarked or scripted against the old path, re-pin to `s3://nccsdata/unified/bmf/` before the cutover.
 
-The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. (The geocoded extension and its per-state marts are a separate product, still named "Master BMF" — they are **not** renamed by this change.)
+The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. The geocoded extension and its per-state marts completed the same rename (2026-07-02, [ADR 0039](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0039-unified-bmf-geocoded-extension-rename.md)): they are now the **geocoded Unified BMF** at `geocoding/unified-bmf/` and `unified/bmf/state_marts/`, with the prior `bmf-master`/`master` paths dual-published through their 90-day windows. As of the 2026-07 rebuild, both artifacts also publish permanent per-build vintages (`v{YYYY_MM}/`) plus a stable **`latest/`** folder that always serves the newest build ([ADR 0042](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md)) — link `latest/` for always-current, cite `v*/` for reproducibility. The 2026-07 rebuild also recovered street addresses from the 2009-2022 legacy vintages, lifting geocoded coverage from 59.9% to **82.7%** of organizations.
 
 ```{r}
 headline <- build_master_headline_table(manifest)
@@ -112,7 +112,7 @@ if (!is.null(headline)) {
 
 ### Download by State/Territory
 
-For users who only need a single state, the geocoded Master BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a `ZZ` bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above.
+For users who only need a single state, the geocoded Unified BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a `ZZ` bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above.
 
 ```{r}
 master <- build_master_section(manifest, state_mapping)
@@ -129,10 +129,14 @@ knitr::kable(
 ### Access via S3
 
 ```
-s3://nccsdata/geocoding/bmf-master/merged/   # Geocoded variant (recommended)
+s3://nccsdata/geocoding/unified-bmf/latest/  # Geocoded variant (recommended; always the newest build)
+s3://nccsdata/geocoding/unified-bmf/merged/  # Geocoded rolling build
+s3://nccsdata/geocoding/unified-bmf/v2026_07/ # Permanent per-build vintage (parquet)
+s3://nccsdata/geocoding/bmf-master/merged/   # Superseded geocoded path — dual-published through the ADR 0039 window
 s3://nccsdata/unified/bmf/                   # Plain Unified BMF (bmf_unified.{parquet,csv} + dictionary + quality report + _manifest.json)
 s3://nccsdata/master/bmf/                    # Superseded plain path — reachable through 2026-09-28, then archived (not deleted)
-s3://nccsdata/master/bmf/state_marts/csv/    # Per-state geocoded marts
+s3://nccsdata/unified/bmf/state_marts/csv/   # Per-state geocoded marts
+s3://nccsdata/master/bmf/state_marts/csv/    # Superseded marts path — dual-published through the ADR 0039 window
 ```
 
 <br><hr><br>
@@ -195,7 +199,7 @@ Each month directory contains:
 
 ## Geography Crosswalks
 
-Optional join layers for the **geocoded Master BMF** that turn a messy address into clean geography: attach a canonical county FIPS code to each organization, then roll that county up to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore **city** (`24510`) is not Baltimore **County** (`24005`) — or want to aggregate nonprofits to metro areas.
+Optional join layers for the **geocoded Unified BMF** that turn a messy address into clean geography: attach a canonical county FIPS code to each organization, then roll that county up to its metro/micropolitan area. Reach for these when you need a collision-proof geographic key — Baltimore **city** (`24510`) is not Baltimore **County** (`24005`) — or want to aggregate nonprofits to metro areas.
 
 These rows **link the canonical S3 copies** — the same files the pipeline consumes — so the catalog never drifts from the machine contract. The CSV is for humans and spreadsheets; the parquet is the machine-typed copy; each `_manifest.json` records the row count, sha256, and geography vintage.
 
@@ -303,6 +307,19 @@ Each of the first three carries `_subsector` (NTEEv2 subsector, e.g. `UNI`/`HOS`
 | `ntee_resolved_crosswalk.parquet` | Parquet (zstd) — machine contract, recommended | ~78 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.parquet'>Parquet</a> |
 | `ntee_resolved_crosswalk.csv` | CSV mirror | ~640 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.csv'>CSV</a> |
 | `_manifest.json` | Provenance ([ADR 0014](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md)) | — | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/_manifest.json'>manifest.json</a> |
+
+## Address-resolved crosswalk (address history log) {#section-address-resolved}
+
+A complete mailing-address log: **one row per (EIN, address spell)**, `spell_rank` 0 = the current/most-recent address, covering every vintage of both BMF pipelines back to 1989 (11.45M spells across 3.69M organizations; 68% have more than one address). Keyed on `EIN2` with canonical `ein` and `ein_prefixed` alongside ([ADR 0036](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md)); shape per [ADR 0042](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md). Street values begin at the 2009 legacy vintages (earlier legacy files never carried streets); pre-2009 spells keep city/state/zip honestly. ZIPs are normalized to 5 digits for the spell key.
+
+| File | Notes | Size | Link |
+|:---|:---|:---|:---|
+| `address_resolved_crosswalk.parquet` | Parquet (zstd) — machine contract, recommended | ~182 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/address_resolved_crosswalk.parquet'>Parquet</a> |
+| `address_resolved_crosswalk.csv` | CSV mirror | ~1.15 GB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/address_resolved_crosswalk.csv'>CSV</a> |
+| `address_resolved_crosswalk_quality.json` | Build quality summary | — | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/address_resolved_crosswalk_quality.json'>quality.json</a> |
+| `_manifest.json` | Provenance ([ADR 0014](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md)) | — | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/address-resolved/latest/_manifest.json'>manifest.json</a> |
+
+Links point at **`latest/`** (always the newest build); permanent vintages live at `crosswalks/address-resolved/v{YYYY_MM}/`.
 
 > **The 640 MB CSV is not Excel-friendly** — it is far larger than a spreadsheet can open, and Excel strips leading zeros and mangles the JSON `ntee_code_distribution` column. **Prefer the parquet** (the machine contract); reach for the CSV only for a streaming/`awk`-style read where parquet tooling isn't available.
 
