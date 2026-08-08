@@ -30,9 +30,33 @@ For background on what the Core Series contains and its scope limitations, see t
 Every year label in this catalog refers to the **tax year covered by the return** &mdash; the fiscal period the filing describes &mdash; not the calendar year the IRS received it. A nonprofit's 2022 tax-year return is in the `2022` directory regardless of when it was actually filed (typically 6&ndash;18 months later). Recent tax years are still in-progress as the IRS continues to release returns over time.
 :::
 
-## Which tier should I use?
+## Choose your format
 
-The Core Series is now published in three tiers. Most analysts should default to the **merged panel**; the SOI-current and legacy tiers expose the underlying per-pipeline sources for cases where the merged dedup is too aggressive.
+The Core Series ships in **two parallel formats**. Both carry the same underlying filings; pick the one that fits your codebase, and switch or merge across them any time &mdash; [`EIN2`](https://github.com/UrbanInstitute/nccs-contracts/blob/main/conventions/ein-format.md) plus column and scope mapping tables rolling out under ADR 0043 make cross-format joins mechanical.
+
+:::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Harmonized panel [&darr;](#section-merged)
+
+The actively developed line: one pooled file per year and form type, the richest variable sets, and new fields and fixes land here first.
+
+**Best for:** new projects, cross-era analysis, joining BMF, geography, and NTEE crosswalks.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Classic NCCS format [&darr;](#section-classic)
+
+The five scope-file products (501c3 vs. other 501c &times; PC/PZ, plus PF) with the schema published research has used since 1989. Reference vintages retained permanently; new years generated from the harmonized panel ([ADR 0043](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0043-legacy-format-compatibility-views.md)).
+
+**Best for:** established codebases, replication, comparability with published work.
+:::
+
+::::
+
+## Harmonized panel: which tier?
+
+The harmonized panel is published in three tiers. Most analysts should default to the **merged panel**; the SOI-current and legacy tiers expose the underlying per-pipeline sources for cases where the merged dedup is too aggressive.
 
 | Tier | Coverage | Forms | When to use |
 |:---|:---|:---|:---|
@@ -224,6 +248,72 @@ s3://nccsdata/processed_legacy/core/{YYYY}/{form_type}/
 
 <br><hr><br>
 
+## Classic NCCS format {#section-classic}
+
+The scope-file layout that decades of published nonprofit research were built on. Each year's filers split along two axes &mdash; **tax-exempt class** (501c3 charities vs. all other 501c types) and **form scope** (PC = full 990 only, PZ = 990 + 990EZ) &mdash; producing five familiar products with a schema that has been stable since 1989.
+
+This line is maintained as a first-class offering alongside the harmonized panel: the reference vintages below are retained permanently for replication, and new tax years in this layout are generated automatically from the harmonized panel going forward ([ADR 0043](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0043-legacy-format-compatibility-views.md)), so classic-format code keeps working while quietly inheriting the harmonization fixes. Note the values in newly generated years are the harmonized, quality-gated values under classic column names &mdash; format-compatible with your code, not byte-identical with pre-2026 downloads.
+
+**Shared dictionaries** (PC/PZ variants share a single dictionary; PF has its own):
+
+- [PC/PZ data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv)
+- [PF data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pf/dd/DD-PF-HRMN-V0.csv)
+
+```{r}
+render_legacy_table <- function(df) {
+  knitr::kable(
+    df,
+    escape    = FALSE,
+    col.names = c("Year", "Download", "Size"),
+    format    = "html",
+    row.names = FALSE
+  ) |>
+    kableExtra::kable_styling()
+}
+```
+
+### 501(c)(3) Charities &mdash; PC (full 990 only)
+
+```{r}
+render_legacy_table(build_legacy_core_section(manifest, "501c3-pc"))
+```
+
+### 501(c)(3) Charities &mdash; PZ (990 + 990EZ)
+
+```{r}
+render_legacy_table(build_legacy_core_section(manifest, "501c3-pz"))
+```
+
+### Other 501(c) Nonprofits &mdash; PC (full 990 only)
+
+```{r}
+render_legacy_table(build_legacy_core_section(manifest, "501ce-pc"))
+```
+
+### Other 501(c) Nonprofits &mdash; PZ (990 + 990EZ)
+
+```{r}
+render_legacy_table(build_legacy_core_section(manifest, "501ce-pz"))
+```
+
+### Private Foundations &mdash; PF
+
+```{r}
+render_legacy_table(build_legacy_core_section(manifest, "501c3-pf"))
+```
+
+### Access via S3
+
+```
+s3://nccsdata/harmonized/core/{PRODUCT}/marts/
+```
+
+where `{PRODUCT}` is one of `501c3-pc`, `501c3-pz`, `501ce-pc`, `501ce-pz`, `501c3-pf`.
+
+
+
+<br><hr><br>
+
 ## Output schema additions
 
 Columns added by the new pipeline that are worth knowing about &mdash; see the [output schema reference](https://urbaninstitute.github.io/nccs-data-core/08-output-schema.html) and [legacy harmonization guide](https://urbaninstitute.github.io/nccs-data-core/09-legacy-harmonization.html) for the full definitions.
@@ -342,72 +432,7 @@ cat("</div>")
 
 <br><hr><br>
 
-## Deprecated: `harmonized/core/` (pre-tier layout)
 
-<details>
-<summary><strong>Show legacy <code>harmonized/core/</code> files</strong> (for reproducibility only &mdash; use the [Legacy Panel](#section-legacy) above)</summary>
-
-These files predate the current three-tier layout. They split each year's filers along two axes &mdash; **tax-exempt class** (501c3 charities vs. all other 501c types) and **form scope** (PC = full 990 only, PZ = 990 + 990EZ) &mdash; producing five products. The current pipeline pools these into a single set of by-form-type files with an `is_501c3` column for filtering, so the products below are kept only to support replication of analyses built on the older layout.
-
-**Shared dictionaries** (PC/PZ variants share a single dictionary; PF has its own):
-
-- [PC/PZ data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/core/CORE-HRMN_dd.csv)
-- [PF data dictionary](https://nccsdata.s3.amazonaws.com/harmonized/core/501c3-pf/dd/DD-PF-HRMN-V0.csv)
-
-```{r}
-render_legacy_table <- function(df) {
-  knitr::kable(
-    df,
-    escape    = FALSE,
-    col.names = c("Year", "Download", "Size"),
-    format    = "html",
-    row.names = FALSE
-  ) |>
-    kableExtra::kable_styling()
-}
-```
-
-### 501(c)(3) Charities &mdash; PC (full 990 only)
-
-```{r}
-render_legacy_table(build_legacy_core_section(manifest, "501c3-pc"))
-```
-
-### 501(c)(3) Charities &mdash; PZ (990 + 990EZ)
-
-```{r}
-render_legacy_table(build_legacy_core_section(manifest, "501c3-pz"))
-```
-
-### Other 501(c) Nonprofits &mdash; PC (full 990 only)
-
-```{r}
-render_legacy_table(build_legacy_core_section(manifest, "501ce-pc"))
-```
-
-### Other 501(c) Nonprofits &mdash; PZ (990 + 990EZ)
-
-```{r}
-render_legacy_table(build_legacy_core_section(manifest, "501ce-pz"))
-```
-
-### Private Foundations &mdash; PF
-
-```{r}
-render_legacy_table(build_legacy_core_section(manifest, "501c3-pf"))
-```
-
-### Access via S3
-
-```
-s3://nccsdata/harmonized/core/{PRODUCT}/marts/
-```
-
-where `{PRODUCT}` is one of `501c3-pc`, `501c3-pz`, `501ce-pc`, `501ce-pz`, `501c3-pf`.
-
-</details>
-
-<br><hr><br>
 
 ## Documentation &amp; Support
 
