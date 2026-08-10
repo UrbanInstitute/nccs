@@ -4,7 +4,7 @@ permalink: /terms/
 layout: page
 ---
 
-**Last Updated**: 11/01/2020
+**Last Updated**: 08/07/2026
 
 Welcome to the Urban Institute website. Thank you for using our products and services (“Services” or the “Site”). The Services are provided by the Urban Institute (the “Institute,” “we,” “us,” or “our”), a Delaware corporation with offices at 500 L'Enfant Plaza SW, Washington, DC 20024.
 
@@ -30,11 +30,13 @@ By using our Services, you understand and agree to comply with and be bound by t
 
 3.4 You may download, store, or make a copy of the Content that is limited to personal use only, provided that you maintain all copyright and other notices contained therein. Unless otherwise marked or indicated, copying or storing of any Content (including by linking or framing) for any purpose for other than personal use is expressly prohibited without prior permission from the Institute or the copyright holder identified. You shall abide by all additional copyright notices, information, or restrictions contained in any Content available. 
 
-3.5 Where indicated, permission is hereby granted, free of charge, to any person obtaining a copy of the computer code, software, and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so.
+3.5 Notwithstanding Sections 3.3 and 3.4, the NCCS datasets published by the Urban Institute on this site and on the Urban Institute Data Catalog, including datasets derived from the IRS Exempt Organizations Business Master File, are made available under the [Open Data Commons Attribution License (ODC-BY) v1.0](https://opendatacommons.org/licenses/by/1-0/) unless a different license is indicated on the specific dataset or catalog entry. The ODC-BY license permits you to copy, distribute, adapt, and make commercial use of these datasets, provided that you attribute the data to the National Center for Charitable Statistics (NCCS) at the Urban Institute. The underlying IRS source data are in the public domain; the ODC-BY license applies to the cleaned, standardized, and enhanced datasets NCCS produces from them.
+
+3.6 Where indicated, permission is hereby granted, free of charge, to any person obtaining a copy of the computer code, software, and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so.
 
 The Software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the authors or copyright holders be liable for any claim, damages or other liability, whether in an action of contract, tort or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the Software.
 
-3.6 All trademarks, logos, service marks, trade dress, slogans, and designs of the Services, whether or not appearing in large print or with the trademark symbol, belong exclusively to the Institute or its licensors and are protected from reproduction, imitation, dilution, or confusing or misleading uses under the trademark laws of the United States and other countries. The use or misuse of these trademarks, except as authorized in writing, is expressly prohibited, and nothing stated or implied on the Services confers on you any license or right.
+3.7 All trademarks, logos, service marks, trade dress, slogans, and designs of the Services, whether or not appearing in large print or with the trademark symbol, belong exclusively to the Institute or its licensors and are protected from reproduction, imitation, dilution, or confusing or misleading uses under the trademark laws of the United States and other countries. The use or misuse of these trademarks, except as authorized in writing, is expressly prohibited, and nothing stated or implied on the Services confers on you any license or right.
 
 #### 4. User Obligations
 
