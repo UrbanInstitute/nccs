@@ -39,7 +39,7 @@ The Core Series ships in **two parallel formats**. Both carry the same underlyin
 ::: {.g-col-12 .g-col-md-6}
 ### Harmonized panel [&darr;](#section-merged)
 
-The actively developed line: one pooled file per year and form type, the richest variable sets, and new fields and fixes land here first.
+The actively developed line: one pooled file per year and form type, the richest variable sets, built **directly from the IRS SOI extracts** &mdash; our processing reproduces the IRS's published extract files exactly (verified against the raw IRS releases, August 2026). New years and fixes land here first: the panel is a direct harmonization of the source, while the classic files carry additional derived metadata that takes longer to produce.
 
 **Best for:** new projects, cross-era analysis, joining BMF, geography, and NTEE crosswalks.
 :::
@@ -50,6 +50,8 @@ The actively developed line: one pooled file per year and form type, the richest
 The five scope-file products (501c3 vs. other 501c &times; PC/PZ, plus PF) with the schema published research has used since 1989. Reference vintages retained permanently; new years generated from the harmonized panel ([ADR 0043](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0043-legacy-format-compatibility-views.md)).
 
 **Best for:** established codebases, replication, comparability with published work.
+
+*Classic-format updates for the current cycle are expected by September 2026.*
 :::
 
 ::::
