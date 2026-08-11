@@ -32,14 +32,14 @@ Every year label in this catalog refers to the **tax year covered by the return*
 
 ## Choose your format
 
-The Core Series ships in **two parallel formats**. Both carry the same underlying filings; pick the one that fits your codebase, and switch or merge across them any time &mdash; [`EIN2`](https://github.com/UrbanInstitute/nccs-contracts/blob/main/conventions/ein-format.md) plus column and scope mapping tables rolling out under ADR 0043 make cross-format joins mechanical.
+The Core Series publishes in **two parallel formats**. Both carry the same underlying filings; pick the one that fits your codebase, and switch or merge across them any time &mdash; [`EIN2`](https://github.com/UrbanInstitute/nccs-contracts/blob/main/conventions/ein-format.md) plus column and scope mapping tables rolling out under ADR 0043 make cross-format joins mechanical.
 
 :::: {.grid}
 
 ::: {.g-col-12 .g-col-md-6}
 ### Harmonized panel [&darr;](#section-merged)
 
-The actively developed line: one pooled file per year and form type, the richest variable sets, built **directly from the IRS SOI extracts** &mdash; our processing reproduces the IRS's published extract files exactly (verified against the raw IRS releases, August 2026). New years and fixes land here first: the panel is a direct harmonization of the source, while the classic files carry additional derived metadata that takes longer to produce.
+The actively developed line: one pooled file per year and form type, the **full source variable set**, built **directly from the IRS SOI extracts** &mdash; our processing reproduces the IRS's published extract files exactly (verified against the raw IRS releases, August 2026). New years and fixes land here first: the panel is a direct harmonization of the source, while the classic files carry additional derived metadata that takes longer to produce.
 
 **Best for:** new projects, cross-era analysis, joining BMF, geography, and NTEE crosswalks.
 :::
