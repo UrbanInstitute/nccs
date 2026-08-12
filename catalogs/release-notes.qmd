@@ -1,0 +1,36 @@
+---
+title: "Data Release Notes"
+format:
+  html:
+    toc: true
+    toc-location: body
+    toc-title: 'Releases'
+editor: visual
+execute:
+  echo: false
+  warning: false
+---
+
+Every update to an NCCS core dataset ships with a plain-language
+release note: what changed, whether existing records were revised or
+only added, and its verification status. Notes are authored once, in
+the [NCCS data governance record](https://github.com/UrbanInstitute/nccs-contracts/tree/main/governance/release-notes),
+and this page is generated from them - it is never edited by hand.
+
+```{r}
+#| output: asis
+
+files <- sort(list.files("release-notes-data", full.names = TRUE),
+              decreasing = TRUE)
+if (length(files) == 0) {
+  cat("*(No release notes fetched - run catalogs/get-release-notes.R.)*\n")
+} else {
+  for (f in files) {
+    txt <- readLines(f, warn = FALSE)
+    # demote headings one level so notes nest under the page title
+    txt <- gsub("^# ", "## ", txt)
+    txt <- gsub("^## (.*)$", "## \\1", txt)
+    cat(txt, sep = "\n"); cat("\n\n---\n\n")
+  }
+}
+```
