@@ -62,7 +62,11 @@ list_prefix <- function(bucket, prefix) {
 #' Add SizeMB and URL columns to a manifest.
 decorate <- function(dt, base_url) {
   if (nrow(dt) == 0) return(dt)
-  dt$SizeMB <- paste0(as.character(round(dt$Size / 1e6, 1)), " mb")
+  # Human-readable size: two decimals in MB, and KB below 0.1 MB so small
+  # files (manifests, dictionaries) never display as "0 mb".
+  dt$SizeMB <- ifelse(dt$Size >= 1e5,
+                      paste0(formatC(dt$Size / 1e6, format = "f", digits = 2), " mb"),
+                      paste0(formatC(dt$Size / 1e3, format = "f", digits = 1), " kb"))
   dt$URL    <- paste0(base_url, dt$Key)
   dt
 }

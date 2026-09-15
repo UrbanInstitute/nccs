@@ -87,7 +87,7 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 
 ## Unified BMF
 
-One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame. **3,698,197 unique EINs**, built from 121 source files (86 legacy, 35 current-monthly) spanning 1989–2026 (build of 2026-09-15).
+One row per EIN spanning 1989 to present, with the most recent values for each organization. Three columns record where each row came from: `first_vintage_ym` and `last_vintage_ym` give the first and last monthly BMF file (year and month) in which the organization appears, and `bmf_source` says whether the current values came from the modern monthly files or the pre-2023 legacy files. This is the primary product for longitudinal analysis and as a sampling frame. **3,698,197 unique EINs**, built from 121 source files (86 legacy, 35 current-monthly) spanning 1989–2026 (build of 2026-09-15).
 
 The join key is `ein` (`XX-XXXXXXX`), unchanged. The Unified BMF additionally carries two coercion-safe renderings of the same key ([ADR 0036](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md)): **`ein_prefixed`** (`ein-XX-XXXXXXX`, lowercase — provably text, recommended for new joins) and **`EIN2`** (`EIN-XX-XXXXXXX`, uppercase — a legacy-compatibility alias for merges written against the older Unified BMF / harmonized CORE format). Use whichever fits your existing code; all renderings are bijective with the same underlying 9-digit EIN.
 
