@@ -301,9 +301,11 @@ test_that("build_master_headline_table picks per-variant dictionary URLs", {
 
 test_that("build_master_headline_table em-dashes when dictionary is absent", {
   manifest <- make_fixture()
-  manifest <- manifest[!grepl("data_dictionary",
-                              basename(manifest$Key)) |
-                       manifest$source != "unified", , drop = FALSE]
+  # Remove every dictionary sibling, geocoded included: the fixture gained a
+  # geocoded dictionary after this test was written, and the old filter only
+  # dropped the unified one, so the geocoded row kept its link.
+  manifest <- manifest[!grepl("data_dictionary", basename(manifest$Key)), ,
+                       drop = FALSE]
   out <- build_master_headline_table(manifest)
   expect_true(all(out$dictionary == "&mdash;"))
 })
