@@ -317,8 +317,9 @@ test_that("build_master_headline_table prefers a manifest-supplied quality repor
   manifest <- make_fixture()
   out <- build_master_headline_table(manifest)
   expect_true(all(grepl("Quality report", out$quality_report)))
-  # Geocoded has no HTML quality report in the fixture -> falls back to the templated URL
-  expect_match(out$quality_report[1], "bmf_master_quality_report\\.html")
+  # Geocoded has no HTML quality report in the fixture -> falls back to the
+  # producer's Pages copy of the geocoded report
+  expect_match(out$quality_report[1], "bmf_unified_geocoded_quality_report\\.html")
   # Unified BMF ships its own per-build HTML quality report in the manifest -> use it, not the fallback
   expect_match(out$quality_report[2], "unified/bmf/bmf_unified_quality_report\\.html")
   expect_false(grepl("bmf_master_quality_report", out$quality_report[2]))

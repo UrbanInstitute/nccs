@@ -256,18 +256,19 @@ build_geocoded_master_row <- function(manifest) {
 #' `geocoding/bmf-master/merged/` (the geocoded variant, not renamed). The
 #' quality report prefers a rendered HTML sibling in the manifest itself
 #' (e.g. `bmf_unified_quality_report.html`, the ADR 0014 per-build artifact);
-#' `quality_report_url` is only a fallback for variants that don't publish
-#' one (the geocoded pipeline currently only emits the JSON variant).
+#' `quality_report_url` is only a fallback for a variant whose HTML report is
+#' missing from the manifest. Since 2026-09-15 the geocoded build publishes
+#' `bmf_unified_geocoded_quality_report.html` next to its JSON, so the
+#' fallback is normally unused.
 #'
 #' @param manifest data.frame from AWS-BMF.csv.
 #' @param quality_report_url Fallback URL when a variant has no HTML quality
-#'   report sibling in the manifest. Points at the producer's pre-rename Pages
-#'   slug (`bmf_master_quality_report.html`) until nccs-data-bmf renames its
-#'   docs to match ADR 0037.
+#'   report sibling in the manifest. Points at the producer's GitHub Pages copy
+#'   of the geocoded report.
 build_master_headline_table <- function(
   manifest,
   quality_report_url =
-    "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html"
+    "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_unified_geocoded_quality_report.html"
 ) {
   geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
   master   <- manifest[manifest$source == "unified", , drop = FALSE]
