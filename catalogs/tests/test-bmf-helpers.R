@@ -301,9 +301,14 @@ test_that("build_master_headline_table picks per-variant dictionary URLs", {
 
 test_that("build_master_headline_table em-dashes when dictionary is absent", {
   manifest <- make_fixture()
-  manifest <- manifest[!grepl("data_dictionary",
-                              basename(manifest$Key)) |
-                       manifest$source != "unified", , drop = FALSE]
+  # This test checks the "no data dictionary published" case, so remove every
+  # data-dictionary file from the sample manifest before building the table.
+  # (The sample used to contain a dictionary only for the Unified BMF, and the
+  # test removed only that one. A geocoded dictionary was later added to the
+  # sample, the test kept it, and the geocoded row therefore still got a
+  # dictionary link, which made the test fail.)
+  manifest <- manifest[!grepl("data_dictionary", basename(manifest$Key)), ,
+                       drop = FALSE]
   out <- build_master_headline_table(manifest)
   expect_true(all(out$dictionary == "&mdash;"))
 })

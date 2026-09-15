@@ -71,11 +71,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="which-dataset-should-i-use" class="level2">
 <h2 data-anchor-id="which-dataset-should-i-use">Which dataset should I use?</h2>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">If you need…</th>
@@ -119,6 +114,11 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;"><strong>NTEE-resolved crosswalk</strong></td>
 <td style="text-align: left;">Recovers a per-EIN NTEE across all vintages (current + legacy); join by <code>ein</code></td>
 </tr>
+<tr class="even">
+<td style="text-align: left;">Where an organization was located in a given year, or whether it moved</td>
+<td style="text-align: left;"><strong><a href="#section-address-resolved">Address-resolved crosswalk</a></strong></td>
+<td style="text-align: left;">Full mailing-address history, one row per (EIN, address); the Unified BMF carries only the latest address</td>
+</tr>
 </tbody>
 </table>
 <br>
@@ -127,12 +127,15 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="unified-bmf" class="level2">
 <h2 data-anchor-id="unified-bmf">Unified BMF</h2>
-<p>One row per EIN spanning 1989 to present, with most-recent values for each organization plus <code>first_vintage_ym</code>, <code>last_vintage_ym</code>, and <code>bmf_source</code> to track provenance. This is the primary product for longitudinal analysis and as a sampling frame. <strong>3,687,435 unique EINs</strong>, built from 118 source files across 114 vintages (1989–2026).</p>
+<p>One row per EIN spanning 1989 to present, with the most recent values for each organization. Three columns record where each row came from: <code>first_vintage_ym</code> and <code>last_vintage_ym</code> give the first and last monthly BMF file (year and month) in which the organization appears, and <code>bmf_source</code> says whether the current values came from the modern monthly files or the pre-2023 legacy files. This is the primary product for longitudinal analysis and as a sampling frame. <strong>3,698,197 unique EINs</strong>, built from 121 source files (86 legacy, 35 current-monthly) spanning 1989–2026 (build of 2026-09-15).</p>
 <p>The join key is <code>ein</code> (<code>XX-XXXXXXX</code>), unchanged. The Unified BMF additionally carries two coercion-safe renderings of the same key (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md">ADR 0036</a>): <strong><code>ein_prefixed</code></strong> (<code>ein-XX-XXXXXXX</code>, lowercase — provably text, recommended for new joins) and <strong><code>EIN2</code></strong> (<code>EIN-XX-XXXXXXX</code>, uppercase — a legacy-compatibility alias for merges written against the older Unified BMF / harmonized CORE format). Use whichever fits your existing code; all renderings are bijective with the same underlying 9-digit EIN.</p>
 <blockquote class="blockquote">
 <p><strong>Renamed from “Master BMF” (2026-07-01).</strong> This product was briefly published as “Master BMF”; it has been renamed back to <strong>Unified BMF</strong>, restoring the name the research community originally knew it by (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0037-master-bmf-rename-unified-supersession-provenance.md">ADR 0037</a>). This is a <strong>non-silent supersession</strong>: the prior <code>s3://nccsdata/master/bmf/</code> path stays live and reachable through <strong>2026-09-28</strong> (a 90-day window), after which it moves to a retained, citable archive — it is never deleted. If you bookmarked or scripted against the old path, re-pin to <code>s3://nccsdata/unified/bmf/</code> before the cutover.</p>
 </blockquote>
 <p>The <strong>geocoded</strong> variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. The geocoded extension and its per-state marts completed the same rename (2026-07-02, <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0039-unified-bmf-geocoded-extension-rename.md">ADR 0039</a>): they are now the <strong>geocoded Unified BMF</strong> at <code>geocoding/unified-bmf/</code> and <code>unified/bmf/state_marts/</code>, with the prior <code>bmf-master</code>/<code>master</code> paths dual-published through their 90-day windows. As of the 2026-07 rebuild, both artifacts also publish permanent per-build vintages (<code>v{YYYY_MM}/</code>) plus a stable <strong><code>latest/</code></strong> folder that always serves the newest build (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md">ADR 0042</a>) — link <code>latest/</code> for always-current, cite <code>v*/</code> for reproducibility. The 2026-07 rebuild also recovered street addresses from the 2009-2022 legacy vintages, lifting geocoded coverage from 59.9% to <strong>82.7%</strong> of organizations.</p>
+<blockquote class="blockquote">
+<p><strong>NTEE-V2 codes corrected (2026-09-15).</strong> The <code>nteev2_code</code> and <code>nteev2</code> columns were wrong for about 8.5% of rows: organization-type codes 01-19 were repeated in the activity slot (<code>B11</code> published as <code>EDU-B11-MS</code> instead of <code>EDU-B00-MS</code>). A second set of rows carried stale values from monthly files that predated the June 2026 NTEE cleaner fix. Both are corrected in place in this build, in every per-month and legacy file, the state marts, and the NTEE-resolved crosswalk; no columns or rows were added or removed. If you group by <code>nteev2_code</code> or <code>nteev2</code>, re-pull. Details: <a href="./changelog/">changelog</a> and <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0048-nteev2-specialty-code-x00-rule.md">ADR 0048</a>. Defect identified by Jesse Lecy (Nonprofit Open Data Collective).</p>
+</blockquote>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small">
@@ -151,14 +154,14 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/geocoding/unified-bmf/latest/bmf_unified_geocoded.csv">Download</a></td>
 <td style="text-align: left;">—</td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_master_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">3569.7 mb</td>
+<td style="text-align: left;">3592.97 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Unified BMF</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/bmf_unified.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/bmf_unified_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/bmf_unified_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">3053.3 mb</td>
+<td style="text-align: left;">3072.40 mb</td>
 </tr>
 </tbody>
 </table>
@@ -180,317 +183,317 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AL.csv">Download</a></td>
-<td style="text-align: left;">48.3 mb</td>
+<td style="text-align: left;">48.59 mb</td>
 <td style="text-align: left;">Alabama</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AK.csv">Download</a></td>
-<td style="text-align: left;">10.5 mb</td>
+<td style="text-align: left;">10.55 mb</td>
 <td style="text-align: left;">Alaska</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AZ.csv">Download</a></td>
-<td style="text-align: left;">56.8 mb</td>
+<td style="text-align: left;">57.43 mb</td>
 <td style="text-align: left;">Arizona</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AR.csv">Download</a></td>
-<td style="text-align: left;">31.2 mb</td>
+<td style="text-align: left;">31.39 mb</td>
 <td style="text-align: left;">Arkansas</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_CA.csv">Download</a></td>
-<td style="text-align: left;">379.1 mb</td>
+<td style="text-align: left;">381.35 mb</td>
 <td style="text-align: left;">California</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_CO.csv">Download</a></td>
-<td style="text-align: left;">67.2 mb</td>
+<td style="text-align: left;">67.64 mb</td>
 <td style="text-align: left;">Colorado</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_CT.csv">Download</a></td>
-<td style="text-align: left;">42.7 mb</td>
+<td style="text-align: left;">43.21 mb</td>
 <td style="text-align: left;">Connecticut</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_DE.csv">Download</a></td>
-<td style="text-align: left;">16.9 mb</td>
+<td style="text-align: left;">17.12 mb</td>
 <td style="text-align: left;">Delaware</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_DC.csv">Download</a></td>
-<td style="text-align: left;">33.5 mb</td>
+<td style="text-align: left;">33.62 mb</td>
 <td style="text-align: left;">District of Columbia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_FL.csv">Download</a></td>
-<td style="text-align: left;">205.2 mb</td>
+<td style="text-align: left;">206.80 mb</td>
 <td style="text-align: left;">Florida</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_GA.csv">Download</a></td>
-<td style="text-align: left;">110.6 mb</td>
+<td style="text-align: left;">111.33 mb</td>
 <td style="text-align: left;">Georgia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_HI.csv">Download</a></td>
-<td style="text-align: left;">17 mb</td>
+<td style="text-align: left;">17.11 mb</td>
 <td style="text-align: left;">Hawaii</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_ID.csv">Download</a></td>
-<td style="text-align: left;">19 mb</td>
+<td style="text-align: left;">19.12 mb</td>
 <td style="text-align: left;">Idaho</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_IL.csv">Download</a></td>
-<td style="text-align: left;">146.6 mb</td>
+<td style="text-align: left;">147.36 mb</td>
 <td style="text-align: left;">Illinois</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_IN.csv">Download</a></td>
-<td style="text-align: left;">80.6 mb</td>
+<td style="text-align: left;">81.10 mb</td>
 <td style="text-align: left;">Indiana</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_IA.csv">Download</a></td>
-<td style="text-align: left;">53 mb</td>
+<td style="text-align: left;">53.27 mb</td>
 <td style="text-align: left;">Iowa</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_KS.csv">Download</a></td>
-<td style="text-align: left;">35 mb</td>
+<td style="text-align: left;">35.19 mb</td>
 <td style="text-align: left;">Kansas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_KY.csv">Download</a></td>
-<td style="text-align: left;">41.7 mb</td>
+<td style="text-align: left;">41.93 mb</td>
 <td style="text-align: left;">Kentucky</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_LA.csv">Download</a></td>
-<td style="text-align: left;">46.4 mb</td>
+<td style="text-align: left;">46.64 mb</td>
 <td style="text-align: left;">Louisiana</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_ME.csv">Download</a></td>
-<td style="text-align: left;">18.2 mb</td>
+<td style="text-align: left;">18.43 mb</td>
 <td style="text-align: left;">Maine</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MD.csv">Download</a></td>
-<td style="text-align: left;">79.6 mb</td>
+<td style="text-align: left;">80.16 mb</td>
 <td style="text-align: left;">Maryland</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MA.csv">Download</a></td>
-<td style="text-align: left;">80.9 mb</td>
+<td style="text-align: left;">81.78 mb</td>
 <td style="text-align: left;">Massachusetts</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MI.csv">Download</a></td>
-<td style="text-align: left;">107.8 mb</td>
+<td style="text-align: left;">108.38 mb</td>
 <td style="text-align: left;">Michigan</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MN.csv">Download</a></td>
-<td style="text-align: left;">72.3 mb</td>
+<td style="text-align: left;">73.32 mb</td>
 <td style="text-align: left;">Minnesota</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MS.csv">Download</a></td>
-<td style="text-align: left;">29.4 mb</td>
+<td style="text-align: left;">29.54 mb</td>
 <td style="text-align: left;">Mississippi</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MO.csv">Download</a></td>
-<td style="text-align: left;">81.7 mb</td>
+<td style="text-align: left;">82.09 mb</td>
 <td style="text-align: left;">Missouri</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_MT.csv">Download</a></td>
-<td style="text-align: left;">20.3 mb</td>
+<td style="text-align: left;">20.45 mb</td>
 <td style="text-align: left;">Montana</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NE.csv">Download</a></td>
-<td style="text-align: left;">26.2 mb</td>
+<td style="text-align: left;">26.33 mb</td>
 <td style="text-align: left;">Nebraska</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NV.csv">Download</a></td>
-<td style="text-align: left;">25 mb</td>
+<td style="text-align: left;">25.17 mb</td>
 <td style="text-align: left;">Nevada</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NH.csv">Download</a></td>
-<td style="text-align: left;">16.9 mb</td>
+<td style="text-align: left;">17.10 mb</td>
 <td style="text-align: left;">New Hampshire</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NJ.csv">Download</a></td>
-<td style="text-align: left;">97.2 mb</td>
+<td style="text-align: left;">98.23 mb</td>
 <td style="text-align: left;">New Jersey</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NM.csv">Download</a></td>
-<td style="text-align: left;">21.8 mb</td>
+<td style="text-align: left;">21.87 mb</td>
 <td style="text-align: left;">New Mexico</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_NY.csv">Download</a></td>
-<td style="text-align: left;">216.1 mb</td>
+<td style="text-align: left;">217.16 mb</td>
 <td style="text-align: left;">New York</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_NC.csv">Download</a></td>
-<td style="text-align: left;">105.9 mb</td>
+<td style="text-align: left;">106.57 mb</td>
 <td style="text-align: left;">North Carolina</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_ND.csv">Download</a></td>
-<td style="text-align: left;">12.1 mb</td>
+<td style="text-align: left;">12.14 mb</td>
 <td style="text-align: left;">North Dakota</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_OH.csv">Download</a></td>
-<td style="text-align: left;">141.6 mb</td>
+<td style="text-align: left;">142.45 mb</td>
 <td style="text-align: left;">Ohio</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_OK.csv">Download</a></td>
-<td style="text-align: left;">42.3 mb</td>
+<td style="text-align: left;">42.50 mb</td>
 <td style="text-align: left;">Oklahoma</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_OR.csv">Download</a></td>
-<td style="text-align: left;">48.6 mb</td>
+<td style="text-align: left;">48.87 mb</td>
 <td style="text-align: left;">Oregon</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_PA.csv">Download</a></td>
-<td style="text-align: left;">147.4 mb</td>
+<td style="text-align: left;">148.16 mb</td>
 <td style="text-align: left;">Pennsylvania</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_RI.csv">Download</a></td>
-<td style="text-align: left;">12.7 mb</td>
+<td style="text-align: left;">12.87 mb</td>
 <td style="text-align: left;">Rhode Island</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_SC.csv">Download</a></td>
-<td style="text-align: left;">54.8 mb</td>
+<td style="text-align: left;">55.09 mb</td>
 <td style="text-align: left;">South Carolina</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_SD.csv">Download</a></td>
-<td style="text-align: left;">13.7 mb</td>
+<td style="text-align: left;">13.78 mb</td>
 <td style="text-align: left;">South Dakota</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_TN.csv">Download</a></td>
-<td style="text-align: left;">70.3 mb</td>
+<td style="text-align: left;">70.80 mb</td>
 <td style="text-align: left;">Tennessee</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_TX.csv">Download</a></td>
-<td style="text-align: left;">267.2 mb</td>
+<td style="text-align: left;">269.01 mb</td>
 <td style="text-align: left;">Texas</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_UT.csv">Download</a></td>
-<td style="text-align: left;">23.5 mb</td>
+<td style="text-align: left;">23.67 mb</td>
 <td style="text-align: left;">Utah</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_VT.csv">Download</a></td>
-<td style="text-align: left;">11.9 mb</td>
+<td style="text-align: left;">12.02 mb</td>
 <td style="text-align: left;">Vermont</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_VA.csv">Download</a></td>
-<td style="text-align: left;">97.5 mb</td>
+<td style="text-align: left;">98.18 mb</td>
 <td style="text-align: left;">Virginia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WA.csv">Download</a></td>
-<td style="text-align: left;">79.5 mb</td>
+<td style="text-align: left;">80.01 mb</td>
 <td style="text-align: left;">Washington</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WV.csv">Download</a></td>
-<td style="text-align: left;">22.8 mb</td>
+<td style="text-align: left;">22.96 mb</td>
 <td style="text-align: left;">West Virginia</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_WI.csv">Download</a></td>
-<td style="text-align: left;">71.5 mb</td>
+<td style="text-align: left;">71.33 mb</td>
 <td style="text-align: left;">Wisconsin</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_WY.csv">Download</a></td>
-<td style="text-align: left;">10.5 mb</td>
+<td style="text-align: left;">10.62 mb</td>
 <td style="text-align: left;">Wyoming</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AS.csv">Download</a></td>
-<td style="text-align: left;">0.1 mb</td>
+<td style="text-align: left;">0.15 mb</td>
 <td style="text-align: left;">American Samoa</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_GU.csv">Download</a></td>
-<td style="text-align: left;">0.3 mb</td>
+<td style="text-align: left;">0.29 mb</td>
 <td style="text-align: left;">Guam</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MP.csv">Download</a></td>
-<td style="text-align: left;">0.2 mb</td>
+<td style="text-align: left;">0.16 mb</td>
 <td style="text-align: left;">Northern Mariana Islands</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_PR.csv">Download</a></td>
-<td style="text-align: left;">5.1 mb</td>
+<td style="text-align: left;">5.18 mb</td>
 <td style="text-align: left;">Puerto Rico</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_VI.csv">Download</a></td>
-<td style="text-align: left;">1.1 mb</td>
+<td style="text-align: left;">1.07 mb</td>
 <td style="text-align: left;">U.S. Virgin Islands</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_AA.csv">Download</a></td>
-<td style="text-align: left;">0 mb</td>
+<td style="text-align: left;">18.3 kb</td>
 <td style="text-align: left;">Armed Forces Americas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AE.csv">Download</a></td>
-<td style="text-align: left;">0.3 mb</td>
+<td style="text-align: left;">0.32 mb</td>
 <td style="text-align: left;">Armed Forces Europe</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/unified/bmf/state_marts/csv/bmf_master_AP.csv">Download</a></td>
-<td style="text-align: left;">0.2 mb</td>
+<td style="text-align: left;">0.23 mb</td>
 <td style="text-align: left;">Armed Forces Pacific</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_FM.csv">Download</a></td>
-<td style="text-align: left;">0 mb</td>
+<td style="text-align: left;">6.7 kb</td>
 <td style="text-align: left;">Federated States of Micronesia</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_MH.csv">Download</a></td>
-<td style="text-align: left;">0 mb</td>
+<td style="text-align: left;">3.8 kb</td>
 <td style="text-align: left;">Marshall Islands</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_PW.csv">Download</a></td>
-<td style="text-align: left;">0 mb</td>
+<td style="text-align: left;">3.4 kb</td>
 <td style="text-align: left;">Palau</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/master/bmf/state_marts/csv/bmf_master_ZZ.csv">Download</a></td>
-<td style="text-align: left;">5 mb</td>
+<td style="text-align: left;">4.97 mb</td>
 <td style="text-align: left;">Unknown / unmapped</td>
 </tr>
 </tbody>
@@ -502,7 +505,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-anchor-id="access-via-s3">Access via S3</h3>
 <pre><code>s3://nccsdata/geocoding/unified-bmf/latest/  # Geocoded variant (recommended; always the newest build)
 s3://nccsdata/geocoding/unified-bmf/merged/  # Geocoded rolling build
-s3://nccsdata/geocoding/unified-bmf/v2026_07/ # Permanent per-build vintage (parquet)
+s3://nccsdata/geocoding/unified-bmf/v2026_09/ # Permanent per-build version (parquet); v2026_07/ remains
 s3://nccsdata/geocoding/bmf-master/merged/   # Superseded geocoded path — dual-published through the ADR 0039 window
 s3://nccsdata/unified/bmf/                   # Plain Unified BMF (bmf_unified.{parquet,csv} + dictionary + quality report + _manifest.json)
 s3://nccsdata/master/bmf/                    # Superseded plain path — reachable through 2026-09-28, then archived (not deleted)
@@ -536,48 +539,48 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Superseded marts path — dual-pu
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2026</td>
+<td style="text-align: left;">07</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_07/bmf_2026_07_processed.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_07/bmf_2026_07_data_dictionary.csv">Dictionary</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_07_quality_report.html">Quality report</a></td>
+<td style="text-align: left;">1792.87 mb</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2026</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_06/bmf_2026_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_06/bmf_2026_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1785.3 mb</td>
+<td style="text-align: left;">1785.25 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1766.2 mb</td>
+<td style="text-align: left;">1773.08 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1712.8 mb</td>
+<td style="text-align: left;">1758.79 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1704.2 mb</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025</td>
-<td style="text-align: left;">12</td>
-<td style="text-align: left;">Transformed</td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_processed.csv">Download</a></td>
-<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_data_dictionary.csv">Dictionary</a></td>
-<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1702.4 mb</td>
+<td style="text-align: left;">1749.98 mb</td>
 </tr>
 </tbody>
 </table>
@@ -608,1065 +611,1092 @@ s3://nccsdata/master/bmf/state_marts/csv/    # Superseded marts path — dual-pu
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2026</td>
+<td style="text-align: left;">07</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_07/bmf_2026_07_processed.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_07/bmf_2026_07_data_dictionary.csv">Dictionary</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_07_quality_report.html">Quality report</a></td>
+<td style="text-align: left;">1792.87 mb</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2026</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_06/bmf_2026_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_06/bmf_2026_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1785.3 mb</td>
+<td style="text-align: left;">1785.25 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_05/bmf_2026_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1766.2 mb</td>
+<td style="text-align: left;">1773.08 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_03/bmf_2026_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1712.8 mb</td>
+<td style="text-align: left;">1758.79 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2026</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2026_01/bmf_2026_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2026_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1704.2 mb</td>
+<td style="text-align: left;">1749.98 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_12/bmf_2025_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1702.4 mb</td>
+<td style="text-align: left;">1748.18 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_11/bmf_2025_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_11/bmf_2025_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1681.3 mb</td>
+<td style="text-align: left;">1726.63 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_10/bmf_2025_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_10/bmf_2025_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1681.3 mb</td>
+<td style="text-align: left;">1726.63 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_09/bmf_2025_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_09/bmf_2025_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1667.8 mb</td>
+<td style="text-align: left;">1712.87 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_08/bmf_2025_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_08/bmf_2025_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1693 mb</td>
+<td style="text-align: left;">1738.70 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_07/bmf_2025_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_07/bmf_2025_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1685 mb</td>
+<td style="text-align: left;">1730.48 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_06/bmf_2025_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_06/bmf_2025_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1681.2 mb</td>
+<td style="text-align: left;">1726.60 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_05/bmf_2025_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_05/bmf_2025_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1679.2 mb</td>
+<td style="text-align: left;">1724.62 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_04/bmf_2025_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_04/bmf_2025_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1672 mb</td>
+<td style="text-align: left;">1717.20 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_03/bmf_2025_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_03/bmf_2025_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1672.1 mb</td>
+<td style="text-align: left;">1717.35 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_02/bmf_2025_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_02/bmf_2025_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1664.6 mb</td>
+<td style="text-align: left;">1709.74 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2025</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_01/bmf_2025_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2025_01/bmf_2025_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2025_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1664.6 mb</td>
+<td style="text-align: left;">1709.74 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_12/bmf_2024_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_12/bmf_2024_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1662.3 mb</td>
+<td style="text-align: left;">1707.43 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_11/bmf_2024_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_11/bmf_2024_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1657.1 mb</td>
+<td style="text-align: left;">1702.15 mb</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2024</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_10/bmf_2024_10_processed.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_10/bmf_2024_10_data_dictionary.csv">Dictionary</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_10_quality_report.html">Quality report</a></td>
+<td style="text-align: left;">1693.72 mb</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">2024</td>
+<td style="text-align: left;">09</td>
+<td style="text-align: left;">Transformed</td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_09/bmf_2024_09_processed.csv">Download</a></td>
+<td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_09/bmf_2024_09_data_dictionary.csv">Dictionary</a></td>
+<td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_09_quality_report.html">Quality report</a></td>
+<td style="text-align: left;">1689.28 mb</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_08/bmf_2024_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_08/bmf_2024_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1677.4 mb</td>
+<td style="text-align: left;">1722.92 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_07/bmf_2024_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_07/bmf_2024_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1669.2 mb</td>
+<td style="text-align: left;">1714.62 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_06/bmf_2024_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_06/bmf_2024_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1662.8 mb</td>
+<td style="text-align: left;">1707.99 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_04/bmf_2024_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_04/bmf_2024_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1649.8 mb</td>
+<td style="text-align: left;">1694.73 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_03/bmf_2024_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_03/bmf_2024_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1651.7 mb</td>
+<td style="text-align: left;">1696.75 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_02/bmf_2024_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_02/bmf_2024_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1645.8 mb</td>
+<td style="text-align: left;">1690.77 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2024</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_01/bmf_2024_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2024_01/bmf_2024_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2024_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1645.8 mb</td>
+<td style="text-align: left;">1690.77 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_12/bmf_2023_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_12/bmf_2023_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1644.1 mb</td>
+<td style="text-align: left;">1689.08 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_11/bmf_2023_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_11/bmf_2023_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1639.8 mb</td>
+<td style="text-align: left;">1684.71 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_10/bmf_2023_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_10/bmf_2023_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1633.1 mb</td>
+<td style="text-align: left;">1677.89 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_09/bmf_2023_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_09/bmf_2023_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1628.8 mb</td>
+<td style="text-align: left;">1673.50 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_08/bmf_2023_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_08/bmf_2023_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1252.9 mb</td>
+<td style="text-align: left;">1287.22 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_07/bmf_2023_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_07/bmf_2023_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1654.2 mb</td>
+<td style="text-align: left;">1699.59 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2023</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Transformed</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_06/bmf_2023_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf/2023_06/bmf_2023_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_2023_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">1621.9 mb</td>
+<td style="text-align: left;">1666.29 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2022</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_08/bmf_legacy_2022_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_08/bmf_legacy_2022_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2022_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">960 mb</td>
+<td style="text-align: left;">962.33 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2022</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_01/bmf_legacy_2022_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2022_01/bmf_legacy_2022_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2022_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">957.1 mb</td>
+<td style="text-align: left;">959.42 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2020</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2020_04/bmf_legacy_2020_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2020_04/bmf_legacy_2020_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2020_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">943.9 mb</td>
+<td style="text-align: left;">946.23 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2019</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2019_08/bmf_legacy_2019_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2019_08/bmf_legacy_2019_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2019_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">940.2 mb</td>
+<td style="text-align: left;">942.48 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2018</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2018_12/bmf_legacy_2018_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2018_12/bmf_legacy_2018_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2018_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">677.9 mb</td>
+<td style="text-align: left;">832.16 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_08/bmf_legacy_2016_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_08/bmf_legacy_2016_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">982.4 mb</td>
+<td style="text-align: left;">984.56 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_04/bmf_legacy_2016_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_04/bmf_legacy_2016_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">976 mb</td>
+<td style="text-align: left;">978.15 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_03/bmf_legacy_2016_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_03/bmf_legacy_2016_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">974.1 mb</td>
+<td style="text-align: left;">976.25 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_02/bmf_legacy_2016_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2016_02/bmf_legacy_2016_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2016_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">970.2 mb</td>
+<td style="text-align: left;">972.31 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_12/bmf_legacy_2015_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_12/bmf_legacy_2015_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">962 mb</td>
+<td style="text-align: left;">964.13 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_11/bmf_legacy_2015_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_11/bmf_legacy_2015_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">962.4 mb</td>
+<td style="text-align: left;">964.49 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_09/bmf_legacy_2015_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_09/bmf_legacy_2015_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">951.9 mb</td>
+<td style="text-align: left;">953.96 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_07/bmf_legacy_2015_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_07/bmf_legacy_2015_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">958.5 mb</td>
+<td style="text-align: left;">960.62 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_05/bmf_legacy_2015_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_05/bmf_legacy_2015_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">950.8 mb</td>
+<td style="text-align: left;">952.85 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_04/bmf_legacy_2015_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_04/bmf_legacy_2015_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">945.5 mb</td>
+<td style="text-align: left;">947.54 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2015</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_02/bmf_legacy_2015_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2015_02/bmf_legacy_2015_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2015_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">936.7 mb</td>
+<td style="text-align: left;">938.79 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_12/bmf_legacy_2014_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_12/bmf_legacy_2014_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">929 mb</td>
+<td style="text-align: left;">931.07 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_11/bmf_legacy_2014_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_11/bmf_legacy_2014_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">924 mb</td>
+<td style="text-align: left;">926.00 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_09/bmf_legacy_2014_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_09/bmf_legacy_2014_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">905.7 mb</td>
+<td style="text-align: left;">907.74 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_06/bmf_legacy_2014_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_06/bmf_legacy_2014_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">888.8 mb</td>
+<td style="text-align: left;">890.76 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_04/bmf_legacy_2014_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_04/bmf_legacy_2014_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">885.5 mb</td>
+<td style="text-align: left;">887.50 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2014</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_02/bmf_legacy_2014_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2014_02/bmf_legacy_2014_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2014_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">810.3 mb</td>
+<td style="text-align: left;">812.22 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_12/bmf_legacy_2013_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_12/bmf_legacy_2013_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">807.1 mb</td>
+<td style="text-align: left;">809.03 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_10/bmf_legacy_2013_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_10/bmf_legacy_2013_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">805.6 mb</td>
+<td style="text-align: left;">807.53 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_09/bmf_legacy_2013_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_09/bmf_legacy_2013_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">804.9 mb</td>
+<td style="text-align: left;">806.85 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_08/bmf_legacy_2013_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_08/bmf_legacy_2013_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">804 mb</td>
+<td style="text-align: left;">805.96 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_07/bmf_legacy_2013_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_07/bmf_legacy_2013_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">816.1 mb</td>
+<td style="text-align: left;">818.10 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_06/bmf_legacy_2013_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_06/bmf_legacy_2013_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">814.5 mb</td>
+<td style="text-align: left;">816.44 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_05/bmf_legacy_2013_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_05/bmf_legacy_2013_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">814.9 mb</td>
+<td style="text-align: left;">816.82 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_04/bmf_legacy_2013_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_04/bmf_legacy_2013_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">814.3 mb</td>
+<td style="text-align: left;">816.23 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_03/bmf_legacy_2013_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_03/bmf_legacy_2013_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">811.7 mb</td>
+<td style="text-align: left;">813.69 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2013</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_02/bmf_legacy_2013_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2013_02/bmf_legacy_2013_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2013_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">822.7 mb</td>
+<td style="text-align: left;">824.70 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_12/bmf_legacy_2012_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_12/bmf_legacy_2012_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">832.5 mb</td>
+<td style="text-align: left;">834.50 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_11/bmf_legacy_2012_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_11/bmf_legacy_2012_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">831.1 mb</td>
+<td style="text-align: left;">833.08 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_10/bmf_legacy_2012_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_10/bmf_legacy_2012_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">830.6 mb</td>
+<td style="text-align: left;">832.61 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_08/bmf_legacy_2012_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_08/bmf_legacy_2012_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">829.7 mb</td>
+<td style="text-align: left;">831.65 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_07/bmf_legacy_2012_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_07/bmf_legacy_2012_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">828.8 mb</td>
+<td style="text-align: left;">830.82 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_06/bmf_legacy_2012_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_06/bmf_legacy_2012_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">830.9 mb</td>
+<td style="text-align: left;">832.90 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_04/bmf_legacy_2012_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_04/bmf_legacy_2012_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">824.8 mb</td>
+<td style="text-align: left;">826.82 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">03</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_03/bmf_legacy_2012_03_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_03/bmf_legacy_2012_03_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_03_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">825.9 mb</td>
+<td style="text-align: left;">827.88 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2012</td>
 <td style="text-align: left;">02</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_02/bmf_legacy_2012_02_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2012_02/bmf_legacy_2012_02_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2012_02_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">819.6 mb</td>
+<td style="text-align: left;">821.61 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_12/bmf_legacy_2011_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_12/bmf_legacy_2011_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">839.3 mb</td>
+<td style="text-align: left;">841.37 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_11/bmf_legacy_2011_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_11/bmf_legacy_2011_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">838.4 mb</td>
+<td style="text-align: left;">840.45 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_10/bmf_legacy_2011_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_10/bmf_legacy_2011_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">836.4 mb</td>
+<td style="text-align: left;">838.41 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_09/bmf_legacy_2011_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_09/bmf_legacy_2011_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">835.5 mb</td>
+<td style="text-align: left;">837.56 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_08/bmf_legacy_2011_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_08/bmf_legacy_2011_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">835.2 mb</td>
+<td style="text-align: left;">837.24 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_07/bmf_legacy_2011_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_07/bmf_legacy_2011_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">836 mb</td>
+<td style="text-align: left;">838.01 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2011</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_06/bmf_legacy_2011_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2011_06/bmf_legacy_2011_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2011_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">910.1 mb</td>
+<td style="text-align: left;">912.16 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_11/bmf_legacy_2010_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_11/bmf_legacy_2010_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">928.8 mb</td>
+<td style="text-align: left;">930.98 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_08/bmf_legacy_2010_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_08/bmf_legacy_2010_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">920 mb</td>
+<td style="text-align: left;">922.21 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_07/bmf_legacy_2010_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_07/bmf_legacy_2010_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">917.7 mb</td>
+<td style="text-align: left;">919.92 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_05/bmf_legacy_2010_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_05/bmf_legacy_2010_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">917 mb</td>
+<td style="text-align: left;">919.23 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_04/bmf_legacy_2010_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_04/bmf_legacy_2010_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">914.4 mb</td>
+<td style="text-align: left;">916.58 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2010</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_01/bmf_legacy_2010_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2010_01/bmf_legacy_2010_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2010_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">873.2 mb</td>
+<td style="text-align: left;">875.40 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_10/bmf_legacy_2009_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_10/bmf_legacy_2009_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2009_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">866.6 mb</td>
+<td style="text-align: left;">868.73 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_07/bmf_legacy_2009_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_07/bmf_legacy_2009_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2009_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">701.5 mb</td>
+<td style="text-align: left;">702.81 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_04/bmf_legacy_2009_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_04/bmf_legacy_2009_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2009_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">694.3 mb</td>
+<td style="text-align: left;">695.65 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2009</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_01/bmf_legacy_2009_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2009_01/bmf_legacy_2009_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2009_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">841.2 mb</td>
+<td style="text-align: left;">843.31 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2008</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_12/bmf_legacy_2008_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_12/bmf_legacy_2008_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2008_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">684.2 mb</td>
+<td style="text-align: left;">685.52 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2008</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_10/bmf_legacy_2008_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_10/bmf_legacy_2008_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2008_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">682.5 mb</td>
+<td style="text-align: left;">683.85 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2008</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_06/bmf_legacy_2008_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_06/bmf_legacy_2008_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2008_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">674 mb</td>
+<td style="text-align: left;">675.25 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2008</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_04/bmf_legacy_2008_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_04/bmf_legacy_2008_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2008_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">660.3 mb</td>
+<td style="text-align: left;">661.53 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2008</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_01/bmf_legacy_2008_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2008_01/bmf_legacy_2008_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2008_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">658.7 mb</td>
+<td style="text-align: left;">659.96 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2007</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2007_09/bmf_legacy_2007_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2007_09/bmf_legacy_2007_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2007_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">666.2 mb</td>
+<td style="text-align: left;">667.51 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2007</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2007_04/bmf_legacy_2007_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2007_04/bmf_legacy_2007_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2007_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">664.5 mb</td>
+<td style="text-align: left;">665.77 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2007</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2007_01/bmf_legacy_2007_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2007_01/bmf_legacy_2007_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2007_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">662.4 mb</td>
+<td style="text-align: left;">663.72 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2006</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2006_11/bmf_legacy_2006_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2006_11/bmf_legacy_2006_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2006_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">647.2 mb</td>
+<td style="text-align: left;">648.46 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2006</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2006_05/bmf_legacy_2006_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2006_05/bmf_legacy_2006_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2006_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">601.6 mb</td>
+<td style="text-align: left;">602.86 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2006</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2006_01/bmf_legacy_2006_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2006_01/bmf_legacy_2006_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2006_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">604.7 mb</td>
+<td style="text-align: left;">605.98 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2005</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2005_11/bmf_legacy_2005_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2005_11/bmf_legacy_2005_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2005_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">602.5 mb</td>
+<td style="text-align: left;">603.78 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2005</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2005_07/bmf_legacy_2005_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2005_07/bmf_legacy_2005_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2005_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">599.4 mb</td>
+<td style="text-align: left;">600.66 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2004</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2004_12/bmf_legacy_2004_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2004_12/bmf_legacy_2004_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2004_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">597.3 mb</td>
+<td style="text-align: left;">598.56 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2004</td>
 <td style="text-align: left;">04</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2004_04/bmf_legacy_2004_04_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2004_04/bmf_legacy_2004_04_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2004_04_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">587.8 mb</td>
+<td style="text-align: left;">588.99 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2003</td>
 <td style="text-align: left;">11</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2003_11/bmf_legacy_2003_11_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2003_11/bmf_legacy_2003_11_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2003_11_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">584.5 mb</td>
+<td style="text-align: left;">585.74 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2003</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2003_07/bmf_legacy_2003_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2003_07/bmf_legacy_2003_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2003_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">575.4 mb</td>
+<td style="text-align: left;">576.60 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2003</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2003_01/bmf_legacy_2003_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2003_01/bmf_legacy_2003_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2003_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">564.8 mb</td>
+<td style="text-align: left;">565.94 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2002</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2002_07/bmf_legacy_2002_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2002_07/bmf_legacy_2002_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2002_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">554.9 mb</td>
+<td style="text-align: left;">556.01 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2002</td>
 <td style="text-align: left;">01</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2002_01/bmf_legacy_2002_01_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2002_01/bmf_legacy_2002_01_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2002_01_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">587.3 mb</td>
+<td style="text-align: left;">588.42 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">2001</td>
 <td style="text-align: left;">07</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2001_07/bmf_legacy_2001_07_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2001_07/bmf_legacy_2001_07_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2001_07_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">527.1 mb</td>
+<td style="text-align: left;">528.24 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">2000</td>
 <td style="text-align: left;">05</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2000_05/bmf_legacy_2000_05_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/2000_05/bmf_legacy_2000_05_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_2000_05_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">506.9 mb</td>
+<td style="text-align: left;">507.97 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1999</td>
 <td style="text-align: left;">12</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1999_12/bmf_legacy_1999_12_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1999_12/bmf_legacy_1999_12_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1999_12_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">505.3 mb</td>
+<td style="text-align: left;">506.39 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">1998</td>
 <td style="text-align: left;">09</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1998_09/bmf_legacy_1998_09_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1998_09/bmf_legacy_1998_09_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1998_09_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">497.1 mb</td>
+<td style="text-align: left;">498.13 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1997</td>
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1997_10/bmf_legacy_1997_10_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1997_10/bmf_legacy_1997_10_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1997_10_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">483.9 mb</td>
+<td style="text-align: left;">484.89 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">1996</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1996_06/bmf_legacy_1996_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1996_06/bmf_legacy_1996_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1996_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">462.9 mb</td>
+<td style="text-align: left;">463.80 mb</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">1995</td>
 <td style="text-align: left;">08</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1995_08/bmf_legacy_1995_08_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1995_08/bmf_legacy_1995_08_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1995_08_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">441.1 mb</td>
+<td style="text-align: left;">442.06 mb</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">1989</td>
 <td style="text-align: left;">06</td>
 <td style="text-align: left;">Harmonized legacy</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1989_06/bmf_legacy_1989_06_processed.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/processed/bmf-legacy/1989_06/bmf_legacy_1989_06_data_dictionary.csv">Dictionary</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_legacy_1989_06_quality_report.html">Quality report</a></td>
-<td style="text-align: left;">249.5 mb</td>
+<td style="text-align: left;">250.16 mb</td>
 </tr>
 </tbody>
 </table>
@@ -1936,7 +1966,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <li><strong><code>ntee_code_distribution</code></strong> — the full per-code history as JSON, for your own custom rule.</li>
 </ul>
 <p>Each of the first three carries <code>_subsector</code> (NTEEv2 subsector, e.g.&nbsp;<code>UNI</code>/<code>HOS</code>/<code>EDU</code>) and <code>_nteev2</code> (full NTEEv2 code) derivatives, plus <code>n_distinct_codes</code>, <code>n_vintages_with_ntee</code>, and <code>ntee_agreement</code> (<code>single</code>/<code>unanimous</code>/<code>mixed</code>) as a confidence signal. To filter for universities, for example, use <code>ntee_most_recent_subsector == 'UNI'</code> — not a substring guess.</p>
-<p><strong>Scale &amp; recovery.</strong> 3,613,958 EINs (one row per EIN with an NTEE in ≥1 vintage). Of <strong>2,054,414</strong> EINs whose <code>ntee_current</code> is null/blank, <strong>2,031,485 (98.9%)</strong> recover a usable code via <code>ntee_most_recent</code>. Agreement across vintages: unanimous 71.5% / mixed 21.5% / single 7.0%.</p>
+<p><strong>Scale &amp; recovery.</strong> 3,624,536 EINs (one row per EIN with an NTEE in ≥1 vintage; 2026-09-15 build). Of <strong>2,039,980</strong> EINs whose <code>ntee_current</code> is null/blank, <strong>all</strong> recover a usable code via <code>ntee_most_recent</code>. Agreement across vintages: unanimous 71.7% / mixed 21.5% / single 6.8%.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1950,13 +1980,13 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <tr class="odd">
 <td style="text-align: left;"><code>ntee_resolved_crosswalk.parquet</code></td>
 <td style="text-align: left;">Parquet (zstd) — machine contract, recommended</td>
-<td style="text-align: left;">~78 MB</td>
+<td style="text-align: left;">~103 MB</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.parquet">Parquet</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>ntee_resolved_crosswalk.csv</code></td>
 <td style="text-align: left;">CSV mirror</td>
-<td style="text-align: left;">~640 MB</td>
+<td style="text-align: left;">~752 MB</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.csv">CSV</a></td>
 </tr>
 <tr class="odd">
@@ -1971,18 +2001,6 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <section id="section-address-resolved" class="level2">
 <h2 data-anchor-id="section-address-resolved">Address-resolved crosswalk (address history log)</h2>
 <p>A complete mailing-address log: <strong>one row per (EIN, address spell)</strong>, <code>spell_rank</code> 0 = the current/most-recent address, covering every vintage of both BMF pipelines back to 1989 (11.45M spells across 3.69M organizations; 68% have more than one address). Keyed on <code>EIN2</code> with canonical <code>ein</code> and <code>ein_prefixed</code> alongside (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md">ADR 0036</a>); shape per <a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md">ADR 0042</a>. Street values begin at the 2009 legacy vintages (earlier legacy files never carried streets); pre-2009 spells keep city/state/zip honestly. ZIPs are normalized to 5 digits for the spell key.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container"><i class="callout-icon"></i></div>
-<div class="callout-title-container flex-fill">Known defect in the current build: ZIP codes in nine states</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The build currently served at <code>latest/</code> (<code>v2026_07</code>) has a ZIP normalization defect. Legacy source files lost the leading zero from ZIP codes, so <code>zip5</code> is 3-4 characters instead of 5 for legacy rows in <strong>ME, NH, VT, MA, RI, CT, NJ, PR and VI</strong>, and those values will not join to any ZIP-keyed dataset.</p>
-<p>The practical consequence for address history: in those nine states an organization&rsquo;s legacy and current records fail to match on ZIP, so the log can show an address change in 2023 where none occurred. Treat address changes in those states as unreliable until this is corrected.</p>
-<p>Workaround: left-pad <code>zip5</code> to five digits with zeros before joining. The underlying digits are intact.</p>
-<p>The producer fix is merged; this page will be updated when the corrected build is published.</p>
-</div>
-</div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -2144,7 +2162,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 </section>
 <section id="provenance" class="level3">
 <h3 data-anchor-id="provenance">Provenance</h3>
-<p>The <code>_manifest.json</code> (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md">ADR 0014</a> shape) records the published provenance — use its <code>sha256</code> to detect changes. As of first publish:</p>
+<p>The <code>_manifest.json</code> (<a href="https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md">ADR 0014</a> shape) records the published provenance — use its <code>sha256</code> to detect changes. As of the 2026-09-15 rebuild:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -2159,19 +2177,19 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><code>vintage</code></td>
-<td style="text-align: left;"><code>2026_06</code> (newest current BMF vintage at build)</td>
+<td style="text-align: left;"><code>2026_09</code> (build version; newest current BMF at build was 2026_07)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>built_at</code></td>
-<td style="text-align: left;"><code>2026-06-24T19:54:22Z</code></td>
+<td style="text-align: left;"><code>2026-09-15T10:52:10Z</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>git_sha</code></td>
-<td style="text-align: left;"><code>1e1290d</code></td>
+<td style="text-align: left;"><code>dbf33ae</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>row_count</code></td>
-<td style="text-align: left;">3,613,958</td>
+<td style="text-align: left;">3,624,536</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Inputs</td>
@@ -2226,7 +2244,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2022-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2022-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2022-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">345.8 mb</td>
+<td style="text-align: left;">345.84 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2022</td>
@@ -2234,7 +2252,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2022-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2022-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2022-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">377.1 mb</td>
+<td style="text-align: left;">377.11 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2020</td>
@@ -2242,7 +2260,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2020-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2020-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2020-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">375.9 mb</td>
+<td style="text-align: left;">375.94 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2019</td>
@@ -2250,7 +2268,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2019-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2019-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2019-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">374.9 mb</td>
+<td style="text-align: left;">374.89 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2018</td>
@@ -2258,7 +2276,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2018-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2018-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2018-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">330.5 mb</td>
+<td style="text-align: left;">330.52 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2017</td>
@@ -2266,7 +2284,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2017-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2017-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2017-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">339.5 mb</td>
+<td style="text-align: left;">339.45 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2017</td>
@@ -2274,7 +2292,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2017-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2017-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2017-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">344.8 mb</td>
+<td style="text-align: left;">344.80 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2016</td>
@@ -2282,7 +2300,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2016-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2016-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2016-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">368.3 mb</td>
+<td style="text-align: left;">368.35 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2016</td>
@@ -2290,7 +2308,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2016-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2016-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2016-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">368.4 mb</td>
+<td style="text-align: left;">368.39 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2016</td>
@@ -2298,7 +2316,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2016-03-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2016-03-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2016-03-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">367.7 mb</td>
+<td style="text-align: left;">367.70 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2016</td>
@@ -2306,7 +2324,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2016-02-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2016-02-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2016-02-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">366.4 mb</td>
+<td style="text-align: left;">366.40 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -2314,7 +2332,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">363.7 mb</td>
+<td style="text-align: left;">363.69 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2015</td>
@@ -2322,7 +2340,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">363.5 mb</td>
+<td style="text-align: left;">363.53 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -2330,7 +2348,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">359.9 mb</td>
+<td style="text-align: left;">359.89 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2015</td>
@@ -2338,7 +2356,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">361.1 mb</td>
+<td style="text-align: left;">361.13 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -2346,7 +2364,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-05-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-05-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-05-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">358.5 mb</td>
+<td style="text-align: left;">358.49 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2015</td>
@@ -2354,7 +2372,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">356.7 mb</td>
+<td style="text-align: left;">356.70 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2015</td>
@@ -2362,7 +2380,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2015-02-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2015-02-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2015-02-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">353.5 mb</td>
+<td style="text-align: left;">353.51 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2014</td>
@@ -2370,7 +2388,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2014-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2014-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2014-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">351.1 mb</td>
+<td style="text-align: left;">351.14 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2014</td>
@@ -2378,7 +2396,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2014-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2014-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2014-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">349.5 mb</td>
+<td style="text-align: left;">349.47 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2014</td>
@@ -2386,7 +2404,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2014-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2014-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2014-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">343.2 mb</td>
+<td style="text-align: left;">343.25 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2014</td>
@@ -2394,7 +2412,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2014-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2014-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2014-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">337.5 mb</td>
+<td style="text-align: left;">337.51 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2014</td>
@@ -2402,7 +2420,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2014-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2014-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2014-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">336.3 mb</td>
+<td style="text-align: left;">336.27 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2014</td>
@@ -2410,7 +2428,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2014-02-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2014-02-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2014-02-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">334.5 mb</td>
+<td style="text-align: left;">334.48 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -2418,7 +2436,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">331.7 mb</td>
+<td style="text-align: left;">331.74 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -2426,7 +2444,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-10-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-10-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-10-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">339.7 mb</td>
+<td style="text-align: left;">339.69 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -2434,7 +2452,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">331.2 mb</td>
+<td style="text-align: left;">331.15 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -2442,7 +2460,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">330.7 mb</td>
+<td style="text-align: left;">330.67 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -2450,7 +2468,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">335.3 mb</td>
+<td style="text-align: left;">335.31 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -2458,7 +2476,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">334.7 mb</td>
+<td style="text-align: left;">334.68 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -2466,7 +2484,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-05-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-05-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-05-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">334.2 mb</td>
+<td style="text-align: left;">334.17 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -2474,7 +2492,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">333.9 mb</td>
+<td style="text-align: left;">333.94 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2013</td>
@@ -2482,7 +2500,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-03-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-03-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-03-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">332.3 mb</td>
+<td style="text-align: left;">332.34 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2013</td>
@@ -2490,7 +2508,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2013-02-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2013-02-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2013-02-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">337 mb</td>
+<td style="text-align: left;">336.97 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -2498,7 +2516,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">339.4 mb</td>
+<td style="text-align: left;">339.40 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -2506,7 +2524,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">338.9 mb</td>
+<td style="text-align: left;">338.86 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -2514,7 +2532,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-10-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-10-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-10-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">338.7 mb</td>
+<td style="text-align: left;">338.69 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -2522,7 +2540,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">338.7 mb</td>
+<td style="text-align: left;">338.73 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -2530,7 +2548,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">338.4 mb</td>
+<td style="text-align: left;">338.36 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -2538,7 +2556,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">339.2 mb</td>
+<td style="text-align: left;">339.24 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -2546,7 +2564,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">310 mb</td>
+<td style="text-align: left;">310.05 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2012</td>
@@ -2554,7 +2572,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-03-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-03-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-03-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">336.1 mb</td>
+<td style="text-align: left;">336.09 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2012</td>
@@ -2562,7 +2580,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2012-02-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2012-02-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2012-02-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">308.2 mb</td>
+<td style="text-align: left;">308.17 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -2570,7 +2588,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">342.6 mb</td>
+<td style="text-align: left;">342.57 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2011</td>
@@ -2578,7 +2596,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">342.2 mb</td>
+<td style="text-align: left;">342.22 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -2586,7 +2604,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-10-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-10-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-10-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">341.4 mb</td>
+<td style="text-align: left;">341.40 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2011</td>
@@ -2594,7 +2612,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">340.8 mb</td>
+<td style="text-align: left;">340.82 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -2602,7 +2620,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">342.1 mb</td>
+<td style="text-align: left;">342.15 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2011</td>
@@ -2610,7 +2628,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">340.9 mb</td>
+<td style="text-align: left;">340.93 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2011</td>
@@ -2618,7 +2636,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2011-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2011-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2011-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">338.5 mb</td>
+<td style="text-align: left;">338.52 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2010</td>
@@ -2626,7 +2644,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2010-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2010-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">374.9 mb</td>
+<td style="text-align: left;">374.92 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2010</td>
@@ -2634,7 +2652,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2010-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2010-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">382.1 mb</td>
+<td style="text-align: left;">382.05 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2010</td>
@@ -2642,7 +2660,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2010-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2010-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">415.5 mb</td>
+<td style="text-align: left;">415.55 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2010</td>
@@ -2650,7 +2668,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2010-05-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2010-05-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-05-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">411.6 mb</td>
+<td style="text-align: left;">411.58 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2010</td>
@@ -2658,7 +2676,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2010-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2010-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">410.8 mb</td>
+<td style="text-align: left;">410.81 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2010</td>
@@ -2666,7 +2684,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2010-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2010-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2010-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">380.4 mb</td>
+<td style="text-align: left;">380.44 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2009</td>
@@ -2674,7 +2692,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2009-10-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2009-10-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2009-10-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">382.5 mb</td>
+<td style="text-align: left;">382.49 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2009</td>
@@ -2682,7 +2700,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2009-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2009-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2009-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">306.7 mb</td>
+<td style="text-align: left;">306.73 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2009</td>
@@ -2690,7 +2708,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2009-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2009-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2009-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">303.4 mb</td>
+<td style="text-align: left;">303.37 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2009</td>
@@ -2698,7 +2716,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2009-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2009-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2009-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">323.3 mb</td>
+<td style="text-align: left;">323.33 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2008</td>
@@ -2706,7 +2724,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2008-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2008-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2008-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">299.1 mb</td>
+<td style="text-align: left;">299.12 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2008</td>
@@ -2714,7 +2732,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2008-10-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2008-10-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2008-10-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">304.9 mb</td>
+<td style="text-align: left;">304.92 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2008</td>
@@ -2722,7 +2740,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2008-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2008-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2008-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">293.3 mb</td>
+<td style="text-align: left;">293.30 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2008</td>
@@ -2730,7 +2748,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2008-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2008-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2008-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">291.1 mb</td>
+<td style="text-align: left;">291.13 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2008</td>
@@ -2738,7 +2756,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2008-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2008-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2008-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">286.1 mb</td>
+<td style="text-align: left;">286.06 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2007</td>
@@ -2746,7 +2764,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2007-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2007-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2007-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">297.7 mb</td>
+<td style="text-align: left;">297.68 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2007</td>
@@ -2754,7 +2772,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2007-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2007-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2007-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">304.6 mb</td>
+<td style="text-align: left;">304.63 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2007</td>
@@ -2762,7 +2780,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2007-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2007-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2007-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">311 mb</td>
+<td style="text-align: left;">310.98 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2006</td>
@@ -2770,7 +2788,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2006-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2006-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2006-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">316.3 mb</td>
+<td style="text-align: left;">316.32 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2006</td>
@@ -2778,7 +2796,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2006-05-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2006-05-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2006-05-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">316.8 mb</td>
+<td style="text-align: left;">316.75 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2006</td>
@@ -2786,7 +2804,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2006-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2006-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2006-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">318.4 mb</td>
+<td style="text-align: left;">318.45 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2005</td>
@@ -2794,7 +2812,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2005-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2005-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2005-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">314.2 mb</td>
+<td style="text-align: left;">314.21 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2005</td>
@@ -2802,7 +2820,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2005-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2005-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2005-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">306.7 mb</td>
+<td style="text-align: left;">306.74 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2004</td>
@@ -2810,7 +2828,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2004-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2004-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2004-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">300.3 mb</td>
+<td style="text-align: left;">300.29 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2004</td>
@@ -2818,7 +2836,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2004-04-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2004-04-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2004-04-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">308.9 mb</td>
+<td style="text-align: left;">308.93 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2003</td>
@@ -2826,7 +2844,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2003-11-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2003-11-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2003-11-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">309.3 mb</td>
+<td style="text-align: left;">309.35 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2003</td>
@@ -2834,7 +2852,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2003-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2003-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2003-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">314.2 mb</td>
+<td style="text-align: left;">314.22 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2003</td>
@@ -2842,7 +2860,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2003-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2003-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2003-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">285.5 mb</td>
+<td style="text-align: left;">285.45 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2002</td>
@@ -2850,7 +2868,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2002-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2002-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2002-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">286.7 mb</td>
+<td style="text-align: left;">286.74 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2002</td>
@@ -2858,7 +2876,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2002-01-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2002-01-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2002-01-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">289.3 mb</td>
+<td style="text-align: left;">289.35 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">2001</td>
@@ -2866,7 +2884,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2001-07-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2001-07-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2001-07-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">272.2 mb</td>
+<td style="text-align: left;">272.22 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">2000</td>
@@ -2874,7 +2892,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-2000-05-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-2000-05-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-2000-05-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">262.5 mb</td>
+<td style="text-align: left;">262.50 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1999</td>
@@ -2882,7 +2900,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-1999-12-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-1999-12-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-1999-12-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">253 mb</td>
+<td style="text-align: left;">252.96 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1998</td>
@@ -2890,7 +2908,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-1998-09-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-1998-09-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-1998-09-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">249 mb</td>
+<td style="text-align: left;">248.99 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1997</td>
@@ -2898,7 +2916,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-1997-10-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-1997-10-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-1997-10-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">242.2 mb</td>
+<td style="text-align: left;">242.20 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1996</td>
@@ -2906,7 +2924,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-1996-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-1996-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-1996-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">236.6 mb</td>
+<td style="text-align: left;">236.59 mb</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">1995</td>
@@ -2914,7 +2932,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-1995-08-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-1995-08-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-1995-08-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">223.4 mb</td>
+<td style="text-align: left;">223.41 mb</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1989</td>
@@ -2922,7 +2940,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <td style="text-align: left;">BMF-1989-06-501CX-NONPROFIT-PX.csv</td>
 <td style="text-align: left;"><a href="https://nccsdata.s3.us-east-1.amazonaws.com/legacy/bmf/BMF-1989-06-501CX-NONPROFIT-PX.csv">Download</a></td>
 <td style="text-align: left;"><a href="https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/BMF-1989-06-501CX-NONPROFIT-PX">Profile</a></td>
-<td style="text-align: left;">123.3 mb</td>
+<td style="text-align: left;">123.28 mb</td>
 </tr>
 </tbody>
 </table>
@@ -2943,7 +2961,7 @@ s3://nccsdata/crosswalks/cbsa/                # CBSA crosswalk (.csv + .parquet 
 <li><a href="https://nccs.urban.org/nccs/contact/">Contact</a> — questions, corrections, data requests</li>
 </ul>
 <p style="font-size: 0.85em; color: #666; margin-top: 2em;">
-Last verified: 2026-07-26
+Last verified: 2026-09-15
 </p>
 </section>
 

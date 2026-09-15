@@ -20,6 +20,13 @@
 #   https://urbaninstitute.github.io/nccs-legacy/dictionary/bmf/bmf_archive_html/<filename-without-.csv>
 # =============================================================================
 
+# Shared size formatter (format_file_size) lives in extractors.R; both files
+# are sourced from the catalogs/ directory (see catalog-bmf.qmd).
+if (!exists("format_file_size")) {
+  .ex <- c("R/extractors.R", "catalogs/R/extractors.R")   # cwd = catalogs/ or repo root
+  source(.ex[file.exists(.ex)][1])
+}
+
 BMF_QUALITY_REPORT_URL <-
   "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_%s_%s_quality_report.html"
 BMF_LEGACY_QUALITY_REPORT_URL <-
@@ -108,7 +115,7 @@ build_master_section <- function(manifest, state_mapping) {
   out$size <- ifelse(
     is.na(out$Size),
     "&mdash;",
-    paste0(round(out$Size / 1e6, 1), " mb")
+    format_file_size(out$Size)
   )
 
   out[, c("download", "size", "state")]
@@ -189,7 +196,7 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
     quality_report <- make_quality_report_links(
       build_quality_report_url(parts[1], parts[2], legacy = parts[3] == "Harmonized legacy")
     )
-    size <- paste0(round(csv_row$Size / 1e6, 1), " mb")
+    size <- format_file_size(csv_row$Size)
 
     data.frame(
       year           = parts[1],
@@ -224,8 +231,16 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
 build_geocoded_master_row <- function(manifest) {
   rows <- manifest[manifest$source == "geocoded", , drop = FALSE]
   if (nrow(rows) == 0) return(NULL)
+  # One row means one data file. The geocoded prefix also lists the CSV
+  # mirror, the data dictionary and the manifest, so pick the canonical
+  # parquet (or the CSV if no parquet is published) rather than every object.
+  is_parquet <- grepl("\\.parquet$", rows$Key)
+  is_csv     <- grepl("_geocoded\\.csv$", rows$Key)
+  rows <- if (any(is_parquet)) rows[which(is_parquet)[1], , drop = FALSE]
+          else if (any(is_csv)) rows[which(is_csv)[1], , drop = FALSE]
+          else rows[1, , drop = FALSE]
   rows$download <- paste0("<a href='", rows$URL, "'>Download</a>")
-  rows$size <- paste0(round(rows$Size / 1e6, 1), " mb")
+  rows$size <- format_file_size(rows$Size)
   rows$file <- basename(rows$Key)
   rows[, c("file", "download", "size")]
 }
@@ -306,7 +321,7 @@ build_master_headline_table <- function(
   out$quality_report <- paste0(
     "<a href='", ifelse(is.na(out$qr), quality_report_url, out$qr), "'>Quality report</a>"
   )
-  out$size <- paste0(round(out$Size / 1e6, 1), " mb")
+  out$size <- format_file_size(out$Size)
 
   out[, c("variant", "download", "dictionary", "quality_report", "size")]
 }
@@ -346,7 +361,7 @@ build_raw_legacy_section <- function(manifest, missing_profiles = character(0)) 
     paste0("<a href='", profile_url, "'>Profile</a>"),
     "&mdash;"
   )
-  rows$size <- paste0(round(rows$Size / 1e6, 1), " mb")
+  rows$size <- format_file_size(rows$Size)
 
   # Sort by vintage; rows without a parseable date sink to the bottom
   ord <- order(is.na(rows$year), rows$year, rows$month, decreasing = c(FALSE, TRUE, TRUE),

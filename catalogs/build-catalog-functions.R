@@ -39,8 +39,9 @@ construct_catalog <- function(s3_catalog,
                           fscope = fscope)
   size <- s3_catalog %>% 
     dplyr::filter(Key %in% paths) %>% 
-    dplyr::mutate(size_mb = paste0(as.character(round(Size / 1000000, 1)),
-                                   " mb")) %>% 
+    dplyr::mutate(size_mb = ifelse(Size >= 1e5,
+                                   paste0(formatC(Size / 1e6, format = "f", digits = 2), " mb"),
+                                   paste0(formatC(Size / 1e3, format = "f", digits = 1), " kb"))) %>% 
     dplyr::pull("size_mb")
     
   download_urls <- make_s3_urls(paths = paths)
