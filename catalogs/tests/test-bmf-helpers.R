@@ -278,8 +278,8 @@ test_that("build_master_headline_table puts geocoded first", {
   out <- build_master_headline_table(manifest)
   expect_equal(out$variant[1], "Unified BMF (geocoded)")
   expect_equal(out$variant[2], "Unified BMF")
-  # Geocoded points at the geocoded URL
-  expect_match(out$download[1], "geocoding/bmf-master/merged")
+  # Geocoded points at the consumer-facing latest/ folder (ADR 0042)
+  expect_match(out$download[1], "geocoding/unified-bmf/latest/bmf_unified_geocoded")
   # Plain points at the unified BMF file, not the superseded master path
   expect_match(out$download[2], "unified/bmf/bmf_unified\\.csv")
 })
