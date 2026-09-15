@@ -50,9 +50,9 @@ make_fixture <- function() {
     list(source = "unified", Key = "unified/bmf/bmf_unified_quality_report.json", Size = 19e3),
     list(source = "unified", Key = "unified/bmf/_manifest.json", Size = 6e3),
     # Geocoded master
-    list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded.csv",     Size = 3300e6),
-    list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded.parquet", Size = 550e6),
-    list(source = "geocoded", Key = "geocoding/bmf-master/merged/bmf_master_geocoded_data_dictionary.csv", Size = 11e3),
+    list(source = "geocoded", Key = "geocoding/unified-bmf/latest/bmf_unified_geocoded.csv",     Size = 3300e6),
+    list(source = "geocoded", Key = "geocoding/unified-bmf/latest/bmf_unified_geocoded.parquet", Size = 550e6),
+    list(source = "geocoded", Key = "geocoding/unified-bmf/latest/bmf_unified_geocoded_data_dictionary.csv", Size = 11e3),
     # Processed: monthly — each month has data csv + parquet + dictionary + QR json
     list(source = "processed", Key = "processed/bmf/2026_01/bmf_2026_01_processed.csv", Size = 200e6),
     list(source = "processed", Key = "processed/bmf/2026_01/bmf_2026_01_processed.parquet", Size = 50e6),
@@ -276,7 +276,7 @@ test_that("build_geocoded_master_row returns NULL when absent", {
 test_that("build_master_headline_table puts geocoded first", {
   manifest <- make_fixture()
   out <- build_master_headline_table(manifest)
-  expect_equal(out$variant[1], "Master BMF (geocoded)")
+  expect_equal(out$variant[1], "Unified BMF (geocoded)")
   expect_equal(out$variant[2], "Unified BMF")
   # Geocoded points at the geocoded URL
   expect_match(out$download[1], "geocoding/bmf-master/merged")
@@ -290,7 +290,7 @@ test_that("build_master_headline_table picks per-variant dictionary URLs", {
   expect_true(all(grepl("Dictionary", out$dictionary)))
   # Geocoded row uses the geocoded dictionary
   expect_match(out$dictionary[1],
-               "geocoding/bmf-master/merged/bmf_master_geocoded_data_dictionary\\.csv")
+               "geocoding/unified-bmf/latest/bmf_unified_geocoded_data_dictionary\\.csv")
   # Plain row uses the unified BMF dictionary
   expect_match(out$dictionary[2],
                "unified/bmf/bmf_unified_data_dictionary\\.csv")
