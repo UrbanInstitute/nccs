@@ -231,6 +231,14 @@ build_combined_monthly_section <- function(manifest, n_recent = 5) {
 build_geocoded_master_row <- function(manifest) {
   rows <- manifest[manifest$source == "geocoded", , drop = FALSE]
   if (nrow(rows) == 0) return(NULL)
+  # One row means one data file. The geocoded prefix also lists the CSV
+  # mirror, the data dictionary and the manifest, so pick the canonical
+  # parquet (or the CSV if no parquet is published) rather than every object.
+  is_parquet <- grepl("\\.parquet$", rows$Key)
+  is_csv     <- grepl("_geocoded\\.csv$", rows$Key)
+  rows <- if (any(is_parquet)) rows[which(is_parquet)[1], , drop = FALSE]
+          else if (any(is_csv)) rows[which(is_csv)[1], , drop = FALSE]
+          else rows[1, , drop = FALSE]
   rows$download <- paste0("<a href='", rows$URL, "'>Download</a>")
   rows$size <- format_file_size(rows$Size)
   rows$file <- basename(rows$Key)
