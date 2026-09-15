@@ -58,6 +58,8 @@ footer_nav:
     url: /contact/
   - title: FAQ
     url: /faq/
+  - title: Data Changelog
+    url: /changelog/
 #  - title: Parts Kit
 #    url: /parts-kit/
 

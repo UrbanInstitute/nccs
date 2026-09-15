@@ -87,13 +87,15 @@ For background on what the BMF contains and its scope limitations, see the [BMF 
 
 ## Unified BMF
 
-One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame. **3,687,435 unique EINs**, built from 118 source files across 114 vintages (1989–2026).
+One row per EIN spanning 1989 to present, with most-recent values for each organization plus `first_vintage_ym`, `last_vintage_ym`, and `bmf_source` to track provenance. This is the primary product for longitudinal analysis and as a sampling frame. **3,698,197 unique EINs**, built from 121 source files (86 legacy, 35 current-monthly) spanning 1989–2026 (build of 2026-09-15).
 
 The join key is `ein` (`XX-XXXXXXX`), unchanged. The Unified BMF additionally carries two coercion-safe renderings of the same key ([ADR 0036](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md)): **`ein_prefixed`** (`ein-XX-XXXXXXX`, lowercase — provably text, recommended for new joins) and **`EIN2`** (`EIN-XX-XXXXXXX`, uppercase — a legacy-compatibility alias for merges written against the older Unified BMF / harmonized CORE format). Use whichever fits your existing code; all renderings are bijective with the same underlying 9-digit EIN.
 
 > **Renamed from "Master BMF" (2026-07-01).** This product was briefly published as "Master BMF"; it has been renamed back to **Unified BMF**, restoring the name the research community originally knew it by ([ADR 0037](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0037-master-bmf-rename-unified-supersession-provenance.md)). This is a **non-silent supersession**: the prior `s3://nccsdata/master/bmf/` path stays live and reachable through **2026-09-28** (a 90-day window), after which it moves to a retained, citable archive — it is never deleted. If you bookmarked or scripted against the old path, re-pin to `s3://nccsdata/unified/bmf/` before the cutover.
 
 The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. The geocoded extension and its per-state marts completed the same rename (2026-07-02, [ADR 0039](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0039-unified-bmf-geocoded-extension-rename.md)): they are now the **geocoded Unified BMF** at `geocoding/unified-bmf/` and `unified/bmf/state_marts/`, with the prior `bmf-master`/`master` paths dual-published through their 90-day windows. As of the 2026-07 rebuild, both artifacts also publish permanent per-build vintages (`v{YYYY_MM}/`) plus a stable **`latest/`** folder that always serves the newest build ([ADR 0042](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md)) — link `latest/` for always-current, cite `v*/` for reproducibility. The 2026-07 rebuild also recovered street addresses from the 2009-2022 legacy vintages, lifting geocoded coverage from 59.9% to **82.7%** of organizations.
+
+> **NTEE-V2 codes corrected (2026-09-15).** The `nteev2_code` and `nteev2` columns were wrong for about 8.5% of rows: organization-type codes 01-19 were repeated in the activity slot (`B11` published as `EDU-B11-MS` instead of `EDU-B00-MS`). A second set of rows carried stale values from monthly files that predated the June 2026 NTEE cleaner fix. Both are corrected in place in this build, in every per-month and legacy file, the state marts, and the NTEE-resolved crosswalk; no columns or rows were added or removed. If you group by `nteev2_code` or `nteev2`, re-pull. Details: [changelog](/changelog/) and [ADR 0048](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0048-nteev2-specialty-code-x00-rule.md). Defect identified by Jesse Lecy (Nonprofit Open Data Collective).
 
 ```{r}
 headline <- build_master_headline_table(manifest)
@@ -132,7 +134,7 @@ knitr::kable(
 ```
 s3://nccsdata/geocoding/unified-bmf/latest/  # Geocoded variant (recommended; always the newest build)
 s3://nccsdata/geocoding/unified-bmf/merged/  # Geocoded rolling build
-s3://nccsdata/geocoding/unified-bmf/v2026_07/ # Permanent per-build vintage (parquet)
+s3://nccsdata/geocoding/unified-bmf/v2026_09/ # Permanent per-build version (parquet); v2026_07/ remains
 s3://nccsdata/geocoding/bmf-master/merged/   # Superseded geocoded path — dual-published through the ADR 0039 window
 s3://nccsdata/unified/bmf/                   # Plain Unified BMF (bmf_unified.{parquet,csv} + dictionary + quality report + _manifest.json)
 s3://nccsdata/master/bmf/                    # Superseded plain path — reachable through 2026-09-28, then archived (not deleted)
@@ -301,37 +303,17 @@ This crosswalk does that recovery. It aggregates the verbatim raw NTEE code per 
 
 Each of the first three carries `_subsector` (NTEEv2 subsector, e.g. `UNI`/`HOS`/`EDU`) and `_nteev2` (full NTEEv2 code) derivatives, plus `n_distinct_codes`, `n_vintages_with_ntee`, and `ntee_agreement` (`single`/`unanimous`/`mixed`) as a confidence signal. To filter for universities, for example, use `ntee_most_recent_subsector == 'UNI'` — not a substring guess.
 
-**Scale & recovery.** 3,613,958 EINs (one row per EIN with an NTEE in ≥1 vintage). Of **2,054,414** EINs whose `ntee_current` is null/blank, **2,031,485 (98.9%)** recover a usable code via `ntee_most_recent`. Agreement across vintages: unanimous 71.5% / mixed 21.5% / single 7.0%.
+**Scale & recovery.** 3,624,536 EINs (one row per EIN with an NTEE in ≥1 vintage; 2026-09-15 build). Of **2,039,980** EINs whose `ntee_current` is null/blank, **all** recover a usable code via `ntee_most_recent`. Agreement across vintages: unanimous 71.7% / mixed 21.5% / single 6.8%.
 
 | File | Format | Size | Download |
 |:---|:---|:---|:---|
-| `ntee_resolved_crosswalk.parquet` | Parquet (zstd) — machine contract, recommended | ~78 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.parquet'>Parquet</a> |
-| `ntee_resolved_crosswalk.csv` | CSV mirror | ~640 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.csv'>CSV</a> |
+| `ntee_resolved_crosswalk.parquet` | Parquet (zstd) — machine contract, recommended | ~103 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.parquet'>Parquet</a> |
+| `ntee_resolved_crosswalk.csv` | CSV mirror | ~752 MB | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/ntee_resolved_crosswalk.csv'>CSV</a> |
 | `_manifest.json` | Provenance ([ADR 0014](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md)) | — | <a href='https://nccsdata.s3.us-east-1.amazonaws.com/crosswalks/ntee-resolved/_manifest.json'>manifest.json</a> |
 
 ## Address-resolved crosswalk (address history log) {#section-address-resolved}
 
 A complete mailing-address log: **one row per (EIN, address spell)**, `spell_rank` 0 = the current/most-recent address, covering every vintage of both BMF pipelines back to 1989 (11.45M spells across 3.69M organizations; 68% have more than one address). Keyed on `EIN2` with canonical `ein` and `ein_prefixed` alongside ([ADR 0036](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0036-ein-coercion-safety-additive-columns.md)); shape per [ADR 0042](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md). Street values begin at the 2009 legacy vintages (earlier legacy files never carried streets); pre-2009 spells keep city/state/zip honestly. ZIPs are normalized to 5 digits for the spell key.
-
-::: {.callout-warning}
-## Known defect in the current build: ZIP codes in nine states
-
-The build currently served at `latest/` (`v2026_07`) has a ZIP normalization
-defect. Legacy source files lost the leading zero from ZIP codes, so `zip5` is
-3-4 characters instead of 5 for legacy rows in **ME, NH, VT, MA, RI, CT, NJ,
-PR and VI**, and those values will not join to any ZIP-keyed dataset.
-
-The practical consequence for address history: in those nine states an
-organization's legacy and current records fail to match on ZIP, so the log can
-show an address change in 2023 where none occurred. Treat address changes in
-those states as unreliable until this is corrected.
-
-Workaround: left-pad `zip5` to five digits with zeros before joining. The
-underlying digits are intact.
-
-The producer fix is merged; this page will be updated when the corrected build
-is published.
-:::
 
 
 | File | Notes | Size | Link |
@@ -382,14 +364,14 @@ There is **no separate data-dictionary CSV** for this artifact — the contracte
 
 ### Provenance
 
-The `_manifest.json` ([ADR 0014](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md) shape) records the published provenance — use its `sha256` to detect changes. As of first publish:
+The `_manifest.json` ([ADR 0014](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0014-standardize-manifest-shape.md) shape) records the published provenance — use its `sha256` to detect changes. As of the 2026-09-15 rebuild:
 
 | Field | Value |
 |:---|:---|
-| `vintage` | `2026_06` (newest current BMF vintage at build) |
-| `built_at` | `2026-06-24T19:54:22Z` |
-| `git_sha` | `1e1290d` |
-| `row_count` | 3,613,958 |
+| `vintage` | `2026_09` (build version; newest current BMF at build was 2026_07) |
+| `built_at` | `2026-09-15T10:52:10Z` |
+| `git_sha` | `dbf33ae` |
+| `row_count` | 3,624,536 |
 | Inputs | current + legacy intermediate parquets (`ntee_code_raw`), plus the sha256 of `transform_ntee_code.R` and the legacy 5-char lookup |
 
 The crosswalk is **rebuilt monthly** after each new current BMF lands, so `ntee_current` tracks the newest vintage (the legacy half is static); uploads are idempotent (unchanged files skipped via the manifest `sha256`). Always read the live `_manifest.json` for the current `vintage`/`git_sha`/`built_at`.
