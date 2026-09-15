@@ -118,15 +118,16 @@ extract_fscope <- function(paths) {
 #' @param decimals Integer. Number of decimal places. Default: 1.
 #' @return Character vector. Formatted sizes (e.g., "2.5 mb").
 #' @export
-format_file_size <- function(size_bytes, decimals = 1) {
+format_file_size <- function(size_bytes, decimals = 2) {
   if (!is.numeric(size_bytes)) {
     stop("'size_bytes' must be numeric")
   }
 
-  size_mb <- round(size_bytes / 1000000, decimals)
-  formatted <- paste0(as.character(size_mb), " mb")
-
-  return(formatted)
+  # Two decimals in MB; below 0.1 MB report KB so small files (manifests,
+  # dictionaries) never display as "0 mb".
+  ifelse(size_bytes >= 1e5,
+         paste0(formatC(size_bytes / 1e6, format = "f", digits = decimals), " mb"),
+         paste0(formatC(size_bytes / 1e3, format = "f", digits = 1), " kb"))
 }
 
 # =============================================================================
