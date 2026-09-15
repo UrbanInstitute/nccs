@@ -252,8 +252,9 @@ build_geocoded_master_row <- function(manifest) {
 #' The dictionary URL is derived from the manifest by finding the
 #' `bmf_unified_data_dictionary.csv` sibling under `unified/bmf/` (the plain
 #' variant, renamed from "Master BMF" 2026-07-01 per ADR 0037) or the
-#' `bmf_master_geocoded_data_dictionary.csv` sibling under
-#' `geocoding/bmf-master/merged/` (the geocoded variant, not renamed). The
+#' `bmf_unified_geocoded_data_dictionary.csv` sibling under
+#' `geocoding/unified-bmf/latest/` (the geocoded variant, renamed per ADR 0039;
+#' the pre-rename `bmf_master_geocoded_*` name is still accepted). The
 #' quality report prefers a rendered HTML sibling in the manifest itself
 #' (e.g. `bmf_unified_quality_report.html`, the ADR 0014 per-build artifact);
 #' `quality_report_url` is only a fallback for a variant whose HTML report is
@@ -271,6 +272,12 @@ build_master_headline_table <- function(
     "https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/bmf_unified_geocoded_quality_report.html"
 ) {
   geocoded <- manifest[manifest$source == "geocoded", , drop = FALSE]
+  # The geocoded prefix holds latest/ (consumer-facing, ADR 0042), merged/
+  # (deprecated alias) and v{YYYY_MM}/ folders. Link latest/ when present so
+  # the headline row does not silently point at the alias.
+  if (any(grepl("/latest/", geocoded$Key))) {
+    geocoded <- geocoded[grepl("/latest/", geocoded$Key), , drop = FALSE]
+  }
   master   <- manifest[manifest$source == "unified", , drop = FALSE]
 
   # Pick a single headline data CSV + matching dictionary/quality-report URLs
@@ -302,9 +309,11 @@ build_master_headline_table <- function(
   }
 
   rows <- list()
-  geo_row <- pick_variant(geocoded, "bmf_master_geocoded_data_dictionary\\.csv$")
+  # Dictionary was bmf_master_geocoded_* before the ADR 0039 rename and is
+  # bmf_unified_geocoded_* since; accept both so the link never goes missing.
+  geo_row <- pick_variant(geocoded, "bmf_(unified|master)_geocoded_data_dictionary\\.csv$")
   if (!is.null(geo_row)) {
-    rows[[length(rows) + 1L]] <- cbind(variant = "Master BMF (geocoded)", geo_row)
+    rows[[length(rows) + 1L]] <- cbind(variant = "Unified BMF (geocoded)", geo_row)
   }
   plain_row <- pick_variant(master, "bmf_unified_data_dictionary\\.csv$")
   if (!is.null(plain_row)) {
