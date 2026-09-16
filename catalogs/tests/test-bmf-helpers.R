@@ -160,12 +160,12 @@ test_that("make_quality_report_links renders dash for NA", {
 })
 
 # =============================================================================
-# build_master_section
+# build_state_files_section
 # =============================================================================
 
-test_that("build_master_section joins states and preserves order", {
+test_that("build_state_files_section joins states and preserves order", {
   manifest <- make_fixture()
-  out <- build_master_section(manifest, state_mapping_min)
+  out <- build_state_files_section(manifest, state_mapping_min)
 
   expect_equal(nrow(out), length(state_mapping_min))
   # Order matches state_mapping order
@@ -180,9 +180,9 @@ test_that("build_master_section joins states and preserves order", {
   expect_equal(out$size[out$state == "Wyoming"],     "&mdash;")
 })
 
-test_that("build_master_section ignores the no-state-code master file", {
+test_that("build_state_files_section ignores the no-state-code master file", {
   manifest <- make_fixture()
-  out <- build_master_section(manifest, state_mapping_min)
+  out <- build_state_files_section(manifest, state_mapping_min)
   # The unsuffixed master/bmf/BMF_MASTER.csv must not contaminate state rows.
   expect_false(any(grepl("BMF_MASTER\\.csv'", out$download)))
 })

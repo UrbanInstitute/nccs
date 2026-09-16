@@ -118,9 +118,9 @@ if (!is.null(headline)) {
 For users who only need a single state, the geocoded Unified BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a `ZZ` bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above. The files are named `bmf_unified_XX.csv`; the same files remain available under the earlier name `bmf_master_XX.csv` through 2026-12-15, so existing links keep working until then.
 
 ```{r}
-master <- build_master_section(manifest, state_mapping)
+state_files <- build_state_files_section(manifest, state_mapping)
 knitr::kable(
-  master,
+  state_files,
   escape    = FALSE,
   col.names = c("Download Link", "Size", "State/Territory"),
   format    = "html",
