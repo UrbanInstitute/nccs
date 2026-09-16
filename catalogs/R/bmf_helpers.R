@@ -98,6 +98,13 @@ build_master_section <- function(manifest, state_mapping) {
   master <- manifest[manifest$source %in% c("master", "state_mart"), , drop = FALSE]
   master$state_abbr <- extract_bmf_state(master$Key)
 
+  # Each state may be listed under two file names while the old name is
+  # still published (bmf_unified_XX.csv since 2026-09-16; bmf_master_XX.csv
+  # through 2026-12-15, ADR 0039). Link the current name and drop the other.
+  is_current <- grepl("bmf_unified_[A-Z]{2}\\.csv$", master$Key)
+  master <- master[order(!is_current), , drop = FALSE]
+  master <- master[!duplicated(master$state_abbr) | is.na(master$state_abbr), , drop = FALSE]
+
   lookup <- data.frame(
     state_abbr = names(state_mapping),
     state      = unname(state_mapping),
