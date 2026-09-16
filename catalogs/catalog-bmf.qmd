@@ -93,7 +93,7 @@ The join key is `ein` (`XX-XXXXXXX`), unchanged. The Unified BMF additionally ca
 
 > **Renamed from "Master BMF" (2026-07-01).** This product was briefly published as "Master BMF"; it has been renamed back to **Unified BMF**, restoring the name the research community originally knew it by ([ADR 0037](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0037-master-bmf-rename-unified-supersession-provenance.md)). This is a **non-silent supersession**: the prior `s3://nccsdata/master/bmf/` path stays live and reachable through **2026-09-28** (a 90-day window), after which it moves to a retained, citable archive — it is never deleted. If you bookmarked or scripted against the old path, re-pin to `s3://nccsdata/unified/bmf/` before the cutover.
 
-The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. The geocoded extension and its per-state marts completed the same rename (2026-07-02, [ADR 0039](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0039-unified-bmf-geocoded-extension-rename.md)): they are now the **geocoded Unified BMF** at `geocoding/unified-bmf/` and `unified/bmf/state_marts/`, with the prior `bmf-master`/`master` paths dual-published through their 90-day windows. As of the 2026-07 rebuild, both artifacts also publish permanent per-build vintages (`v{YYYY_MM}/`) plus a stable **`latest/`** folder that always serves the newest build ([ADR 0042](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md)) — link `latest/` for always-current, cite `v*/` for reproducibility. The 2026-07 rebuild also recovered street addresses from the 2009-2022 legacy vintages, lifting geocoded coverage from 59.9% to **82.7%** of organizations.
+The **geocoded** variant is the recommended default — it carries the same row schema as the plain file plus lat/lon joined against a deduplicated address table. The geocoded extension and its per-state marts completed the same rename (2026-07-02, [ADR 0039](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0039-unified-bmf-geocoded-extension-rename.md)): they are now the **geocoded Unified BMF** at `geocoding/unified-bmf/` and `unified/bmf/state_marts/`. As of the 2026-07 rebuild, both artifacts also publish permanent per-build vintages (`v{YYYY_MM}/`) plus a stable **`latest/`** folder that always serves the newest build ([ADR 0042](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0042-vintage-retention-latest-convention.md)) — link `latest/` for always-current, cite `v*/` for reproducibility. The 2026-07 rebuild also recovered street addresses from the 2009-2022 legacy vintages, lifting geocoded coverage from 59.9% to **82.7%** of organizations.
 
 > **NTEE-V2 codes corrected (2026-09-15).** The `nteev2_code` and `nteev2` columns were wrong for about 8.5% of rows: organization-type codes 01-19 were repeated in the activity slot (`B11` published as `EDU-B11-MS` instead of `EDU-B00-MS`). A second set of rows carried stale values from monthly files that predated the June 2026 NTEE cleaner fix. Both are corrected in place in this build, in every per-month and legacy file, the state marts, and the NTEE-resolved crosswalk; no columns or rows were added or removed. If you group by `nteev2_code` or `nteev2`, re-pull. Details: [changelog](/changelog/) and [ADR 0048](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0048-nteev2-specialty-code-x00-rule.md). Defect identified by Jesse Lecy (Nonprofit Open Data Collective).
 
@@ -115,12 +115,12 @@ if (!is.null(headline)) {
 
 ### Download by State/Territory
 
-For users who only need a single state, the geocoded Unified BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a `ZZ` bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above.
+For users who only need a single state, the geocoded Unified BMF is also published as per-state marts (50 states + DC, U.S. territories, APO/FPO military codes, Compact of Free Association nations, and a `ZZ` bucket for rows with no resolvable state). Each mart carries lat/lon and shares a schema and dictionary with the geocoded headline file above. The files are named `bmf_unified_XX.csv`; the same files remain available under the earlier name `bmf_master_XX.csv` through 2026-12-15, so existing links keep working until then.
 
 ```{r}
-master <- build_master_section(manifest, state_mapping)
+state_files <- build_state_files_section(manifest, state_mapping)
 knitr::kable(
-  master,
+  state_files,
   escape    = FALSE,
   col.names = c("Download Link", "Size", "State/Territory"),
   format    = "html",
@@ -135,11 +135,8 @@ knitr::kable(
 s3://nccsdata/geocoding/unified-bmf/latest/  # Geocoded variant (recommended; always the newest build)
 s3://nccsdata/geocoding/unified-bmf/merged/  # Geocoded rolling build
 s3://nccsdata/geocoding/unified-bmf/v2026_09/ # Permanent per-build version (parquet); v2026_07/ remains
-s3://nccsdata/geocoding/bmf-master/merged/   # Superseded geocoded path — dual-published through the ADR 0039 window
 s3://nccsdata/unified/bmf/                   # Plain Unified BMF (bmf_unified.{parquet,csv} + dictionary + quality report + _manifest.json)
-s3://nccsdata/master/bmf/                    # Superseded plain path — reachable through 2026-09-28, then archived (not deleted)
-s3://nccsdata/unified/bmf/state_marts/csv/   # Per-state geocoded marts
-s3://nccsdata/master/bmf/state_marts/csv/    # Superseded marts path — dual-published through the ADR 0039 window
+s3://nccsdata/unified/bmf/state_marts/csv/   # Per-state geocoded marts (bmf_unified_XX.csv)
 ```
 
 <br><hr><br>

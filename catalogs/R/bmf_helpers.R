@@ -94,31 +94,33 @@ make_quality_report_links <- function(urls) {
 #'   `URL`, `Size`).
 #' @param state_mapping named character vector: abbreviation -> full name.
 #' @return data.frame with columns: download, size, state.
-build_master_section <- function(manifest, state_mapping) {
-  master <- manifest[manifest$source %in% c("master", "state_mart"), , drop = FALSE]
-  master$state_abbr <- extract_bmf_state(master$Key)
+build_state_files_section <- function(manifest, state_mapping) {
+  # Each state may be listed under two file names while the old name is
+  # still published (bmf_unified_XX.csv since 2026-09-16; bmf_master_XX.csv
+  # through 2026-12-15, ADR 0039). Link the current name and drop the other.
+  state_files <- manifest |>
+    dplyr::filter(source == "state_mart") |>
+    dplyr::mutate(
+      state_abbr = extract_bmf_state(Key),
+      is_current = stringr::str_detect(Key, "bmf_unified_[A-Z]{2}\\.csv$")
+    ) |>
+    dplyr::filter(!is.na(state_abbr)) |>
+    dplyr::arrange(dplyr::desc(is_current)) |>
+    dplyr::distinct(state_abbr, .keep_all = TRUE)
 
-  lookup <- data.frame(
+  tibble::tibble(
     state_abbr = names(state_mapping),
-    state      = unname(state_mapping),
-    stringsAsFactors = FALSE
-  )
-
-  out <- merge(lookup, master, by = "state_abbr", all.x = TRUE, sort = FALSE)
-  out <- out[match(names(state_mapping), out$state_abbr), , drop = FALSE]
-
-  out$download <- ifelse(
-    is.na(out$URL),
-    "&mdash;",
-    paste0("<a href='", out$URL, "'>Download</a>")
-  )
-  out$size <- ifelse(
-    is.na(out$Size),
-    "&mdash;",
-    format_file_size(out$Size)
-  )
-
-  out[, c("download", "size", "state")]
+    state      = unname(state_mapping)
+  ) |>
+    dplyr::left_join(state_files, by = "state_abbr") |>
+    dplyr::mutate(
+      download = dplyr::if_else(
+        is.na(URL), "&mdash;", paste0("<a href='", URL, "'>Download</a>")
+      ),
+      size = dplyr::if_else(is.na(Size), "&mdash;", format_file_size(Size))
+    ) |>
+    dplyr::select(download, size, state) |>
+    as.data.frame()
 }
 
 #' Classify a monthly BMF S3 key into one of: "data_csv", "data_parquet",
@@ -278,7 +280,7 @@ build_master_headline_table <- function(
   if (any(grepl("/latest/", geocoded$Key))) {
     geocoded <- geocoded[grepl("/latest/", geocoded$Key), , drop = FALSE]
   }
-  master   <- manifest[manifest$source == "unified", , drop = FALSE]
+  unified  <- manifest[manifest$source == "unified", , drop = FALSE]
 
   # Pick a single headline data CSV + matching dictionary/quality-report URLs
   # out of a manifest subset. Returns a 1-row data.frame or NULL.
@@ -315,7 +317,7 @@ build_master_headline_table <- function(
   if (!is.null(geo_row)) {
     rows[[length(rows) + 1L]] <- cbind(variant = "Unified BMF (geocoded)", geo_row)
   }
-  plain_row <- pick_variant(master, "bmf_unified_data_dictionary\\.csv$")
+  plain_row <- pick_variant(unified, "bmf_unified_data_dictionary\\.csv$")
   if (!is.null(plain_row)) {
     rows[[length(rows) + 1L]] <- cbind(variant = "Unified BMF", plain_row)
   }
