@@ -37,11 +37,11 @@ make_fixture <- function() {
   rows <- list(
     # Master: state-sliced (superseded plain path; state-mart naming convention
     # unaffected by the ADR 0037 rename)
-    list(source = "master", Key = "master/bmf/BMF_MASTER_CA.csv", Size = 50e6),
-    list(source = "master", Key = "master/bmf/BMF_MASTER_NY.csv", Size = 60e6),
-    list(source = "master", Key = "master/bmf/BMF_MASTER_TX.csv", Size = 55e6),
-    list(source = "master", Key = "master/bmf/BMF_MASTER.csv",     Size = 1300e6),  # no state suffix
-    list(source = "master", Key = "master/bmf/bmf_master_data_dictionary.csv", Size = 9e3),
+    # Per-state files: current name plus the old name still published for CA
+    list(source = "state_mart", Key = "unified/bmf/state_marts/csv/bmf_unified_CA.csv", Size = 50e6),
+    list(source = "state_mart", Key = "unified/bmf/state_marts/csv/bmf_master_CA.csv",  Size = 50e6),
+    list(source = "state_mart", Key = "unified/bmf/state_marts/csv/bmf_unified_NY.csv", Size = 60e6),
+    list(source = "state_mart", Key = "unified/bmf/state_marts/csv/bmf_master_TX.csv",  Size = 55e6),  # old name only
     # Unified BMF: plain headline (renamed from "Master BMF" 2026-07-01, ADR 0037)
     list(source = "unified", Key = "unified/bmf/bmf_unified.csv",     Size = 2900e6),
     list(source = "unified", Key = "unified/bmf/bmf_unified.parquet", Size = 486e6),
@@ -180,11 +180,16 @@ test_that("build_state_files_section joins states and preserves order", {
   expect_equal(out$size[out$state == "Wyoming"],     "&mdash;")
 })
 
-test_that("build_state_files_section ignores the no-state-code master file", {
+test_that("build_state_files_section links the current file name once per state", {
   manifest <- make_fixture()
   out <- build_state_files_section(manifest, state_mapping_min)
-  # The unsuffixed master/bmf/BMF_MASTER.csv must not contaminate state rows.
-  expect_false(any(grepl("BMF_MASTER\\.csv'", out$download)))
+  # CA is listed under both names: link the current one only.
+  expect_match(out$download[out$state == "California"], "bmf_unified_CA\\.csv")
+  expect_false(any(grepl("bmf_master_CA\\.csv", out$download)))
+  # TX only has the old name so far: still linked.
+  expect_match(out$download[out$state == "Texas"], "bmf_master_TX\\.csv")
+  # Headline unified/bmf/ files never contaminate state rows.
+  expect_false(any(grepl("bmf_unified\\.csv'", out$download)))
 })
 
 # =============================================================================

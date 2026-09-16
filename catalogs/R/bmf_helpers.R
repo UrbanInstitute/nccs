@@ -95,37 +95,32 @@ make_quality_report_links <- function(urls) {
 #' @param state_mapping named character vector: abbreviation -> full name.
 #' @return data.frame with columns: download, size, state.
 build_state_files_section <- function(manifest, state_mapping) {
-  state_files <- manifest[manifest$source %in% c("master", "state_mart"), , drop = FALSE]
-  state_files$state_abbr <- extract_bmf_state(state_files$Key)
-
   # Each state may be listed under two file names while the old name is
   # still published (bmf_unified_XX.csv since 2026-09-16; bmf_master_XX.csv
   # through 2026-12-15, ADR 0039). Link the current name and drop the other.
-  is_current <- grepl("bmf_unified_[A-Z]{2}\\.csv$", state_files$Key)
-  state_files <- state_files[order(!is_current), , drop = FALSE]
-  state_files <- state_files[!duplicated(state_files$state_abbr) | is.na(state_files$state_abbr), , drop = FALSE]
+  state_files <- manifest |>
+    dplyr::filter(source == "state_mart") |>
+    dplyr::mutate(
+      state_abbr = extract_bmf_state(Key),
+      is_current = stringr::str_detect(Key, "bmf_unified_[A-Z]{2}\\.csv$")
+    ) |>
+    dplyr::filter(!is.na(state_abbr)) |>
+    dplyr::arrange(dplyr::desc(is_current)) |>
+    dplyr::distinct(state_abbr, .keep_all = TRUE)
 
-  lookup <- data.frame(
+  tibble::tibble(
     state_abbr = names(state_mapping),
-    state      = unname(state_mapping),
-    stringsAsFactors = FALSE
-  )
-
-  out <- merge(lookup, state_files, by = "state_abbr", all.x = TRUE, sort = FALSE)
-  out <- out[match(names(state_mapping), out$state_abbr), , drop = FALSE]
-
-  out$download <- ifelse(
-    is.na(out$URL),
-    "&mdash;",
-    paste0("<a href='", out$URL, "'>Download</a>")
-  )
-  out$size <- ifelse(
-    is.na(out$Size),
-    "&mdash;",
-    format_file_size(out$Size)
-  )
-
-  out[, c("download", "size", "state")]
+    state      = unname(state_mapping)
+  ) |>
+    dplyr::left_join(state_files, by = "state_abbr") |>
+    dplyr::mutate(
+      download = dplyr::if_else(
+        is.na(URL), "&mdash;", paste0("<a href='", URL, "'>Download</a>")
+      ),
+      size = dplyr::if_else(is.na(Size), "&mdash;", format_file_size(Size))
+    ) |>
+    dplyr::select(download, size, state) |>
+    as.data.frame()
 }
 
 #' Classify a monthly BMF S3 key into one of: "data_csv", "data_parquet",
