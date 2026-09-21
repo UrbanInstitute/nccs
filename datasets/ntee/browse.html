@@ -1,0 +1,229 @@
+---
+title: Browse NTEE Codes
+description: Search every NTEE code the IRS assigns, with its description and the matching NAICS industry. Read live from the NCCS lookup tables.
+layout: default
+permalink: /datasets/ntee/browse/
+activeLink: /datasets/
+---
+
+{% include components/page-header.html
+  eyebrow = "dataset"
+  header = "Browse NTEE Codes"
+  description = "Every code the IRS assigns, with its description and the closest NAICS industry. The same table the NCCS pipeline uses, read live each time this page opens."
+%}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<style>
+  .ntee-browse { --ntee-blue: #1696d2; --ntee-navy: #0a4c6a; --ntee-ink: #353535; --ntee-muted: #696969; --ntee-line: #e3e3e3; --ntee-wash: #f5f5f5; }
+  .ntee-toolbar { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: center; justify-content: space-between; margin: 0 0 1rem; }
+  .ntee-toolbar .btn { text-transform: none; font-weight: 700; font-size: 0.95rem; }
+  .ntee-vintage { color: var(--ntee-muted); font-size: 0.9rem; }
+  .ntee-groups { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
+  .ntee-groups button { border: 1px solid var(--ntee-line); background: #fff; color: var(--ntee-navy); border-radius: 999px; padding: 0.3rem 0.8rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
+  .ntee-groups button:hover { border-color: var(--ntee-blue); }
+  .ntee-groups button.-on { background: var(--ntee-navy); border-color: var(--ntee-navy); color: #fff; }
+  .ntee-search { display: flex; gap: 0.5rem; align-items: center; margin: 0 0 0.75rem; }
+  .ntee-search input { flex: 1; max-width: 28rem; padding: 0.55rem 0.8rem; border: 1px solid #c8c8c8; border-radius: 6px; font: inherit; }
+  .ntee-search input:focus { outline: 2px solid var(--ntee-blue); outline-offset: 1px; }
+  .ntee-count { color: var(--ntee-muted); font-size: 0.9rem; }
+  table.dataTable.ntee-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+  table.dataTable.ntee-table thead th { text-align: left; font-weight: 700; color: var(--ntee-navy); background: #fff; border-bottom: 2px solid var(--ntee-navy); padding: 0.6rem 0.75rem; }
+  table.dataTable.ntee-table tbody td { padding: 0.75rem; border-bottom: 1px solid var(--ntee-line); vertical-align: top; }
+  table.dataTable.ntee-table tbody tr:hover { background: var(--ntee-wash); }
+  table.dataTable.ntee-table td.ntee-code { font-weight: 700; color: var(--ntee-navy); white-space: nowrap; }
+  table.dataTable.ntee-table td.ntee-naics { color: var(--ntee-muted); white-space: nowrap; }
+  table.dataTable.ntee-table tr.ntee-has-details td.ntee-title { cursor: pointer; }
+  table.dataTable.ntee-table tr.ntee-has-details td.ntee-title::after { content: " \25BE"; color: var(--ntee-blue); }
+  table.dataTable.ntee-table tr.shown td.ntee-title::after { content: " \25B4"; }
+  .ntee-details { padding: 0.25rem 0 0.75rem 0; color: var(--ntee-ink); max-width: 52rem; line-height: 1.5; }
+  .ntee-details strong { color: var(--ntee-navy); }
+  .dataTables_wrapper .dataTables_paginate { margin-top: 1rem; }
+  .dataTables_wrapper .dataTables_paginate .paginate_button { border-radius: 6px; }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover { background: var(--ntee-navy); color: #fff !important; border-color: var(--ntee-navy); }
+  .dataTables_wrapper .dataTables_info { color: var(--ntee-muted); font-size: 0.9rem; }
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter { display: none; }
+  .ntee-error { padding: 1rem; border: 1px solid #db2b27; border-radius: 6px; background: #fdf1f1; margin: 1rem 0; }
+  .ntee-source { color: var(--ntee-muted); font-size: 0.9rem; margin-top: 1.5rem; max-width: 52rem; }
+</style>
+
+<div class="feature ntee-browse mt-3 mb-content">
+
+  <div class="ntee-toolbar">
+    <div>
+      <a class="btn -primary" href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv" download>Download the full table (CSV)</a>
+      <a class="btn -secondary" href="{{ '/datasets/ntee/' | relative_url }}">About this data set</a>
+    </div>
+    <span class="ntee-vintage" id="ntee-vintage">Loading the current table&hellip;</span>
+  </div>
+
+  <div class="ntee-search">
+    <input type="search" id="ntee-search" placeholder="Search codes, descriptions or NAICS numbers" aria-label="Search the table">
+    <span class="ntee-count" id="ntee-count"></span>
+  </div>
+
+  <ul class="ntee-groups" id="ntee-groups" aria-label="Filter by major group"></ul>
+
+  <div id="ntee-error" class="ntee-error" hidden>
+    The table could not be loaded. You can still
+    <a href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv">download the CSV</a>.
+  </div>
+
+  <table id="ntee-table" class="ntee-table" style="width:100%">
+    <thead>
+      <tr>
+        <th>Code</th>
+        <th>Description</th>
+        <th>Major group</th>
+        <th>NAICS</th>
+      </tr>
+    </thead>
+  </table>
+
+  <p class="ntee-source">Click a description to read the full definition where one exists. Short descriptions use the IRS wording (Instructions for Form 1023, Appendix D); long descriptions come from the Nonprofit Open Data Collective NTEE table and are still being written for the newest IRS codes. NAICS is the 2022 edition. Codes the IRS has retired stay in the table because older files still carry them. Source: <a href="{{ '/datasets/lookups/' | relative_url }}">NCCS lookup tables</a>, <code>ntee_code.csv</code>.</p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // Data source: the contracted NCCS lookup tables on S3 (nccs-contracts ADR 0049).
+  var LOOKUP_BASE_URL = "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest";
+
+  function fetchText(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (response) {
+      if (!response.ok) { throw new Error(url + " returned " + response.status); }
+      return response.text();
+    });
+  }
+
+  function parseCsv(text) {
+    return Papa.parse(text, { header: true, skipEmptyLines: true }).data;
+  }
+
+  // The lookup is plain text, but strip any stray markup so it cannot render.
+  function stripTags(value) {
+    return (value || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+  }
+
+  function escapeHtml(value) {
+    return value.replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c];
+    });
+  }
+
+  function buildRows(codes, majorGroups) {
+    var groupNameByLetter = {};
+    majorGroups.forEach(function (row) {
+      groupNameByLetter[row.ntee_code_first_character] = stripTags(row.ntee_code_major_group);
+    });
+    return codes.map(function (row) {
+      var letter = row.ntee_code.charAt(0);
+      return {
+        code: row.ntee_code,
+        title: stripTags(row.ntee_code_definition),
+        letter: letter,
+        group: groupNameByLetter[letter] || "Unknown",
+        naics: row.naics_code === "UNDEFINED" ? "" : row.naics_code,
+        details: stripTags(row.ntee_code_description)
+      };
+    }).sort(function (a, b) { return a.code < b.code ? -1 : a.code > b.code ? 1 : 0; });
+  }
+
+  function showVintage(manifest, rowCount) {
+    var label = rowCount + " codes";
+    if (manifest && manifest.vintage) {
+      label += " · vintage " + manifest.vintage;
+      if (manifest.built_at) { label += ", built " + manifest.built_at.slice(0, 10); }
+    }
+    document.getElementById("ntee-vintage").textContent = label;
+  }
+
+  function buildGroupPills(rows, table) {
+    var seen = {};
+    var list = document.getElementById("ntee-groups");
+    var all = document.createElement("li");
+    all.innerHTML = "<button type=\"button\" class=\"-on\" data-letter=\"\">All groups</button>";
+    list.appendChild(all);
+    rows.forEach(function (row) {
+      if (seen[row.letter]) { return; }
+      seen[row.letter] = true;
+      var item = document.createElement("li");
+      item.innerHTML = "<button type=\"button\" data-letter=\"" + row.letter + "\">" +
+        escapeHtml(row.letter + ": " + row.group) + "</button>";
+      list.appendChild(item);
+    });
+    list.addEventListener("click", function (event) {
+      var button = event.target.closest("button");
+      if (!button) { return; }
+      list.querySelectorAll("button").forEach(function (b) { b.classList.remove("-on"); });
+      button.classList.add("-on");
+      var letter = button.getAttribute("data-letter");
+      table.column(2).search(letter ? "^" + letter + ":" : "", true, false).draw();
+    });
+  }
+
+  function detailsHtml(row) {
+    return "<div class=\"ntee-details\"><strong>" + escapeHtml(row.code) + " · " +
+      escapeHtml(row.title) + "</strong><br>" + escapeHtml(row.details) + "</div>";
+  }
+
+  function renderTable(rows) {
+    var table = $("#ntee-table").DataTable({
+      data: rows,
+      columns: [
+        { data: "code", className: "ntee-code", width: "5rem" },
+        { data: "title", className: "ntee-title" },
+        { data: null, render: function (row) { return escapeHtml(row.letter + ": " + row.group); } },
+        { data: "naics", className: "ntee-naics", width: "6rem" }
+      ],
+      rowCallback: function (tr, row) {
+        if (row.details) { tr.classList.add("ntee-has-details"); }
+      },
+      pageLength: 50,
+      order: [[0, "asc"]],
+      language: { info: "Showing _START_ to _END_ of _TOTAL_ codes", infoFiltered: "(filtered from _MAX_)", paginate: { previous: "Previous", next: "Next" } },
+      drawCallback: function () {
+        var info = this.api().page.info();
+        document.getElementById("ntee-count").textContent =
+          info.recordsDisplay === info.recordsTotal ? "" : info.recordsDisplay + " of " + info.recordsTotal + " codes match";
+      }
+    });
+
+    document.getElementById("ntee-search").addEventListener("input", function () {
+      table.search(this.value).draw();
+    });
+
+    $("#ntee-table tbody").on("click", "tr.ntee-has-details td.ntee-title", function () {
+      var tr = $(this).closest("tr");
+      var row = table.row(tr);
+      if (row.child.isShown()) {
+        row.child.hide();
+        tr.removeClass("shown");
+      } else {
+        row.child(detailsHtml(row.data())).show();
+        tr.addClass("shown");
+      }
+    });
+
+    buildGroupPills(rows, table);
+  }
+
+  Promise.all([
+    fetchText(LOOKUP_BASE_URL + "/ntee_code.csv").then(parseCsv),
+    fetchText(LOOKUP_BASE_URL + "/ntee_code_major_group.csv").then(parseCsv),
+    fetchText(LOOKUP_BASE_URL + "/_manifest.json").then(JSON.parse).catch(function () { return null; })
+  ]).then(function (results) {
+    var rows = buildRows(results[0], results[1]);
+    showVintage(results[2], rows.length);
+    renderTable(rows);
+  }).catch(function (error) {
+    console.error(error);
+    document.getElementById("ntee-vintage").textContent = "";
+    document.getElementById("ntee-error").hidden = false;
+  });
+})();
+</script>

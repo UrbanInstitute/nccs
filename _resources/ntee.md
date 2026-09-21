@@ -8,49 +8,30 @@ layout: project
 project-name: ntee
 categories:
   - metadata
-abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by NCCS and is used by the IRS to classify nonprofit organizations according to their missions and program activities. An updated version of the taxonomy called NTEEV2 (NTEE Version 2.0) is described below. While the NTEE is the official classification designation of the IRS, some other systems are described below. For example, Candid has developed the Philanthropic Classification System (PCS) in order to have a single taxonomy that can be used to classify both nonprofits and grants. It includes some new mission areas as well as 'population/beneficiary' codes to indicate the type of population served, and 'auspice' codes to indicate religious or governmental affiliation. Similarly, the North American Industry Classification System (NAICS) is a more generic taxonomy of industries used broadly for economic analysis. Crosswalks between the NTEE and other taxonomies are provided below when available."
+abstract: "The National Taxonomy of Exempt Entities (NTEE) is the code system the IRS uses to say what a nonprofit does. NCCS helped create it and publishes the full code list, a searchable table, and a version reformatted for analysis (NTEE version 2)."
 primaryLinks:
-  - text: NTEE Code Descriptions (IRS Version) with NAICS Crosswalk
-    href: "../../widgets/ntee_tables/ntee-naics_table.html"
-  - text: Download the NTEE code table (CSV)
+  - text: Browse and search all NTEE codes
+    href: "../../datasets/ntee/browse/"
+  - text: Download the code list (CSV)
     href: "../../datasets/ntee/"
-  - text: Convenient Two-Page NTEE Cheatsheet (IRS Version)
-    href: "../../pubs/ntee-two-page-2005.pdf"
-  - text: Methodology for NTEE (IRS Version) to NTEEV2 (NCCS Version) Conversions
-    href: https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md
-  - text: NTEEV2 Category Descriptions (NCCS Version)
-    href: "../../widgets/ntee_tables/ntee_descriptions.html"  
+  - text: NTEE version 2 category descriptions
+    href: "../../widgets/ntee_tables/ntee_descriptions.html"
 ---
 
 
+## What an NTEE code is
 
+Every organization the IRS recognizes as tax-exempt gets one NTEE code, three characters such as `B29` (charter schools). The first letter is the major group (B is education), the rest is the specific activity. The code is descriptive: it helps researchers and regulators group organizations for statistics. It is not a licence, and it does not limit what an organization may do. Many nonprofits work across several categories, and the code captures only one.
 
+The IRS assigns the code when an organization applies for exemption, and it maintains the official list. NCCS helped design the taxonomy and keeps the reference copy used in our data, but **we cannot assign or change an organization's code**.
 
-# For Nonprofits 
+## For nonprofits
 
-Nonprofits are assigned an NTEE code during the application process for tax-exempt status. The IRS issues and maintains the official database of NTEE codes. You can look up your official NTEE code in the [IRS 990 Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf). 
+**Finding your code.** It is in the IRS [Exempt Organizations Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf), or [search our table](../../datasets/ntee/browse/) to read what each code means.
 
-Please note that the NCCS was involved in the creation of the NTEE system, but **we do not make initial assignment of codes** nor do we **have the ability to make an official update to IRS records**.
+**Choosing a code** when you apply for exemption: [browse the full list](../../datasets/ntee/browse/) or use the [two-page cheat sheet](../../pubs/ntee-two-page-2005.pdf). Pick the code that best describes your main activity; there is no penalty for a near miss, and it can be changed later.
 
-## Selecting Your NTEE Code
-
-If you are in the process of filing for tax-exempt status and you need to select your NTEE category you will find the following resources helpful: 
-
-* [Two-Page List of All NTEE Categories](https://nccs.urban.org/nccs/pubs/ntee-two-page-2005.pdf)
-* [Full Descriptions of All NTEE Categories (IRS Version)](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html)
-
-## Appropriate Uses of NTEE Codes
-
-The National Taxonomy of Exempt Entities (NTEE) is a _**descriptive**_ taxonomy that helps regulators and researchers aggregate data for statistical analysis. While certain nonprofit characteristics like the assigned 501(c) subsection code can have significant binding implications such as whether a donation can be treated as tax-deductible (501c3 public charities) or NOT (most other 501c types). The NTEE classification, on the other hand, should not be used as a limiting factor by funders or other institutional actors. The NTEE is often not precise and many nonprofits have missions that span multiple NTEE categories. It is NOT recommended to ever eliminate nonprofits from funding considerations because of their NTEE code or assume that their NTEE category captures their full range of activities. 
-
-## Modifying NTEE Codes
-
-Instructions for requesting an NTEE change are available in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf), the IRS handbook of rules for tax-exempt organizations.  A recent excerpt (as of January 2024) states:
-
-> _**Organizations that wish to modify or obtain a National Taxonomy of Exempt Entities (NTEE) Code** should send a written request to the Correspondence Unit with the relevant facts, including the Code currently assigned, if any, and
-the requested Code, as well as who selected the currently assigned Code initially, if known._
-
-> _The Correspondence Unit will refer to EO Determinations, if necessary, and will notify the organization if a form or user fee is required to make the requested change. The written request must be sent or faxed to:_
+**Changing your code.** Send a written request to the IRS Correspondence Unit with the code you have, the code you want, and the reason. The procedure is in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf); an [example IRS response](https://www.irs.gov/pub/irs-wd/13-0005.pdf) shows what to expect.
 
 ```
 Internal Revenue Service
@@ -59,46 +40,29 @@ P.O. Box 2508, Room 6403
 Cincinnati, Ohio 45201
 ```
 
-> _Express and Overnight Delivery:_
+## For data users
 
-```
-Internal Revenue Service
-Attn: Correspondence Unit
-500 Main Street, Room 6403
-Cincinnati, Ohio 45202
-```
+**The code list.** NCCS publishes the full list with descriptions and a crosswalk to NAICS industry codes as a [downloadable table](../../datasets/ntee/), checked against the IRS list every January. The [searchable version](../../datasets/ntee/browse/) reads the same file.
 
-[**Example Response Letter from the IRS**](https://www.irs.gov/pub/irs-wd/13-0005.pdf)  
-
-<br>
-<hr>
-<br>
-
-
-# For NCCS Data Users
-
-## NTEE Version 2.0 (NTEEV2)
-
-A newly reformatted version of the NTEE codes have been added to NCCS data files. NTEE-V2 contains the same information as the original but in a format that is better suited for analytics. The original NTEE codes combined mission groups with organizational type, making them confusing at times. The also required frequent cross-referencing of NTEE major group letters with industry labels, making them more difficult to interpret.   
-
-The new version uses a 3-part "tidy" format that makes the organizational type an explicit level and includes the higher-level industry code for convenience. 
+**NTEE version 2.** NCCS data files carry the code in a second, three-part form built for analysis: `INDUSTRY-CODE-TYPE`, for example `EDU-B29-RG`. The industry part groups the 26 letters into 12 broad sectors; the middle part is the original code; the type part says whether the organization is a regular nonprofit (`RG`) or a support organization such as an advocacy group (`AA`) or a fundraiser (`MS`, `MM`). The original codes mixed those support roles into the digits (`B01` was advocacy for education), which made grouping awkward.
 
 ```
 Old:   B29            (charter school)
-New:   EDU-B29-RG     (RG = "regular" or non-specialized nonprofit)
+New:   EDU-B29-RG     (RG = regular nonprofit)
 
-Old:   B01            (advocacy broadly for the education sector)
-New:   EDU-B00-AA     (AA = advocacy organization) 
+Old:   B01            (advocacy for the education sector)
+New:   EDU-B00-AA     (AA = advocacy organization)
 
 Old:   B0129          (advocacy specifically for charter schools)
 New:   EDU-B29-AA
 ```
-  
+
 ![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/public/img/resources/ntee-v1-vs-v2.png)
 
-![](../../_stories/nccsdata/ntee2-structure.png)
+<details>
+<summary>Industry groups, organization types, and the conversion rules</summary>
 
-**Industry Group Definitions XXX-xxx-xx**
+**Industry groups (first part)**
 
 ```
 ART - Arts, Culture, and Humanities (A)
@@ -115,100 +79,36 @@ UNI - Universities (B40, B41, B42, B43, and B50)
 HOS - Hospitals (E20, E21, E22, and E24)
 ```
 
-**Major Group and Divisions xxx-XXX-xxx**
-
-These will be the same as the traditional NTEE codes except specialty organizations (x01-x19) are replaced with zeroes (x00) and the common codes (01-19) have been recoded as organizational types. 
+**Organization types (last part)**
 
 ```
-B  EDUCATION                                   (MAJOR GROUP)
-+--  B20 ELEMENTARY AND SECONDARY SCHOOLS      (division)
-¦ +--B21 Preschools                            (subdivision)
-¦ +--B24 Primary & Elementary Schools
-¦ +--B25 Secondary & High Schools
-¦ +--B28 Special Education
-¦ +--B29 Charter School
+RG - Regular Nonprofit
+AA - Alliance/Advocacy Organizations (formerly 01)
+MT - Management and Technical Assistance (formerly 02)
+PA - Professional Societies/Associations (formerly 03)
+RP - Research Institutes and/or Public Policy Analysis (formerly 05)
+MS - Monetary Support - Single Organization (formerly 11)
+MM - Monetary Support - Multiple Organizations (formerly 12)
+NS - Nonmonetary Support Not Elsewhere Classified (formerly 19)
 ```
 
-**Organizational Type xxx-xxx-XX**
+The middle part is the original code, except that specialty codes `x01` to `x19` become `x00` and their meaning moves to the type part. Full rules and code: [conversion methodology](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md). Category descriptions: [web version](../../widgets/ntee_tables/ntee_descriptions.html), [printable](../../widgets/ntee_tables/ntee_descriptions_printable.html), [CSV](../../widgets/ntee_tables/nteev2-descriptions.csv), [CSV in tidy format](../../widgets/ntee_tables/nteev2-descriptions-tidy-format.csv). Worked example: [sampling by NTEE category with the nccsdata package](../../stories/nccsdata-ntee/).
 
-```
-RG - Regular Nonprofit  
-AA - Alliance/Advocacy Organizations (*formerly 01*) 
-MT - Management and Technical Assistance (*formerly 02*) 
-PA - Professional Societies/Associations (*formerly 03*) 
-RP - Research Institutes and/or Public Policy Analysis (*formerly 05*) 
-MS - Monetary Support - Single Organization (*formerly 11*) 
-MM - Monetary Support - Multiple Organizations (*formerly 12*) 
-NS - Nonmonetary Support Not Elsewhere Classified (N.E.C.) (*formerly 19*) 
-```
+</details>
 
-![](../../_stories/nccsdata/nteev2-example.png)
+**How accurate are the codes?** Roughly one organization in four carries a code that is incomplete or off the mark. Older organizations were coded by a crosswalk from the IRS activity codes that preceded NTEE; newer ones are coded from a Form 1023 that may describe the mission thinly; and missions change over time. The codes are reliable for aggregate statistics and should be used with care for any single organization. In NCCS BMF files the `NTEE_IRS` column is the official IRS value; `NTEE_NCCS` carries corrections NCCS staff have made over the years. Treat `NTEE_IRS` as the source of truth and `NTEE_NCCS` as a supplement. A [short history of the codes](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html) explains how the system came about.
 
-<br> 
+## Other taxonomies
 
-[**CATEGORY DESCRIPTIONS**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions.html) {[**printable version**](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee_descriptions_printable.html)}
+* [IRS activity codes](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file#activity-codes), the system NTEE replaced in 1995, with the crosswalk used to assign NTEE codes to older organizations.
+* [NAICS](https://www.census.gov/naics/), the industry classification used across economic statistics; every NTEE code in [our table](../../datasets/ntee/browse/) carries its closest NAICS match.
+* Candid's [Philanthropy Classification System](https://taxonomy.candid.org/resources/downloads), which also covers grants and populations served ([crosswalk](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/PCS)).
+* [ICNPO](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf), the international classification of nonprofit organizations.
 
-[Interactive Sampling from NTEE Categories with the **nccsdata Package**](https://urbaninstitute.github.io/nccs/stories/nccsdata-ntee/) 
+<details>
+<summary>Reading list</summary>
 
-<br>
-<hr>
-<br> 
-
-## Machine Readable NTEE Files 
-
-[Download CSV of NTEE Category Descriptions](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions.csv) 
-
-[Download CSV of NTEE Category Descriptions in Tidy Format](https://nccs.urban.org/nccs/widgets/ntee_tables/nteev2-descriptions-tidy-format.csv) 
-
-<br>
-<hr>
-<br>
-
-## A Note on the Appropriate Use and Accuracy of NTEE Codes
-
-NTEE codes are intended to be descriptive rather than prescriptive. This means they serve the purpose of grouping organizations based on types of activities but do not constitute an official designation that restricts nonprofit activities.
-
-**Where Do NTEE Codes Come From?**
-
-New nonprofits either receive an assigned or choose their own single NTEE category when submitting a 1023 or 1023EZ application. For older nonprofits that existed before the NTEE System's creation, the IRS originally assigned three Nonprofit Activity Codes. NTEE codes were retrospectively assigned to these organizations using a [crosswalk of Activity Codes to NTEE Categories](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file?tab=readme-ov-file#activity-codes).
-
-[A Brief History of NTEE Codes](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee-history.html)  
-
-[A Helpful Blog by Instrumentl](https://www.instrumentl.com/blog/ntee-codes-for-nonprofits)  
-
-**Are NTEE Codes Accurate?**
-
-Nonprofit missions can be likened to the career paths of individuals. Just as young adults have evolving career goals shaped by experience, feedback, and self-awareness, emerging nonprofits undergo a similar evolution in their program missions. While some individuals commit their entire careers to a single profession, such as becoming a doctor or teacher, most people navigate non-linear career paths, exploring diverse interests early on and specializing later based on initial successes.
-
-Likewise, many nonprofits adopt missions that span multiple NTEE (National Taxonomy of Exempt Entities) categories, particularly resource centers or organizations orchestrating integrated programs to address service gaps. Missions naturally transform over time, with nonprofits potentially taking on roles in policymaking, advocacy, fundraising, or grantmaking as they gain prominence.
-
-Assigning NTEE categories poses challenges. IRS officers may categorize an organization based on an incomplete understanding of its mission, relying on limited information from Form 1023 applications. The crosswalk used to generate NTEE codes from IRS Activity Codes for older organizations has also proven imperfect.
-
-Consequently, we estimate that approximately 25% of organizations in the data have incomplete or inaccurate NTEE category assignments. While NTEE information contributes significantly to aggregate data, using it for individual organizations is not recommended without additional context, as it may not capture the dynamic nature of nonprofit missions and the challenges in achieving accurate categorization.
-
-If you are using the NCCS BMF files, you will notice there are two NTEE variables: **NTEE_IRS** and **NTEE_NCCS**. The NTEE_IRS variable will be the same as the NTEE code that appears in the official IRS BMF database. The NTEE_NCCS variable is meant to be a slightly more accurate version of the NTEE based upon manual updates made by NCCS staff over time. The NTEE_IRS version should be treated as the official version and the NTEE_NCCS version used for research purposes primarily. See above if you are a nonprofit that has questions about officially changing your NTEE designation.  
-
-<br>
-<hr>
-<br>
-
-## Additional Mission Taxonomies
-
-The NTEE replaced the original IRS Activity Code taxonomy that was used until 1995. NCCS developed an [IRS Activity Code to NTEE Crosswalk](https://github.com/Nonprofit-Open-Data-Collective/irs-exempt-org-business-master-file#activity-codes) that was used to standardize codes for existing nonprofits.  
-
-Some examples of alternative taxonomies include: 
-
-* Candid's [Philanthropy Classification System (PCS)](https://taxonomy.candid.org/resources/downloads) [[**crosswalk**](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/tree/main/PCS)]
-* Foundation Center Grant Taxonomy ([See "subjects" in the PCS](https://taxonomy.candid.org/subjects/))  
-* ICNPO Codes [[Overview](http://asauk.org.uk/wp-content/uploads/2018/02/CNP_WP19_1996.pdf)] 
-* CLASSIEfier [[Link](https://www.ourcommunity.com.au/general/general_article.jsp?articleid=7593)] 
-* North American Industry Classification System (NAICS) [[Overview](https://www.census.gov/naics/)] [[**crosswalk**](../../widgets/ntee_tables/ntee-naics_table.html)]
-
-<br>
-<hr>
-<br>
-
-## Useful Citations on the Evolution of Mission Taxonomies 
+### On the evolution of mission taxonomies 
 
 **1990:** Herman, R. D. (1990). Methodological Issues in Studying the Effectiveness of Nongovernmental and Nonprofit Organizations. Nonprofit and Voluntary Sector Quarterly, 19(3), 293–306. https://doi.org/10.1177/089976409001900309
 
@@ -239,7 +139,7 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 
 
 
-## More Recent Computational Work
+### Recent computational work
 
 **2025** Kim, J. Y., de Vries, M., & Han, H. (2025). MapAgora, civic opportunity datasets for the study of American local politics and public policy. Scientific Data, 12(1), 1162. [ [PDF](https://www.nature.com/articles/s41597-025-05353-6.pdf) ]
 
@@ -271,13 +171,4 @@ Nonprofit Management & Leadership, 28(3), 413-422.
 
 **2006** Rupasingha, A., Goetz, S. J., & Freshwater, D. (2006). The production of social capital in US counties. The journal of socio-economics, 35(1), 83-101.
 
-
-
-
-
-
-
-
-
-
-
+</details>

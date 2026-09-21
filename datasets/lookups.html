@@ -1,0 +1,157 @@
+---
+title: BMF Lookup Tables
+description: The decoder tables that turn IRS codes in the Business Master File into plain words. One CSV per code list, read live from the NCCS data bucket.
+layout: default
+permalink: /datasets/lookups/
+activeLink: /datasets/
+---
+
+{% include components/page-header.html
+  eyebrow = "dataset"
+  header = "BMF Lookup Tables"
+  description = "The IRS Business Master File is full of codes. These tables say what each code means. They are the same tables the NCCS pipeline uses to label the data."
+%}
+
+<style>
+  .lk-page { --lk-navy: #0a4c6a; --lk-blue: #1696d2; --lk-muted: #696969; --lk-line: #e3e3e3; }
+  .lk-intro { max-width: 48rem; }
+  .lk-vintage { color: var(--lk-muted); font-size: 0.9rem; margin: 0.5rem 0 1.5rem; }
+  .lk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+  .lk-card { border: 1px solid var(--lk-line); border-radius: 8px; padding: 1.1rem 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; background: #fff; }
+  .lk-card h3 { margin: 0; font-size: 1.1rem; color: var(--lk-navy); }
+  .lk-card p { margin: 0; font-size: 0.95rem; line-height: 1.45; }
+  .lk-card .lk-where { color: var(--lk-muted); font-size: 0.85rem; }
+  .lk-card .lk-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding-top: 0.5rem; font-size: 0.85rem; color: var(--lk-muted); }
+  .lk-card .lk-foot a { font-weight: 700; color: var(--lk-blue); text-decoration: none; }
+  .lk-card .lk-foot a:hover { text-decoration: underline; }
+  .lk-card.-featured { border-color: var(--lk-blue); box-shadow: inset 0 0 0 1px var(--lk-blue); }
+  .lk-error { padding: 1rem; border: 1px solid #db2b27; border-radius: 6px; background: #fdf1f1; margin: 1rem 0; }
+  .lk-how { max-width: 48rem; margin-top: 2.5rem; }
+  .lk-how code { font-size: 0.9em; }
+</style>
+
+<div class="feature lk-page mt-3 mb-content">
+
+  <div class="lk-intro flow">
+    <p><strong>How to use them.</strong> Each table is a small CSV with a code column and a meaning column. Join it to the matching column in the BMF to replace the code with its label, or just open it to look a code up. Every table has the same vintage, listed below, and is refreshed whenever a code list changes.</p>
+  </div>
+  <p class="lk-vintage" id="lk-vintage">Loading the current list&hellip;</p>
+
+  <div id="lk-error" class="lk-error" hidden>The list could not be loaded. The files are at <a href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/_manifest.json">nccsdata.s3.amazonaws.com/lookups/bmf/latest/</a>.</div>
+
+  <ul class="lk-grid" id="lk-grid"></ul>
+
+  <div class="lk-how flow">
+    <h2>Reading the manifest</h2>
+    <p>Alongside the CSVs sits a file called <code>_manifest.json</code>. It is the receipt for the publish: the vintage (year and month), when the files were built, the version of the pipeline code, and for every CSV its row count, column names and a checksum. If you need to cite exactly which version of a table you used, quote the vintage and the checksum from the manifest. Older vintages stay available under their own folder, for example <code>lookups/bmf/2026_09/</code>.</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var LOOKUP_BASE_URL = "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest";
+
+  // Plain-language notes for each table: what the codes mean and where they
+  // appear in the Business Master File. Order here is the order on the page.
+  var TABLES = [
+    { file: "ntee_code", title: "NTEE codes", where: "BMF column ntee_code_clean",
+      text: "Every National Taxonomy of Exempt Entities code the IRS assigns, with a short and a long description and the closest NAICS industry. The main table for what a nonprofit does.", featured: true, browse: "/datasets/ntee/browse/" },
+    { file: "ntee_code_major_group", title: "NTEE major groups", where: "first letter of the NTEE code",
+      text: "The 26 top-level NTEE categories, A (arts) through Z (unknown), that the first letter of every NTEE code points to." },
+    { file: "ntee_common_code", title: "NTEE common codes", where: "digits 01 to 19 of an NTEE code",
+      text: "Codes that mean the same thing in every major group: advocacy, management support, professional associations, research, fundraising, and other support roles." },
+    { file: "nteev2_subsector", title: "NTEE version 2 subsectors", where: "first part of the NTEE-V2 code",
+      text: "The industry labels used by NTEE version 2 (ART, EDU, HEL, HMS and so on), including universities and hospitals as their own groups." },
+    { file: "ntee_legacy_5char", title: "Legacy five-character NTEE codes", where: "pre-2003 NCCS files",
+      text: "Translates the old five-character NCCS codes (such as A0120) used before 2003 into today's NTEE version 2 form." },
+    { file: "subsection_classification_code", title: "Subsection and classification codes", where: "BMF columns subsection_code and classification_code",
+      text: "Which part of the tax code the organization is exempt under, such as 501(c)(3) public charity or 501(c)(4) social welfare organization." },
+    { file: "foundation_code", title: "Foundation codes", where: "BMF column foundation_code",
+      text: "For 501(c)(3) organizations, whether they are a public charity or a private foundation, and on what basis." },
+    { file: "deductibility_code", title: "Deductibility codes", where: "BMF column deductibility_code",
+      text: "Whether donations to the organization are tax-deductible for the donor." },
+    { file: "status_code", title: "Status codes", where: "BMF column status_code",
+      text: "The organization's current standing with the IRS, such as in good standing or with exemption revoked." },
+    { file: "organization_code", title: "Organization codes", where: "BMF column organization_code",
+      text: "The legal form of the organization: corporation, trust, association, or other." },
+    { file: "affiliation_code", title: "Affiliation codes", where: "BMF column affiliation_code",
+      text: "How the organization relates to a group exemption: independent, a parent, or a subordinate of a parent." },
+    { file: "parent_organization", title: "Parent organizations", where: "BMF column group_exemption_number",
+      text: "Names of the parent bodies behind group exemptions, so subordinates can be tied to their national organization." },
+    { file: "activity_code", title: "IRS activity codes", where: "older BMF files, activity code columns",
+      text: "The activity codes the IRS used before NTEE, up to three per organization, with what each one meant." },
+    { file: "asset_code", title: "Asset size codes", where: "BMF column asset_code",
+      text: "Single digits 0 to 9 that place an organization in a size band by total assets, with the dollar range for each band." },
+    { file: "income_code", title: "Income size codes", where: "BMF column income_code",
+      text: "Single digits 0 to 9 that place an organization in a size band by total income, with the dollar range for each band." },
+    { file: "filing_requirement_code", title: "Filing requirement codes", where: "BMF column filing_requirement_code",
+      text: "Which annual return the organization must file: Form 990, 990-EZ, 990-N, or none." },
+    { file: "pf_filing_requirement_code", title: "Private foundation filing codes", where: "BMF column pf_filing_requirement_code",
+      text: "Filing requirements that apply only to private foundations (Form 990-PF)." }
+  ];
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c];
+    });
+  }
+
+  function formatCount(n) {
+    return typeof n === "number" ? n.toLocaleString("en-US") + " rows" : "";
+  }
+
+  function render(manifest) {
+    var files = (manifest && manifest.files) || {};
+    var grid = document.getElementById("lk-grid");
+    var known = {};
+
+    TABLES.forEach(function (table) {
+      var entry = files[table.file + ".csv"];
+      known[table.file + ".csv"] = true;
+      var item = document.createElement("li");
+      item.className = "lk-card" + (table.featured ? " -featured" : "");
+      var browse = table.browse ? " &middot; <a href=\"" + siteBase + table.browse + "\">Browse</a>" : "";
+      item.innerHTML =
+        "<h3>" + escapeHtml(table.title) + "</h3>" +
+        "<p>" + escapeHtml(table.text) + "</p>" +
+        "<p class=\"lk-where\">Where it applies: " + escapeHtml(table.where) + "</p>" +
+        "<div class=\"lk-foot\"><span>" + (entry ? formatCount(entry.row_count) : "not in the current manifest") + "</span>" +
+        "<span><a href=\"" + LOOKUP_BASE_URL + "/" + table.file + ".csv\" download>Download CSV</a>" + browse + "</span></div>";
+      grid.appendChild(item);
+    });
+
+    // Any file the manifest lists that this page does not describe yet.
+    Object.keys(files).forEach(function (name) {
+      if (known[name] || !/\.csv$/.test(name)) { return; }
+      var item = document.createElement("li");
+      item.className = "lk-card";
+      item.innerHTML = "<h3>" + escapeHtml(name.replace(/\.csv$/, "").replace(/_/g, " ")) + "</h3>" +
+        "<p>New table; description to follow.</p>" +
+        "<div class=\"lk-foot\"><span>" + formatCount(files[name].row_count) + "</span>" +
+        "<span><a href=\"" + LOOKUP_BASE_URL + "/" + name + "\" download>Download CSV</a></span></div>";
+      grid.appendChild(item);
+    });
+
+    var label = TABLES.length + " tables";
+    if (manifest && manifest.vintage) {
+      label += " · vintage " + manifest.vintage + (manifest.built_at ? ", built " + manifest.built_at.slice(0, 10) : "");
+    }
+    document.getElementById("lk-vintage").textContent = label;
+  }
+
+  var siteBase = "{{ site.baseurl }}";
+
+  fetch(LOOKUP_BASE_URL + "/_manifest.json", { cache: "no-cache" })
+    .then(function (response) { if (!response.ok) { throw new Error(response.status); } return response.json(); })
+    .then(render)
+    .catch(function (error) {
+      console.error(error);
+      document.getElementById("lk-vintage").textContent = "";
+      document.getElementById("lk-error").hidden = false;
+      render(null);
+    });
+})();
+</script>

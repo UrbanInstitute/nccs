@@ -7,16 +7,16 @@ categories:
   - crosswalks
 featured: false
 primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv"
-primaryCtaCaption: 'CSV, one row per code &middot; <a href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/_manifest.json">Manifest</a>'
+primaryCtaCaption: 'CSV, one row per code, current vintage'
 primaryLinks:
   - text: "Browse the table"
-    href: "../../widgets/ntee_tables/ntee-naics_table.html"
+    href: "../ntee/browse/"
     icon: search
   - text: "NTEE guide"
     href: "../../resources/ntee/"
     icon: article
   - text: "All lookup tables"
-    href: "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/_manifest.json"
+    href: "../lookups/"
     icon: database
 citation:
   author: "National Center for Charitable Statistics"
@@ -44,6 +44,6 @@ It is the same lookup table the NCCS data pipeline uses to label the [Business M
 
 ## Related tables
 
-The same folder on S3 holds the other decoder tables the pipeline uses, such as major groups (`ntee_code_major_group.csv`), NTEE version 2 subsectors, subsection codes, and foundation codes. The manifest lists every file with its row count and checksum.
+This is one of 17 decoder tables the pipeline uses, alongside major groups, NTEE version 2 subsectors, subsection codes, foundation codes and others. The [lookup tables page](../lookups/) explains each one in plain words and links every download.
 
 For the history of the taxonomy, the NTEE version 2 format, and advice for nonprofits choosing a code, see the [NTEE guide](../../resources/ntee/).
