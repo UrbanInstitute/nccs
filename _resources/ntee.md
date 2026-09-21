@@ -80,18 +80,6 @@ New:   EDU-B29-AA
     </ul>
   </div>
 </div>
-<style>
-  .ntee-figure { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: stretch; margin: 1.5rem 0; }
-  .ntee-figure__col { border: 1px solid #e3e3e3; border-radius: 8px; padding: 1rem 1.2rem; background: #fff; }
-  .ntee-figure__label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: #696969; margin-bottom: 0.4rem; }
-  .ntee-figure__code { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: 1.9rem; font-weight: 700; color: #0a4c6a; letter-spacing: 0.04em; margin-bottom: 0.6rem; }
-  .ntee-figure__code em { font-style: normal; color: #1696d2; }
-  .ntee-figure__parts { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
-  .ntee-figure__parts li { display: flex; gap: 0.6rem; padding: 0.25rem 0; border-top: 1px solid #f0f0f0; }
-  .ntee-figure__parts span { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-weight: 700; color: #0a4c6a; min-width: 2.6rem; }
-  .ntee-figure__arrow { align-self: center; font-size: 2rem; color: #1696d2; }
-  @media (max-width: 40rem) { .ntee-figure { grid-template-columns: 1fr; } .ntee-figure__arrow { transform: rotate(90deg); justify-self: center; } }
-</style>
 
 <details>
 <summary>Industry groups, organization types, and the conversion rules</summary>

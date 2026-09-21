@@ -1,0 +1,74 @@
+// Old-versus-new NTEE code figure on the NTEE resource page.
+
+.ntee-figure {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: stretch;
+  margin: 1.5rem 0;
+
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ntee-figure__col {
+  border: 1px solid $color-neutral-300;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  background: $color-white;
+}
+
+.ntee-figure__label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-neutral-800;
+  margin-bottom: 0.4rem;
+}
+
+.ntee-figure__code {
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: $color-blue-800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+
+  em {
+    font-style: normal;
+    color: $color-blue-500;
+  }
+}
+
+.ntee-figure__parts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.92rem;
+
+  li {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.25rem 0;
+    border-top: 1px solid $color-neutral-100;
+  }
+
+  span {
+    font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+    font-weight: 700;
+    color: $color-blue-800;
+    min-width: 2.6rem;
+  }
+}
+
+.ntee-figure__arrow {
+  align-self: center;
+  font-size: 2rem;
+  color: $color-blue-500;
+
+  @media (max-width: 40rem) {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+}
