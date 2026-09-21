@@ -27,9 +27,11 @@ The IRS assigns the code when an organization applies for exemption, and it main
 
 ## For nonprofits
 
+> **NCCS does not assign, correct, or change NTEE codes.** The IRS assigns the code when it approves an organization's exemption and is the only body that can change it. If your organization's code is wrong or missing, contact the IRS as described below; NCCS cannot act on it, and we are not responsible for codes that are incorrect in IRS records or in the data we publish from them.
+
 **Finding your code.** It is in the IRS [Exempt Organizations Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf), or [search our table](../../datasets/ntee/browse/) to read what each code means.
 
-**Choosing a code** when you apply for exemption: [browse the full list](../../datasets/ntee/browse/) or use the [two-page cheat sheet](../../pubs/ntee-two-page-2005.pdf). Pick the code that best describes your main activity; there is no penalty for a near miss, and it can be changed later.
+**Choosing a code** when you apply for exemption: [browse the full list](../../datasets/ntee/browse/), which is kept in step with the IRS's own list. Pick the code that best describes your main activity; there is no penalty for a near miss, and it can be changed later. (The two-page summary sheet NCCS published in 2005 predates the codes the IRS has added since and is no longer linked here.)
 
 **Changing your code.** Send a written request to the IRS Correspondence Unit with the code you have, the code you want, and the reason. The procedure is in [Publication 557](https://www.irs.gov/pub/irs-pdf/p557.pdf); an [example IRS response](https://www.irs.gov/pub/irs-wd/13-0005.pdf) shows what to expect.
 
