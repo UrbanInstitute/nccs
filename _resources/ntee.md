@@ -10,12 +10,12 @@ categories:
   - metadata
 abstract: "The National Taxonomy of Exempt Entities (NTEE) is the code system the IRS uses to say what a nonprofit does. NCCS helped create it and publishes the full code list, a searchable table, and a version reformatted for analysis (NTEE version 2)."
 primaryLinks:
-  - text: Browse and search all NTEE codes
+  - text: Browse codes
     href: "../../datasets/ntee/browse/"
-  - text: Download the code list (CSV)
+  - text: Download CSV
     href: "../../datasets/ntee/"
-  - text: NTEE version 2 category descriptions
-    href: "../../widgets/ntee_tables/ntee_descriptions.html"
+  - text: NTEE version 2
+    href: "../../datasets/ntee/v2/"
 ---
 
 
@@ -59,7 +59,39 @@ Old:   B0129          (advocacy specifically for charter schools)
 New:   EDU-B29-AA
 ```
 
-![](https://raw.githubusercontent.com/UrbanInstitute/nccs/main/public/img/resources/ntee-v1-vs-v2.png)
+<div class="ntee-figure" aria-label="Old and new NTEE code formats side by side">
+  <div class="ntee-figure__col">
+    <div class="ntee-figure__label">IRS form</div>
+    <div class="ntee-figure__code">B29</div>
+    <ul class="ntee-figure__parts">
+      <li><span>B</span> major group: education</li>
+      <li><span>29</span> activity: charter schools</li>
+      <li><span>&nbsp;</span> organization type: implied by the digits</li>
+    </ul>
+  </div>
+  <div class="ntee-figure__arrow" aria-hidden="true">&rarr;</div>
+  <div class="ntee-figure__col">
+    <div class="ntee-figure__label">Version 2</div>
+    <div class="ntee-figure__code"><em>EDU</em>-B29-<em>RG</em></div>
+    <ul class="ntee-figure__parts">
+      <li><span>EDU</span> industry group: education</li>
+      <li><span>B29</span> activity: the original code</li>
+      <li><span>RG</span> organization type: regular nonprofit</li>
+    </ul>
+  </div>
+</div>
+<style>
+  .ntee-figure { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: stretch; margin: 1.5rem 0; }
+  .ntee-figure__col { border: 1px solid #e3e3e3; border-radius: 8px; padding: 1rem 1.2rem; background: #fff; }
+  .ntee-figure__label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: #696969; margin-bottom: 0.4rem; }
+  .ntee-figure__code { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: 1.9rem; font-weight: 700; color: #0a4c6a; letter-spacing: 0.04em; margin-bottom: 0.6rem; }
+  .ntee-figure__code em { font-style: normal; color: #1696d2; }
+  .ntee-figure__parts { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
+  .ntee-figure__parts li { display: flex; gap: 0.6rem; padding: 0.25rem 0; border-top: 1px solid #f0f0f0; }
+  .ntee-figure__parts span { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-weight: 700; color: #0a4c6a; min-width: 2.6rem; }
+  .ntee-figure__arrow { align-self: center; font-size: 2rem; color: #1696d2; }
+  @media (max-width: 40rem) { .ntee-figure { grid-template-columns: 1fr; } .ntee-figure__arrow { transform: rotate(90deg); justify-self: center; } }
+</style>
 
 <details>
 <summary>Industry groups, organization types, and the conversion rules</summary>
@@ -94,7 +126,7 @@ MM - Monetary Support - Multiple Organizations (formerly 12)
 NS - Nonmonetary Support Not Elsewhere Classified (formerly 19)
 ```
 
-The middle part is the original code, except that specialty codes `x01` to `x19` become `x00` and their meaning moves to the type part. Full rules and code: [conversion methodology](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md). Category descriptions: [web version](../../widgets/ntee_tables/ntee_descriptions.html), [printable](../../widgets/ntee_tables/ntee_descriptions_printable.html), [CSV](../../widgets/ntee_tables/nteev2-descriptions.csv), [CSV in tidy format](../../widgets/ntee_tables/nteev2-descriptions-tidy-format.csv). Worked example: [sampling by NTEE category with the nccsdata package](../../stories/nccsdata-ntee/).
+The middle part is the original code, except that specialty codes `x01` to `x19` become `x00` and their meaning moves to the type part. Full rules and code: [conversion methodology](https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md). Every code in both forms, with a CSV download and a print view: [NTEE version 2 page](../../datasets/ntee/v2/). Worked example: [sampling by NTEE category with the nccsdata package](../../stories/nccsdata-ntee/).
 
 </details>
 

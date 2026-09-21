@@ -20,9 +20,8 @@ For most cases the NTEE code book provided below should be fairly self-explanato
 
 If you are in the process of filing for tax-exempt status and you need to select your NTEE category you will find the following resources helpful: 
 
-* [Two-Page List of All NTEE Categories](https://nccs.urban.org/nccs/pubs/ntee-two-page-2005.pdf)
-* [Full Descriptions of All NTEE Categories (IRS Version)](https://urbaninstitute.github.io/nccs-legacy/ntee/ntee.html)
-* [Search for Key Terms](https://nccs.urban.org/nccs/widgets/ntee_tables/ntee1_table.html)  
+* [Browse and search every NTEE code](../datasets/ntee/browse/), with the IRS wording and a full definition for each.
+* [The NTEE guide](../resources/ntee/), which explains what the codes are and how to change one.
 
 Note that if your primary purpose is one of the following activities, then you will select an NTEE major group (A=arts, B=education, E=health, etc.) but you will use the following 2-digit codes: 
 
