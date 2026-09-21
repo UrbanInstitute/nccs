@@ -1,0 +1,170 @@
+---
+title: Look Up an NTEE Code
+description: Enter an organization's EIN to see the NTEE code the IRS has on record for it, read live from the NCCS Unified Business Master File.
+layout: default
+permalink: /datasets/ntee/lookup/
+activeLink: /datasets/
+---
+
+{% include components/page-header.html
+  eyebrow = "dataset"
+  header = "Look Up an NTEE Code"
+  description = "Enter an organization's Employer Identification Number (EIN) to see the NTEE code the IRS has on record for it."
+%}
+
+<style>
+  .lu-page { --lu-blue: #1696d2; --lu-navy: #0a4c6a; --lu-ink: #353535; --lu-muted: #696969; --lu-line: #e3e3e3; --lu-wash: #f5f5f5; max-width: 48rem; }
+  .lu-form { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0 0 1rem; }
+  .lu-form input { flex: 1 1 14rem; padding: 0.7rem 0.9rem; font: inherit; font-size: 1.15rem; letter-spacing: 0.05em; border: 1px solid #c8c8c8; border-radius: 6px; }
+  .lu-form input:focus { outline: 2px solid var(--lu-blue); outline-offset: 1px; }
+  .lu-form .btn { text-transform: none; font-weight: 700; font-size: 1rem; padding: 0.75rem 1.2rem; }
+  .lu-hint { color: var(--lu-muted); font-size: 0.9rem; margin: 0 0 1.5rem; }
+  .lu-status { color: var(--lu-muted); font-size: 0.95rem; min-height: 1.4rem; margin: 0 0 1rem; }
+  .lu-result { border: 1px solid var(--lu-line); border-radius: 8px; padding: 1.25rem 1.4rem; background: #fff; margin: 0 0 1.5rem; }
+  .lu-result h2 { margin: 0 0 0.15rem; font-size: 1.4rem; color: var(--lu-navy); }
+  .lu-result .lu-where { color: var(--lu-muted); margin: 0 0 1rem; }
+  .lu-code { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: baseline; padding: 0.9rem 1rem; background: var(--lu-wash); border-left: 4px solid var(--lu-blue); margin: 0 0 1rem; }
+  .lu-code .lu-code__value { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: 2rem; font-weight: 700; color: var(--lu-navy); }
+  .lu-code .lu-code__label { font-size: 1.05rem; }
+  .lu-code .lu-code__v2 { font-family: "SFMono-Regular", Menlo, Consolas, monospace; color: var(--lu-muted); }
+  .lu-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 0.6rem 1.5rem; margin: 0; }
+  .lu-facts div { border-top: 1px solid var(--lu-line); padding-top: 0.4rem; }
+  .lu-facts dt { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--lu-muted); }
+  .lu-facts dd { margin: 0.1rem 0 0; }
+  .lu-vintage { color: var(--lu-muted); font-size: 0.85rem; margin: 1rem 0 0; }
+  .lu-note { border: 1px solid var(--lu-line); border-radius: 8px; padding: 1rem 1.2rem; background: var(--lu-wash); font-size: 0.95rem; }
+  .lu-note strong { color: var(--lu-navy); }
+  .lu-error { padding: 0.9rem 1rem; border: 1px solid #db2b27; border-radius: 6px; background: #fdf1f1; margin: 0 0 1.5rem; }
+  .lu-more { font-size: 0.9rem; color: var(--lu-muted); }
+</style>
+
+<div class="content lu-page mt-3 mb-content">
+
+  <form class="lu-form" id="lu-form" autocomplete="off">
+    <input type="text" id="lu-ein" inputmode="numeric" placeholder="EIN, for example 52-0880375" aria-label="Employer Identification Number" maxlength="12">
+    <button type="submit" class="btn -primary">Look up</button>
+  </form>
+  <p class="lu-hint">Nine digits, with or without the hyphen. The EIN is on the organization's IRS determination letter and on any Form 990 it has filed. To find an EIN from a name, use the <a href="https://apps.irs.gov/app/eos/">IRS Tax Exempt Organization Search</a>.</p>
+
+  <p class="lu-status" id="lu-status" aria-live="polite"></p>
+  <div class="lu-error" id="lu-error" hidden></div>
+  <div class="lu-result" id="lu-result" hidden></div>
+
+  <div class="lu-note">
+    <strong>NCCS does not assign or change NTEE codes.</strong> The IRS assigns the code when it approves an organization's exemption and is the only body that can change it. What you see here is the code as it appears in the IRS Business Master File, as processed by NCCS. If it is wrong or missing, the <a href="{{ '/resources/ntee/' | relative_url }}#for-nonprofits">NTEE guide</a> explains how to ask the IRS to change it. To understand what a code means, <a href="{{ '/datasets/ntee/browse/' | relative_url }}">browse all codes</a>.
+  </div>
+
+  <p class="lu-more">Source: the NCCS Unified Business Master File, one row per EIN across every IRS release since 1989, via a small per-EIN index refreshed with each monthly build. Organizations whose exemption the IRS has revoked stay in the file with their last known code.</p>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var INDEX_BASE_URL = "https://nccsdata.s3.amazonaws.com/unified/bmf/ein-index/latest";
+  var PREFIX_LENGTH = 4;
+
+  var input  = document.getElementById("lu-ein");
+  var lookupSequence = 0;   // only the most recent lookup may render
+  var status = document.getElementById("lu-status");
+  var error  = document.getElementById("lu-error");
+  var result = document.getElementById("lu-result");
+
+  function escapeHtml(v) {
+    return String(v == null ? "" : v).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; });
+  }
+
+  function normaliseEin(text) {
+    var digits = (text || "").replace(/[^0-9]/g, "");
+    if (digits.length !== 9) { return null; }
+    return digits.slice(0, 2) + "-" + digits.slice(2);
+  }
+
+  function showError(message) {
+    error.textContent = message;
+    error.hidden = false;
+    result.hidden = true;
+    status.textContent = "";
+  }
+
+  function rulingYear(rulingDate) {
+    if (!rulingDate || rulingDate.indexOf("1900-") === 0) { return "not recorded"; }
+    return rulingDate.slice(0, 4);
+  }
+
+  function titleCase(text) {
+    return String(text || "").toLowerCase().replace(/(^|[\s\-\/])([a-z])/g, function (m, sep, letter) { return sep + letter.toUpperCase(); });
+  }
+
+  function fact(label, value) {
+    return "<div><dt>" + label + "</dt><dd>" + escapeHtml(value || "not recorded") + "</dd></div>";
+  }
+
+  function render(record, shard) {
+    var r = {};
+    shard.fields.forEach(function (name, i) { r[name] = record[i]; });
+    var codeKnown = r.ntee_code_clean && r.ntee_code_clean !== "UNDEFINED" && r.ntee_code_clean !== "INVALID";
+    var place = [titleCase(r.org_addr_city), r.org_addr_state].filter(Boolean).join(", ");
+
+    result.innerHTML =
+      "<h2>" + escapeHtml(r.org_name_display) + "</h2>" +
+      "<p class=\"lu-where\">" + escapeHtml(place) + (r.org_addr_zip5 ? " " + escapeHtml(r.org_addr_zip5) : "") + " &middot; EIN " + escapeHtml(r.ein) + "</p>" +
+      (codeKnown
+        ? "<div class=\"lu-code\"><span class=\"lu-code__value\">" + escapeHtml(r.ntee_code_clean) + "</span>" +
+          "<span class=\"lu-code__label\">" + escapeHtml(r.ntee_code_definition) + "</span>" +
+          "<span class=\"lu-code__v2\">version 2: " + escapeHtml(r.nteev2) + "</span></div>"
+        : "<div class=\"lu-code\"><span class=\"lu-code__label\">The IRS file has no NTEE code for this organization" +
+          (r.ntee_code_clean === "INVALID" ? " (the value on file is not a valid code)" : "") + ".</span></div>") +
+      "<dl class=\"lu-facts\">" +
+      fact("Exempt under", r.exempt_organization_type || (r.subsection_code ? "subsection " + r.subsection_code : "")) +
+      fact("Ruling year", rulingYear(r.ruling_date)) +
+      fact("IRS status", r.status_code_definition) +
+      fact("In IRS releases", (r.first_vintage_ym || "?") + " to " + (r.last_vintage_ym || "?")) +
+      "</dl>" +
+      "<p class=\"lu-vintage\">From the NCCS Unified BMF, vintage " + escapeHtml(shard.vintage) + (shard.built_at ? ", built " + escapeHtml(shard.built_at.slice(0, 10)) : "") + ".</p>";
+    result.hidden = false;
+    error.hidden = true;
+    status.textContent = "";
+  }
+
+  function lookUp(ein) {
+    var prefix = ein.replace("-", "").slice(0, PREFIX_LENGTH);
+    var thisLookup = ++lookupSequence;
+    status.textContent = "Looking up " + ein + "…";
+    error.hidden = true;
+    fetch(INDEX_BASE_URL + "/" + prefix + ".json", { cache: "no-cache" })
+      .then(function (response) {
+        if (response.status === 404) { return null; }
+        if (!response.ok) { throw new Error("index returned " + response.status); }
+        return response.json();
+      })
+      .then(function (shard) {
+        if (thisLookup !== lookupSequence) { return; }
+        var einColumn = shard ? shard.fields.indexOf("ein") : -1;
+        var record = shard ? shard.records.find(function (rec) { return rec[einColumn] === ein; }) : null;
+        if (!record) {
+          showError("No organization with EIN " + ein + " appears in any IRS Business Master File release NCCS holds (1989 to the current month). Check the number; if it is right, the organization may never have been recognised as tax-exempt, or its recognition may be too recent for the latest release.");
+          return;
+        }
+        render(record, shard);
+      })
+      .catch(function (err) {
+        if (thisLookup !== lookupSequence) { return; }
+        console.error(err);
+        showError("The lookup could not reach the NCCS index. Try again in a moment.");
+      });
+  }
+
+  document.getElementById("lu-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    var ein = normaliseEin(input.value);
+    if (!ein) { showError("An EIN has nine digits, for example 52-0880375."); return; }
+    if (history.replaceState) { history.replaceState(null, "", "?ein=" + ein); }
+    lookUp(ein);
+  });
+
+  var fromQuery = normaliseEin(new URLSearchParams(location.search).get("ein"));
+  if (fromQuery) { input.value = fromQuery; lookUp(fromQuery); }
+})();
+</script>

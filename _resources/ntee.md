@@ -10,6 +10,8 @@ categories:
   - metadata
 abstract: "The National Taxonomy of Exempt Entities (NTEE) is the code system the IRS uses to say what a nonprofit does. NCCS helped create it and publishes the full code list, a searchable table, and a version reformatted for analysis (NTEE version 2)."
 primaryLinks:
+  - text: Find your code
+    href: "../../datasets/ntee/lookup/"
   - text: Browse codes
     href: "../../datasets/ntee/browse/"
   - text: Download CSV
@@ -29,7 +31,7 @@ The IRS assigns the code when an organization applies for exemption, and it main
 
 > **NCCS does not assign, correct, or change NTEE codes.** The IRS assigns the code when it approves an organization's exemption and is the only body that can change it. If your organization's code is wrong or missing, contact the IRS as described below; NCCS cannot act on it, and we are not responsible for codes that are incorrect in IRS records or in the data we publish from them.
 
-**Finding your code.** It is in the IRS [Exempt Organizations Business Master File](https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf), or [search our table](../../datasets/ntee/browse/) to read what each code means.
+**Finding your code.** [Enter your EIN](../../datasets/ntee/lookup/) to see the code the IRS has on record, as it appears in the latest Business Master File. Then [search our table](../../datasets/ntee/browse/) to read what the code means.
 
 **Choosing a code** when you apply for exemption: [browse the full list](../../datasets/ntee/browse/), which is kept in step with the IRS's own list. Pick the code that best describes your main activity; there is no penalty for a near miss, and it can be changed later. (The two-page summary sheet NCCS published in 2005 predates the codes the IRS has added since and is no longer linked here.)
 
