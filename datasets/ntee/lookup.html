@@ -130,6 +130,7 @@ activeLink: /datasets/
 
   function lookUp(ein) {
     var prefix = ein.replace("-", "").slice(0, PREFIX_LENGTH);
+    var thisLookup = ++lookupSequence;
     status.textContent = "Looking up " + ein + "…";
     error.hidden = true;
     fetch(INDEX_BASE_URL + "/" + prefix + ".json", { cache: "no-cache" })
