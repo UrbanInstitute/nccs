@@ -419,7 +419,7 @@ P60,624230,Emergency Assistance,"Organizations that provide food, clothing, hous
 P61,624190,Travelers Aid,"Organizations that provide supportive services including information and emergency assistance for tourists, travelers or other visitors who are stranded or have encountered other problems."
 P62,624190,Victims Services,"Organizations that provide supportive services for crime victims which may include crisis counseling, medical services, escort services, transportation, child care, financial assistance, protective services, information about the mechanics of court proceedings, assistance with forms to file for reimbursement of crime-related expenses or losses, and/or advice and guidance concerning court appearances."
 P70,623990,Residential Care & Adult Day Programs,"Organizations that provide alternative living arrangements for people who require care, supervision and support on a 24-hour basis or during part of the day. Use this code for organizations that provide residential, custodial care, but the specific nature of the facility is unclear, or which have multiple facilities which fall into more than one category below."
-P72,623990,NA,NA
+P72,623990,Half-Way House (Short-Term Residential Care) <i>(Retired by the IRS; still present in IRS data)</i>,NA
 P73,623990,Group Homes,"Facilities, usually located in residential neighborhoods, that provide 24-hour non-medical care for individuals with disabilities who need supervision and/or assistance with activities of daily living."
 P74,623110,Hospices,"Organizations that provide palliative and supportive services including medical care, pain and symptom management, home nurse visitation, case management, counseling, and bereavement services for terminally ill people who are in the final stages of their illnesses and for members of their families."
 P75,623311,Supportive Housing for Older Adults,"Residential facilities for older adults who are unable to function in an independent living environment because they need assistance with toileting, bathing, dressing, medication, meals and housekeeping and other activities of daily living, but do not require nursing care on a regular basis."
@@ -647,3 +647,27 @@ R28,813311,Children's Rights,Organizations that support the passage and enforcem
 R29,813311,Employee & Workers' Rights<i>(Draft Code - not for internal IRS use)</i>,Organizations that support the passage and enforcement of laws and other social measures that protect and promote the rights of groups of workers and employees.
 R65,813311,Freedom of Religion Issues<i>(Draft Code - not for internal IRS use)</i>,Organizations that support the passage of legislation and other social measures that protect or extend the rights of individuals to conduct their lives according to the precepts of their faith.
 Y41,813410,Fraternal Beneficiary Societies,"Organizations that provide services for the mutual aid and benefit of their members; that ordinarily have a lodge system whereby activities are carried out under a form of organization that comprises local branches, chartered by a parent organization and largely self-governing, and that make provision for the payment of death benefits, and for benefits in case of accident, sickness, or old age. This code is used exclusively for organizations exempt from federal taxes under 501(c)(8) of the Internal Revenue Code."
+E6A,456110,Pharmacies & Drugstores,NA
+K2A,111219,Other Vegetable (except Potato) & Melon Farming,NA
+K2B,115112,"Soil Preparation, Planting, & Cultivating",NA
+K2C,312130,Wineries,NA
+K6A,445240,Meat Markets,NA
+K6B,445292,Confectionery & Nut Stores,NA
+K6C,722320,Caterers,NA
+K6D,722330,Mobile Food Services,NA
+K6E,722410,Drinking Places,NA
+K6F,722515,Snack Nonalcoholic Beverage Bars,NA
+K90,722513,Limited-Service Restaurants,NA
+K91,445110,Supermarkets & Other Grocery (except Convenience) Stores,NA
+K92,445131,Convenience Stores,NA
+K93,445230,Fruit & Vegetable Markets,NA
+K94,445298,All Other Specialty Food Stores,NA
+K95,456191,Food (Health) Supplement Stores,NA
+K96,455211,Warehouse Clubs & Supercenters,NA
+K97,722310,Food Service Contractors,NA
+K98,722511,Full-Service Restaurants,NA
+L4A,721110,Hotels (except Casino Hotels) & Motels,NA
+L4B,721191,Bed and Breakfast Inns,NA
+N2A,721211,RV (Recreational Vehicle) Parks & Campgrounds,NA
+N2B,721214,Recreational and Vacation Camps (Except Campgrounds),NA
+P7A,623210,"Residential Intellectual & Developmental Disability Facilities (Group Homes, Intermediate Care Facilities & Hospitals)",NA
