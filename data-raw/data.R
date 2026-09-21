@@ -70,33 +70,13 @@ irs_code_list <- readr::read_csv(irs_code_list_url, show_col_types = FALSE)
 
 # NAICS 2022 codes for the IRS codes the NODC crosswalk lacks. Each IRS
 # description is the title of one NAICS industry, so the match is by title.
-naics_for_newer_irs_codes <- tibble::tribble(
-  ~NTEE_IRS, ~NAICS,
-  "E6A", "456110",   # Pharmacies & Drug Retailers
-  "K2A", "111219",   # Other Vegetable (except Potato) & Melon Farming
-  "K2B", "115112",   # Soil Preparation, Planting, & Cultivating
-  "K2C", "312130",   # Wineries
-  "K6A", "445240",   # Meat Retailers
-  "K6B", "445292",   # Confectionery & Nut Retailers
-  "K6C", "722320",   # Caterers
-  "K6D", "722330",   # Mobile Food Services
-  "K6E", "722410",   # Drinking Places (Alcoholic Beverages)
-  "K6F", "722515",   # Snack & Nonalcoholic Beverage Bars
-  "K90", "722513",   # Limited-Service Restaurants
-  "K91", "445110",   # Supermarkets & Other Grocery Retailers (except Convenience)
-  "K92", "445131",   # Convenience Retailers
-  "K93", "445230",   # Fruit & Vegetable Retailers
-  "K94", "445298",   # All Other Specialty Food Retailers
-  "K95", "456191",   # Food (Health) Supplement Retailers
-  "K96", "455211",   # Warehouse Clubs & Supercenters
-  "K97", "722310",   # Food Service Contractors
-  "K98", "722511",   # Full-Service Restaurants
-  "L4A", "721110",   # Hotels (except Casino Hotels) & Motels
-  "L4B", "721191",   # Bed-and-Breakfast Inns
-  "N2A", "721211",   # RV (Recreational Vehicle) Parks & Campgrounds
-  "N2B", "721214",   # Recreational & Vacation Camps (except Campgrounds)
-  "P7A", "623210"    # Residential Intellectual & Developmental Disability Facilities
-)
+# The table is a static file so it can be reviewed and edited without touching
+# this script.
+naics_for_newer_irs_codes <- readr::read_csv(
+  "data-raw/naics_for_newer_irs_codes.csv",
+  col_types = readr::cols(.default = readr::col_character())
+) |>
+  dplyr::select(NTEE_IRS, NAICS)
 
 irs_codes_missing_from_nodc <- irs_code_list |>
   dplyr::filter(!ntee_code %in% nodc_crosswalk$NTEE_IRS) |>
