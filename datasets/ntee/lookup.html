@@ -66,6 +66,7 @@ activeLink: /datasets/
   var PREFIX_LENGTH = 4;
 
   var input  = document.getElementById("lu-ein");
+  var lookupSequence = 0;   // only the most recent lookup may render
   var status = document.getElementById("lu-status");
   var error  = document.getElementById("lu-error");
   var result = document.getElementById("lu-result");
@@ -138,6 +139,7 @@ activeLink: /datasets/
         return response.json();
       })
       .then(function (shard) {
+        if (thisLookup !== lookupSequence) { return; }
         var einColumn = shard ? shard.fields.indexOf("ein") : -1;
         var record = shard ? shard.records.find(function (rec) { return rec[einColumn] === ein; }) : null;
         if (!record) {
@@ -147,6 +149,7 @@ activeLink: /datasets/
         render(record, shard);
       })
       .catch(function (err) {
+        if (thisLookup !== lookupSequence) { return; }
         console.error(err);
         showError("The lookup could not reach the NCCS index. Try again in a moment.");
       });
