@@ -1,0 +1,268 @@
+---
+title: NTEE Version 2
+description: The three-part NTEE format used in NCCS data files, with every code shown in both the IRS form and the version 2 form. Read live from the NCCS lookup tables.
+layout: default
+permalink: /datasets/ntee/v2/
+activeLink: /datasets/
+---
+
+{% include components/page-header.html
+  eyebrow = "dataset"
+  header = "NTEE Version 2"
+  description = "The same codes the IRS assigns, rewritten in a three-part form that separates industry, activity and organization type. This is how NTEE appears in NCCS data files."
+%}
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<style>
+  .v2-page { --v2-blue: #1696d2; --v2-navy: #0a4c6a; --v2-ink: #353535; --v2-muted: #696969; --v2-line: #e3e3e3; --v2-wash: #f5f5f5; --v2-gold: #fdbf11; }
+  .v2-anatomy { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; margin: 0 0 2rem; }
+  .v2-part { border: 1px solid var(--v2-line); border-radius: 8px; padding: 1rem 1.1rem; background: #fff; }
+  .v2-part .v2-code { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: 1.6rem; font-weight: 700; color: var(--v2-navy); letter-spacing: 0.04em; }
+  .v2-part .v2-code span { color: var(--v2-blue); }
+  .v2-part h3 { margin: 0.35rem 0 0.25rem; font-size: 1rem; color: var(--v2-navy); }
+  .v2-part p { margin: 0; font-size: 0.92rem; line-height: 1.45; color: var(--v2-ink); }
+  .v2-example { background: var(--v2-wash); border-left: 4px solid var(--v2-blue); padding: 0.9rem 1.1rem; margin: 0 0 2rem; max-width: 48rem; font-size: 0.95rem; }
+  .v2-example code { background: #fff; padding: 0.05rem 0.35rem; border-radius: 4px; }
+  .v2-keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.5rem 3rem; margin: 0 0 2.5rem; }
+  .v2-keys h3 { color: var(--v2-navy); font-size: 1.05rem; margin: 0 0 0.5rem; }
+  .v2-keys table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .v2-keys td { padding: 0.35rem 0.5rem 0.35rem 0; border-bottom: 1px solid var(--v2-line); vertical-align: top; }
+  .v2-keys td:first-child { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-weight: 700; color: var(--v2-navy); white-space: nowrap; width: 3.5rem; }
+  .v2-toolbar { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: center; justify-content: space-between; margin: 0 0 1rem; }
+  .v2-toolbar .btn { text-transform: none; font-weight: 700; font-size: 0.95rem; }
+  .v2-vintage { color: var(--v2-muted); font-size: 0.9rem; }
+  .v2-search { display: flex; gap: 0.5rem; align-items: center; margin: 0 0 0.75rem; }
+  .v2-search input { flex: 1; max-width: 28rem; padding: 0.55rem 0.8rem; border: 1px solid #c8c8c8; border-radius: 6px; font: inherit; }
+  .v2-search input:focus { outline: 2px solid var(--v2-blue); outline-offset: 1px; }
+  .v2-count { color: var(--v2-muted); font-size: 0.9rem; }
+  .v2-groups { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
+  .v2-groups button { border: 1px solid var(--v2-line); background: #fff; color: var(--v2-navy); border-radius: 999px; padding: 0.3rem 0.8rem; font: inherit; font-size: 0.85rem; cursor: pointer; }
+  .v2-groups button:hover { border-color: var(--v2-blue); }
+  .v2-groups button.-on { background: var(--v2-navy); border-color: var(--v2-navy); color: #fff; }
+  table.dataTable.v2-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+  table.dataTable.v2-table thead th { text-align: left; font-weight: 700; color: var(--v2-navy); background: #fff; border-bottom: 2px solid var(--v2-navy); padding: 0.6rem 0.75rem; }
+  table.dataTable.v2-table tbody td { padding: 0.7rem 0.75rem; border-bottom: 1px solid var(--v2-line); vertical-align: top; }
+  table.dataTable.v2-table tbody tr:hover { background: var(--v2-wash); }
+  table.dataTable.v2-table td.v2-old { color: var(--v2-muted); white-space: nowrap; font-family: "SFMono-Regular", Menlo, Consolas, monospace; }
+  table.dataTable.v2-table td.v2-new { font-weight: 700; color: var(--v2-navy); white-space: nowrap; font-family: "SFMono-Regular", Menlo, Consolas, monospace; }
+  table.dataTable.v2-table tr.v2-has-details td.v2-title { cursor: pointer; }
+  table.dataTable.v2-table tr.v2-has-details td.v2-title::after { content: " \25BE"; color: var(--v2-blue); }
+  table.dataTable.v2-table tr.shown td.v2-title::after { content: " \25B4"; }
+  .v2-details { padding: 0.25rem 0 0.75rem; max-width: 52rem; line-height: 1.5; }
+  .dataTables_wrapper .dataTables_paginate { margin-top: 1rem; }
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover { background: var(--v2-navy); color: #fff !important; border-color: var(--v2-navy); }
+  .dataTables_wrapper .dataTables_info { color: var(--v2-muted); font-size: 0.9rem; }
+  .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter { display: none; }
+  .v2-error { padding: 1rem; border: 1px solid #db2b27; border-radius: 6px; background: #fdf1f1; margin: 1rem 0; }
+  .v2-source { color: var(--v2-muted); font-size: 0.9rem; margin-top: 1.5rem; max-width: 52rem; }
+  @media print {
+    .nav, .footer, .v2-toolbar, .v2-search, .v2-groups, .dataTables_paginate, .dataTables_info { display: none !important; }
+    table.dataTable.v2-table tbody td { padding: 0.3rem 0.4rem; font-size: 0.8rem; }
+  }
+</style>
+
+<div class="feature v2-page mt-3 mb-content">
+
+  <div class="v2-anatomy">
+    <div class="v2-part"><div class="v2-code"><span>EDU</span>-B29-RG</div><h3>Industry group</h3><p>One of 12 broad sectors, built from the major-group letter. Universities and hospitals are split out from education and health.</p></div>
+    <div class="v2-part"><div class="v2-code">EDU-<span>B29</span>-RG</div><h3>Activity</h3><p>The original IRS code. Codes whose last two digits are 01 to 19 describe a support role, not an activity, so they become <code>x00</code> and the role moves to the third part.</p></div>
+    <div class="v2-part"><div class="v2-code">EDU-B29-<span>RG</span></div><h3>Organization type</h3><p><code>RG</code> is a regular nonprofit doing the activity itself. The other seven types are support roles: advocacy, fundraising, research, professional associations and so on.</p></div>
+  </div>
+
+  <div class="v2-example">
+    <strong>Why the change.</strong> In the IRS form, <code>B01</code> means "advocacy for education", and <code>B0129</code> (an older five-character NCCS form) meant "advocacy for charter schools". The support role was hidden in the digits, so grouping all advocacy groups, or all charter-school organizations, took special handling. Version 2 makes both explicit: <code>EDU-B00-AA</code> and <code>EDU-B29-AA</code>.
+  </div>
+
+  <div class="v2-keys">
+    <div>
+      <h3>Industry groups</h3>
+      <table id="v2-industry-key"><tbody></tbody></table>
+    </div>
+    <div>
+      <h3>Organization types</h3>
+      <table>
+        <tbody>
+          <tr><td>RG</td><td>Regular nonprofit</td></tr>
+          <tr><td>AA</td><td>Alliance or advocacy organization (was 01)</td></tr>
+          <tr><td>MT</td><td>Management and technical assistance (was 02)</td></tr>
+          <tr><td>PA</td><td>Professional society or association (was 03)</td></tr>
+          <tr><td>RP</td><td>Research institute or public policy analysis (was 05)</td></tr>
+          <tr><td>MS</td><td>Monetary support, single organization (was 11)</td></tr>
+          <tr><td>MM</td><td>Monetary support, multiple organizations (was 12)</td></tr>
+          <tr><td>NS</td><td>Nonmonetary support not elsewhere classified (was 19)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h2>Every code in both forms</h2>
+
+  <div class="v2-toolbar">
+    <div>
+      <button type="button" class="btn -primary" id="v2-download">Download this table (CSV)</button>
+      <button type="button" class="btn -secondary" id="v2-print">Print</button>
+      <a class="btn -secondary" href="{{ '/datasets/ntee/browse/' | relative_url }}">IRS codes with NAICS</a>
+    </div>
+    <span class="v2-vintage" id="v2-vintage">Loading the current table&hellip;</span>
+  </div>
+
+  <div class="v2-search">
+    <input type="search" id="v2-search" placeholder="Search either code form or a description" aria-label="Search the table">
+    <span class="v2-count" id="v2-count"></span>
+  </div>
+
+  <ul class="v2-groups" id="v2-groups" aria-label="Filter by industry group"></ul>
+
+  <div id="v2-error" class="v2-error" hidden>The table could not be loaded. The source file is at <a href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv">nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv</a>.</div>
+
+  <table id="v2-table" class="v2-table" style="width:100%">
+    <thead>
+      <tr>
+        <th>IRS code</th>
+        <th>Version 2 code</th>
+        <th>Description</th>
+        <th>Industry</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+  </table>
+
+  <p class="v2-source">Built when the page opens from the NCCS <a href="{{ '/datasets/lookups/' | relative_url }}">lookup tables</a> (<code>ntee_code.csv</code>, <code>ntee_code_major_group.csv</code>, <code>nteev2_subsector.csv</code>) using the conversion rules above, so it always matches the current code list. Click a description to read the full definition. The rules and their code are documented in the <a href="https://github.com/Nonprofit-Open-Data-Collective/mission-taxonomies/blob/main/NTEEV2/README.md">NTEE version 2 methodology</a>.</p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var LOOKUP_BASE_URL = "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest";
+
+  // Conversion rules (NTEE version 2 methodology; nccs-contracts ADR 0048).
+  var INDUSTRY_BY_LETTER = { A: "ART", B: "EDU", C: "ENV", D: "ENV", E: "HEL", F: "HEL", G: "HEL", H: "HEL",
+    I: "HMS", J: "HMS", K: "HMS", L: "HMS", M: "HMS", N: "HMS", O: "HMS", P: "HMS", Q: "IFA",
+    R: "PSB", S: "PSB", T: "PSB", U: "PSB", V: "PSB", W: "PSB", X: "REL", Y: "MMB", Z: "UNU" };
+  var UNIVERSITY_CODES = ["B40", "B41", "B42", "B43", "B50"];
+  var HOSPITAL_CODES = ["E20", "E21", "E22", "E24"];
+  var TYPE_BY_COMMON_CODE = { "01": "AA", "02": "MT", "03": "PA", "05": "RP", "11": "MS", "12": "MM", "19": "NS" };
+  var INDUSTRY_ORDER = ["ART", "EDU", "UNI", "ENV", "HEL", "HOS", "HMS", "IFA", "PSB", "REL", "MMB", "UNU"];
+
+  function fetchText(url) {
+    return fetch(url, { cache: "no-cache" }).then(function (r) { if (!r.ok) { throw new Error(url + " " + r.status); } return r.text(); });
+  }
+  function parseCsv(text) { return Papa.parse(text, { header: true, skipEmptyLines: true }).data; }
+  function stripTags(v) { return (v || "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim(); }
+  function escapeHtml(v) { return String(v).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[c]; }); }
+
+  function convert(code) {
+    var letter = code.charAt(0);
+    var digits = code.slice(1);
+    var industry = INDUSTRY_BY_LETTER[letter] || "UNU";
+    if (UNIVERSITY_CODES.indexOf(code) >= 0) { industry = "UNI"; }
+    if (HOSPITAL_CODES.indexOf(code) >= 0) { industry = "HOS"; }
+    var type = TYPE_BY_COMMON_CODE[digits] || "RG";
+    var activity = type === "RG" ? code : letter + "00";
+    return { industry: industry, activity: activity, type: type, v2: industry + "-" + activity + "-" + type };
+  }
+
+  function buildRows(codes, majorGroups, subsectors) {
+    var groupName = {}; majorGroups.forEach(function (r) { groupName[r.ntee_code_first_character] = stripTags(r.ntee_code_major_group); });
+    var industryName = {}; subsectors.forEach(function (r) { industryName[r.nteev2_subsector] = stripTags(r.nteev2_subsector_definition); });
+    var rows = codes.map(function (r) {
+      var c = convert(r.ntee_code);
+      return { old: r.ntee_code, v2: c.v2, industry: c.industry, industryName: industryName[c.industry] || c.industry,
+        group: groupName[r.ntee_code.charAt(0)] || "Unknown", type: c.type, title: stripTags(r.ntee_code_definition), details: stripTags(r.ntee_code_description) };
+    }).sort(function (a, b) { return a.old < b.old ? -1 : a.old > b.old ? 1 : 0; });
+    return { rows: rows, industryName: industryName };
+  }
+
+  function fillIndustryKey(industryName) {
+    var body = document.querySelector("#v2-industry-key tbody");
+    var notes = { EDU: " (except universities)", HEL: " (except hospitals)", UNI: " (B40 to B43, B50)", HOS: " (E20 to E22, E24)" };
+    INDUSTRY_ORDER.forEach(function (k) {
+      body.insertAdjacentHTML("beforeend", "<tr><td>" + k + "</td><td>" + escapeHtml(industryName[k] || k) + (notes[k] || "") + "</td></tr>");
+    });
+  }
+
+  function showVintage(manifest, n) {
+    var label = n + " codes";
+    if (manifest && manifest.vintage) { label += " · vintage " + manifest.vintage + (manifest.built_at ? ", built " + manifest.built_at.slice(0, 10) : ""); }
+    document.getElementById("v2-vintage").textContent = label;
+  }
+
+  function toCsv(rows) {
+    var head = ["ntee_irs", "ntee_v2", "industry_group", "industry_group_name", "major_group", "organization_type", "description", "definition"];
+    var lines = [head.join(",")];
+    rows.forEach(function (r) {
+      lines.push([r.old, r.v2, r.industry, r.industryName, r.group, r.type, r.title, r.details].map(function (v) { return "\"" + String(v).replace(/"/g, "\"\"") + "\""; }).join(","));
+    });
+    return lines.join("\r\n");
+  }
+
+  function renderTable(rows, industryName) {
+    var table = $("#v2-table").DataTable({
+      data: rows,
+      columns: [
+        { data: "old", className: "v2-old", width: "5rem" },
+        { data: "v2", className: "v2-new", width: "9rem" },
+        { data: "title", className: "v2-title" },
+        { data: null, render: function (r) { return escapeHtml(r.industry + ": " + r.industryName); } },
+        { data: "type", width: "3rem" }
+      ],
+      rowCallback: function (tr, r) { if (r.details) { tr.classList.add("v2-has-details"); } },
+      pageLength: 50, order: [[0, "asc"]],
+      language: { info: "Showing _START_ to _END_ of _TOTAL_ codes", infoFiltered: "(filtered from _MAX_)", paginate: { previous: "Previous", next: "Next" } },
+      drawCallback: function () {
+        var i = this.api().page.info();
+        document.getElementById("v2-count").textContent = i.recordsDisplay === i.recordsTotal ? "" : i.recordsDisplay + " of " + i.recordsTotal + " codes match";
+      }
+    });
+
+    document.getElementById("v2-search").addEventListener("input", function () { table.search(this.value).draw(); });
+
+    $("#v2-table tbody").on("click", "tr.v2-has-details td.v2-title", function () {
+      var tr = $(this).closest("tr"); var row = table.row(tr);
+      if (row.child.isShown()) { row.child.hide(); tr.removeClass("shown"); }
+      else { row.child("<div class=\"v2-details\"><strong>" + escapeHtml(row.data().v2) + "</strong><br>" + escapeHtml(row.data().details) + "</div>").show(); tr.addClass("shown"); }
+    });
+
+    var list = document.getElementById("v2-groups");
+    list.insertAdjacentHTML("beforeend", "<li><button type=\"button\" class=\"-on\" data-key=\"\">All industries</button></li>");
+    INDUSTRY_ORDER.forEach(function (k) {
+      list.insertAdjacentHTML("beforeend", "<li><button type=\"button\" data-key=\"" + k + "\">" + escapeHtml(k + ": " + (industryName[k] || k)) + "</button></li>");
+    });
+    list.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) { return; }
+      list.querySelectorAll("button").forEach(function (x) { x.classList.remove("-on"); }); b.classList.add("-on");
+      var k = b.getAttribute("data-key");
+      table.column(3).search(k ? "^" + k + ":" : "", true, false).draw();
+    });
+
+    document.getElementById("v2-download").addEventListener("click", function () {
+      var blob = new Blob([toCsv(table.rows({ search: "applied" }).data().toArray())], { type: "text/csv" });
+      var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "ntee-version-2-codes.csv"; a.click(); URL.revokeObjectURL(a.href);
+    });
+    document.getElementById("v2-print").addEventListener("click", function () {
+      table.page.len(-1).draw(); window.print(); table.page.len(50).draw();
+    });
+  }
+
+  Promise.all([
+    fetchText(LOOKUP_BASE_URL + "/ntee_code.csv").then(parseCsv),
+    fetchText(LOOKUP_BASE_URL + "/ntee_code_major_group.csv").then(parseCsv),
+    fetchText(LOOKUP_BASE_URL + "/nteev2_subsector.csv").then(parseCsv),
+    fetchText(LOOKUP_BASE_URL + "/_manifest.json").then(JSON.parse).catch(function () { return null; })
+  ]).then(function (res) {
+    var built = buildRows(res[0], res[1], res[2]);
+    fillIndustryKey(built.industryName);
+    showVintage(res[3], built.rows.length);
+    renderTable(built.rows, built.industryName);
+  }).catch(function (err) {
+    console.error(err);
+    document.getElementById("v2-vintage").textContent = "";
+    document.getElementById("v2-error").hidden = false;
+  });
+})();
+</script>

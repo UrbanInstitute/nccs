@@ -12,6 +12,9 @@ primaryLinks:
   - text: "Browse the table"
     href: "../ntee/browse/"
     icon: search
+  - text: "NTEE version 2"
+    href: "../ntee/v2/"
+    icon: chart-bar
   - text: "NTEE guide"
     href: "../../resources/ntee/"
     icon: article
