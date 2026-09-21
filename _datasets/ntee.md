@@ -7,7 +7,7 @@ categories:
   - crosswalks
 featured: false
 primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv"
-primaryCtaCaption: 'CSV, 655 rows &middot; <a href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/_manifest.json">Manifest</a>'
+primaryCtaCaption: 'CSV, one row per code &middot; <a href="https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/_manifest.json">Manifest</a>'
 primaryLinks:
   - text: "Browse the table"
     href: "../../widgets/ntee_tables/ntee-naics_table.html"
@@ -30,7 +30,7 @@ The National Taxonomy of Exempt Entities (NTEE) is the classification system the
 - A **short description** in the IRS's own words, and a **longer description** where one exists.
 - The closest **NAICS industry** (2022 edition), for anyone linking nonprofit data to economic statistics.
 
-It is the same lookup table the NCCS data pipeline uses to label the [Business Master File](../bmf/), so the codes here match the codes in the data. Codes the IRS has retired stay in the table because older files still carry them. The table is refreshed whenever the IRS changes its list, and checked against the IRS list every January.
+It is the same lookup table the NCCS data pipeline uses to label the [Business Master File](../bmf/), so the codes here match the codes in the data. Codes the IRS has retired stay in the table because older files still carry them. The table is refreshed whenever the IRS changes its list, and checked against the IRS list every January. The browsable table reads the current file each time it is opened, so it never lags behind the download.
 
 ## Columns
 

@@ -127,3 +127,25 @@ table.dataTable td.ntee-long {
   color: #ffffff !important;
   border-color: #1696d2;
 }
+
+.ntee-error {
+  padding: 1rem;
+  border: 1px solid #db2b27;
+  border-radius: 4px;
+  background: #fdf1f1;
+  margin-bottom: 1.5rem;
+}
+.ntee-filters th {
+  background: #f5f5f5;
+  padding: 0.35rem;
+}
+.ntee-filters input,
+.ntee-filters select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.3rem;
+  border: 1px solid #d2d2d2;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.85rem;
+}
