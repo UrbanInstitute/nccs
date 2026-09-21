@@ -1,0 +1,129 @@
+/* NTEE crosswalk table: matches the NCCS site (Lato, Urban blues). */
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../../public/fonts/Lato-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Lato";
+  font-weight: 700;
+  font-display: swap;
+  src: url("../../public/fonts/Lato-Bold.woff2") format("woff2");
+}
+
+body {
+  font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+  color: #353535;
+  background: #ffffff;
+}
+
+.ntee-page {
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1rem, 5vw, 3rem) 3rem;
+}
+
+.ntee-page h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: #0a4c6a;
+  margin: 0 0 0.5rem;
+}
+
+.ntee-page .lede {
+  font-size: 1.05rem;
+  max-width: 48rem;
+  margin: 0 0 1.25rem;
+}
+
+.ntee-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ntee-button {
+  display: inline-block;
+  padding: 0.55rem 1.1rem;
+  border: 2px solid #12719e;
+  border-radius: 999px;
+  color: #12719e;
+  background: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.ntee-button:hover,
+.ntee-button:focus {
+  background: #1696d2;
+  border-color: #1696d2;
+  color: #ffffff;
+}
+.ntee-button.-primary {
+  background: #1696d2;
+  border-color: #1696d2;
+  color: #ffffff;
+}
+.ntee-button.-primary:hover,
+.ntee-button.-primary:focus {
+  background: #0a4c6a;
+  border-color: #0a4c6a;
+}
+
+.ntee-meta {
+  color: #696969;
+  font-size: 0.9rem;
+}
+
+/* DataTables */
+table.dataTable {
+  font-size: 0.95rem;
+}
+table.dataTable thead th {
+  background: #0a4c6a;
+  color: #ffffff;
+  font-weight: 700;
+  border-bottom: none;
+}
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  color: #ffffff;
+}
+table.dataTable tbody tr:nth-child(even) {
+  background: #f5f5f5;
+}
+table.dataTable tbody tr:hover {
+  background: #cfe8f3;
+}
+table.dataTable td.ntee-code {
+  font-weight: 700;
+  color: #0a4c6a;
+  white-space: nowrap;
+}
+table.dataTable td.ntee-long {
+  max-width: 34rem;
+}
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .form-control {
+  border: 1px solid #d2d2d2;
+  border-radius: 4px;
+}
+.dataTables_wrapper .dt-buttons .dt-button {
+  border: 1px solid #12719e;
+  border-radius: 999px;
+  color: #12719e;
+  background: #ffffff;
+}
+.dataTables_wrapper .dt-buttons .dt-button:hover {
+  background: #1696d2;
+  color: #ffffff;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #1696d2;
+  color: #ffffff !important;
+  border-color: #1696d2;
+}
