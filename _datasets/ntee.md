@@ -9,6 +9,9 @@ featured: false
 primaryCtaUrl: "https://nccsdata.s3.amazonaws.com/lookups/bmf/latest/ntee_code.csv"
 primaryCtaCaption: 'CSV, one row per code, current vintage'
 primaryLinks:
+  - text: "Look up an EIN"
+    href: "../ntee/lookup/"
+    icon: search
   - text: "Browse the table"
     href: "../ntee/browse/"
     icon: search
