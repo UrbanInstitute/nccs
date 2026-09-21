@@ -12,6 +12,8 @@ abstract: "National Taxonomy of Exempt Entities (NTEE) system was developed by N
 primaryLinks:
   - text: NTEE Code Descriptions (IRS Version) with NAICS Crosswalk
     href: "../../widgets/ntee_tables/ntee-naics_table.html"
+  - text: Download the NTEE code table (CSV)
+    href: "../../datasets/ntee/"
   - text: Convenient Two-Page NTEE Cheatsheet (IRS Version)
     href: "../../pubs/ntee-two-page-2005.pdf"
   - text: Methodology for NTEE (IRS Version) to NTEEV2 (NCCS Version) Conversions
