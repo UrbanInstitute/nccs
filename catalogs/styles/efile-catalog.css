@@ -1,0 +1,228 @@
+/*
+ * Efile catalog pages (catalog-efile-*.qmd, catalog-efilepf-*.qmd).
+ * Loaded after catalog.css. The table of contents follows the layout of the
+ * econometrics archive (lecy.github.io/econometrics): a heading per form, one
+ * row per part on the left, that part's tables on the right.
+ */
+
+:root {
+  --ef-ink: #1f2429;
+  --ef-ink-mid: #4d565f;
+  --ef-ink-soft: #6d7681;
+  --ef-rule: #dcdfe4;
+  --ef-rule-strong: #c3c8cf;
+  --ef-surface: #f5f7f9;
+  --ef-accent: #1696d2;
+  --ef-accent-ink: #12719e;
+  --ef-accent-wash: #e8f4fb;
+  --ef-navy: #0a4c6a;
+  --ef-step--2: .75rem;
+  --ef-step--1: .8125rem;
+}
+
+/* ---------- table of contents ---------- */
+.contents { padding: 1.5rem 0 1rem; }
+.contents > h2 {
+  font-size: var(--ef-step--1);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ef-ink-soft);
+  margin: 0 0 1.1rem;
+}
+.contents .toc-part {
+  font-size: var(--ef-step--2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ef-accent-ink);
+  margin: 1.6rem 0 .5rem;
+}
+.contents .toc-part a { color: inherit; text-decoration: none; }
+.contents .toc-part a:hover { text-decoration: underline; }
+.toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ef-rule);
+}
+.toc > li {
+  border-bottom: 1px solid var(--ef-rule);
+  display: grid;
+  gap: .35rem 2rem;
+  padding: .7rem .2rem;
+}
+@media (min-width: 46rem) {
+  .toc > li { grid-template-columns: 15rem 1fr; }
+}
+.toc-unit {
+  display: flex;
+  gap: .7rem;
+  align-items: baseline;
+  text-decoration: none;
+  color: var(--ef-ink);
+  align-self: start;
+}
+.toc-unit:hover { color: var(--ef-accent-ink); }
+.toc .n {
+  font-family: var(--bs-font-monospace, monospace);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--ef-step--1);
+  color: var(--ef-accent);
+  font-weight: 600;
+  flex: none;
+  min-width: 1.6rem;
+}
+.toc .t { font-weight: 600; font-size: var(--ef-step--1); line-height: 1.35; }
+.toc-items { list-style: none; margin: 0; padding: 0; }
+.toc-items li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .25rem .5rem;
+  padding: .12rem 0;
+}
+.toc-items .it {
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: var(--ef-step--1);
+  color: var(--ef-ink-mid);
+  line-height: 1.35;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.toc-items .it:hover { color: var(--ef-accent-ink); text-decoration: underline; }
+.toc-items--guide .it { font-family: inherit; }
+.toc-items .chips { display: inline-flex; flex-wrap: wrap; gap: .25rem; }
+
+/* ---------- chips ---------- */
+.chip {
+  display: inline-block;
+  font-size: var(--ef-step--2);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: .26rem .45rem;
+  border-radius: 2px;
+  border: 1px solid var(--ef-rule-strong);
+  color: var(--ef-ink-soft);
+  background: #fff;
+}
+a.chip:hover { color: var(--ef-accent-ink); border-color: var(--ef-accent); background: var(--ef-accent-wash); }
+.chip--html, .chip--pkg { border-color: var(--ef-accent); color: var(--ef-accent-ink); }
+.chip--csv { border-color: var(--ef-accent); color: var(--ef-accent-ink); }
+.chip--pq { background: var(--ef-navy); border-color: var(--ef-navy); color: #fff; }
+a.chip--pq:hover { background: var(--ef-accent-ink); border-color: var(--ef-accent-ink); color: #fff; }
+.chip--one, .chip--many { font-family: var(--bs-font-monospace, monospace); font-weight: 600; }
+.chip--many { border-color: var(--ef-ink-soft); color: var(--ef-ink); }
+
+/* ---------- intro blocks ---------- */
+.ef-banner {
+  border-left: 4px solid #fdbf11;
+  background: #fff8e1;
+  padding: .9rem 1.1rem;
+  margin: 1rem 0 1.5rem;
+}
+.ef-pkgs { list-style: none; padding: 0; margin: .5rem 0 1rem; }
+.ef-pkgs li { padding: .3rem 0; display: flex; gap: .75rem; align-items: baseline; }
+.ef-pkgs .chip { min-width: 8.5rem; text-align: center; font-size: var(--ef-step--1); }
+.ef-pkgs span { color: var(--ef-ink-mid); }
+.ef-dict { display: flex; flex-wrap: wrap; gap: .5rem; align-items: baseline; margin: .4rem 0; }
+.ef-dict-label { min-width: 10rem; font-weight: 600; }
+.ef-dict .chip { font-size: var(--ef-step--1); padding: .4rem .6rem; }
+
+/* ---------- section headings ---------- */
+h2.ef-form {
+  font-size: 30px;
+  color: var(--ef-navy);
+  border-top: 2px solid var(--ef-accent);
+  padding-top: 1.5rem;
+  margin-top: 4rem;
+}
+h3.ef-part {
+  font-size: 22px;
+  color: var(--ef-navy);
+  margin-top: 2.5rem;
+}
+h3.ef-part .n { color: var(--ef-accent); font-family: var(--bs-font-monospace, monospace); margin-right: .4rem; }
+
+/* ---------- one table ---------- */
+.ef-table { margin: 1.5rem 0 2.75rem; }
+.ef-table h4 {
+  font-family: var(--bs-font-monospace, monospace);
+  font-size: 20px;
+  color: var(--ef-accent-ink);
+  margin: 0 0 .35rem;
+  overflow-wrap: anywhere;
+}
+.ef-attrs { color: var(--ef-ink-mid); font-size: .9rem; margin: 0 0 .5rem; }
+.ef-attrs .sep { color: var(--ef-rule-strong); margin: 0 .2rem; }
+.ef-table-title { color: var(--ef-ink-mid); font-style: italic; margin: 0 0 .5rem; }
+.ef-badge {
+  display: inline-block;
+  font-family: var(--bs-font-monospace, monospace);
+  font-weight: 700;
+  font-size: .8rem;
+  padding: .1rem .4rem;
+  border-radius: 3px;
+  color: #fff;
+  background: var(--ef-navy);
+}
+.ef-badge--many { background: var(--ef-ink-mid); }
+.ef-files-wrap { overflow-x: auto; }
+table.ef-files { border-collapse: collapse; width: 100%; font-size: .9rem; }
+table.ef-files th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--ef-ink-soft);
+  border-bottom: 1px solid var(--ef-rule-strong);
+  padding: .3rem .6rem;
+}
+table.ef-files td { border-bottom: 1px solid var(--ef-rule); padding: .28rem .6rem; vertical-align: middle; }
+table.ef-files td code { font-size: .82rem; color: var(--ef-ink); background: none; padding: 0; }
+table.ef-files .num { text-align: right; font-variant-numeric: tabular-nums; }
+.ef-code { margin: .75rem 0 .25rem; }
+.ef-code summary { cursor: pointer; color: var(--ef-accent-ink); font-weight: 600; font-size: .9rem; }
+.ef-code pre {
+  background: var(--ef-surface);
+  border: 1px solid var(--ef-rule);
+  border-radius: 3px;
+  padding: .75rem 1rem;
+  margin-top: .5rem;
+  font-size: .82rem;
+  overflow-x: auto;
+}
+.ef-top { font-size: .8rem; color: var(--ef-ink-soft); }
+
+/* ---------- release notes and version history ---------- */
+.ef-notes {
+  border-left: 3px solid var(--ef-rule-strong);
+  padding-left: 1.1rem;
+  max-height: 34rem;
+  overflow-y: auto;
+}
+.ef-notes table { font-size: .85rem; }
+table.ef-history { width: 100%; font-size: .9rem; border-collapse: collapse; }
+table.ef-history th, table.ef-history td { padding: .35rem .6rem; border-bottom: 1px solid var(--ef-rule); }
+.ef-here { font-size: .75rem; color: var(--ef-ink-soft); }
+.ef-status { font-size: .78rem; font-weight: 700; padding: .1rem .4rem; border-radius: 3px; }
+.ef-status--current { background: #e6f4ea; color: #1e6b34; }
+.ef-status--interim { background: #fff3cd; color: #7a5b00; }
+.ef-status--archived { background: var(--ef-surface); color: var(--ef-ink-soft); }
+
+/* Fixed column widths so every table section lines up. */
+table.ef-files { table-layout: fixed; }
+table.ef-files th:nth-child(1) { width: 4.5rem; }
+table.ef-files th:nth-child(3) { width: 5rem; }
+table.ef-files th:nth-child(4) { width: 6.5rem; }
+table.ef-files th:nth-child(5) { width: 7.5rem; }
+table.ef-files td:nth-child(2) code { overflow-wrap: anywhere; }
+
+/* Note on anchoring code to a release. */
+.ef-pin {
+  border-left: 4px solid var(--ef-accent);
+  background: var(--ef-accent-wash);
+  padding: .9rem 1.1rem .4rem;
+  margin: 1rem 0 2rem;
+}
+.ef-pin pre { background: #fff; }

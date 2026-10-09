@@ -386,3 +386,51 @@ knitr::kable( catalog )
   width: 60px;
 }
 ```
+
+# Efile Catalogs (990 and 990-PF)
+
+The efile catalogs are built by `R/efile_helpers.R`; every page reads the
+same helpers:
+
+| Page | Release | Status |
+|---|---|---|
+| `catalog-efile-v3_1.qmd` | `efile_v3_1` (990 / 990-EZ) | Current |
+| `catalog-efilepf-v3_1.qmd` | `efilepf_v3_1` (990-PF) | Current |
+| `catalog-efile-v2_3.qmd`, `catalog-efile-v2_2.qmd`, `catalog-efilepf-v2_3.qmd` | interim builds | Archive (minimal) |
+| `catalog-efile-v2_1`, `catalog-efile-v2`, `catalog-efile` | older public releases | Archive (superseded banner, not re-rendered) |
+
+No manifest CSV is committed for these pages and no AWS login is needed:
+
+- **Table list and row counts** come from the release's
+  `COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE-*.CSV` on S3 (public bucket `nccs-efile`),
+  read at render time. One row per published table-year file; zero-row
+  table-years are left out of the listings. `efilepf_v2_3` shipped without one,
+  so its counts were read from the parquet footers into
+  `efile/ROW-COUNTS-EFILEPF_V2_3.csv`.
+- **Form, part and table names** come from the installed `concordance990`
+  package (`inst/extdata/src/{forms,parts,tables}.csv`), or from GitHub when it
+  is not installed.
+- **Release notes** are read from `RELEASE-NOTES-*.md` beside the tables.
+
+### Adding a new release
+
+1. Add a row to `EFILE_RELEASES` in `R/efile_helpers.R` (prefix, date, page,
+   count file, release-notes file), mark it `Current`, and mark the previous
+   one `Archived` or `Interim`.
+2. Copy the previous current page to the new name (for example
+   `catalog-efile-v3_2.qmd`) and change the `efile_release()` id in its setup
+   chunk. Turn the previous page into a minimal archive page (see
+   `catalog-efile-v2_3.qmd`) so it shows the superseded banner.
+3. Update `primaryCtaUrl` and the 990-PF link in `_datasets/efile.md`.
+4. Rebuild the dataset-page chart and table, and paste the printed table into
+   `_datasets/efile.md`:
+   ```bash
+   cd catalogs && Rscript efile/make-efile-coverage.R
+   ```
+5. Run the tests and render the pages:
+   ```bash
+   Rscript catalogs/tests/test-efile-helpers.R
+   quarto render catalogs/catalog-efile-v3_2.qmd
+   ```
+6. Commit the `.qmd`, `.html` and `_files/` of every page you rendered, plus
+   `_datasets/efile.md` and `_datasets/img/efile_count.png`.

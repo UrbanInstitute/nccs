@@ -1,0 +1,68 @@
+---
+title: "990 Efile Data Catalog"
+subtitle: "Archived interim release · efile_v2_2"
+format:
+  html:
+    css:
+      - styles/catalog.css
+      - styles/efile-catalog.css
+    toc: false
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+
+source("R/efile_helpers.R")
+
+rel    <- efile_release("v2_2")
+cc     <- efile_concordance()
+counts <- efile_nonempty(efile_counts(rel))
+meta   <- efile_table_meta(counts$table, cc, rel$form)
+fil    <- efile_filings(counts)
+yrs    <- range(counts$year)
+```
+
+```{r}
+#| output: asis
+cat(efile_banner(rel))
+```
+
+| | |
+|:--|:--|
+| **Release** | `r efile_label(rel)` (published `r rel$published`) |
+| **Returns** | Form 990 and Form 990-EZ, with schedules |
+| **Tax years** | `r yrs[1]`&ndash;`r yrs[2]` |
+| **Tables** | `r length(unique(counts$table))` tables, `r fmt_n(nrow(counts))` table-year files |
+| **Filings** | `r fmt_n(sum(fil$rows_tot))` returns |
+
+Each table-year is published as CSV and Parquet. Data dictionary links point to the current concordance990 dictionary, so a few variables may differ from the ones in this release.
+
+```{r}
+#| output: asis
+cat(efile_pin_note(rel))
+```
+
+```{r}
+#| output: asis
+cat(efile_toc(meta, c("version-history" = "Version history")))
+```
+
+## Version history {#version-history}
+
+```{r}
+#| output: asis
+cat(efile_version_history(rel$id))
+```
+
+# Available tables {#tables}
+
+```{r}
+#| output: asis
+cat(efile_table_sections(counts, meta, rel, snippet = FALSE))
+```
+
+<p style='font-size: 0.85em; color: #666; margin-top: 2em;'>Table list and row counts: `r rel$count_file`. Page rendered `r format(Sys.Date())`.</p>
