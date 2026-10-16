@@ -7,6 +7,7 @@ format:
       - styles/catalog.css
       - styles/efile-catalog.css
     toc: false
+    embed-resources: true
 execute:
   echo: false
   warning: false

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>990 EFILER Data Catalog</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -28,14 +34,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="catalog-efile-v2_1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="catalog-efile-v2_1_files/libs/quarto-html/popper.min.js"></script>
 <script src="catalog-efile-v2_1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="catalog-efile-v2_1_files/libs/quarto-html/anchor.min.js"></script>
 <link href="catalog-efile-v2_1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="catalog-efile-v2_1_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="catalog-efile-v2_1_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="catalog-efile-v2_1_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="catalog-efile-v2_1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="catalog-efile-v2_1_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="catalog-efile-v2_1_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
+<link rel="stylesheet" href="styles/catalog.css">
 </head>
 
 <body class="quarto-light">
@@ -62,7 +68,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 </header>
-<div class="ef-banner" style="border-left:4px solid #fdbf11;background:#fff8e1;padding:.9rem 1.1rem;margin:1rem 0 1.5rem;"><strong>Superseded.</strong> This page lists <code>efile_v2_1</code>, a previous public release, kept so that analyses run on it can be reproduced. The current releases are <a href="catalog-efile-v3_1.html"><code>efile_v3_1</code></a> (Form 990 and 990-EZ) and <a href="catalog-efilepf-v3_1.html"><code>efilepf_v3_1</code></a> (Form 990-PF). See the <a href="catalog-efile-v3_1.html#version-history">version history</a>.</div>
 
 <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">Efile Data Contents</h2>
@@ -192,13 +197,14 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   </ul>
 </nav>
+<div class="ef-banner" style="border-left:4px solid #fdbf11;background:#fff8e1;padding:.9rem 1.1rem;margin:1rem 0 1.5rem;"><strong>Superseded.</strong> This page lists <code>efile_v2_1</code>, a previous public release, kept so that analyses run on it can be reproduced. The current releases are <a href="catalog-efile-v3_1.html"><code>efile_v3_1</code></a> (Form 990 and 990-EZ) and <a href="catalog-efilepf-v3_1.html"><code>efilepf_v3_1</code></a> (Form 990-PF). See the <a href="catalog-efile-v3_1.html#version-history">version history</a>.</div>
 <p><br></p>
 <hr>
 <p><br></p>
 <section id="about-nccs-efile-data" class="level1">
 <h1>About NCCS Efile Data</h1>
 <section id="data-sources-and-processing" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources-and-processing">Data Sources and Processing</h2>
+<h2 data-anchor-id="data-sources-and-processing">Data Sources and Processing</h2>
 <p>IRS 990 Efile data is generated from XML files hosted on the <strong>990 Data Commons</strong>.</p>
 <p>XML files are parsed using an <strong>XML-to-RDB Concordance</strong> file that has been produced by Jesse Lecy, Hyunrang Han, and the Nonprofit Open Data Collective.</p>
 <p>XML documents are converted in the data tables described in data dictionary using the <strong>irs990efile R Package</strong>.</p>
@@ -214,7 +220,7 @@ ul.task-list li input[type="checkbox"] {
 <p><br> <br></p>
 </section>
 <section id="data-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
+<h2 data-anchor-id="data-dictionary">Data Dictionary</h2>
 <p>Efile data has been parsed into 125 tables that correspond to sections (“Parts”) on 990 Forms and Schedules. All years use a consistent data dictionary.</p>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="buttonx" target="_blank"> <b>DATA DICTIONARY</b> </a></p>
 <p>An archive of historic 990 Forms and Schedules is available from the NODC.</p>
@@ -224,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 </section>
 <section id="coverage" class="level2">
-<h2 class="anchored" data-anchor-id="coverage">Coverage</h2>
+<h2 data-anchor-id="coverage">Coverage</h2>
 <p>Non-mandatory electronic filing for tax-exempt organizations started around 2010. Utilization of electronic filing options grew steadily over the next decade (see the table below).</p>
 <p>Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. <em>The schemas needed to make sense of the XML file structures, however, have not been made public.</em></p>
 <p>Beginning in the 2021 tax year (the 2022 calendar year) efiling became mandatory for most tax-exempt organizations. Prior to 2021 the rate of 990/990EZ efilers had been increasing steadily.</p>
@@ -431,7 +437,7 @@ ul.task-list li input[type="checkbox"] {
 <p>If you need to confirm whether an organization has omitted a response or whether the xpath-to-rdb-table is missing from the Concordance, you can always inspect the raw XML files by following the URL provided in the dataset.</p>
 </section>
 <section id="structure-of-table-and-file-names" class="level2">
-<h2 class="anchored" data-anchor-id="structure-of-table-and-file-names">Structure of Table and File Names</h2>
+<h2 data-anchor-id="structure-of-table-and-file-names">Structure of Table and File Names</h2>
 <p>File names are organized as follows:</p>
 <p><strong>FF-PPP-TTT-NAME</strong></p>
 <ul>
@@ -459,7 +465,7 @@ ul.task-list li input[type="checkbox"] {
 <p>For the list of available TTT tables see the <a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html">DATA DICTIONARY</a>.</p>
 </section>
 <section id="schedule-manifest" class="level2">
-<h2 class="anchored" data-anchor-id="schedule-manifest">Schedule Manifest</h2>
+<h2 data-anchor-id="schedule-manifest">Schedule Manifest</h2>
 <p><a href="https://nccs-efile.s3.us-east-1.amazonaws.com/public/v2025/SCHEDULE-TABLE-2021.csv" class="button2" target="_blank"> SCHED TABLE 2021 </a></p>
 <p>Since schedules are not required for most 990 filers the corresponding schedule data tables only contain organizations that have filed that specific schedule. <strong>SCHEDULE-TABLE.CSV</strong> documents which 990 schedules each organized has filed in a given tax year. It thus can serve as a sampling framework.</p>
 <p><strong>Schedule Prevalence in 2021:</strong></p>
@@ -545,7 +551,7 @@ ul.task-list li input[type="checkbox"] {
 <h1>Available Tables</h1>
 <hr>
 <section id="f9-p00-t00-header" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p00-t00-header">F9-P00-T00-HEADER</h3>
+<h3 data-anchor-id="f9-p00-t00-header">F9-P00-T00-HEADER</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -845,7 +851,7 @@ F9-P00-T00-HEADER
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p01-t00-summary" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p01-t00-summary">F9-P01-T00-SUMMARY</h3>
+<h3 data-anchor-id="f9-p01-t00-summary">F9-P01-T00-SUMMARY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -1145,7 +1151,7 @@ F9-P01-T00-SUMMARY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p01-t00-summary-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p01-t00-summary-ez">F9-P01-T00-SUMMARY-EZ</h3>
+<h3 data-anchor-id="f9-p01-t00-summary-ez">F9-P01-T00-SUMMARY-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -1445,7 +1451,7 @@ F9-P01-T00-SUMMARY-EZ
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p02-t00-signature" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p02-t00-signature">F9-P02-T00-SIGNATURE</h3>
+<h3 data-anchor-id="f9-p02-t00-signature">F9-P02-T00-SIGNATURE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -1745,7 +1751,7 @@ F9-P02-T00-SIGNATURE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-mission" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-mission">F9-P03-T00-MISSION</h3>
+<h3 data-anchor-id="f9-p03-t00-mission">F9-P03-T00-MISSION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -2045,7 +2051,7 @@ F9-P03-T00-MISSION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-program-one" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-program-one">F9-P03-T00-PROGRAM-ONE</h3>
+<h3 data-anchor-id="f9-p03-t00-program-one">F9-P03-T00-PROGRAM-ONE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -2345,7 +2351,7 @@ F9-P03-T00-PROGRAM-ONE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-program-three" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-program-three">F9-P03-T00-PROGRAM-THREE</h3>
+<h3 data-anchor-id="f9-p03-t00-program-three">F9-P03-T00-PROGRAM-THREE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -2645,7 +2651,7 @@ F9-P03-T00-PROGRAM-THREE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-program-two" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-program-two">F9-P03-T00-PROGRAM-TWO</h3>
+<h3 data-anchor-id="f9-p03-t00-program-two">F9-P03-T00-PROGRAM-TWO</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -2945,7 +2951,7 @@ F9-P03-T00-PROGRAM-TWO
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-programs" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-programs">F9-P03-T00-PROGRAMS</h3>
+<h3 data-anchor-id="f9-p03-t00-programs">F9-P03-T00-PROGRAMS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -3245,7 +3251,7 @@ F9-P03-T00-PROGRAMS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t01-programs-other" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t01-programs-other">F9-P03-T01-PROGRAMS-OTHER</h3>
+<h3 data-anchor-id="f9-p03-t01-programs-other">F9-P03-T01-PROGRAMS-OTHER</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -3545,7 +3551,7 @@ F9-P03-T01-PROGRAMS-OTHER
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t02-programs-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t02-programs-ez">F9-P03-T02-PROGRAMS-EZ</h3>
+<h3 data-anchor-id="f9-p03-t02-programs-ez">F9-P03-T02-PROGRAMS-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -3845,7 +3851,7 @@ F9-P03-T02-PROGRAMS-EZ
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p04-t00-required-schedules" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p04-t00-required-schedules">F9-P04-T00-REQUIRED-SCHEDULES</h3>
+<h3 data-anchor-id="f9-p04-t00-required-schedules">F9-P04-T00-REQUIRED-SCHEDULES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -4145,7 +4151,7 @@ F9-P04-T00-REQUIRED-SCHEDULES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p04-t00-required-schedules-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p04-t00-required-schedules-ez">F9-P04-T00-REQUIRED-SCHEDULES-EZ</h3>
+<h3 data-anchor-id="f9-p04-t00-required-schedules-ez">F9-P04-T00-REQUIRED-SCHEDULES-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -4445,7 +4451,7 @@ F9-P04-T00-REQUIRED-SCHEDULES-EZ
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p05-t00-other-irs-filing" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p05-t00-other-irs-filing">F9-P05-T00-OTHER-IRS-FILING</h3>
+<h3 data-anchor-id="f9-p05-t00-other-irs-filing">F9-P05-T00-OTHER-IRS-FILING</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -4745,7 +4751,7 @@ F9-P05-T00-OTHER-IRS-FILING
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p06-t00-governance" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p06-t00-governance">F9-P06-T00-GOVERNANCE</h3>
+<h3 data-anchor-id="f9-p06-t00-governance">F9-P06-T00-GOVERNANCE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -5045,7 +5051,7 @@ F9-P06-T00-GOVERNANCE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p06-t00-governance-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p06-t00-governance-ez">F9-P06-T00-GOVERNANCE-EZ</h3>
+<h3 data-anchor-id="f9-p06-t00-governance-ez">F9-P06-T00-GOVERNANCE-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -5345,7 +5351,7 @@ F9-P06-T00-GOVERNANCE-EZ
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p07-t00-dir-trust-key" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p07-t00-dir-trust-key">F9-P07-T00-DIR-TRUST-KEY</h3>
+<h3 data-anchor-id="f9-p07-t00-dir-trust-key">F9-P07-T00-DIR-TRUST-KEY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -5645,7 +5651,7 @@ F9-P07-T00-DIR-TRUST-KEY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p07-t01-compensation" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p07-t01-compensation">F9-P07-T01-COMPENSATION</h3>
+<h3 data-anchor-id="f9-p07-t01-compensation">F9-P07-T01-COMPENSATION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -5945,7 +5951,7 @@ F9-P07-T01-COMPENSATION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p07-t01-compensation-hce-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p07-t01-compensation-hce-ez">F9-P07-T01-COMPENSATION-HCE-EZ</h3>
+<h3 data-anchor-id="f9-p07-t01-compensation-hce-ez">F9-P07-T01-COMPENSATION-HCE-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -6245,7 +6251,7 @@ F9-P07-T01-COMPENSATION-HCE-EZ
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p07-t02-contractors" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p07-t02-contractors">F9-P07-T02-CONTRACTORS</h3>
+<h3 data-anchor-id="f9-p07-t02-contractors">F9-P07-T02-CONTRACTORS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -6545,7 +6551,7 @@ F9-P07-T02-CONTRACTORS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p08-t00-revenue" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p08-t00-revenue">F9-P08-T00-REVENUE</h3>
+<h3 data-anchor-id="f9-p08-t00-revenue">F9-P08-T00-REVENUE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -6845,7 +6851,7 @@ F9-P08-T00-REVENUE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p08-t01-revenue-programs" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p08-t01-revenue-programs">F9-P08-T01-REVENUE-PROGRAMS</h3>
+<h3 data-anchor-id="f9-p08-t01-revenue-programs">F9-P08-T01-REVENUE-PROGRAMS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -7145,7 +7151,7 @@ F9-P08-T01-REVENUE-PROGRAMS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p08-t02-revenue-misc" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p08-t02-revenue-misc">F9-P08-T02-REVENUE-MISC</h3>
+<h3 data-anchor-id="f9-p08-t02-revenue-misc">F9-P08-T02-REVENUE-MISC</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -7445,7 +7451,7 @@ F9-P08-T02-REVENUE-MISC
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p09-t00-expenses" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p09-t00-expenses">F9-P09-T00-EXPENSES</h3>
+<h3 data-anchor-id="f9-p09-t00-expenses">F9-P09-T00-EXPENSES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -7745,7 +7751,7 @@ F9-P09-T00-EXPENSES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p09-t01-expenses-other" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p09-t01-expenses-other">F9-P09-T01-EXPENSES-OTHER</h3>
+<h3 data-anchor-id="f9-p09-t01-expenses-other">F9-P09-T01-EXPENSES-OTHER</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -8045,7 +8051,7 @@ F9-P09-T01-EXPENSES-OTHER
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p10-t00-balance-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p10-t00-balance-sheet">F9-P10-T00-BALANCE-SHEET</h3>
+<h3 data-anchor-id="f9-p10-t00-balance-sheet">F9-P10-T00-BALANCE-SHEET</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -8345,7 +8351,7 @@ F9-P10-T00-BALANCE-SHEET
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p11-t00-assets" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p11-t00-assets">F9-P11-T00-ASSETS</h3>
+<h3 data-anchor-id="f9-p11-t00-assets">F9-P11-T00-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -8645,7 +8651,7 @@ F9-P11-T00-ASSETS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p12-t00-financial-reporting" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p12-t00-financial-reporting">F9-P12-T00-FINANCIAL-REPORTING</h3>
+<h3 data-anchor-id="f9-p12-t00-financial-reporting">F9-P12-T00-FINANCIAL-REPORTING</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -8945,7 +8951,7 @@ F9-P12-T00-FINANCIAL-REPORTING
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p01-t00-public-charity-status" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p01-t00-public-charity-status">SA-P01-T00-PUBLIC-CHARITY-STATUS</h3>
+<h3 data-anchor-id="sa-p01-t00-public-charity-status">SA-P01-T00-PUBLIC-CHARITY-STATUS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -9245,7 +9251,7 @@ SA-P01-T00-PUBLIC-CHARITY-STATUS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p01-t01-public-charity-status" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p01-t01-public-charity-status">SA-P01-T01-PUBLIC-CHARITY-STATUS</h3>
+<h3 data-anchor-id="sa-p01-t01-public-charity-status">SA-P01-T01-PUBLIC-CHARITY-STATUS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -9545,7 +9551,7 @@ SA-P01-T01-PUBLIC-CHARITY-STATUS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p02-t00-support_schedule_170" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p02-t00-support_schedule_170">SA-P02-T00-SUPPORT_SCHEDULE_170</h3>
+<h3 data-anchor-id="sa-p02-t00-support_schedule_170">SA-P02-T00-SUPPORT_SCHEDULE_170</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -9845,7 +9851,7 @@ SA-P02-T00-SUPPORT_SCHEDULE_170
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p03-t00-support_schedule_509" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p03-t00-support_schedule_509">SA-P03-T00-SUPPORT_SCHEDULE_509</h3>
+<h3 data-anchor-id="sa-p03-t00-support_schedule_509">SA-P03-T00-SUPPORT_SCHEDULE_509</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -10145,7 +10151,7 @@ SA-P03-T00-SUPPORT_SCHEDULE_509
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p04-t00-support-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p04-t00-support-orgs">SA-P04-T00-SUPPORT-ORGS</h3>
+<h3 data-anchor-id="sa-p04-t00-support-orgs">SA-P04-T00-SUPPORT-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -10360,7 +10366,7 @@ SA-P04-T00-SUPPORT-ORGS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p05-t00-support-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p05-t00-support-orgs">SA-P05-T00-SUPPORT-ORGS</h3>
+<h3 data-anchor-id="sa-p05-t00-support-orgs">SA-P05-T00-SUPPORT-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -10575,7 +10581,7 @@ SA-P05-T00-SUPPORT-ORGS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sb-p01-t01-contributors" class="level3">
-<h3 class="anchored" data-anchor-id="sb-p01-t01-contributors">SB-P01-T01-CONTRIBUTORS</h3>
+<h3 data-anchor-id="sb-p01-t01-contributors">SB-P01-T01-CONTRIBUTORS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -10875,7 +10881,7 @@ SB-P01-T01-CONTRIBUTORS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p01-t00-lobby" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p01-t00-lobby">SC-P01-T00-LOBBY</h3>
+<h3 data-anchor-id="sc-p01-t00-lobby">SC-P01-T00-LOBBY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -11175,7 +11181,7 @@ SC-P01-T00-LOBBY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p01-t01-political-orgs-info" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p01-t01-political-orgs-info">SC-P01-T01-POLITICAL-ORGS-INFO</h3>
+<h3 data-anchor-id="sc-p01-t01-political-orgs-info">SC-P01-T01-POLITICAL-ORGS-INFO</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -11475,7 +11481,7 @@ SC-P01-T01-POLITICAL-ORGS-INFO
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p02-t00-lobby" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p02-t00-lobby">SC-P02-T00-LOBBY</h3>
+<h3 data-anchor-id="sc-p02-t00-lobby">SC-P02-T00-LOBBY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -11775,7 +11781,7 @@ SC-P02-T00-LOBBY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p03-t00-lobby" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p03-t00-lobby">SC-P03-T00-LOBBY</h3>
+<h3 data-anchor-id="sc-p03-t00-lobby">SC-P03-T00-LOBBY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -12075,7 +12081,7 @@ SC-P03-T00-LOBBY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p01-t00-orgs-donor-advised-funds-oth" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p01-t00-orgs-donor-advised-funds-oth">SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH</h3>
+<h3 data-anchor-id="sd-p01-t00-orgs-donor-advised-funds-oth">SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -12375,7 +12381,7 @@ SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p02-t00-conserv-easements" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p02-t00-conserv-easements">SD-P02-T00-CONSERV-EASEMENTS</h3>
+<h3 data-anchor-id="sd-p02-t00-conserv-easements">SD-P02-T00-CONSERV-EASEMENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -12675,7 +12681,7 @@ SD-P02-T00-CONSERV-EASEMENTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p03-t00-orgs-collect-art-hist-treasure-oth" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p03-t00-orgs-collect-art-hist-treasure-oth">SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH</h3>
+<h3 data-anchor-id="sd-p03-t00-orgs-collect-art-hist-treasure-oth">SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -12975,7 +12981,7 @@ SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p04-t00-escrow-custodial-arrangements" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p04-t00-escrow-custodial-arrangements">SD-P04-T00-ESCROW-CUSTODIAL-ARRANGEMENTS</h3>
+<h3 data-anchor-id="sd-p04-t00-escrow-custodial-arrangements">SD-P04-T00-ESCROW-CUSTODIAL-ARRANGEMENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -13275,7 +13281,7 @@ SD-P04-T00-ESCROW-CUSTODIAL-ARRANGEMENTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p05-t00-endowment" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p05-t00-endowment">SD-P05-T00-ENDOWMENT</h3>
+<h3 data-anchor-id="sd-p05-t00-endowment">SD-P05-T00-ENDOWMENT</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -13575,7 +13581,7 @@ SD-P05-T00-ENDOWMENT
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p06-t00-land-bldg-equip" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p06-t00-land-bldg-equip">SD-P06-T00-LAND-BLDG-EQUIP</h3>
+<h3 data-anchor-id="sd-p06-t00-land-bldg-equip">SD-P06-T00-LAND-BLDG-EQUIP</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -13875,7 +13881,7 @@ SD-P06-T00-LAND-BLDG-EQUIP
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p07-t00-investments-securities" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p07-t00-investments-securities">SD-P07-T00-INVESTMENTS-SECURITIES</h3>
+<h3 data-anchor-id="sd-p07-t00-investments-securities">SD-P07-T00-INVESTMENTS-SECURITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -14175,7 +14181,7 @@ SD-P07-T00-INVESTMENTS-SECURITIES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p07-t01-investments-oth-derivatives" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p07-t01-investments-oth-derivatives">SD-P07-T01-INVESTMENTS-OTH-DERIVATIVES</h3>
+<h3 data-anchor-id="sd-p07-t01-investments-oth-derivatives">SD-P07-T01-INVESTMENTS-OTH-DERIVATIVES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -14475,7 +14481,7 @@ SD-P07-T01-INVESTMENTS-OTH-DERIVATIVES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p07-t01-investments-oth-equity" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p07-t01-investments-oth-equity">SD-P07-T01-INVESTMENTS-OTH-EQUITY</h3>
+<h3 data-anchor-id="sd-p07-t01-investments-oth-equity">SD-P07-T01-INVESTMENTS-OTH-EQUITY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -14775,7 +14781,7 @@ SD-P07-T01-INVESTMENTS-OTH-EQUITY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p07-t01-investments-oth-securities" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p07-t01-investments-oth-securities">SD-P07-T01-INVESTMENTS-OTH-SECURITIES</h3>
+<h3 data-anchor-id="sd-p07-t01-investments-oth-securities">SD-P07-T01-INVESTMENTS-OTH-SECURITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -15075,7 +15081,7 @@ SD-P07-T01-INVESTMENTS-OTH-SECURITIES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p08-t00-investments-prog-rltd" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p08-t00-investments-prog-rltd">SD-P08-T00-INVESTMENTS-PROG-RLTD</h3>
+<h3 data-anchor-id="sd-p08-t00-investments-prog-rltd">SD-P08-T00-INVESTMENTS-PROG-RLTD</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -15375,7 +15381,7 @@ SD-P08-T00-INVESTMENTS-PROG-RLTD
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p08-t01-investments-prog-rltd" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p08-t01-investments-prog-rltd">SD-P08-T01-INVESTMENTS-PROG-RLTD</h3>
+<h3 data-anchor-id="sd-p08-t01-investments-prog-rltd">SD-P08-T01-INVESTMENTS-PROG-RLTD</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -15675,7 +15681,7 @@ SD-P08-T01-INVESTMENTS-PROG-RLTD
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p09-t00-oth-assets" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p09-t00-oth-assets">SD-P09-T00-OTH-ASSETS</h3>
+<h3 data-anchor-id="sd-p09-t00-oth-assets">SD-P09-T00-OTH-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -15975,7 +15981,7 @@ SD-P09-T00-OTH-ASSETS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p09-t01-oth-assets" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p09-t01-oth-assets">SD-P09-T01-OTH-ASSETS</h3>
+<h3 data-anchor-id="sd-p09-t01-oth-assets">SD-P09-T01-OTH-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -16275,7 +16281,7 @@ SD-P09-T01-OTH-ASSETS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p10-t00-oth-liabilities" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p10-t00-oth-liabilities">SD-P10-T00-OTH-LIABILITIES</h3>
+<h3 data-anchor-id="sd-p10-t00-oth-liabilities">SD-P10-T00-OTH-LIABILITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -16575,7 +16581,7 @@ SD-P10-T00-OTH-LIABILITIES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p10-t01-oth-liabilities" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p10-t01-oth-liabilities">SD-P10-T01-OTH-LIABILITIES</h3>
+<h3 data-anchor-id="sd-p10-t01-oth-liabilities">SD-P10-T01-OTH-LIABILITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -16875,7 +16881,7 @@ SD-P10-T01-OTH-LIABILITIES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p11-t00-reconciliation-revenue" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p11-t00-reconciliation-revenue">SD-P11-T00-RECONCILIATION-REVENUE</h3>
+<h3 data-anchor-id="sd-p11-t00-reconciliation-revenue">SD-P11-T00-RECONCILIATION-REVENUE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -17175,7 +17181,7 @@ SD-P11-T00-RECONCILIATION-REVENUE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p12-t00-reconciliation-expenses" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p12-t00-reconciliation-expenses">SD-P12-T00-RECONCILIATION-EXPENSES</h3>
+<h3 data-anchor-id="sd-p12-t00-reconciliation-expenses">SD-P12-T00-RECONCILIATION-EXPENSES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -17475,7 +17481,7 @@ SD-P12-T00-RECONCILIATION-EXPENSES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p99-t00-reconciliation-netassets" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p99-t00-reconciliation-netassets">SD-P99-T00-RECONCILIATION-NETASSETS</h3>
+<h3 data-anchor-id="sd-p99-t00-reconciliation-netassets">SD-P99-T00-RECONCILIATION-NETASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -17554,7 +17560,7 @@ SD-P99-T00-RECONCILIATION-NETASSETS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="se-p01-t00-schools" class="level3">
-<h3 class="anchored" data-anchor-id="se-p01-t00-schools">SE-P01-T00-SCHOOLS</h3>
+<h3 data-anchor-id="se-p01-t00-schools">SE-P01-T00-SCHOOLS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -17854,7 +17860,7 @@ SE-P01-T00-SCHOOLS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p01-t00-frgn-acts" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p01-t00-frgn-acts">SF-P01-T00-FRGN-ACTS</h3>
+<h3 data-anchor-id="sf-p01-t00-frgn-acts">SF-P01-T00-FRGN-ACTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -18154,7 +18160,7 @@ SF-P01-T00-FRGN-ACTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p01-t01-frgn-acts-by-region" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p01-t01-frgn-acts-by-region">SF-P01-T01-FRGN-ACTS-BY-REGION</h3>
+<h3 data-anchor-id="sf-p01-t01-frgn-acts-by-region">SF-P01-T01-FRGN-ACTS-BY-REGION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -18454,7 +18460,7 @@ SF-P01-T01-FRGN-ACTS-BY-REGION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p02-t00-frgn-org-grants" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p02-t00-frgn-org-grants">SF-P02-T00-FRGN-ORG-GRANTS</h3>
+<h3 data-anchor-id="sf-p02-t00-frgn-org-grants">SF-P02-T00-FRGN-ORG-GRANTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -18754,7 +18760,7 @@ SF-P02-T00-FRGN-ORG-GRANTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p02-t01-frgn-org-grants" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p02-t01-frgn-org-grants">SF-P02-T01-FRGN-ORG-GRANTS</h3>
+<h3 data-anchor-id="sf-p02-t01-frgn-org-grants">SF-P02-T01-FRGN-ORG-GRANTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -19054,7 +19060,7 @@ SF-P02-T01-FRGN-ORG-GRANTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p03-t01-frgn-indiv-grants" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p03-t01-frgn-indiv-grants">SF-P03-T01-FRGN-INDIV-GRANTS</h3>
+<h3 data-anchor-id="sf-p03-t01-frgn-indiv-grants">SF-P03-T01-FRGN-INDIV-GRANTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -19354,7 +19360,7 @@ SF-P03-T01-FRGN-INDIV-GRANTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p04-t00-frgn-interests" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p04-t00-frgn-interests">SF-P04-T00-FRGN-INTERESTS</h3>
+<h3 data-anchor-id="sf-p04-t00-frgn-interests">SF-P04-T00-FRGN-INTERESTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -19637,7 +19643,7 @@ SF-P04-T00-FRGN-INTERESTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p99-t00-frgn-org-grants" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p99-t00-frgn-org-grants">SF-P99-T00-FRGN-ORG-GRANTS</h3>
+<h3 data-anchor-id="sf-p99-t00-frgn-org-grants">SF-P99-T00-FRGN-ORG-GRANTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -19716,7 +19722,7 @@ SF-P99-T00-FRGN-ORG-GRANTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p01-t00-fundraising-acts" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p01-t00-fundraising-acts">SG-P01-T00-FUNDRAISING-ACTS</h3>
+<h3 data-anchor-id="sg-p01-t00-fundraising-acts">SG-P01-T00-FUNDRAISING-ACTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -20016,7 +20022,7 @@ SG-P01-T00-FUNDRAISING-ACTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p01-t01-fundraisers-info" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p01-t01-fundraisers-info">SG-P01-T01-FUNDRAISERS-INFO</h3>
+<h3 data-anchor-id="sg-p01-t01-fundraisers-info">SG-P01-T01-FUNDRAISERS-INFO</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -20316,7 +20322,7 @@ SG-P01-T01-FUNDRAISERS-INFO
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p02-t00-fundraising-events" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p02-t00-fundraising-events">SG-P02-T00-FUNDRAISING-EVENTS</h3>
+<h3 data-anchor-id="sg-p02-t00-fundraising-events">SG-P02-T00-FUNDRAISING-EVENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -20616,7 +20622,7 @@ SG-P02-T00-FUNDRAISING-EVENTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p02-t01-fundraising-events" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p02-t01-fundraising-events">SG-P02-T01-FUNDRAISING-EVENTS</h3>
+<h3 data-anchor-id="sg-p02-t01-fundraising-events">SG-P02-T01-FUNDRAISING-EVENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -20916,7 +20922,7 @@ SG-P02-T01-FUNDRAISING-EVENTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p03-t00-gaming" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p03-t00-gaming">SG-P03-T00-GAMING</h3>
+<h3 data-anchor-id="sg-p03-t00-gaming">SG-P03-T00-GAMING</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -21216,7 +21222,7 @@ SG-P03-T00-GAMING
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p01-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p01-t00-fap-community-benefit-policy">SH-P01-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p01-t00-fap-community-benefit-policy">SH-P01-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -21516,7 +21522,7 @@ SH-P01-T00-FAP-COMMUNITY-BENEFIT-POLICY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p02-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p02-t00-fap-community-benefit-policy">SH-P02-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p02-t00-fap-community-benefit-policy">SH-P02-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -21816,7 +21822,7 @@ SH-P02-T00-FAP-COMMUNITY-BENEFIT-POLICY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p03-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p03-t00-fap-community-benefit-policy">SH-P03-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p03-t00-fap-community-benefit-policy">SH-P03-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -22116,7 +22122,7 @@ SH-P03-T00-FAP-COMMUNITY-BENEFIT-POLICY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p04-t01-company-joint-ventures" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p04-t01-company-joint-ventures">SH-P04-T01-COMPANY-JOINT-VENTURES</h3>
+<h3 data-anchor-id="sh-p04-t01-company-joint-ventures">SH-P04-T01-COMPANY-JOINT-VENTURES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -22416,7 +22422,7 @@ SH-P04-T01-COMPANY-JOINT-VENTURES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p05-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p05-t00-fap-community-benefit-policy">SH-P05-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p05-t00-fap-community-benefit-policy">SH-P05-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -22699,7 +22705,7 @@ SH-P05-T00-FAP-COMMUNITY-BENEFIT-POLICY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p05-t01-hospital-facility" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p05-t01-hospital-facility">SH-P05-T01-HOSPITAL-FACILITY</h3>
+<h3 data-anchor-id="sh-p05-t01-hospital-facility">SH-P05-T01-HOSPITAL-FACILITY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -22999,7 +23005,7 @@ SH-P05-T01-HOSPITAL-FACILITY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p05-t02-non-hospital-facility" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p05-t02-non-hospital-facility">SH-P05-T02-NON-HOSPITAL-FACILITY</h3>
+<h3 data-anchor-id="sh-p05-t02-non-hospital-facility">SH-P05-T02-NON-HOSPITAL-FACILITY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -23282,7 +23288,7 @@ SH-P05-T02-NON-HOSPITAL-FACILITY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p99-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p99-t00-fap-community-benefit-policy">SH-P99-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p99-t00-fap-community-benefit-policy">SH-P99-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -23412,7 +23418,7 @@ SH-P99-T00-FAP-COMMUNITY-BENEFIT-POLICY
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p01-t00-grants-info" class="level3">
-<h3 class="anchored" data-anchor-id="si-p01-t00-grants-info">SI-P01-T00-GRANTS-INFO</h3>
+<h3 data-anchor-id="si-p01-t00-grants-info">SI-P01-T00-GRANTS-INFO</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -23712,7 +23718,7 @@ SI-P01-T00-GRANTS-INFO
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p02-t00-grants-us-orgs-govts" class="level3">
-<h3 class="anchored" data-anchor-id="si-p02-t00-grants-us-orgs-govts">SI-P02-T00-GRANTS-US-ORGS-GOVTS</h3>
+<h3 data-anchor-id="si-p02-t00-grants-us-orgs-govts">SI-P02-T00-GRANTS-US-ORGS-GOVTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -24012,7 +24018,7 @@ SI-P02-T00-GRANTS-US-ORGS-GOVTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p02-t01-grants-us-orgs-govts" class="level3">
-<h3 class="anchored" data-anchor-id="si-p02-t01-grants-us-orgs-govts">SI-P02-T01-GRANTS-US-ORGS-GOVTS</h3>
+<h3 data-anchor-id="si-p02-t01-grants-us-orgs-govts">SI-P02-T01-GRANTS-US-ORGS-GOVTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -24312,7 +24318,7 @@ SI-P02-T01-GRANTS-US-ORGS-GOVTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p03-t01-grants-us-indiv" class="level3">
-<h3 class="anchored" data-anchor-id="si-p03-t01-grants-us-indiv">SI-P03-T01-GRANTS-US-INDIV</h3>
+<h3 data-anchor-id="si-p03-t01-grants-us-indiv">SI-P03-T01-GRANTS-US-INDIV</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -24612,7 +24618,7 @@ SI-P03-T01-GRANTS-US-INDIV
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p99-t00-grants-us-orgs-govts" class="level3">
-<h3 class="anchored" data-anchor-id="si-p99-t00-grants-us-orgs-govts">SI-P99-T00-GRANTS-US-ORGS-GOVTS</h3>
+<h3 data-anchor-id="si-p99-t00-grants-us-orgs-govts">SI-P99-T00-GRANTS-US-ORGS-GOVTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -24691,7 +24697,7 @@ SI-P99-T00-GRANTS-US-ORGS-GOVTS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sj-p01-t00-compensation" class="level3">
-<h3 class="anchored" data-anchor-id="sj-p01-t00-compensation">SJ-P01-T00-COMPENSATION</h3>
+<h3 data-anchor-id="sj-p01-t00-compensation">SJ-P01-T00-COMPENSATION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -24991,7 +24997,7 @@ SJ-P01-T00-COMPENSATION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sj-p02-t01-compensation-dtk" class="level3">
-<h3 class="anchored" data-anchor-id="sj-p02-t01-compensation-dtk">SJ-P02-T01-COMPENSATION-DTK</h3>
+<h3 data-anchor-id="sj-p02-t01-compensation-dtk">SJ-P02-T01-COMPENSATION-DTK</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -25291,7 +25297,7 @@ SJ-P02-T01-COMPENSATION-DTK
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sk-p01-t01-bond-issues" class="level3">
-<h3 class="anchored" data-anchor-id="sk-p01-t01-bond-issues">SK-P01-T01-BOND-ISSUES</h3>
+<h3 data-anchor-id="sk-p01-t01-bond-issues">SK-P01-T01-BOND-ISSUES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -25591,7 +25597,7 @@ SK-P01-T01-BOND-ISSUES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sk-p02-t01-bond-proceeds" class="level3">
-<h3 class="anchored" data-anchor-id="sk-p02-t01-bond-proceeds">SK-P02-T01-BOND-PROCEEDS</h3>
+<h3 data-anchor-id="sk-p02-t01-bond-proceeds">SK-P02-T01-BOND-PROCEEDS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -25891,7 +25897,7 @@ SK-P02-T01-BOND-PROCEEDS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sk-p03-t01-bond-private-biz-use" class="level3">
-<h3 class="anchored" data-anchor-id="sk-p03-t01-bond-private-biz-use">SK-P03-T01-BOND-PRIVATE-BIZ-USE</h3>
+<h3 data-anchor-id="sk-p03-t01-bond-private-biz-use">SK-P03-T01-BOND-PRIVATE-BIZ-USE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -26191,7 +26197,7 @@ SK-P03-T01-BOND-PRIVATE-BIZ-USE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sk-p04-t01-bond-arbitrage" class="level3">
-<h3 class="anchored" data-anchor-id="sk-p04-t01-bond-arbitrage">SK-P04-T01-BOND-ARBITRAGE</h3>
+<h3 data-anchor-id="sk-p04-t01-bond-arbitrage">SK-P04-T01-BOND-ARBITRAGE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -26491,7 +26497,7 @@ SK-P04-T01-BOND-ARBITRAGE
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sk-p05-t01-procedure-corrective-act" class="level3">
-<h3 class="anchored" data-anchor-id="sk-p05-t01-procedure-corrective-act">SK-P05-T01-PROCEDURE-CORRECTIVE-ACT</h3>
+<h3 data-anchor-id="sk-p05-t01-procedure-corrective-act">SK-P05-T01-PROCEDURE-CORRECTIVE-ACT</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -26774,7 +26780,7 @@ SK-P05-T01-PROCEDURE-CORRECTIVE-ACT
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p01-t00-excess-benefit-transac" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p01-t00-excess-benefit-transac">SL-P01-T00-EXCESS-BENEFIT-TRANSAC</h3>
+<h3 data-anchor-id="sl-p01-t00-excess-benefit-transac">SL-P01-T00-EXCESS-BENEFIT-TRANSAC</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -27074,7 +27080,7 @@ SL-P01-T00-EXCESS-BENEFIT-TRANSAC
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p01-t01-excess-benefit-transac" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p01-t01-excess-benefit-transac">SL-P01-T01-EXCESS-BENEFIT-TRANSAC</h3>
+<h3 data-anchor-id="sl-p01-t01-excess-benefit-transac">SL-P01-T01-EXCESS-BENEFIT-TRANSAC</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -27374,7 +27380,7 @@ SL-P01-T01-EXCESS-BENEFIT-TRANSAC
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p02-t00-loans-interested-pers" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p02-t00-loans-interested-pers">SL-P02-T00-LOANS-INTERESTED-PERS</h3>
+<h3 data-anchor-id="sl-p02-t00-loans-interested-pers">SL-P02-T00-LOANS-INTERESTED-PERS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -27674,7 +27680,7 @@ SL-P02-T00-LOANS-INTERESTED-PERS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p02-t01-loans-interested-pers" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p02-t01-loans-interested-pers">SL-P02-T01-LOANS-INTERESTED-PERS</h3>
+<h3 data-anchor-id="sl-p02-t01-loans-interested-pers">SL-P02-T01-LOANS-INTERESTED-PERS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -27974,7 +27980,7 @@ SL-P02-T01-LOANS-INTERESTED-PERS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p03-t01-grants-interested-pers" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p03-t01-grants-interested-pers">SL-P03-T01-GRANTS-INTERESTED-PERS</h3>
+<h3 data-anchor-id="sl-p03-t01-grants-interested-pers">SL-P03-T01-GRANTS-INTERESTED-PERS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -28274,7 +28280,7 @@ SL-P03-T01-GRANTS-INTERESTED-PERS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p04-t01-biz-transac-interested-pers" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p04-t01-biz-transac-interested-pers">SL-P04-T01-BIZ-TRANSAC-INTERESTED-PERS</h3>
+<h3 data-anchor-id="sl-p04-t01-biz-transac-interested-pers">SL-P04-T01-BIZ-TRANSAC-INTERESTED-PERS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -28574,7 +28580,7 @@ SL-P04-T01-BIZ-TRANSAC-INTERESTED-PERS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sm-p01-t00-noncash-contributions" class="level3">
-<h3 class="anchored" data-anchor-id="sm-p01-t00-noncash-contributions">SM-P01-T00-NONCASH-CONTRIBUTIONS</h3>
+<h3 data-anchor-id="sm-p01-t00-noncash-contributions">SM-P01-T00-NONCASH-CONTRIBUTIONS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -28874,7 +28880,7 @@ SM-P01-T00-NONCASH-CONTRIBUTIONS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sm-p01-t01-noncash-contributions" class="level3">
-<h3 class="anchored" data-anchor-id="sm-p01-t01-noncash-contributions">SM-P01-T01-NONCASH-CONTRIBUTIONS</h3>
+<h3 data-anchor-id="sm-p01-t01-noncash-contributions">SM-P01-T01-NONCASH-CONTRIBUTIONS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -29174,7 +29180,7 @@ SM-P01-T01-NONCASH-CONTRIBUTIONS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p01-t00-liquidation-termination-dissolution" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p01-t00-liquidation-termination-dissolution">SN-P01-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
+<h3 data-anchor-id="sn-p01-t00-liquidation-termination-dissolution">SN-P01-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -29474,7 +29480,7 @@ SN-P01-T00-LIQUIDATION-TERMINATION-DISSOLUTION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p01-t01-liquidation-termination-dissolution" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p01-t01-liquidation-termination-dissolution">SN-P01-T01-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
+<h3 data-anchor-id="sn-p01-t01-liquidation-termination-dissolution">SN-P01-T01-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -29774,7 +29780,7 @@ SN-P01-T01-LIQUIDATION-TERMINATION-DISSOLUTION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p02-t00-disposition-of-assets" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p02-t00-disposition-of-assets">SN-P02-T00-DISPOSITION-OF-ASSETS</h3>
+<h3 data-anchor-id="sn-p02-t00-disposition-of-assets">SN-P02-T00-DISPOSITION-OF-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -30074,7 +30080,7 @@ SN-P02-T00-DISPOSITION-OF-ASSETS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p02-t01-disposition-of-assets" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p02-t01-disposition-of-assets">SN-P02-T01-DISPOSITION-OF-ASSETS</h3>
+<h3 data-anchor-id="sn-p02-t01-disposition-of-assets">SN-P02-T01-DISPOSITION-OF-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -30374,7 +30380,7 @@ SN-P02-T01-DISPOSITION-OF-ASSETS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p99-t00-liquidation-termination-dissolution" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p99-t00-liquidation-termination-dissolution">SN-P99-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
+<h3 data-anchor-id="sn-p99-t00-liquidation-termination-dissolution">SN-P99-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -30419,7 +30425,7 @@ SN-P99-T00-LIQUIDATION-TERMINATION-DISSOLUTION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p01-t01-id-disregarded-entities" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p01-t01-id-disregarded-entities">SR-P01-T01-ID-DISREGARDED-ENTITIES</h3>
+<h3 data-anchor-id="sr-p01-t01-id-disregarded-entities">SR-P01-T01-ID-DISREGARDED-ENTITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -30719,7 +30725,7 @@ SR-P01-T01-ID-DISREGARDED-ENTITIES
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p02-t01-id-rltd-tax-exemped-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p02-t01-id-rltd-tax-exemped-orgs">SR-P02-T01-ID-RLTD-TAX-EXEMPED-ORGS</h3>
+<h3 data-anchor-id="sr-p02-t01-id-rltd-tax-exemped-orgs">SR-P02-T01-ID-RLTD-TAX-EXEMPED-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -31019,7 +31025,7 @@ SR-P02-T01-ID-RLTD-TAX-EXEMPED-ORGS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p03-t01-id-rltd-orgs-taxable-partnership" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p03-t01-id-rltd-orgs-taxable-partnership">SR-P03-T01-ID-RLTD-ORGS-TAXABLE-PARTNERSHIP</h3>
+<h3 data-anchor-id="sr-p03-t01-id-rltd-orgs-taxable-partnership">SR-P03-T01-ID-RLTD-ORGS-TAXABLE-PARTNERSHIP</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -31319,7 +31325,7 @@ SR-P03-T01-ID-RLTD-ORGS-TAXABLE-PARTNERSHIP
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p04-t01-id-rltd-orgs-taxable-corporation" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p04-t01-id-rltd-orgs-taxable-corporation">SR-P04-T01-ID-RLTD-ORGS-TAXABLE-CORPORATION</h3>
+<h3 data-anchor-id="sr-p04-t01-id-rltd-orgs-taxable-corporation">SR-P04-T01-ID-RLTD-ORGS-TAXABLE-CORPORATION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -31619,7 +31625,7 @@ SR-P04-T01-ID-RLTD-ORGS-TAXABLE-CORPORATION
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p05-t00-transactions-rltd-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p05-t00-transactions-rltd-orgs">SR-P05-T00-TRANSACTIONS-RLTD-ORGS</h3>
+<h3 data-anchor-id="sr-p05-t00-transactions-rltd-orgs">SR-P05-T00-TRANSACTIONS-RLTD-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -31919,7 +31925,7 @@ SR-P05-T00-TRANSACTIONS-RLTD-ORGS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p05-t01-transactions-rltd-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p05-t01-transactions-rltd-orgs">SR-P05-T01-TRANSACTIONS-RLTD-ORGS</h3>
+<h3 data-anchor-id="sr-p05-t01-transactions-rltd-orgs">SR-P05-T01-TRANSACTIONS-RLTD-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -32219,7 +32225,7 @@ SR-P05-T01-TRANSACTIONS-RLTD-ORGS
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p06-t01-unrltd-orgs-taxable-partnership" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p06-t01-unrltd-orgs-taxable-partnership">SR-P06-T01-UNRLTD-ORGS-TAXABLE-PARTNERSHIP</h3>
+<h3 data-anchor-id="sr-p06-t01-unrltd-orgs-taxable-partnership">SR-P06-T01-UNRLTD-ORGS-TAXABLE-PARTNERSHIP</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -32656,13 +32662,6 @@ blockquote {
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -32705,13 +32704,14 @@ blockquote {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
