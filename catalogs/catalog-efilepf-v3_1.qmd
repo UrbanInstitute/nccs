@@ -1,0 +1,146 @@
+---
+title: "990-PF Efile Data Catalog"
+subtitle: "Private foundations · release efilepf_v3_1"
+format:
+  html:
+    css:
+      - styles/catalog.css
+      - styles/efile-catalog.css
+    toc: false
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| include: false
+
+source("R/efile_helpers.R")
+
+rel     <- efile_release("pf_v3_1")
+rel_990 <- efile_current("990")
+cc      <- efile_concordance()
+counts  <- efile_nonempty(efile_counts(rel))
+meta    <- efile_table_meta(counts$table, cc, rel$form)
+cov     <- efile_coverage(efile_counts(rel_990), efile_counts(rel))
+fil     <- efile_filings(counts)
+yrs     <- range(counts$year)
+```
+
+The NCCS 990-PF Efile database turns the Form 990-PF returns that private foundations file electronically with the IRS into `r length(unique(counts$table))` relational tables, one or more for each Part of the form and its attached statements. Every table is published for each tax year in two formats, **CSV** and **Parquet**.
+
+| | |
+|:--|:--|
+| **Release** | `r efile_label(rel)` (published `r rel$published`) |
+| **Returns** | Form 990-PF (private foundations and section 4947(a)(1) charitable trusts) |
+| **Tax years** | `r yrs[1]`&ndash;`r yrs[2]` (`r yrs[2]` is a partial year) |
+| **Tables** | `r length(unique(counts$table))` tables, `r fmt_n(nrow(counts))` table-year files |
+| **Filings** | `r fmt_n(sum(fil$rows_tot))` returns |
+| **Labels** | concordance990 `r cc$version` |
+| **Public charities** | Form 990 and 990-EZ returns are a separate database: [`r efile_label(rel_990)` catalog](`r rel_990$page`) |
+
+```{r}
+#| output: asis
+
+guide <- c(
+  "about" = "Data sources and processing",
+  "r-packages" = "R packages",
+  "data-dictionary" = "Data dictionaries",
+  "coverage" = "Coverage",
+  "file-names" = "Table and file names",
+  "release-notes" = "Release notes",
+  "version-history" = "Version history"
+)
+cat(efile_toc(meta, guide))
+```
+
+## About this release {#about}
+
+### Data sources and processing
+
+The Taxpayer First Act of 2019 made electronic filing mandatory for Form 990-PF for tax years beginning after July 1, 2019, so recent waves cover nearly every private foundation; earlier years include only foundations that chose to e-file. NCCS builds the database from the XML files indexed by the [Giving Tuesday 990 Data Commons](https://www.givingtuesday.org/data-commons/990-data-infrastructure/), supplemented with returns the IRS e-file index lists but the Data Commons index never picked up (see the release notes below).
+
+Each XML element (xpath) is assigned to a research variable and a table by the **Master Concordance** ([concordance990](https://nonprofit-open-data-collective.github.io/concordance990/)), and the tables are built with the [ef2](https://nonprofit-open-data-collective.github.io/ef2/) package. A table holds one Part of the form: either one row per filing (**1:1**), or several rows per filing for repeating groups such as officers, grants paid, or capital gains (**1:M**). Tables in Part 99 hold the statements foundations attach to the return (accounting fees, depreciation, other investments, and so on).
+
+The database also carries the two tables shared by every e-filed return: the filing header (`F9-P00-T00-HEADER`) and the signature block (`F9-P02-T00-SIGNATURE`). Here they hold 990-PF filings only. `F9_00_ORG_EXEMPT_TYPE` in the header is empty for 990-PF returns.
+
+Efile data are organized by **tax year**, the year in which the foundation's fiscal year begins (`TAX_PERIOD_BEGIN_DATE`). The IRS releases returns in monthly batches, so the most recent tax year is always incomplete. Form 990-PF was renumbered in 2023 (Part VI became Part V, and so on); the tables follow the pre-2023 numbering, and the part titles below give both.
+
+Every table carries the keys needed to join tables to each other and to the BMF: `OBJECTID` (`OID-` followed by 18 digits, one per filing), `EIN2`, and `TAX_YEAR`. One-to-many tables add `TABLE_ID` (`TID-NNN-NNN-NNN`, one per row). Every row also carries `URL`, a link to the source XML return.
+
+### R packages {#r-packages}
+
+```{r}
+#| output: asis
+cat(efile_package_list())
+```
+
+## Data dictionaries {#data-dictionary}
+
+Variable names, labels, descriptions, data types, and form locations for every table are documented in the concordance990 data dictionaries. Each table below links to its own section of the 990-PF dictionary.
+
+```{r}
+#| output: asis
+cat(efile_dictionary_buttons(c("990PF", "990")))
+```
+
+## Coverage {#coverage}
+
+**E-filed returns by tax year and return type (`r efile_label(rel_990)` and `r efile_label(rel)`)**
+
+```{r}
+#| label: coverage-plot
+#| fig-width: 9
+#| fig-height: 4.5
+#| fig-alt: "Stacked bar chart of e-filed returns per tax year, 2009 to 2025, split into Form 990, 990-EZ and 990-PF. 990-PF returns rise from about 2 thousand in 2009 to about 125 thousand in 2023; 2025 is a partial year."
+efile_coverage_plot(cov)
+```
+
+```{r}
+#| output: asis
+efile_coverage_table(cov)
+```
+
+## Table and file names {#file-names}
+
+Table names follow the pattern **FF-PPP-TTT-NAME**, and each file appends the tax year: `PF-P15-T01-SUPPLEMENTARY-INFO-GRANT-PAID-2023.parquet`.
+
+- **FF** is the form: `PF` = Form 990-PF; `F9` marks the two shared header tables.
+- **PPP** is the part: `P01` = Part I, `P02` = Part II, and so on. `P00` is the heading and `P99` holds attached statements.
+- **TTT** is the table: `T00` holds the one-to-one fields of the part, and `T01`, `T02`, ... are its one-to-many tables.
+
+Each table-year is published as **CSV** (readable anywhere) and **Parquet** (smaller and much faster in R with `arrow` or `duckdb`; panel990 reads Parquet by default). Both files hold the same rows and columns. Table-years with no filings are omitted from the listings below.
+
+## Release notes {#release-notes}
+
+```{r}
+#| output: asis
+cat(efile_release_notes(rel))
+```
+
+## Version history {#version-history}
+
+Every release stays on S3 and keeps its catalog page, so earlier analyses can be reproduced. **Interim** releases were built and posted but not announced as full public releases.
+
+```{r}
+#| output: asis
+cat(efile_version_history(rel$id))
+```
+
+# Available tables {#tables}
+
+Each table lists its files by tax year. The code below each table uses `panelize()` from [panel990](https://nonprofit-open-data-collective.github.io/panel990/) to download a multi-year panel of the table with BMF organization fields (NTEE codes, geography, subsection) attached.
+
+```{r}
+#| output: asis
+cat(efile_pin_note(rel))
+```
+
+```{r}
+#| output: asis
+cat(efile_table_sections(counts, meta, rel, snippet = TRUE))
+```
+
+<p style='font-size: 0.85em; color: #666; margin-top: 2em;'>Table list and row counts: `r rel$count_file`. Table and part names: concordance990 `r cc$version`. Page rendered `r format(Sys.Date())`.</p>

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>990 EFILER Data Catalog</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,23 +30,24 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="catalog-efile_files/libs/clipboard/clipboard.min.js"></script>
-<script src="catalog-efile_files/libs/quarto-html/quarto.js"></script>
+<script src="catalog-efile_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="catalog-efile_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="catalog-efile_files/libs/quarto-html/popper.min.js"></script>
 <script src="catalog-efile_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="catalog-efile_files/libs/quarto-html/anchor.min.js"></script>
 <link href="catalog-efile_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="catalog-efile_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="catalog-efile_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="catalog-efile_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="catalog-efile_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="catalog-efile_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="catalog-efile_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
+<link rel="stylesheet" href="styles/catalog.css">
 </head>
 
-<body>
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -59,7 +66,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">Efile Data Contents</h2>
    
@@ -142,13 +151,14 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   </ul>
 </nav>
+<div class="ef-banner" style="border-left:4px solid #fdbf11;background:#fff8e1;padding:.9rem 1.1rem;margin:1rem 0 1.5rem;"><strong>Superseded.</strong> This page lists <code>efile_v1</code>, a previous public release, kept so that analyses run on it can be reproduced. The current releases are <a href="catalog-efile-v3_1.html"><code>efile_v3_1</code></a> (Form 990 and 990-EZ) and <a href="catalog-efilepf-v3_1.html"><code>efilepf_v3_1</code></a> (Form 990-PF). See the <a href="catalog-efile-v3_1.html#version-history">version history</a>.</div>
 <p><br></p>
 <hr>
 <p><br></p>
 <section id="about-nccs-efile-data" class="level1">
 <h1>About NCCS Efile Data</h1>
 <section id="data-sources-and-processing" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources-and-processing">Data Sources and Processing</h2>
+<h2 data-anchor-id="data-sources-and-processing">Data Sources and Processing</h2>
 <p>IRS 990 Efile data is generated from XML files hosted on the <strong>990 Data Commons</strong>.</p>
 <p>XML files are parsed using an <strong>XML-to-RDB Concordance</strong> file that has been produced by Jesse Lecy, Hyunrang Han, and the Nonprofit Open Data Collective.</p>
 <p>XML documents are converted in the data tables described in data dictionary using the <strong>irs990efile R Package</strong>.</p>
@@ -163,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
 <p><br> <br></p>
 </section>
 <section id="data-dictionary" class="level2">
-<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
+<h2 data-anchor-id="data-dictionary">Data Dictionary</h2>
 <p>Efile data has been parsed into 125 tables that correspond to sections (“Parts”) on 990 Forms and Schedules. All years use a consistent data dictionary.</p>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="buttonx" target="_blank"> <b>DATA DICTIONARY</b> </a></p>
 <p>An archive of historic 990 Forms and Schedules is available from the NODC.</p>
@@ -173,12 +183,12 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 </section>
 <section id="coverage" class="level2">
-<h2 class="anchored" data-anchor-id="coverage">Coverage</h2>
+<h2 data-anchor-id="coverage">Coverage</h2>
 <p>Non-mandatory electronic filing for tax-exempt organizations started around 2010. Utilization of electronic filing options grew steadily over the next decade (see the table below).</p>
 <p>Starting in 2016 the IRS began releasing electronic returns as free open data to the general public in a raw XML format. <em>The schemas needed to make sense of the XML file structures, however, have not been made public.</em></p>
 <p>Beginning in the 2019/2020 tax year efiling became mandatory for most tax-exempt organizations.</p>
 <p><strong>990 Efile Returns by FormType and TaxYear (990 Data Commons, Feb.&nbsp;2024)</strong></p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -313,7 +323,7 @@ ul.task-list li input[type="checkbox"] {
 <p>If you need to confirm whether an organization has omitted a response or whether the xpath-to-rdb-table is missing from the Concordance, you can always inspect the raw XML files by following the URL provided in the dataset.</p>
 </section>
 <section id="structure-of-table-and-file-names" class="level2">
-<h2 class="anchored" data-anchor-id="structure-of-table-and-file-names">Structure of Table and File Names</h2>
+<h2 data-anchor-id="structure-of-table-and-file-names">Structure of Table and File Names</h2>
 <p>File names are organized as follows:</p>
 <p><strong>FF-PPP-TTT-NAME</strong></p>
 <ul>
@@ -341,11 +351,11 @@ ul.task-list li input[type="checkbox"] {
 <p>For the list of available TTT tables see the <a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html">DATA DICTIONARY</a>.</p>
 </section>
 <section id="schedule-manifest" class="level2">
-<h2 class="anchored" data-anchor-id="schedule-manifest">Schedule Manifest</h2>
+<h2 data-anchor-id="schedule-manifest">Schedule Manifest</h2>
 <p><a href="#schedule-table" class="button2" target="_blank"> SCHED TABLE </a></p>
 <p>Since schedules are not required for most 990 filers the corresponding schedule data tables only contain organizations that have filed that specific schedule. <strong>SCHEDULE-TABLE.CSV</strong> documents which 990 schedules each organized has filed in a given tax year. It thus can serve as a sampling framework.</p>
 <p><strong>Schedule Prevalence in a Single Tax Year:</strong></p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">990 Schedule</th>
@@ -427,9 +437,8 @@ ul.task-list li input[type="checkbox"] {
 <h1>Available Tables</h1>
 <hr>
 <section id="f9-p00-t00-header" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p00-t00-header">F9-P00-T00-HEADER</h3>
+<h3 data-anchor-id="f9-p00-t00-header">F9-P00-T00-HEADER</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -645,14 +654,12 @@ F9-P00-T00-HEADER
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p01-t00-summary" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p01-t00-summary">F9-P01-T00-SUMMARY</h3>
+<h3 data-anchor-id="f9-p01-t00-summary">F9-P01-T00-SUMMARY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -868,14 +875,12 @@ F9-P01-T00-SUMMARY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p01-t00-summary-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p01-t00-summary-ez">F9-P01-T00-SUMMARY-EZ</h3>
+<h3 data-anchor-id="f9-p01-t00-summary-ez">F9-P01-T00-SUMMARY-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1091,14 +1096,12 @@ F9-P01-T00-SUMMARY-EZ
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p02-t00-signature" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p02-t00-signature">F9-P02-T00-SIGNATURE</h3>
+<h3 data-anchor-id="f9-p02-t00-signature">F9-P02-T00-SIGNATURE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1314,14 +1317,12 @@ F9-P02-T00-SIGNATURE
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-mission" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-mission">F9-P03-T00-MISSION</h3>
+<h3 data-anchor-id="f9-p03-t00-mission">F9-P03-T00-MISSION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1537,14 +1538,12 @@ F9-P03-T00-MISSION
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p03-t00-programs" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p03-t00-programs">F9-P03-T00-PROGRAMS</h3>
+<h3 data-anchor-id="f9-p03-t00-programs">F9-P03-T00-PROGRAMS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1760,14 +1759,12 @@ F9-P03-T00-PROGRAMS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p04-t00-required-schedules" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p04-t00-required-schedules">F9-P04-T00-REQUIRED-SCHEDULES</h3>
+<h3 data-anchor-id="f9-p04-t00-required-schedules">F9-P04-T00-REQUIRED-SCHEDULES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1983,14 +1980,12 @@ F9-P04-T00-REQUIRED-SCHEDULES
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p04-t00-required-schedules-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p04-t00-required-schedules-ez">F9-P04-T00-REQUIRED-SCHEDULES-EZ</h3>
+<h3 data-anchor-id="f9-p04-t00-required-schedules-ez">F9-P04-T00-REQUIRED-SCHEDULES-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2206,14 +2201,12 @@ F9-P04-T00-REQUIRED-SCHEDULES-EZ
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p05-t00-other-irs-filing" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p05-t00-other-irs-filing">F9-P05-T00-OTHER-IRS-FILING</h3>
+<h3 data-anchor-id="f9-p05-t00-other-irs-filing">F9-P05-T00-OTHER-IRS-FILING</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2429,14 +2422,12 @@ F9-P05-T00-OTHER-IRS-FILING
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p06-t00-governance" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p06-t00-governance">F9-P06-T00-GOVERNANCE</h3>
+<h3 data-anchor-id="f9-p06-t00-governance">F9-P06-T00-GOVERNANCE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2652,14 +2643,12 @@ F9-P06-T00-GOVERNANCE
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p06-t00-governance-ez" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p06-t00-governance-ez">F9-P06-T00-GOVERNANCE-EZ</h3>
+<h3 data-anchor-id="f9-p06-t00-governance-ez">F9-P06-T00-GOVERNANCE-EZ</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2875,14 +2864,12 @@ F9-P06-T00-GOVERNANCE-EZ
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p07-t00-dir-trust-key" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p07-t00-dir-trust-key">F9-P07-T00-DIR-TRUST-KEY</h3>
+<h3 data-anchor-id="f9-p07-t00-dir-trust-key">F9-P07-T00-DIR-TRUST-KEY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3098,14 +3085,12 @@ F9-P07-T00-DIR-TRUST-KEY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p08-t00-revenue" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p08-t00-revenue">F9-P08-T00-REVENUE</h3>
+<h3 data-anchor-id="f9-p08-t00-revenue">F9-P08-T00-REVENUE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3321,14 +3306,12 @@ F9-P08-T00-REVENUE
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p09-t00-expenses" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p09-t00-expenses">F9-P09-T00-EXPENSES</h3>
+<h3 data-anchor-id="f9-p09-t00-expenses">F9-P09-T00-EXPENSES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3544,14 +3527,12 @@ F9-P09-T00-EXPENSES
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p10-t00-balance-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p10-t00-balance-sheet">F9-P10-T00-BALANCE-SHEET</h3>
+<h3 data-anchor-id="f9-p10-t00-balance-sheet">F9-P10-T00-BALANCE-SHEET</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3767,14 +3748,12 @@ F9-P10-T00-BALANCE-SHEET
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p11-t00-assets" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p11-t00-assets">F9-P11-T00-ASSETS</h3>
+<h3 data-anchor-id="f9-p11-t00-assets">F9-P11-T00-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -3990,14 +3969,12 @@ F9-P11-T00-ASSETS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="f9-p12-t00-financial-reporting" class="level3">
-<h3 class="anchored" data-anchor-id="f9-p12-t00-financial-reporting">F9-P12-T00-FINANCIAL-REPORTING</h3>
+<h3 data-anchor-id="f9-p12-t00-financial-reporting">F9-P12-T00-FINANCIAL-REPORTING</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -4213,14 +4190,12 @@ F9-P12-T00-FINANCIAL-REPORTING
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p00-t00-header" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p00-t00-header">SA-P00-T00-HEADER</h3>
+<h3 data-anchor-id="sa-p00-t00-header">SA-P00-T00-HEADER</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -4436,14 +4411,12 @@ SA-P00-T00-HEADER
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p01-t00-public-charity-status" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p01-t00-public-charity-status">SA-P01-T00-PUBLIC-CHARITY-STATUS</h3>
+<h3 data-anchor-id="sa-p01-t00-public-charity-status">SA-P01-T00-PUBLIC-CHARITY-STATUS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -4659,14 +4632,12 @@ SA-P01-T00-PUBLIC-CHARITY-STATUS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p02-t00-support-schedule-170" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p02-t00-support-schedule-170">SA-P02-T00-SUPPORT-SCHEDULE-170</h3>
+<h3 data-anchor-id="sa-p02-t00-support-schedule-170">SA-P02-T00-SUPPORT-SCHEDULE-170</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -4882,14 +4853,12 @@ SA-P02-T00-SUPPORT-SCHEDULE-170
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p03-t00-support-schedule-509" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p03-t00-support-schedule-509">SA-P03-T00-SUPPORT-SCHEDULE-509</h3>
+<h3 data-anchor-id="sa-p03-t00-support-schedule-509">SA-P03-T00-SUPPORT-SCHEDULE-509</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -5105,14 +5074,12 @@ SA-P03-T00-SUPPORT-SCHEDULE-509
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p04-t00-support-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p04-t00-support-orgs">SA-P04-T00-SUPPORT-ORGS</h3>
+<h3 data-anchor-id="sa-p04-t00-support-orgs">SA-P04-T00-SUPPORT-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -5328,14 +5295,12 @@ SA-P04-T00-SUPPORT-ORGS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p05-t00-support-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p05-t00-support-orgs">SA-P05-T00-SUPPORT-ORGS</h3>
+<h3 data-anchor-id="sa-p05-t00-support-orgs">SA-P05-T00-SUPPORT-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -5551,14 +5516,12 @@ SA-P05-T00-SUPPORT-ORGS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sa-p99-t00-public-charity-status" class="level3">
-<h3 class="anchored" data-anchor-id="sa-p99-t00-public-charity-status">SA-P99-T00-PUBLIC-CHARITY-STATUS</h3>
+<h3 data-anchor-id="sa-p99-t00-public-charity-status">SA-P99-T00-PUBLIC-CHARITY-STATUS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -5774,14 +5737,12 @@ SA-P99-T00-PUBLIC-CHARITY-STATUS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p01-t00-lobby" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p01-t00-lobby">SC-P01-T00-LOBBY</h3>
+<h3 data-anchor-id="sc-p01-t00-lobby">SC-P01-T00-LOBBY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -5997,14 +5958,12 @@ SC-P01-T00-LOBBY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p02-t00-lobby" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p02-t00-lobby">SC-P02-T00-LOBBY</h3>
+<h3 data-anchor-id="sc-p02-t00-lobby">SC-P02-T00-LOBBY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -6220,14 +6179,12 @@ SC-P02-T00-LOBBY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sc-p03-t00-lobby" class="level3">
-<h3 class="anchored" data-anchor-id="sc-p03-t00-lobby">SC-P03-T00-LOBBY</h3>
+<h3 data-anchor-id="sc-p03-t00-lobby">SC-P03-T00-LOBBY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -6443,14 +6400,12 @@ SC-P03-T00-LOBBY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="schedule-table" class="level3">
-<h3 class="anchored" data-anchor-id="schedule-table">SCHEDULE-TABLE</h3>
+<h3 data-anchor-id="schedule-table">SCHEDULE-TABLE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -6666,14 +6621,12 @@ NA
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p01-t00-orgs-donor-advised-funds-oth" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p01-t00-orgs-donor-advised-funds-oth">SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH</h3>
+<h3 data-anchor-id="sd-p01-t00-orgs-donor-advised-funds-oth">SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -6889,14 +6842,12 @@ SD-P01-T00-ORGS-DONOR-ADVISED-FUNDS-OTH
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p02-t00-conserv-easements" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p02-t00-conserv-easements">SD-P02-T00-CONSERV-EASEMENTS</h3>
+<h3 data-anchor-id="sd-p02-t00-conserv-easements">SD-P02-T00-CONSERV-EASEMENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -7112,14 +7063,12 @@ SD-P02-T00-CONSERV-EASEMENTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p03-t00-orgs-collect-art-hist-treasure-oth" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p03-t00-orgs-collect-art-hist-treasure-oth">SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH</h3>
+<h3 data-anchor-id="sd-p03-t00-orgs-collect-art-hist-treasure-oth">SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -7335,14 +7284,12 @@ SD-P03-T00-ORGS-COLLECT-ART-HIST-TREASURE-OTH
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p04-t00-escrow-custodial-arrangements" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p04-t00-escrow-custodial-arrangements">SD-P04-T00-ESCROW-CUSTODIAL-ARRANGEMENTS</h3>
+<h3 data-anchor-id="sd-p04-t00-escrow-custodial-arrangements">SD-P04-T00-ESCROW-CUSTODIAL-ARRANGEMENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -7558,14 +7505,12 @@ SD-P04-T00-ESCROW-CUSTODIAL-ARRANGEMENTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p05-t00-endowment" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p05-t00-endowment">SD-P05-T00-ENDOWMENT</h3>
+<h3 data-anchor-id="sd-p05-t00-endowment">SD-P05-T00-ENDOWMENT</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -7781,14 +7726,12 @@ SD-P05-T00-ENDOWMENT
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p06-t00-land-bldg-equip" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p06-t00-land-bldg-equip">SD-P06-T00-LAND-BLDG-EQUIP</h3>
+<h3 data-anchor-id="sd-p06-t00-land-bldg-equip">SD-P06-T00-LAND-BLDG-EQUIP</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8004,14 +7947,12 @@ SD-P06-T00-LAND-BLDG-EQUIP
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p07-t00-investments-oth-securities" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p07-t00-investments-oth-securities">SD-P07-T00-INVESTMENTS-OTH-SECURITIES</h3>
+<h3 data-anchor-id="sd-p07-t00-investments-oth-securities">SD-P07-T00-INVESTMENTS-OTH-SECURITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8227,14 +8168,12 @@ SD-P07-T00-INVESTMENTS-OTH-SECURITIES
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p09-t00-oth-assets" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p09-t00-oth-assets">SD-P09-T00-OTH-ASSETS</h3>
+<h3 data-anchor-id="sd-p09-t00-oth-assets">SD-P09-T00-OTH-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8450,14 +8389,12 @@ SD-P09-T00-OTH-ASSETS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p10-t00-oth-liabilities" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p10-t00-oth-liabilities">SD-P10-T00-OTH-LIABILITIES</h3>
+<h3 data-anchor-id="sd-p10-t00-oth-liabilities">SD-P10-T00-OTH-LIABILITIES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8673,14 +8610,12 @@ SD-P10-T00-OTH-LIABILITIES
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p11-t00-reconciliation-revenue" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p11-t00-reconciliation-revenue">SD-P11-T00-RECONCILIATION-REVENUE</h3>
+<h3 data-anchor-id="sd-p11-t00-reconciliation-revenue">SD-P11-T00-RECONCILIATION-REVENUE</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -8896,14 +8831,12 @@ SD-P11-T00-RECONCILIATION-REVENUE
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p12-t00-reconciliation-expenses" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p12-t00-reconciliation-expenses">SD-P12-T00-RECONCILIATION-EXPENSES</h3>
+<h3 data-anchor-id="sd-p12-t00-reconciliation-expenses">SD-P12-T00-RECONCILIATION-EXPENSES</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -9119,14 +9052,12 @@ SD-P12-T00-RECONCILIATION-EXPENSES
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sd-p99-t00-reconciliation-netassets" class="level3">
-<h3 class="anchored" data-anchor-id="sd-p99-t00-reconciliation-netassets">SD-P99-T00-RECONCILIATION-NETASSETS</h3>
+<h3 data-anchor-id="sd-p99-t00-reconciliation-netassets">SD-P99-T00-RECONCILIATION-NETASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -9342,14 +9273,12 @@ SD-P99-T00-RECONCILIATION-NETASSETS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="se-p01-t00-schools" class="level3">
-<h3 class="anchored" data-anchor-id="se-p01-t00-schools">SE-P01-T00-SCHOOLS</h3>
+<h3 data-anchor-id="se-p01-t00-schools">SE-P01-T00-SCHOOLS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -9565,14 +9494,12 @@ SE-P01-T00-SCHOOLS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p01-t00-frgn-acts" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p01-t00-frgn-acts">SF-P01-T00-FRGN-ACTS</h3>
+<h3 data-anchor-id="sf-p01-t00-frgn-acts">SF-P01-T00-FRGN-ACTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -9788,14 +9715,12 @@ SF-P01-T00-FRGN-ACTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p02-t00-frgn-org-grants" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p02-t00-frgn-org-grants">SF-P02-T00-FRGN-ORG-GRANTS</h3>
+<h3 data-anchor-id="sf-p02-t00-frgn-org-grants">SF-P02-T00-FRGN-ORG-GRANTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10011,14 +9936,12 @@ SF-P02-T00-FRGN-ORG-GRANTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p04-t00-frgn-interests" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p04-t00-frgn-interests">SF-P04-T00-FRGN-INTERESTS</h3>
+<h3 data-anchor-id="sf-p04-t00-frgn-interests">SF-P04-T00-FRGN-INTERESTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10234,14 +10157,12 @@ SF-P04-T00-FRGN-INTERESTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sf-p99-t00-frgn-org-grants" class="level3">
-<h3 class="anchored" data-anchor-id="sf-p99-t00-frgn-org-grants">SF-P99-T00-FRGN-ORG-GRANTS</h3>
+<h3 data-anchor-id="sf-p99-t00-frgn-org-grants">SF-P99-T00-FRGN-ORG-GRANTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10457,14 +10378,12 @@ SF-P99-T00-FRGN-ORG-GRANTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p01-t00-fundraising-acts" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p01-t00-fundraising-acts">SG-P01-T00-FUNDRAISING-ACTS</h3>
+<h3 data-anchor-id="sg-p01-t00-fundraising-acts">SG-P01-T00-FUNDRAISING-ACTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10680,14 +10599,12 @@ SG-P01-T00-FUNDRAISING-ACTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p02-t00-fundraising-events" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p02-t00-fundraising-events">SG-P02-T00-FUNDRAISING-EVENTS</h3>
+<h3 data-anchor-id="sg-p02-t00-fundraising-events">SG-P02-T00-FUNDRAISING-EVENTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -10903,14 +10820,12 @@ SG-P02-T00-FUNDRAISING-EVENTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sg-p03-t00-gaming" class="level3">
-<h3 class="anchored" data-anchor-id="sg-p03-t00-gaming">SG-P03-T00-GAMING</h3>
+<h3 data-anchor-id="sg-p03-t00-gaming">SG-P03-T00-GAMING</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -11126,14 +11041,12 @@ SG-P03-T00-GAMING
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p01-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p01-t00-fap-community-benefit-policy">SH-P01-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p01-t00-fap-community-benefit-policy">SH-P01-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -11349,14 +11262,12 @@ SH-P01-T00-FAP-COMMUNITY-BENEFIT-POLICY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p02-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p02-t00-fap-community-benefit-policy">SH-P02-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p02-t00-fap-community-benefit-policy">SH-P02-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -11572,14 +11483,12 @@ SH-P02-T00-FAP-COMMUNITY-BENEFIT-POLICY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p03-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p03-t00-fap-community-benefit-policy">SH-P03-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p03-t00-fap-community-benefit-policy">SH-P03-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -11795,14 +11704,12 @@ SH-P03-T00-FAP-COMMUNITY-BENEFIT-POLICY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p05-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p05-t00-fap-community-benefit-policy">SH-P05-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p05-t00-fap-community-benefit-policy">SH-P05-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -12018,14 +11925,12 @@ SH-P05-T00-FAP-COMMUNITY-BENEFIT-POLICY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sh-p99-t00-fap-community-benefit-policy" class="level3">
-<h3 class="anchored" data-anchor-id="sh-p99-t00-fap-community-benefit-policy">SH-P99-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
+<h3 data-anchor-id="sh-p99-t00-fap-community-benefit-policy">SH-P99-T00-FAP-COMMUNITY-BENEFIT-POLICY</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -12241,14 +12146,12 @@ SH-P99-T00-FAP-COMMUNITY-BENEFIT-POLICY
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p01-t00-grants-info" class="level3">
-<h3 class="anchored" data-anchor-id="si-p01-t00-grants-info">SI-P01-T00-GRANTS-INFO</h3>
+<h3 data-anchor-id="si-p01-t00-grants-info">SI-P01-T00-GRANTS-INFO</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -12464,14 +12367,12 @@ SI-P01-T00-GRANTS-INFO
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p02-t00-grants-us-orgs-govts" class="level3">
-<h3 class="anchored" data-anchor-id="si-p02-t00-grants-us-orgs-govts">SI-P02-T00-GRANTS-US-ORGS-GOVTS</h3>
+<h3 data-anchor-id="si-p02-t00-grants-us-orgs-govts">SI-P02-T00-GRANTS-US-ORGS-GOVTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -12687,14 +12588,12 @@ SI-P02-T00-GRANTS-US-ORGS-GOVTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="si-p99-t00-grants-us-orgs-govts" class="level3">
-<h3 class="anchored" data-anchor-id="si-p99-t00-grants-us-orgs-govts">SI-P99-T00-GRANTS-US-ORGS-GOVTS</h3>
+<h3 data-anchor-id="si-p99-t00-grants-us-orgs-govts">SI-P99-T00-GRANTS-US-ORGS-GOVTS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -12910,14 +12809,12 @@ SI-P99-T00-GRANTS-US-ORGS-GOVTS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sj-p01-t00-compensation" class="level3">
-<h3 class="anchored" data-anchor-id="sj-p01-t00-compensation">SJ-P01-T00-COMPENSATION</h3>
+<h3 data-anchor-id="sj-p01-t00-compensation">SJ-P01-T00-COMPENSATION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -13133,14 +13030,12 @@ SJ-P01-T00-COMPENSATION
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p01-t00-excess-benefit-transac" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p01-t00-excess-benefit-transac">SL-P01-T00-EXCESS-BENEFIT-TRANSAC</h3>
+<h3 data-anchor-id="sl-p01-t00-excess-benefit-transac">SL-P01-T00-EXCESS-BENEFIT-TRANSAC</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -13356,14 +13251,12 @@ SL-P01-T00-EXCESS-BENEFIT-TRANSAC
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sl-p02-t00-loans-interested-pers" class="level3">
-<h3 class="anchored" data-anchor-id="sl-p02-t00-loans-interested-pers">SL-P02-T00-LOANS-INTERESTED-PERS</h3>
+<h3 data-anchor-id="sl-p02-t00-loans-interested-pers">SL-P02-T00-LOANS-INTERESTED-PERS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -13579,14 +13472,12 @@ SL-P02-T00-LOANS-INTERESTED-PERS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sm-p01-t00-noncash-contributions" class="level3">
-<h3 class="anchored" data-anchor-id="sm-p01-t00-noncash-contributions">SM-P01-T00-NONCASH-CONTRIBUTIONS</h3>
+<h3 data-anchor-id="sm-p01-t00-noncash-contributions">SM-P01-T00-NONCASH-CONTRIBUTIONS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -13802,14 +13693,12 @@ SM-P01-T00-NONCASH-CONTRIBUTIONS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p01-t00-liquidation-termination-dissolution" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p01-t00-liquidation-termination-dissolution">SN-P01-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
+<h3 data-anchor-id="sn-p01-t00-liquidation-termination-dissolution">SN-P01-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -14025,14 +13914,12 @@ SN-P01-T00-LIQUIDATION-TERMINATION-DISSOLUTION
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p02-t00-disposition-of-assets" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p02-t00-disposition-of-assets">SN-P02-T00-DISPOSITION-OF-ASSETS</h3>
+<h3 data-anchor-id="sn-p02-t00-disposition-of-assets">SN-P02-T00-DISPOSITION-OF-ASSETS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -14248,14 +14135,12 @@ SN-P02-T00-DISPOSITION-OF-ASSETS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sn-p99-t00-liquidation-termination-dissolution" class="level3">
-<h3 class="anchored" data-anchor-id="sn-p99-t00-liquidation-termination-dissolution">SN-P99-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
+<h3 data-anchor-id="sn-p99-t00-liquidation-termination-dissolution">SN-P99-T00-LIQUIDATION-TERMINATION-DISSOLUTION</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -14471,14 +14356,12 @@ SN-P99-T00-LIQUIDATION-TERMINATION-DISSOLUTION
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="sr-p05-t00-transactions-rltd-orgs" class="level3">
-<h3 class="anchored" data-anchor-id="sr-p05-t00-transactions-rltd-orgs">SR-P05-T00-TRANSACTIONS-RLTD-ORGS</h3>
+<h3 data-anchor-id="sr-p05-t00-transactions-rltd-orgs">SR-P05-T00-TRANSACTIONS-RLTD-ORGS</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -14694,14 +14577,12 @@ SR-P05-T00-TRANSACTIONS-RLTD-ORGS
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
 </section>
 <section id="partviipartvii" class="level3">
-<h3 class="anchored" data-anchor-id="partviipartvii">partvii/PARTVII</h3>
+<h3 data-anchor-id="partviipartvii">partvii/PARTVII</h3>
 <p><a href="https://nonprofit-open-data-collective.github.io/irs990efile/data-dictionary/data-dictionary.html" class="button2" target="_blank"> DATA DICTIONARY </a></p>
-
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -14889,185 +14770,60 @@ NA
 </td>
 </tr>
 </tbody>
-
 </table>
 <p><a href="#top"> Back to Top </a></p>
-
-<style>
-
-
-h1.title {
- font-size: 60px;
- color: #0a4c6a;
-}
-
-
-h3, .h3 {
-    font-size: 40px;
-    color: #1696d2;
-    margin-top: 50px;
-    margin-bottom: 30px;
-}
-
-nav#TOC {
-  margin-top: 100px;
-}
-
-nav#TOC a {
-  font-family: var(--bs-font-monospace);
-  text-transform: uppercase;
-  font-size: 14px;
-  text-decoration: none;
-  color: #003b4f;
-}
-
-ul ul {
-    list-style-type: none;
-}
-
-.button {
-  background-color: white;
-  color:  #12719e;
-  border: 2px solid  #12719e;   /* #008CBA; */
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 12px;
-  width: 150px;
-}
- 
-.button {
-  transition-duration: 0.4s;
-}
-
-.button:hover {
-  background-color: #1696d2; 
-  color: white;
-  border: 2px solid #12719e;
-}
-
-
-.button2 {
-  background-color: white;
-  color: #12719e;
-  border: 2px solid #9d9d9d;   /* #008CBA; */
-  padding: 5px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 12px;
-  width: 150px;
-}
-
-.button2 {
-  transition-duration: 0.4s;
-}
-
-.button2:hover {
-  background-color: #fff2cf; 
-  color: #1696d2;
-  font-weight: bold;
-  border: 2px solid #1696d2;
-}
-
-
-.center {text-align: center;}
-
-table td {
-  vertical-align: middle;
-}
-
-blockquote {
-    border-left: 4px solid #1696d2;
-    margin-left: 10px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding: 15px;
-}
-
-.button3 {
-  background-color: #0a4c6a;
-  color: white;
-  border: 2px solid #0a4c6a;   
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 4px;
-  width: 100px;
-}
-
-.buttonx {
-  background-color: white;
-  color: #12719e;
-  border: 2px solid #9d9d9d;   /* #008CBA; */
-  padding: 10px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 12px;
-  width: 350px;
-}
-
-.buttonx {
-  transition-duration: 0.4s;
-}
-
-.buttonx:hover {
-  background-color: #fff2cf; 
-  color: #1696d2;
-  font-weight: bold;
-  border: 2px solid #1696d2;
-}
-
-</style>
+<!-- Styles loaded from shared catalog.css via _quarto.yml -->
 </section>
 </section>
 
 </main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -15075,195 +14831,348 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
-    };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
+
 
 
 

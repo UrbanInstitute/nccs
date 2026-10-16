@@ -29,6 +29,10 @@ d <- dplyr::filter( d, keep.these.rows  )
 d <- dplyr::filter( d, Key != "public/efile_v2_1/COUNT-OF-ROWS-BY-TABLE-AND-FORMTYPE-EFILE_V2_1.CSV" )
 ```
 
+```{=html}
+<div class="ef-banner" style="border-left:4px solid #fdbf11;background:#fff8e1;padding:.9rem 1.1rem;margin:1rem 0 1.5rem;"><strong>Superseded.</strong> This page lists <code>efile_v2_1</code>, a previous public release, kept so that analyses run on it can be reproduced. The current releases are <a href="catalog-efile-v3_1.html"><code>efile_v3_1</code></a> (Form 990 and 990-EZ) and <a href="catalog-efilepf-v3_1.html"><code>efilepf_v3_1</code></a> (Form 990-PF). See the <a href="catalog-efile-v3_1.html#version-history">version history</a>.</div>
+```
+
 ```{r}
 #| echo: false
 
