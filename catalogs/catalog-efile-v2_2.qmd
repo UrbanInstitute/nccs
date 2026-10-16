@@ -31,6 +31,8 @@ yrs    <- range(counts$year)
 cat(efile_banner(rel))
 ```
 
+This build adds about 500,000 late-arriving filings for tax years 2022&ndash;2024 and introduces tax year 2024. It is purely additive: no previously published filings were revised. Details are in the [release note](https://github.com/UrbanInstitute/nccs-contracts/blob/main/governance/release-notes/efile-v2_2.md); all data releases are listed on the [data release notes page](release-notes.html).
+
 | | |
 |:--|:--|
 | **Release** | `r efile_label(rel)` (published `r rel$published`) |
