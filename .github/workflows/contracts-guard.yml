@@ -23,4 +23,4 @@ jobs:
   contracts-guard:
     uses: UrbanInstitute/nccs-contracts/.github/workflows/contracts-guard.yml@main
     with:
-      paths_regex: '^catalogs/(AWS-.*\.csv|build-catalog-functions\.R|aws/.*)$'
+      paths_regex: '^catalogs/(AWS-.*\.csv|build-catalog-functions\.R|aws/.*|R/efile_helpers\.R|efile/.*|catalog-efile.*\.qmd)$'
