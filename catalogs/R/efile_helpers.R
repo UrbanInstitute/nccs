@@ -233,7 +233,15 @@ efile_release_meta <- function(rel, tables, path = efile_table_meta_path(rel)) {
     stop("No frozen table metadata at ", path,
          "; run Rscript catalogs/efile/make-efile-table-meta.R ", rel$id)
   }
-  m <- utils::read.csv(path, stringsAsFactors = FALSE)
+  # Title columns are often entirely blank (the concordance has titles for
+  # few tables); read them as text so a blank column does not become NA.
+  text_cols <- c("table", "form_id", "part_id", "form_title", "part_title",
+                 "table_title", "cardinality", "concordance_ref")
+  m <- utils::read.csv(path, stringsAsFactors = FALSE,
+                       colClasses = stats::setNames(rep("character", length(text_cols)), text_cols))
+  for (col in intersect(c("form_title", "part_title", "table_title"), names(m))) {
+    m[[col]][is.na(m[[col]])] <- ""
+  }
   missing <- setdiff(unique(tables), m$table)
   if (length(missing) > 0) {
     stop("Frozen table metadata ", path, " lacks ", length(missing),

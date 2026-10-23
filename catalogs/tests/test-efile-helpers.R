@@ -136,6 +136,22 @@ test_that("frozen release metadata is read, subset and validated", {
   expect_error(efile_release_meta(rel, "F9-P00-T00-HEADER", tempfile()), "No frozen")
 })
 
+test_that("blank title columns in a frozen file stay blank, never NA", {
+  rel <- data.frame(id = "test", form = "990", stringsAsFactors = FALSE)
+  m <- efile_table_meta(counts$table, cc)
+  m$table_title <- ""   # entirely blank column, as in the real frozen files
+  m$concordance_ref <- "test-ref"
+  path <- tempfile(fileext = ".csv")
+  utils::write.csv(m, path, row.names = FALSE)
+  got <- efile_release_meta(rel, "F9-P00-T00-HEADER", path)
+  expect_identical(got$table_title, "")
+  expect_false(anyNA(got$part_title))
+  sec <- efile_table_section(counts[counts$table == "F9-P00-T00-HEADER", ],
+                             got[got$table == "F9-P00-T00-HEADER", ],
+                             efile_release("v3_1"), partial_year = 2025, snippet = FALSE)
+  expect_false(grepl("ef-table-title", sec))
+})
+
 test_that("every release has a concordance ref", {
   expect_true(all(nzchar(EFILE_RELEASES$concordance_ref)))
 })
