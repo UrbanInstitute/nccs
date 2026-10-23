@@ -121,3 +121,37 @@ test_that("table sections carry name-year, CSV and Parquet links", {
   expect_match(toc, "href='#f9-p08'")
   expect_match(toc, "href='#about'")
 })
+
+test_that("frozen release metadata is read, subset and validated", {
+  rel <- data.frame(id = "test", form = "990", stringsAsFactors = FALSE)
+  m <- efile_table_meta(counts$table, cc)
+  m$concordance_ref <- "test-ref"
+  path <- tempfile(fileext = ".csv")
+  utils::write.csv(m, path, row.names = FALSE)
+  got <- efile_release_meta(rel, c("F9-P00-T00-HEADER", "SA-P01-T00-PUBLIC-CHARITY-STATUS"), path)
+  expect_equal(got$table, c("F9-P00-T00-HEADER", "SA-P01-T00-PUBLIC-CHARITY-STATUS"))
+  expect_equal(attr(got, "concordance_ref"), "test-ref")
+  expect_false("concordance_ref" %in% names(got))
+  expect_error(efile_release_meta(rel, c("F9-P00-T00-HEADER", "SZ-P01-T00-NEW"), path), "lacks 1 table")
+  expect_error(efile_release_meta(rel, "F9-P00-T00-HEADER", tempfile()), "No frozen")
+})
+
+test_that("blank title columns in a frozen file stay blank, never NA", {
+  rel <- data.frame(id = "test", form = "990", stringsAsFactors = FALSE)
+  m <- efile_table_meta(counts$table, cc)
+  m$table_title <- ""   # entirely blank column, as in the real frozen files
+  m$concordance_ref <- "test-ref"
+  path <- tempfile(fileext = ".csv")
+  utils::write.csv(m, path, row.names = FALSE)
+  got <- efile_release_meta(rel, "F9-P00-T00-HEADER", path)
+  expect_identical(got$table_title, "")
+  expect_false(anyNA(got$part_title))
+  sec <- efile_table_section(counts[counts$table == "F9-P00-T00-HEADER", ],
+                             got[got$table == "F9-P00-T00-HEADER", ],
+                             efile_release("v3_1"), partial_year = 2025, snippet = FALSE)
+  expect_false(grepl("ef-table-title", sec))
+})
+
+test_that("every release has a concordance ref", {
+  expect_true(all(nzchar(EFILE_RELEASES$concordance_ref)))
+})

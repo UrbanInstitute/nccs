@@ -21,9 +21,8 @@ source("R/efile_helpers.R")
 
 rel     <- efile_release("pf_v3_1")
 rel_990 <- efile_current("990")
-cc      <- efile_concordance()
 counts  <- efile_nonempty(efile_counts(rel))
-meta    <- efile_table_meta(counts$table, cc, rel$form)
+meta    <- efile_release_meta(rel, counts$table)
 cov     <- efile_coverage(efile_counts(rel_990), efile_counts(rel))
 fil     <- efile_filings(counts)
 yrs     <- range(counts$year)
@@ -38,7 +37,7 @@ The NCCS 990-PF Efile database turns the Form 990-PF returns that private founda
 | **Tax years** | `r yrs[1]`&ndash;`r yrs[2]` (`r yrs[2]` is a partial year) |
 | **Tables** | `r length(unique(counts$table))` tables, `r fmt_n(nrow(counts))` table-year files |
 | **Filings** | `r fmt_n(sum(fil$rows_tot))` returns |
-| **Labels** | concordance990 `r cc$version` |
+| **Labels** | concordance990 `r attr(meta, "concordance_ref")` |
 | **Public charities** | Form 990 and 990-EZ returns are a separate database: [`r efile_label(rel_990)` catalog](`r rel_990$page`) |
 
 ```{r}
@@ -143,4 +142,4 @@ cat(efile_pin_note(rel))
 cat(efile_table_sections(counts, meta, rel, snippet = TRUE))
 ```
 
-<p style='font-size: 0.85em; color: #666; margin-top: 2em;'>Table list and row counts: `r rel$count_file`. Table and part names: concordance990 `r cc$version`. Page rendered `r format(Sys.Date())`.</p>
+<p style='font-size: 0.85em; color: #666; margin-top: 2em;'>Table list and row counts: `r rel$count_file`. Table and part names: concordance990 `r attr(meta, "concordance_ref")`. Page rendered `r format(Sys.Date())`.</p>

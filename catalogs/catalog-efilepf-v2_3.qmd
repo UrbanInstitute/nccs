@@ -19,9 +19,8 @@ execute:
 source("R/efile_helpers.R")
 
 rel    <- efile_release("pf_v2_3")
-cc     <- efile_concordance()
 counts <- efile_nonempty(efile_counts(rel))
-meta   <- efile_table_meta(counts$table, cc, rel$form)
+meta   <- efile_release_meta(rel, counts$table)
 fil    <- efile_filings(counts)
 yrs    <- range(counts$year)
 ```
