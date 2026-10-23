@@ -121,3 +121,21 @@ test_that("table sections carry name-year, CSV and Parquet links", {
   expect_match(toc, "href='#f9-p08'")
   expect_match(toc, "href='#about'")
 })
+
+test_that("frozen release metadata is read, subset and validated", {
+  rel <- data.frame(id = "test", form = "990", stringsAsFactors = FALSE)
+  m <- efile_table_meta(counts$table, cc)
+  m$concordance_ref <- "test-ref"
+  path <- tempfile(fileext = ".csv")
+  utils::write.csv(m, path, row.names = FALSE)
+  got <- efile_release_meta(rel, c("F9-P00-T00-HEADER", "SA-P01-T00-PUBLIC-CHARITY-STATUS"), path)
+  expect_equal(got$table, c("F9-P00-T00-HEADER", "SA-P01-T00-PUBLIC-CHARITY-STATUS"))
+  expect_equal(attr(got, "concordance_ref"), "test-ref")
+  expect_false("concordance_ref" %in% names(got))
+  expect_error(efile_release_meta(rel, c("F9-P00-T00-HEADER", "SZ-P01-T00-NEW"), path), "lacks 1 table")
+  expect_error(efile_release_meta(rel, "F9-P00-T00-HEADER", tempfile()), "No frozen")
+})
+
+test_that("every release has a concordance ref", {
+  expect_true(all(nzchar(EFILE_RELEASES$concordance_ref)))
+})

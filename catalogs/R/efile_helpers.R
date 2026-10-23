@@ -58,6 +58,13 @@ EFILE_RELEASES <- data.frame(
     NA,
     "public/efilepf_v3_1/RELEASE-NOTES-EFILEPF_V3_1.md"
   ),
+  # concordance990 git ref whose forms/parts/tables the release was labelled
+  # with: the frozen v1 concordance for v1 to v2_2, the first v2 release for
+  # the interim v2_3 builds, and the ef2 build commit for v3_1.
+  concordance_ref = c(
+    "v2.0.0-baseline", "v2.0.0-baseline", "v2.0.0-baseline", "v2.0.0-baseline",
+    "v2.0.0", "02de916", "v2.0.0", "02de916"
+  ),
   stringsAsFactors = FALSE
 )
 
@@ -122,9 +129,20 @@ efile_filings <- function(counts) {
 # Concordance metadata (forms, parts, tables)
 # -----------------------------------------------------------------------------
 
-#' Read the concordance990 component tables, from the installed package when
-#' available and from GitHub otherwise.
-efile_concordance <- function() {
+#' Read the concordance990 component tables (forms, parts, tables).
+#'
+#' @param ref A concordance990 git ref (tag or commit). When given, the tables
+#'   are read from GitHub at that ref and `version` is the ref. When NULL, the
+#'   installed package is used if present, otherwise GitHub main.
+#' @return A list with data frames `forms`, `parts`, `tables` and a string
+#'   `version`.
+efile_concordance <- function(ref = NULL) {
+  if (!is.null(ref)) {
+    raw <- sub("/main/", paste0("/", ref, "/"), CC_RAW, fixed = TRUE)
+    rd <- function(f) utils::read.csv(paste0(raw, f), stringsAsFactors = FALSE)
+    return(list(forms = rd("forms.csv"), parts = rd("parts.csv"),
+                tables = rd("tables.csv"), version = ref))
+  }
   src <- system.file("extdata", "src", package = "concordance990")
   rd <- function(f) {
     p <- file.path(src, f)
@@ -185,6 +203,47 @@ efile_table_meta <- function(tables, cc, form = "990") {
   }
 
   m[order(m$form_sort, m$part_id, m$table_sort, m$table), ]
+}
+
+#' Path of a release's frozen table metadata file, relative to catalogs/.
+#'
+#' @param rel One row of `EFILE_RELEASES`.
+#' @return A file path such as `efile/TABLE-META-v3_1.csv`.
+efile_table_meta_path <- function(rel) {
+  file.path("efile", paste0("TABLE-META-", rel$id, ".csv"))
+}
+
+#' Read a release's frozen table metadata.
+#'
+#' The catalog pages read form, part, title, cardinality and sort order from
+#' a CSV frozen per release by `catalogs/efile/make-efile-table-meta.R`, so an
+#' archive page keeps the labels its release shipped with whatever
+#' concordance990 version is installed later.
+#'
+#' @param rel One row of `EFILE_RELEASES`.
+#' @param tables Character vector of table names the page will list (from
+#'   the release's count file). Every one must be in the frozen file.
+#' @param path Override of the frozen file location (used by tests).
+#' @return The metadata rows for `tables`, in display order, with attribute
+#'   `concordance_ref` giving the concordance990 ref they were frozen from.
+#' @details Stops with a message naming the missing tables when the frozen
+#'   file is behind the count file; rerun the freeze script in that case.
+efile_release_meta <- function(rel, tables, path = efile_table_meta_path(rel)) {
+  if (!file.exists(path)) {
+    stop("No frozen table metadata at ", path,
+         "; run Rscript catalogs/efile/make-efile-table-meta.R ", rel$id)
+  }
+  m <- utils::read.csv(path, stringsAsFactors = FALSE)
+  missing <- setdiff(unique(tables), m$table)
+  if (length(missing) > 0) {
+    stop("Frozen table metadata ", path, " lacks ", length(missing),
+         " table(s) in the count file (", paste(head(missing, 5), collapse = ", "),
+         "); rerun Rscript catalogs/efile/make-efile-table-meta.R ", rel$id)
+  }
+  ref <- unique(m$concordance_ref)
+  m <- m[m$table %in% tables, setdiff(names(m), "concordance_ref")]
+  attr(m, "concordance_ref") <- ref
+  m
 }
 
 # -----------------------------------------------------------------------------
