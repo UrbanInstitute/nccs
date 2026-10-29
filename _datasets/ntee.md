@@ -48,6 +48,10 @@ It is the same lookup table the NCCS data pipeline uses to label the [Business M
 | `ntee_code_description` | Longer description. Blank for the newest IRS codes. |
 | `effective_date` | Date the row was last changed, as `YYYYMMDD`. |
 
+## License
+
+This table is released under the [Open Data Commons Attribution License (ODC-BY) v1.0](https://opendatacommons.org/licenses/by/1-0/), as set out in [section 3.5 of the Terms of Service](../../terms/). You may copy, adapt, redistribute and use it commercially, provided you attribute it to the National Center for Charitable Statistics (NCCS) at the Urban Institute. The NTEE codes come from the IRS and the NAICS codes from the Census Bureau, both in the public domain; the pairing and the descriptions are NCCS work.
+
 ## Related tables
 
 This is one of 17 decoder tables the pipeline uses, alongside major groups, NTEE version 2 subsectors, subsection codes, foundation codes and others. The [lookup tables page](../lookups/) explains each one in plain words and links every download.
