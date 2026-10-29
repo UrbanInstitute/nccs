@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "NCCS website"
+type: software
+authors:
+  - family-names: Lecy
+    given-names: Jesse
+    affiliation: "National Center for Charitable Statistics, Urban Institute"
+  - family-names: Poongundranar
+    given-names: Thiyaghessan
+    affiliation: "National Center for Charitable Statistics, Urban Institute"
+  - name: "Urban Institute"
+repository-code: "https://github.com/UrbanInstitute/nccs"
+url: "https://nccs.urban.org"
+abstract: "Source for nccs.urban.org: dataset pages, catalogs, guides, and data stories for the National Center for Charitable Statistics."
+date-released: "2026-10-29"
