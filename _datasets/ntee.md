@@ -25,7 +25,7 @@ primaryLinks:
     href: "../lookups/"
     icon: database
 citation:
-  author: "National Center for Charitable Statistics"
+  author: "Thiyaghessan Poongundranar"
   citationDate: "2026"
   container-title: "NCCS BMF lookup tables: NTEE codes"
 ---

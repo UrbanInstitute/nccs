@@ -1,0 +1,10 @@
+# Maps every identity used in this repository's history to one person.
+# Commits were made from several machines (a Urban Institute laptop under
+# the root account, a Mac, GitHub web edits) before git was configured
+# consistently. git log and git shortlog read this file; GitHub does not.
+Thiyaghessan Poongundranar <tpoongundranar@urban.org> <tpoongundranar@urban.org>
+Thiyaghessan Poongundranar <tpoongundranar@urban.org> <thiyaghessan@gmail.com>
+Thiyaghessan Poongundranar <tpoongundranar@urban.org> <55271416+Thiyaghessan@users.noreply.github.com>
+Thiyaghessan Poongundranar <tpoongundranar@urban.org> <root@CNP-L24307-W11.urban.org>
+Thiyaghessan Poongundranar <tpoongundranar@urban.org> <thiyaghessanpoongundranar@mac.lan>
+Thiyaghessan Poongundranar <tpoongundranar@urban.org> <thiyaghessanpoongundranar@Thiyaghessans-MacBook-Pro.local>
