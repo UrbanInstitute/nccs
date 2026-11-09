@@ -10,8 +10,6 @@ library( dplyr )
 library( knitr )
 library( kableExtra )
 library( stringr )
-library( flextable )
-library( pander )
 
 source("build-catalog-functions.R")
 
