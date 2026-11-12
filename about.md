@@ -45,7 +45,7 @@ We remain dedicated to providing accurate, comprehensive, and accessible informa
 
 - Data engineering and maintenance (BMF, CORE, geography and NTEE crosswalks, the `nccsdata` R package, and the code that builds the data catalogs): Thiyaghessan Poongundranar, 2023 to present.
 - Website (author of the site launched in 2023, and joint maintainer) and e-file catalog pages: Jesse Lecy, 2023 to present.
-- E-file data releases: produced by the Nonprofit Open Data Collective. NCCS hosts and documents them.
+- E-file data releases: produced by the Nonprofit Open Data Collective. NCCS hosts and documents them. Thiyaghessan Poongundranar reviewed the current release, `efile_v3_1`, for NCCS in October 2026.
 
 <br>
 <br>
