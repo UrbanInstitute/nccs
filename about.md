@@ -41,6 +41,12 @@ We actively engage with a diverse network of partners that includes academics, t
 
 We remain dedicated to providing accurate, comprehensive, and accessible information that empowers stakeholders to make informed decisions and advances the collective understanding of the nonprofit sector's vital contributions to society.
 
+## Team and roles
+
+- Data engineering and maintenance (BMF, CORE, geography and NTEE crosswalks, the `nccsdata` R package, and the code that builds the data catalogs): Thiyaghessan Poongundranar, 2023 to present.
+- Website (author of the site launched in 2023, and joint maintainer) and e-file catalog pages: Jesse Lecy, 2023 to present.
+- E-file data releases: produced by the Nonprofit Open Data Collective. NCCS hosts and documents them.
+
 <br>
 <br>
 <br>
