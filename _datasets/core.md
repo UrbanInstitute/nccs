@@ -103,3 +103,9 @@ Each catalog section exposes the underlying S3 prefix for programmatic access an
 - [Census Crosswalk](census.html) — aggregate Core data to tracts, counties, or metro areas using standard FIPS codes.
 - [Sector in Brief dashboard](https://urban-main.shinyapps.io/sector-in-brief/) — request full panels with BMF attributes pre-joined.
 - [Contact / Get Help](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests.
+
+## How to cite
+
+Poongundranar, Thiyaghessan. (2026). *NCCS Core Series* [data set]. National Center for Charitable Statistics, Urban Institute. DOI: to be added.
+
+The data are available under the [Open Data Commons Attribution License (ODC-BY) v1.0](https://opendatacommons.org/licenses/by/1-0/). See section 3.5 of the [Terms of Service](https://nccs.urban.org/nccs/terms/).

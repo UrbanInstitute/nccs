@@ -1,5 +1,7 @@
 # NCCS
 
+Thiyaghessan Poongundranar has maintained the BMF, CORE and NTEE dataset pages and the code that builds the data catalogs since 2023, and maintains the site jointly with Jesse Lecy.
+
 ## Contents
 
 - [Development](#development)

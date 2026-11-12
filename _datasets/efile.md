@@ -112,6 +112,16 @@ While most parts of Form 990 and its schedules are made available to the public,
 
 Earlier releases remain available for reproducibility; see the version history in the [data catalog](../../catalogs/catalog-efile-v3_1.html#version-history).
 
+## How to cite
+
+Lecy, Jesse. (2026). *NCCS IRS 990 Efile Data* [data set].
+
+Roles in the current release, `efile_v3_1`:
+
+- Produced by: Jesse Lecy, Nonprofit Open Data Collective.
+- Reviewed by: Thiyaghessan Poongundranar, National Center for Charitable Statistics, Urban Institute, in October 2026. The [release note](https://github.com/UrbanInstitute/nccs-contracts/blob/main/governance/release-notes/efile-v3_1.md) records what the review found.
+- Hosted by: National Center for Charitable Statistics, Urban Institute.
+
 <br>
 <br>
 <hr>

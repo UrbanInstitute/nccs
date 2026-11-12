@@ -90,3 +90,13 @@ Each catalog section also exposes the underlying S3 prefix for programmatic acce
 - [Quality reports index](https://urbaninstitute.github.io/nccs-data-bmf/quality-reports/) — every per-month and per-product quality report.
 - [Source repository](https://github.com/UrbanInstitute/nccs-data-bmf) — pipeline code and issue tracker.
 - [Contact / Get Help](https://nccs.urban.org/nccs/contact/) — questions, corrections, data requests.
+
+## How to cite
+
+Poongundranar, Thiyaghessan. (2026). *NCCS Unified BMF* [data set]. National Center for Charitable Statistics, Urban Institute. DOI: to be added.
+
+For the 2024 files (versions 1.1 and 1.2), cite:
+
+Lecy, Jesse, and Thiyaghessan Poongundranar. (2024). *NCCS Unified BMF* [data set]. National Center for Charitable Statistics, Urban Institute.
+
+The data are available under the [Open Data Commons Attribution License (ODC-BY) v1.0](https://opendatacommons.org/licenses/by/1-0/). See section 3.5 of the [Terms of Service](https://nccs.urban.org/nccs/terms/).
