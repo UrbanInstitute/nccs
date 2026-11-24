@@ -20,6 +20,8 @@ This page records changes to the data sets NCCS publishes, newest first. Each en
 
 **Credit:** the defect was identified by Jesse Lecy, Nonprofit Open Data Collective. Reasoning and verification: [ADR 0048](https://github.com/UrbanInstitute/nccs-contracts/blob/main/decisions/0048-nteev2-specialty-code-x00-rule.md); release note [nteev2-x00-correction](https://github.com/UrbanInstitute/nccs-contracts/blob/main/governance/release-notes/nteev2-x00-correction.md).
 
+**Attribution (added 2026-11-11):** Released by: NCCS (the person who ran the build is not recorded; the build record files name code version `dbf33ae`). Pipeline author: Thiyaghessan Poongundranar. Other credit: the defect was identified by Jesse Lecy, Nonprofit Open Data Collective.
+
 ## 2026-08-11: E-file release `efile_v2_2`
 
 **Data sets:** IRS 990 e-file tables at `s3://nccs-efile/public/efile_v2_2/` (produced by the Nonprofit Open Data Collective, documented by NCCS).
@@ -29,3 +31,5 @@ This page records changes to the data sets NCCS publishes, newest first. Each en
 **What to do:** analyses built on v2_1 remain valid. Recent-year totals rise when recomputed on v2_2 because coverage improved, not because values were corrected. v2_1 stays at its existing path. Two quirks: the folder carries a row-count summary file still named `...EFILE_V2_1.CSV`, and the SUMMARY table holds about 2 million duplicate 990-EZ rows with null expenses (deduplicate on `OBJECTID` before joining).
 
 **Source:** release note [efile-v2_2](https://github.com/UrbanInstitute/nccs-contracts/blob/main/governance/release-notes/efile-v2_2.md).
+
+**Attribution (added 2026-11-11):** Released by: Nonprofit Open Data Collective (the producer). Pipeline author: Nonprofit Open Data Collective. Other credit: documented and checked by NCCS; release note written by Thiyaghessan Poongundranar.
