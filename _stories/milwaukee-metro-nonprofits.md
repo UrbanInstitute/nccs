@@ -83,7 +83,9 @@ never re-derived:
 3.  **~⅓ of revenue is unclassified.** Even with `nteev2_subsector`,
     “UNU” (unclassified) holds 33% of 2023 Form 990/990-EZ revenue (and
     ~36% of the current count). The legacy major group was worse (63%
-    unclassified). UNU is reported as its own row, not dropped.
+    unclassified). UNU is reported as its own row, not dropped. *Update
+    (Aug 2026): the NTEE-resolved crosswalk cuts unclassified 2023
+    filers to 3% — see the update section below.*
 4.  **Count series is a step function at vintage years.** Vintages are
     sparse pre-1995 (only 1989, then 1995), so 1990–1994 repeat the 1989
     value; resolution improves over time.
@@ -219,6 +221,84 @@ series in `data/q_pf_total_revenue_by_year.csv`.)*
 # source with CPI deflation.
 ```
 
+### Update (August 2026) — recovering the unclassified third
+
+The original caveat 3 reported that a third of 2023 revenue sat in
+“Unclassified”: organizations whose current IRS Business Master File
+record carries no NTEE code. The **NTEE-resolved crosswalk** (ADR 0034)
+recovers, for each EIN, the code it carried in earlier BMF vintages.
+Applying it to the 2023 filers: of 2,805 organizations, 1,989 have a
+code in the current BMF, another **721 recover a code from a historical
+vintage**, and only **95 (3%)** remain uncoded.
+
+The recut changes the headline more than we expected — most of the
+“unclassified” \$8.9B was health care all along:
+
+| Major group (resolved NTEE)      | Filers | Revenue (\$M) |
+|----------------------------------|--------|---------------|
+| Health (E)                       | 147    | 17,337        |
+| Education (B)                    | 373    | 3,665         |
+| Human Services (P)               | 298    | 1,657         |
+| Youth Development (O + Y)        | ~100   | ~900          |
+| Employment (J)                   | 92     | 542           |
+| Community Improvement (S)        | 282    | 519           |
+| Philanthropy & Grantmaking (T)   | 117    | 363           |
+| Arts (A)                         | 211    | 354           |
+| *Still unclassified*             | *95*   | *313*         |
+
+Health’s true share of metro public-charity revenue is ~**\$17.3B of
+\$27B (64%)**, not the \$10.4B the NTEEv2 subsector view showed.
+
+``` r
+# Recut built by requests/2026-06-milwaukee-msa/build-ntee-filer-files.R:
+# joins the MSA filer panel to s3://nccsdata/crosswalks/ntee-resolved/
+# (ntee_most_recent fills EINs blank in the current BMF; placeholder strings
+# like "UNDEFINED" are treated as missing). Aggregates in
+# data/followup-2026-08-ntee/story_2023_major_group_recut.csv.
+```
+
+### The sector without its giants
+
+A handful of hospitals and universities dominate the dollar totals.
+Excluding the eight NTEE hospital and higher-education subcategories
+(B42, B43, B50, E20, E21, E22, E24, E31) removes only **43 of 2,805
+filers (2023)** but ~**64% of revenue**:
+
+| Year | All filers (\$M) | Excluding hospitals & universities (\$M) | Orgs excluded |
+|------|------------------|------------------------------------------|---------------|
+| 2021 | 19,082           | 8,794                                    | 45            |
+| 2022 | 25,694           | 9,244                                    | 42            |
+| 2023 | 27,022           | 9,704                                    | 43            |
+
+Read as “the nonprofit sector most residents interact with outside a
+hospital or lecture hall,” metro public-charity revenue is ~**\$9.7B**,
+not \$27B — and its growth curve is smoother, since the big systems’
+merger-and-acquisition jumps drop out. (Full 1989–2023 series in
+`data/followup-2026-08-ntee/story_adjusted_revenue_by_year.csv`.)
+
+### Employment and how the money is spent
+
+From the e-file 990s (complete for 2021–2023 under the e-filing mandate;
+full-Form-990 filers only — 990-EZ filers and private foundations do not
+report these fields):
+
+| Year | Filers reporting | Employees (MSA) | Employees (Milwaukee Co.) |
+|------|------------------|-----------------|---------------------------|
+| 2021 | 1,859            | 155,097         | 117,037                   |
+| 2022 | 1,918            | 195,543         | 156,952                   |
+| 2023 | 1,861            | 149,265         | 113,822                   |
+
+Metro nonprofits employ roughly **150,000 people** (IRS headcount, not
+FTE; the 2022 spike is a reporting artifact worth deeper investigation
+before citing). By focus area, health care and human services dominate:
+hospitals (23,294) plus health (8,582) plus human services (37,239)
+account for nearly half of identified nonprofit employment in 2023.
+
+The functional expense split is stable: **~77–81% program services,
+~12–14% management and general, under 1% fundraising** — by the bluntest
+measure, about four of every five nonprofit dollars in the metro go to
+programs.
+
 ## Takeaways
 
 - The four-county Milwaukee metro has ~**11,000** registered nonprofits
@@ -234,6 +314,15 @@ series in `data/q_pf_total_revenue_by_year.csv`.)*
         contributions are second (~\$3.4B in 2023).
 - **Form 990-PF** (private foundations) add ~\$1.2B (2023), reported
   separately.
+- *(Aug 2026)* Recovering NTEE codes from historical BMF vintages cuts
+  the unclassified share of 2023 filers from ~27% to **3%** — and shows
+  health care is ~**64%** of metro public-charity revenue, not the ~38%
+  the current-vintage view suggested.
+- *(Aug 2026)* Excluding hospitals and universities — just **43
+  organizations** — removes ~64% of revenue; the rest of the sector runs
+  on ~**\$9.7B** (2023).
+- *(Aug 2026)* Metro nonprofits employ ~**150,000 people** (2023, IRS
+  headcount), and spend **~4 of every 5 dollars on program services**.
 
 ------------------------------------------------------------------------
 
